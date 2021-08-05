@@ -1,8 +1,6 @@
 <script context="module">
 	import { blockquote } from '$lib/components/typography/index';
-	import Codesandbox from './mdx/Codesandbox.svelte';
-	import EggheadLesson from './mdx/EggheadLesson.svelte';
-	export { blockquote, Codesandbox, EggheadLesson };
+	export { blockquote };
 </script>
 
 <script>
