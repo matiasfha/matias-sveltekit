@@ -1,0 +1,209 @@
+---
+date: 2020-19-10T23:13:59-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1597115954/andreas-gucklhorn-Ilpf2eUPpUE-unsplash_n8npgz.jpg
+keywords:
+- useState
+- hooks
+- hook
+- React
+- Wizard
+- componentes
+- lesson
+- tutorial
+tag: Post
+title: Crear un componente Wizard utilizando useState React hook
+description: Como utilizar useState React hook para crear un sencillo componente Wizard
+  o multi-step
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@draufsicht?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Andreas
+  Gücklhorn</a> on <a href="https://unsplash.com/collections/9718937/solar?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+favorite: true
+lang: es
+---
+
+> ## TLDR;
+> Puedes ver este video en [egghead.io](https://egghead.io/lessons/react-crear-un-componente-wizard-usando-usestate-react-hooks?pl=hooks-3d62&af=4cexzz).
+> Este video es parte de una [colección](https://egghead.io/playlists/hooks-3d62&af=4cexzz) en donde se muestra progresivamente como crear un componente utilizando diferentes hooks y patrones de diseño
+
+<EggheadLesson lessonId="react-crear-un-componente-wizard-usando-usestate-react-hooks" />
+
+Un **Wizard** o **multi-step** es un componente que puede contenir multiples "páginas" pero que sólo renderiza una de ellas y permite navegar hacia delante o atrás entre las páginas restantes. Este tipo de componentes son usualmente utilizados para renderizar formularios largos dividiendolos en diferentes "pasos".
+
+Este tipo de componentes requieren el manejo de un estado interno para poder decidir que "página" se debe renderizar y como los botones del componente deben actuar ante el evento click. La forma que React ofrece para manejar estados internos es utilizando el hook `React.useState`
+
+La forma más sencilla de este componente utiliza un estado sencillo que solo indica el indice de la página "actual", es decir, la que se mostrará en pantalla.
+
+En este ejemplo podemos ver el uso de useState, y como utilizar la forma funcional de la función actualizadora para acceder al estado actual y modificarlo.
+
+Para comenzar, crearemos la base de nuestro componente creando un contenedor que mantendrá otros dos contenedores, uno para el contenido que se renderizará y otro para los botones necesarios para la navegación.
+
+```jsx
+const Wizard = ({ children }) => {
+  return (
+    <div className="wizard">
+      <div className="wizard__content"></div>
+      <div className="wizard__buttons"></div>
+    </div>
+  );
+};
+```
+
+Con esto en su lugar ya podemos definir los componentes que irán dentro de nuestro wizard y definir el aspecto que tendrán cuando sean renderizados para eso crearemos en este caso tres componentes simples que llamaremos page que simplemente contienen un título indicando la página a la que corresponden y agregamos esto dentro de nuestra aplicación.
+
+```jsx
+const Page1 = () => (
+  <div>
+    <h1>Pagina 1</h1>
+  </div>
+);
+
+const Page2 = () => (
+  <div>
+    <h1>Pagina 2</h1>
+  </div>
+);
+const Page3 = () => (
+  <div>
+    <h1>Pagina 3</h1>
+  </div>
+);
+
+const App = () => {
+  return (
+    <Wizard>
+      <Page1 />
+      <Page2 />
+      <Page3 />
+    </Wizard>
+  );
+};
+```
+
+Nuestro objetivo ahora es mostrar una página a la vez, por lo que necesitamos manipular los componentes que el wizard recibe. Para esto, utilizaremos la API React.Children que permite manipular el objeto children, en este caso, convirtiéndolo a un arreglo de elementos.
+También usaremos una variable auxiliar `currentPage` que mantendrá la página que se renderizará y utilizaremos un índice para indicar la selección. En este caso utilizamos el primer indice lo que renderizará sólo la prima página que hemos creado.
+
+```jsx
+const Wizard = ({ children }) => {
+  const pages = React.Children.toArray(children);
+  const currentPage = pages[0];
+
+  return (
+    <div className="wizard">
+      <div className="wizard__content">{currentPage}</div>
+      <div className="wizard__buttons"></div>
+    </div>
+  );
+};
+```
+
+Ahora es cuando entra en juego el hook `useState`.
+
+Es necesario que el componente seleccionado en currentPage sea variable, se modifique con el tiempo, y cambie cuando se hace click en alguno de los botones. Esto es que cambie el estado de nuestro componente.
+
+Este estado lo podemos manejar con el hook `useState` que retorna el arreglo con dos elementos, un valor que llamamos `activePageIndex` y una función que sirve para definir el valor del estado que llamaremos `setActivePageIndex`.
+
+```jsx
+const Wizard = ({ children }) => {
+  const [activePageIndex, setActivePageIndex] = React.useState(0);
+  const pages = React.Children.toArray(children);
+  const currentPage = pages[activePageIndex];
+
+  return (
+    <div className="wizard">
+      <div className="wizard__content">{currentPage}</div>
+      <div className="wizard__buttons"></div>
+    </div>
+  );
+};
+```
+
+Además, useState puede recibir un valor inicial que será en este caso el primer índice. Con esto, ya podemos usar el valor de `activePageIndex` para definir qué se renderiza en cada momento. Recuerda que cada llamada al componente tiene su propio valor de `activePageIndex`.
+
+Utilizaremos el valor de `activePageIndex` para definir si se muestra o no cada botón. Para eso simplemente escribimos una condicional ternaría indicando que se renderice el botón con cierta condición o se renderice null.
+
+```jsx
+const Wizard = ({ children }) => {
+  const [activePageIndex, setActivePageIndex] = React.useState(0);
+  const pages = React.Children.toArray(children);
+  const currentPage = pages[activePageIndex];
+
+  const ButtonPrev = () =>
+    activePageIndex > 0 ? (
+      <button type="button" className="wizard__buttons-left">
+        Atras
+      </button>
+    ) : null;
+  const ButtonNext = () =>
+    activePageIndex < pages.length - 1 ? (
+      <button type="button" className="wizard__buttons-right">
+        Siguiente
+      </button>
+    ) : null;
+
+  return (
+    <div className="wizard">
+      <div className="wizard__content">{currentPage}</div>
+      <div className="wizard__buttons">
+        <ButtonPrev />
+        <ButtonNext />
+      </div>
+    </div>
+  );
+};
+```
+
+En el caso del botón atrás, se renderizará sólo si `activePageIndex`, que es el índice, sea mayor que `0`, y en el caso del botón Siguiente, se renderizará sólo si `activePageIndex` es menor que el total de ítems dentro de las páginas. Aún los botones no hace específicamente nada. Es necesario que el estado pueda cambiar.
+
+Para eso, definiremos dos funciones, una para cuando el botón atrás es presionado y otra para el botón siguiente. Para el botón atrás, simplemente disminuimos el valor del índice. Para eso, utilizamos la forma funcional de la función de actualización, la función `setActivePageIndex`.
+
+Este método puede recibir una función que recibe como parámetro el estado actual y modifica el estado en base al valor retornado. En este caso, disminuye el índice en -1. De forma similar al presionar el botón Siguiente, el índice se incrementará en 1.
+
+```jsx
+const Wizard = ({ children }) => {
+  const [activePageIndex, setActivePageIndex] = React.useState(0);
+  const pages = React.Children.toArray(children);
+  const currentPage = pages[activePageIndex];
+
+  const goNextPage = () => {
+    setActivePageIndex((index) => index + 1);
+  };
+
+  const goPrevPage = () => {
+    setActivePageIndex((index) => index - 1);
+  };
+
+  const ButtonPrev = () =>
+    activePageIndex > 0 ? (
+      <button
+        type="button"
+        onClick={goPrevPage}
+        className="wizard__buttons-left"
+      >
+        Atras
+      </button>
+    ) : null;
+  const ButtonNext = () =>
+    activePageIndex < pages.length - 1 ? (
+      <button
+        type="button"
+        onClick={goNextPage}
+        className="wizard__buttons-right"
+      >
+        Siguiente
+      </button>
+    ) : null;
+
+  return (
+    <div className="wizard">
+      <div className="wizard__content">{currentPage}</div>
+      <div className="wizard__buttons">
+        <ButtonPrev />
+        <ButtonNext />
+      </div>
+    </div>
+  );
+};
+```
+
+Agregamos estos manejadores de eventos a cada botón y con esto ya tenemos una versión simplificada de un componente que permite navegar entre los elementos renderizados utilizando `useState` para manejar el estado.
+
+`useState` permite manejar el estado de un componente definido como una función. `useState` retorna un arreglo con dos elementos, el valor del estado y una función para modificar ese estado. Es posible pasar una función como argumento a la función modificadora, lo que permite acceder al estado actual y retornar el nuevo estado

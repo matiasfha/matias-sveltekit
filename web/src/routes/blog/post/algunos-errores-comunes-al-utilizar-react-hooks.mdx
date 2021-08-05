@@ -1,0 +1,101 @@
+---
+date: 2020-08-05T11:35:12.000-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1596641805/brook-anderson-gTQbZXL417Q-unsplash_si4ngk.jpg
+keywords:
+- React
+- Hooks
+tag: Seed
+title: Algunos errores comunes al utilizar React Hooks
+description: El uso de hooks requiere de un cambio de modelo mental, un proceso que
+  puede ser complejo sobre todo para quienes ya llevan un tiempo desarrollando aplicaciones
+  con React, es normal caer en algunos errores y lugares comunes que hemos ido identificando
+  con el tiempo creando buenas prácticas.
+bannerCredit: <span>Photo by <a href="[https://unsplash.com/@brookanderson?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText](https://unsplash.com/@brookanderson?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText)">Brook
+  Anderson</a> on <a href="[https://unsplash.com/s/photos/hooks?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText](https://unsplash.com/s/photos/hooks?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText)">Unsplash</a></span>
+
+---
+> Este post es también parte del episodio 17 del podcast Café con Tech
+
+https://www.buzzsprout.com/1081172/4822565-errores-comunes-con-react-hooks/player
+
+El uso de hooks requiere de un cambio de modelo mental, un proceso que puede ser complejo sobre todo para quienes ya llevan un tiempo desarrollando aplicaciones con React, es normal caer en algunos errores y lugares comunes que hemos ido identificando con el tiempo creando buenas prácticas.
+
+El primer error o problema está relacionado con aquellos que llevan un tiempo trabajando con React, seguir pensando en métodos de estado de vida de un componente o seguir intentando escribir dichos métodos utilizando Hooks.
+
+En palabras simples y directas. La api de hooks no es un reemplazo de la api de clases.
+
+### ¿Cómo se relaciona los estados del ciclo de vida con hooks?
+
+  
+Los métodos de estado de vida fueron por mucho tiempo la forma de definir el comportamiento del componente basado en un momento dado. Pero al utilizar hooks, y en particular `useEffect` el modelo mental que debemos adoptar es diferente. Es un modelo en base al concepto de sincronización, sincronizar el estado del mundo con el estado  del componente, props y estado.
+
+La diferencia entre el usual modelo de _montar/actualizar/desmontar_  y la sincronización es sutil. O como lo menciona Ryan Florence: "La pregunta ahora no es Cuando este efecto es ejecutado", si no, "Con que estado se sincroniza este efecto", con este modelo tenemos 3 opciones. Sincronizar con todos los estados, con ninguno o con un listado definido de estados, las dependencias utilizadas para useEffect
+
+https://twitter.com/ryanflorence/status/1125041041063665666?s=20
+
+Ciertamente modificar tus pre-conceptos sobre esta relación de los estados del ciclo de vida y la sincronización del estado requiere, de cierta forma, olvidar lo aprendido.
+
+Y esto nos lleva al siguiente error, mentirle a React sobre las dependencias de un hook o más bien, ignorar o no utilizar el plugin de **ESLINT** [eslint-plugin-react-hooks.](https://www.google.com/search?client=safari&rls=en&q=eslint-plugin-react-hooks&ie=UTF-8&oe=UTF-8)
+
+### Dependencias exhaustivas 
+
+El equipo trás React creo este plugin con dos reglas escenciales: las llamadas ["reglas de los hooks"](https://es.reactjs.org/docs/hooks-rules.html) y "dependencias exhaustivas".
+
+SI no estás utilizando este plugin pero estás escribiendo hooks, te recomiendo fuertemente lo instales y lo utilices!
+
+De estas dos reglas las que la mayoría de los desarrolladores ignora es "dependencias exhaustivas", es aquella regla que te grita cada vez que, por ejemplo, al utilizar `useEffect` dejas el arreglo de dependencias vació pero dentro del efecto haces uso de algunas variables fuera de su scope.
+
+Utilizar este plugin es como tener al equipo de React, Sebastian Markbage, Dan Abramov y el resto del equipo, mirando sobre tu hombro diciendo: No, así no es como debes utilizar los hooks. El ignorar el uso de este plugin es como decirles : "Tranquilo Sebastian, yo se usar hooks mejor que tu".
+
+Este problema se relaciona con el mencionado anteriormente, el pensar en el ciclo de vida del componente, se ha mostrado incanzablemente que el utilizar un arreglo vacío cómo dependencia se comporta de igual manera que el método `componentDidMount` ejecutando el efecto solo en el primer render. Y si bien el resultado obtenido es similar, no es exactamente el mismo concepto. Un arreglo vacío, indica que el efecto no utiliza ningún valor fuera de su scope, es decir, no existen dependencias.
+
+La verdad es que en la mayoría de los casos los efectos emitidos si tienen alguna dependencia y si esta dependencia es en realidad idempotente utilizarla como dependencia no generaría ningun problem.
+
+En resumen, no le mientas a React dejando el listado de dependencias vacíos cuando en realidad estas dependencias existen. No sigas pensando en estados del ciclo de vida y utiliza el plugin de ESLINT. Y escucha a Sebastian y Dan.
+
+### No optimices prematuramente.
+
+Otro error común y que probablemente va más allá del uso de hooks es la optimización prematura o pensar demasiado en la performance de tu app.
+
+Con el uso de hooks todo lo que estamos escribiendo son funciones y muchas veces se escriben funciones dentro del componente lo que lleva a muchos a pensar en que esto generará problemas de rendimiento futuros dado que en cada nuevo render del componente una nueva función es creada. O si esta función que es redefinida se utiliza como prop en otro componente, se podrían generar demasiados renders innecesarios
+
+Ciertamente la re-definición de una función multiples veces no es algo que desees, pero por lo general los actuales engines de Javascript son bastante rápidos en esta operación,  ahora bien para la segunda parte del problema de performance, demasiados renders innecesarios, también es una media verdad. Claramente si tenemos una función que se re-define en cada render y esta es usada como prop, el componente que la recibe tambien se renderizará multiples veces pues una de sus prop cambió.
+Pero, preguntate esto: Un re-render de un componente implica siempre una actualización del DOM?
+
+Pensemos en un escenario donde en un componente la única prop que cambia es una función como un manejador de eventos, esto claramente no implica un cambio en el renderizado de este componente cierto? Por lo tanto, aunque se renderize mil veces, no existirán cambios en el DOM.
+
+Uno de las principales características de React es su gran trabajo de optimización  a la hora de calcular diffs y modificar el DOM, por lo que este segundo problema de performance puede no ser tan relevante como piensas.
+
+Aquí el consejo o solución es simple. No hagas optimización prematuras, como utilizar indiscriminadamente `useMemo` o `useCallback`primero toma algunas mediciones del real performance de tu applicación y busca estrategias y mejoras que mitigen esos cuellos de botellas que lograste determinar, y si después de eso siguen existiento problemas, analiza por que hay tantos re-renders innecesarios y ahí solo ahí aplica `useMemo` o `useCallback` de forma conciente.
+
+Ah!.. y no olvides, que estas métricas debiesen ser obtenidas desde un ambiente de producción. la versión de desarrollo de React es mucho más lenta que su contraparte de producción.
+
+### No dejes la documentación de lado
+
+Existe otro problema que creo nace de confusión o incluso desconfianza en tus propios conocimientos, por lo que la solución aquí es fácil. Lee la documentación  de hooks y practica. me refiero a no utilizar hooks como useReducer o más bien no poder identificar cuando utilizar `useReducer`.
+
+`useReducer` es en cierto modo una válvula de escape dentro de los hooks, te da la posibilidad clara y directa de desacoplar los cambios de estado de tus efectos.
+
+Como regla general, si comienzas a establecer un valor de estado en dependencia del valor actual del estado, es decir, utilizas la forma funcional de tu método setState, deberías comenzar a pensar en utilizar useReducer.
+
+useReducer es una potente herramienta que permite el manejo de estados complejos para ser utilizados de una forma simple dentro de tus componentes y sus efectos en donde la única dependencia minima es `dispatch`, función que React te asegura será constante entre los diferentes renders.
+
+Y finalmente una idea que sigue relacionada con el uso de `useEffect` pero que creo puede ir más allá.
+
+Muchas veces en favor de mantener algunos conceptos estándares de la industria como DYI muchos evitan mover sus funciones dentro del `useEffect` pero muchas veces siguen callendo en el error de las dependencias. Esto me lleva a pensar en las abstracciones que nos forzamos a utilizar.
+
+Esta porfía de evitar la duplcación de codigo sólo por evitarlo de forma mañosa sin un trasfondo mayor lleva a crear abstracciones que muchas veces o son más complejas o son innecesarias y crear futuros problemas.
+En este sentido te invito a esuchar la charla de Kent C Dodds. AHA programming o Avoid Hefty Abstractions disponible en youtube.
+
+https://www.youtube.com/watch?v=wuVy7rwkCfc\](https://www.youtube.com/watch?v=wuVy7rwkCfc
+
+### Conclusión
+
+En conclusión a la hora de utilizar hooks creo que los novatos la tienen más fácil pues sólo tienen que crear un modelo mental para esta API.
+Pero en general para evitar estos errores comunes hay simples soluciones:
+
+* Leer la documentación oficial y sobre todos sus FAQ. o preguntas frecuentes
+* Dejar de pensar en estados de ciclo de vida
+* No optimizar prematuramente
+* Utilizar y no ignorar el plugin de eslint para hooks
+* Y no crear abstracciones innecesarias

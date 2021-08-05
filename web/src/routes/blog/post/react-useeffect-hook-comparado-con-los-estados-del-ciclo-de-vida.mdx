@@ -1,0 +1,76 @@
+---
+date: 2020-10-31T21:52:32.000-03:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1604192606/markus-spiske-sFHt4P_CqV4-unsplash_of1cfx.jpg
+keywords:
+- React
+- useEffect
+- hook
+- hooks
+tag: Seed
+title: React useEffect Hook Comparado con los Estados del Ciclo de Vida
+description: |-
+  El hook useEffect y los estados del ciclo de vida de un componente.
+  Son comparables? Funcionan igual? Es uno del reemplazo del otro?.
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@markusspiske?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Markus
+  Spiske</a> on <a href="https://unsplash.com/s/photos/effect?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+favorite: true
+
+---
+Este es un breve post para de forma resumida aclarar algunos conceptos respecto al uso del hook `useEffect`y su relación con los `estados del ciclo de vida` de un componente.
+
+  
+# ¿Cómo se relacionan el hook useEffect y los estados del ciclo de vida?
+¿Es posible comparar ambas implementaciones?, ¿Es uno el reemplazo del otro?
+
+Un gran recurso sobre este particular hook es el artículo publicado por [Adan Abramov](https://twitter.com/dan_abramov) [en su blog](http://overreacted.io/a-complete-guide-to-useeffect/)   
+  
+Los estados del ciclo de vida son una definición y concepto utilizados en los componentes de clase. Estos componentes eran la única forma de escribir componentes que tuvieran estado interno antes del advenimiento de hooks.
+
+Para esto se utiliza la sintaxis de [clase de ES6](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Classes) como en el siguiente ejemplo.
+
+```javascript
+class Componente extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {something: 'some value'};
+    }
+    componentWillMount() {...}
+    componentDidMount() {...}
+    componentWillUnmount() {...}
+    componentDidUpdate() {...}
+}
+```
+
+Este tipo de component implementa diferentes métodos que te permiten ejecutar alguna lógica en base a un **"momento"** dado durante el proceso de renderizado del componente. Y esto es importante:
+
+> La ejecución de estos métodos esta relacionada con el **tiempo** como variable adyacente.
+
+Cada uno de estos métodos depende del momento en el que el componente se encuentre y la decisión de que lógica agregar a cada uno está basada en este concepto.
+
+
+El [hook `useEffect`](https://es.reactjs.org/docs/hooks-effect.html) nace dentro de una nueva api ofrecida por React para permitir crear componentes que contenga estado de una forma funcional, es decir, con componentes implementados como función. Si bien este hook puede obtener los mismos resultados que algunos métodos del ciclo de vida, estos, no son directamente comparables (y no debería hacerse) ya que el concepto y modelo mental trás su implementación es diferente.
+
+`useEffect` se trata sobre *sincronizar* el estado interno de un componente con algún estado externo, por ejemplo obtener datos desde una api o modificar algo en el DOM.  
+
+> Relacionado: [Algunos errores comunes al utilizar React hooks](https://matiashernandez.dev/algunos-errores-comunes-al-utilizar-react-hooks)
+
+`useEffect` ejecuta un efecto (side effect) definido como primer argumento a modo de callback.
+
+Este efecto es ejecutado cada vez que uno de los valores del arreglo de dependencias (segundo parámetro) ha cambiado.  
+Y eso es todo el modelo conceptual!. El efecto no se ejecuta en relación a un momento del renderizado, ergo, no hay ejecución al montar o recibir props.
+
+El efecto sólo se ejecuta cuando una dependencia cambia, he ahí la importancia de hacerle caso al plugin [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) y no saltarse la definición de dependencias.  
+
+## ¿Cuál es la diferencia entre useEffect y los métodos del ciclo de vida?
+
+El gran cambio aquí es que a la hora de definir tu componente no debes pensar en el cuando (en relación al tiempo) se ejecutará el efecto, si no, en el por qué el efecto se ejecuta (cambio en una dependencia).  
+
+> Relacionado: [¿Qué son los hooks?](https://matiashernandez.dev/que-son-los-hooks)  
+
+Finalmente si bien puede que te haga sentido hacer la comparación y relación con la implementación del ciclo de vida esto puede ser detrimental ya que puede llevar a malas prácticas en su implementación, cómo el no uso del arreglo de dependencias u obviar algunas.
+
+Para aprender hooks, y en particular `useEffect`, debes dejar de compararlo con la forma previa de implementación, sobre todo si tan sólo estás comenzando con [#React](https://threadreaderapp.com/hashtag/React)
+
+Si estás comenzando con React, sigue atento al curso "Pensando en React" para [@eggheadio](http://egghead.io/instructors/matias-francisco-hernandez-arellano) que está en progreso!!  
+
+Únete al newsletter para mantenerte al tanto.

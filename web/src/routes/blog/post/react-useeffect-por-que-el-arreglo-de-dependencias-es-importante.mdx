@@ -1,0 +1,85 @@
+---
+date: 2020-11-02T09:17:52-03:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1604323837/monirul-islam-shakil-31I2Mi1UuxQ-unsplash_kkerl8.jpg
+keywords:
+- React
+- hooks
+- useEffect
+tag: Seed
+title: React useEffect ¿Por que el arreglo de dependencias es importante?
+description: React `useEffect` es quizá el hook que más confusiones genera a la hora
+  de utilizarlo. Una confusión común es el uso del arreglo de dependencias
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@themisphotography?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Monirul
+  Islam Shakil</a> on <a href="https://unsplash.com/s/photos/effect?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
+---
+React `useEffect` es quizá el hook que más confusiones genera a la hora de utilizarlo.
+Algunas de esas confusiones se debe al intento de comparar su funcionamiento con los estados del ciclo de vida de un componente de clase, algo que aclaro en [este post anterior](https://matiashernandez.dev/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida)
+
+> Recomendado:
+>
+> [¿Qué son los hooks?](https://matiashernandez.dev/que-son-los-hooks)
+>
+> [Algunos errores comunes al utilizar React hooks.](https://matiashernandez.dev/algunos-errores-comunes-al-utilizar-react-hooks)
+
+El hook useEffect recibe dos argumentos, una funcion/callback que define el efecto deseado y un listado/arreglo de valores que definen las dependencias del efecto.
+Estas dependencias le sirven a React para saber cuándo o más bien **por qué** el efecto debe ejecutarse.
+
+Internamente useEffect "observa" este listado de dependencias y cuando uno de los valores de ellas cambia el efecto es emitido. Esto te permite optimizar la ejecución del efecto.
+
+> Mantén en mente que React realiza una comparación utilizando [Object.is](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) para determinar si hubo un cambio en uno de los elementos. Si necesitas hacer una comparación "profunda" puedes utilizar este hook [useDeepCompareEffect](https://github.com/kentcdodds/use-deep-compare-effect)
+
+El equipo de React provee un[ plugin de eslint ](https://www.npmjs.com/package/eslint-plugin-react-hooks)que ayuda a identificar cuando hay dependencias no identificadas por medio de la regla: [**react-hooks/exhaustive-deps**](https://es.reactjs.org/docs/hooks-rules.html#eslint-plugin)
+
+En general un efecto es una función que ejecuta cierta lógica para sincronizar el estado interno del componente con un estado externo (si, no me canso de repetirlo 🤷‍♂️).
+
+```javascript
+useEffect(() => {
+    	fetch("/api/data").then(
+    		res => setState(res.data)
+    	)
+    }, [setState])
+```
+
+### Y por que las dependencias son importantes?
+
+Simple! Por que las dependencias son la forma de controlar cuando el efecto se ejecuta o no. Recuerda. No se trata de si el efecto ocurre al montar el componente (o cualquier otro "momento"), si no, de por qué se ejecuta (cambio en un valor de una dependencia?
+
+### Y ¿por qué debo escribir todas las dependencias del efecto?
+
+Si tu efecto utiliza un valor dentro de su lógica pero no lo declaras como dependencia entonces "algo huele mal"(code smell)
+
+El plugin de eslint reportará la dependencia faltante como un warning. Entonces ¿Por qué es tan importante si sólo se reporta como un warning?.
+
+Bueno, es un bug que en cualquier momento volverá a morderte.
+
+Tu efecto funciona incluso sin declarar la dependencia por que la función/callback definida funciona como un closure y es capaz de utilizar el valor externo a su scope.
+
+Si miramos el mismo ejemplo anterior, podemos escribirlo sin dependencias o con una lista vacía (lo que indica que se ejecutará sólo una vez)
+
+```javascript
+useEffect(() => {
+    	fetch("/api/data").then(
+    		res => setState(res.data)
+    	)
+    }, [])
+```
+
+Pero, piénsalo así, estas declarando una función que trabaja con ciertos valores pero no le estas dando acceso directo a esos valores!! No es extraño?
+¿Estás diciendo que tu función usa un valor pero que no depende de él?
+
+# ¿Entonces que hacer?
+Hay que redefinir la lógica de tu efecto para que solo utilice los valores de los que realmente dependa.
+
+¿Cómo? Una forma es extraer la lógica hacia una función externa y utilizar esta nueva función como dependencia del efecto.
+
+
+Te dejo algunos muy buenos artículos sobre useEffect:
+* Kent C Dodds: Escrbió [un articulo](https://kentcdodds.com/blog/react-hooks-pitfalls) sobre algunos errores al utilizar hooks, en donde comenta sobre el no uso de las dependencias.
+
+* [Dan Abramov](https://twitter.com/dan_abramov) tiene un artículo en [profundidad sobre useEffect](http://overreacted.io/a-complete-guide-to-useeffect/)
+
+* [Y este ártículo](https://daveceddia.com/useeffect-hook-examples/) de Dave Ceddia
+
+Mantente atento sobre estos temas y más uniendote a mi newsletter!
+Pronto noticias sobre el curso sobre React en el que estoy trabajando para a [@eggheadio](http://egghead.io/instructors/matias-francisco-hernandez-arellano)

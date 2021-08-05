@@ -1,0 +1,228 @@
+---
+date: 2020-09-23T23:23:01-03:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1600914347/steve-johnson-xL88x9Tqch0-unsplash_h9aqd8.jpg
+keywords:
+- Rust
+- " Elm"
+- Clojure
+- Elixir
+- Overview
+tag: Seed
+title: Overview de algunos modernos lenguajes de programación
+description: 'Existen diversos lenguajes de programación pero podemos llamar a algunos
+  de ellos pueden ser considerados modernos, este es un overview de al menos 4 de
+  ellos que se han popularizado y con buenas razones
+
+'
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@steve_j?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Steve
+  Johnson</a> on <a href="https://unsplash.com/s/photos/modern-languajge?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
+---
+
+> Este post es también parte del [episodio 24](http://www.cafecon.tech/1081172/5581075-overview-de-algunos-modernos-lenguajes-de-programacion) de [Cafe con Tech](http://www.cafecon.tech)
+
+http://www.buzzsprout.com/1081172/5581075-overview-de-algunos-modernos-lenguajes-de-programacion/player
+
+Existen muchos lenguajes de programación, quizá demasiados, cada uno enfocado a solucionar algún problema en particular o con alguna orientación diferente. Algunos de estos han sucumbido a los cambios y otros se han mantenido estoicos durante los años y unos pocos han superado todo cambio y son parte escencial de la tecnología que usamos hoy en día.
+Entre estos añosos monstruos tenemos C, nacido en 1972, C++ en 1985, Java, Javascript, Python, Php, Ruby, todos ellos nacidos en los 90. Si bien estos leguajes aún siguen en boga y tienen un gran mercado, es fácil ver que se han vuelto muy complejos a la hora de enfrentar los problemas de hoy en día
+
+El término **moderno** es una clasificación a lo menos controversial, es complejo definir que es moderno ya que cada uno puede tener prejucios y preconceptos sobre que considerar actual o no, pero en el scope de este post consideraremos modernos a lenguajes nacidos durante la **última decada** y que contemplan algunas características que en general la comunidad de desarrolladores a llegado a desear y definir como básicos.
+
+### La necesidad de la invención
+
+La tecnología de hoy es, claramente, diferente a la de hace 40-50 año, hoy los sistemas y aplicaciones deben soportar computadores **multi-core**, uso de **gpu**, dispositivos móvules, **cloud computing**, etc. En general, un concepto que engloba estos términos es **Concurrencia**.
+La mayoría de los lenguajes <span class="underline">antiguos</span> se han actualizado con los años para dar soporte a estos nuevos requerimientos, por ejemplo Java agregó expresions Lambda y Streams en su versión 8. El problema es que estos lenguajes no fueron diseñados con estos requerimientos en mente.
+Es por esto que cada año vemos el nacimiento de algún nuevo lenguaje que incluye alguna característica especial que le da vida, dentro de este grupo hay algunos lenguajes que destacan por los diferentes approaches que proponen para enfrentar los problemas de la tecnología actual.
+
+Algunas de estas características son:
+
+- Soporte nativo para concurrencia
+- Inmutabilidad
+- Inferencia de tipos y type safety
+- Programación funcional,
+- Tipos estáticos
+- Nuevos tipos de sintaxis
+- Developer Experience
+
+Algunos de estos lenguajes, que en base a estas caracterísitcas, se muestran como **modernos** son:
+
+- Rust
+- Elm
+- Clojure
+- Elixir
+- Kotlin
+- Swift
+- Scala
+- Grain
+- Unison
+- Dark
+
+Lo que sigue es un overview de algunos de estos lenguajes, describiendo algunos de los features que cada uno de ellos presenta, me enconfaré en Rust, Elm y Clojure. Intencionalmente me he dejado fuera Kotlin y Swift.
+Kotlin y Swift son claramente lenguajes modernos,nacieron para cubrar una necesidad moderna, desarrollar aplicaciones móviles, los dejo fuera de este listado por que:
+
+- Tienen un futuro claro
+- Son lenguajes de nicho (cada uno para su plataforma)
+
+Comenzaremos esta lista con **Rust** un lenguaje que considero tiene un gran potencial y que ha crecido enormemente tanto en su set de características como en el tamaaño de su comunidad.
+
+### [Rust](http://rust-lang.org/)
+
+Se autodefine como un lenguaje para **empoderar a todos a construir software confiable y eficiente**, nace como una alternativa a C++. Es un lenguaje de uso general, se puede usar para casi todo, incluyendo aplicaciones web al compilar como wasm.
+
+Uno de sus objetivos es ser eficitiente y tener una gran performance en runtime. Otras de sus características son:
+
+- Compila como binario, no tiene garbage collector es como C++
+- Tiene interoperación con C/C++
+- Tiene un manejador de paquetes, plugins para editores, material de aprendizaje (ej: [https://github.com/rust-lang/rustlings](https://github.com/rust-lang/rustlings) y [esta colección en egghead](https://egghead.io/playlists/learning-rust-by-solving-the-rustlings-exercises-a722?af=4cexzz) por [Chris Biscardi](https://www.christopherbiscardi.com/the-rust-programming-language))
+- Es Backward compatible
+
+  Al mismo tiempo, Rust se define como un lenguaje confiable, y esta confiablidad viene dada por características como las siguientes
+
+- Revisión de tipos estáticos
+- Un sistema de datos seguro (si el compilador te dice que es cierto tipo, entonces lo es )
+- Tiene datos reales, nada de \`any\` (alo! Typescript)
+- No incluye el [“error del billon de dolares”](https://www.youtube.com/watch?v=ybrQvs4x0Ps), es decir, no existen referencias \`null\` ni \`undefined\` ni similares.
+- Tiene un compilador que de verdad entrega ayuda cuando existen errores
+- Es un lenguaje con datos inmutables por defecto, pero ofrece formas de modicar este comportamiento
+- Tiene seguros de acceso a memorio **no data races**
+- Si compila, usualmente significa que funciona
+
+Rust es un lenguaje complejo, con muchos conceptos que aprende, pero tiene una comunidad bastante activa lo que ayuda mucho a la hora de aprender. Nacido el 2010 diseñador por [Graydon Hoare](https://github.com/graydon), actualmente podemos encontrar 6 grandes conferencias, además su desarrollo es constante contanto con varios developers full-time y una gran cantidad de colaboradores.
+
+Un ejemplo de código en Rust, para pattern matching.
+
+```rust
+      enum Coin {
+          Penny,
+          Nickel,
+          Dime,
+          Quarter,
+      }
+
+      fn value_in_cents(coin: Coin) -> u8 {
+          match coin {
+              Coin::Penny => 1,
+              Coin::Nickel => 5,
+              Coin::Dime => 10,
+              Coin::Quarter => 25,
+          }
+      }
+```
+
+### [Elm](http://elm-lang.org/)
+
+Este es un lenguaje que personalmente disfrute mucho mientras experimentaba con el, Elm se define a si mismo como "Un lenguaje disfrutante para crear aplicaciones web confiables". Puede ser considerado una alternativa a Javascript ya que (actualmente) el resultado de su compilación es un bundle javascript para ser ejecutado en el navegador, por lo que se subentiende que es de uso exclusivo para el desarrollo de aplicaciones web.
+Cuando Elm se definie como disfrutable, es por que pone gran parte de su foco en características de developer experience y developer ergonómicos, tiene un gran compilador y mensajes de error realente útiles.
+Es un lenguaje pequeño y simple con un objetivo simple y claro, crear aplicaciones web eficientes y confiables.
+Tiene compatibilidad con Javascript, es decir, puedes utilizar librerías escritas en JS dentro de tu app Elm, o anexar pequeñas partes de código Elm dentro de tu app Javascript para ir migrando poco a poco.
+Como todo lenguaje que se precie de tal actualmente, también posee un ecosistema de paquetes y un manejador de dependencies, editor de plugin y material de aprendizaje.
+
+Es usualmente comparado con algunos frameworks Javascript, lo que no es técnicamente correcto ya que Elm es un lenguaje en si mismo, aún así, esta comparación beneficia a elm en casi todas las ocasiones (excepto con Svelte quizá). Elm es un "todo en uno", al escribir código Elm no se requiere framework, Elm es el framework en si mismo.
+
+Al igual que Rust, parte de sus características importantes es ser un lenguaje confiable, y esta confiabilidad viene dada por características como:
+
+- 100% Inmutable
+- Tipos estáticos
+- Un sistema de datos seguro
+- No incluye el [“error del billon de dolares”](https://www.youtube.com/watch?v=ybrQvs4x0Ps), es decir, no existen referencias \`null\` ni \`undefined\` ni similares, si no, que utiliza un tipo de dato Maybe.
+- Los mensajes de error del compilad sin lugar a duda los mejores existentes.
+
+* No runtime exceptions, gracias a su inferencia de datos puede detectar casos complejos y asi evitar errores en producción.
+
+Nacido el 2012 de la mano de [Evan Czaplicki](https://github.com/evancz) como único desarrollador y actual Benevolente Dictador.
+La comunidad Elm es pequeña pero bastante activa, actualmente tiene 5 grandes conferencias.
+
+Un ejemplo de código Elm, para [ejecutar una animación](https://elm-lang.org/examples/animation)
+
+```elm
+import Playground exposing (..)
+
+
+main =
+  animation view
+
+
+view time =
+  [ octagon darkGray 36
+      |> moveLeft 100
+      |> rotate (spin 3 time)
+  , octagon darkGray 36
+      |> moveRight 100
+      |> rotate (spin 3 time)
+  , rectangle red 300 80
+      |> moveUp (wave 50 54 2 time)
+      |> rotate (zigzag -2 2 8 time)
+  ]
+```
+
+### [Elixir](https://elixir-lang.org/)
+
+Elixir es un lenguaje dinámico y funcional nacido para construir aplicaciones escalables y mantenibles. Elixir corre sobre [BEAM la Erlang VM](<https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine)>) y toma todo su pode que es conocida por ejecutar sistemas distribuidos de baja latencia.
+
+Se utiliza mayoritariamente para desarrolo web, software embebido, procesamiento multimedia, etc.
+
+Su principal enfoque está en la escalabilidad y la concurrencia, es 100% funcional lo que implica que es completamente immutable y sin side effects. Es posible extenderlo mediante el uso de un DSL (macros). Como todos, Elixir también inclute un sistema de manejo de dependencias [`Hex`](https://hex.pm/) y una herramienta de build llamada [`Mix`](https://hexdocs.pm/mix/).
+
+El ejecutar su código sobre la máquina virtual de Erlang, Elixir es compatible con Erlan otorgandote la posibilidad de utilizar todo el ecosystem de Erlang.
+
+Elixir es utilizado por Heroku, Whatsapp y Pinterest entre otros.
+
+Además de ofrecer un gran framework work inspirado por RoR: [Phoenix](https://www.phoenixframework.org/)
+
+Nacido el 2011 por [José Valim](https://github.com/josevalim), parte del equipo Core de RoR
+Tiene una comunidad activa y una gran conferencia llama ElixirConf en total hay 13 grandes eventos a nivel mundial.
+
+Un ejemplo de código Elixir
+
+```elixir
+defmodule Math do
+  def sum_list([head | tail], accumulator) do
+    sum_list(tail, head + accumulator)
+  end
+
+  def sum_list([], accumulator) do
+    accumulator
+  end
+end
+
+IO.puts Math.sum_list([1, 2, 3], 0) #=> 6
+
+```
+
+### [Clojure](https://clojure.org)
+
+Se trata de un lenguaje de propósito general robusto, practico y rápido con caracterísiticas para formar una herramienta simple, coherente y poderosa.
+
+Clojure es un dialecto de [Lisp](https://es.wikipedia.org/wiki/Lisp) y comparte la filosofía codigo-como-datos.
+Esto se conoce como homoiconocidad. El propio programa ecrito puede ser manipulado como data usando el propio lenguaje.
+
+Su creador describe el desarrollo de Clojure como la búsqueda de aquel lenguaje que no pudo encontrar: un `lisp` funcional y con la programación concurrente en sus cimientos.
+
+Clojure puede ser ejecutado sobre la [JVM](https://es.wikipedia.org/wiki/M%C3%A1quina_Virtual_de_Java) o la máquina virtual de .Net e incluso compilado a Javascript utilizando [ClojureScript](https://ClojureScript.org), esto le permite ser iteroperable con sus lenguajes host.
+
+Es un lenguaje bastante "battle tested" siendo utilizado por diferentes industrias y compañias como: Citibank, Simple, Amazon, Netflix, etc.
+
+Nacido el 2007 de la mano de [Rich Hickey](https://github.com/richhickey), actualmente mantenido por Cognitect con 126 contributors formales
+
+Gran comunidad, un ejemplod ello es el project [ClojureFam](https://github.com/athensresearch/ClojureFam) del que participo para aprender Clojure.Tiene dos conferencias anuales US para un total de entre 7 y 8 conferencias mundiales (incluyendo una remota)
+
+Un ejemplo de código Clojure
+
+```clojure
+user=> (source +)
+(defn +
+  "Returns the sum of nums. (+) returns 0. Does not auto-promote
+  longs, will throw on overflow. See also: +'"
+  {:inline (nary-inline 'add 'unchecked_add)
+   :inline-arities >1?
+   :added "1.2"}
+  ([] 0)
+  ([x] (cast Number x))
+  ([x y] (. clojure.lang.Numbers (add x y)))
+  ([x y & more]
+     (reduce1 + (+ x y) more)))
+nil
+```
+
+Existen variados lenguajes de programación e incluso siguen desarrollándose nuevas ideas e implementaciones. Algunos lenguajes consiguen tener un gran tracción dado sus características y su comunidad.
+En mi opinión es importante intentar al menos mantenerse al tanto sobre algunos de estos lenguajes y ojalá poder experimentar con ellos ya que de por seguro serán las herramientas del futuro.

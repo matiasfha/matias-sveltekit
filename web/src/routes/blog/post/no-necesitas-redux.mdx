@@ -1,0 +1,110 @@
+---
+date: 2020-10-05T01:08:33.000-03:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1601870934/oliver-plattner-AUlmpoJcRdE-unsplash_h2vpwd.jpg
+keywords:
+- Redux
+- " React"
+- " State Management"
+- " Manejo de Estado"
+- user redux
+- como usar redux
+- Como usar Redux
+- Que es Estado
+- How to use Redux
+- Do I need Redux
+- Necesito usar Redux
+- Alternativa a Redux
+tag: Seed
+title: No necesitas Redux
+description: Una pregunta común entre quienes están comenzando con React es si necesita
+  aprender o integrar Redux en sus aplicaciones.
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@oplattner?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Oliver
+  Plattner</a> on <a href="https://unsplash.com/s/photos/state-management?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
+---
+Una pregunta que me he encontrado varias veces de parte de quienes están apreniendo React es si deben o no aprender Redux o si deben o no utilizar Redux.
+
+Por mucho tiempo Redux fue, de alguna forma, la solución estándar para el manejo de estado en aplicaciones React, estándar al nivel de que podías encontrarlo, en mi opinión, en el 90% de las aplicacione escritas con React hasta ese momento. Era lo último y lo mejor que teniamos disponible para el manejo de estado, pero Redux, como muchas otras soluciones, no era y no es la solución a todo. **No hay silver bullets**.
+
+El gran problema de Redux, y de muchas otras librerías que intentan resolver el mismo problema es que no todo el estado puede considerarse estado global.
+
+Pero, comenzando por el principio:
+
+# ¿Qué es estado y por qué necesito manejarlo?
+
+Recuerdo cuando escribí mi primera aplicación con React, año 2015 junto al equipo de [Mozio](https://mozio.com). La intención era migrar el proyecto desde Angular.js a React y por ese entonces eso implicaba aprender Redux. Parecía que parte escencial del uso de esta librería era contar con una forma de manejar el estado de la aplicación, un concepto algo foráneo, pero aceptable. El problema es que en el fondo no entendía bien que era ese **estado** que requería manejar, tarea para lo cual Redux era la solución.
+
+En el corazón de cada componente en React existe el concepto de **estado**, un objeto que determina que es lo que el componente renderizará y el cómo se comportará, es decir, **estado** es lo que te permite crear componentes dinámicos e interactivos.
+
+Este objeto estado puede cambiar con el tiempo, con las interaciones del usuario de tu aplicaciones o aún más complejo, el estado de un componente puede cambiar en base al padre de ese componente y este a su vez cambia según sus props, y este a su vez… se entiende la cadena cierto?
+
+Por ejemplo, tienes un formulario, una vez que el usuario lo completó lo envía haciendo una llamada HTTP, esta llamada falla, por validación de datos, y en la pantalla se muestra un mensaje de error.
+
+Podemos considerar aquí un objeto estado que contiene los posibles errores del formulario, en el momento inicial este objeto se vería como esto
+
+```javascript
+    const state = {
+        errors = []
+    }
+```
+
+y el recibir el mensaje de error, el objeto contendía algo así:
+
+```javascript
+    const state = {
+        errors = ['El email ingresado ya existe.']
+    }
+```
+
+Una forma de ver el estado es considerarlo como el resultado de una acción, en este ejemplo, la acción fue enviar el formulario con un error, el resultado? Un mensaje de error.
+
+El simple hecho de tener esta variable ya implica que estas manejando el estado, hemos creado una estructura de datos explicita para almacenar los resultados de las acciones sobre nuestra aplicación.
+
+Las diferentes librerías de manejo de estado ofrecen utilidades para crear estas estructuras de datos y actualizarlas basadas en las acciones que ocurren. React define un flujo de datos de una sola dirección indicando que la actualizaciones de estado deben hacerse de una forma centralizada, Redux, ofrecía una solución a esto, creando un estado centralizado,por medio de un objeto, que sólo puede ser actualizado utilizando un mecanismo de acciones.
+
+La idea es que los componentes pudieran leer partes de este estado para decidir que y cómo se renderiza.
+
+# ¿Por que no Redux?
+
+Redux fue una solución revolucionaría, nacida el 2015 e inspirada por [elm](https://elm-lang.org) y trajo dos ideas interesantes a React.
+
+* Combinó el modelo de [Flux](https://facebook.github.io/flux/) con el concepto de [Reducer](https://redux.js.org/glossary#reducer) creando un patrón de diseño sencillo que inmediatmente generó tracción.
+* Y ofreció una solución para el manejo de estado global de una aplicación. Sin esto la forma en que podías resolver el problema de estado global (estado que puede ser utilizado por todos los componentes) era tener un estado (un objeto) definido en el componente root (normalmente llamdo `< App />`) y pasar los valores de este estado a travez de props a los componentes hijos: una pesadilla.
+
+  Redux, en su trastienda usaba la api Context que en ese entonces era una api pseudo-experimental pensada solo para el uso interno de React.
+
+  En la actualidad mucho ha cambiado, personalmente no he usado Redux al menos en los últimos 3 años.
+
+  Hoy la forma de escribir React ha cambiado mucho con la introducción de hooks, permitiendo una forma sencilla de compartir lógica y en este caso del estado, otorgando una forma directa de interactuar con la API Context en donde crear un patrón \`Action/Reducer\` como el de Redux es asquible con el uso de \`useReducer\`
+
+  Pero más allá del cambio en las herramientas el problema principal de Redux es que por lo general tendemos a sobre dimensionar la solución a un problema y comenzamos a usar el martillo (redux) para todos los problemas.
+
+Redux hace uso de un estado **global**, es decir, estado que **quizá** sea necesario en toda la aplicación, pero muchas veces vi código que almacenaba en este estado los datos de un formulario u otros estados **locales**, esto en general es un anti patrón que lleva a muchos problemas tanto de interacción y performance como también de mantenibilidad y escalabilidad: Más grande tu aplicación, mas grande tu problema. Estoy convencido que la ubiquidad de Redux se debe a que ofreció una solución al problemde de prop drilling (el pasar props de un componente a otro.
+
+Mi punto de vista es que en la gran mayoría de las situaciones no necesitas Redux (y quizá tampoco otra solución de manejo de estado). En mi experiencia la mayoría de aplicaciones no tienen un estado 100% global y gran parte de sus problemas pueden ser resueltos con el uso de la api Context.
+
+Para ser claros, Redux es una gran herramienta, una solución inteligente a un problema complejo y es bueno usarlo pero cuando su uso es adecuado, cuando realmente tienes un estado global, pero si tienes estados simples, como un formulario o si una venta modal debe o no mostrarse Redux es “overkill”.
+
+Si tu pregunta es “debo aprender Redux” o “debo integrar Redux en mi proyecto”, la más probable respuesta es no, no debes, y aparentemente no lo necesitas es por que eso que estás en la duda.
+Redux es una bestia complicada que más que ayudarte en esta etapa de tu proceso, simplemente se pondrá en tu camino. Revisa los conceptos fundamentales, experimenta hasta donde puedes llegar con React en si mismo. React es una solución para el manejo de estado.
+
+Como dije antes, comienza por entender todos los conceptos y lo que React puede ofrecerte, en términos de manejo de estado estos son algunos conceptos que conocer:
+
+* state lifting: [https://es.reactjs.org/docs/lifting-state-up.html](https://es.reactjs.org/docs/lifting-state-up.html)
+* El problema de **prop drilling**: [https://kentcdodds.com/blog/prop-drilling](https://kentcdodds.com/blog/prop-drilling)
+* Composicion de componentes: [https://es.reactjs.org/docs/context.html#before-you-use-context](https://es.reactjs.org/docs/context.html#before-you-use-context) y este [video](https://www.youtube.com/watch?v=3XaXKiXtNjw) de [Michael Jackson](https://twitter.com/mjackson)
+* Utilizar los hooks [useReducer](https://es.reactjs.org/docs/hooks-reference.html#usereducer) y [useContext](https://es.reactjs.org/docs/hooks-reference.html#usecontext)
+* Y sólo si tu problema sigue existiendo a pesar de estas soluciones, entonces por ti mismo te darás cuenta que necesitas ayuda extra y quizá Redux tendrá sentido.
+
+Te comparto además una [colección de video lecciones](http://egghead.io/playlists/hooks-3d62) en [egghead](http://egghead.io) en donde podrás ver el uso de algunos de estos hooks, composición de componentes y state lifting:
+
+Dentro de las posibles soluciones al manejo de estado existen muchas alternativas, algunas de estas, muy recomendables, son:
+
+* [react-query](https://react-query.tanstack.com) Es una librería cuyo objetivo es otorgarte una forma de **obtener, sincronizar, actualizar y "cachear"** tus datos remotos sin tocar tu estado global.
+* [mobx-state-tree](https://github.com/mobxjs/mobx-state-tree) Una librería basado en MobX que combina características de estado inmutable y mutable a forma de una máquina de estado.
+
+# Conclusión
+
+Las actuales herramientas ofrecen bastante poder y flexibilidad a la hora de resolver diferentes problemas permitiendo que la necesidad de integrar utilidades extra quede fuera de la imagen.
+No te pongas más barreras en el aprendizaje agregando más conceptos de los necesarios.
+Manten el estado de tus componentes de la forma **mas local posible** y utiliza context sólo cuando el problema de **prop drilling** realmente sea un problema. Esto será mucho más fácil que agregar Redux donde no es necesario.

@@ -1,0 +1,71 @@
+---
+date: 2020-07-21T11:06:24.000-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1595344382/kolleen-gladden-ij5_qCBpIVY-unsplash_ncnaro.jpg
+keywords:
+  - react
+  - performance
+title: Measuring your React app performance
+description:
+  "There are different ways or approaches that helps you to measure your
+  app performance when working with React. Here we will summarize a two of them:"
+bannerCredit:
+  <span>Photo by <a href="https://unsplash.com/@rockthechaos?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Kolleen  Gladden</a>
+  on <a href="https://unsplash.com/s/photos/performance?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+tag: Post
+---
+
+> This is an old post written in my medium site.
+>
+> Just published here to keep track of it and not loose it
+
+There are different ways or approaches that helps you to measure your app performance when working with React. Here we will summarize a two of them:
+
+- Using Chrome Timeline to Profile Components
+- The new `unstable` Profiler component.
+
+# Using Chrome Timeline to Profile your Components
+
+This is the more direct way and less “invasive” method to measure your app performance.
+
+You can use Chrome Developer Tools to visualize the components in the Chrome Timeline. Using this you can see the components that are mounted, updated and unmounted and the time used in each task.
+
+To use this tool just load your app adding a new query string to the url `?react_perf` once the app is loaded:
+
+- Open the Timeline tab and press **Record**
+- Use your app while Chrome is recording
+- Stop the recording
+
+Now you can analyze the results that were recorded, this data can help you figure out when some piece of the UI get’s updated when it shouldn’t, how much updates happens, etc.
+
+# Profile component
+
+The core React team recently merge a new PR including a new component type: `Profiler`
+
+This component can be used to get the following timing metrics:
+
+- User Timing API: Measure the start and stop time for each component lifecycle
+- Render time: The actual time spent rendering the `Profile` and it descendants
+- Base render time: The time spent in the most recent \`render\` for each component under the `Profiler` tree.
+
+## How to use `Profiler` :
+
+First: This component is a new experimental API so it’s currently exported as `React.unstable_Profiler` and its available in the `master` branch of react. [https://github.com/facebook/react/blob/master/packages/react/src/React.js#L57](https://github.com/facebook/react/blob/master/packages/react/src/React.js#L57 "https://github.com/facebook/react/blob/master/packages/react/src/React.js#L57")
+
+Using this component is dead simple:
+
+This component acts just as a “container” so the `Profiler` can be declared anywhere in your tree and can be nested.
+
+The `onRender` callback is called on each \`render\` of the root with the following arguments:
+
+- id: An identificator for the `Profiler`
+- phase: Identify in what step the component is: `mount` or `update`
+- actualTime: The time spent rendering the `Profiler` and the descendant tree.
+- baseTime: The time spent rendering the descendant components of the `Profiler`
+
+## Metrics
+
+The metrics that can be gathered with this component are (as mentioned above)
+
+- User Timing API: Measure the start and stop time for the components lifecycle. This is measured in a realtime graph gathering the times for each component lifecyle in the tree. The realtime graph is recorded after each lifecyle call.
+- Actual Render time: The actual time spent rendering the `Profile` and it descendants. This is measured but starting a timer during the _begin_phase and finishing it at the \_complete_ phase. The time is recorded each time `Profiler` is re-rendered. Can be useful to understand how the subtree make use of \`shouldComponentUpdate\` and to check how the momoization process behave. Less time means better memoization.
+- Base render time: The time spent in the most recent \`render\` for each component under the `Profiler` tree. This is measured for each `fiber`under the `Profiler` component. The times are not updated is the components skips the render. This can tell how expensive is the \`render\` function in the worst scenario.

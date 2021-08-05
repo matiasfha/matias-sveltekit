@@ -1,0 +1,150 @@
+---
+date: 2020-07-29T15:14:38.000-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1596050181/ferenc-almasi-tvHtIGbbjMo-unsplash_kq9ukw.jpg
+keywords:
+- React
+- Hooks
+tag: Seed
+title: Que son los Hooks
+description: "¿Qué son los Hooks en React? ¿De dónde nacen y por qué?"
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@flowforfrank?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ferenc
+  Almasi</a> on <a href="https://unsplash.com/s/photos/hooks?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
+---
+> Este post es parte transcripción  de lo emitido en el episodio 16 de Café con Tech y también material extra
+
+http://buzzsprout.com/1081172/4728410-react-hooks/player
+
+#### ¿Qué son los Hooks en React y por que?
+
+Cuando esta nueva API fue anunciada en la React Conf en OCtubre de 2018 causo algo de controversia, muchos aplaudieron emocionados por las nuevas posibilidades y muchos otros quedaron con la duda del por que esto sería necesario cuando ya teníamos una API standard en forma de clases y varios patrones de diseño altamente probados.
+
+Bueno, el equipo tras React y la comunidad en general ya habían  identificado varios problemas durante la primera era de la librería , problemas que llevaron a la creación de la api de Hooks.
+
+Desde la publicación de React hemos podido entender que el uso de componentes y un ciclo de datos de una dirección ayudan a organizar el desarrollo de nuestra UI en partes pequeñas, inpendientes y reutilizables. Pero a pesar de esto, muchas veces nos hemos encontrado con la imposibilidad de continuar dividiendo un componente complejo dado que la implementación es dependendiente del estado impidiendo  su extracción. Muchas veces esto es lo que muchos detractores de React se refieren a la imposibilidad inherente de la librería para separar las responsabilidades.
+
+Este tipo de casos son muy comunes en el desarrollo de aplicaciones complejas, casos como animaciones, manejo de múltiples formularios, conexión con datos externos, etc
+
+Normalmente las soluciones implementadas en estos casos caen en unos de estos tres tipos.
+
+* **Componentes gigantes**, que claramente son dificiles de mantener, refactorizar y testear
+* **Lógica duplicada** entre diferentes componentes lo que dificulta la mantenibilidad del código o fomenta la creación de abstracciones aún más complejas
+* **Patrones de diseño compuestos**  como mezclas entres render props y high-order components
+
+Entonces basado en todos estos problemas nacio Hooks, como un intento (bastante certero a decir verdad) de reparar todos esos problemas de un sólo golpe.
+
+La idea trás hooks mantiene la filosofía implementada por react, composición y un flujo de datos explicito, pero ya no sólo entre componentes, si no, dentro de un componente.
+
+una crítica de los primeros días de hooks es que se acrecenta la curva de aprendizaje de React ya que existen multiples conceptos y formas de resolver un mismo problema, pero: Si se adopta (como se ha hecho hasta ahora) el uso de hooks como la formar primaria de escribir una aplicación React, en realidad se reduciría el número de conceptos con los que hay que lidiar. Aquí los principiantes lo tienen algo más fácil. No tiene un modelo mental que modificar y sólo deben ir directamente a utilizar y entender Hooks.
+Para los más viejitos, quizá sea una curva de aprendizaje un poco más empinada ya que el modelo mental internalizado genera ciertos choques que impiden entender del todo el funcionamiento de hooks. useEffect te estoy mirando a ti.
+
+#### ¿Entonces que son los hooks?
+
+El principio básico del que nace esta implementación es en la reutilización de código.
+Hasta antes de la llegada de esta API existían muchas formas de compartir o reutilizar código. funciones utilitarias para ciertos cálculos o componentes, que por cierto también son una función.
+El inconveniente de los componentes a la hora de reutilizar código es que estos deben de renderizar algo, por lo que si es necesario compartir logica que no corresponda con nuestra UI se tornan algo incovenientes dando nacimiento así a patrones más complejos como los high-order components y render props, que como comenté en el episodio anterior buscan una forma de compartir lógica entre diversos componentes, patrones también conocidos como headless components.
+
+Pero, las funciones parecen ser el mecanismo adecuado para la reutilización de código no? Además Javascript hace que la tarea de mover lógica entre funciones sea directa dado su soporte de primer orden y tomando todo lo aprendido desde la programación funcional donde una función es la unidad atómica de tu programa.
+El problema con las funciones es que, no es posible tener estado en su interior, estado desde el punto de vista de React. ANtes de hooks no era posible extraer lógica relacionada con el estado de la UI tal como "animar un valor " sin necesitar una refactorización masiva o la introducciones de patrones más complejos o mecanismos con una nueva curva de aprendizaje., como reactive programming.
+
+Hooks propone exactamente una solución a esto. La api de hooks permite utilizar carecterísitcas inherentes de React, como el estado, directamente en una función, y como estos hooks son simples funciones en Javascript, es posible combinarlas y componerlas como más consideremos adecuado dando nacimiento así a los hooks personalizados o "custom hooks". Permitiendo a cada desarrollador refactorizar problemas complejos o lógica duplicada en simples funciones que se pueden compartir en toda la aplicación.
+
+React ofrece con esta nueva API algunos bloques de construcción básicos tales como:
+
+* **useState**: un hooks que permite mantener estado dentro de tu componente funcional
+* **useReducer**: una variante de useState que permite manejar estados más complejos utilizando una función reducer.
+* **useEffect**: Quizá el hook más complejo de entender  dado la insistencia de muchos en relacionarlo con los métodos del ciclo de vida de un componente tipo clase. Este es el hook que permite la realización de la obtención de datos, suscripciones o manipulación manual del DOM, esta diseñado para efectuar efectos secundarios o side effects.
+* **useContext**: El hook que democratizó la API context.
+
+Los hooks son funciones totalmente encapsuladas, creando un estado local aislado dentro del componente en que se ejecuta, es decir, no son una forma de compartir estado, si no, una forma de compartir logica con estado.
+
+#### Entonces que pasó con las clases? las olvidamos.?
+
+Los hooks personalizados son quizá la parte más interesante de esta api y para ello React provee de hooks básicos o pilares, para construir abstracciones poderosas, al ofrecer estos hooks básicos se cubre también otra necesidad: son suficientes para definir un componente en general, es por esto que la comunidad empuja a que Hooks sea la forma principal para construir componentes React.
+
+El equipo tras React no tiene planes de jubilar las clases, pero dado que hooks ha sido aceptado enormemente, no hay razón para que existan dos formas recomendadas de escribir componentes.
+Los hooks pueden cubrir todos los casos de uso de los componentes de clase y proveer más flexibilidad, por lo que se recomienda que este sea el camino de aquí en adelante.
+
+Algo que también es importante es entender que el funcionamiento de los hooks en las entrañas de React no es ninguna magia vudú, si no. Todo lo contrario. Es una implementación bastante simple.
+
+React mantiene una lista de los hooks usados en cada componente, y mueve el puntero al siguiente en la lista cada vez que un hook es utilizado. Gracias a la existencia de las "reglas de los hooks", el orden es el mismo en cada renderizado, permitiendo así que se pueda proveer el componente con el estado correcto en cada llamada.
+
+El estado de los hooks tampoco es nada nuevo ni especial, este es mantenido por React de la misma forma que se hacía para el estado en los componentes de clase. React posee una cola de actualización interna que se utiliza como terreno de la verdad (source of truth) para cualquier estado, sin importar como este fue definido en el componente.
+
+Hooks no utiliza Proxies o getters que han sido muy popularizados en algunas modernas librerías. Básicamente la ejecución de los hooks es muy similar a Array.push y Array.pop
+
+Entonces, si estas comenzando con React. Enfoca tu búsqueda de información en ejemplos y contenido que muestre el desarrollo con hooks como pilar principal, si ya estas avanzado en el uso de la librería, ciertamente no es necesario que refactorices todo tu código para usar hooks, React tiene retro-compatibilidad y las clases no han sido marcadas como deprecated por lo que simplemente deberías enfocarte en el cambio de tu modelo mental y comenzar a crear nuevos features con la nueva api
+
+#### ¿Por qué hablo de un cambio de modelo mental?
+
+Antes de la llegada oficial de Hooks la forma de construir aplicaciones con React estaba basada principalmente en el uso de clases y sus métodos de ciclos de vida. Los componentes funcionales o "stateless" eran incluso llamados "tontos" (dumb components) pues solo eran utilizados para renderizar partes de la UI sin realmente efectuar alguna acción dinámica, mas allá de representar el contenido de sus props.
+
+Hooks, presenta una forma distinta de manejar un componente, los métodos de ciclos de vida ya no existen o se han vuelto redundantes transformando la forma en que desarrollamos a un método más cercano a la programación funcional.  
+`React.useEffect` es el hook que se encarga de efectuar todas las mismas acciones que se podían hacer con los métodos de ciclo de vida, pero en realidad no es un reemplazo uno a uno de aquellos métodos, si no, una forma diferente de efectuar acciones sobre el component.
+
+He aquí el cambio de modelo mental, ahora ya no estamos escribiendo clases, estamos escribiendo funciones que tiene un método de efectuar side effects.
+
+Los "effects" están relacionados con el modelo mental que tenemos sobre el renderizado de un componente y cómo este se relaciona con su estado.
+
+Como ejemplo
+
+```javascript
+    const HideText = ({ text }) => {
+       const [isHide, setIsHide] = useState(false);
+       const onClick = () => {
+           setIsHide((prevState) => {
+               return !prevState
+    	   })
+       }
+       return (
+           <div>
+               <button onClick={onClick}>Toggle Hide</button>
+               {isHide? null : text}
+            </div>
+       )
+    }
+````
+
+En este pequeño trozo de código ¿qué quiere decir el renderizado condicional? ¿el valor de `isHide` vigila los cambios que ocurren en el state? En general, al usar `useState` lo que se obtiene como primer valor es sólo eso, un valor, no hay data binding ni watchers, ni observables ni nada más. Sólo un valor, que en este caso es un boolean.
+
+Por cada click que se haga en el botón, se realiza una llamada a  `setIsHide`, es decir, un cambio en el estado y esto inicia un nuevo renderizado del componente. En cada una de estas nuevas llamadas al componente, `useState` retornará un nuevo valor a la variable `isHide`.
+
+Por cada cambio en el estado, React ejecuta una nueva llamada a la función con la que declaramos el componente, así, en cada ocasión un nuevo resultado es retornado por la llamada y en cada llamada un nuevo valor para `isHide` es visto por la función.
+
+Es así que esta linea `{isHide? null : text}` simplemente compara un valor constante y local `isHide` para definir si se renderiza o no el texto.
+
+Es decir, los valores retornados por `useState` son constantes dentro de un renderizado en particular, la variable no cambia en el tiempo, no es un stream continuo de datos, al contrario, es el componente que es llamado en varias ocasiones con un valor de estado distinto. Esto también es verdad para los manejadores de eventos (eventHandlers) que hagan uso del valor de estado. El manejador de eventos _pertenece_ a un renderizado en particular.
+
+Por extensión llegamos a los side effects.
+
+Para esto podemos usar un sencillo ejemplo
+
+```javascript
+    const TitleUpdater = () => {
+    	const [value, setValue] = useState('')
+        
+        useEffect(() => {
+        	document.title = value
+        })
+        
+        const handleChange = (event) => {
+        	setValue(event.target.value)
+        }
+        return (
+    	    <div>
+    		    <p>Ingresa el titulo</p>
+    	    	<input type="text" value={value} onChange={handleChange} />
+         	</div>
+        )
+    }
+```
+
+Este ejemplo simplemente muestra un input que recibe un texto que se ve reflejado en el titulo del sitio. 
+
+Basados en el ejemplo anterior sabemos que `value `es un valor constante dentro de un momento/renderizado en particular, también sabemos que los manejadores de eventos pueden "ver" el estado de `value` dentro del render al que pertenecen, y esto mismo es verdad para los efectos.
+
+La función de efecto es una simple función que tiene acceso a los valores dentro de su scope, y esta es diferente en cada renderizado. En cada versión del rederizado la función de efecto _"ve"_  un valor distinto para la variable `value`.  
+  
+He aquí la diferencia en el modelo mental entre los métodos del ciclo de vida y hooks. Las funciones de efectos pertenecen a un renderizado en particular al igual que los manejadores de efectos, por lo tanto no es necesario que "reciban" valores especiales o existan "watchers" o "bindings" para acceder al estado.
+
+El nuevo modelo mental al utilizar efectos está más relacionado con la posibilidad de sincronizar las props y estado con alguna "cosa" fuera del árbol de componentes, como en el ejemplo anterior, el efecto modificaba el título del documento que está fuera del árbol de componentes pero se sincroniza con el estado del componente renderizado. Es completamente diferente al modelo anterior de `montar/actualizar/desmontar` intentar escribir un efecto que tiene diferentes comportamientos basados en el "momento" en que se encuentra es el camino errado.

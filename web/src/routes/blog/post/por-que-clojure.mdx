@@ -1,0 +1,172 @@
+---
+date: 2020-10-12T23:35:45-03:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1602556838/Clojure_logo.svg_idu5pq.png
+keywords:
+- Clojure
+- Listp
+tag: Post
+title: "¿Por qué Clojure?"
+description: Clojure es un lenguaje variante de Lips, flexible, funcional, dinámico
+  y entretenido.
+bannerCredit: ''
+
+---
+Desde hace ya un tiempo que comence mi viaje de aprendizaje con Clojure, incialmente más por curiosidad que nada, me gusta aprender nuevos lenguajes y obtener de cada uno de ellos algo que mejore mi trabajo diario.
+Inicie con Clojure con el proyecto [ClojureFam](https://github.com/athensresearch/ClojureFam) y en este momento puedo decir: Me encanta Clojure.
+
+Pero, comencemos por el principio:
+
+# ¿Qué es Clojure?
+
+Clojure es un lenguaje de uso general, dinámico, es un dialecto de Lisp y comparte su **filosofía /código como datos** / (más de esto más adelante).
+
+Fue creado el 2007 por Rich Hickey, acutalmente mantenido principalmente por Cognitect con la ayuda de 126 colaboradores
+
+Es actualmente utilizado por [varias compañias](https://clojure.org/community/success_stories) como Amazon y Wallmart.
+
+# ¿Pero qué hace de Clojure un lenguaje único e interesante?
+
+Primero, si bien Clojure nació el 2007, es en realidad una “re-versión” (dialecto) de un lenguaje que se rehúsa a morir y que es probablemente el lenguaje más antiguo aún en uso Lisp.
+Lisp, apareció publicamente por primera vez en 1958, si!!, hace 62 años subsistiendo a los cambios de paradigmas y nuevos requerimientos del mundo del desarrollo de software.
+
+Clojure, es una “evolución” de Lisp, matiene lo mejor que éste provee y mejorar algunas cosas creando un lenguaje simple (que no fácil) con una sintaxis robusta y mínima.
+
+> “Lisp isn’t a language, it’s a building material.” — Alan Kay
+
+## JVM
+
+Clojure se ejecuta en la JVM (Java virtual Machine), una gran pieza de software optimizada hasta más no poder (también se ejecuta o “transpila”  a Javascript para funcionar sobre el navegador) y además utiliza o “aprovecha” el ecosistema de Java, con todas sus librerías incluídas, es decir, años de experiencia y desarrollo al alcance de este nuevo lenguaje.
+
+Actualmente el stack de Java (nacido en los 90s) es sin lugar a duda el stack más popular en la industria, con la inmensa cantidad de código Java disponible en producción es casi imposible para un nuevo lenguaje querer superar a Java o al menos querer ser notorio sin la capacidad de inter-operar con Java (o Javascript en el caso de ClojureScript).
+
+Clojure te permite utilizar código Java por ejemplo:
+
+```clojure
+    (import 'java.util.Date 'java.text.SimpleDateFormat)
+```
+
+o crear una instancia de una clase java
+
+```clojure
+    (import '(java.text SimpleDateFormat))
+    (def sdf (new SimpleDateFormat "yyyy-MM-dd"))
+```
+
+En definitiva, Clojure utiliza todo el poder de la JVM y de lo que esta puede ofrecer.
+
+> Si he llegado hasta aquí es por que me aupé en hombros de gigantes - Atribuído a Isaac Newton
+
+Es decir, con Clojure obtienes el poder de la ya muy probada y aceptada JVM y además su portabilidad inherente a casi cualquier hardware y OS existente.
+
+## Dinámico, Inmutable y Funcional
+
+Clojure, es también un lenguaje dinámico pero con estructuras de datos estrictamente inmutables, esto proporciona una gran facibilidad de uso para la manipulación de datos, además esta inmutabilidad provee facilidades también para el desarrollo de aplicaciones multi-hilos evitando “race conditions” y otros problemas presentes en lenguajes mutables como Java.
+
+Es de tipado dinámico, esto quizá pueda ser algo que te aleje del lenguaje (sobre todo si eres un entusiaste de lenguajes [Typescript](https://matiashernandez.dev/que-es-typescript)), pero la filosofía del lenguaje y el ciclo de desarrollo te aseguran que los clásico errores de tipo de datos (`undefined is not a function`) no ocurrirán. Clojure es conocido por ser un lenguaje _REPL Driven Development_, es decir, utiliza su ultra poderosa REPL (Read Eval Print Loop) para ir testeando “in live” el código que vas escribiendo.
+
+Otra característica “cool”, heredada desde Lisp es la [**homoiconocidad**]() el propio programa que estás escribiendo puede ser manipulado como datos utilizando Clojure dado que un programa Clojure es representado como estructuras de datos Clojure.
+
+Es un lenguaje funcional, no es purista como Haskell. Datos inmutables y funciones como ciudadanos importantes de este lenguaje permiten que puedas aplicar el paradigma en todo su esplendor. Ser funcional es algo bueno (has visto la tendencia en casi todos los lenguajes de programación? Hasta Java soporta funciones anónimas/lambdas ahora!! 😳)
+
+> “Choose immutability and see where it takes you” — Rich Hickey, Clojure creator
+
+## Sintaxis económica
+
+Pero una de las cosas que más llama la atención inicialmente es su sintaxis, bastante extraña para la mayoría que hemos heredado el experimento que fue la sintaxis ofrecida por C.
+Clojure casí no tiene sintaxis o gramática, un ejemplo puede explicar mucho más
+
+```clojure
+    (println (take 10 (map (fn [x] (* x x)) (range))))
+```
+
+Esta _“criptica”_ pieza de código imprime en pantalla es bastante extraña la primera vez que la vez, tantos parentesis!!
+Esta es, en mi opinión, más del 85% de toda la sintaxis de Clojure, solo quedan por aprender algunas palbras claves como `def` y `defn`.
+
+Que hace este código? o, como lo leo?
+En clojure, todo está definido como una lista, definida por `()` parentesis, esta sintaxis define tanto una lista como una “forma” o expresión. En este caso lo que tenemos es:
+
+* Se abre un parentesis iniciando una expresión (abreviado comunmente como sexp - S-expresion)
+* println es simplemente una llamada a la función `System.out.println` proviniente de Java, para imprimir algo en pantalla, a su derecha está el argumento de `println`, lo que queremos imprimir.
+* `()` una nueva lista es abierta
+* `take` es una función que espera dos argumentos, un entero y una secuencia. El entero `10` indica el número de elementos que queremos “tomar” de la secuencia
+* `()` una nueva lista es abierta
+* `map` aparece. Es una función que también toma dos argumentos, una función para aplicar sobre cada item de la lista que recibe como segundo argumento.
+* `(fn [x] (* x x))` una nueva lista y una función anónima es definida. Esta es la forma de definir una función sin nombre, una lambda, que recibe `[x]` un argumento llamado `x` y que retorna el resultado de aplicar la función `*` sobre los argumentos `x` y `x`
+* El segundo argumento de `map` es una lista, en este caso es la llamada a la función `range`
+* `range` simplemente retorna una lista con _“todos”_ los enteros positivos. Range retorna una secuencia tipo `lazy`, es decir, solo se generan los enteros solicitados, en este caso `10`
+
+  Otra forma de escribir esto sería
+
+```clojure
+      (defn square [x] (* x x))
+      (println (take 10 (map square (range))))
+```
+
+  `defn` es la forma que te permite definir una función 🤷‍♂️ recibe como argumentos el nombre de la función y la definición de esta (dentro de una lista `()`). Aqui los `[]` “brackets” que se usan para definir un vector, se utilizan para definir el grupo de argumentos de la función.
+
+  ¿Cómo sería esto mismo en Javascript?
+
+```javascript
+      const range = Array.from({length: 10}, (_, i) => i + 1)
+      console.log(range.map(item => item*item))
+```
+
+  Dado que javascript tiene ciertas capacidades de escribir código en forma funcional este trozo de codigo no es demasiado “verbose”, pero quizá algo más dificil de entender.
+
+  La primera linea utiliza [`Array.from`](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/from) que recibe un objeto de configuración con `length: 10`, largo 10 y una función tipo `map`, que toma el indice del elemento y le suma 1, para poder crear una arreglo que comienza desde 1.
+
+  Quizá una forma mas sencilla sería utilizar una librería como lodash o [underscore](http://underscorejs.org/#range) o escribir código imperativo cmo
+
+```javascript
+       // Otras opciones declarativas
+      // Array(10).fill().map((_, i) => i+1);
+      // [ ...Array(10).keys() ].map( i => i+1);
+      const range = []
+      for(let i = 1; let i <= 10; i++){
+        range.push(i)
+      }
+      const square = (x) => x*x
+      console.log(range.map(item => square(item)))
+```
+
+  Lo que es notoriamente más explicito/imperativo y al mismo tiempo más verbose.
+
+## Tooling
+
+Las herramientas para desarrollar Clojure son tan buenas como cualquiera.
+
+Editar código Clojure (u otros Lisp) no es exactamente como editar código en otros lenguajes, ahora estas lidiando con la edición de [expresiones-s](https://en.wikipedia.org/wiki/S-expression)
+
+Por lo general el editor consideradode-facto es Emacs en conjunto con [Cider](https://cider.mx) que es una especie de “plugin” para emacs que permite tener un ambiente de desarrollo interactivo utilizar REPL.
+Clojure ofrece (antes mencionado) un medio de desarrollo conocido como REPL Driven Development, un ciclo de desarrollo interactivo e incremental, donde te encuentras constantemente re-evaluando las definiciones de tus funciones y agregando nuevas definiciones mientras tu app se ejecuta. No es necesario estar iniciando o deteniendo tu aplicación escrita en Clojure, simplemente te conectas a la interfaz de REPL.
+
+Pero Emacs no es el único IDE o editor que ofrece estas herramientas, también es muy popular utilizar
+
+* IntelliJ con [Cursive](https://cursive-ide.com)
+* VIM con [paredit](http://www.vim.org/scripts/script.php?script_id=3998) o [sexp](https://github.com/guns/vim-sexp) y [fireplace](https://github.com/tpope/vim-fireplace) o [conjure](https://github.com/Olical/conjure)
+* VSCode con [Clojure](https://marketplace.visualstudio.com/items?itemName=avli.clojure) o [Calva](https://marketplace.visualstudio.com/items?itemName=betterthantomorrow.calva)
+
+También vale la pena mencionar que Clojure tiene varias herramientas que te ayudan a manejar tus dependencias y crear tus proyectos, el más utilizado es [leiningen](https://leiningen.org)
+
+## Comunidad
+
+La comunidad de Clojure, si bien menor en comparación con Java, Python o Javascript (quizá la más grande de todas (?)) es una comunidad muy activa.
+
+* [Clojurians Slack](https://clojurians.net)
+* Reddit [/r/clojure](https://reddit.com/r/clojure)
+* Youtube [ClojureTV](https://www.youtube.com/user/ClojureTV)
+* [ClojureFam](https://github.com/athensresearch/ClojureFam) El programa de apredizaje de Clojure que estoy siguiendo.
+
+  Además hay varias meetups y conferencias sobre el desarrollo de Clojure y ClojureScript como:
+* 
+* [ClojuTRE](http://clojutre.org/2020/)
+* [ClojureNorth](http://clojurenorth.com/)
+* [Clojuredays](https://clojure.org/events/2020/dutchclojureday)
+* [ClojureD](https://clojure.org/events/2020/clojured)
+* [ClojureBridge](https://www.bridgetroll.org/events/500)
+
+# Conclusión
+
+Clojure es un lenguaje entretenido, con una sintaxis que inicialmente parece compleja pero que en realidad es de las más sencillas que me he encontrado, es versátil y puedes transformarte en un full stack developer escribiendo Clojure y Clojurescript.
+
+Te invito a saltar a este mundo y comenzar a aprender un nuevo lenguaje, quizá no para convertirte en un _clojurist_ pero siempre, aprender un nuevo lenguaje, un nuevo paradigma y técnicas te ayudaran a ser mejor en lo que haces día a día.

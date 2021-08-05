@@ -1,0 +1,54 @@
+---
+date: 2020-10-09T16:27:23-03:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1602271677/timj-6BVinN0Y7Xk-unsplash_ge392o.jpg
+keywords:
+- node
+- nvm
+- version
+tag: Post
+title: Definir la version de Node con NVM
+description: NVM es la herramienta que te ayudara a controlar versiones de Node y
+  También a definir cual es la versión en uso para tu proyecto
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@the_roaming_platypus?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">timJ</a>
+  on <a href="https://unsplash.com/s/photos/version?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
+---
+Cuando trabajas con Node hay muchas cosas que puede variar de un ambiente a otro, una de ellas es la versión de Node instalada en cada máquina, esto, en algunos casos puede traer problemas. Pero, es posible definir o &ldquo;lock down&rdquo; una versión específica de node.
+
+Una forma de lograr este proceso de manera sencilla es utilizando [\*nvm\*](<https://github.com/nvm-sh/nvm>) (Node Version Manager).
+
+
+## NVM
+
+**nvm** es un manejador de versione para node, te permite mantener múltiples versiones de node en tu máquina y utilizar la que requieras para cada project.
+
+Instalar es sencillo, tan solo debes ejecutar el script de instalación
+
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
+
+Este escript, clona el repositorio de nvm dentro del directorio \`~/.nvm\` y agregar alguna lineas a tu archivo de perfil \`.bash<sub>profile</sub>\`, \`.zshrc\`, \`.profile\`, etc.
+
+El manual de uso te puede ayudar en caso de que tenga algún problema: <https://github.com/nvm-sh/nvm>
+
+
+## Usando .nvmrc
+
+Si lo que necesitas es definir y **fijar** la versión de node para diferentes proyectos, puedes hacer uso del archivo \`.nvmrc\`.
+
+Este archivo, es un archivo de configuración que le indica a \`nvm\` que versión de node se requiere para este proyecto.
+
+Simplemente crear este archivo y agrega la versión que quieres definir
+
+    echo "12.15.0" > .nvmrc
+
+Después de eso sólo debes ejecutar algunos comandos extra para que nvm instale lo necesario
+
+> 🚨 estos comandos son ejecutados desde el directorio del proyecto
+
+    nvm use
+    nvm install
+    nvm exec
+
+Listo, ahora tu proyecto tiene la versión de node definida, no olvides agegar el archivo \`.nvmrc\` a tu control de versiones
+
+Y ahora a continuar con tu maravilloso proyecto!

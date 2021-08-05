@@ -1,0 +1,148 @@
+---
+date: 2020-10-17T16:40:05-03:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1602963950/lukasz-szmigiel-jFCViYFYcus-unsplash_mffzif.jpg
+keywords:
+- React Native
+- Javascript
+- React
+- Android
+- Native Module
+tag: Seed
+title: Agregar Módulos Nativos a Una Aplicación React Native
+description: React Native permite que el uso de código nativo para utilizar el potencial
+  de cada plataforma, es una característica avanzada y que requiere algunos conocimientos
+  más allá de Javascript y React, pero si la plataforma no te ofrece alguna característica
+  que requieres, es posible crearla.
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@szmigieldesign?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Lukasz
+  Szmigiel</a> on <a href="https://unsplash.com/s/photos/nature?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
+---
+React Native te permite crear aplicaciones para todo tipo dispositivos móviles utilizando Javascript, esto permite una gran flexibilidad y disminuye la curva de aprendizaje.
+
+React Native permite acceso a diferentes API nativas para los distintos sistemas operativos (Android, iOS), pero en ciertas ocasiones esto no es suficiente y es necesario desarrollar soluciones en código nativo: Java/Kotlin o Object-C/Swift.
+
+# Módulos nativos
+
+React Native permite que el uso de código nativo para utilizar el potencial de cada plataforma, es una característica avanzada y que requiere algunos conocimientos más allá de Javascript y React, pero si la plataforma no te ofrece alguna característica que requieres, es posible crearla.
+
+## Android
+
+En el caso de Android, el código nativo puede venir distribuido como una paquete jar o aar o creado manualmente como un módulo dentro de tu aplicación.
+
+Quizás necesitas utilizar un SDK o librería externa, en el caso de paquetes _jar_ o _aar_ puedes agregarlos utilizando [Android Studio](https://developer.android.com/studio).
+
+1. Abre tu proyecto en Android Studio, abre sólo el directorio **android**.
+2. Haz click en `File > New Module`
+3. Una ventana flotante se mostrará en donde puedes elegir el tipo de módulo que quieres importar, en este caso _.JAR/_.AAR. Luego presiona siguiente
+
+![import aar](https://res.cloudinary.com/matiasfha/image/upload/c_scale,w_auto:100,dpr_auto/v1602963871/import-aar_aehans.png)
+
+1. Ahora abre el archivo `build.gradle` de tu app y agrega una nueva linea al bloque de dependencias:
+```
+    dependencies { compile project(":my-library-module") }
+```
+   1. Haz click en _Sync Project With Gradle Files_.
+
+Es posible que tu nuevo módulo ya implemente lo necesarioa para hacer su API disponible en tu proyecto React Native, en caso de no ser así tendras que hacerlo manualmente
+
+Lo primero es crear un nuevo módulo deentro del proyecto, lo llamaremos \`SDKModule\`
+
+Este nuevo módulo implementa una clase que implementa `ReactContextBaseJavaModule`
+```java
+    package com.myapp.sdk;
+    
+    import com.facebook.react.bridge.Callback;
+    import com.facebook.react.bridge.ReactApplicationContext;
+    import com.facebook.react.bridge.ReactContextBaseJavaModule;
+    import com.facebook.react.bridge.ReactMethod;
+    
+    public class SDKModule extends ReactContextBaseJavaModule {
+       //constructor
+       public SDKModule(ReactApplicationContext reactContext) {
+           super(reactContext);
+       }
+       @Override
+       public String getName() {
+           return "SDK";
+       }
+       //Custom function that we are going to export to JS
+       @ReactMethod
+       public void getDeviceName(Callback cb) {
+           try{
+               cb.invoke(null, android.os.Build.MODEL);
+           }catch (Exception e){
+               cb.invoke(e.toString(), null);
+           }
+       }
+    }
+```
+
+Esta clase debe implementar el método `getName`. Luego tendrás que agregar los métodos que quieres exponer para su uso en Javascript. Estos métodos deben ser deecorados con la etiqueta `@ReactMethod`
+
+En este ejemplo el método `getDeviceName` podrá ser utilizando desde tu código Javascript.
+
+Pero falta un paso más. Es necesario crear un `package` con el nuevo módulo. Esta nueva clase permitirá el registro del módulo. Para esto bastará con crear un nuevo archivo llamado `SDKPackage`
+
+```java
+    package com.myapp.sdk;
+    
+    import com.facebook.react.ReactPackage;
+    import com.facebook.react.bridge.JavaScriptModule;
+    import com.facebook.react.bridge.NativeModule;
+    import com.facebook.react.bridge.ReactApplicationContext;
+    import com.facebook.react.uimanager.ViewManager;
+    import java.util.ArrayList;
+    import java.util.Collections;
+    import java.util.List;
+    
+    public class SDKPackge implements ReactPackage {
+    
+       @Override
+       public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
+           return Collections.emptyList();
+       }
+    
+       @Override
+       public List<NativeModule> createNativeModules(
+               ReactApplicationContext reactContext) {
+           List<NativeModule> modules = new ArrayList<>();
+           //We import the module file here
+           modules.add(new SDKModule(reactContext));
+    
+           return modules;
+       }
+    
+       // Backward compatibility
+       public List<Class<? extends JavaScriptModule>> createJSModules() {
+           return new ArrayList<>();
+       }
+    }
+```
+
+Finalmente debemos registrar el paquete en la clase principal `MainApplication.java`
+
+```java
+       import com.notetaker.sdk.SDKPackage;
+    
+      @Override
+      protected List<ReactPackage> getPackages() {
+        return Arrays.<ReactPackage>asList(
+            new MainReactPackage(),
+            new SDKPackage() //Add your package here
+        );
+      }
+    };
+```
+
+Listo, ahora tu nuevo módulo estará disponible dentro del objeto `NativeModules` en tu app React Native, bajo el nombre que definiste en el método `getName`
+
+```java 
+    import {NativeModules} from 'react-native';
+    NativeModules.SDK.getDeviceName((err ,name) => {
+       console.log(err, name);
+    });
+```
+
+# Conclusión
+
+React Native es una plataforma que permite el desarrollo rápido y seguro de aplicaciones móviles, pero no tiene soporte (aún) para cada una de las caracterísitcas de los dispositivos o a veces el soporte ofrecido por defecto no es suficiente, en estos casos querrás crear un módulo nativo, que no más que código Java - en el caso de Android -  que te permite definir como utilizar cierta característica. Este código puede ser expuesto a tu aplicación Javascript tal como se describe en el ejemplo.

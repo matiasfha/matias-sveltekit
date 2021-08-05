@@ -1,0 +1,30 @@
+---
+date: 2020-07-16T23:41:45.000-04:00
+title: "Arreglos de objetos en Javascript: Como crear y actualizar su contenido"
+hero_image: "/content/images/pierre-bamin-p2pogrtgpra-unsplash.jpg"
+description:
+  En Javascript existen diversas formas de crear un arreglo de objetos
+  y varias formas de manipular su contenido.
+keywords:
+  - javascript
+  - array
+  - arreglos
+  - es6
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1595045136/pierre-bamin-P2POGRtGprA-unsplash_gx6ozd.jpg
+bannerCredit: ""
+tag: Seed
+---
+
+Javascript es un lenguaje flexible que otorga diversas formas de efectuar una tarea determinada dejando libertad de decisión al desarrollador para elejir la que considere como mejor opción.
+
+Una de las estructuras de datos más utilizada en cualquier aplicación son los arreglos y en el caso de Javascript los arreglos de objetos son pan de cada día.
+
+Un arreglo puede ser creado y completado de variadas formas incluyendo la creación "on the fly" ya que los arreglos en Javascript pueden no tener límite.
+
+En el siguiente vídeo muestro 4 formas de crear un arreglo de objetos
+
+<!--<EggheadLesson lessonId="javascript-4-formas-de-llenar-un-arreglo-en-javascript" />-->
+
+La primera opción es el uso de [Array.fill](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/fill "Array.fill") este método completa un arreglo cambiando todos los elementos por un valor estático, es decir, si utilizamos, como en el ejemplo, una función que cree objetos, el arreglo será completado con el mismo objeto cada vez ya que "copia su referencia y rellena el arreglo con referencias a dicho objeto."
+
+Para evitar este "problema" podemos hacer uso del método [Array.map](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/map). Este método permite iterar sobre el arreglo de forma declarativa y modificar su contenido por medio de crear un nuevo arreglo con los valores retornados.

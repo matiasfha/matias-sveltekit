@@ -1,0 +1,435 @@
+---
+date: 2021-01-24T22:13:59.000-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1611543353/caspar-camille-rubin-fPkvU7RDmCo-unsplash_uh7g7z.jpg 
+keywords:
+- eslint
+- linting
+- javascript
+- tooling
+tag: Seed
+title: ¿Qué es Linting y ESLint? 
+description: 
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@casparrubin?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Caspar Camille Rubin</a> on <a href="https://unsplash.com/s/photos/code-formatting?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> 
+favorite: true
+---
+
+En el mundo del desarrollo de aplicaciones web hay una miríada de herramientas que buscan, no sólo mejorar la experiencia de usuario y la performance de tu aplicación en general, si no también, mejorar la experiencia de desarrollo (DX). Si bien tener tantas herramientas y opciones a disposición puede ser algo bueno para la mejora intrínsica de estas herramientas, es también un problema para muchos que están comenzando en este proceso ya que puede ser muy confuso seguir indicaciones que presumen de cierto grado de conocimiento previo.
+
+Si bien hay muchos "boilerplates" o "plantillas de proyectos" disponibles para cada tipo de framework, el uso de estas herramientas cae dentro de una "caja negra" donde pocas veces se entiende omo funcionan cada una de ellas, o el por que las necesito. 
+
+En el caótico mundo del desarrollo web, es necesario tener una especie de guía para sobrevivir. 
+
+Esta serie de artículos busca cubrir esa area olvidada o perdida ([the missing semester](https://missing.csail.mit.edu)) tanto en la educación formal como en los tutoriales disponibles en internet. Obtener conocimiento y proficiencia con las herramientas, enfocándonos en la experiencia de desarrollador.
+
+¿Que herramientas estarán incluídas en la serie?
+
+- npm
+- Linting (Eslint, stylelint)
+- Babel
+- Prettier
+- Bundlers (Webpack, Rollup, etc)
+- Git
+
+# ¿Qué es Linting?
+
+Es inevitable tener errores en el código que desarrollas para una aplicación, y todos sabemos que estos errores son malos, algunos causan problemas en la interfaz que generan incomodidad en los usuarios, otros comprometen la seguridad del sistema o simplemente rompen todo y la aplicación deja de funcionar.
+
+Hay un cierto grupo de errores que pueden ser identificados y reparados antes de que tu código llegue a ser ejecutado, estos pueden ser: 
+
+- errores de sintaxis
+- Código poco intuitivo o dificil de mantener
+- Uso de "malas practicas"
+- O uso de estlios de codigo inconsistentes.
+
+Estos errores pueden ser incluso más comunes que otros más graves dado a que son menos evidentes. 
+Capturar errores antes de que tu código se ejecute puede salvarte, no sólo del error en si mismo, si no, también ahorrarte mucho tiempo en la cacería de esos errores.
+
+> En la actualidad, se utiliza este término para designar a herramientas que realizan estas tareas de comprobación en cualquier lenguaje de programación. Las herramientas de tipo lint generalmente funcionan realizando un análisis estático del código fuente. - Wikipedia [https://es.wikipedia.org/wiki/Lint](https://es.wikipedia.org/wiki/Lint)
+
+En otras palabras, es una herramienta de software que revisa y "observa" tu código en busca de errores que puedan afectar tu código. Algunos "linteres" incluso pueden darte sugerencias de como arreglar el error o incluso arreglarlo ellos mismos.
+
+Las herramientas de linting pertenecen a un grupo de programas conocidos como **herramientas de análisis estático** , un proceso de revisión de un programa sin ejecutar dicho programa, por lo general la revisión se realiza sobre el código fuente o alguna clase de código objeto. Visto de otra forma es como tener a un revisor de tu pull request pero automatizado y siempre observando lo que escribes. 
+
+Un ejemplo de herramienta de "linting", y el que usaremos en este artículo es **ESLint**.
+
+## ¿Qué es ESLint?
+
+ESLint es una herramienta de código abierto enfocada en el proceso de "lintig" para javascript (o más correctamente para [ECMAScript](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)). ESLint es la herramienta predominante para la tarea de "limpiar" código javascript tanto en el servidor (node.js) como en el navegador.
+
+Dado que javascript es un lenguaje dinámico y de tipado débil, es especialmente fácil caer en errores humanos a la hora de escribir código. ESLint utiliza un sistema de reglas que permiten definir que es y que no es posible dentro del código. ESLint está escrito en Nodejs y es posible instalarlo desde [npm](http://npmjs.com/).
+
+### ¿Qué puede hacer ESLint por mi?
+
+Bueno, ESLint es una herramienta de "linting", por lo que te puede ayudar a:
+
+- Mostrarte errores de sintaxis.
+- Mostrarte errores cuando no se siguen buenas prácticas.
+- Proveer sugerencias para mejorar tu código.
+- Mantener un estilo consistente en tu código o reforzar reglas internas de tu propio equipo.
+
+Aquí ESLint es el motor que te ayudará a definir reglas y revisará tu código. ESLint está disponible a travez de `[npm](https://www.npmjs.com/package/eslint)`.
+
+ESLint se compone de al menos 3 partes: el Parser, las Reglas y el Resultado.
+
+### Parser
+
+El parseador se encarga de convertir tu código, que es escrito para ser leído por un ser humano, a una representación o abstracción que permite que el computador pueda entender tu código. ESLint convierte tu código a un Árbol de Sintaxis Abstracto o AST (del inglés Abstract Syntax Tree). Es esta representación la utilizada por ESLint para aplicar las diferentes reglas necesarias.
+
+Este árbol es básicamente un gran objeto json que representa cada parte de tu código (existen diferentes tipos de AST generados por diferentes parsers), esta representación es fácil de recorrer y consultar.
+
+ESLint, recorre este árbol visitando cada uno de los nodos, en cada visita, recorre la lista de reglas y aplica las que corresponden al tipo de nodo visitado.
+
+Puedes ver una representación de un AST utilizando [https://astexplorer.net](https://astexplorer.net/)
+
+Un ejemplo de AST es 
+
+```jsx
+function setCount(v) {
+    return v + 1;
+}
+```
+
+y el AST correspondiente
+
+```jsx
+{
+  "type": "Program",
+  "start": 0,
+  "end": 41,
+  "body": [
+    {
+      "type": "FunctionDeclaration",
+      "start": 0,
+      "end": 40,
+      "id": {
+        "type": "Identifier",
+        "start": 9,
+        "end": 17,
+        "name": "setCount"
+      },
+      "expression": false,
+      "generator": false,
+      "async": false,
+      "params": [
+        {
+          "type": "Identifier",
+          "start": 18,
+          "end": 19,
+          "name": "v"
+        }
+      ],
+      "body": {
+        "type": "BlockStatement",
+        "start": 21,
+        "end": 40,
+        "body": [
+          {
+            "type": "ReturnStatement",
+            "start": 25,
+            "end": 38,
+            "argument": {
+              "type": "BinaryExpression",
+              "start": 32,
+              "end": 37,
+              "left": {
+                "type": "Identifier",
+                "start": 32,
+                "end": 33,
+                "name": "v"
+              },
+              "operator": "+",
+              "right": {
+                "type": "Literal",
+                "start": 36,
+                "end": 37,
+                "value": 1,
+                "raw": "1"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "sourceType": "module"
+}
+```
+
+### Las Reglas
+
+El siguiente paso en el proceso es aplicar las reglas. Una regla es una colección de cierta lógica (función) que permite identificar un potencial problema en el código. El resultado de la aplicación de estas reglas puede contener un reporte del error encontrado incluyendo el nodo y otra información que permite arreglar el error.
+
+Estas reglas son aplicadas por medio de un "transformador". El transformador es quien permite que las reglas (funciones) puedan consultar que nodo del AST esta siendo visitado.
+
+Un ejemplo de definición de regla es:
+
+```jsx
+export default function(context) {
+  return {
+    Identifier(node) {
+      if(node.name === 'console'){
+        context.report(node, 'Left in log statement');
+      } 
+    }
+  };
+};
+```
+
+Esta función es ejecutada cuando el Identificador del nodo es `console` y reporta que el código contiene el uso de `console.log`.
+
+### **El Resultado**
+
+Este es e último paso del proceso. Aquí es donde se define cómo se muestran los reportes de las reglas que se "infringieron". Por defecto la ejecución de ESLint será en consola pero los resultados también pueden ser desplegados en tu editor de texto favorito.
+
+## ¿Cómo comienzo?
+
+La forma más simple de comenzar es primer, tener un proyecto javascript en el que utilizar ESLint.
+Creemos entonces un simple proyecto al que agregar ESLInt, comienza por crear un directorio en donde almacenar tu proyecto, puedes hacer todo esto directamente en tu terminal.
+
+```jsx
+mkdir linting
+```
+
+Ahora ingresa en el directorio para comenzar a trabajar
+
+```jsx
+cd linting
+```
+
+Creemos nuestro primer archivo javascript, que para este ejemplo será muy simple
+
+```jsx
+touch app.js
+```
+
+Ahora, agreguemos algo de código en este archivo, ábrelo en tu editor favorito y escribe
+
+```jsx
+const nombre = 'Matias'
+
+const persona = {nombre}
+
+console.log(persona)
+
+const saludar = (fNombre) => {
+console.log(`Hola! ¿que tal, ${fNombre}?`);
+};
+const persona = { nombre: 'Otra persona' }
+```
+
+Es claro a simple vista algunos problemas de formato con este simple código además de un problema de sintaxis.
+
+Ahora inicia este proyecto utilizando `npm`
+
+```jsx
+npm init
+```
+
+Este comando creará el archivo `package.json`, archivo que describe la configuración de tu proyecto y la lista de dependencias del mismo.
+
+Ahora con el proyecto javascript preparado agreguemos eslint.
+
+### Configurando ESLint
+
+Lo primero es instalar ESLint en nuestro proyecto, para ello volveremos a nuestra terminal y utilizaremos `npm` para instalar esta dependencia
+
+```jsx
+npm install eslint --save-dev
+```
+
+Utilizamos el argumento  `--save-dev` para indicarle a `npm` que queremos guardar esta dependencia para uso de desarrollo. ESLint es un paquete que solo necesitamos durante el proceso de desarrollo y no se necesita para ejecutar tu aplicación.
+
+Una vez instalado,  puede iniciar la configuración al ejecutar
+
+```jsx
+npx eslint --init
+```
+
+este comando ( en particular el argumento`--init`) es el que activará ESLint en tu proyecto, esto se realiza mediante la creación de un archivo de configuración que vivirá en el directorio principal de tu proyecto.
+
+El proceso de creación de este archivo se ejecutará en la consola y te hará algunas preguntas comenzando por: ¿Cómo te gustaría usar ESLint?
+
+```jsx
+? How would you like to use ESLint? …
+  To check syntax only
+  To check syntax and find problems
+❯ To check syntax, find problems, and enforce code style
+```
+
+Selecciona la última opción "Para revisar sintaxis, encontrar problemas y reforzar el estilo de código".
+
+La siguiente pregunta será
+
+```jsx
+What type of modules does your project use? …
+  JavaScript modules (import/export)
+❯ CommonJS (require/exports)
+  None of these
+```
+
+En este caso seleccionas `CommonJS` ya que no usaremos ninguna herramienta externa (bundlers) para manejar los módulos de nuestro proyecto.
+
+La siguiente pregunta será:
+
+```jsx
+? Which framework does your project use? …
+  React
+  Vue.js
+❯ None of these
+```
+
+Por ahora seleccionarás "None of these"
+
+Luego te preguntará si usas Typescript o no.
+
+```jsx
+? Does your project use TypeScript? › No / Yes
+```
+
+Seleccionarás `No`
+
+La siguiente pregunta será sobre el estilo de código que quieres usar: `¿Cómo te gustaría definir un estilo para tu proyecto?`
+
+```jsx
+✔ How would you like to define a style for your project? …
+❯ Use a popular style guide
+  Answer questions about your style
+  Inspect your JavaScript file(s)
+```
+
+Selecciona la primera opción: `Usar una guía de estilo popular` y en la siguiente pregunta selecciona `Airbnb`
+
+Luego se te preguntará por el tipo de archivo para la configuración cuyas opciones son `YAML`,`Javascript` y `JSON`. 
+
+Finalmente verás el mensaje de aviso que se instalarán algunas dependencias extras y la siguiente pregunta
+
+```jsx
+? Would you like to install them now with npm? › No / Yes
+```
+
+`¿Quieres instalar las dependencias ahora con npm?` Selecciona `Yes`
+
+Al terminar este proceso podrás notar que un nuevo archivo fue creado en el directorio raíz del proyecto `.eslintrc.json` (o `. js` o `.yaml` dependiendo de lo seleccionado).
+
+Finalmente agreguemos algunas reglas simples en el archivo de configuración. Abre el archivo `.eslintrc.js` (Si elegiste el formato javascript) y verás lo siguiente:
+
+```jsx
+module.exports = {
+  env: {
+    browser: true,
+    commonjs: true,
+    es2021: true,
+  },
+  extends: [
+    'airbnb-base',
+  ],
+  parserOptions: {
+    ecmaVersion: 12,
+  },
+  rules: {
+  },
+};
+```
+
+Ahora, agreguemos una nueva guía al arreglo `extends` y algunas reglas al objeto `rules`
+
+```jsx
+module.exports = {
+  env: {
+    browser: true,
+    commonjs: true,
+    es2021: true,
+  },
+  extends: [
+    'airbnb-base',
+    'eslint:recommended',
+  ],
+  parserOptions: {
+    ecmaVersion: 12,
+  },
+  rules: {
+    semi: ['error', 'always'],
+    quotes: ['error', 'double'],
+  },
+};
+```
+
+Aquí agregamos `eslint:recommended` al arreglo  `extends` indicando que también usaremos las reglas recomendadas de ESLint. Además agregamos dos nuevas reglas en el objeto `rules` indicando que utilizar punto y coma `semi` al final de cada linea de código es requerido y  que se usaran comillas dobles en los strings.
+
+### Utilizar ESLint
+
+El uso más simple que puedes darle a ESLint es revisar tu código de forma manual ejecutando un script en la terminal, para esto puedes escribir `npx eslint  . --ext .js` cada vez o configurar este comando como un script de npm.
+
+Abre el archivo `package.json` en tu editor de texto favorito y agrega la sección `scripts` 
+
+```jsx
+...
+"scripts": {
+  ...
+  "lint": "eslint .  --ext .js"
+  ...
+},
+...
+```
+
+Con este comando estarás ejecutando ESLint en todo los archivos con extensión `js` en tu proyecto.
+
+Ahora vuelve a tu terminal y puedes ejecutar
+
+```jsx
+npm run lint
+```
+
+y verás el resultado que mostrará los errores del código que tienes escrito en `app.js`
+
+```jsx
+/Users/matias/Development/linting/.eslintrc.js
+   8:5   error  Strings must use doublequote  quotes
+   9:5   error  Strings must use doublequote  quotes
+  15:12  error  Strings must use doublequote  quotes
+  15:21  error  Strings must use doublequote  quotes
+  16:14  error  Strings must use doublequote  quotes
+  16:23  error  Strings must use doublequote  quotes
+
+/Users/matias/Development/linting/app.js
+  10:7  error  Parsing error: Identifier 'persona' has already been declared
+
+✖ 7 problems (7 errors, 0 warnings)
+  6 errors and 0 warnings potentially fixable with the `--fix` option.
+```
+
+Podemos intentar que ESLint arregle algunos de estos problemas automáticamente utilizando el argumento `--fix`. Abre tu archivo `package.json` para agregar un nuevo script:
+
+```jsx
+"lint-fix": "eslint . --ext .js --fix"
+```
+
+Y ahora en la terminal
+
+```jsx
+npm run lint-fix
+```
+
+Y el resultado será
+
+```jsx
+/Users/matias/Development/linting/app.js
+  10:7  error  Parsing error: Identifier 'persona' has already been declared
+
+✖ 1 problem (1 error, 0 warnings)
+```
+
+## Conclusión
+
+El proceso de `linting` se han convertido en una herramienta básica y necesaria en todo proyecto de software, sobre todo en el mundo del desarrollo web con javascript.
+
+Sus beneficios van más allá de lo que ESLint hace técnicamente ya que ayuda a los desarrolladores a enfoncarse en lo más importante: desarrollar soluciones.
+Este tutorial introduce algunas de las cosas que puedes lograr utilizando ESLint y una breve descripción de cómo ESLint funciona. 
+
+Si quieres leer más información sobre las reglas que puedes utilizar y cómo personalizar las reglas de ESLint puedes revisar la  [documentación](https://eslint.org/docs/rules/).
+
+### **Other linting tools to check out**
+
+- [JSHint](https://jshint.com/): una alternativa a ESLint
+- [Stylelint](https://github.com/stylelint/stylelint): una herramienta de linting para tu código CSS.
+- [Awesome ESLint](https://github.com/dustinspecker/awesome-eslint): Una lista de configuraciones, parsers, plugins y otras herramientas para mejorar tu propia configuración de ESLint.c

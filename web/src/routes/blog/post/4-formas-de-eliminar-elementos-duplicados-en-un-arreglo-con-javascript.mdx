@@ -1,0 +1,119 @@
+---
+date: 2020-08-10T23:13:59.000-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1597115954/andreas-gucklhorn-Ilpf2eUPpUE-unsplash_n8npgz.jpg
+keywords:
+- Arreglos
+- Array
+- ES6
+- Array.reduce
+- Array.filter
+- Remover duplicados
+- egghead
+- lesson
+- tutorial
+tag: Seed
+title: 4 formas de eliminar elementos duplicados en un arreglo con Javascript
+description: Remover elementos duplicados de un arreglo es una tarea común durante el desarrollo de software. Javascript ofrece varias formas de hacerlo y su elección depende del caso de uso.
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@draufsicht?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Andreas Gücklhorn</a> on <a href="https://unsplash.com/collections/9718937/solar?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+favorite: true
+
+---
+La manipulación de arreglos es una de las tareas más comunes y constantes a la hora de desarrollar una aplicación. Los arreglos son estructuras de datos básicas en cualquier programa. Una de estas tareas de manipulación es la de remover elementos duplicados de un arreglo.
+Javascript, por su naturaleza flexible, ofrece variadas formas de efectuar esta tarea y la elección de cuál utilizar corresponde tanto a la experiencia del desarrollador como al caso de uso.
+
+#### **TLDR;** Lección en video en [egghead](https://egghead.io/lessons/javascript-4-formas-de-remover-elementos-duplicados-de-un-arreglo-con-javascript?pl=manipulacion-de-arreglos-con-javascript-12bd?af=4cexzz)
+
+<EggheadLesson lessonId="javascript-4-formas-de-remover-elementos-duplicados-de-un-arreglo-con-javascript" />
+
+#### **Array.filter**
+
+Una de las formas más directas de remover elementos de un arreglo es utilizar `Array.filter`
+
+Array.filter es un método inmutable que retorna un nuevo arreglo con los elementos que cumplan la condición implementada por la función utilizada como argumento.
+
+De forma interna, `filter` itera sobre los elementos del arreglo y aplica la función argumento en cada item retornando un valor _boolean, s_i el elemento pasa la condición se retorna true indicando que este será agregado al nuevo arreglo.
+
+Para este caso de remover elementos duplicados utilizamos como método auxiliar la función `Array.indexOf`. Este método retorna Array.indexOf retorna el primer indice del arreglo en donde se encuentre un elemento dado.
+
+```javascript
+    let data = [1,2,6,1,2,5,9,'33','33'];
+
+    let result = data.filter((item,index)=>{
+      return data.indexOf(item) === index;
+    })
+    console.log(result); //[1,2,6,5,9,'33']
+```
+En este caso, podemos identificar un duplicado cuando el indice no es igual al resultado de `indexOf`
+
+`data.indexOf(item) === index` ,retornará siempre la primera ocurrencia del `item`.
+
+#### **Set**
+
+El objeto global **Set** es una estructura de datos, una colección de valores que permite sólo almacenar valores únicos de cualquier tipo, incluso valores primitivos u referencias a objetos.
+
+Es posible iterar sobre los elementos en el orden de inserción.
+
+```javascript
+    let data = [1,2,6,1,2,5,9,'33','33'];
+
+    const dataArr = new Set(data);
+
+    let result = [...dataArr];
+
+    console.log(result); //[1,2,6,5,9,'33']
+```
+
+El caso de utilizar **Set** para remover duplicados es bastante simple, creamos un nuevo **Set** basado en el arreglo original utilizando _new Set_.
+
+Y finalmente puedes convertir el nuevo Set a un arreglo nuevamente utilizando la sintaxis spread.
+
+Si eres un _"Computer Science Junkie"_ o estás trabajando con grandes cantidades de datos es importante pensar en la performance de este método. Utilizar **Set** es un método de orden _O(nlogn)_
+
+#### **Reduce**
+
+El método `Array.reduce` también puede ser utilizado con el mismo propósito.
+
+`Array.reduce` ejecuta una función sobre cada elemento del arreglo y retorna un valor como un único resultado. Básicamente permite transformar un arreglo a otro tipo de valor.
+
+`Array.reduce` recibe dos parámetros, una función , llamada reductora, que tiene a lo menos dos argumentos: el acumulador y el item actual de la iteración y como segundo parámetro que indica el valor inicial en este caso un arreglo vacío
+
+```javascript
+    let data = [1,2,6,1,2,5,9,'33','33'];
+
+    const result = data.reduce((acc,item)=>{
+      if(!acc.includes(item)){
+      	acc.push(item);
+      }
+      return acc;
+    },[])
+
+    console.log(result); //[1,2,6,5,9,'33']
+```
+
+En este caso la función utilizada simplemente revisa si el item actual se encuentra dentro del resultado identificado por la variable `acc`, de no estarlo, simplemente agrega el valor al acumulador
+
+#### **ForEach y otros loops**
+
+`Array.forEach` es otra forma de iterar sobre el arreglo y como tal también permite remover duplicados pero de una forma más imperativa.
+
+Aquí es necesario utilizar un arreglo auxiliar para almacenar el resultado del proceso de filtrado
+
+Al iterar sobre el arreglo se utiliza un bloque condicional que verifica que el item no exista ya dentro del arreglo de valores únicos utilizando `Array.includes`, que permite determinar si un elemento existe o no dentro del arreglo.
+
+```javascript
+
+    let data = [1,2,6,1,2,5,9,'33','33'];
+
+    const result = [];
+    data.forEach((item)=>{
+    	//pushes only unique element
+        if(!uniqueArr.includes(item)){
+    		uniqueArr.push(item);
+    	}
+    })
+    console.log(result); //[1,2,6,5,9,'33']
+```
+
+`Array.forEach `al igual que cualquier otro método de iteración directa es una forma imperativa y es de baja performance dado que requiere iterar varias veces sobre el mismo elemento - `Array.includes` también itera sobre los elementos - por lo que es de orden O(n²).
+
+En resumen las opciones para eliminar duplicado son variadas pero se sustenan en la misma premisa. El uso de iteraciones para corroborar si un elemente ya existe o no, y el uso de estructuras de datos más complejas como Set.

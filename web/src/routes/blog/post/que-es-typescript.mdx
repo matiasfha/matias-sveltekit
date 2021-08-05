@@ -1,0 +1,181 @@
+---
+date: 2020-10-01T15:45:22-03:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1601578304/solmaz-hatamian-YSaKXcavOko-unsplash_xcnlkc.jpg
+keywords:
+- Typescript
+- " Javacript"
+tag: Seed
+title: "¿Qué es Typescript?"
+description: Typescript es un lenguaje compilado o transpilado que genera código Javascript,
+  es decir escribirás código Typescript pero el producto final, el que se ejecuta
+  es Javascript.
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@solmaz67?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">solmaz
+  hatamian</a> on <a href="https://unsplash.com/s/photos/typescript?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
+---
+# ¿Qué es Typescript?
+
+Typescript es un lenguaje compilado o transpilado que genera código Javascript, es decir escribirás código Typescript pero el producto final, el que se ejecuta es Javascript.
+Puedes también considerarlo Javascript con esteroides, Typescript agrega funcionalidades al lenguaje base, esto es conocido como un superset. Algunas de las funcionalidades o características que Typescript ofrece es el uso de tipos estáticos.
+
+## ¿Qué son los tipos?
+
+Tipos es una forma de describir como se planea utilizar la información que tu aplicación maneja, después de todo, la función básica de todo programa o aplicación es manipular o transformar información.
+Los tipos o el tipado de información permite definir el tipo de información que se está manipulando ya sea esto simples números o cadenas de texto o estructuras más complejas que permiten modelar perfectamente el problema de nuestro dominio.
+
+### Tipos estáticos vs tipos dinámicos
+
+Los lenguajes de programación se pueden categorizar de variadas formas, una de ellas es en la forma que implementan el sistema de tipado. Existen dos tipos de implementaciones, tipado estático y tipado dinámico. Ninguna es mejor que la otra, simplemente son diferentes soluciones para un problema común, cómo verificar que la información que se manipula sea: _correctamente utilizada_.
+
+La idea del tipado es evitar que utilices un tipo de información o variable para hacer otra cosa, por ejemplo
+
+    const length = 14 // un número
+    console.log(length("algun texto")) // length es usado cómo una función
+
+El ejemplo muestra como se define una constante llamada \`length\` que está asociada a un número (type Number) pero que después es utilizada como una función. Esto creará un error al momento de ejecutar
+
+    TypeError: length is not a function. (In 'length("algun texto")', 'length' is 14)
+
+Este error es capturado al momento de ejecutar el código javascript. Javascript es un lenguaje de tipado dinámico, es decir, ejecuta la corroboración de tipos en tiempo de ejecución, al igual que Python o Ruby. En cambio, Typescript, es un lenguaje de tipado estático, la comprobación de tipos se hace en tiempo de compilación.
+
+    const length = 14 // un número
+    console.log(length("algun texto")) // length es usado cómo una función
+
+Al compilar el mismo trozo de código con typescript se nos muestra el siguiente error
+
+    ../.nvm/versions/node/v12.9.0/lib/node_modules/typescript/lib/lib.dom.d.ts:19553:13 - error TS2451: Cannot redeclare block-scoped variable 'length'.
+    
+    19553 declare var length: number;
+                      ~~~~~~
+    
+      test.ts:1:7
+        1 const length = 14
+                ~~~~~~
+        'length' was also declared here.
+    
+    test.ts:1:7 - error TS2451: Cannot redeclare block-scoped variable 'length'.
+    
+    1 const length = 14
+            ~~~~~~
+    
+      ../.nvm/versions/node/v12.9.0/lib/node_modules/typescript/lib/lib.dom.d.ts:19553:13
+        19553 declare var length: number;
+                          ~~~~~~
+        'length' was also declared here.
+    
+    test.ts:2:13 - error TS2349: This expression is not callable.
+      Type 'Number' has no call signatures.
+    
+    2 console.log(length("algun texto"))
+                  ~~~~~~
+    
+    
+    Found 3 errors.
+
+Por lo tanto este tipo de error nunca verá la luz en la aplicaicón.
+
+Que ventaja puede tener un tipo de lenguaje sobre el otro? En general los lenguajes de tipado dinámico son más fáciles de aprender, son de scripting y se usan de forma muy rápida, usualmente asociado al proceso de prototipado, al contrario los lenguajes de tipado estático pueden tener una curva de aprendizaje mayor.
+
+Una última clasificación de tipados es Tipado Fuerte vs Tipado Débil, aunque esto es más un espectro, por ejemplo Javascript de tipado _muy_ débil, tiene la noción de tipos pero no necesariamente los utiliza _seriamente_, dijamos que es de tipado relajado.
+Javascript hace una conversión implicita, Typescript por contraparte prefier una conversión explicita.
+
+## ¿Por qué usar tipos estáticos en el desarrolo web?
+
+En general la respuesta está relacionada por el nivel de confianza que este tipo de tipado da, evitando errores del tipo \`undefined is not a function\`. Esta confiabilidad ayuda en la matenibilidad y refactoring del código, además, gracias a los diferentes plugins de los editores de texto se genera una gran documentación solo por el hecho de agregar tipos, permitiendo a todos quienes participan en el desarrollo puedan rápidamente entender que hace cada función.
+Un [estudio muestra que el 15%](http://earlbarr.com/publications/typestudy.pdf) de todos los errores de Javascript pueden ser detectados por Typescript.
+
+Además, no es necesario saber nada en particular para comenzar con TS, el agregar tipos es opcional, pero muy aconsejable, y todo el código Javascript es también válido como Typescript.
+Además:
+
+* Evitas la coerción de datos (como la suma de números con strings).
+* Evitas operaciones en tipos erroneos, como hacer “trim” en un número.
+* Los tipos estáticos invitan a crear tipos personalizados.
+* Los tipos pueden ser implicitos o explicitos, si no los defines, el compilador los inferirá por ti.
+
+## Algunos tipos en TS
+
+Typescript define varios tipos básicos como: Boolean, Number, String, Array, Typle, etc. Algunos de estos tipos también existen en Javascript, puedes encontrar mas información en la [documentación](https://www.typescriptlang.org/docs/handbook/basic-types.html)
+
+* **Any y Unknown**: Typescript ofrece estos dos tipos para:
+  * **Any**: Es en cierto forma “cualquier tipo” o “todos los tipos”, es en cierta forma una manera de escapar de Typescript, normalmente se utiliza para modelar los datos de librerías externas sin tipar.
+  * **Unknown**: Es el tipo desconocido, que a diferencia de \`any\` es un tipo seguro. Typescript no permite ejecutar operaciones sobre el dato hasta que el tipo del dato sea verificado.
+* **Void**: Utilizado cuando no hay valor de retorno, por ejemplo en un event handler.
+* **Never**: Es un tipo de dato emitido por funciones que no deberían ocurrir: ej: Throw an exception.
+* **Intersection & Union type:** Permite crear tipos personalizados adecuados para el dominio particular.
+  * Intersection: Permite unir varios tipos básicos en un solo tipo. Equivalente a un “and”
+  * Union: Equivalente a un “or” Permite a la variable tomar uno de varios tipos
+
+          const result: string | undefined = undefined
+
+# Pros y Cons
+
+## Typescript es confiable
+
+En contraste con javascript, Typescript es confiable y fácil de refactorizar permitiendo evadir errores.
+Los tipos eliminan la mayoría de los errores bobos y generan un rápido feedback para arreglar esos pequeños errores.
+
+## Typescript es explicito
+
+Al utilizar tipos explicitos podemos enfocar nuestra atención en como el sistema esta construido y como sus diferentes partes interactuan.
+
+## Typescript y Javascript son “casi” intercambiables
+
+Como Typescript es un superset de Javascript piedes utilizar todo el ecosistem Javascript.
+Además la mayoría de las librerias más populares o estan esscritas en typescript o distribuyen tipos via [Definitely Typed](https://github.com/DefinitelyTyped/DefinitelyTyped), un repositorio que contiene cientos de tipos para las librarias más utilizadas.
+
+# Cons
+
+* No es un cabio directo. Tomar un equipo o un proyecto y comenzar a escribir TS idiomático no es rápido. Hay una leve curva de aprendizaje.
+* En el corto plazo puede tomar tiempo adaptarse.
+* SI es un proyecto Open Source necesitarás que los contributors sepan TS.
+
+<a id="org793dbbd"></a>
+
+# Quickstart
+
+Lo primero que debes hacer es instalar el compilador de typescript con \`npm\`
+
+    npm install -g typescript
+
+Una vez instalado podrás ejecutar \`tsc -v\` en tu consola.
+
+Lo único necesario para comenzar es el compilador y un archivo typescript.
+Crea un archivo \`test.ts\`
+
+    function delay(milliseconds: number, count: number): Promise<number> {
+        return new Promise<number>(resolve => {
+                setTimeout(() => {
+                    resolve(count);
+                }, milliseconds);
+            });
+    }
+    
+    // async function always return a Promise
+    async function dramaticWelcome(): Promise<void> {
+        console.log("Hello");
+    
+        for (let i = 0; i < 5; i++) {
+            // await is converting Promise<number> into number
+            const count: number = await delay(500, i);
+            console.log(count);
+        }
+    
+        console.log("World!");
+    }
+    
+    dramaticWelcome();
+
+Como vez eso se parece mucho a Javascript pero tiene esos “extraños” \`:\` que definen el tipo de la variable, argumento o función.
+Para ejecutar esto, primero debes compilarlo y luego ejecutar con node
+
+    tsc test.ts
+    node test.js
+
+Typescript es una grana adición a tu flujo de desarrollo otorgando seguridad a tu proceso y evitando una gran familia de errores en los que todos podemos caer continuamente.
+
+Les dejo algunos cursos para comenzar con Typescript:
+
+* [https://egghead.io/courses/up-and-running-with-typescript](https://egghead.io/courses/up-and-running-with-typescript "Up and Running with TypeScript")
+* [https://egghead.io/courses/advanced-static-types-in-typescript](https://egghead.io/courses/advanced-static-types-in-typescript "https://egghead.io/courses/advanced-static-types-in-typescript")
+* [https://egghead.io/courses/practical-advanced-typescript](https://egghead.io/courses/practical-advanced-typescript "https://egghead.io/courses/practical-advanced-typescript")
+* [https://egghead.io/courses/async-await-using-typescript](https://egghead.io/courses/async-await-using-typescript "https://egghead.io/courses/async-await-using-typescript")

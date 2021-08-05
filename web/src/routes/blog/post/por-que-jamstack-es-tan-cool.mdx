@@ -1,0 +1,83 @@
+---
+date: 2021-14-04T08:00:00.000-03:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1618393569/sangga-rima-roman-selia-VkNrl7ZHi5M-unsplash_g7uqm4.jpg
+keywords:
+- JamStack
+- Static Site Generator
+- SSG
+- SSR
+- Gatsby
+- Next.js
+- Next
+tag: Post
+title: ¿Por que JamStack es tan cool?
+description: JamStack es una arquitectura, un concepto que engloba decisiones sobre como un app será construida. Incluso podríamos ir más allá y decir que JamStack es una filosofía o modelo que busca drásticamente eliminar la complejidad de nuestros sistemas buscando como objetivo final el poder crear y distribuir mejores aplicaciones en menos tiempo.
+---
+
+# ¿Por que JamStack es tan cool?
+
+> TLDR; Este post es parte del episodio 7 de la segunda temporada de [Café con Tech](https://www.cafecon.tech)
+
+<Buzzsprout buzzsproutId="/8317715-por-que-jamstack-es-tan-cool" />
+
+El mundo del desarrollo web cambia constantemente, tanto que intentamos clasificar cada etapa o época para darle un poco de sentido a la constante e incluso azarosa evolución de la tecnología y nuestros trabajos.
+
+Es claro que no existen absolutos, ni verdades escritas en piedras, que todo conocimiento está sujeto a cambios y mejoras o incluso a ser olvidado en el tiempo.
+
+Y esto no deja de ser cierto cuando comenzamos un nuevo proyecto y debemos tomar decisiones de arquitectura del software. Muchos hemos pasado horas de nuestra vida trabajando hasta tarde, mejorando o reparando código, fines de semana en que “producción se cayó”, y cientos de horas en reuniones que intentan buscar el problema o peor aún, apuntar culpables. Pero la gran mayoría de las veces estos problemas no viene causados por un simple bug, si no más bien por decisiones de arquitectura que no fueron adecuadas o se convirtieron en algo tan complejo que es casi imposible cambiarlas, mejorarlas o incluso entenderlas.
+
+JamStack es una arquitectura, un concepto que engloba decisiones sobre como un app será construida. Incluso podríamos ir más allá y decir que JamStack es una filosofía o modelo que busca drásticamente eliminar la complejidad de nuestros sistemas buscando como objetivo final el poder crear y distribuir mejores aplicaciones en menos tiempo.
+
+Mucho hemos escuchado (y algunos incluso predicado) “Move fast break things”, pero que tan cierto es? Que tan rápido puedes moverte cuando la aplicación en la que trabajas a crecido a pasos agigantados creando más complejidad e incluso burocracia para poder desarrollar nuevos features?. Como puedes moverte rápido cuando pasas el 80% de tu tiempo resolviendo errores?.
+
+Un problema común es que las aplicaciones comienzan a crecer, por lo que mantener un modelo mental de todo lo que la aplicación hacer se vuelve imposible o al menos difícil para muchos en el equipo. Los equipos cambian, crecen o disminuyen y quienes tomaron las primeras decisiones quizá ya no están. Entonces la aplicación se vuelve una gran carga en donde agregar nuevas cosas se vuelve un juego de malabarismo que muchas veces termina en decidir no cambiar ni eliminar solo agregar, incrementando así aún más la complejidad, el tiempo de desarrollo y el proceso de llevar a producción.
+
+> **Si queremos movernos rápido es necesario hacer menos cosas**.
+
+Jamstack es un diseño de arquitectura pensando para evitar la complejidad para poder así, moverse más rápido.
+
+Un app JamStack es básicamente un frontend con “assets” estáticos que se comunica con una o más fuentes de datos, es decir, es un frontend simplificado, atómico y escalable, pero sobre todo **simple**.
+
+Es común que cuando dices “JamStack” son archivos estáticos, el sólo uso de la palabra estático levanta alarmas en los oídos de los no iniciados, llevándoos a pensar que Jamstack es una especie de locura que imposibilita tener dinamismo en sus aplicaciones o sitios web, pero no pueden estar más errados.
+
+> **archivos o** “**assets" estáticos no es lo mismo que sitios estáticos.**
+
+Tus archivos javascript, css e imágenes son archivos estáticos, son almacenados en el sistema de archivo y no son “regenerados” cada vez que visitas un sitio web. Pero javascript permite dar dinamismo al contenido de tu sitio web, permitiéndote obtener datos cuando es necesario, tener Code Splitting, mostrar o esconder contenido, es decir, tener contenido que no es nada similar a ser estático.
+
+Otro problema común cuando llega la hora de decidir si usar o no una arquitectura JamStack es la idea de que **no es posible** manejar grandes sitios web o aplicaciones,  que el tiempo de compilación será **demasiado alto** y que no valdrá la pena. Y esto guarda cierto grado de verdad.
+
+Una arquitectura JamStack se basa en dos principales ideas:
+
+- Frontend y backend desacomplados
+- Compilación del frontend para generar archivo estáticos
+
+Y es esta fase de compilación la que puede crear situaciones de largas esperas cuando hablamos de cientos de miles de archivos.
+
+La idea aquí es que el proceso de construcción del sitio lee cada uno de los archivos o datos necesarios para ir generando archivos html (y sus otros assets asociados), y esto puede tomar mucho tiempo entre obtener los datos y crear los archivos. Pero siguiendo la idea de buscar la simplicidad en nuestras soluciones, como reza el principio de la Navaja de Ockham podemos diseñar una solución a este problema.
+
+Una gran aplicación o sitio web se compone de varias instancias o contextos, por lo que es posible dividir el sitio en esos diversos contextos creando así sitios más pequeños - Divide y Vencerás -. Estos sitios a su vez pueden volver a sud-dividirse y así consecutivamente hasta cuando haga sentido. Ahora, construir estos pequeños sitios es rápido e incluso paralelizable, por lo que el problema del tiempo de compilación queda resuelto. Sólo nos queda diseñar como se unirán estos sitios para recrear el sitio final lo que normalmente incluye configuraciones en el dominio y/o proxies en el servidor o mejor aún, configuraciones en el CDN.
+
+## ¿Y que tal la escalabilidad?
+
+Este es otro tema que genera cierto grado de discusión, por alguna razón los detractores u objetores de esta arquitectura pregonan que no tiene una gran escalabilidad, pero, considera esto: Desde el punto de vista del deployment, un sitio Jamstack no es más que una colección de directorios y archivos estáticos que pueden ser fácilmente servidor por un CDN, es decir, la arquitectura is inherentemente escalable - y de bajo costo - Un gran ejemplo es [covidtracking.com](https://covidtracking.com/)  sitio web creado con una arquitectura JamStack, puedes ver su [código en github](https://github.com/COVID19Tracking) en donde verás varios repositorios que dividen contextos y responsabilidades. Este sitio escalo de la noche a la mañana para recibir más de 2 millones de requests al día y sin siquiera sonrojarse.
+Por cierto, el sitio web es un sitio Gatsby que consume datos de diversas fuentes.
+
+Finalmente la arquitectura JamStack es una forma de definir la arquitectura de tu sitio de forma simple y sencilla - que no es lo mismo que fácil -. La complejidad constituye de forma subyacente un bug que vendrá a morderte tarde o temprano
+
+## Opciones
+
+Ahora, ¿qué opciones tienes para construir tu sitio Jamstack?. Bueno, hay muchas, quizá las más conocidas hoy son generar tu sitio con Next.js, Gatsby o Nuxt. La verdad es que la decisión de que herramienta usarás no es más que una cuestión de gustos o de que alguna u otra característica te gusta  más o tu equipo la conoce de mejor manera.
+
+[Gatsby](http://gatsbyjs.com/) y [Next](http://nextjs.org/) son frameworks para crear aplicaciones que utilizan React para definir su interfaz y otro variopinto conjunto de decisiones y opciones para ayudarte a construir una aplicación simple, efectiva y escalable.
+
+- [Nuxt](http://nuxtjs.org/) y [Grindsome](https://gridsome.org/) son la misma idea pero para trabajar con Vue
+- [Svelkit](http://kit.svelte.dev/) y [Elder.js](https://elderguide.com/tech/elderjs/) para Svelte
+- [Scully ](https://scully.io/) para Angular
+- [Hugo](https://gohugo.io/) escrito en Go
+- [Cobalt](https://cobalt-org.github.io/) escrito en Rust
+- y así [muchos más](https://jamstack.org/generators/).
+
+También existen muchas soluciones para administrar tus datos desde opciones “No-Code “como [Airtable](http://airtable.com/) o CMS más complejos como el mismísimo Wordpress o [Contentful](https://www.contentful.com), [Strapi][https://strapi.io], [Sanity](https://sanity.io), etc o incluso directamente trabajar con bases de datos como [Prisma](https://prisma.io) o [Upstash](https://upstash.com).
+
+El número de opciones es grande y las posibilidades son tremendas, en mi opinión no existe aplicación, sitio web o equipo que no se beneficie de este patrón de diseño.
+

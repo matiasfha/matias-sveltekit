@@ -1,0 +1,137 @@
+---
+date: 2020-11-05T09:55:05-03:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1604581117/halacious-tZc3vjPCk-Q-unsplash_jzsdkp.jpg
+keywords:
+- useLayoutEffect
+- React
+- hooks
+- useEffect
+tag: Seed
+title: "¿Cuándo usar el hook useLayoutEffect?"
+description: "¿Cuándo user el hook useLayoutEffect y cuál es la diferencia con useEffect?"
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@halacious?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Halacious</a>
+  on <a href="https://unsplash.com/s/photos/layout?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
+---
+Y ¿Cuál es la diferencia con el hook `useEffect`?
+
+useLayoutEffect es similar en casi TODO a useEffect, solo tiene pequeñas diferencias.
+
+### TLDR:
+`useEffect` es lo que quieres usar el 99% del tiempo.
+
+Ambos reciben dos argumentos, un callback que define el efecto y una lista de dependencias.
+
+```javascript
+React.useEffect(() => {
+  // do something
+}, [array, dependency])
+```
+
+```javascript
+React.useLayoutEffect(() => {
+  // do something
+}, [array, dependency])
+```
+
+> Relacionado: Hablamos sobre la [lista de dependencie este post](https://matiashernandez.dev/react-useeffect-por-que-el-arreglo-de-dependencias-es-importante)
+
+La diferencia entre ambos radica en el momento en que el efecto definido en el callback es ejecutado.
+
+useEffectes **ASINCRONO**. y ejecuta el efecto después que tu componente se renderiza asegurando así que tu efecto no bloquerá el proceso principal.
+Tu efecto se ejecutará así:
+
+1. El componente se actualiza por algún cambio de estado, props o el padre se re-renderiza
+2. React renderiza el componente
+3. La pantalla se actualiza "visualmente"
+4. Tu efecto es ejecutado!! 🎉
+
+Considera este pequeño y restringido ejemplo
+
+```javascript
+const Counter = () => {
+    const [count, setCount] = React.useState(0)
+    React.useEffect(() => {
+      // Ejecuta el efecto
+      sendToServer(count)
+    }, [count])
+    return (
+      <>
+        <h1> Valor actual {count} </h1>
+        <button onClick={() => setCount(count => count + 1)}>
+            Plus 1
+        </button>
+	   </>
+    )
+ }
+...
+...
+// render
+<Counter />
+```
+
+Cuando el component es renderizado, podrás ver en pantalla el mensaje
+`Valor actual 0`
+
+Y con cada click en el botón, el estado del contador se actualizará, y el DOM mutará para pintar el nuevo mensaje en la pantalla, y después el efecto será emitido.
+
+**Recuerda: El efecto se emitirá solo después que los cambios del DOM sean pintados en la pantalla**
+
+Sin embargo, si lo que buscas es que tus efectos muten el DOM cambiando la apariencia de este entre el renderizado y tu efecto entonces necesitas usar useLayoutEffect.
+
+**`useLayoutEffect`** se ejecuta de forma **asíncrona**, justo después de que React ejecutó todas las mutaciones pero antes de "pintar" en pantalla.
+
+Esto es útil para por ejemplo obtener las medidas del DOM y después ejecutar alguna mutación en base a esos datos.
+
+El orden de ejecución para useLayoutEffect es:
+
+1. El componente se actualiza por algún cambio de estado, props o el padre se re-renderiza
+2. React renderiza el componente
+3. Tu efecto es ejecutado!!
+4. La pantalla se actualiza "visualmente"
+
+```javascript
+React.useEffect(() => {
+    console.log("Efecto desde useEffect");
+});
+React.useLayoutEffect(() => {
+    console.log("Efecto desde useLayoutEffect");
+});
+```
+
+¿Cuál será el orden en que esos `console.log` serán emitidos?
+..
+..
+..
+Exácto!!, sin importar que el efecto de `useLayoutEffect` sea declarado después de `useEffect` el efecto es emitido antes! ¿Por qué?. Por que el efecto de `useLayoutEffect` es emitido de forma síncrona.
+
+En definitiva usa useLayoutEffect si tu efecto busca mutar el DOM y obtener datos de este y useEffect el 99% de las veces.
+
+Por lo general tu efecto busca sincronizar algún estado interno con un estado externo sin significar un cambio visual inmediato.
+
+> Recomendado: Hablamos sobre el modelo mental de useEffect y como este sincroniza el estado interno del componente con el externo en estos posts
+>
+> * [React useEffect hook comparado con los estados del ciclo de vida](https://matiashernandez.dev/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida)
+> * [Algunos errores comunes al utilizar React Hooks](https://matiashernandez.dev/algunos-errores-comunes-al-utilizar-react-hooks)
+
+## ¿Cuándo use useLayoutEffect?
+
+Literalmente verás el momento de usarlo.
+
+Un caso común es que tu componente tenga un comportamiento de renderizado con "flickering" dado que el estado cambia rápidamente modificando el DOM, otro, es cuando requieres obtener mediciones del DOM.
+
+Mira el siguiente ejemplo:
+
+<CodeSandbox codeSandboxId="flamboyant-driscoll-dt3op" />
+
+Este es un simple ejemplo que renderiza un cuadrado verde que por defecto (revisa el archivo style.css) en la esquina superior derecha. El efecto definido lo mueve hacia la esquina inferior derecha.
+
+Deberías poder ver por un momento (si no lo ves, prueba actualizar el sandbox), un cambio muy rápido. El cuadrado se "mueve" de posición, esto es por que el efecto se ejecuta después de que React termina de rederizar y mutar el DOM.
+
+> Ten en mente que manejar los elementos del DOM de esta manera es un anti-patrón pero que puede ser resuelto utilizando `useRef`
+
+Ahora, veamos lo mismo pero utilizando `useLayoutEffect`
+
+<CodeSandbox codeSandboxId="suspicious-field-5qljd" />
+
+Ejemplo similar, el cuadrado rojo, está definido para que se renderice en la esquina superior derecha y el efecto lo mueve a la esquina inferior izquierda, pero esta vez no hay "movimiento rápido" (flickering). Incluso, aunque refresques el sandbox, el cuadrado estará siempre en el mismo lugar, esto por que `useLayoutEffect` ejecuta el efecto antes de que el DOM sea pintado.

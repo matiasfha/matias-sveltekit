@@ -1,0 +1,82 @@
+---
+date: 2020-12-09T02:37:24-03:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1607492631/austin-neill-ZahNAl_Ic3o-unsplash_rvmpkh.jpg
+keywords:
+- JamStack
+- SSR
+- SSG
+- Static Generator
+- Server Rendering
+- Gatsby
+- Next.js
+tag: Post
+title: 'JAMStack: ¿Qué es SSG y SSR?'
+description: Una pregunta que suele aparecer en las foros y comunidades es la comparación
+  entre Gatsby y Next.js o, la subyacente pregunta. Qué es SSG y SSR? Cuál debo usar
+  para X caso de uso y cómo comenzar?
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@arstyy?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Austin
+  Neill</a> on <a href="https://unsplash.com/s/photos/stack?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
+---
+> TLDR; Este contenido fue publicado como episodio mi podcast [Café con Tech](http://www.cafecon.tech/1081172/6725749-jamstack-que-es-ssg-y-ssr)
+
+<Buzzsprout buzzsproutId="1081172/6725749-jamstack-que-es-ssg-y-ssr" />
+
+Cuando hablamos de _JAMstack_ consideramos una colección de tecnologías que se complementan para permitir la producción de aplicaciones mediante el uso de sitios estáticos.
+
+Una pregunta que suele aparecer en las foros y comunidades es la comparación entre Gatsby y Next.js o, la subyacente pregunta. Qué es SSG y SSR? Cuál debo usar para X caso de uso y cómo comenzar?
+
+Comencemos para definir cada unos de estos conceptos, iniciando por SSG.
+
+SSG es el acrónimo para el conjunto de tecnologías que permiten la generación de sitios estáticos.
+
+Tal cómo comentamos en el episodio 31, los sitios web estáticos son tan antiguos como la web, ténicamente todo el contenido creado desde el comienzo, incluyendo el primer sitio web alojado en el computador Next de Sir Tim Bernes Leee, es un sitio estático y por lo tanto puede ser considerado JamStack.
+
+Actualmente, con el poder que Javascript ofrece a la hora de desarrollar sitios web, nuevas puertas se han abierto para que estos sitios estáticos tengan dinamismo.
+
+Actualmente hay herramientas que permiten la generación de estos sitios estáticos, es decir, archivos HTML que serán distribuidos desde un CDN, creados de forma automatica desde alguna fuente en particular.
+
+# Que es Static Generation?
+
+Static Generation describe el proceso de compilar y renderizar, es decir, crear el contenido html, en tiempo de compilación o build time. El resultado de este proceso será un set de archivos estáticos, incluyendo html, imagenes, css y javascript.
+
+Desde este proceso nace el nombre de Static Site Generator.
+
+# Que ocurre durante este proceso?
+
+Una aplicación javascript, como las conocemos funciona en un browser. El browser descarga un archivo HTML bastante sencillo que a su vez solicita la descarga de archivos javascript que contienen la lógica para renderizar el contenido de la interfaz, un proceso también conocido como “hidratación” o hydrate.
+
+Los generadores estáticos ejecutan este mismo proceso, pero durante el tiempo de compilación y sin necesitar un browser creando internamente el árbol de componentes del futuro sitio web.
+
+La ventaja de este proceso es que el resultado, al ser simples archivos estáticos ofrecen un tiempo de carga bajo además de permitir servir el contenido desde muchos servicios e incluso gratis o al menos muy barato. Además, este tipo de apps pueden tener un muy buen ranking SEO ya que al ser contenido simple HTML se pueden aplicar muchas ténicas de optiización para buscadores.
+
+Existen dos problemas importantes con éste método: los tiempos de compilación pueden ser muy largos, ya que con cada cambio que se haga al contenido el sitio debe ser compilado nuevamente. El otro problema es que el contenido se vuelve obsoleto, ya que los cambios no se reflejan hasta una nueva compilación y deploy.
+
+Recordemos que a pesar de ser llamados sitios estáticos, esto no implica que no puedan tener bits de dinamismo en la página ya compilada. Es posible, por ejemplo, consumir alguna api desde los archivos generados permitiendo asi evitar el problema del contenido obsoleto.
+
+Algunos generadores de sitios estáticos que puede encontrar
+[Gatsby](http://gatsbyjs.com/), [Hugo](http://gatsbyjs.com/), [Jekyll](http://jekyllrb.com/), [11ty](http://11ty.dev/), [nuxt](http://nuxtjs.org/), etc. Puedes encontrar una extensa lista visitando  [http://staticgen.com/](http://staticgen.com/)
+
+# Que es Server Side Rendered
+
+Por otro lado, Server Side Rendered es también una ténica que ha existido por años en la web, se trata básicaente de permitir que sea el servidor quien genere los archivos HTML o el contenido HTML en tiempo de ejeución. Esto es lo que siempre han hechos los sitios escritos en PHP como Wordpress o sitios creados con Rails, Django, etc.
+
+La diferencia con la nueva iteración de esta ideaa es que existian limitantes a la hora de manejar la interacción con el cliente, el servidor está limitado a manejar sólo el contenido inicial que se renderiza, cualquier otro comportamiento adicional que se requiera debe o ser creado con llamadas a alguna api para hacer modificaciones sobre los datos de forma “dinámica” o volviendo a renderizar la página.
+
+Cuando hablamos de SSR en el mundo de Javascript, lo que realmente estamos diciendo es **Javascript Isomorphic Rendering**
+Desde hace años que Javascript puede ejecutarse tanto en el browser como en el server gracias a Nodejs (o Deno), lo que permite compartir lógica entre ambas caras de una aplicación.
+Finalmente lo que Nextjs, Nuxt y otros ofrecen es una forma de compartir logica de renderizado entre la carga inicial desde el servidor y las interacciones futuras en el cliente.
+
+Algunas de las ventajas de esta ténica es que le contenido que se muestra al cliente siempre está actualizado y no hay necesidad de iniciar nuevos build cada vez que el contenido cambia, menos tiempo de compilación.
+
+Y dentro de sus limitaciones o desventajas,  no puedes distribuir un sitio 100% SSR a un CDN, y el tiempo de renderizado del primer contenido es mas lento ya que dicho contenido debe ser creado cada vez que se accede al sitio.
+
+Algunas formas de resolver estas limitaciones es por ejemplo el uso de algún sistema de cache o como lo resuelve Next: Generando contenido estático cuando la página no define que requiere algun dato en particular por medio del método `getInitialProps`
+
+# En conclusión.
+
+Ambas ténicas son parte esencial de como la web ha sido construida dede sus inicios, pero ahora han sido relevadas nuevamente gracias a la flexibilidad otorgada por las nuevas implementaciones de Javascript y otros.
+
+Los generadores de sitios estáticos otorga la facilidad de crear sitios web o aplicaciones que ofrecen alta velocidad de uso a sus usuarios pero a costa de altos tiempos de compilado o la generación de contenido obsoleto. Por otro lado los framework de server side rendering resuelve estos problemas a costa de mayores tiempos de carga y de quizá una curva de aprendizaje mayor.
+
+¿Cuál debes elegir? dependerá de tu caso de uso, tus conocimiento y el tiempo que tengas para desarrollar.
