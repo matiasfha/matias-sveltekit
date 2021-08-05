@@ -33,6 +33,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-vercel": "1.0.0-next.27",
 		"@tailwindcss/aspect-ratio": "0.2.1",
 		"mdsvex": "0.9.8",
 		"remark-autolink-headings": "6.1.0",
