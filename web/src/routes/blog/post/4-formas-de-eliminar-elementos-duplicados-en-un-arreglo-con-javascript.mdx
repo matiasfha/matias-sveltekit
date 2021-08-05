@@ -18,10 +18,14 @@ bannerCredit: <span>Photo by <a href="https://unsplash.com/@draufsicht?utm_sourc
 favorite: true
 
 ---
+
+<script>
+import EggheadLesson from '$lib/components/mdx/EggheadLesson.svelte';
+</script>
 La manipulación de arreglos es una de las tareas más comunes y constantes a la hora de desarrollar una aplicación. Los arreglos son estructuras de datos básicas en cualquier programa. Una de estas tareas de manipulación es la de remover elementos duplicados de un arreglo.
 Javascript, por su naturaleza flexible, ofrece variadas formas de efectuar esta tarea y la elección de cuál utilizar corresponde tanto a la experiencia del desarrollador como al caso de uso.
 
-#### **TLDR;** Lección en video en [egghead](https://egghead.io/lessons/javascript-4-formas-de-remover-elementos-duplicados-de-un-arreglo-con-javascript?pl=manipulacion-de-arreglos-con-javascript-12bd?af=4cexzz)
+ > ### TLDR Lección en video en [egghead](https://egghead.io/lessons/javascript-4-formas-de-remover-elementos-duplicados-de-un-arreglo-con-javascript?pl=manipulacion-de-arreglos-con-javascript-12bd?af=4cexzz)
 
 <EggheadLesson lessonId="javascript-4-formas-de-remover-elementos-duplicados-de-un-arreglo-con-javascript" />
 
@@ -43,9 +47,9 @@ Para este caso de remover elementos duplicados utilizamos como método auxiliar 
     })
     console.log(result); //[1,2,6,5,9,'33']
 ```
-En este caso, podemos identificar un duplicado cuando el indice no es igual al resultado de `indexOf`
-
+En este caso, podemos identificar un duplicado cuando el indice no es igual al resultado de `indexOf`.
 `data.indexOf(item) === index` ,retornará siempre la primera ocurrencia del `item`.
+
 
 #### **Set**
 

@@ -11,10 +11,12 @@
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
+		"@sveltejs/adapter-netlify": "1.0.0-next.26",
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^4.19.0",
 		"@typescript-eslint/parser": "^4.19.0",
 		"autoprefixer": "^10.3.1",
+		"cloudinary": "1.26.3",
 		"cssnano": "^5.0.6",
 		"eslint": "^7.22.0",
 		"eslint-config-prettier": "^8.1.0",
@@ -34,6 +36,7 @@
 	"dependencies": {
 		"@sveltejs/adapter-vercel": "1.0.0-next.27",
 		"@tailwindcss/aspect-ratio": "0.2.1",
+		"@tailwindcss/typography": "0.4.1",
 		"mdsvex": "0.9.8",
 		"remark-autolink-headings": "6.1.0",
 		"remark-highlight.js": "6.0.0",

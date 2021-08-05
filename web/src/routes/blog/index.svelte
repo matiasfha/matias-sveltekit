@@ -28,6 +28,8 @@
 		title: string;
 		description: string;
 		tag: 'Post' | 'Seed';
+		slug;
+		string;
 	};
 	export let posts: Post[];
 </script>
@@ -49,7 +51,7 @@
 				<div class="md:mb-4 mb-2">
 					<a
 						class="group peer relative block w-full focus:outline-none"
-						href="/blog/useeffect-vs-uselayouteffect"
+						href={`/blog/post/${post.slug}`}
 						><div
 							class="aspect-w-2 aspect-h-1 h-1/4 rounded-lg transition group-hover:ring-2 ring-yellow-50 ring-offset-2"
 						>
@@ -62,7 +64,7 @@
 						</div>
 
 						<div class="mt-8 text-gray-300 text-md font-medium lowercase text-body">
-							{new Date(post.date)}
+							{new Date(post.date).toLocaleDateString()}
 						</div>
 						<h2 class="md:text-2xl text-xl font-bold leading-tighter text-black dark:text-white ">
 							{post.title}

@@ -13,12 +13,15 @@ bannerCredit: <span>Photo by <a href="https://unsplash.com/@halacious?utm_source
   on <a href="https://unsplash.com/s/photos/layout?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 
 ---
+<script>
+import CodeSandbox from '$lib/components/mdx/CodeSandbox.svelte';
+</script>
 Y ¿Cuál es la diferencia con el hook `useEffect`?
 
 useLayoutEffect es similar en casi TODO a useEffect, solo tiene pequeñas diferencias.
 
-### TLDR:
-`useEffect` es lo que quieres usar el 99% del tiempo.
+> ### TLDR:
+> `useEffect` es lo que quieres usar el 99% del tiempo.
 
 Ambos reciben dos argumentos, un callback que define el efecto y una lista de dependencias.
 
@@ -38,7 +41,7 @@ React.useLayoutEffect(() => {
 
 La diferencia entre ambos radica en el momento en que el efecto definido en el callback es ejecutado.
 
-useEffectes **ASINCRONO**. y ejecuta el efecto después que tu componente se renderiza asegurando así que tu efecto no bloquerá el proceso principal.
+*useEffect* es **ASINCRONO**. y ejecuta el efecto después que tu componente se renderiza asegurando así que tu efecto no bloquerá el proceso principal.
 Tu efecto se ejecutará así:
 
 1. El componente se actualiza por algún cambio de estado, props o el padre se re-renderiza

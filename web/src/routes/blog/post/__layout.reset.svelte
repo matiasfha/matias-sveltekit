@@ -1,12 +1,12 @@
 <script>
-	import '../app.postcss';
+	import '../../../app.postcss';
 	import logo from '$lib/images/logo.png';
 	import Footer from '$lib/components/Footer.svelte';
 </script>
 
 <!-- Navbar -->
-<div class="px-10 pt-9 pb-4 lg:pt-12  border-b border-gray-100 dark:border-gray-800">
-	<nav class="dark:text-gray-50 text-gray-900 flex items-center justify-between mx-auto max-w-8xl">
+<div class="px-10 pt-6 absolute top-0 left-0 z-50">
+	<nav class="dark:text-gray-50 text-gray-900 flex items-center justify-between w-screen">
 		<div class="flex flex-row items-center gap-8 justify-between">
 			<a href="/">
 				<img src={logo} alt="Matias Hernández Logo" width="48" height="48" />
@@ -16,7 +16,7 @@
 				href="/"><h1>Matias Hernández</h1></a
 			>
 		</div>
-		<ul class="hidden lg:flex">
+		<ul class="hidden lg:flex pr-20">
 			<li class="px-5 py-2">
 				<a
 					class="hover:text-primary underlined focus:text-primary block whitespace-nowrap text-lg font-medium focus:outline-none text-secondary"
@@ -95,9 +95,8 @@
 		</ul>
 	</nav>
 </div>
-<main class="relative mx-auto max-w-screen-lg">
-	<slot />
-</main>
+
+<slot />
 
 <Footer />
 

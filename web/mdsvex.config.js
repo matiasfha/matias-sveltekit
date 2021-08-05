@@ -3,8 +3,10 @@ import slug from "remark-slug";
 import  highlight from 'remark-highlight.js';
 
 const config = {
-  "extensions": [".svelte.md", ".md", ".svx", '.mdx'],
-
+  "extensions": [".md", '.mdx'],
+  "layout": {
+    blog: "./src/lib/components/PostLayout.svelte",
+  },
   "smartypants": {
     "dashes": "oldschool"
   },

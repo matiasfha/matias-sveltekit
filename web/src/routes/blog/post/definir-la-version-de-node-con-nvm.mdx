@@ -24,8 +24,9 @@ Una forma de lograr este proceso de manera sencilla es utilizando [\*nvm\*](<htt
 
 Instalar es sencillo, tan solo debes ejecutar el script de instalación
 
+```shell
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
-
+```
 Este escript, clona el repositorio de nvm dentro del directorio \`~/.nvm\` y agregar alguna lineas a tu archivo de perfil \`.bash<sub>profile</sub>\`, \`.zshrc\`, \`.profile\`, etc.
 
 El manual de uso te puede ayudar en caso de que tenga algún problema: <https://github.com/nvm-sh/nvm>
@@ -39,15 +40,19 @@ Este archivo, es un archivo de configuración que le indica a \`nvm\` que versi�
 
 Simplemente crear este archivo y agrega la versión que quieres definir
 
+```shell
     echo "12.15.0" > .nvmrc
+```
 
 Después de eso sólo debes ejecutar algunos comandos extra para que nvm instale lo necesario
 
 > 🚨 estos comandos son ejecutados desde el directorio del proyecto
 
+```shell
     nvm use
     nvm install
     nvm exec
+```
 
 Listo, ahora tu proyecto tiene la versión de node definida, no olvides agegar el archivo \`.nvmrc\` a tu control de versiones
 

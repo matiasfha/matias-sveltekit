@@ -45,9 +45,9 @@ También será necesario instalar las herramientas de linea de comando, para est
 Nuevamente en la preferencias de Xcode, selecciona la pestaña **Componentes**. Seleciona el simulador que deseas.
 
 Finalmente es neceario instalar [Cocoapods](https://cocoapods.org/), esta es una herramiente escrita en Ruby que te permitirá manejar dependencias. Por defecto tu SO ya tiene ruby instalado, por lo que solo debes abrir la consola y ejecutar
-
+```shell
     sudo gem install cocoapods
-
+```
 ## Android emulator
 
 Para ejecutar tu aplicación el el simulador de Android necesitarás
@@ -60,17 +60,17 @@ Para ejecutar tu aplicación el el simulador de Android necesitarás
   Anroid Studio es necesario para poder utilizar las herramientas de compilado de Android, puedes usar el editor de tu gusto para desarrollar.
 
   Lo primero será instalar node y watchman, lo más seguro es que puede saltarte este paso ya que probablemente ya tienes esto instalado
-
+```shell
       brew install node
       brew install watchman
-
+```
 ### Java Development Kit
 
 El JDK provee herramientas para el desarrollo de aplicaciones Java, Android utiliza estas herramientas en el proceso de compilar y construir el paquete de la aplicación.
 Se recomienda utilizar Hoombrew para instalar.
-
+```shell
     brew cask install adoptopenjdk/openjdk/adoptopenjdk8
-
+```
 ### Android development env
 
 Esta parte puede ser algo tediosa pero no es compleja.
@@ -92,22 +92,22 @@ Finalmente click en “Applicar”.
 
 El último paso en configurar las variables de ambiente para ANDROID<sub>HOME</sub>
 Edita tu archivo \`.bash<sub>profile</sub>\` o \`.bashrc\` o \`.zprofile\` o \`.zshrc\`, dependiendo de la shell que este utiliznado y agrega:
-
+```shell
     export ANDROID_HOME=$HOME/Library/Android/sdk
     export PATH=$PATH:$ANDROID_HOME/emulator
     export PATH=$PATH:$ANDROID_HOME/tools
     export PATH=$PATH:$ANDROID_HOME/tools/bin
     export PATH=$PATH:$ANDROID_HOME/platform-tools
-
+```
 # Crear una aplicación!
 
 Ya está todo listo para crear tu primera aplicación, abre una consola y ejecuta
-
+```shell
     expo init MiNuevaAppRN
     
     cd MiNuevaAppRN
     npm start
-
+```
 Esto crear un proyecto expo con todo lo necesario para ejecutar la app (algo así com \`create-react-app\` para la web) y con \`npm start\` iniciar el servidor de desarrollo.
 
 Y ya está ahora, se abrirá una ventana en tu navegador por defecto mostrando la vista de Metro Bundler, que es el empaquetador de expo y te permitirá ejecutar tu app en el navegador, en alguno de los simuladores o utilizar el código QR para ejecutar la app en tu dispositivo móvil utilizando la app Expo.

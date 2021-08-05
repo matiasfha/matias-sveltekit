@@ -141,7 +141,7 @@
 		<div
 			class="bg-white dark:bg-gray-800 dark:text-gray-200 shadow-sm rounded-lg overflow-hidden p-5 text-center hover:ring-2 ring-yellow-50 ring-offset-2"
 		>
-			<a href="/courses/accessible-cross-browser-css-form-styling-7297" class="focus:outline-none">
+			<a href="/" class="focus:outline-none">
 				<div class="h-64 flex items-center justify-center mb-12">
 					<img
 						alt=""
@@ -154,7 +154,7 @@
 			</a>
 			<div>
 				<h3 class="text-xs text-green-600 dark:text-green-300 mb-2 mt-1 text-body">Curso</h3>
-				<a href="/courses/accessible-cross-browser-css-form-styling-7297"
+				<a href="/"
 					><h2 class="text-lg font-bold leading-tighter py-3">
 						Construye Componentes Avanzados con React Hooks y Patrones de Diseño
 					</h2></a
