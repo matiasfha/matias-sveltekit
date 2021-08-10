@@ -10,6 +10,7 @@
 	export let title;
 	export let description;
 	export let keywords;
+	export let date;
 </script>
 
 <Seo {title} {description} {keywords} isBlogPost={true} />
@@ -19,7 +20,7 @@
 	>
 		<img
 			src={banner}
-			class="object-cover w-full absolute top-0 left-0 z-0 max-h-96 filter blur-sm"
+			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm"
 			alt={title}
 		/>
 		<h1 class="text-left text-gray-100 font-bold text-3xl max-w-4xl z-10 p-8 px-12">
@@ -34,9 +35,19 @@
 			{@html bannerCredit}
 		</h4>
 	</header>
-	<article class="text-gray-100 py-12 mx-auto container max-w-6xl prose lg:prose-lg">
+	<article class="text-gray-300 py-12 mx-auto container max-w-6xl prose lg:prose-lg">
 		<slot />
 	</article>
+	<footer class="mx-auto container max-w-6xl flex flex-row justify-end">
+		<div class="flex space-x-5 items-center justify-between">
+			<a class="underlined text-gray-100 hover:text-gray-200 focus:outline-none" href="/"
+				>Comparte en Twitter</a
+			>
+			<a class="underlined text-gray-100 hover:text-gray-200 focus:outline-none" href="/"
+				>Edit on GitHub</a
+			>
+		</div>
+	</footer>
 </main>
 
 <style>

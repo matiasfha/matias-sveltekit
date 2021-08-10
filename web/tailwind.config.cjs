@@ -41,7 +41,7 @@ const config = {
 								pre: {
 									backgroundColor: theme('colors.ebony-clay.700')
 								},
-								ul: {
+								'ul,ol': {
 									maxWidth: '64rem',
 									margin: '0 auto'
 								}, 
@@ -53,24 +53,6 @@ const config = {
 									backgroundColor: theme('colors.ebony-clay.700'),
 									borderRadius: '3px',
 									color: theme('colors.gray.100'),
-								}
-							}
-						]
-					},
-					dark: {
-						css: [
-							{
-								color: theme('colors.gray.100'),
-								hr: { borderColor: theme('colors.gray.600') },
-								'h1, h2, h3, h4, h5, h6': {
-									color: theme('colors.white'),
-								},
-								strong: {
-									fontWeight: theme('fontWeight.medium'),
-                  					fontSize: fontSize('lg'),
-									color: theme('colors.white'),								},
-								a: {
-									color: theme('colors.white'),
 								}
 							}
 						]

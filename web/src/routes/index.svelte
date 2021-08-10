@@ -1,15 +1,12 @@
-<script context="module">
+<script context="module" lang="ts">
 	export async function load({ fetch }) {
-		const url = '/api/cafecontech.json';
+		const url = '/api/latest.json';
 		const res = await fetch(url);
 		if (res.ok) {
-			const episodes = await res.json();
+			const latest = await res.json();
 			return {
 				props: {
-					cafeConTech: {
-						episodes,
-						latest: episodes[0]
-					}
+					latest
 				}
 			};
 		}
@@ -21,119 +18,31 @@
 	}
 </script>
 
-<script>
+<script lang="ts">
+	import type { Latest } from 'src/types';
+
 	import Hero from '$lib/components/Hero.svelte';
 	import Featured from '$lib/components/Featured.svelte';
+	import LatestSection from '$lib/components/Latest.svelte';
 	import microbytes from '$lib/images/microbytes.png';
-	export let cafeConTech;
+
+	export let latest: Latest[];
 </script>
 
 <Hero />
 
 <Featured
-	image="https://escuelafrontend.com/_next/image?url=%2Fimages%2Freact-icon-hero.svg&w=256&q=100"
-	title="React useEffect ¿Por que el arreglo de dependencias es importante?"
-	meta="Workshop · Sábado 7 de Agosto, 2021"
-	description="En este workshop, aprenderás los fundamentos esenciales para empezar tu carrera profesional como un React developer. Cuando hayas terminado, tendrás los fundamentos 	esenciales para crear experiencias excelentes para los usuarios de tus aplicaciones."
+	image="https://storage.buzzsprout.com/variants/xdwqi3lrt55higf78atbhwp8w8of/8d66eb17bb7d02ca4856ab443a78f2148cafbb129f58a3c81282007c6fe24ff2.jpg"
+	title="Jelly Drops, Design and Testing with Colby Fayock"
+	meta="3rd Season Episode 3"
+	description=""
+	url="https://www.cafecon.tech/1081172/8996360-jelly-drops-design-and-testing-with-colby-fayock"
+	type="podcast"
+	podcastId="8996360"
 />
 
 <!-- Latest -->
-<section class="mt-24">
-	<h2 class="leading-tight text-2xl md:text-3xl mb-3 dark:text-white">Latest</h2>
-	<div class="grid md:grid-cols-2 grid-cols-1 md:gap-16 gap-8">
-		<div class="flex flex-col">
-			<div class="md:mb-4 mb-2">
-				<a
-					class="group peer relative block w-full focus:outline-none"
-					href="/blog/useeffect-vs-uselayouteffect"
-					><div
-						class="aspect-w-2 aspect-h-1 focus:ring w-full rounded-lg transition group-hover:ring-2 ring-yellow-50 ring-offset-2"
-					>
-						<img
-							alt="podcast"
-							class="rounded-lg object-cover"
-							src="https://matiashernandez.dev/static/ac0c22c494eadef3f1fc51305ceb9825/f3dec/hooks-3d62.png"
-						/>
-					</div>
-
-					<div class="mt-8 text-gray-300 text-md font-medium lowercase text-body">Course</div>
-					<div class="text-2xl font-medium md:text-3xl text-black dark:text-white mt-4">
-						Construye Componentes Avanzados con React Hooks y Patrones de Diseño
-					</div></a
-				>
-			</div>
-		</div>
-		<div class="flex flex-col">
-			<div class="md:mb-4 mb-2">
-				<a
-					class="group peer relative block w-full focus:outline-none"
-					href="/blog/useeffect-vs-uselayouteffect"
-					><div
-						class="aspect-w-2 aspect-h-1 focus:ring w-full rounded-lg transition group-hover:ring-2 ring-yellow-50 ring-offset-2"
-					>
-						<img
-							alt="podcast"
-							class="rounded-lg object-cover"
-							src={cafeConTech.latest.itunes.image}
-						/>
-					</div>
-
-					<div class="mt-8 text-gray-300 text-md font-medium lowercase text-body">
-						{new Date(cafeConTech.latest.isoDate).toDateString()}
-					</div>
-					<div class="text-2xl font-medium md:text-3xl text-black dark:text-white mt-4">
-						{cafeConTech.latest.title}
-					</div></a
-				>
-			</div>
-		</div>
-		<div class="flex flex-col">
-			<div class="md:mb-4 mb-2">
-				<a
-					class="group peer relative block w-full focus:outline-none"
-					href="https://h.matiashernandez.dev/4-habilidades-blandas-esenciales-para-un-desarrollador"
-					><div
-						class="aspect-w-2 aspect-h-1 focus:ring w-full rounded-lg transition group-hover:ring-2 ring-yellow-50 ring-offset-2"
-					>
-						<img
-							alt="Fijando expectativas"
-							class="rounded-lg object-cover"
-							src="https://h.matiashernandez.dev/_next/image?url=https%3A%2F%2Fcdn.hashnode.com%2Fres%2Fhashnode%2Fimage%2Fupload%2Fv1620052739335%2FRyzHtZtdH.jpeg%3Fw%3D1600%26h%3D840%26fit%3Dcrop%26crop%3Dentropy%26auto%3Dcompress%2Cformat%26format%3Dwebp&w=3840&q=75"
-						/>
-					</div>
-					<div class="mt-8 text-gray-300 text-md font-medium lowercase text-body">
-						03 de Mayo, 2021
-					</div>
-					<div class="text-2xl font-medium md:text-3xl text-black dark:text-white mt-4">
-						4 Habilidades Blandas Esenciales Para Un Desarrollador.
-					</div></a
-				>
-			</div>
-		</div>
-		<div class="flex flex-col">
-			<div class="md:mb-4 mb-2">
-				<a
-					class="group peer relative block w-full focus:outline-none"
-					href="https://clevertech.biz/insights/why-we-choose-typescript-all-the-way-through"
-					><div
-						class="aspect-w-2 aspect-h-1 focus:ring w-full rounded-lg transition group-hover:ring-2 ring-yellow-50 ring-offset-2"
-					>
-						<img
-							alt="Typescript article"
-							class="rounded-lg object-cover"
-							src="https://clevertech-projectid-prod.s3.amazonaws.com/media/slack_imgs_599094f762.jpg"
-						/>
-					</div>
-					<div class="mt-8 text-gray-300 text-md font-medium lowercase text-body" />
-					<div class="text-2xl font-medium md:text-3xl text-black dark:text-white mt-4">
-						Why we choose Typescript all the way through
-					</div></a
-				>
-			</div>
-		</div>
-	</div>
-</section>
-
+<LatestSection {latest} />
 <!-- Favorites-->
 <section class="mt-24">
 	<h2 class="text-xl sm:font-semibold font-bold mb-3 dark:text-white">Staff Picks and Favorites</h2>

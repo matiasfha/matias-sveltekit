@@ -1,5 +1,5 @@
 <script lang="ts">
-	import getOgImage from '$lib/getOgImage';
+	import getOgImage from '$lib/data/getOgImage';
 	export let title: string;
 	export let description: string = undefined;
 	export let keywords: string[];
@@ -33,6 +33,7 @@
 		<meta property="og:url" content={canonical} />
 	{/if}
 	<meta property="og:image" content={image} />
+	<meta property="og:image:alt" content={title} />
 
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />

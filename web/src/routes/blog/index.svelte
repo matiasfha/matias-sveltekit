@@ -28,8 +28,7 @@
 		title: string;
 		description: string;
 		tag: 'Post' | 'Seed';
-		slug;
-		string;
+		slug: string;
 	};
 	export let posts: Post[];
 </script>

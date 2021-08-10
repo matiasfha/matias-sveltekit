@@ -11,6 +11,38 @@ export default createSchema({
   // Then proceed to concatenate our document type
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
-    /* Your types here! */
+    {
+      title: 'External Articles',
+      name:  'external-articles',
+      type: 'document',
+      fields: [
+        {
+          title: 'Title',
+          name: 'title',
+          type: 'string'
+        },
+        {
+          title: 'URL',
+          name: 'url',
+          type: 'string'
+        },
+        {
+          title: 'Image',
+          name: 'image',
+          type: 'image'
+        },
+        {
+          title: 'Published',
+          name: 'published_at',
+          type: 'datetime' 
+        },
+        {
+          title: 'Tag',
+          name: 'tag',
+          type: 'string' 
+        }
+     
+     ]
+    }
   ]),
 })
