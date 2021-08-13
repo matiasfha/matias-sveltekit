@@ -34,16 +34,36 @@
   }
 }
 
+
 .prose {
+  a {
+      color: #6366F1;
+  }
   h1,h2,h3,h4 {
     a {
-        color: #fde68a;
+        color: #6366F1;
         text-decoration: none !important; 
         strong {
-          color: #fde68a;
+          color: #6366F1;
           font-size: inherit; 
         }
         @apply underlined
+    }
+  }
+}
+
+.dark {
+  .prose {
+    h1,h2,h3,h4 {
+      a {
+          color: #fde68a;
+          text-decoration: none !important; 
+          strong {
+            color: #fde68a;
+            font-size: inherit; 
+          }
+          @apply underlined
+      }
     }
   }
 }

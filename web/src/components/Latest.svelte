@@ -5,7 +5,9 @@
 </script>
 
 <section class="mt-24">
-	<h2 class="leading-tight text-2xl md:text-3xl mb-3 dark:text-white">Latest</h2>
+	<h2 class="leading-tight text-2xl md:text-3xl mb-3 dark:text-white text-ebony-clay-800s">
+		Latest
+	</h2>
 	<div class="grid md:grid-cols-2 grid-cols-1 md:gap-16 gap-8">
 		{#each latest as item}
 			<div class="flex flex-col">
@@ -17,7 +19,9 @@
 							<img alt={item.title} class="rounded-lg object-cover" src={item.image} />
 						</div>
 
-						<div class="mt-8 text-gray-300 text-md font-medium capitalize text-body">
+						<div
+							class="mt-8 dark:text-gray-300 text-ebony-clay-800 text-md font-medium capitalize text-body"
+						>
 							{item.tag}
 						</div>
 						<div class="text-2xl font-medium md:text-3xl text-black dark:text-white mt-4">

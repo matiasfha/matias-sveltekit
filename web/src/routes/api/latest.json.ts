@@ -1,7 +1,7 @@
-import { getLatestArticle } from '$lib/data/getAllExternalArticles';
-import { getLatestCourse } from '$lib/data/getEggheadCourses';
-import { getLatest } from '$lib/data/getPodcast';
-import { getLatestPost } from '$lib/data/getPosts';
+import { getLatestArticle } from '$api/getAllExternalArticles';
+import { getLatestCourse } from '$api/getEggheadCourses';
+import { getLatest } from '$api/getPodcast';
+import { getLatestPost } from '$api/getPosts';
 import type { Latest } from 'src/types';
 
 export async function get() {

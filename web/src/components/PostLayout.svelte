@@ -1,6 +1,9 @@
 <script context="module">
-	import { blockquote } from '$lib/components/typography/index';
+	import { blockquote } from '$components/typography/index';
+	import { afterUpdate } from 'svelte';
 	export { blockquote };
+
+	export const prerender = true;
 </script>
 
 <script>
@@ -11,6 +14,10 @@
 	export let description;
 	export let keywords;
 	export let date;
+	let currentUrl;
+	afterUpdate(() => {
+		currentUrl = window.location.href;
+	});
 </script>
 
 <Seo {title} {description} {keywords} isBlogPost={true} />
@@ -35,16 +42,21 @@
 			{@html bannerCredit}
 		</h4>
 	</header>
-	<article class="text-gray-300 py-12 mx-auto container max-w-6xl prose lg:prose-lg">
+	<article
+		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto container max-w-6xl prose lg:prose-lg"
+	>
 		<slot />
 	</article>
 	<footer class="mx-auto container max-w-6xl flex flex-row justify-end">
 		<div class="flex space-x-5 items-center justify-between">
-			<a class="underlined text-gray-100 hover:text-gray-200 focus:outline-none" href="/"
+			<a
+				class="underlined text-ebony-clay-800 hover:text-ebony-clay-600 dark:text-gray-100 dark:hover:text-gray-200 focus:outline-none"
+				href={`https://twitter.com/share?ref_src=twsrc%5Etfw&url=${currentUrl}`}
 				>Comparte en Twitter</a
 			>
-			<a class="underlined text-gray-100 hover:text-gray-200 focus:outline-none" href="/"
-				>Edit on GitHub</a
+			<a
+				class="underlined text-ebony-clay-800 hover:text-ebony-clay-600 dark:text-gray-100 dark:hover:text-gray-200 focus:outline-none"
+				href="/">Edit on GitHub</a
 			>
 		</div>
 	</footer>

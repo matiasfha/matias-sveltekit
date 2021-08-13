@@ -1,6 +1,6 @@
 <script>
-	import photo from '$lib/images/photo.jpg';
-	import escuelaFrontend from '$lib/images/escuelafrontend.png';
+	import photo from '$images/photo.jpg';
+	import escuelaFrontend from '$images/escuelafrontend.png';
 </script>
 
 <div class="flex flex-row items-center justify-between lg:min-h-[12rem] pb-12 lg:pb-24 pt-12">

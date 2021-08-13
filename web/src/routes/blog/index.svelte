@@ -20,7 +20,7 @@
 </script>
 
 <script lang="ts">
-	import Featured from '$lib/components/Featured.svelte';
+	import Featured from '$components/Featured.svelte';
 	type Post = {
 		date: string;
 		banner: string;
@@ -52,7 +52,7 @@
 						class="group peer relative block w-full focus:outline-none"
 						href={`/blog/post/${post.slug}`}
 						><div
-							class="aspect-w-2 aspect-h-1 h-1/4 rounded-lg transition group-hover:ring-2 ring-yellow-50 ring-offset-2"
+							class="aspect-w-2 aspect-h-1 h-1/4 rounded-lg transition group-hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2"
 						>
 							<img
 								alt="podcast"
@@ -62,7 +62,9 @@
 							/>
 						</div>
 
-						<div class="mt-8 text-gray-300 text-md font-medium lowercase text-body">
+						<div
+							class="mt-8 dark:text-gray-300 text-gray-500 text-md font-medium lowercase text-body"
+						>
 							{new Date(post.date).toLocaleDateString()}
 						</div>
 						<h2 class="md:text-2xl text-xl font-bold leading-tighter text-black dark:text-white ">

@@ -10,7 +10,9 @@
 </script>
 
 <section class="mt-12 ">
-	<h2 class="leading-tight text-2xl md:text-3xl mb-3 dark:text-white">Featured</h2>
+	<h2 class="leading-tight text-2xl md:text-3xl mb-3 dark:text-white text-ebony-clay-600">
+		Featured
+	</h2>
 	<div
 		class="relative flex items-center justify-center bg-white text-white overflow-hidden rounded-lg shadow-md dark:bg-gray-900 focus:outline-none transition hover:ring-2 ring-yellow-50 ring-offset-2 backdrop-filter"
 	>
@@ -48,7 +50,7 @@
 								<Buzzsprout buzzsproutId={podcastId} />
 							</div>
 						{:else}
-							<div class="max-w-screen-md font-body">
+							<div class="max-w-screen-md font-body text-ebony-clay-800 dark:text-gray-50">
 								<p>
 									{description}
 								</p>

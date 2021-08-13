@@ -41,7 +41,7 @@ function processUrl(url, node) {
 const config = {
   "extensions": [".md", '.mdx'],
   "layout": {
-    blog: "./src/lib/components/PostLayout.svelte",
+    blog: "./src/components/PostLayout.svelte",
   },
   "smartypants": {
     "dashes": "oldschool"

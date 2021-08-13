@@ -1,5 +1,5 @@
 <aside
-	class="text-lg border-l-4 border-blue-600 rounded italic bg-ebony-clay-600 text-gray-200 relative mt-4 mb-8 py-4 px-8"
+	class="text-lg border-l-4 border-blue-600 rounded italic dark:bg-ebony-clay-600 bg-indigo-100 dark:text-gray-200 text-ebony-clay-800 relative mt-4 mb-8 py-4 px-8"
 >
 	<div
 		class="text-blue-600 absolute top-0 left-0

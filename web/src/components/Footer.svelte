@@ -1,9 +1,9 @@
 <script>
-	import escuelaFrontend from '$lib/images/escuelafrontend.png';
+	import escuelaFrontend from '$images/escuelafrontend.png';
 </script>
 
 <footer
-	class="pb-16 mt-32 pt-32 border-t border-gray-200 dark:border-gray-800 px-10 bg-ebony-clay-600"
+	class="pb-16 mt-32 pt-32 border-t border-gray-200 dark:border-gray-800 px-10 dark:bg-ebony-clay-600 bg-white"
 >
 	<div class="relative">
 		<div

@@ -1,9 +1,14 @@
 const config = {
 	mode: "jit",
-	darkMode: "class",
+	darkMode:"class",
 	purge: [
 		"./src/**/*.{html,js,svelte,ts}",
 	],
+	variants: {
+		extend: {
+			typography: ['dark']
+		}
+	},
 	theme: {
 		fontFamily: {
 			'sans': ['Poppins','sans-serif'],
@@ -19,11 +24,19 @@ const config = {
 					return Array.isArray(result) ? result[0] : result
 				}
 				return {
+					dark: {
+						css: [
+							{
+								'strong, a': {
+									color: theme('colors.gray.100'),
+								}
+							}
+						]
+					},
 					DEFAULT: {
 						css: [
 							{
 								'h1, h2, h3, h4, h5, h6': {
-									color: theme('colors.yellow.200'),
 									maxWidth: '64rem',
 									margin: '0 auto'
 								},
@@ -34,9 +47,9 @@ const config = {
 								strong: {
 									fontWeight: theme('fontWeight.bold'),
                   					fontSize: fontSize('lg'),
-									color: theme('colors.gray.100'),								},
+									color: theme('colors.ebony-clay.800'),								},
 								a: {
-									color: theme('colors.gray.100'),
+									color: theme('colors.ebony-clary.800'),
 								},
 								pre: {
 									backgroundColor: theme('colors.ebony-clay.700')
@@ -60,14 +73,11 @@ const config = {
 					light: {
 						css: [
 							{
-								color: theme('colors.gray.400'),
 								hr: { borderColor: theme('colors.gray.200') },
-								'h1, h2, h3, h4, h5, h6': {
-									color: theme('colors.black'),
-								},
 							}
 						]
-					}
+					},
+					
 				}
 			}	
 		},

@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark transition-all duration-700">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%svelte.head%
+		<script>
+			let theme = 'dark';
+			if (!('theme' in localStorage)) {
+				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					document.documentElement.classList.add(theme);
+				} else {
+					document.documentElement.classList.remove('dark');
+					theme = 'light';
+				}
+			} else {
+				let data = localStorage.getItem('theme');
+				if (data) {
+					theme = JSON.parse(data).theme;
+					if(theme === 'light'){
+						document.documentElement.classList.remove('dark');
+					}
+					
+				}
+			}
+			localStorage.setItem('theme',JSON.stringify({ theme}));
+		</script>
 	</head>
-	<body class="dark:bg-ebony-clay-600 bg-white transition duration-500 bg-gradient-to-r from-ebony-clay-600 to-ebony-clay-500">
+	<body class="dark:bg-ebony-clay-600 bg-white transition-all duration-700 bg-gradient-to-r dark:from-ebony-clay-600 dark:to-ebony-clay-500 from-gray-100 to-gray-200">
 		<div id="svelte">%svelte.body%</div>
 	</body>
 </html>

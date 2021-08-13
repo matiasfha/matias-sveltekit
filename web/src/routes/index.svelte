@@ -21,10 +21,10 @@
 <script lang="ts">
 	import type { Latest } from 'src/types';
 
-	import Hero from '$lib/components/Hero.svelte';
-	import Featured from '$lib/components/Featured.svelte';
-	import LatestSection from '$lib/components/Latest.svelte';
-	import microbytes from '$lib/images/microbytes.png';
+	import Hero from '$components/Hero.svelte';
+	import Featured from '$components/Featured.svelte';
+	import LatestSection from '$components/Latest.svelte';
+	import microbytes from '$images/microbytes.png';
 
 	export let latest: Latest[];
 </script>
@@ -45,10 +45,12 @@
 <LatestSection {latest} />
 <!-- Favorites-->
 <section class="mt-24">
-	<h2 class="text-xl sm:font-semibold font-bold mb-3 dark:text-white">Staff Picks and Favorites</h2>
+	<h2 class="text-xl sm:font-semibold font-bold mb-3 dark:text-white text-ebony-clay-800s">
+		Staff Picks and Favorites
+	</h2>
 	<div class="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-4">
 		<div
-			class="bg-white dark:bg-gray-800 dark:text-gray-200 shadow-sm rounded-lg overflow-hidden p-5 text-center hover:ring-2 ring-yellow-50 ring-offset-2"
+			class="bg-white dark:bg-gray-800 dark:text-gray-200 shadow-sm rounded-lg overflow-hidden p-5 text-center hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2"
 		>
 			<a href="/" class="focus:outline-none">
 				<div class="h-64 flex items-center justify-center mb-12">
@@ -131,7 +133,7 @@
 
 <section class="mt-24">
 	<div
-		class="relative flex items-center justify-center bg-white text-white overflow-hidden rounded-lg shadow-sm dark:bg-gray-800 focus:outline-none transition hover:ring-2 ring-yellow-50 ring-offset-2"
+		class="relative flex items-center justify-center bg-white dark:text-white  text-ebony-clay-800 overflow-hidden rounded-lg shadow-sm dark:bg-gray-800 focus:outline-none transition hover:ring-2 ring-yellow-50 ring-offset-2"
 	>
 		<div class="relative z-10 px-5 sm:text-left text-center py-10">
 			<div

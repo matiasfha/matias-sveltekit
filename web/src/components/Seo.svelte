@@ -1,5 +1,5 @@
 <script lang="ts">
-	import getOgImage from '$lib/data/getOgImage';
+	import getOgImage from '$lib/utils/getOgImage';
 	export let title: string;
 	export let description: string = undefined;
 	export let keywords: string[];
