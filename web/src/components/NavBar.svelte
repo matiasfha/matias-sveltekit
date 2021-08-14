@@ -31,30 +31,6 @@
 	];
 	// Theme switcher
 	import { theme } from '$lib/stores';
-	import { onMount } from 'svelte';
-	export let localTheme: 'dark' | 'light';
-	onMount(() => {
-		if (!('theme' in localStorage)) {
-			theme.useLocalStorage();
-			if (window.matchMedia('(prefers-color-scheme:dark').matches) {
-				localTheme = 'dark';
-				theme.set({ theme: 'dark' });
-			} else {
-				localTheme = 'light';
-				theme.set({ theme: 'light' });
-			}
-		} else {
-			localTheme = theme.get().theme;
-			theme.useLocalStorage();
-		}
-
-		if (localTheme === 'light') {
-			document.documentElement.classList.remove('dark');
-		} else {
-			document.documentElement.classList.add('dark');
-		}
-	});
-
 	const toggleTheme = () => {
 		const current = theme.get().theme;
 		if (current === 'light') {
@@ -64,14 +40,14 @@
 			document.documentElement.classList.remove('dark');
 			theme.set({ theme: 'light' });
 		}
+		theme.subscribe((currentTheme) => {
+			console.log(currentTheme);
+			localStorage.setItem('theme', JSON.stringify(currentTheme));
+		});
 	};
 </script>
 
-<div
-	class={`px-10 pt-9 pb-4 lg:pt-12  border-b dark:border-gray-100 border-gray-300 dark:text-gray-50 text-gray-900 ${
-		type === 'blog' ? 'blog' : ''
-	}`}
->
+<div class={`px-3 md:px-8 pt-9 pb-4 lg:px-10 lg:pt-12   dark:text-gray-200 text-gray-700`}>
 	<nav class="flex items-center justify-between mx-auto max-w-8xl">
 		<div class="flex flex-row items-center gap-8 justify-between">
 			<a href="/">
@@ -96,7 +72,7 @@
 				<button
 					id="dark-mode-toggler"
 					aria-label="Switch to dark mode"
-					class="px-2 bg-ebony-clay-300 dark:bg-gray-100 rounded-full w-8 h-8 text-gray-100 dark:text-ebony-clay-800 mt-1"
+					class="px-2 bg-ebony-clay-600 dark:bg-gray-100 rounded-full w-8 h-8 text-gray-100 dark:text-ebony-clay-800 mt-1"
 					on:click={toggleTheme}
 					><svg
 						stroke="currentColor"
@@ -133,11 +109,16 @@
 <style>
 	.blog {
 		position: absolute;
-		top: 0;
-		left: 0;
+		top: 4%;
+		left: 10%;
 		z-index: 50;
 		padding-top: 1.5rem;
 		border: 0;
+	}
+	@media (min-width: 768px) {
+		.blog {
+			left: 0;
+		}
 	}
 	.blog nav {
 		width: 100vw;

@@ -10,11 +10,11 @@
 </script>
 
 <section class="mt-12 ">
-	<h2 class="leading-tight text-2xl md:text-3xl mb-3 dark:text-white text-ebony-clay-600">
+	<h2 class="leading-tight text-3xl md:text-4xl mb-3 dark:text-white text-ebony-clay-600">
 		Featured
 	</h2>
 	<div
-		class="relative flex items-center justify-center bg-white text-white overflow-hidden rounded-lg shadow-md dark:bg-gray-900 focus:outline-none transition hover:ring-2 ring-yellow-50 ring-offset-2 backdrop-filter"
+		class="relative flex items-center justify-center bg-white text-white overflow-hidden rounded-lg shadow-md dark:bg-gray-800 focus:outline-none transition hover:ring-2 ring-yellow-50 ring-offset-2 backdrop-filter"
 	>
 		<div class="relative z-10 px-5 sm:text-left text-center py-10">
 			<div
@@ -38,19 +38,23 @@
 					<div class="flex flex-col col-span-2 lg:items-start items-center w-full">
 						<a href={url}
 							><h1
-								class="lg:text-3xl md:text-2xl sm:text-xl text-lg font-extrabold dark:text-white text-gray-800 leading-tight"
+								class="lg:text-3xl md:text-2xl text-xl text-left font-extrabold dark:text-white text-gray-800 leading-tight"
 							>
 								{title}
 							</h1>
 						</a>
-						<p class="my-4 font-medium opacity-75 font-body">{meta}</p>
+						<p class="my-4 font-medium opacity-75 font-body text-left md:text-center w-full">
+							{meta}
+						</p>
 
 						{#if type === 'podcast'}
 							<div class="w-full font-body">
 								<Buzzsprout buzzsproutId={podcastId} />
 							</div>
 						{:else}
-							<div class="max-w-screen-md font-body text-ebony-clay-800 dark:text-gray-50">
+							<div
+								class="max-w-screen-md font-body text-ebony-clay-800 dark:text-gray-50 text-left md:text-center"
+							>
 								<p>
 									{description}
 								</p>

@@ -6,7 +6,7 @@
 
 <!-- Navbar -->
 <NavBar />
-<main class="relative mx-auto max-w-screen-lg">
+<main class="relative mx-auto max-w-screen-lg px-8">
 	<slot />
 </main>
 

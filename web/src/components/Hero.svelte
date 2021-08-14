@@ -8,11 +8,11 @@
 		<div class="flex flex-auto flex-col" style="opacity: 1;">
 			<div style="opacity: 1; transform: none;">
 				<h2 class="leading-tight text-3xl md:text-4xl text-black dark:text-white">
-					I'm build things and help devs to level up their careers
+					I build things and help devs to level up!
 				</h2>
 			</div>
 			<div
-				class="flex flex-col mt-14 space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0"
+				class="flex flex-row md:flex-col mt-14 gap-4 md:gap-0 lg:flex-row lg:space-x-4 lg:space-y-0 justify-between"
 				style="opacity: 1; transform: none;"
 			>
 				<a href="https://twitter.com/matiasfha"
@@ -103,10 +103,16 @@
 						width="40"
 						height="40"
 						id="escuelafrontend"
+						class="filter dark:invert"
 					/>
 				</a>
 				<a href="https://github.com/matiasfha">
-					<svg width="40px" height="40px" viewBox="0 0 1024 1024" fill="none" id="githubLogo"
+					<svg
+						width="40px"
+						height="40px"
+						viewBox="0 0 1024 1024"
+						fill="none"
+						class="filter dark:invert"
 						><path
 							fill-rule="evenodd"
 							clip-rule="evenodd"
@@ -117,10 +123,67 @@
 					></a
 				>
 			</div>
+			<div class="flex flex-col gap-8 md:flex-row items-start mt-8 justify-between">
+				<a
+					href="/blog"
+					class="w-full md:max-h-14 bg-ebony-clay-600 dark:bg-gray-200 relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium text-gray-300 dark:text-ebony-clay-600 transition duration-300 ease-out border-2 border-ebony-clay-600 dark:border-gray-200 rounded-full shadow-md group"
+				>
+					<span
+						class="absolute inset-0 flex items-center justify-center w-full h-full dark:text-white text-ebony-clay-600 duration-300 -translate-x-full dark:bg-ebony-clay-600 bg-gray-200 group-hover:translate-x-0 ease"
+					>
+						<svg
+							class="w-6 h-6"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							xmlns="http://www.w3.org/2000/svg"
+							><path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M14 5l7 7m0 0l-7 7m7-7H3"
+							/></svg
+						>
+					</span>
+					<span
+						class="absolute flex items-center justify-center w-full h-full text-gray-100 dark:text-ebony-clay-600 transition-all duration-300 transform group-hover:translate-x-full ease"
+						>Read the blog</span
+					>
+					<span class="relative invisible">Read the blog</span>
+				</a>
+
+				<a
+					href="https://www.cafecon.tech"
+					class="w-full md:max-h-14 relative inline-flex items-center justify-center p-4 px-6 py-3 overflow-hidden font-medium dark:text-gray-100 text-ebony-clay-600 transition duration-300 ease-out border-2 border-ebony-clay-600 dark:border-gray-200 rounded-full shadow-md group"
+				>
+					<span
+						class="absolute inset-0 flex items-center justify-center w-full h-full text-gray-100 dark:text-ebony-clay-600 duration-300 -translate-x-full dark:bg-gray-100 bg-ebony-clay-600 group-hover:translate-x-0 ease"
+					>
+						<svg
+							class="w-6 h-6"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							xmlns="http://www.w3.org/2000/svg"
+							><path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M14 5l7 7m0 0l-7 7m7-7H3"
+							/></svg
+						>
+					</span>
+					<span
+						class="absolute flex items-center justify-center w-full h-full dark:text-gray-100 text-ebony-clay-600 transition-all duration-300 transform group-hover:translate-x-full ease"
+						>Listen the podcast</span
+					>
+					<span class="relative invisible">Listen the podcast</span>
+				</a>
+			</div>
 		</div>
 	</div>
 
-	<div class="mb-12 lg:mb-0 flex items-center justify-center">
+	<div class="mb-12 lg:mb-0 items-center justify-center hidden md:flex">
 		<img
 			class="h-auto object-contain max-h-72 rounded-full"
 			src={photo}
@@ -129,10 +192,3 @@
 		/>
 	</div>
 </div>
-
-<style>
-	#githubLogo,
-	#escuelafrontend {
-		filter: invert(1);
-	}
-</style>

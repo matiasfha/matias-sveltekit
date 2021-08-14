@@ -50,15 +50,6 @@ export default async function getArticles(): Promise<Array<ExternalArticle>> {
 				tag: item.tag
 			};
 		});
-	// .map(async (item) => {
-	// 	const image = await Ogs({ url: item.http_url });
-
-	// 	return {
-	// 		...item,
-	// 		url: item.http_url,
-	// 		image: image.result.ogImage.url
-	// 	};
-	// });
 	return sorted;
 }
 

@@ -6,7 +6,6 @@ import urls from 'rehype-urls'
 import autoLinkHeadings from 'rehype-autolink-headings'
 import readingTime from "reading-time";
 import jsYaml from 'js-yaml'
-import visit from "unist-util-visit";
 
 const MATTER_NODES = ['yaml', 'toml'];
 

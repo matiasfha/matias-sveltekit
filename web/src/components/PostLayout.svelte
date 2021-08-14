@@ -21,29 +21,33 @@
 </script>
 
 <Seo {title} {description} {keywords} isBlogPost={true} />
-<main class="w-full pb-4">
+<main class="w-full pb-4 px-8">
 	<header
-		class="post-header w-full bg-gray-900 flex items-start flex-col justify-center relative h-[32rem]"
+		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[20rem]"
 	>
 		<img
 			src={banner}
 			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm"
 			alt={title}
 		/>
-		<h1 class="text-left text-gray-100 font-bold text-3xl max-w-4xl z-10 p-8 px-12">
-			{title}
-		</h1>
-		<h3 class="text-left text-gray-100 font-body leading-tight text-lg max-w-4xl z-10 px-12">
-			{description}
-		</h3>
-		<h4
-			class="text-left text-gray-100 font-body leading-tight text-sm max-w-4xl z-10 px-12 absolute bottom-2"
-		>
-			{@html bannerCredit}
-		</h4>
+		<div class="flex flex-col max-w-3xl z-10  self-end mr-12">
+			<h1 class="text-left text-gray-100 font-bold text-xl md:text-3xl pb-8 m-0 px-4 md:px-0">
+				{title}
+			</h1>
+			<p
+				class="text-left text-gray-100 font-body leading-tight text-lg max-w-4xl z-10 hidden md:block flex-grow m-0"
+			>
+				{description}
+			</p>
+			<h4
+				class="text-left text-gray-100 font-body leading-tight text-sm self-end absolute bottom-2 left-2 md:left-auto"
+			>
+				{@html bannerCredit}
+			</h4>
+		</div>
 	</header>
 	<article
-		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto container max-w-6xl prose lg:prose-lg"
+		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto container max-w-6xl prose-lg  mt-12 pt-[20rem] md:pt-[32rem]"
 	>
 		<slot />
 	</article>
@@ -63,11 +67,17 @@
 </main>
 
 <style>
+	.post-header {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+	}
 	.post-header::after {
 		width: 60vw;
 		content: '';
 		position: absolute;
-		left: 0;
+		right: 0;
 		top: 0;
 		height: 100%;
 		background: #111;
@@ -75,7 +85,7 @@
 		display: block;
 		z-index: 5;
 		mix-blend-mode: multiply;
-		transform: skew(-15deg, 0deg);
-		transform-origin: top left;
+		transform: skew(15deg, 0deg);
+		transform-origin: top right;
 	}
 </style>

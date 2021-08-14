@@ -44,6 +44,7 @@
 									viewBox="0 0 256 263"
 									version="1.1"
 									preserveAspectRatio="xMidYMid"
+									class="filter dark:invert"
 									><g
 										><path
 											d="M128,262.399221 C113.6,262.399221 100,259.208957 87.2,254.423561 C74.4,248.840599 63.2,241.662505 54.4,231.294146 C44.8,221.723354 37.6,210.55743 32.8,197.796373 C31.2,193.010977 29.6,188.225581 28,182.642619 L27.2,182.642619 L26.4,174.666959 C16.8,170.679129 9.6,161.108336 7.2,152.33511 C4,141.169186 0.8,124.420299 0,109.266545 C0,97.3030546 6.4,86.1371303 17.6,81.3517342 C24.8,78.1614701 35.2,74.971206 47.2,73.376074 C55.2,56.6271875 64,41.4734331 73.6,30.3075088 C90.4,10.3683583 108.8,0 128,0 C147.2,0 165.6,10.3683583 182.4,30.3075088 C192,41.4734331 200.8,55.8296215 208,73.376074 C220,75.7687721 230.4,78.1614701 238.4,81.3517342 C249.6,86.1371303 256,97.3030546 256,109.266545 C255.2,126.812997 251.2,145.954582 248.8,153.132676 C246.4,162.703468 239.2,172.274261 229.6,175.464525 L228.8,183.440185 L228,183.440185 C227.2,188.225581 225.6,193.808543 223.2,198.593939 C218.4,211.354996 211.2,222.52092 201.6,232.091712 C192,241.662505 180.8,249.638165 168.8,255.221127 C156,260.006523 142.4,262.399221 128,262.399221 Z"
@@ -104,7 +105,12 @@
 								<img src={escuelaFrontend} alt="Escuela frontend logo" width="40" height="40" />
 							</a>
 							<a href="https://github.com/matiasfha">
-								<svg width="40px" height="40px" viewBox="0 0 1024 1024" fill="none" id="githubLogo"
+								<svg
+									width="40px"
+									height="40px"
+									viewBox="0 0 1024 1024"
+									fill="none"
+									class="filter dark:invert"
 									><path
 										fill-rule="evenodd"
 										clip-rule="evenodd"
@@ -118,84 +124,26 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-span-2 mt-20 md:col-start-7 md:row-start-1 md:mt-0">
+			<div class="col-span-full md:col-span-2 mt-20 md:col-start-7 md:row-start-1 md:mt-0">
 				<div>
 					<div class="text-lg font-medium text-black dark:text-white">Contact</div>
 					<ul class="mt-4 text-gray-900 dark:text-white">
-						<li class="py-1">
+						<!-- <li class="py-1">
 							<a
 								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
 								href="/">Contact page</a
 							>
-						</li>
+						</li> -->
 						<li class="py-1">
 							<a
 								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="/">Consulting & Mentoring</a
+								href="https://matiasfha.dev/consulting">Consulting & Mentoring</a
 							>
 						</li>
 						<li class="py-1">
 							<a
 								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="/">Ask Me Anything</a
-							>
-						</li>
-					</ul>
-				</div>
-			</div>
-
-			<div
-				class="col-span-full mt-20 md:col-span-2 col-start-9 lg:col-start-10 lg:row-span-2 lg:row-start-1 lg:ml-56 lg:mt-0"
-			>
-				<div>
-					<div class="text-lg font-medium text-black dark:text-white">Sitemap</div>
-					<ul class="mt-4 text-gray-900 dark:text-white">
-						<li class="py-1">
-							<a
-								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="/">Home</a
-							>
-						</li>
-						<li class="py-1">
-							<a
-								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="/blog">Blog</a
-							>
-						</li>
-						<li class="py-1">
-							<a
-								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="/">Podcast</a
-							>
-						</li>
-						<li class="py-1">
-							<a
-								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="/">Artículos</a
-							>
-						</li>
-						<li class="py-1">
-							<a
-								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="/">Cursos</a
-							>
-						</li>
-						<li class="py-1">
-							<a
-								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="/">Workshops</a
-							>
-						</li>
-						<li class="py-1">
-							<a
-								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="/">Newsletter</a
-							>
-						</li>
-						<li class="py-1">
-							<a
-								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="/">Sobre Mí</a
+								href="https://racket.com/matias/ask">Ask Me Anything</a
 							>
 						</li>
 					</ul>

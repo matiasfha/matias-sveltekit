@@ -37,3 +37,10 @@ export interface Latest {
 	image: string;
 	tag: string;
 }
+
+export interface Favorite {
+	url: string;
+	title: string;
+	image: string;
+	tag: string;
+}

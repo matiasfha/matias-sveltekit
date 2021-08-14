@@ -17,12 +17,13 @@ bannerCredit: <span>Photo by <a href="[https://unsplash.com/@brookanderson?utm_s
 
 <script>
 import Buzzsprout from '$components/mdx/Buzzsprout.svelte';
+import Twitter from '$components/mdx/Twitter.svelte';
 </script>
 
 
 > ### TLDR 
 Este post es también parte del episodio 17 del podcast Café con Tech
-> <Buzzsprout buzzsproutId="4822565-errores-comunes-con-react-hooks" />
+> <Buzzsprout buzzsproutId="1081172/4822565-errores-comunes-con-react-hooks" />
 
 
 El uso de hooks requiere de un cambio de modelo mental, un proceso que puede ser complejo sobre todo para quienes ya llevan un tiempo desarrollando aplicaciones con React, es normal caer en algunos errores y lugares comunes que hemos ido identificando con el tiempo creando buenas prácticas.
@@ -38,7 +39,8 @@ Los métodos de estado de vida fueron por mucho tiempo la forma de definir el co
 
 La diferencia entre el usual modelo de _montar/actualizar/desmontar_  y la sincronización es sutil. O como lo menciona Ryan Florence: "La pregunta ahora no es Cuando este efecto es ejecutado", si no, "Con que estado se sincroniza este efecto", con este modelo tenemos 3 opciones. Sincronizar con todos los estados, con ninguno o con un listado definido de estados, las dependencias utilizadas para useEffect
 
-https://twitter.com/ryanflorence/status/1125041041063665666?s=20
+<Twitter id="1125041041063665666" />
+
 
 Ciertamente modificar tus pre-conceptos sobre esta relación de los estados del ciclo de vida y la sincronización del estado requiere, de cierta forma, olvidar lo aprendido.
 
