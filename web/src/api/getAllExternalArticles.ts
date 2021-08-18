@@ -1,5 +1,5 @@
 import { request, gql } from 'graphql-request';
-import { ContentElement } from 'src/types';
+import { ContentElement } from '$lib/types';
 interface ExternalArticleSource {
 	url: string;
 	title: string;
