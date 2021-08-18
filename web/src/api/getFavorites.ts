@@ -1,5 +1,5 @@
 import { request, gql } from 'graphql-request';
-import type { ContentElement } from 'src/types';
+import type { ContentElement } from '$lib/types';
 
 type FavoriteSource = Omit<ContentElement, 'image'> & {
 	image: {

@@ -1,5 +1,5 @@
 import { request, gql } from 'graphql-request';
-import type { Course } from 'src/types';
+import type { Course } from '$lib/types';
 import Ogs from 'open-graph-scraper';
 
 const eggheadQuery = gql`

@@ -1,5 +1,5 @@
 import Parser from 'rss-parser';
-import type { FeedItem, PodcastItem } from 'src/types';
+import type { FeedItem, PodcastItem } from '$lib/types';
 const parser: Parser<{}, FeedItem> = new Parser();
 
 export async function getAll(podcastId = '', podcastUrl = ''): Promise<PodcastItem[]> {
