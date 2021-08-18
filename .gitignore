@@ -1,2 +1,4 @@
 # Local Netlify folder
 .netlify
+.sveltekit
+node_modules

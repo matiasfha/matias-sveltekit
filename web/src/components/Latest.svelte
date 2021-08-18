@@ -1,7 +1,9 @@
 <script lang="ts">
 	import type { Latest } from 'src/types';
+	import { getStores } from '$app/stores';
+	console.log(getStores());
 
-	export let latest: Latest[];
+	export let latest: Latest[] = [];
 </script>
 
 <section class="mt-24">
@@ -16,7 +18,7 @@
 						><div
 							class="aspect-w-2 aspect-h-1 w-full rounded-lg focus:ring transition group-hover:ring-2 ring-yellow-50 ring-offset-2"
 						>
-							<img alt={item.title} class="rounded-lg object-cover" src={item.image} />
+							<img alt={item.title} class="rounded-lg object-cover" src={`${item.image}?h=220`} />
 						</div>
 
 						<div

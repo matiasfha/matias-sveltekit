@@ -1,4 +1,5 @@
 import { request, gql } from 'graphql-request';
+import { ContentElement } from 'src/types';
 interface ExternalArticleSource {
 	url: string;
 	title: string;
@@ -10,10 +11,6 @@ interface ExternalArticleSource {
 	published_at: string;
 	tag: string;
 }
-
-type ExternalArticle = Omit<ExternalArticleSource, 'image'> & {
-	image: string;
-};
 
 const query = gql`
 	query articles {
@@ -30,7 +27,7 @@ const query = gql`
 		}
 	}
 `;
-export default async function getArticles(): Promise<Array<ExternalArticle>> {
+export default async function getArticles(): Promise<Array<ContentElement>> {
 	const { allExternalArticles } = await request<{
 		allExternalArticles: Array<ExternalArticleSource>;
 	}>('https://cyypawp1.api.sanity.io/v1/graphql/production/default', query);
@@ -53,7 +50,7 @@ export default async function getArticles(): Promise<Array<ExternalArticle>> {
 	return sorted;
 }
 
-export async function getLatestArticle(): Promise<ExternalArticle> {
+export async function getLatestArticle(): Promise<ContentElement> {
 	const articles = await getArticles();
 	return articles?.[0];
 }

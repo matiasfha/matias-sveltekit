@@ -9,7 +9,7 @@
 		<div
 			class="relative grid gap-x-4 grid-cols-4 md:grid-cols-8 lg:gap-x-6 lg:grid-cols-12 mx-auto max-w-8xl grid-rows-max-content"
 		>
-			<div class="col-span-full md:col-span-3 lg:row-span-2">
+			<div class="col-span-full md:col-span-3 lg:row-span-2 justify-">
 				<div>
 					<div class="text-xl font-medium md:text-2xl text-black dark:text-white">
 						Matías Hernández
@@ -18,7 +18,7 @@
 					<div
 						class="text-secondary flex items-center justify-between mt-6 lg:flex-col lg:items-start"
 					>
-						<div class="flex space-x-4">
+						<div class="flex md:space-x-4 justify-between w-full">
 							<a href="https://twitter.com/matiasfha"
 								><svg
 									width="40px"
@@ -44,7 +44,6 @@
 									viewBox="0 0 256 263"
 									version="1.1"
 									preserveAspectRatio="xMidYMid"
-									class="filter dark:invert"
 									><g
 										><path
 											d="M128,262.399221 C113.6,262.399221 100,259.208957 87.2,254.423561 C74.4,248.840599 63.2,241.662505 54.4,231.294146 C44.8,221.723354 37.6,210.55743 32.8,197.796373 C31.2,193.010977 29.6,188.225581 28,182.642619 L27.2,182.642619 L26.4,174.666959 C16.8,170.679129 9.6,161.108336 7.2,152.33511 C4,141.169186 0.8,124.420299 0,109.266545 C0,97.3030546 6.4,86.1371303 17.6,81.3517342 C24.8,78.1614701 35.2,74.971206 47.2,73.376074 C55.2,56.6271875 64,41.4734331 73.6,30.3075088 C90.4,10.3683583 108.8,0 128,0 C147.2,0 165.6,10.3683583 182.4,30.3075088 C192,41.4734331 200.8,55.8296215 208,73.376074 C220,75.7687721 230.4,78.1614701 238.4,81.3517342 C249.6,86.1371303 256,97.3030546 256,109.266545 C255.2,126.812997 251.2,145.954582 248.8,153.132676 C246.4,162.703468 239.2,172.274261 229.6,175.464525 L228.8,183.440185 L228,183.440185 C227.2,188.225581 225.6,193.808543 223.2,198.593939 C218.4,211.354996 211.2,222.52092 201.6,232.091712 C192,241.662505 180.8,249.638165 168.8,255.221127 C156,260.006523 142.4,262.399221 128,262.399221 Z"
@@ -101,22 +100,24 @@
 									></svg
 								></a
 							>
-							<a href="http://egghead.io/instructors/matias-francisco-hernandez-arellano?af=4cexzz">
-								<img src={escuelaFrontend} alt="Escuela frontend logo" width="40" height="40" />
+							<a href="http://escuelafrontend.com">
+								<img
+									src={escuelaFrontend}
+									alt="Escuela frontend logo"
+									width="40"
+									height="40"
+									class="filter dark:invert"
+								/>
 							</a>
 							<a href="https://github.com/matiasfha">
-								<svg
-									width="40px"
-									height="40px"
-									viewBox="0 0 1024 1024"
-									fill="none"
-									class="filter dark:invert"
+								<svg width="40px" height="40px" viewBox="0 0 1024 1024" fill="none"
 									><path
 										fill-rule="evenodd"
 										clip-rule="evenodd"
 										d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z"
 										transform="scale(64)"
 										fill="#1B1F23"
+										class="filter dark:invert"
 									/></svg
 								></a
 							>
@@ -124,16 +125,15 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-span-full md:col-span-2 mt-20 md:col-start-7 md:row-start-1 md:mt-0">
+			<div class="col-span-full md:col-span-2 mt-20 md:col-start-11 md:row-start-1 md:mt-0">
 				<div>
-					<div class="text-lg font-medium text-black dark:text-white">Contact</div>
 					<ul class="mt-4 text-gray-900 dark:text-white">
-						<!-- <li class="py-1">
+						<li class="py-1">
 							<a
 								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="/">Contact page</a
+								href="mailto:hola@matiashernandez.dev">Contact</a
 							>
-						</li> -->
+						</li>
 						<li class="py-1">
 							<a
 								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
@@ -157,9 +157,3 @@
 		</div>
 	</div>
 </footer>
-
-<style>
-	#githubLogo {
-		transform: invert(-1);
-	}
-</style>

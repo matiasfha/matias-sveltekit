@@ -47,7 +47,7 @@
 		</div>
 	</header>
 	<article
-		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto container max-w-6xl prose-lg  mt-12 pt-[20rem] md:pt-[32rem]"
+		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto container max-w-6xl prose prose-lg  mt-12 pt-[20rem] md:pt-[32rem]"
 	>
 		<slot />
 	</article>

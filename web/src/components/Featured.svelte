@@ -1,12 +1,12 @@
 <script lang="ts">
 	import Buzzsprout from './mdx/Buzzsprout.svelte';
-	export let image;
-	export let title;
-	export let meta;
-	export let description;
-	export let url;
-	export let type;
-	export let podcastId;
+	export let image: string;
+	export let title: string;
+	export let meta: string;
+	export let description: string;
+	export let url: string;
+	export let type: string;
+	export let podcastId: string;
 </script>
 
 <section class="mt-12 ">
@@ -43,15 +43,17 @@
 								{title}
 							</h1>
 						</a>
-						<p class="my-4 font-medium opacity-75 font-body text-left md:text-center w-full">
-							{meta}
-						</p>
+						{#if meta}
+							<p class="my-4 font-medium opacity-75 font-body text-left w-full">
+								{meta}
+							</p>
+						{/if}
 
 						{#if type === 'podcast'}
 							<div class="w-full font-body">
-								<Buzzsprout buzzsproutId={podcastId} />
+								<Buzzsprout buzzsproutId={`1081172/${podcastId}`} />
 							</div>
-						{:else}
+						{:else if description}
 							<div
 								class="max-w-screen-md font-body text-ebony-clay-800 dark:text-gray-50 text-left md:text-center"
 							>

@@ -38,9 +38,19 @@ export interface Latest {
 	tag: string;
 }
 
-export interface Favorite {
+export interface ContentElement {
 	url: string;
 	title: string;
 	image: string;
 	tag: string;
+}
+
+export interface Post {
+	date: string;
+	banner: string;
+	keywords: string[];
+	title: string;
+	description: string;
+	tag: 'Post' | 'Seed';
+	slug: string;
 }
