@@ -21,58 +21,45 @@
 
 <script lang="ts">
 	import Featured from '$components/Featured.svelte';
-	type Post = {
-		date: string;
-		banner: string;
-		keywords: string[];
-		title: string;
-		description: string;
-		tag: 'Post' | 'Seed';
-		slug: string;
-	};
+	import PostCard from '$components/PostCard.svelte';
+	import type { Post } from 'src/types';
+	import { afterUpdate } from 'svelte';
 	export let posts: Post[];
+
+	afterUpdate(() => {
+		window?.algoliasearchNetlify?.({
+			appId: '5MKKNKEPXX',
+			apiKey: '<YOUR_ALGOLIA_SEARCH_API_KEY>',
+			siteId: '35f04151-2766-4d52-8b85-4e86ca354007',
+			branch: 'main',
+			selector: 'div#search'
+		});
+	});
 </script>
+
+<svelte:head>
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.css"
+	/>
+	<script
+		type="text/javascript"
+		src="https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.js"></script>
+</svelte:head>
 
 <Featured
 	image="https://res.cloudinary.com/matiasfha/image/upload/v1604323837/monirul-islam-shakil-31I2Mi1UuxQ-unsplash_kkerl8.jpg"
 	title="React useEffect ¿Por que el arreglo de dependencias es importante?"
-	meta="Workshop · Sábado 7 de Agosto, 2021"
-	description="En este workshop, aprenderás los fundamentos esenciales para empezar tu carrera
-								profesional como un React developer. Cuando hayas terminado, tendrás los fundamentos
-								esenciales para crear experiencias excelentes para los usuarios de tus aplicaciones."
+	url="http://localhost:3000/blog/post/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida"
 />
+
+<div id="search" />
 
 <section class="mt-12">
 	<h2 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">Blog Posts</h2>
 	<div class="grid md:grid-cols-2 grid-cols-1 md:gap-16 gap-8">
 		{#each posts as post}
-			<div class="flex flex-col">
-				<div class="md:mb-4 mb-2">
-					<a
-						class="group peer relative block w-full focus:outline-none"
-						href={`/blog/post/${post.slug}`}
-						><div
-							class="aspect-w-2 aspect-h-1 h-1/4 rounded-lg transition group-hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2"
-						>
-							<img
-								alt="podcast"
-								class="rounded-lg object-cover"
-								src={post.banner}
-								decoding="async"
-							/>
-						</div>
-
-						<div
-							class="mt-8 dark:text-gray-300 text-gray-500 text-md font-medium lowercase text-body"
-						>
-							{new Date(post.date).toLocaleDateString()}
-						</div>
-						<h2 class="md:text-2xl text-xl font-bold leading-tighter text-black dark:text-white ">
-							{post.title}
-						</h2></a
-					>
-				</div>
-			</div>
+			<PostCard {post} />
 		{/each}
 	</div>
 </section>

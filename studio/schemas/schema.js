@@ -12,6 +12,24 @@ export default createSchema({
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
     {
+      title: 'Page',
+      name: 'page',
+      type: 'document',
+      fields: [
+        {
+          title: 'Name',
+          name: 'name',
+          type: 'string'
+        },
+        {
+          title: 'Content',
+          name: 'content',
+          type: 'array',
+          of: [{type: 'block'}]
+        }
+      ]
+    },
+    {
       title: 'Favorites',
       name:  'favorites',
       type: 'document',

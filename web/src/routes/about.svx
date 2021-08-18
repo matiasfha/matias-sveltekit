@@ -1,0 +1,33 @@
+
+---
+title: About me
+description: This is the description
+---
+
+                # Hola! Soy Matias 👋
+
+Soy un ingeniero de producto/software chileno, padre, podcaster y creador de contenido. Nací en 1986 y crecí en una pequeaña ciuidad de la costa del Maule, Chile. Estudié Ingeniería Civil Informática (algo así como Ingeniería en Computación) y obtuve mi primer trabajo real en una Startup de unos compañeros creando software de visión computacional. He escrito código para:
+
+* Diversos clientes por medio de Toptal
+* Mozio.com
+* Modus Create
+* Flexiana
+* g2i
+
+Actualmente he agregado al trabajo de construir productos el rol de "educador". Estoy en la misión de crear contenido sobre desarrollo web que pueda aportar a la comunidad de habla hispana y así ayudar a otros por medio de lo que yo ya he aprendido. Para esto tengo dos podcasts, escribo en este sitio y en [freecodecamp](http://freecodecamp.org/espanol/news/author/matias-hernandez/) y creo contenido en video para [egghead.io](http://egghead.io/instructors/matias-francisco-hernandez-arellano). Y soy algo adicto a [Twitter](https://twitter.com/matiasfha).
+
+Mientras estaba en la Universidad conocí a quien se convirtió en mi compañera de vida y esposa con quien tengo dos hermosos hijos.
+
+Durante el 2020 tuve algunos reconocimientos de los que estoy orgulloso.
+
+* Me convertí en instructor en [Egghead.io](https://egghead.io/)
+* Fui aceptado como [Auth0 Ambassador](http://auth0.com/ambassador-program)
+* Comencé a escribir en [freecodecamp](http://freecodecamp.org/) en español e inglés
+* Me convertí en [Cloudinary Media Developer Expert](https://cloudinary.com/mde)
+
+Te dejo aquí otros enlaces que quizás te interesen.
+
+> * [Buy me a coffee](https://buymeacoffee.com/matiasfha) Apoya mi trabajo suscribiéndote o reservado un \"Office Hours\"
+> * [Uses](https://matiashernandez.dev/uses) - Enlaces a las cosas que utilizo para mi trabajo o intereses en general
+> * [AMA](https://github.com/matiasfha/ama) - Pregunta lo que quiera
+                

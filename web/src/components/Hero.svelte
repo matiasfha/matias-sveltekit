@@ -1,13 +1,21 @@
 <script>
 	import photo from '$images/photo.jpg';
 	import escuelaFrontend from '$images/escuelafrontend.png';
+	import { fly } from 'svelte/transition';
 </script>
 
-<div class="flex flex-row items-center justify-between lg:min-h-[12rem] pb-12 lg:pb-24 pt-12">
-	<div class="pt-6 lg:flex lg:flex-col lg:h-full w-96">
+<div
+	class="flex flex-col-reverse md:flex-row items-center justify-between lg:min-h-[12rem] pb-12 lg:pb-24 pt-12"
+>
+	<div
+		class="pt-6 lg:flex lg:flex-col lg:h-full md:w-96 "
+		in:fly={{ y: 100, duration: 700, delay: 200 }}
+	>
 		<div class="flex flex-auto flex-col" style="opacity: 1;">
 			<div style="opacity: 1; transform: none;">
-				<h2 class="leading-tight text-3xl md:text-4xl text-black dark:text-white">
+				<h2
+					class="leading-tight text-3xl md:text-4xl text-black dark:text-white text-center md:text-left"
+				>
 					I build things and help devs to level up!
 				</h2>
 			</div>
@@ -183,9 +191,9 @@
 		</div>
 	</div>
 
-	<div class="mb-12 lg:mb-0 items-center justify-center hidden md:flex">
+	<div class="mb-12 lg:mb-0 items-center justify-center flex">
 		<img
-			class="h-auto object-contain max-h-72 rounded-full"
+			class="h-auto object-contain max-h-36 md:max-h-72 rounded-full"
 			src={photo}
 			alt="Illistration of a mascot standing on a snowboard surrounded by green leaves, a battery, two skies, a one-wheel, a solar panel, and a recycle logo."
 			style="opacity: 1; transform: none;"

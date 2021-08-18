@@ -1,7 +1,7 @@
 import { request, gql } from 'graphql-request';
-import type { Favorite } from 'src/types';
+import type { ContentElement } from 'src/types';
 
-type FavoriteSource = Omit<Favorite, 'image'> & {
+type FavoriteSource = Omit<ContentElement, 'image'> & {
 	image: {
 		asset: {
 			url: string;
@@ -23,7 +23,7 @@ const query = gql`
 		}
 	}
 `;
-export default async function getFavorites(): Promise<Array<Favorite>> {
+export default async function getFavorites(): Promise<Array<ContentElement>> {
 	const { allFavorites } = await request<{
 		allFavorites: Array<FavoriteSource>;
 	}>('https://cyypawp1.api.sanity.io/v1/graphql/production/default', query);

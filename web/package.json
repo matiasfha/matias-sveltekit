@@ -11,6 +11,7 @@
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
+		"@octokit/core": "3.5.1",
 		"@sveltejs/adapter-netlify": "1.0.0-next.26",
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^4.19.0",
@@ -44,6 +45,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sanity/block-content-to-markdown": "0.0.5",
 		"@sveltejs/adapter-vercel": "1.0.0-next.27",
 		"@tailwindcss/aspect-ratio": "0.2.1",
 		"@tailwindcss/typography": "0.4.1",

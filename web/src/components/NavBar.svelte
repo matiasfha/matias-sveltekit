@@ -1,32 +1,31 @@
 <script lang="ts">
 	import logo from '$images/logo.png';
-	export let type: 'blog' | undefined;
 
 	// @TODO this can go in sanity
 	const menuLinks: { title: string; href: string }[] = [
 		{
 			title: 'Podcast',
-			href: '/'
+			href: 'https://www.cafecon.tech'
 		},
 		{
 			title: 'Blog',
 			href: '/blog'
 		},
 		{
-			title: 'Articles',
-			href: '/'
+			title: 'Guest Writing',
+			href: '/articles'
 		},
-		{
-			title: 'Courses',
-			href: '/'
-		},
-		{
-			title: 'Newsletter',
-			href: '/'
-		},
+		// {
+		// 	title: 'Courses',
+		// 	href: '/'
+		// },
+		// {
+		// 	title: 'Newsletter',
+		// 	href: '/'
+		// },
 		{
 			title: 'About',
-			href: '/'
+			href: '/about'
 		}
 	];
 	// Theme switcher
@@ -41,14 +40,13 @@
 			theme.set({ theme: 'light' });
 		}
 		theme.subscribe((currentTheme) => {
-			console.log(currentTheme);
 			localStorage.setItem('theme', JSON.stringify(currentTheme));
 		});
 	};
 </script>
 
-<div class={`px-3 md:px-8 pt-9 pb-4 lg:px-10 lg:pt-12   dark:text-gray-200 text-gray-700`}>
-	<nav class="flex items-center justify-between mx-auto max-w-8xl">
+<div class={`px-6 md:px-8 pt-9 pb-4 lg:px-10 lg:pt-12   dark:text-gray-200 text-gray-700`}>
+	<nav class="flex items-center justify-between mx-auto md:max-w-8xl">
 		<div class="flex flex-row items-center gap-8 justify-between">
 			<a href="/">
 				<img src={logo} alt="Matias Hernández Logo" width="48" height="48" />
@@ -105,24 +103,3 @@
 		</ul>
 	</nav>
 </div>
-
-<style>
-	.blog {
-		position: absolute;
-		top: 4%;
-		left: 10%;
-		z-index: 50;
-		padding-top: 1.5rem;
-		border: 0;
-	}
-	@media (min-width: 768px) {
-		.blog {
-			left: 0;
-		}
-	}
-	.blog nav {
-		width: 100vw;
-		color: #eeeeee;
-		padding-right: 6rem;
-	}
-</style>
