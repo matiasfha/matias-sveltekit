@@ -6,6 +6,7 @@ keywords:
 - hooks
 - useEffect
 tag: Seed
+featured: true
 title: React useEffect ¿Por que el arreglo de dependencias es importante?
 description: React `useEffect` es quizá el hook que más confusiones genera a la hora
   de utilizarlo. Una confusión común es el uso del arreglo de dependencias

@@ -1,5 +1,5 @@
 import { request, gql } from 'graphql-request';
-import { ContentElement } from '$lib/types';
+import type { ContentElement } from '$lib/types';
 interface ExternalArticleSource {
 	url: string;
 	title: string;
@@ -10,6 +10,7 @@ interface ExternalArticleSource {
 	};
 	published_at: string;
 	tag: string;
+	featured?: boolean;
 }
 
 const query = gql`
@@ -24,6 +25,7 @@ const query = gql`
 			}
 			published_at
 			tag
+			featured
 		}
 	}
 `;
@@ -44,7 +46,8 @@ export default async function getArticles(): Promise<Array<ContentElement>> {
 				title: item.title,
 				image: item.image.asset.url,
 				published_at: item.published_at,
-				tag: item.tag
+				tag: item.tag,
+				featured: item.featured
 			};
 		});
 	return sorted;

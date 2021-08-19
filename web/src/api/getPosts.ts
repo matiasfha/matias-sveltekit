@@ -1,14 +1,4 @@
-export interface Post {
-	slug: string;
-	date: string;
-	banner: string;
-	keywords: string[];
-	tag: 'Post' | 'Seed';
-	title: string;
-	description: string;
-	bannerCredit?: string;
-	favorite: boolean;
-}
+import type { Post } from '$lib/types';
 
 export default async function getPosts(): Promise<Post[]> {
 	const modules = import.meta.glob(`../routes/blog/post/*.svx`);

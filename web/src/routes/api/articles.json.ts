@@ -4,7 +4,10 @@ export async function get() {
 	try {
 		const articles = await getArticles();
 		return {
-			body: articles
+			body: {
+				articles,
+				featured: articles.find((item) => item.featured)
+			}
 		};
 	} catch (e) {
 		console.error(e);

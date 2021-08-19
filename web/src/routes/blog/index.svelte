@@ -4,10 +4,11 @@
 		const url = '/api/blog.json';
 		const res = await fetch(url);
 		if (res.ok) {
-			const posts = await res.json();
+			const { posts, featured } = await res.json();
 			return {
 				props: {
-					posts
+					posts,
+					featured
 				}
 			};
 		}
@@ -22,14 +23,14 @@
 <script lang="ts">
 	import Featured from '$components/Featured.svelte';
 	import PostCard from '$components/PostCard.svelte';
-	import type { Post } from 'src/types';
+	import type { Post } from '$lib/types';
 	import { afterUpdate } from 'svelte';
 	export let posts: Post[];
-
+	export let featured: Post;
 	afterUpdate(() => {
-		window?.algoliasearchNetlify?.({
+		window.algoliasearchNetlify?.({
 			appId: '5MKKNKEPXX',
-			apiKey: '<YOUR_ALGOLIA_SEARCH_API_KEY>',
+			apiKey: 'd23dfa2b301be4b14a9bb03b5bad2c70',
 			siteId: '35f04151-2766-4d52-8b85-4e86ca354007',
 			branch: 'main',
 			selector: 'div#search'
@@ -47,11 +48,7 @@
 		src="https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.js"></script>
 </svelte:head>
 
-<Featured
-	image="https://res.cloudinary.com/matiasfha/image/upload/v1604323837/monirul-islam-shakil-31I2Mi1UuxQ-unsplash_kkerl8.jpg"
-	title="React useEffect ¿Por que el arreglo de dependencias es importante?"
-	url="http://localhost:3000/blog/post/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida"
-/>
+<Featured image={featured.banner} title={featured.title} url={`/blog/post/${featured.slug}`} />
 
 <div id="search" />
 
