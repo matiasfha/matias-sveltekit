@@ -43,6 +43,8 @@ export interface ContentElement {
 	title: string;
 	image: string;
 	tag: string;
+	featured?: boolean;
+	description?: string;
 }
 
 export interface Post {
@@ -53,4 +55,5 @@ export interface Post {
 	description: string;
 	tag: 'Post' | 'Seed';
 	slug: string;
+	featured?: boolean;
 }

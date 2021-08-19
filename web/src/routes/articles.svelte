@@ -4,10 +4,11 @@
 		const url = '/api/articles.json';
 		const res = await fetch(url);
 		if (res.ok) {
-			const articles = await res.json();
+			const { articles, featured } = await res.json();
 			return {
 				props: {
-					articles
+					articles,
+					featured
 				}
 			};
 		}
@@ -22,16 +23,17 @@
 <script lang="ts">
 	import Featured from '$components/Featured.svelte';
 	import ContentCard from '$components/ContentCard.svelte';
-	import type { ContentElement } from 'src/types';
+	import type { ContentElement } from '$lib/types';
 	export let articles: ContentElement[];
+	export let featured: ContentElement;
 </script>
 
 <Featured
-	image="https://res.cloudinary.com/escuela-frontend/image/upload/v1625855100/ogimages/ogimage-las-diferencias-entre-componentes-controlados-y-no-controlados_pv6wdj.png"
-	title="Las Diferencias Entre Componentes Controlados y No-Controlados en React"
-	meta="Escuela Frontend"
-	description="React define dos tipos de componentes: Controlados y No-Controlados. En este artículo revisaremos las diferencias entre estas dos categorías. ¿Cuando usar cada uno de ellos?"
-	url="https://escuelafrontend.com/articulos/las-diferencias-entre-componentes-controlados-y-no-controlados-en-react"
+	image={featured.image}
+	title={featured.title}
+	meta={featured.tag}
+	description={featured.description}
+	url={featured.url}
 />
 
 <section class="mt-12">
