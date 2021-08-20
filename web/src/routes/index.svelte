@@ -31,8 +31,8 @@
 </script>
 
 <script lang="ts">
-	import type { ContentElement, Latest } from 'src/types';
-
+	import type { ContentElement, Latest } from '$lib/types';
+	import Seo from '$components/Seo.svelte';
 	import Hero from '$components/Hero.svelte';
 	import Featured from '$components/Featured.svelte';
 	import LatestSection from '$components/Latest.svelte';
@@ -41,6 +41,8 @@
 	export let latest: Latest[];
 	export let favorites: ContentElement[];
 </script>
+
+<Seo title="Matias Hernández" keywords={[]} />
 
 <Hero />
 

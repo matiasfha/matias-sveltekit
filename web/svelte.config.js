@@ -28,9 +28,13 @@ const config = {
                     '$images': path.resolve('./src/images'),
                     '$utils': path.resolve('./src/lib/utils')
                 }
+            },
+            optimizeDeps: {
+                exclude: ['svelte-modals']
             }
         }    
-    }
+    },
+    
 };
 
 export default config;

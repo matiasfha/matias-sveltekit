@@ -2,9 +2,7 @@
 	import escuelaFrontend from '$images/escuelafrontend.png';
 </script>
 
-<footer
-	class="pb-16 mt-32 pt-32 border-t border-gray-200 dark:border-gray-800 px-10 dark:bg-ebony-clay-600 bg-white"
->
+<footer class="pb-16 mt-32 pt-32 border-t border-gray-200 dark:border-gray-800 px-10">
 	<div class="relative">
 		<div
 			class="relative grid gap-x-4 grid-cols-4 md:grid-cols-8 lg:gap-x-6 lg:grid-cols-12 mx-auto max-w-8xl grid-rows-max-content"
@@ -131,19 +129,19 @@
 						<li class="py-1">
 							<a
 								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="mailto:hola@matiashernandez.dev">Contact</a
+								href="mailto:hola@matiashernandez.dev">Contacto</a
 							>
 						</li>
 						<li class="py-1">
 							<a
 								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="https://matiasfha.dev/consulting">Consulting & Mentoring</a
+								href="https://matiasfha.dev/consulting">Consultoría y Mentoría</a
 							>
 						</li>
 						<li class="py-1">
 							<a
 								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="https://racket.com/matias/ask">Ask Me Anything</a
+								href="https://racket.com/matias/ask">Pregunta lo que quieras</a
 							>
 						</li>
 					</ul>

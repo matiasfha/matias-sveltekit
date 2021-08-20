@@ -23,10 +23,24 @@
 <script lang="ts">
 	import Featured from '$components/Featured.svelte';
 	import ContentCard from '$components/ContentCard.svelte';
+	import Seo from '$components/Seo.svelte';
 	import type { ContentElement } from '$lib/types';
 	export let articles: ContentElement[];
 	export let featured: ContentElement;
+	let searchItem: string;
+
+	$: filteredArticles = searchItem
+		? articles.filter((item: ContentElement) => {
+				const title = item.title?.toLowerCase() ?? '';
+				return (
+					title.includes(searchItem.toLowerCase()) ||
+					item.tag?.toLowerCase()?.includes(searchItem.toLowerCase())
+				);
+		  })
+		: articles;
 </script>
+
+<Seo title="Matias Hernández | Guest Writing" keywords="" />
 
 <Featured
 	image={featured.image}
@@ -36,10 +50,21 @@
 	url={featured.url}
 />
 
+<div class="flex flex-row mt-12">
+	<input
+		type="text"
+		name="firstName"
+		autocomplete="name"
+		placeholder="Search"
+		aria-label="Search"
+		class="border-secondary hover:border-primary focus:border-primary focus:bg-secondary px-8 py-6 w-full dark:text-white bg-transparent border rounded-lg focus:outline-none"
+		bind:value={searchItem}
+	/>
+</div>
 <section class="mt-12">
 	<h2 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">Guest Writing</h2>
 	<div class="grid md:grid-cols-2 grid-cols-1 md:gap-16 gap-8">
-		{#each articles as content}
+		{#each filteredArticles as content}
 			<ContentCard {content} />
 		{/each}
 	</div>

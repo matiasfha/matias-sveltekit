@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ContentElement } from 'src/types';
+	import type { ContentElement } from '$lib/types';
 
 	export let favorites: ContentElement[];
 </script>
@@ -8,9 +8,9 @@
 	<h2
 		class="text-3xl md:text-4xl sm:font-semibold font-bold mb-3 dark:text-white text-ebony-clay-800s"
 	>
-		Picks and Favorites
+		Seleccionados y Favoritos
 	</h2>
-	<div class="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-4">
+	<div class="grid md:grid-cols-2 grid-cols-1 gap-4">
 		{#each favorites as item}
 			<div
 				class="bg-white dark:bg-gray-800 dark:text-gray-200 shadow-sm rounded-lg overflow-hidden p-5 text-center hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2"

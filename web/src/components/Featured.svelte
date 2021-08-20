@@ -11,7 +11,7 @@
 
 <section class="mt-12 ">
 	<h2 class="leading-tight text-3xl md:text-4xl mb-3 dark:text-white text-ebony-clay-600">
-		Featured
+		Destacados
 	</h2>
 	<div
 		class="relative flex items-center justify-center bg-white text-white overflow-hidden rounded-lg shadow-md dark:bg-gray-800 focus:outline-none transition hover:ring-2 ring-yellow-50 ring-offset-2 backdrop-filter"

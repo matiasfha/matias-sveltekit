@@ -27,6 +27,5 @@ const query = gql`
 
 export default async function getMediaJams() {
 	const data = await request('https://v2.mediajams.dev/api/graphql', query);
-	console.log(data);
 	return data;
 }

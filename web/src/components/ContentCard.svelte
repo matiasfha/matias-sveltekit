@@ -1,11 +1,14 @@
 <script lang="ts">
-	import type { ContentElement } from 'src/types';
+	import type { ContentElement } from '$lib/types';
 	export let content: ContentElement;
 </script>
 
 <div class="flex flex-col">
 	<div class="md:mb-4 mb-2">
-		<a class="group peer relative block w-full focus:outline-none" href={content.url}
+		<a
+			sveltekit:prefetch
+			class="group peer relative block w-full focus:outline-none"
+			href={content.url}
 			><div
 				class="aspect-w-2 aspect-h-1 h-1/4 rounded-lg transition group-hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2"
 			>

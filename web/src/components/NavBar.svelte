@@ -19,12 +19,12 @@
 		// 	title: 'Courses',
 		// 	href: '/'
 		// },
-		// {
-		// 	title: 'Newsletter',
-		// 	href: '/'
-		// },
 		{
-			title: 'About',
+			title: 'Newsletter',
+			href: '/newsletter'
+		},
+		{
+			title: 'Sobre mi',
 			href: '/about'
 		}
 	];
@@ -48,7 +48,7 @@
 <div class={`px-6 md:px-8 pt-9 pb-4 lg:px-10 lg:pt-12   dark:text-gray-200 text-gray-700`}>
 	<nav class="flex items-center justify-between mx-auto md:max-w-8xl">
 		<div class="flex flex-row items-center gap-8 justify-between">
-			<a href="/">
+			<a href="/" sveltekit:prefetch>
 				<img src={logo} alt="Matias Hernández Logo" width="48" height="48" />
 			</a>
 			<a
@@ -60,6 +60,7 @@
 			{#each menuLinks as item}
 				<li class="px-5 py-2">
 					<a
+						sveltekit:prefetch
 						class="hover:text-primary underlined focus:text-primary block whitespace-nowrap text-lg font-medium focus:outline-none text-secondary"
 						href={item.href}>{item.title}</a
 					>
