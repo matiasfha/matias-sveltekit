@@ -5,7 +5,6 @@
 	export let id = '515490786800963584';
 	afterUpdate(() => {
 		var tweet = document.getElementById('tweet');
-		console.log(window);
 		window.twttr.widgets
 			.createTweet(id, tweet, {
 				conversation: 'none', // or all

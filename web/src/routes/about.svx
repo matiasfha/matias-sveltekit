@@ -1,7 +1,7 @@
 ---
 layout: pages
-title: About me
-description: A brief summary of me :D
+title: Sobre mi
+description: Un pequeño resumen sobre mi :D
 ---
 
 # Hola! Soy Matias 👋

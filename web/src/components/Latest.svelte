@@ -1,16 +1,13 @@
 <script lang="ts">
-	import type { Latest } from 'src/types';
-	import { getStores } from '$app/stores';
-	console.log(getStores());
-
+	import type { Latest } from '$lib/types';
 	export let latest: Latest[] = [];
 </script>
 
 <section class="mt-24">
 	<h2 class="leading-tight text-3xl md:text-4xl mb-3 dark:text-white text-ebony-clay-800s">
-		Latest
+		Más Recientes
 	</h2>
-	<div class="grid md:grid-cols-2 grid-cols-1 md:gap-16 gap-20">
+	<div class="grid md:grid-cols-3 grid-cols-1 md:gap-16 gap-20">
 		{#each latest as item}
 			<div class="group peer flex flex-col ">
 				<div class="md:mb-4 mb-2 ">
