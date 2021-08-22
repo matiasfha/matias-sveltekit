@@ -53,7 +53,7 @@
 	description=""
 	url="https://www.cafecon.tech/1081172/8869619-testing-react-typescript-and-remix-with-kent-c-dodds"
 	type="podcast"
-	podcastId="8996360"
+	podcastId="8869619"
 />
 
 <LatestSection {latest} />
