@@ -47,11 +47,11 @@
 <Hero />
 
 <Featured
-	image="https://storage.buzzsprout.com/variants/xdwqi3lrt55higf78atbhwp8w8of/8d66eb17bb7d02ca4856ab443a78f2148cafbb129f58a3c81282007c6fe24ff2.jpg"
-	title="Jelly Drops, Design and Testing with Colby Fayock"
-	meta="3rd Season Episode 3"
+	image="https://cdn.sanity.io/images/cyypawp1/production/f323a942fbbe094bf68303cf3855ff111c067709-1400x1400.png"
+	title="Testing, React, Typescript and Remix with Kent C. Dodds"
+	meta="3rd Season Episode 01"
 	description=""
-	url="https://www.cafecon.tech/1081172/8996360-jelly-drops-design-and-testing-with-colby-fayock"
+	url="https://www.cafecon.tech/1081172/8869619-testing-react-typescript-and-remix-with-kent-c-dodds"
 	type="podcast"
 	podcastId="8996360"
 />

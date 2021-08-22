@@ -1,11 +1,30 @@
+<script context="module">
+	export async function load({ fetch }) {
+		const url = '/api/newsletter.json';
+		const res = await fetch(url);
+		if (res.ok) {
+			const courses = await res.json();
+
+			return {
+				props: {
+					courses
+				}
+			};
+		}
+
+		return {
+			status: res.status,
+			error: new Error(`Could not load ${url}`)
+		};
+	}
+</script>
+
 <script lang="ts">
-	import { Modals, closeModal } from 'svelte-modals';
 	import Seo from '$components/Seo.svelte';
 	import CourseCard from '$components/CourseCard.svelte';
-	import CtaButton from '$components/CtaButton.svelte';
 	import microbytes from '$images/microbytes.png';
-	import reactLogo from '$images/reactjs-icon.svg';
-	import jsLogo from '$images/javascript-logo.svg';
+	import blocksToHtml from '@sanity/block-content-to-html';
+	export let courses = [];
 </script>
 
 <Seo title="Matias Hernández | MicroBytes newsletter" keywords={['newsletter', 'microbytes']} />
@@ -97,36 +116,16 @@
 </h2>
 
 <div class="grid grid-cols-1 gap-2">
-	<CourseCard
-		logo={jsLogo}
-		title="Javascript para React"
-		description={`	​Unete a Micro Bytes un newsletter semanal de micro cursos. Recibirás una colección de
-						contenidos para mejorar tu conocimiento en desarrollo web y darle un giro a tu carrera,
-						directamente en tu correo.`}
-		convertKitId="1951742"
-	/>
-
-	<CourseCard
-		logo={reactLogo}
-		title="Fundamentos de React"
-		description={`	​Unete a Micro Bytes un newsletter semanal de micro cursos. Recibirás una colección de
-						contenidos para mejorar tu conocimiento en desarrollo web y darle un giro a tu carrera,
-						directamente en tu correo.`}
-		convertKitId="2538470"
-	/>
+	{#each courses as course}
+		<CourseCard
+			logo={course.image.asset.url}
+			title={course.course}
+			description={blocksToHtml({
+				blocks: course.descriptionRaw,
+				projectId: 'cyypawp1',
+				dataset: 'production'
+			})}
+			convertKitId={course.tagId}
+		/>
+	{/each}
 </div>
-
-<Modals>
-	<div slot="backdrop" class="backdrop" on:click={closeModal} />
-</Modals>
-
-<style>
-	.backdrop {
-		position: fixed;
-		top: 0;
-		bottom: 0;
-		right: 0;
-		left: 0;
-		background: rgba(0, 0, 0, 0.5);
-	}
-</style>

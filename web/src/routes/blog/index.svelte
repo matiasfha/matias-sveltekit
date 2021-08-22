@@ -39,7 +39,7 @@
 		: posts;
 </script>
 
-<Seo title="Matias Hernández | Blog" keywords="" />
+<Seo title="Matias Hernández | Blog" />
 <Featured image={featured.banner} title={featured.title} url={`/blog/post/${featured.slug}`} />
 
 <div class="flex flex-row mt-12">
@@ -56,7 +56,7 @@
 
 <section class="mt-12">
 	<h2 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">Blog Posts</h2>
-	<div class="grid md:grid-cols-2 grid-cols-1 md:gap-16 gap-8 transition duration-150 ease-in-out">
+	<div class="grid md:grid-cols-3 grid-cols-1 md:gap-16 gap-8 transition duration-150 ease-in-out">
 		{#each filteredPosts as post}
 			<PostCard {post} />
 		{/each}

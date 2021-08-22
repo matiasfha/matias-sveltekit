@@ -11,6 +11,7 @@ import externalArticles from './externalArticles'
 import link from './link'
 import navigation from './navigation'
 import navItem from './navItem'
+import newsletterCourses from './newsletterCourses'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -25,6 +26,7 @@ export default createSchema({
     siteSettings,
     favorites,
     externalArticles,
+    newsletterCourses,
     {
       title: 'Page',
       name: 'page',

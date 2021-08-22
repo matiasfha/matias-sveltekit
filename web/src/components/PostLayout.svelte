@@ -21,7 +21,7 @@
 </script>
 
 <Seo {title} {description} {keywords} isBlogPost={true} />
-<main class="w-full pb-4 px-8">
+<main class="w-full pb-4 px-0 md:px-8">
 	<header
 		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[20rem]"
 	>
@@ -47,7 +47,7 @@
 		</div>
 	</header>
 	<article
-		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto container max-w-6xl prose prose-lg  mt-12 pt-[20rem] md:pt-[32rem]"
+		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto container max-w-6xl prose prose-lg dark:prose-dark mt-12 pt-[14rem] md:pt-[32rem]"
 	>
 		<slot />
 	</article>

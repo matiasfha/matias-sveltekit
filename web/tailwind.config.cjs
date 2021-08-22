@@ -6,7 +6,7 @@ const config = {
 	],
 	variants: {
 		extend: {
-			typography: ['dark']
+			typography: ['dark','responsive']
 		}
 	},
 	theme: {
@@ -24,49 +24,50 @@ const config = {
 					return Array.isArray(result) ? result[0] : result
 				}
 				return {
-					dark: {
-						css: [
-							{
-								'strong, a': {
-									color: theme('colors.gray.100'),
-								}
-							}
-						]
-					},
 					DEFAULT: {
 						css: [
 							{
-								'h1, h2, h3, h4, h5, h6': {
-									maxWidth: '64rem',
-									margin: '0 auto'
+								a: {
+									textDecoration: 'none',
+									whiteSpace: 'pre-wrap'
 								},
-								p: {
-									maxWidth: '64rem',
-									margin: '0 auto'
+								hr: { borderColor: theme('colors.gray.200') },
+								'strong, a, h1, h2, h3, h4, h5, h6': {
+									color: '#6366F1'
+								},
+								'h1, h2, h3, h4, h5, h6': {
+									margin: '0 auto',
+									whiteSpace: 'pre-wrap'
 								},
 								strong: {
 									fontWeight: theme('fontWeight.bold'),
-                  					fontSize: fontSize('lg'),
-									color: theme('colors.ebony-clay.800'),								},
-								a: {
-									color: theme('colors.ebony-clary.800'),
+                  					fontSize: fontSize('lg'),									
 								},
 								pre: {
 									backgroundColor: theme('colors.ebony-clay.700')
 								},
-								'ul,ol': {
-									maxWidth: '64rem',
-									margin: '0 auto'
-								}, 
 								code: {
 									fontSize: '0.9em',
 									letterSpacing: '-0.5px',
 									padding: '4.5px 6px',
 									margin: '1px -1px',
-									backgroundColor: theme('colors.ebony-clay.700'),
 									borderRadius: '3px',
-									color: theme('colors.gray.100'),
+									color: theme('colors.ebony-clay.700'),
+									fontStyle: 'italic'
 								}
+							}
+						]
+					},
+					dark: {
+						css: [
+							{
+								'strong, a, h1, h2, h3, h4, h5, h6': {
+									color: '#fde68a'
+								},
+								code: {
+									color: theme('colors.gray.200'),
+								}
+								
 							}
 						]
 					},
@@ -74,6 +75,9 @@ const config = {
 						css: [
 							{
 								hr: { borderColor: theme('colors.gray.200') },
+								'strong, a, h1, h2, h3, h4, h5, h6': {
+									color: '#6366F1'
+								},
 							}
 						]
 					},
