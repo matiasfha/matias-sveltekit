@@ -46,6 +46,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sanity/block-content-to-html": "2.0.0",
 		"@sanity/block-content-to-markdown": "0.0.5",
 		"@sveltejs/adapter-vercel": "1.0.0-next.27",
 		"@tailwindcss/aspect-ratio": "0.2.1",

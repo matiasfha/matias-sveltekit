@@ -46,7 +46,7 @@
 					<form
 						method="post"
 						action={`https://app.convertkit.com/forms/1951742/subscriptions`}
-						class="mt-8 md:space-y-12 w-full grid grid-row md:grid-cols-2 gap-4"
+						class="mt-8 w-full grid grid-row md:grid-cols-2 gap-4"
 					>
 						<div class="flex flex-col gap-4">
 							<input
@@ -55,7 +55,7 @@
 								autocomplete="email"
 								placeholder="email"
 								aria-label="email"
-								class="border-secondary hover:border-primary focus:border-primary focus:bg-secondary px-8 py-6 w-full dark:text-white bg-transparent border rounded-lg focus:outline-none"
+								class="border-secondary hover:border-primary focus:border-primary focus:bg-secondary px-8 py-5 w-full dark:text-white bg-transparent border rounded-lg focus:outline-none"
 							/>
 						</div>
 						<button

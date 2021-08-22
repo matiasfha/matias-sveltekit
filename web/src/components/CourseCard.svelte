@@ -25,10 +25,10 @@
 				{title}
 			</h2>
 
-			<div class="max-w-screen-md font-body text-left pt-8">
-				<p>
-					{description}
-				</p>
+			<div
+				class="max-w-screen-md font-body text-left pt-8 prose dark:text-gray-300 text-ebony-clay-800"
+			>
+				{@html description}
 			</div>
 
 			<form

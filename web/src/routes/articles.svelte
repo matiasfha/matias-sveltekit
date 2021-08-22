@@ -1,5 +1,4 @@
 <script lang="ts" context="module">
-	export const prerender = true;
 	export async function load({ fetch }) {
 		const url = '/api/articles.json';
 		const res = await fetch(url);
@@ -40,7 +39,10 @@
 		: articles;
 </script>
 
-<Seo title="Matias Hernández | Guest Writing" keywords="" />
+<Seo
+	title="Matias Hernández | Guest Writing"
+	keywords={['Articles', 'Tech Writing', 'Tutorials']}
+/>
 
 <Featured
 	image={featured.image}
@@ -63,7 +65,7 @@
 </div>
 <section class="mt-12">
 	<h2 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">Guest Writing</h2>
-	<div class="grid md:grid-cols-2 grid-cols-1 md:gap-16 gap-8">
+	<div class="grid md:grid-cols-3 grid-cols-1 md:gap-16 gap-8">
 		{#each filteredArticles as content}
 			<ContentCard {content} />
 		{/each}

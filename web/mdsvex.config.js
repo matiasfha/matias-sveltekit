@@ -8,7 +8,7 @@ import autoLinkHeadings from 'rehype-autolink-headings'
 
 function processUrl(url, node) {
 	if (node.tagName === "a") {
-		node.properties.class = "text-link"
+		node.properties.class = "underlined"
 
 		if (!url.href.startsWith("/")) {
 			// Open external links in new tab
@@ -31,7 +31,7 @@ const config = {
   },
 
   "remarkPlugins": [headings, slug, highlight, abbr],
-  "rehypePlugins": [[urls, processUrl],[autoLinkHeadings, { behavior: 'wrap'}]]
+  "rehypePlugins": [[urls, processUrl],[autoLinkHeadings, { behavior: 'prepend'}]]
 };
 
 export default config;
