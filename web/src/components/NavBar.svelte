@@ -140,6 +140,7 @@
 			>
 				{#each menuLinks as item}
 					<li
+						on:click={() => (menu = !menu)}
 						class="px-5 py-6 text-lg text-left border-b-2 dark:border-ebony-clay-100 border-ebony-clay-600"
 					>
 						<a
