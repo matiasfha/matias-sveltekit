@@ -88,4 +88,9 @@
 		transform: skew(15deg, 0deg);
 		transform-origin: top right;
 	}
+	@media (max-width: 767px) {
+		.post-header::after {
+			transform: none;
+		}
+	}
 </style>
