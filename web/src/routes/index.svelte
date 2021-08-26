@@ -42,7 +42,22 @@
 	export let favorites: ContentElement[];
 </script>
 
-<Seo title="Matias Hernández" keywords={[]} />
+<Seo
+	title="Matias Hernández, creo contenido para ayudarte a subir de nivel"
+	keywords={[
+		'Podcast',
+		'Artículos',
+		'Tutoriales',
+		'React',
+		'Javascript',
+		'Newsletter',
+		'Svelte',
+		'SvelteKit',
+		'Cursos',
+		'Typescript'
+	]}
+	description="Personal site of Matias Hernandez, dev, instructor and podcaster. Helping devs to level up their careers as software Developers"
+/>
 
 <Hero />
 

@@ -18,7 +18,7 @@
 				<a href="/" class="focus:outline-none">
 					<div class="h-64 flex items-center justify-center mb-12 rounded-lg overflow-hidden">
 						<img
-							alt=""
+							alt={item.title}
 							aria-hidden="true"
 							role="presentation"
 							src={item.image}
