@@ -1,7 +1,7 @@
 
 import getPosts from '$api/getPosts';
 
-const website = 'https://matiashernande.dev'
+const website = 'https://matiashernandez.dev'
 
 const pages = ['about','newsletter','articles','blog']
 

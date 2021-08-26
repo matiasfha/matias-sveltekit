@@ -18,7 +18,7 @@ lang: es
 
 > Esto es parte del material del curso "Javascript para React" del newsletter [Microbytes](https://microbytes.matiashernandez.dev) únete para recibir este contenido directamente en tu inbox
 
-# Closures
+## Closures
 
 > TLDR;  Tienes una closure cuando una función cualquiera accede a una variable fuera de su contexto.
 
