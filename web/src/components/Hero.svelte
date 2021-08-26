@@ -14,11 +14,11 @@
 	>
 		<div class="flex flex-auto flex-col" style="opacity: 1;">
 			<div style="opacity: 1; transform: none;">
-				<h2
+				<h1
 					class="leading-tight text-3xl md:text-4xl text-black dark:text-white text-center md:text-left"
 				>
-					Construyo cosas y ayudo a otros devs a subir de nivel!
-				</h2>
+					Hola!. Soy Matías Hernández. Creo contenido y ayudo a otros devs a subir de nivel!
+				</h1>
 			</div>
 			<div
 				class="flex flex-row md:flex-col mt-14 gap-4 md:gap-0 lg:flex-row lg:space-x-4 lg:space-y-0 justify-between"

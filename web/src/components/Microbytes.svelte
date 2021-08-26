@@ -27,11 +27,11 @@
 						>
 							Microcursos en tu inbox!
 						</h3>
-						<h1
+						<h2
 							class="lg:text-5xl md:text-4xl sm:text-3xl text-2xl font-extrabold dark:text-white text-gray-800 leading-tight text-left"
 						>
 							¿Aún luchas con Javascript y el desarrollo web?
-						</h1>
+						</h2>
 
 						<div class="max-w-screen-md font-body text-left pt-8">
 							<p>

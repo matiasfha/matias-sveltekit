@@ -37,11 +37,11 @@
 					{/if}
 					<div class="flex flex-col col-span-2 lg:items-start items-center w-full">
 						<a href={url}
-							><h1
+							><h3
 								class="lg:text-3xl md:text-2xl text-xl text-left font-extrabold dark:text-white text-gray-800 leading-tight"
 							>
 								{title}
-							</h1>
+							</h3>
 						</a>
 						{#if meta}
 							<p class="my-4 font-medium opacity-75 font-body text-left w-full">

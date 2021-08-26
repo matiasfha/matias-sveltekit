@@ -54,7 +54,7 @@
 			</a>
 			<a
 				class="underlined block whitespace-nowrap text-2xl font-medium focus:outline-none transition"
-				href="/"><h1>Matias Hernández</h1></a
+				href="/"><h2>Matias Hernández</h2></a
 			>
 		</div>
 		<ul class="hidden lg:flex">
