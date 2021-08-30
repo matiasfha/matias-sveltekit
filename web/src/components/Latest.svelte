@@ -15,7 +15,13 @@
 						><div
 							class="aspect-w-2 aspect-h-1 w-full rounded-lg focus:ring transition group-hover:ring-2 ring-yellow-50 ring-offset-2"
 						>
-							<img alt={item.title} class="rounded-lg object-cover" src={`${item.image}?h=220`} />
+							<img
+								alt={item.title}
+								class="rounded-lg object-cover"
+								src={`${item.image}`}
+								loading="lazy"
+								width="220"
+							/>
 						</div>
 
 						<div
