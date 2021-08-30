@@ -18,6 +18,9 @@
 				<a href="/" class="focus:outline-none">
 					<div class="h-64 flex items-center justify-center mb-12 rounded-lg overflow-hidden">
 						<img
+							loading="lazy"
+							height="256"
+							width="100%"
 							alt={item.title}
 							aria-hidden="true"
 							role="presentation"

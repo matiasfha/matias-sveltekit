@@ -27,6 +27,7 @@
 						<div class="col-span-1 max-w-sm">
 							<a href={url}>
 								<img
+									width="256"
 									alt="Featured illustration"
 									src={image}
 									decoding="async"

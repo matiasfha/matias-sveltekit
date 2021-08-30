@@ -141,6 +141,8 @@
 
 	<div class="mb-12 lg:mb-0 items-center justify-center flex">
 		<img
+			height="288"
+			width="144"
 			class="h-auto object-contain max-h-36 md:max-h-72 rounded-full"
 			src={photo}
 			alt="Illistration of a mascot standing on a snowboard surrounded by green leaves, a battery, two skies, a one-wheel, a solar panel, and a recycle logo."
