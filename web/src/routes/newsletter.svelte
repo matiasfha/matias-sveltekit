@@ -24,6 +24,7 @@
 	import CourseCard from '$components/CourseCard.svelte';
 	import microbytes from '$images/microbytes.png';
 	import blocksToHtml from '@sanity/block-content-to-html';
+	import Articles from './articles.svelte';
 	export let courses = [];
 </script>
 
@@ -52,7 +53,6 @@
 				directamente en tu correo.
 			</p>
 		</div>
-
 	</div>
 </section>
 
@@ -62,6 +62,18 @@
 	Listado de Cursos
 </h2>
 
+<div class="grid grid-cols-1 gap-2">
+	<CourseCard
+		logo={courses[1].image.asset.url}
+		title={courses[1].course}
+		description={blocksToHtml({
+			blocks: courses[1].descriptionRaw,
+			projectId: 'cyypawp1',
+			dataset: 'production'
+		})}
+	/>
+</div>
+<!--
 <div class="grid grid-cols-1 gap-2">
 	{#each courses as course}
 		<CourseCard
@@ -76,3 +88,4 @@
 		/>
 	{/each}
 </div>
+-->

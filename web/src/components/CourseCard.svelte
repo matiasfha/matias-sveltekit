@@ -1,12 +1,35 @@
 <script lang="ts">
-	import { fly, slide, blur } from 'svelte/transition';
-	import CtaButton from '$components/CtaButton.svelte';
 	export let logo: string;
 	export let title: string;
 	export let description: string;
-	export let convertKitId: string;
-	let displayForm = false;
+
+	const onClick = () => {
+		ml_account('webforms', '4616584', 'g5i0m4', 'show');
+	};
 </script>
+
+<svelte:head>
+	<script>
+		(function (m, a, i, l, e, r) {
+			m['MailerLiteObject'] = e;
+			function f() {
+				var c = { a: arguments, q: [] };
+				var r = this.push(c);
+				return 'number' != typeof r ? r : f.bind(c.q);
+			}
+			f.q = f.q || [];
+			m[e] = m[e] || f.bind(f.q);
+			m[e].q = m[e].q || f.q;
+			r = a.createElement(i);
+			var _ = a.getElementsByTagName(i)[0];
+			r.async = 1;
+			r.src = l + '?v' + ~~(new Date().getTime() / 1000000);
+			_.parentNode.insertBefore(r, _);
+		})(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
+
+		var ml_account = ml('accounts', '3081949', 'x4j7h5e8a3', 'load');
+	</script>
+</svelte:head>
 
 <div class="relative pt-12 w-full h-full">
 	<img
@@ -31,20 +54,9 @@
 				{@html description}
 			</div>
 
-			<form
-				action={`https://app.convertkit.com/forms/${convertKitId}/subscriptions`}
-				method="post"
-				class="w-full flex flex-col md:flex-row mt-12 gap-4 md:gap-16"
-			>
-				<input
-					name="email_address"
-					placeholder="Tu email"
-					required
-					type="email"
-					class="border-secondary hover:border-primary focus:border-primary focus:bg-secondary px-8 py-4
-					w-full dark:text-white bg-transparent border rounded-lg focus:outline-none"
-				/>
+			<div class="w-full flex flex-col md:flex-row mt-12 gap-4 md:gap-16">
 				<button
+					on:click={onClick}
 					class={`w-full h-14 
         bg-ebony-clay-600 
         dark:bg-gray-200 
@@ -79,11 +91,11 @@
 					<span
 						class={`absolute flex items-center justify-center w-full h-full
          text-gray-100 dark:text-ebony-clay-600  
-         transition-all duration-300 transform group-hover:translate-x-full ease`}>Suscribete</span
+         transition-all duration-300 transform group-hover:translate-x-full ease`}>Únete hoy</span
 					>
-					<span class="relative invisible">Suscribete</span>
+					<span class="relative invisible">Únete hoy</span>
 				</button>
-			</form>
+			</div>
 		</div>
 	</div>
 </div>

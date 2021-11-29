@@ -6,6 +6,7 @@ const eggheadQuery = gql`
 	{
 		instructor(slug: "matias-hernandez") {
 			playlists {
+				id
 				http_url
 				slug
 				title
@@ -13,6 +14,10 @@ const eggheadQuery = gql`
 				created_at
 				description
 				duration
+				access_state
+				tags {
+					name
+				}
 			}
 		}
 	}

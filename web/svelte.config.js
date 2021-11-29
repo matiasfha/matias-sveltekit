@@ -29,9 +29,7 @@ const config = {
                     '$utils': path.resolve('./src/lib/utils')
                 }
             },
-            optimizeDeps: {
-                exclude: ['svelte-modals']
-            }
+            
         }    
     },
     

@@ -15,10 +15,10 @@
 			title: 'Guest Writing',
 			href: '/articles'
 		},
-		// {
-		// 	title: 'Courses',
-		// 	href: '/'
-		// },
+		{
+			title: 'Courses',
+			href: '/courses'
+		},
 		{
 			title: 'Newsletter',
 			href: '/newsletter'
