@@ -7,6 +7,9 @@ export interface Course {
 	description: string;
 	duration: number;
 	image: string;
+	access_state: string;
+	id: number;
+	tags: Array<{ name: string }>;
 }
 export interface FeedItem {
 	title: string;

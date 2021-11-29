@@ -1,6 +1,6 @@
 <script>
 	import CtaButton from '$components/CtaButton.svelte';
-	import photo from '$images/photo.jpg';
+	import photo from '$images/me.png';
 	import escuelaFrontend from '$images/escuelafrontend.png';
 	import { fly } from 'svelte/transition';
 </script>
@@ -19,6 +19,11 @@
 				>
 					Hola!. Soy Matías Hernández. Creo contenido y ayudo a otros devs a subir de nivel!
 				</h1>
+			</div>
+
+			<div class="flex flex-col gap-6 md:flex-row items-start mt-8 justify-between">
+				<CtaButton href="/blog" text="Lee el blog" variant="primary" />
+				<CtaButton href="https://www.cafecon.tech" text="Escucha el podcast" />
 			</div>
 			<div
 				class="flex flex-row md:flex-col mt-14 gap-4 md:gap-0 lg:flex-row lg:space-x-4 lg:space-y-0 justify-between"
@@ -132,18 +137,14 @@
 					></a
 				>
 			</div>
-			<div class="flex flex-col gap-6 md:flex-row items-start mt-8 justify-between">
-				<CtaButton href="/blog" text="Lee el blog" variant="primary" />
-				<CtaButton href="https://www.cafecon.tech" text="Escucha el podcast" />
-			</div>
 		</div>
 	</div>
 
 	<div class="mb-12 lg:mb-0 items-center justify-center flex">
 		<img
-			height="288"
-			width="144"
-			class="h-auto object-contain max-h-36 md:max-h-72 rounded-full"
+			height="688"
+			width="544"
+			class="object-contain backdrop-filter backdrop-blur-xl filter drop-shadow-2xl"
 			src={photo}
 			alt="Illistration of a mascot standing on a snowboard surrounded by green leaves, a battery, two skies, a one-wheel, a solar panel, and a recycle logo."
 			style="opacity: 1; transform: none;"

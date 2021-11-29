@@ -75,4 +75,4 @@
 
 <FavoritesSection {favorites} />
 
-<Microbytes />
+<!-- <Microbytes /> -->
