@@ -54,6 +54,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@metamask/providers": "8.1.1",
 		"@sanity/block-content-to-html": "2.0.0",
 		"@sanity/block-content-to-markdown": "0.0.5",
 		"@sveltejs/adapter-cloudflare-workers": "1.0.0-next.25",
@@ -63,6 +64,7 @@
 		"algoliasearch": "4.10.3",
 		"buffer": "6.0.3",
 		"crypto": "1.0.1",
+		"dotenv": "10.0.0",
 		"graphql": "15.5.1",
 		"graphql-request": "3.5.0",
 		"instantsearch.js": "4.27.2",

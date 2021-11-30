@@ -2,6 +2,7 @@
 	export let href: string;
 	export let text: string;
 	export let variant: 'primary' | 'secondary';
+	export let onClick = () => null;
 
 	const darkClasses = `bg-ebony-clay-600 
         dark:bg-gray-200 
@@ -25,6 +26,7 @@
 
 <a
 	{href}
+	on:click={onClick}
 	class={`w-full h-14 
         ${classes}
         relative inline-flex items-center justify-center p-4 px-8s py-3 overflow-hidden font-medium

@@ -13,7 +13,7 @@
 	export let title;
 	export let description;
 	export let keywords;
-	export let date;
+
 	let currentUrl;
 	afterUpdate(() => {
 		currentUrl = window.location.href;
