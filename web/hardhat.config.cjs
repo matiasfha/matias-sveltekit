@@ -1,5 +1,6 @@
 //
 require("@nomiclabs/hardhat-waffle");
+require('dotenv').config()
 //import '@nomiclabs/hardhat-waffle'
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -14,6 +15,9 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
+const rinkebyUrl  = process.env.RINKEBY_URL
+const ropstenUrl = process.env.ROPSTEN_URL
+const accounts = [`0x${process.env.ACCOUNT_SECRET}`]
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
@@ -26,6 +30,14 @@ module.exports = {
   networks: {
     hardhat: {
       chainId: 1337
+    },
+    rinkeby: {
+      url:rinkebyUrl,
+      accounts
+    },
+    ropsten: {
+      url: ropstenUrl,
+      accounts,
     }
   }
 };
