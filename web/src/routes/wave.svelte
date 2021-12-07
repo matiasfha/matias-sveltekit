@@ -1,16 +1,21 @@
 <script lang="ts">
 	import CtaButton from '$components/CtaButton.svelte';
 	import { ethers } from 'ethers';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import abi from '../artifacts/src/contracts/WavePortal.sol/WavePortal.json';
-	const contractAddress = '0x37033090a87353d527C58d03CB489f7D641a6b53';
-	$: currentAccount = null;
-	$: totalCount = 0;
+	const contractAddress = '0xE48FD418B5970C3Ba7430014B44CcB4168498bd7';
+	let currentAccount = null;
+	let totalCount = 0;
 	$: waiving = false;
+	let allWaves = [];
+	let message;
+	let contract;
+
 	const checkIfWalletIsConnected = async () => {
 		try {
 			const { ethereum } = window;
 			if (!ethereum) {
+				alert('There is no wallet!');
 				return null;
 			}
 			const accounts = await ethereum.request({ method: 'eth_accounts' });
@@ -41,46 +46,73 @@
 			console.error(error);
 		}
 	};
+
+	const onNewWave = (from, timestamp, message) => {
+		allWaves = [
+			...allWaves,
+			{
+				address: from,
+				timestamp: new Date(timestamp * 1000),
+				message
+			}
+		];
+	};
+
+	const onPrize = (from, timestamp) => {
+		alert('You win the prize!!!');
+	};
+
+	const setupContract = async () => {
+		const { ethereum } = window;
+		await checkIfWalletIsConnected();
+		if (ethereum && currentAccount) {
+			// @ts-ignore
+			const provider = new ethers.providers.Web3Provider(ethereum);
+			const signer = provider.getSigner();
+			contract = new ethers.Contract(contractAddress, abi.abi, signer);
+			contract.on('NewWave', onNewWave);
+			contract.on('NewPrize', onPrize);
+		}
+	};
+
 	const wave = async () => {
 		try {
 			const { ethereum } = window;
 			if (ethereum && currentAccount) {
 				waiving = true;
-				// @ts-ignore
-				const provider = new ethers.providers.Web3Provider(ethereum);
-				const signer = provider.getSigner();
-				const wavePortalContract = new ethers.Contract(contractAddress, abi.abi, signer);
-
 				/* Execute the contract */
-				const waveTxn = await wavePortalContract.wave();
+				const waveTxn = await contract.wave(message, { gasLimit: 300000 });
 				await waveTxn.wait();
-				const count = await wavePortalContract.getTotalWaves();
-				totalCount = count.toNumber();
+				message = '';
 			} else {
 				console.log('Not reading', { ethereum, currentAccount });
 				return null;
 			}
 		} catch (error) {
 			console.error(error);
+			alert('The wave was not sent. Try again later');
 			return null;
 		} finally {
 			waiving = false;
 		}
 	};
 
-	const getTotalWaves = async () => {
+	const getAllWaves = async () => {
 		try {
 			const { ethereum } = window;
-			if (ethereum && currentAccount) {
-				// @ts-ignore
-				const provider = new ethers.providers.Web3Provider(ethereum);
-				const signer = provider.getSigner();
-				const wavePortalContract = new ethers.Contract(contractAddress, abi.abi, signer);
+			if (ethereum) {
+				const waves = await contract.getAllWaves();
 
-				const count = await wavePortalContract.getTotalWaves();
-				totalCount = count.toNumber();
+				allWaves = waves.map((item) => {
+					return {
+						address: item.waver,
+						timestamp: new Date(item.timestamp * 1000),
+						message: item.message
+					};
+				});
+				totalCount = allWaves.length;
 			} else {
-				console.log('Not reading', { ethereum, currentAccount });
+				console.log('No ethereum wallet present');
 			}
 		} catch (error) {
 			console.error(error);
@@ -88,8 +120,11 @@
 	};
 
 	onMount(async () => {
-		await checkIfWalletIsConnected();
-		await getTotalWaves();
+		await setupContract();
+		await getAllWaves();
+	});
+	onDestroy(() => {
+		contract?.off('NewWave', onNewWave);
 	});
 </script>
 
@@ -108,14 +143,47 @@
 		>
 	{:else}
 		<div>
-			{#if waiving}
-				<CtaButton text={`Mining the wave...`} onClick={wave} />
-			{:else}
-				<CtaButton
-					text={`Envíame un crypto saludo 👋 Total waves until now: ${totalCount}`}
-					onClick={wave}
+			<div>
+				<input
+					type="text"
+					bind:value={message}
+					class="border-secondary hover:border-primary focus:border-primary focus:bg-secondary px-8 py-5 w-full dark:text-white bg-transparent border rounded-lg focus:outline-none disabled:cursor-not-allowed"
+					placeholder="Tu Saludo"
+					disabled={waiving}
 				/>
-			{/if}
+				{#if waiving}
+					<CtaButton text={`Mining the wave...`} onClick={wave} />
+				{:else}
+					<CtaButton
+						text={`Envíame un crypto saludo 👋 Total waves until now: ${totalCount}`}
+						onClick={wave}
+					/>
+				{/if}
+			</div>
+			<table
+				class="table-auto mt-12 border-collapse border p-2  mb-12 rounded-md
+        dark:bg-gray-200 
+        border-ebony-clay-600 
+        dark:border-gray-200 
+        text-gray-300 dark:text-ebony-clay-600"
+			>
+				<thead>
+					<tr>
+						<th>Address</th>
+						<th>Time</th>
+						<th>Message</th>
+					</tr>
+				</thead>
+				<tbody>
+					{#each allWaves as wave}
+						<tr>
+							<td>{wave.address}</td>
+							<td>{wave.timestamp.toString()}</td>
+							<td>{wave.message}</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
 			<h2 class="text-gray-600 dark:text-white text-md text-center font-body m-0 p-0">
 				Connected to Web3: {currentAccount}
 			</h2>
