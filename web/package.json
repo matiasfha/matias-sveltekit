@@ -9,7 +9,10 @@
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
 		"format": "prettier --write --plugin-search-dir=. .",
-		"hardhat": "hardhat --config hardhat.config.cjs"
+		"hardhat": "hardhat --config hardhat.config.cjs",
+		"hardhat:deploy:rinkeby": "hardhat --config hardhat.config.cjs run scripts/deploy.js --network rinkeby",
+		"hardhat:deploy:local": "hardhat --config hardhat.config.cjs run scripts/deploy.js --network localhost",
+		"hardhat:run": "hardhat --config hardhat.config.cjs run scripts/run.js"
 	},
 	"devDependencies": {
 		"@nomiclabs/hardhat-ethers": "2.0.2",
@@ -63,6 +66,7 @@
 		"@tailwindcss/typography": "0.4.1",
 		"algoliasearch": "4.10.3",
 		"buffer": "6.0.3",
+		"bufferutil": "4.0.5",
 		"crypto": "1.0.1",
 		"dotenv": "10.0.0",
 		"graphql": "15.5.1",
@@ -78,6 +82,7 @@
 		"remark-oembed": "1.2.2",
 		"remark-slug": "6.1.0",
 		"rss-parser": "3.12.0",
+		"utf-8-validate": "5.0.7",
 		"util": "0.12.4"
 	}
 }
