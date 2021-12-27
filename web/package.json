@@ -57,6 +57,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@metamask/detect-provider": "1.2.0",
 		"@metamask/providers": "8.1.1",
 		"@sanity/block-content-to-html": "2.0.0",
 		"@sanity/block-content-to-markdown": "0.0.5",
@@ -64,6 +65,8 @@
 		"@sveltejs/adapter-netlify": "1.0.0-next.32",
 		"@tailwindcss/aspect-ratio": "0.2.1",
 		"@tailwindcss/typography": "0.4.1",
+		"@walletconnect/client": "2.0.0-beta.21",
+		"@walletconnect/types": "2.0.0-beta.21",
 		"algoliasearch": "4.10.3",
 		"buffer": "6.0.3",
 		"bufferutil": "4.0.5",
@@ -82,6 +85,7 @@
 		"remark-oembed": "1.2.2",
 		"remark-slug": "6.1.0",
 		"rss-parser": "3.12.0",
+		"svweb3": "0.0.6",
 		"utf-8-validate": "5.0.7",
 		"util": "0.12.4"
 	}
