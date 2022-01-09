@@ -1,0 +1,151 @@
+---
+date: 2022-02-09T13:13:59.000-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1640794416/es2022_ti2ph6.png
+keywords:
+- Typescript
+- Tips
+- TS 
+- Types
+- Tricks
+- Advanced 
+tag: Post
+title: Typescript avanzado: Tips & Tricks
+description: 
+bannerCredit: 
+favorite: false
+---
+
+<script>
+
+import Twitter from '$components/mdx/Twitter.svelte';
+</script>
+
+
+Si has llegado hasta aquí es por que ya sabes que usar Typescript en tus proyectos es una buena idea y ya pasaste el punto inicial de fricción de agregar tipos en tu código Javascript, ahora: *¿Qué más puedes hacer?*
+
+El uso de Tipos en tu código te permite expresar diferentes restricciones y requerimientos en la forma de tus datos. Muchos de estos casos de uso 
+pueden ser considerados avanzados y también patrones que encontrarás constantemente, por ejemplo: 
+
+> Una cuenta de usuario que debe tener "username" o "email", y "un avatar" o "un emoji"
+
+Es decir, tienes un tipo de dato con una restricción: Cuando un atributo está presente algún otro atributo no debe estarlo.
+
+Este tipo de dato o patrón se conoce como  "Discriminated Unions".
+
+## Discriminated Unions 
+
+Hace un tiempo hice un hilo sobre esto mismo
+
+<Twitter id="1478493352936960003" />
+
+¿Cómo expresas estas condiciones con @typescript?
+
+La solución es una combinación de distintos tipos de datos y el uso de atributos opcionales y `never` tal como en el siguiente ejemplo ([Link al playground de typescript](https://www.typescriptlang.org/play?#code/C4TwDgpgBA6glsAFgVQM4QE4DsCGBbaAXigG8AoKSqAV3W3wgC4pVgM4sBzAbgqojw44AGwD8zLBABumMgF8yZUJFgJEAUUEioxclRp1cBcVEkyMvfQKHDmrdl14Kl4aPCQBBKTmA4MO0j5KAQB7ACs4EzNMSyocb18MOzYOTnlFZTc1TXC4AL1+PFzkhx4gqHifPyjpWWcM1yg0THyoOAATCWo8ACMWuSgAMigACncUQwYoAB9VJE0bAEoh0fGvKv9Z8ZyIxcUAYxCsVgNMcYA5Bg8sdvXE5mb-XTbOqABGABpT+gJmAHJaJgjBA-l9KvcoH9wX4-lBnIdjsBvtstMJrrcEn4HnRWh1mAAmL7WET-YnCUEVTFJSHQjB-eFHE6AjAXK43HZwbEtZ54qAAZi+zOB-yFDApoQipKKEVhDMRyOyqPRHK5T1IL2YABYiaipTZxdLOZCJXB6QdGUiAO4YI6cR6q3GdACsgsmv0hooIBpsepEBuKxsNZrICJO1ttj3xDp5ztdQIYIrdIJ1Ab+JoptP+tL+AAK5EA))
+
+```typescript 
+type WithUsername = {
+    username: string;
+    email?: never
+}
+
+type WithEmail = {
+    username?: never;
+    email: string;
+}
+
+type WithAvatar = {
+    emoji?: never;
+    avatar: string
+}
+
+type WithEmoji = {
+    emoji: string;
+    avatar?: never
+}
+
+
+
+type User = { id: number } & (WithUsername | WithEmail) & (WithAvatar | WithEmoji)
+
+const userWithNameAndAvatar: User = { id: 1, username: 'username', avatar: 'avatar' }
+
+const userWithEmailAndAvatar: User = { id: 2, email: 'email', avatar: 'avatar'}
+
+const userWithNameAndEmoji: User = { id: 3, username: 'username', emoji: 'emoji' }
+
+const userWithEmailAndEmoji: User = { id: 4, email: 'email', emoji: 'emoji'}
+
+const wrongUser: User = { id:5, username: 'username', email: 'email', emoji: 'emoji'} // Error
+
+const wrongUser2: User = { id:5, username: 'username', emoji: 'emoji', avatar: 'avatar' } // Error
+```
+
+Puedes ver que se crearon distintos tipos y luego un tipo que une todos los demás, la combinación de opcional y `never` permite definir que un atributo este presente o dependiendo del otro atributo del conjunto.
+
+
+Cuando creas tipos de datos complejos te encontrarás con ciertos patrones que fácilmente se pueden extraer como utilidades, y el equipo de Typescript lo sabe y ofrece variadas utilidades listas para usar, revisemos algunas
+
+
+## Partial:
+
+Esta utilidad te permite construir un tipo de datos donde todas sus propiedades son opcionales, creando así un tipo que en efecto es un "sub-tipo" del tipo original.
+
+> React.Context es un caso de uso comun en donde el valor inicial del objeto context es desconocido, ergo, opcional.
+
+```typescript 
+type Data = {
+    title: string;
+    description: string;
+    amount: number;
+}
+
+type Context = Partial<Data>
+
+const c1: Context = {}
+const c2: Context = { title: 'Title' }
+
+function updateContext(data: Context, attrToUpdate: Context) {
+    return {...data, ...attrToUpdate}
+}
+
+updateContext(c1, { amount: 10 }) // { amount: 10}
+```
+
+
+## Required:
+
+Al contrario de Partial, Required indica que todas las propiedades del tipo pasado como "argumento" son requeridas.
+
+```typescript 
+type Data = {
+    title?: string;
+    description?: string;
+    amount?: number;
+}
+
+type AllRequired = Required<Data>
+
+const obj1: Data = {}
+
+const obj2: AlLRequired = { title: 'Title'} // Error!
+```
+
+
+## ReadOnly:
+
+Te permite crear un tipo en donde todas las propiedades serán de solo lectura, es decir no se pueden modificar generando el mismo efecto que [congelar un objeto con `Object.freeze`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) pero en tiempo de "compilación" permitiendote encontrar erores antes de llegar al navegador
+
+```typescript 
+type Data = {
+    title: string;
+    description: string;
+    amount?: number;
+}
+
+const obj: ReadOnly<Data> = {
+    title: 'Titulo',
+    description: 'description'
+}
+
+const obj.title = 'Otro titulo'; // Error, title es de solo lectura
+```
