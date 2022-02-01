@@ -16,6 +16,7 @@ export default async function getPosts(): Promise<Post[]> {
 	}
 
 	const posts = await Promise.all(postPromises);
+
 	return posts.sort((a, b) => {
 		const aDate = new Date(a.date).getTime();
 		const bDate = new Date(b.date).getTime();

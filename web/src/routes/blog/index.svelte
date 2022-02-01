@@ -4,6 +4,7 @@
 		const res = await fetch(url);
 		if (res.ok) {
 			const { posts, featured } = await res.json();
+
 			return {
 				props: {
 					posts,
@@ -28,6 +29,7 @@
 	export let featured: Post;
 	let searchItem: string;
 
+	console.log(posts);
 	$: filteredPosts = searchItem
 		? posts.filter((item: Post) => {
 				const title = item.title?.toLowerCase() ?? '';

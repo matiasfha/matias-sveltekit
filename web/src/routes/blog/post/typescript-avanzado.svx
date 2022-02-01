@@ -1,22 +1,17 @@
 ---
-date: 2022-02-09T13:13:59.000-04:00
-banner: https://res.cloudinary.com/matiasfha/image/upload/v1640794416/es2022_ti2ph6.png
+date: 2022-01-09T08:00:00.000-03:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1641750234/typescript-avanzado_qwmeat.png
 keywords:
 - Typescript
+- TS
 - Tips
-- TS 
-- Types
-- Tricks
-- Advanced 
-tag: Post
-title: Typescript avanzado: Tips & Tricks
-description: 
-bannerCredit: 
-favorite: false
+- Tricks 
+tag: Seed
+title: Typescript Avanzado. Trucos y Tips
+description: " "
+bannerCredit:
 ---
-
 <script>
-
 import Twitter from '$components/mdx/Twitter.svelte';
 </script>
 
@@ -149,3 +144,205 @@ const obj: ReadOnly<Data> = {
 
 const obj.title = 'Otro titulo'; // Error, title es de solo lectura
 ```
+
+
+## Pick 
+
+```typescript 
+type Data = {
+    title: string;
+    description: string;
+    amount?: number;
+}
+
+type OnlyStringData = Pick<Data, "title" | "description'>
+
+const info: OnlyStringData = { title: "Title", description: "description" }
+ 
+```
+
+
+## Omit 
+
+```typescript 
+type Data = {
+    title: string;
+    description: string;
+    amount?: number;
+}
+
+type OnlyStringData = Omit<Data, "amount'>
+
+const info: OnlyStringData = { title: "Title", description: "description" }
+ 
+```
+
+
+## Record 
+
+```typescript 
+type Data = {
+    title: string;
+    description: string;
+    amount?: number;
+}
+
+type DataTypes = "type1" | "type2" | "type3" // union de strings 
+
+const sets: Record<DataTypes, Data> = {
+    type1: { title: 'Title1' , description: 'Description 1', amount: 10},
+    type3: { title: 'Title2' , description: 'Description 2', amount: 20},
+    type3: { title: 'Title3' , description: 'Description 3', amount: 30},
+}
+
+```
+
+
+## Exclude
+
+```typescript
+interface Data1 {
+    title: string;
+    description: string;
+    subtitle: string;
+}
+interface Data2 {
+    date: string;
+    url: string;
+}
+interface Data3 {
+    image: string;
+    keywords: string[];
+}
+type Data = { id: string } & (Data1 | Data2 | Data3);
+
+// Ahora necesitas un tipo de dato que solo posea 
+// las propiedades de Data1, Data2 y lo que se agregó en Data 
+// Es decir, excluir todo lo que proviene de Data3 
+
+type Excluded = Exclude<Data, Data3> 
+
+const obj: Excluded = {
+    title: '',
+    description: '',
+    date: '',
+    url: '',
+    id: ''
+}
+```
+
+
+## Extract 
+
+```typescript
+interface BaseUser {
+  email: string
+  image: string | null
+  username: string
+}
+
+interface Profile {
+  id: string
+  email: string
+  image: string | null
+  username: string
+  reviews: string[]
+}
+
+/*
+ * Imagina que ahora quieres encontrar los datos compartidos entre ambas interfaces.
+ * Para encontrar las "claves" de las propiedes puedes usar `keyof` lo que te dará una union de strings con todas las "keys" del tipo 
+ * Y usar Extract para encontrar los valores compartidos
+ */
+
+type Shared = Extract<keyof BaseUser, keyof Profile> // 'email' | 'image' | 'username'
+```
+
+
+## Parameters 
+
+```typescript
+function someFunction(arg1: string, arg2: number) {
+
+}
+
+/*
+* lo mismo que 
+* type ParametersType = [ arg1: string, arg2: number]
+*/
+type ParametersType = Parameters<typeof someFunction>
+
+function otherFunction({arg1, arg2 }: {arg1: string, arg2?: number}) {
+
+}
+
+/*
+* lo mismo que 
+* type RestarametersType = [ {arg1: string, arg2: number | undefined}]
+*/
+type RestParametersType = Parameters<typeof otherFunction> 
+```
+
+
+## ConstructorParameters
+
+En este caso esta utilidad te permite construir una tupla (o arreglo de tipos) en base a los tipos del constructor de una función.
+
+```typescript
+class someClass {
+    constructor({ arg1, arg2}: { arg1: string, arg2?: number[]}) {
+
+    }
+}
+
+/**
+ * Esto genera un tipo con los tipos del constructor
+ * type ClassType = [{ arg1:string, arg2: number[] | undefined }]
+ */
+type ClassType = ConstructorParameters<typeof someClass>
+
+```
+
+## ReturnType
+
+Tal como su nombre lo indica, esta utilidad te permite obtener/extraer el tipo de datos retornados por una función
+
+
+```typescript
+const someFunction = () => {
+
+    return {
+        a:  '',
+        b: [{ attr: 10}]
+    }
+}
+
+/**
+ * type ReturnType = {
+ *  a: string,
+ *  b: Array<{ attr: number}>
+ * }
+ */
+type TheReturn = ReturnType<typeof someFunction>
+```
+
+## InstanceType 
+
+Te permite crear un tipo consistente en el tipo de la instancia de un constructor
+
+```typescript
+class SomeClass {
+    prop = 10
+    prop2 = ['strings','string2']
+}
+
+type Instance1 = InstanceType<typeof SomeClass>
+
+
+const instance: Instance1 = new SomeClass()
+
+const instance2: Instance1 = SomeClasss // Error
+
+```
+
+## ThisParameterType 
