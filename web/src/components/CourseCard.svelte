@@ -2,9 +2,11 @@
 	export let logo: string;
 	export let title: string;
 	export let description: string;
+	export let formId: string;
+	export let codeId: string;
 
 	const onClick = () => {
-		ml_account('webforms', '4616584', 'g5i0m4', 'show');
+		ml_account('webforms', formId, codeId, 'show');
 	};
 </script>
 
