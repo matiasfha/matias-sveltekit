@@ -58,10 +58,6 @@
 				href={`https://twitter.com/share?ref_src=twsrc%5Etfw&url=${currentUrl}`}
 				>Comparte en Twitter</a
 			>
-			<a
-				class="underlined text-ebony-clay-800 hover:text-ebony-clay-600 dark:text-gray-100 dark:hover:text-gray-200 focus:outline-none"
-				href="/">Editar en GitHub</a
-			>
 		</div>
 	</footer>
 </main>
