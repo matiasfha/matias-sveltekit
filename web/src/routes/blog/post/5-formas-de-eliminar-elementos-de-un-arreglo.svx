@@ -1,0 +1,168 @@
+---
+date: 2022-02-16T09:13:59.000-03:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1645021246/devin-avery--Ds7O9Y1_80-unsplash_om4abm.jpg
+keywords:
+- Arreglos
+- Array
+- ES6
+- Array.filter
+- Eliminar 
+- remover 
+- Array.pop 
+- Array.shift 
+- Array.slice
+- egghead
+- lesson
+- tutorial
+tag: Seed
+title: 5 formas de eliminar elementos de un arreglo con Javascript
+description: Manipular arreglos es una tarea escencial y diaria en el desarrollo de software, una de esas manipulaciones es remover elementos de un arreglo. Javascript ofrece varias formas de hacerlo y su elección depende del caso de uso.
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@draufsicht?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Andreas Gücklhorn</a> on <a href="https://unsplash.com/collections/9718937/solar?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+favorite: true
+---
+
+<script>
+import EggheadLesson from '$components/mdx/EggheadLesson.svelte';
+</script>
+
+ > ### TLDR 
+ Lección en video en [egghead](https://egghead.io/lessons/javascript-como-eliminar-elementos-dentro-de-un-arreglo?af=4cexzz)
+
+<EggheadLesson lessonId="javascript-como-eliminar-elementos-dentro-de-un-arreglo" />
+
+Javascript es un lenguaje muy flexible que ofrece múltiples formas de solucionar un problema.
+
+Por ejemplo: Eliminar elementos de un arreglo.
+
+Tienes métodos que mutan el arreglo y métodos inmutables, revisemos algunos
+
+Dentro de los métodos mutables puedes elegir:
+
+`Array.pop`, `Array.shift` y  el operador `delete`.
+
+En el caso de los métodos inmutables tienes:
+
+`Array.slice` y `Array.filter`
+
+## Array.pop
+
+Te permite remover el último elemento de un arreglo cambiando el tamaño del arreglo original.
+
+El elemento que se remueve es retornado a menos que no queden elementos en el arreglo, en ese caso obtienes `undefined`.
+
+```javascript
+const elementos  = [1,2,3,'4',5]
+
+const last = elementos.pop()
+
+console.log(last) // 5
+
+console.log(elementos) // [1,2,3,'4']
+```
+
+## Array.shift 
+
+Este es el método opuesto a Array.pop, permitiéndote remover el primer elemento de un arreglo, retornándolo para su uso posterior. Cambia el arreglo original pues "extrae" el elemento.
+
+```javascript
+const elementos  = [1,2,3,'4',5]
+
+const first = elementos.shift()
+
+console.log(first) // 1
+
+console.log(elementos) // [2,3,'4',5]
+```
+
+
+## Operador delete
+
+Este es en realidad un operador que te permite remover remover una propiedad de un objeto.
+
+Al eliminar un elemento del arreglo el tamaño (length) del arreglo no es afectado.
+
+Puedes ver un ejemplo [en este playground](https://runjs.co/s/rJaFBHQBc) 
+
+```javascript
+const elementos = [1,2,3,'4',5]
+
+console.log(elementos, elementos.length)
+
+delete elementos[1]
+
+console.log(elementos, elementos.length)
+
+```
+## Array.slice 
+
+Este método retorna una copia de una porción del arreglo determinada por los parámetros usados en `slice(start, end)` sin modificar el arreglo original.
+
+Puedes revisar [un demo aqui](https://runjs.co/s/Gzo4fpLnG)
+
+```javascript
+
+const elementos = [1,2,3,'4',5]
+
+// Obten una parte del arreglo desde el indice 0 al 2
+// dejando fuera el indice 2
+const piece1 = elementos.slice(0, 2)
+
+console.log(piece1)
+// [1,2,]
+
+// Obten otra parte del arreglo desde el indice 3 al 5
+const piece2 = elementos.slice(3,5)
+console.log(piece2)
+// ['4',5]
+
+// une las pieces en un nuevo arreglo 
+// usando el operador spread
+const newElementos = [...piece1, ...piece2]
+console.log(newElementos) //[1,2,'4',5]
+
+
+const elementos2 = [...elementos.slice(0,2), ...elementos.slice(3,5)]
+
+
+// Más dinámico
+let indiceAEliminar = 2
+
+const elementos3 = [...elementos.slice(0,indiceAEliminar), ...elementos.slice(indiceAEliminar+=1, elementos.lenght)]
+
+console.log(elementos3)
+
+```
+
+## Array.filter
+
+Una de las formas más directas de remover elementos de un arreglo es utilizar `Array.filter`
+
+`Array.filter` es un método inmutable que retorna un nuevo arreglo con los elementos que cumplan la condición implementada por la función utilizada como argumento.
+
+De forma interna, `filter` itera sobre los elementos del arreglo y aplica la función argumento en cada item retornando un valor _boolean, s_i el elemento pasa la condición se retorna true indicando que este será agregado al nuevo arreglo.
+
+Es un método ideal para remover elementos de un arreglo de objetos.
+
+Puedes ver un [demo en este enlace](https://runjs.co/s/Wjqlbwrs8)
+
+```javascript
+const elementos = [
+  {
+    id : 1,
+    name: 'Matias'
+  },
+  {
+    id: 2,
+    name: 'Juan'
+  }
+ ]
+
+const filtrados = elementos.filter(item => item.name === 'Matias')
+
+console.log(filtrados)
+```
+En este caso, usas la condición `item.name === 'Matias'` para definir que se queda en el nuevo arreglo y que no.
+
+## Conclusión
+
+En resumen las opciones para eliminar elementos de un arreglo son variadas y dependen siempre del caso de uso, tienes opciones que modifican el arreglo original como `pop` y `shift` y opciones que crean un nuevo arreglo como `slice` y `filter`. 
