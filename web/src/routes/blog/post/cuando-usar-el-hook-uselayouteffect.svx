@@ -82,7 +82,7 @@ Y con cada click en el botón, el estado del contador se actualizará, y el DOM 
 
 Sin embargo, si lo que buscas es que tus efectos muten el DOM cambiando la apariencia de este entre el renderizado y tu efecto entonces necesitas usar useLayoutEffect.
 
-**`useLayoutEffect`** se ejecuta de forma **asíncrona**, justo después de que React ejecutó todas las mutaciones pero antes de "pintar" en pantalla.
+**`useLayoutEffect`** se ejecuta de forma **síncrona**, justo después de que React ejecutó todas las mutaciones pero antes de "pintar" en pantalla.
 
 Esto es útil para por ejemplo obtener las medidas del DOM y después ejecutar alguna mutación en base a esos datos.
 
