@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "@walletconnect/client": "2.0.0-beta.21",
+    "@walletconnect/web3-provider": "1.7.0",
+    "buffer": "6.0.3",
+    "web3modal": "1.9.4"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.21",
+    "babel-jest": "27.4.5",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
+    "process": "0.11.10",
+    "vite-compatible-readable-stream": "3.6.0"
+  }
+}
