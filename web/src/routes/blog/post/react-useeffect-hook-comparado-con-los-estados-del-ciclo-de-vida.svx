@@ -52,7 +52,7 @@ El [hook `useEffect`](https://es.reactjs.org/docs/hooks-effect.html) nace dentro
 
 `useEffect` se trata sobre *sincronizar* el estado interno de un componente con algún estado externo, por ejemplo obtener datos desde una api o modificar algo en el DOM.  
 
-> Relacionado: [Algunos errores comunes al utilizar React hooks](https://matiashernandez.dev/algunos-errores-comunes-al-utilizar-react-hooks)
+> Relacionado: [Algunos errores comunes al utilizar React hooks](https://matiashernandez.dev/blog/post/algunos-errores-comunes-al-utilizar-react-hooks)
 
 `useEffect` ejecuta un efecto (side effect) definido como primer argumento a modo de callback.
 
@@ -65,7 +65,7 @@ El efecto sólo se ejecuta cuando una dependencia cambia, he ahí la importancia
 
 El gran cambio aquí es que a la hora de definir tu componente no debes pensar en el cuando (en relación al tiempo) se ejecutará el efecto, si no, en el por qué el efecto se ejecuta (cambio en una dependencia).  
 
-> Relacionado: [¿Qué son los hooks?](https://matiashernandez.dev/que-son-los-hooks)  
+> Relacionado: [¿Qué son los hooks?](https://matiashernandez.dev/blog/post/que-son-los-hooks)  
 
 Finalmente si bien puede que te haga sentido hacer la comparación y relación con la implementación del ciclo de vida esto puede ser detrimental ya que puede llevar a malas prácticas en su implementación, cómo el no uso del arreglo de dependencias u obviar algunas.
 

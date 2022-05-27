@@ -9,8 +9,8 @@ keywords:
 - " Android Studio"
 tag: Seed
 title: Comenzando con React Native
-description: React Native es un framework que te permite utilizar Javascript y React
-  para desarrollar tu aplicación nativa. Para iniciar debes configurar algunas cosas
+description: React Native es un framework que permite utilizar Javascript y React
+  para crear aplicaciones nativas. Para iniciar debes configurar algunas cosas
   primero.
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@oskaryil?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Oskar
   Yildiz</a> on <a href="https://unsplash.com/s/photos/react-native?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>

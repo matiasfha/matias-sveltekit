@@ -8,6 +8,7 @@
 	let slug = '/';
 	let siteUrl = 'https://matiashernandez.dev';
 	const image = getOgImage({ text: title, tags: keywords ?? [] });
+	console.log({ title });
 	if (isBlogPost) {
 		slug = title.toLowerCase().split(' ').join('-');
 		siteUrl = `https://matiashernandez.dev/blog/post/${slug || ''}`;
@@ -28,9 +29,10 @@
 		<meta name="twitter:description" content={description} />
 	{/if}
 	{#if canonical}
-		<link rel="canonial" href={canonical} />
+		<link rel="canonical" href={canonical} />
 		<meta property="og:url" content={canonical} />
 	{:else}
+		<link rel="canonical" href={siteUrl} />
 		<meta property="og:url" content={siteUrl} />
 	{/if}
 	{#if keywords}

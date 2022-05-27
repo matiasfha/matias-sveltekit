@@ -1,6 +1,6 @@
 ---
 date: 2020-07-16T23:41:45.000-04:00
-title: "Arreglos de objetos en Javascript: Como crear y actualizar su contenido"
+title: "Manipular Arreglos de objetos en Javascript"
 hero_image: "/content/images/pierre-bamin-p2pogrtgpra-unsplash.jpg"
 description:
   En Javascript existen diversas formas de crear un arreglo de objetos

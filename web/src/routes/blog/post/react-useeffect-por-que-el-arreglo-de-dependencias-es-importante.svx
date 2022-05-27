@@ -19,9 +19,9 @@ Algunas de esas confusiones se debe al intento de comparar su funcionamiento con
 
 > Recomendado:
 >
-> [¿Qué son los hooks?](https://matiashernandez.dev/que-son-los-hooks)
+> [¿Qué son los hooks?](https://matiashernandez.dev/blog/post/que-son-los-hooks)
 >
-> [Algunos errores comunes al utilizar React hooks.](https://matiashernandez.dev/algunos-errores-comunes-al-utilizar-react-hooks)
+> [Algunos errores comunes al utilizar React hooks.](https://matiashernandez.dev/blog/post/algunos-errores-comunes-al-utilizar-react-hooks)
 
 El hook useEffect recibe dos argumentos, una funcion/callback que define el efecto deseado y un listado/arreglo de valores que definen las dependencias del efecto.
 Estas dependencias le sirven a React para saber cuándo o más bien **por qué** el efecto debe ejecutarse.

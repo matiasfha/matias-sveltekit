@@ -5,11 +5,14 @@ import netlify from '@sveltejs/adapter-netlify'
 import path from 'path'
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+    experimental: {
+        useVitePreprocess: true
+    },
     "extensions": [
         ".svelte",
         ...mdsvexConfig.extensions,
     ],
-    
+
     // Consult https://github.com/sveltejs/svelte-preprocess
     // for more information about preprocessors
     preprocess: [preprocess({
@@ -29,10 +32,10 @@ const config = {
                     '$utils': path.resolve('./src/lib/utils')
                 }
             },
-            
-        }    
+
+        }
     },
-    
+
 };
 
 export default config;

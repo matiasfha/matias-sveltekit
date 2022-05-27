@@ -1,8 +1,7 @@
 <script context="module">
-	import { blockquote } from '$components/typography/index';
+	import { blockquote, h1 } from '$components/typography/index';
 	import { afterUpdate } from 'svelte';
-	export { blockquote };
-
+	export { blockquote, h1 };
 	export const prerender = true;
 </script>
 

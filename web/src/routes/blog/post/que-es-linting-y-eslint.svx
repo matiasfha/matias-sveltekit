@@ -8,7 +8,7 @@ keywords:
 - tooling
 tag: Seed
 title: ¿Qué es Linting y ESLint? 
-description: 
+description: ESLint es una herramienta de análisis estático de tu código que te ayuda a evitar errores comunes.
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@casparrubin?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Caspar Camille Rubin</a> on <a href="https://unsplash.com/s/photos/code-formatting?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> 
 favorite: true
 ---

@@ -37,7 +37,7 @@ React.useLayoutEffect(() => {
 }, [array, dependency])
 ```
 
-> Relacionado: Hablamos sobre la [lista de dependencie este post](https://matiashernandez.dev/react-useeffect-por-que-el-arreglo-de-dependencias-es-importante)
+> Relacionado: Hablamos sobre la [lista de dependencie este post](https://matiashernandez.dev/blog/post/react-useeffect-por-que-el-arreglo-de-dependencias-es-importante)
 
 La diferencia entre ambos radica en el momento en que el efecto definido en el callback es ejecutado.
 
@@ -114,8 +114,8 @@ Por lo general tu efecto busca sincronizar algún estado interno con un estado e
 
 > Recomendado: Hablamos sobre el modelo mental de useEffect y como este sincroniza el estado interno del componente con el externo en estos posts
 >
-> * [React useEffect hook comparado con los estados del ciclo de vida](https://matiashernandez.dev/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida)
-> * [Algunos errores comunes al utilizar React Hooks](https://matiashernandez.dev/algunos-errores-comunes-al-utilizar-react-hooks)
+> * [React useEffect hook comparado con los estados del ciclo de vida](https://matiashernandez.dev/blog/post/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida)
+> * [Algunos errores comunes al utilizar React Hooks](https://matiashernandez.dev/blog/post/algunos-errores-comunes-al-utilizar-react-hooks)
 
 ## ¿Cuándo use useLayoutEffect?
 

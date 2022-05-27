@@ -38,6 +38,7 @@
 <Seo
 	title="Matias Hernández | Courses"
 	keywords={['Courses', 'Javascript', 'Tutorials', 'Instructor', 'React', 'egghead.io']}
+	description="Course materials for egghead.io"
 />
 
 <Featured
@@ -58,9 +59,9 @@
 	/>
 </div>
 <section class="mt-24">
-	<h2 class="leading-tight text-3xl md:text-4xl mb-3 dark:text-white text-ebony-clay-800s">
+	<h1 class="leading-tight text-3xl md:text-4xl mb-3 dark:text-white text-ebony-clay-800s">
 		Courses
-	</h2>
+	</h1>
 	<div class="grid md:grid-cols-3 grid-cols-1 md:gap-16 gap-20">
 		{#each filteredCourse as item}
 			<div class="group peer flex flex-col ">
