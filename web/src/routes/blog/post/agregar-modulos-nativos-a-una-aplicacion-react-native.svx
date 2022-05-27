@@ -9,10 +9,7 @@ keywords:
 - Native Module
 tag: Seed
 title: Agregar Módulos Nativos a Una Aplicación React Native
-description: React Native permite que el uso de código nativo para utilizar el potencial
-  de cada plataforma, es una característica avanzada y que requiere algunos conocimientos
-  más allá de Javascript y React, pero si la plataforma no te ofrece alguna característica
-  que requieres, es posible crearla.
+description: React Native permite usar código nativo aprovechando el potencial de cada plataforma. Permite implementar nuevas características directamente en la plataforma.
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@szmigieldesign?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Lukasz
   Szmigiel</a> on <a href="https://unsplash.com/s/photos/nature?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 

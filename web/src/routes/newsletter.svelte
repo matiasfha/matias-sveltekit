@@ -28,7 +28,11 @@
 	export let courses = [];
 </script>
 
-<Seo title="Matias Hernández | MicroBytes newsletter" keywords={['newsletter', 'microbytes']} />
+<Seo
+	title="Matias Hernández | MicroBytes newsletter"
+	keywords={['newsletter', 'microbytes']}
+	description="Newsletter de micro-cursos"
+/>
 
 <section class="mt-24">
 	<img

@@ -42,6 +42,7 @@
 <Seo
 	title="Matias Hernández | Guest Writing"
 	keywords={['Articles', 'Tech Writing', 'Tutorials']}
+	description="Artículos escritos para otras publicaciones"
 />
 
 <Featured
@@ -64,7 +65,7 @@
 	/>
 </div>
 <section class="mt-12">
-	<h2 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">Guest Writing</h2>
+	<h1 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">Guest Writing</h1>
 	<div class="grid md:grid-cols-3 grid-cols-1 md:gap-16 gap-8">
 		{#each filteredArticles as content}
 			<ContentCard {content} />

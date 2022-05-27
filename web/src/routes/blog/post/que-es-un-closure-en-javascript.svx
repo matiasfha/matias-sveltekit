@@ -16,7 +16,7 @@ lang: es
 ---
 
 
-> Esto es parte del material del curso "Javascript para React" del newsletter [Microbytes](https://microbytes.matiashernandez.dev) únete para recibir este contenido directamente en tu inbox
+> Esto es parte del material del curso "Javascript para React" del newsletter [Microbytes](/newsletter) únete para recibir este contenido directamente en tu inbox
 
 ## Closures
 
@@ -112,9 +112,9 @@ Sabemos que los hooks se basan en el funcionamiento de las closures, y uno de lo
 
 > Puedes leer más en
 
-> [https://matiashernandez.dev/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida](https://matiashernandez.dev/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida)
+> [https://matiashernandez.dev/blog/post/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida](https://matiashernandez.dev/blog/post/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida)
 
-> [https://matiashernandez.dev/react-useeffect-por-que-el-arreglo-de-dependencias-es-importante](https://matiashernandez.dev/react-useeffect-por-que-el-arreglo-de-dependencias-es-importante)
+> [https://matiashernandez.dev/blog/post/react-useeffect-por-que-el-arreglo-de-dependencias-es-importante](https://matiashernandez.dev/blog/post/react-useeffect-por-que-el-arreglo-de-dependencias-es-importante)
 
 `useEffect` recibe un `callback` que es en efecto un closure y un arreglo de dependencias que le indica que "valores observar" para ejecutar el closure definido.
 

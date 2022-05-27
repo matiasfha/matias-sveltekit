@@ -1,6 +1,6 @@
 ---
 layout: pages
-title: Sobre mi
+title: Un poco sobre mi :D
 description: Un pequeño resumen sobre mi :D
 ---
 

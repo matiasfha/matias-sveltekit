@@ -6,9 +6,7 @@ keywords:
 - " Javacript"
 tag: Seed
 title: "¿Qué es Typescript?"
-description: Typescript es un lenguaje compilado o transpilado que genera código Javascript,
-  es decir escribirás código Typescript pero el producto final, el que se ejecuta
-  es Javascript.
+description: Typescript es un lenguaje que agrega tipado fuerte por sobre Javascript.
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@solmaz67?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">solmaz
   hatamian</a> on <a href="https://unsplash.com/s/photos/typescript?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 

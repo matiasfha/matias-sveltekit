@@ -8,7 +8,7 @@ keywords:
 - Tricks 
 tag: Seed
 title: Typescript Avanzado. Trucos y Tips
-description: " "
+description: Trucos y tips sobre typescript para avanzar en su uso.
 bannerCredit:
 ---
 <script>

@@ -62,7 +62,7 @@ Es decir, con Clojure obtienes el poder de la ya muy probada y aceptada JVM y ad
 
 Clojure, es también un lenguaje dinámico pero con estructuras de datos estrictamente inmutables, esto proporciona una gran facibilidad de uso para la manipulación de datos, además esta inmutabilidad provee facilidades también para el desarrollo de aplicaciones multi-hilos evitando “race conditions” y otros problemas presentes en lenguajes mutables como Java.
 
-Es de tipado dinámico, esto quizá pueda ser algo que te aleje del lenguaje (sobre todo si eres un entusiaste de lenguajes [Typescript](https://matiashernandez.dev/que-es-typescript)), pero la filosofía del lenguaje y el ciclo de desarrollo te aseguran que los clásico errores de tipo de datos (`undefined is not a function`) no ocurrirán. Clojure es conocido por ser un lenguaje _REPL Driven Development_, es decir, utiliza su ultra poderosa REPL (Read Eval Print Loop) para ir testeando “in live” el código que vas escribiendo.
+Es de tipado dinámico, esto quizá pueda ser algo que te aleje del lenguaje (sobre todo si eres un entusiaste de lenguajes [Typescript](https://matiashernandez.dev/blog/post/que-es-typescript)), pero la filosofía del lenguaje y el ciclo de desarrollo te aseguran que los clásico errores de tipo de datos (`undefined is not a function`) no ocurrirán. Clojure es conocido por ser un lenguaje _REPL Driven Development_, es decir, utiliza su ultra poderosa REPL (Read Eval Print Loop) para ir testeando “in live” el código que vas escribiendo.
 
 Otra característica “cool”, heredada desde Lisp es la [**homoiconocidad**]() el propio programa que estás escribiendo puede ser manipulado como datos utilizando Clojure dado que un programa Clojure es representado como estructuras de datos Clojure.
 
