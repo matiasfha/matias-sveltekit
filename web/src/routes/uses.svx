@@ -20,7 +20,7 @@ Puedes revisar [uses.tech](https://uses.tech) para ver una lista completa de pag
 
 - Estoy usando [Brave](https://brave.com/) como mi browser principal.
 - Uso [Obsidian](https://obsidian.md/) para tomar notas y generar ideas.
-- También intento utilizar una libreta para llevar un diario tipo "Bullet Journal"2.
+- También intento utilizar una libreta para llevar un diario tipo "Bullet Journal".
 - [Spotify](https://open.spotify.com) para consumir música.
 - Y [Brain.fm](https://brain.fm) para buscar foco.
 - Para editar mis podcast utilizo la asombrosa [Descript](https://www.descript.com?lmref=sMc1WQ) y [Logic Pro X](https://www.apple.com/la/logic-pro/)
@@ -28,13 +28,17 @@ Puedes revisar [uses.tech](https://uses.tech) para ver una lista completa de pag
 
 ## Desk Setup
 
-- Estoy feliz con M1 Macbook Pro 13''.
+- Estoy feliz con M1 Macbook Pro 13'' 16GB RAM.
 - Mi Mouse es un [MX Master 2S](https://amzn.to/31I1Ahv).
 - Mi teclado actual es un [Keychron K3](https://www.keychron.com/collections/keyboard/products/keychron-k3-wireless-mechanical-keyboard).
 - Como micrófono utilzo un [Shure BETA 87A microphone](https://amzn.to/2AtEi3H).
-- Y [Focusrite Scarlett Solo 3rd gen](https://amzn.to/2VEWuyP) como interface de audio.
+- El boom arm del micrófono es el [Blue Compass](https://www.bluemic.com/en-us/products/compass/)
+- Una [Focusrite Scarlett Solo 3rd gen](https://amzn.to/2VEWuyP) como interface de audio.
 - Como audifonos utilizo (JBL Tune 600BTNC)[https://amzn.to/2ZDD4v9] con cancelación de ruido.
 - Y la webcam es una [Logitech c9222](https://www.logitech.com/en-us/products/webcams/c922-pro-stream-webcam.960-001087.html)
+- El monitor es un [Xiaomi Mi 34'' curved](https://www.mi.com/global/monitor34/)
+- Como ilumninación tengo una [Xiaomi Bar Light](https://www.mi.com/global/mi-computer-monitor-light-bar)
+- Un standing desk de manofactura local y un desk shelf a medida.
 
 ## Books
 - [Badass by Kathy Sierra](https://amzn.to/2VItO7Y)
