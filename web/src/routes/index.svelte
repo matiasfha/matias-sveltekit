@@ -54,7 +54,10 @@
 		'Svelte',
 		'SvelteKit',
 		'Cursos',
-		'Typescript'
+		'Typescript',
+		'Mentoría',
+		'Aprende React',
+		'Aprender'
 	]}
 	description="Personal site of Matias Hernandez, dev, instructor and podcaster. Helping devs to level up their careers as software Developers"
 />

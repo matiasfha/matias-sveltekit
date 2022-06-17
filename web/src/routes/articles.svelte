@@ -41,7 +41,17 @@
 
 <Seo
 	title="Matias Hernández | Guest Writing"
-	keywords={['Articles', 'Tech Writing', 'Tutorials']}
+	keywords={[
+		'Articles',
+		'Tech Writing',
+		'Tutorials',
+		'React',
+		'Typescript',
+		'Svelte',
+		'SvelteKit',
+		'Cursos',
+		'Aprende React'
+	]}
 	description="Artículos escritos para otras publicaciones"
 />
 
