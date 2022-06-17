@@ -8,7 +8,10 @@ export default async function getPosts(): Promise<Post[]> {
 		const promise = resolver().then((post) => {
 			const slug = path.match(/([\w-]+)\.(svelte\.md|md|svx)/i)?.[1] ?? null;
 			return {
-				slug,
+				slug: slug
+					.normalize('NFD')
+					.replace(/[\u0300-\u036f]/g, '')
+					.replace(/\?|\¿/g, ''),
 				...post.metadata
 			};
 		});

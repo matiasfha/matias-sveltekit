@@ -20,6 +20,15 @@ const config = {
     }), mdsvex(mdsvexConfig)],
 
     kit: {
+        prerender: {
+            enabled: true,
+            onError: ({ status, path, referrer, referenceType }) => {
+                if (path.startsWith('/blog')) throw new Error('Missing a blog page!');
+                console.warn(
+                    `${status} ${path}${referrer ? ` (${referenceType} from ${referrer})` : ''}`
+                );
+            }
+        },
         adapter: netlify(),
         // hydrate the <div id="svelte"> element in src/app.html
         target: '#svelte',

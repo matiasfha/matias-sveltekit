@@ -8,9 +8,14 @@
 	let slug = '/';
 	let siteUrl = 'https://matiashernandez.dev';
 	const image = getOgImage({ text: title, tags: keywords ?? [] });
-	console.log({ title });
 	if (isBlogPost) {
-		slug = title.toLowerCase().split(' ').join('-');
+		slug = title
+			.normalize('NFD')
+			.replace(/[\u0300-\u036f]/g, '')
+			.replace(/\?|\¿/g, '')
+			.toLowerCase()
+			.split(' ')
+			.join('-');
 		siteUrl = `https://matiashernandez.dev/blog/post/${slug || ''}`;
 	}
 </script>
@@ -19,8 +24,8 @@
 	<title>{title}</title>
 	<meta name="twitter:creator" content="https://twitter.com/matiasfha/" />
 	<meta property="og:type" content={isBlogPost ? 'article' : 'website'} />
-	<meta name="robots" content="index, follow" />
-	<meta name="googlebot" content="index,follow" />
+	<meta name="robots" content="index, follow, dofollow" />
+	<meta name="googlebot" content="index,follow, dofollow" />
 	<meta name="twitter:site" content={siteUrl} />
 	<meta property="og:site_name" content={siteUrl} />
 	{#if description}
