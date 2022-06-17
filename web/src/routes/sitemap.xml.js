@@ -3,10 +3,11 @@ import getPosts from '$api/getPosts';
 
 const website = 'https://matiashernandez.dev'
 
-const pages = ['about','newsletter','articles','blog']
+const pages = ['about', 'newsletter', 'articles', 'blog']
 
 export async function get() {
   const posts = await getPosts()
+  console.log(posts)
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
     'Content-Type': 'application/xml',
@@ -34,10 +35,10 @@ export async function get() {
             <priority>0.7</priority>
         </url>
         `)
-      .join('')}
+        .join('')}
       ${posts
         .map(post =>
-`
+          `
     <url>
         <loc>${website}/blog/post/${post.slug}</loc>
         <changefreq>daily</changefreq>

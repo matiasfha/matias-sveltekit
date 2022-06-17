@@ -37,7 +37,6 @@
 	import Featured from '$components/Featured.svelte';
 	import LatestSection from '$components/Latest.svelte';
 	import FavoritesSection from '$components/Favorites.svelte';
-	import Microbytes from '$components/Microbytes.svelte';
 	export let latest: Latest[];
 	export let favorites: ContentElement[];
 </script>
