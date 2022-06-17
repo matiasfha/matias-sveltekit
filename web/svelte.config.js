@@ -14,7 +14,7 @@ const config = {
     ],
 
     // Consult https://github.com/sveltejs/svelte-preprocess
-    // for more information about preprocessors
+    // for more information about preprocessorssg
     preprocess: [preprocess({
         "postcss": true
     }), mdsvex(mdsvexConfig)],
@@ -30,9 +30,7 @@ const config = {
                 );
             }
         },
-        adapter: netlify({
-            edge: true
-        }),
+        adapter: netlify(),
         vite: {
             resolve: {
                 alias: {
