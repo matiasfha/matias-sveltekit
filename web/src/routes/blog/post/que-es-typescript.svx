@@ -3,7 +3,10 @@ date: 2020-10-01T15:45:22-03:00
 banner: https://res.cloudinary.com/matiasfha/image/upload/v1601578304/solmaz-hatamian-YSaKXcavOko-unsplash_xcnlkc.jpg
 keywords:
 - Typescript
-- " Javacript"
+- Javacript
+- Que es typescript
+- typescript que es
+- qué es typescript
 tag: Seed
 title: "¿Qué es Typescript?"
 description: Typescript es un lenguaje que agrega tipado fuerte por sobre Javascript.
