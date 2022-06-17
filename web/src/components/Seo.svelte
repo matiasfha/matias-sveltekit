@@ -12,10 +12,11 @@
 		slug = title
 			.normalize('NFD')
 			.replace(/[\u0300-\u036f]/g, '')
-			.replace(/\?|\¿/g, '')
+			.replace(/\?|\¿|\:/g, '')
 			.toLowerCase()
 			.split(' ')
 			.join('-');
+		console.log(slug);
 		siteUrl = `https://matiashernandez.dev/blog/post/${slug || ''}`;
 	}
 </script>
