@@ -8,7 +8,7 @@ const config = {
     experimental: {
         useVitePreprocess: true
     },
-    "extensions": [
+    extensions: [
         ".svelte",
         ...mdsvexConfig.extensions,
     ],
@@ -20,6 +20,7 @@ const config = {
     }), mdsvex(mdsvexConfig)],
 
     kit: {
+
         prerender: {
             enabled: true,
             onError: ({ status, path, referrer, referenceType }) => {
@@ -32,8 +33,6 @@ const config = {
         adapter: netlify({
             edge: true
         }),
-        // hydrate the <div id="svelte"> element in src/app.html
-        target: '#svelte',
         vite: {
             resolve: {
                 alias: {
