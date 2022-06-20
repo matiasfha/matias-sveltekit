@@ -24,7 +24,7 @@
 		'Audiencia',
 		'Audience'
 	]}
-	description="Become a sponsor and advertise your product or service to an audience of over 50,000 Flutter developers."
+	description="Become a sponsor and advertise your product or service to an audience of over 6,000 web developers."
 />
 
 <header
@@ -36,8 +36,7 @@
 		Sponsorship and advertising
 	</h1>
 	<p class="text-gray-200 w-3/4 md:w-1/4 text-sm md:text-lg font-body">
-		Become a sponsor and advertise your product or service to an audience of over 70,000 Flutter
-		developers.
+		Become a sponsor and advertise your product or service to an audience of over 6,000 web developers.
 	</p>
 </header>
 
