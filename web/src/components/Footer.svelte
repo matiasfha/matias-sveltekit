@@ -152,6 +152,13 @@
 								>{$t('common.sponsor')}</a
 							>
 						</li>
+						<li class="py-1">
+							<a
+								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
+								href="mailto:work@matiashernandez.dev"
+								>{$t('common.hire')}</a
+							>
+						</li>
 					</ul>
 				</div>
 			</div>
