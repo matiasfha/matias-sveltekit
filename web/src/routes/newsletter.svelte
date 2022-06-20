@@ -24,7 +24,6 @@
 	import CourseCard from '$components/CourseCard.svelte';
 	import microbytes from '$images/microbytes.png';
 	import blocksToHtml from '@sanity/block-content-to-html';
-	import Articles from './articles.svelte';
 	export let courses = [];
 </script>
 

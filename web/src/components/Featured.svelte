@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Buzzsprout from './mdx/Buzzsprout.svelte';
+	import { t } from '$lib/translations';
 	export let image: string;
 	export let title: string;
 	export let meta: string;
@@ -10,11 +11,13 @@
 </script>
 
 <section class="mt-12 ">
-	<h2 class="leading-tight text-3xl md:text-4xl mb-3 dark:text-white text-ebony-clay-600">
-		Destacados
+	<h2
+		class="leading-tight sm:font-semibold font-bold text-3xl md:text-4xl mb-3 dark:text-white text-ebony-clay-600"
+	>
+		{$t('common.featured')}
 	</h2>
 	<div
-		class="relative flex items-center justify-center bg-white text-white overflow-hidden rounded-lg shadow-md dark:bg-gray-800 focus:outline-none transition hover:ring-2 ring-yellow-50 ring-offset-2 backdrop-filter"
+		class="relative flex items-center justify-center bg-white text-white overflow-hidden rounded-lg shadow-md dark:bg-gray-800 focus:outline-none transition hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2 backdrop-filter"
 	>
 		<div class="relative z-10 px-5 sm:text-left text-center py-10">
 			<div
@@ -45,7 +48,9 @@
 							</h3>
 						</a>
 						{#if meta}
-							<p class="my-4 font-medium opacity-75 font-body text-left w-full">
+							<p
+								class="my-4 font-medium opacity-75 font-body text-left capitalize text-ebony-clay-800 py-1 px-2 rounded bg-green-400 inline-block w-[max-content]"
+							>
 								{meta}
 							</p>
 						{/if}
@@ -56,7 +61,7 @@
 							</div>
 						{:else if description}
 							<div
-								class="max-w-screen-md font-body text-ebony-clay-800 dark:text-gray-50 text-left md:text-center"
+								class="max-w-screen-md font-body text-ebony-clay-800 dark:text-gray-50 text-left"
 							>
 								<p>
 									{description}

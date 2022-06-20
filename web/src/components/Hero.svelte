@@ -3,6 +3,7 @@
 	import photo from '$images/me.png';
 	import escuelaFrontend from '$images/escuelafrontend.png';
 	import { fly } from 'svelte/transition';
+	import { t } from '$lib/translations';
 </script>
 
 <div
@@ -17,13 +18,13 @@
 				<h1
 					class="leading-tight text-3xl md:text-4xl text-black dark:text-white text-center md:text-left"
 				>
-					Hola!. Soy Matías Hernández. Creo contenido y ayudo a otros devs a subir de nivel!
+					{$t('home.presentation')}
 				</h1>
 			</div>
 
 			<div class="flex flex-col gap-6 md:flex-row items-start mt-8 justify-between">
-				<CtaButton href="/blog" text="Lee el blog" variant="primary" />
-				<CtaButton href="https://www.cafecon.tech" text="Escucha el podcast" />
+				<CtaButton href="/blog" text={$t('home.read_the_blog')} variant="primary" />
+				<CtaButton href="https://www.cafecon.tech" text={$t('home.listen_the_podcast')} />
 			</div>
 			<div
 				class="flex flex-row md:flex-col mt-14 gap-4 md:gap-0 lg:flex-row lg:space-x-4 lg:space-y-0 justify-between"

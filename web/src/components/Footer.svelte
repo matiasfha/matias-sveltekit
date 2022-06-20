@@ -1,5 +1,6 @@
 <script>
 	import escuelaFrontend from '$images/escuelafrontend.png';
+	import { locale, t } from '$lib/translations';
 </script>
 
 <footer class="pb-16 mt-32 pt-32 border-t border-gray-200 dark:border-gray-800 px-10">
@@ -129,19 +130,26 @@
 						<li class="py-1">
 							<a
 								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="mailto:hola@matiashernandez.dev">Contacto</a
+								href="mailto:hola@matiashernandez.dev">{$t('common.contact')}</a
 							>
 						</li>
 						<li class="py-1">
 							<a
 								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="https://matiasfha.dev/consulting">Consultoría y Mentoría</a
+								href="https://matiasfha.dev/consulting">{$t('common.consultancy')}</a
 							>
 						</li>
 						<li class="py-1">
 							<a
 								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="https://racket.com/matias/ask">Pregunta lo que quieras</a
+								href="https://racket.com/matias/ask">{$t('common.ama')}</a
+							>
+						</li>
+						<li class="py-1">
+							<a
+								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
+								href={locale.get() === 'en' ? '/sponsorships' : '/es/sponsorships'}
+								>{$t('common.sponsor')}</a
 							>
 						</li>
 					</ul>

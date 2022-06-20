@@ -1,8 +1,22 @@
 <script lang="ts">
 	import logo from '$images/logo.png';
-	import { fly, slide, blur } from 'svelte/transition';
+	import { blur } from 'svelte/transition';
+	import { t, locale } from '$lib/translations';
+	import { theme } from '$lib/stores';
+	import { browser } from '$app/env';
+	import { goto } from '$app/navigation';
+
+	const getCurrentRoute = () => {
+		if (browser) {
+			const { pathname } = window.location;
+			console.log(pathname);
+			return pathname;
+		}
+		return '';
+	};
+
 	// @TODO this can go in sanity
-	const menuLinks: { title: string; href: string }[] = [
+	$: menuLinks = [
 		{
 			title: 'Podcast',
 			href: 'https://www.cafecon.tech'
@@ -12,24 +26,29 @@
 			href: '/blog'
 		},
 		{
-			title: 'Guest Writing',
+			title: $t('common.navbar.articles'),
 			href: '/articles'
 		},
 		{
-			title: 'Courses',
+			title: $t('common.courses'),
 			href: '/courses'
 		},
 		{
 			title: 'Newsletter',
-			href: '/newsletter'
+			href: '/newsletter',
+			hide: locale.get() === 'en'
 		},
 		{
-			title: 'Sobre mi',
-			href: '/about'
+			title: $t('common.about'),
+			href: locale.get() === 'en' ? '/about' : '/es/about'
+		},
+		{
+			title: $t('common.sponsor'),
+			href: locale.get() === 'en' ? '/sponsorships' : '/es/sponsorships'
 		}
 	];
 	// Theme switcher
-	import { theme } from '$lib/stores';
+
 	const toggleTheme = () => {
 		const current = theme.get().theme;
 		if (current === 'light') {
@@ -44,6 +63,30 @@
 		});
 	};
 	let menu = false;
+
+	$: showDropdown = false;
+	$: selectedLang = locale.get();
+
+	const toggleDropdown = () => {
+		showDropdown = !showDropdown;
+	};
+
+	const changeLang = (lang: 'en' | 'es') => {
+		const route = getCurrentRoute();
+		locale.set(lang);
+		selectedLang = lang;
+		showDropdown = false;
+		if (route === '/about' && lang == 'es') {
+			goto('/es/about');
+		} else if (route === '/es/about' && lang == 'en') {
+			goto('/about');
+		}
+		if(route === '/sponsorships' && lang == 'es') {
+			goto('/es/sponsorships');
+		} else if(route === '/es/sponsorships' && lang == 'en') {
+			goto('/sponsorships');
+		}
+	};
 </script>
 
 <div class={`px-6 md:px-8 pt-9 pb-4 lg:px-10 lg:pt-12   dark:text-gray-200 text-gray-700`}>
@@ -59,13 +102,15 @@
 		</div>
 		<ul class="hidden lg:flex">
 			{#each menuLinks as item}
-				<li class="px-5 py-2">
-					<a
-						sveltekit:prefetch
-						class="hover:text-primary underlined focus:text-primary block whitespace-nowrap text-lg font-medium focus:outline-none text-secondary"
-						href={item.href}>{item.title}</a
-					>
-				</li>
+				{#if !item.hide}
+					<li class="px-5 py-2">
+						<a
+							sveltekit:prefetch
+							class="hover:text-primary underlined focus:text-primary block whitespace-nowrap text-lg font-medium focus:outline-none text-secondary"
+							href={item.href}>{item.title}</a
+						>
+					</li>
+				{/if}
 			{/each}
 
 			<li>
@@ -101,6 +146,46 @@
 						/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg
 					></button
 				>
+			</li>
+			<li>
+				<button
+					type="button"
+					class="px-2 bg-ebony-clay-600 dark:bg-gray-100 rounded-full w-8 h-8 text-gray-100 dark:text-ebony-clay-800 mt-1 pl-[0.4rem]  ml-2"
+					id="menu-button"
+					aria-expanded="true"
+					aria-haspopup="true"
+					on:click={toggleDropdown}
+				>
+					{selectedLang.toUpperCase()}
+				</button>
+
+				{#if showDropdown}
+					<div
+						class="origin-top-right absolute right-0 mt-2 w-26 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-10"
+						role="menu"
+						aria-orientation="vertical"
+						aria-labelledby="menu-button"
+						tabindex="-1"
+					>
+						<div class="py-1" role="none">
+							<!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+							<button
+								class="text-gray-700 block px-4 py-2 text-sm"
+								role="menuitem"
+								tabindex="-1"
+								id="menu-item-0"
+								on:click={() => changeLang('en')}>EN</button
+							>
+							<button
+								class="text-gray-700 block px-4 py-2 text-sm"
+								role="menuitem"
+								tabindex="-1"
+								id="menu-item-1"
+								on:click={() => changeLang('es')}>ES</button
+							>
+						</div>
+					</div>
+				{/if}
 			</li>
 		</ul>
 

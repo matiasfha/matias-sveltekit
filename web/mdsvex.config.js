@@ -1,6 +1,6 @@
 import headings from "remark-autolink-headings";
 import slug from "remark-slug";
-import  highlight from 'remark-highlight.js';
+import highlight from 'remark-highlight.js';
 import abbr from 'remark-abbr';
 import urls from 'rehype-urls'
 import autoLinkHeadings from 'rehype-autolink-headings'
@@ -21,17 +21,18 @@ function processUrl(url, node) {
 }
 
 const config = {
-  "extensions": [".svx"],
-  "layout": {
-    blog: "./src/components/PostLayout.svelte",
-	pages: "./src/components/PageLayout.svelte",
-  },
-  "smartypants": {
-    "dashes": "oldschool"
-  },
+	"extensions": [".svx"],
+	"layout": {
+		blog: "./src/components/PostLayout.svelte",
+		pages: "./src/components/PageLayout.svelte",
+		sponsor: "./src/components/SponsorLayout.svelte",
+	},
+	"smartypants": {
+		"dashes": "oldschool"
+	},
 
-  "remarkPlugins": [headings, slug, highlight, abbr],
-  "rehypePlugins": [[urls, processUrl],[autoLinkHeadings, { behavior: 'prepend'}]]
+	"remarkPlugins": [headings, slug, highlight, abbr],
+	"rehypePlugins": [[urls, processUrl], [autoLinkHeadings, { behavior: 'prepend' }]]
 };
 
 export default config;

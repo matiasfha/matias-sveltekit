@@ -1,22 +1,23 @@
 const config = {
 	mode: "jit",
-	darkMode:"class",
+	darkMode: "class",
 	purge: [
 		"./src/**/*.{html,js,svelte,ts}",
 	],
 	variants: {
 		extend: {
-			typography: ['dark','responsive']
+			typography: ['dark', 'responsive']
 		}
 	},
 	theme: {
 		fontFamily: {
-			'sans': ['Poppins','sans-serif'],
+			'sans': ['Poppins', 'sans-serif'],
 			'body': ['Anonymous Pro', 'monospace']
 		},
 		extend: {
 			colors: {
-				'ebony-clay': {  DEFAULT: '#242F42',  '50': '#8BA0C1',  '100': '#7A92B8',  '200': '#5977A6',  '300': '#475F85',  '400': '#364763',  '500': '#242F42',  '600': '#121821',  '700': '#000000',  '800': '#000000',  '900': '#000000'},
+				'ebony-clay': { DEFAULT: '#242F42', '50': '#8BA0C1', '100': '#7A92B8', '200': '#5977A6', '300': '#475F85', '400': '#364763', '500': '#242F42', '600': '#121821', '700': '#000000', '800': '#000000', '900': '#000000' },
+				'purple': { DEFAULT: '#6366F1' }
 			},
 			typography: theme => {
 				const fontSize = size => {
@@ -41,7 +42,7 @@ const config = {
 								},
 								strong: {
 									fontWeight: theme('fontWeight.bold'),
-                  					fontSize: fontSize('lg'),									
+									fontSize: fontSize('lg'),
 								},
 								pre: {
 									backgroundColor: theme('colors.ebony-clay.700')
@@ -67,7 +68,7 @@ const config = {
 								code: {
 									color: theme('colors.gray.200'),
 								}
-								
+
 							}
 						]
 					},
@@ -81,9 +82,9 @@ const config = {
 							}
 						]
 					},
-					
+
 				}
-			}	
+			}
 		},
 	},
 	plugins: [
