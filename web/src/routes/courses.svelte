@@ -22,6 +22,7 @@
 <script lang="ts">
 	import Featured from '$components/Featured.svelte';
 	import Seo from '$components/Seo.svelte';
+	import { t } from '$lib/translations';
 	export let courses: Course[];
 	const featured = courses.find((item) => item.id === 404918);
 
@@ -40,12 +41,42 @@
 	keywords={['Courses', 'Javascript', 'Tutorials', 'Instructor', 'React', 'egghead.io']}
 	description="Course materials for egghead.io"
 />
+<header
+	class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative h-[20rem] bg-cover bg-no-repeat rounded-md"
+>
+	<div class="backdrop-blur-sm  w-full absolute top-0 left-0 z-0 h-full" />
+	<div class="flex flex-col z-10 px-4 md:px-2">
+		<h1 class="text-left text-gray-100 font-bold text-2xl md:text-4xl pb-8 m-0 ">
+			{$t('common.courses')}
+		</h1>
+		<p
+			class="text-left text-gray-100 font-body leading-tight text-lg max-w-4xl z-10 hidden md:block flex-grow m-0"
+		>
+			{$t('courses.presentation')}
+		</p>
+
+		<h4
+			class="text-left text-gray-100 font-body leading-tight text-sm self-end absolute bottom-2 left-2 md:left-auto"
+		>
+			Photo by <a
+				href="https://unsplash.com/@itfeelslikefilm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+				>🇸🇮 Janko Ferlič</a
+			>
+			on
+			<a
+				href="https://unsplash.com/s/photos/learning?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+				>Unsplash</a
+			>
+		</h4>
+	</div>
+</header>
 
 <Featured
 	image={featured.image}
 	title={featured.title}
 	meta={featured.access_state}
 	url={featured.url}
+	description="In this course, you will find a step-by-step guide to build a complex component using different design patterns implemented with the Hooks API."
 />
 <div class="flex flex-row mt-12">
 	<input
@@ -60,7 +91,7 @@
 </div>
 <section class="mt-24">
 	<h1 class="leading-tight text-3xl md:text-4xl mb-3 dark:text-white text-ebony-clay-800s">
-		Courses
+		{$t('common.courses')}
 	</h1>
 	<div class="grid md:grid-cols-3 grid-cols-1 md:gap-16 gap-20">
 		{#each filteredCourse as item}
@@ -80,7 +111,7 @@
 						</div>
 
 						<div
-							class="mt-8 dark:text-gray-300 text-ebony-clay-800 text-md font-medium capitalize text-body"
+							class="mt-8 text-ebony-clay-800 text-md font-medium capitalize text-body py-1 px-2 rounded bg-green-400 inline-block w-[max-content]"
 						>
 							{item.access_state}
 						</div>
@@ -93,3 +124,9 @@
 		{/each}
 	</div>
 </section>
+
+<style>
+	header {
+		background-image: url('/courses.jpeg');
+	}
+</style>

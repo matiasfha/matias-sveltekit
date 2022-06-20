@@ -24,6 +24,8 @@
 	import Featured from '$components/Featured.svelte';
 	import PostCard from '$components/PostCard.svelte';
 	import Seo from '$components/Seo.svelte';
+	import { t } from '$lib/translations';
+
 	import type { Post } from '$lib/types';
 	export let posts: Post[];
 	export let featured: Post;
@@ -41,6 +43,36 @@
 </script>
 
 <Seo title="Matias Hernández | Blog" description="Mi blog personal" />
+
+<header
+	class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative h-[20rem] bg-cover bg-no-repeat rounded-md"
+>
+	<div class="backdrop-blur-sm  w-full absolute top-0 left-0 z-0 h-full" />
+	<div class="flex flex-col z-10 px-4 md:px-2">
+		<h1 class="text-left text-gray-100 font-bold text-2xl md:text-4xl pb-8 m-0 ">
+			{$t('blog.title')}
+		</h1>
+		<p
+			class="text-left text-gray-100 font-body leading-tight text-lg max-w-4xl z-10 hidden md:block flex-grow m-0"
+		>
+			{$t('blog.presentation')}
+		</p>
+		<h4
+			class="text-left text-gray-100 font-body leading-tight text-sm self-end absolute bottom-2 left-2 md:left-auto"
+		>
+			Photo by <a
+				href="https://unsplash.com/es/@patrickian4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+				>Patrick Fore</a
+			>
+			on
+			<a
+				href="https://unsplash.com/s/photos/typewriter?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+				>Unsplash</a
+			>
+		</h4>
+	</div>
+</header>
+
 <Featured image={featured.banner} title={featured.title} url={`/blog/post/${featured.slug}`} />
 
 <div class="flex flex-row mt-12">
@@ -56,10 +88,16 @@
 </div>
 
 <section class="mt-12">
-	<h1 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">Blog Posts</h1>
+	<h1 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">{$t('blog.title')}</h1>
 	<div class="grid md:grid-cols-3 grid-cols-1 md:gap-16 gap-8 transition duration-150 ease-in-out">
 		{#each filteredPosts as post}
 			<PostCard {post} />
 		{/each}
 	</div>
 </section>
+
+<style>
+	header {
+		background-image: url('/typewriter.jpeg');
+	}
+</style>

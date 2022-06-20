@@ -38,7 +38,7 @@ export default async function getArticles(): Promise<Array<ContentElement>> {
 		.sort((a, b) => {
 			const aDate = new Date(a.published_at).getTime();
 			const bDate = new Date(b.published_at).getTime();
-			return aDate < bDate ? 1 : -1;
+			return aDate > bDate ? 1 : -1;
 		})
 		.map((item) => {
 			return {

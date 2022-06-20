@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ContentElement } from '$lib/types';
-
+	import { t } from '$lib/translations';
 	export let favorites: ContentElement[];
 </script>
 
@@ -8,7 +8,7 @@
 	<h2
 		class="text-3xl md:text-4xl sm:font-semibold font-bold mb-3 dark:text-white text-ebony-clay-800s"
 	>
-		Seleccionados y Favoritos
+		{$t('home.selected')}
 	</h2>
 	<div class="grid md:grid-cols-2 grid-cols-1 gap-4">
 		{#each favorites as item}
@@ -31,7 +31,7 @@
 				</a>
 				<div>
 					<h3
-						class="text-lg md:text-xs text-green-600 dark:text-green-300 m-0 md:mb-2 md:mt-1 text-body text-left md:text-center"
+						class="text-lg md:text-xs text-green-600 dark:text-green-300 m-0 md:mb-2 md:mt-1 text-body text-left md:text-center capitalize"
 					>
 						{item.tag}
 					</h3>

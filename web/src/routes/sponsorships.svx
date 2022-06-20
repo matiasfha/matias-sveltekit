@@ -1,0 +1,56 @@
+---
+layout: sponsor
+---
+
+<script>
+
+import Pricing from '$components/mdx/Pricing.svelte';
+
+
+</script>
+
+Each time, more than 6000 developers visit this website to read articles, listen to the podcast, subscribe to the newsletter or watch something.
+course to learn about web development.
+This is a personal site to contribute to the Spanish-speaking community mainly with totally free content for everyone.
+
+If you want to promote your product or service on this site, please contact me at [sponsor@matiashernandez.dev](mailto:sponsor@matiashernandez.dev).
+I will respond within 24 hours with more information on prices and availability.
+
+> You can check the public analytics of the site thanks to [Plausible](https://plausible.io/matiashernandez.dev)
+
+
+
+# Why advertise here?
+
+By advertising on this site, you can reach a growing audience of web developers, from juniors to professionals who regularly read opinion articles.
+or tutorials published here or that are part of the newsletter or captive audience of the podcast or video tutorials.
+
+You will also be helping to keep the content on this site free for the entire community.
+
+Here are 3 reasons to consider becoming a sponsor:
+
+1. Reach a target audience:
+This blog receives an average of 6,000 visitors per month. The content is completely focused on web development and related topics such as: Javascript, Typescript, React, Svelte, etc.
+
+2. Personalized Ads:
+The ads on this site are effective and blend perfectly with the content of the site. They are a great way to allow your brand or product to stand out without annoying readers.
+
+3. Simple and exclusive.
+For a full week, your ad will appear exclusively in every article on this site.
+
+
+
+# Prices
+The pricing model is simple and transparent:
+
+<Pricing />
+
+
+
+# Sounds interesting?
+
+To find out more send an email to [sponsor@matiashernandez.dev](mailto:sponsor@matiashernandez.dev) and I will contact you within 24 hours with more information and availability.
+
+Thank you very much for your interest, I hope to hear from you soon!
+
+Matías.-

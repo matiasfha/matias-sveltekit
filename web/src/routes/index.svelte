@@ -57,7 +57,12 @@
 		'Typescript',
 		'Mentoría',
 		'Aprende React',
-		'Aprender'
+		'Aprender',
+		'Learn React',
+		'React Workshops',
+		'React Training',
+		'Learn JavaScript',
+		'Learn TypeScript'
 	]}
 	description="Personal site of Matias Hernandez, dev, instructor and podcaster. Helping devs to level up their careers as software Developers"
 />

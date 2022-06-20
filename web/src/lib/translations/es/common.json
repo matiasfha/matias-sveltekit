@@ -1,0 +1,13 @@
+{
+    "featured":"Destacados",
+    "search": "Buscar",
+    "contact": "Contacto",
+    "consultancy": "Consultoría y Mentoría",
+    "ama": "Pregunta lo que quieras",
+    "about": "Sobre Mí",
+    "courses": "Cursos",
+    "sponsor": "Auspicios",
+    "navbar": {
+        "articles": "Artículos Externos"
+    }
+}

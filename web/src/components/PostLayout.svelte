@@ -20,7 +20,7 @@
 </script>
 
 <Seo {title} {description} {keywords} isBlogPost={true} />
-<main class="w-full pb-4 px-0 md:px-8">
+<div class="w-full pb-4 px-0 md:px-8">
 	<header
 		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[20rem]"
 	>
@@ -59,7 +59,7 @@
 			>
 		</div>
 	</footer>
-</main>
+</div>
 
 <style>
 	.post-header {
