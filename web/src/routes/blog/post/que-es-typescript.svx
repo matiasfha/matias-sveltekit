@@ -38,20 +38,27 @@ Los lenguajes de programación se pueden categorizar de variadas formas, una de 
 
 La idea del tipado es evitar que utilices un tipo de información o variable para hacer otra cosa, por ejemplo
 
+```js
     const length = 14 // un número
     console.log(length("algun texto")) // length es usado cómo una función
+```
 
 El ejemplo muestra como se define una constante llamada \`length\` que está asociada a un número (type Number) pero que después es utilizada como una función. Esto creará un error al momento de ejecutar
 
+```typescript
     TypeError: length is not a function. (In 'length("algun texto")', 'length' is 14)
+```
 
 Este error es capturado al momento de ejecutar el código javascript. Javascript es un lenguaje de tipado dinámico, es decir, ejecuta la corroboración de tipos en tiempo de ejecución, al igual que Python o Ruby. En cambio, Typescript, es un lenguaje de tipado estático, la comprobación de tipos se hace en tiempo de compilación.
 
+```typescript
     const length = 14 // un número
     console.log(length("algun texto")) // length es usado cómo una función
+```
 
 Al compilar el mismo trozo de código con typescript se nos muestra el siguiente error
 
+```bash
     ../.nvm/versions/node/v12.9.0/lib/node_modules/typescript/lib/lib.dom.d.ts:19553:13 - error TS2451: Cannot redeclare block-scoped variable 'length'.
     
     19553 declare var length: number;
@@ -80,6 +87,7 @@ Al compilar el mismo trozo de código con typescript se nos muestra el siguiente
     
     
     Found 3 errors.
+```
 
 Por lo tanto este tipo de error nunca verá la luz en la aplicaicón.
 
@@ -125,7 +133,9 @@ Typescript define varios tipos básicos como: Boolean, Number, String, Array, Ty
   * Intersection: Permite unir varios tipos básicos en un solo tipo. Equivalente a un “and”
   * Union: Equivalente a un “or” Permite a la variable tomar uno de varios tipos
 
+```typescript
           const result: string | undefined = undefined
+```
 
 # Pros y Cons
 
@@ -149,19 +159,21 @@ Además la mayoría de las librerias más populares o estan esscritas en typescr
 * En el corto plazo puede tomar tiempo adaptarse.
 * SI es un proyecto Open Source necesitarás que los contributors sepan TS.
 
-<a id="org793dbbd"></a>
 
 # Quickstart
 
 Lo primero que debes hacer es instalar el compilador de typescript con \`npm\`
 
+```bash
     npm install -g typescript
+```
 
 Una vez instalado podrás ejecutar \`tsc -v\` en tu consola.
 
 Lo único necesario para comenzar es el compilador y un archivo typescript.
 Crea un archivo \`test.ts\`
 
+```typescript
     function delay(milliseconds: number, count: number): Promise<number> {
         return new Promise<number>(resolve => {
                 setTimeout(() => {
@@ -184,12 +196,15 @@ Crea un archivo \`test.ts\`
     }
     
     dramaticWelcome();
+```
 
 Como vez eso se parece mucho a Javascript pero tiene esos “extraños” \`:\` que definen el tipo de la variable, argumento o función.
 Para ejecutar esto, primero debes compilarlo y luego ejecutar con node
 
+```bash 
     tsc test.ts
     node test.js
+```
 
 Typescript es una grana adición a tu flujo de desarrollo otorgando seguridad a tu proceso y evitando una gran familia de errores en los que todos podemos caer continuamente.
 
