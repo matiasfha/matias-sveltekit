@@ -1,6 +1,6 @@
 ---
 date: 2022-21-06T07:13:59-04:00
-banner: 
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1655825913/joan-gamell-ZS67i1HLllo-unsplash_i6a67v.jpg
 keywords:
 - typescript
 - functions
@@ -16,7 +16,8 @@ keywords:
 tag: Post
 title: Como escribir funciones en Typescriptt
 description: Diferentes formas de escribir o declarar tus funciones en Typescript con varios ejemplos.
-bannerCredit: 
+bannerCredit: Photo by <a href="https://unsplash.com/@gamell?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joan Gamell</a> on <a href="https://unsplash.com/s/photos/functions?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
 favorite: true
 ---
 
