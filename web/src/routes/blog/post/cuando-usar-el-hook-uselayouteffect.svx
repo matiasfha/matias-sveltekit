@@ -15,13 +15,16 @@ bannerCredit: <span>Photo by <a href="https://unsplash.com/@halacious?utm_source
 ---
 <script>
 import CodeSandbox from '$components/mdx/CodeSandbox.svelte';
+import TLDR from '$components/mdx/TLDR.svelte';
+import Sponsor from '$components/mdx/Sponsor.svelte';
 </script>
 Y ¿Cuál es la diferencia con el hook `useEffect`?
 
 useLayoutEffect es similar en casi TODO a useEffect, solo tiene pequeñas diferencias.
 
-> ### TLDR:
-> `useEffect` es lo que quieres usar el 99% del tiempo.
+<TLDR>
+`useEffect` es lo que quieres usar el 99% del tiempo.
+</TLDR>
 
 Ambos reciben dos argumentos, un callback que define el efecto y una lista de dependencias.
 
@@ -78,11 +81,24 @@ Cuando el component es renderizado, podrás ver en pantalla el mensaje
 
 Y con cada click en el botón, el estado del contador se actualizará, y el DOM mutará para pintar el nuevo mensaje en la pantalla, y después el efecto será emitido.
 
-**Recuerda: El efecto se emitirá solo después que los cambios del DOM sean pintados en la pantalla**
+> **Recuerda:**
+> El efecto se emitirá solo después que los cambios del DOM sean pintados en la pantalla
 
 Sin embargo, si lo que buscas es que tus efectos muten el DOM cambiando la apariencia de este entre el renderizado y tu efecto entonces necesitas usar useLayoutEffect.
 
 **`useLayoutEffect`** se ejecuta de forma **síncrona**, justo después de que React ejecutó todas las mutaciones pero antes de "pintar" en pantalla.
+
+
+<Sponsor 
+  picture={{
+    alt: "Matias Hernández Logo",
+    sources: {
+      png: '/logo.png'
+    }
+  }}
+  content="Tu producto o servicio podría estar aquí."
+  /> 
+
 
 Esto es útil para por ejemplo obtener las medidas del DOM y después ejecutar alguna mutación en base a esos datos.
 

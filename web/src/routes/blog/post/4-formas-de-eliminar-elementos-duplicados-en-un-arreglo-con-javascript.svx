@@ -21,6 +21,8 @@ favorite: true
 
 <script>
 import EggheadLesson from '$components/mdx/EggheadLesson.svelte';
+import Sponsor from '$components/mdx/Sponsor.svelte';
+
 </script>
 La manipulación de arreglos es una de las tareas más comunes y constantes a la hora de desarrollar una aplicación. Los arreglos son estructuras de datos básicas en cualquier programa. Una de estas tareas de manipulación es la de remover elementos duplicados de un arreglo.
 Javascript, por su naturaleza flexible, ofrece variadas formas de efectuar esta tarea y la elección de cuál utilizar corresponde tanto a la experiencia del desarrollador como al caso de uso.
@@ -30,7 +32,7 @@ Javascript, por su naturaleza flexible, ofrece variadas formas de efectuar esta 
 
 <EggheadLesson lessonId="javascript-4-formas-de-remover-elementos-duplicados-de-un-arreglo-con-javascript" />
 
-### **Array.filter**
+## **Array.filter**
 
 Una de las formas más directas de remover elementos de un arreglo es utilizar `Array.filter`
 
@@ -52,7 +54,19 @@ En este caso, podemos identificar un duplicado cuando el indice no es igual al r
 `data.indexOf(item) === index` ,retornará siempre la primera ocurrencia del `item`.
 
 
-### **Set**
+
+<Sponsor 
+  picture={{
+    alt: "Matias Hernández Logo",
+    sources: {
+      png: '/logo.png'
+    }
+  }}
+  content="Tu producto o servicio podría estar aquí."
+  /> 
+
+
+## **Set**
 
 El objeto global **Set** es una estructura de datos, una colección de valores que permite sólo almacenar valores únicos de cualquier tipo, incluso valores primitivos u referencias a objetos.
 
@@ -74,7 +88,7 @@ Y finalmente puedes convertir el nuevo Set a un arreglo nuevamente utilizando la
 
 Si eres un _"Computer Science Junkie"_ o estás trabajando con grandes cantidades de datos es importante pensar en la performance de este método. Utilizar **Set** es un método de orden _O(nlogn)_
 
-### **Reduce**
+## **Reduce**
 
 El método `Array.reduce` también puede ser utilizado con el mismo propósito.
 
@@ -97,7 +111,7 @@ El método `Array.reduce` también puede ser utilizado con el mismo propósito.
 
 En este caso la función utilizada simplemente revisa si el item actual se encuentra dentro del resultado identificado por la variable `acc`, de no estarlo, simplemente agrega el valor al acumulador
 
-### **ForEach y otros loops**
+## **ForEach y otros loops**
 
 `Array.forEach` es otra forma de iterar sobre el arreglo y como tal también permite remover duplicados pero de una forma más imperativa.
 
