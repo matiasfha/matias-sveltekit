@@ -93,7 +93,7 @@
 	<nav class="flex items-center justify-between mx-auto md:max-w-8xl">
 		<div class="flex flex-row items-center gap-4 md:gap-8 justify-between">
 			<a href="/" sveltekit:prefetch>
-				<img src={logo} alt="Matias Hernández Logo" width="48" height="48" />
+				<figure class="w-10 "><picture><source srcset="/logo.png" type="image/webp"> <img  src="/logo.png" alt="Matias Hernández Logo"></picture></figure>
 			</a>
 			<a
 				class="underlined block whitespace-nowrap text-2xl font-medium focus:outline-none transition"

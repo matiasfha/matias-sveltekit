@@ -21,7 +21,6 @@ favorite: true
 
 <script>
 import EggheadLesson from '$components/mdx/EggheadLesson.svelte';
-import Sponsor from '$components/mdx/Sponsor.svelte';
 
 </script>
 La manipulación de arreglos es una de las tareas más comunes y constantes a la hora de desarrollar una aplicación. Los arreglos son estructuras de datos básicas en cualquier programa. Una de estas tareas de manipulación es la de remover elementos duplicados de un arreglo.
@@ -53,17 +52,6 @@ Para este caso de remover elementos duplicados utilizamos como método auxiliar 
 En este caso, podemos identificar un duplicado cuando el indice no es igual al resultado de `indexOf`.
 `data.indexOf(item) === index` ,retornará siempre la primera ocurrencia del `item`.
 
-
-
-<Sponsor 
-  picture={{
-    alt: "Matias Hernández Logo",
-    sources: {
-      png: '/logo.png'
-    }
-  }}
-  content="Tu producto o servicio podría estar aquí."
-  /> 
 
 
 ## **Set**

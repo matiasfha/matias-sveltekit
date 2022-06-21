@@ -13,9 +13,6 @@ bannerCredit:
 favorite: true
 ---
 
-<script>
-import Sponsor from '$components/mdx/Sponsor.svelte';
-</script>
 JS está lejos de dejar la innovación y el crecimiento y cada año el estándar ECMAScript se fortalece con nuevas adiciones que esperamos pronto ver en todos los navegadores.
 ¿Pero que nos trae este 2022 para el mundo Javascript?
 
@@ -106,16 +103,6 @@ class PrivateClass {
 Hoy solo se puede usar `await` en el scope de una función. Ahora se podrá hacer directamente en el módulo. 
 Algunos casos de uso (ejemplos basados en el [articulo de v8.dev](https://v8.dev/features/top-level-await)): 
 
-
-<Sponsor 
-  picture={{
-    alt: "Matias Hernández Logo",
-    sources: {
-      png: '/logo.png'
-    }
-  }}
-  content="Tu producto o servicio podría estar aquí."
-  /> 
 
 
 ### Dynamic dependency pathing:

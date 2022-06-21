@@ -18,9 +18,7 @@ bannerCredit: <span>Photo by <a href="https://unsplash.com/@solmaz67?utm_source=
   hatamian</a> on <a href="https://unsplash.com/s/photos/typescript?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 
 ---
-<script>
-import Sponsor from '$components/mdx/Sponsor.svelte';
-</script>
+
 
 # ¿Qué es Typescript?
 
@@ -97,15 +95,7 @@ Una última clasificación de tipados es Tipado Fuerte vs Tipado Débil, aunque 
 Javascript hace una conversión implicita, Typescript por contraparte prefier una conversión explicita.
 
 
-<Sponsor 
-  picture={{
-    alt: "Matias Hernández Logo",
-    sources: {
-      png: '/logo.png'
-    }
-  }}
-  content="Tu producto o servicio podría estar aquí."
-  /> 
+
 
 ## ¿Por qué usar tipos estáticos en el desarrolo web?
 

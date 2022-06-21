@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let picture: {
+	type Picture = {
 		alt: string;
 		sources: {
 			webp?: string;
@@ -8,11 +8,18 @@
 			jpg?: string;
 		};
 	};
-	export let content: string;
+	export let picture: Picture = {
+		alt: "Matias Hernández Logo",
+		sources: {
+		png: '/logo.png'
+		}
+	}
+	export let content = "Tu producto o servicio podría estar aquí";
 	export let highlight: string;
 </script>
 
-<div class="bg-gray-200  dark:bg-ebony-clay-600 border border-purple pl-4 pr-8 rounded-md py-2">
+
+<div class="bg-gray-100  dark:bg-ebony-clay-600 border border-purple pl-4 pr-8 rounded-md py-2 opacity-80">
 	<p class="text-gray-800 dark:text-gray-200 uppercase mb-3 text-xs">sponsor</p>
 	<div class="flex relative flex-wrap  ">
 		<em class="static w-full text-gray-800 dark:text-gray-200 font-body text-base"

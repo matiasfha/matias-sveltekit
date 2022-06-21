@@ -3,10 +3,10 @@
 	import { locale, t } from '$lib/translations';
 </script>
 
-<footer class="pb-16 mt-32 pt-32 border-t border-gray-200 dark:border-gray-800 px-10">
+<footer class="pb-16 mt-32 pt-32 border-t border-gray-200 dark:border-gray-800 px-10 w-full">
 	<div class="relative">
 		<div
-			class="relative grid gap-x-4 grid-cols-4 md:grid-cols-8 lg:gap-x-6 lg:grid-cols-12 mx-auto max-w-8xl grid-rows-max-content"
+			class="relative grid gap-x-4 grid-cols-4 md:grid-cols-8 lg:gap-x-6 lg:grid-cols-12 mx-auto  grid-rows-max-content"
 		>
 			<div class="col-span-full md:col-span-3 lg:row-span-2 justify-">
 				<div>
@@ -124,7 +124,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-span-full md:col-span-2 mt-20 md:col-start-11 md:row-start-1 md:mt-0">
+			<div class="col-span-full md:col-span-2 mt-20 md:col-start-10 md:row-start-1 md:mt-0">
 				<div>
 					<ul class="mt-4 text-gray-900 dark:text-white">
 						<li class="py-1">
