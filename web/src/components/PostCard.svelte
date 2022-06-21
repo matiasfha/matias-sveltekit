@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Post } from '$lib/types';
 	export let post: Post;
+	console.log(post)
 </script>
 
 <div class="flex flex-col">
@@ -8,7 +9,7 @@
 		<a
 			sveltekit:prefetch
 			class="group peer relative block w-full focus:outline-none"
-			href={`/blog/post/${post.slug}`}
+			href={post.path}
 			><div
 				class="aspect-w-2 aspect-h-1 h-1/4 rounded-lg transition group-hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2"
 			>

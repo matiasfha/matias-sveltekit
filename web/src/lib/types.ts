@@ -59,4 +59,5 @@ export interface Post {
 	tag: 'Post' | 'Seed';
 	slug: string;
 	featured?: boolean;
+	path: string;
 }

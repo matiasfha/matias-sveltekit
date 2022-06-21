@@ -47,6 +47,17 @@ function remarkSponsor() {
 	}
 }
 
+import path from 'path'
+
+function remmarkPath() {
+	return function transformer(tree, vFile) {
+		const filepath = path.relative('__dirname',vFile.filename).slice(2)
+		vFile.data.fm.filepath = filepath
+		
+		
+	}
+}
+
 const config = {
 	"extensions": [".svx"],
 	"layout": {
@@ -58,7 +69,7 @@ const config = {
 		"dashes": "oldschool"
 	},
 
-	"remarkPlugins": [headings, slug, highlight, abbr, remarkSponsor],
+	"remarkPlugins": [headings, slug, highlight, abbr, remarkSponsor, remmarkPath],
 	"rehypePlugins": [[urls, processUrl], [autoLinkHeadings, { behavior: 'prepend' }]]
 };
 

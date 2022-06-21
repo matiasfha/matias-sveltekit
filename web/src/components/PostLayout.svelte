@@ -12,6 +12,7 @@
 	export let title;
 	export let description;
 	export let keywords;
+	export let filepath 
 
 	let currentUrl;
 	afterUpdate(() => {
@@ -46,19 +47,27 @@
 		</div>
 	</header>
 	<article
-		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto container  prose prose-lg dark:prose-dark mt-12 pt-[14rem] md:pt-[32rem]"
+		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto prose prose-lg dark:prose-dark mt-12 pt-[14rem] md:pt-[32rem]"
 	>
 		<slot />
-	</article>
-	<footer class="mx-auto container max-w-6xl flex flex-row justify-end">
-		<div class="flex space-x-5 items-center justify-between">
+
+		<div class="border opacity-70 w-full mt-24 mb-12" />
+		Te pareció interesante?
+		Encuentra más contenido similar uniendote al <a class="underlined" href="/newsletter">Newsletter</a> o siguiendome en <a class="underlined" href="https://twitter.com/matiasfha" target="_blank">Twitter</a>.
+		<footer class="flex items-center justify-end gap-4 pt-20">
 			<a
 				class="underlined text-ebony-clay-800 hover:text-ebony-clay-600 dark:text-gray-100 dark:hover:text-gray-200 focus:outline-none"
 				href={`https://twitter.com/share?ref_src=twsrc%5Etfw&url=${currentUrl}`}
 				>Comparte en Twitter</a
 			>
-		</div>
-	</footer>
+			<a
+				class="underlined text-ebony-clay-800 hover:text-ebony-clay-600 dark:text-gray-100 dark:hover:text-gray-200 focus:outline-none"
+				href={`https://github.com/matiasfha/matias-sveltekit/edit/main/web/${filepath}`}
+				>Edita en github</a
+			>
+		</footer>
+	</article>
+	
 </div>
 
 <style>
