@@ -10,13 +10,13 @@
 	class="flex flex-col-reverse md:flex-row items-center justify-between lg:min-h-[12rem] pb-12 lg:pb-24 pt-12"
 >
 	<div
-		class="pt-6 lg:flex lg:flex-col lg:h-full md:w-96 "
+		class="pt-6 lg:flex lg:flex-col lg:h-full md:w-1/3 "
 		in:fly={{ y: 100, duration: 700, delay: 200 }}
 	>
 		<div class="flex flex-auto flex-col" style="opacity: 1;">
 			<div style="opacity: 1; transform: none;">
 				<h1
-					class="leading-tight text-3xl md:text-4xl text-black dark:text-white text-center md:text-left"
+					class="text-3xl md:text-4xl text-black dark:text-white text-center md:text-left"
 				>
 					{$t('home.presentation')}
 				</h1>
