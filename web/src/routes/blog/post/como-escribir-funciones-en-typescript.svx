@@ -1,0 +1,216 @@
+---
+date: 2022-21-06T07:13:59-04:00
+banner: 
+keywords:
+- typescript
+- functions
+- fuciones
+- como escribir funciones
+- javascript
+- sintaxis
+- syntax
+- sintaxis typescript
+- definicion de funciones
+- declaracion de tipos
+- anotacion de tipos de funciones
+tag: Post
+title: Como escribir funciones en Typescriptt
+description: Diferentes formas de escribir o declarar tus funciones en Typescript con varios ejemplos.
+bannerCredit: 
+favorite: true
+---
+
+Existen diferentes formas de definir o declarar una función en Javascript, y siendo Typescript un superset, no es  diferente, ahora tienes muchas más formas o sintaxis para cumplir el mismo objetivo.
+
+
+> Artículo Relacionado
+> [¿Qué es Typescript?](/blog/post/que-es-typescript)
+
+En este breve tutorial encontrarás una lista de las formas más comunes que encontrarás a la hora de definir/declarar una función en Typescript.
+
+Primero, para crear una función en Javascript existen 4 formas base:
+
+### Declaración de función
+```javascript
+function multiplicar(a,b) {
+    return a * b
+}
+```
+### Expresión anonima
+```javascript
+const multiplicar = function(a,b) {
+    return a * b;
+}
+```
+
+### Expresion de función con nombre
+```javascript
+const multiplicar = function multiplicar(a,b) {
+    return a * b;
+}
+```
+
+### Función flecha / Arrow function
+```javascript
+const multiplicar = (a, b) => {
+    return a * b;
+}
+```
+
+### Retorno implícito
+```javascript
+const multiplicar = (a, b) => a * b;
+```
+
+> Artículo Relacionado
+> [Escribe Javascript Moderno con Arrow Functions](https://www.escuelafrontend.com/articulos/arrow-functions) en Escuela Frontend
+
+El objetivo de agregar Typescript al stack es definir los tipos tanto de los argumentos de la función, como del valor de retorno (aunque este muchas veces puede ser inferido).
+
+Comencemos por agregar tipos a los métodos mencionados
+
+### Declaración de función
+```ts
+// Tipo de Retorno inferido
+function multiplicar(a: number,b: number) {
+    return a * b
+}
+
+// Tipo de Retorno definido
+function multiplicar(a: number,b: number): number {
+    return a * b
+}
+```
+
+### Expresión anonima
+```ts
+const multiplicar = function(a: number,b: number): number {
+    return a * b;
+}
+```
+
+### Expresion de función con nombre
+```ts
+const multiplicar = function multiplicar(a: number,b: number): number {
+    return a * b;
+}
+```
+
+### Función flecha / Arrow function
+```ts
+const multiplicar = (a: number, b: number): number => {
+    return a * b;
+}
+```
+
+### Retorno implícito
+```ts
+const multiplicar = (a:number, b: number): number => a * b;
+```
+
+También es posible extraer la definición de los tipos e incluirlos en una sección diferente que la propia función.
+
+```ts
+const multiplicar: (a:number, b: number): number  = (a,b)=> a * b;
+```
+En este ejemplo el tipo de la función es definido antes de la declaración de la misma.
+
+También es posible extraer el tipo de la función para mejorar legibilidad o incluso para utilizarlo en otro lugar.
+
+```ts
+type MulFn = (a:number, b: number): number
+const multiplicar: MulFn  = (a,b)=> a * b;
+```
+Esto también puede ser logrado utilizando la sintaxis de objeto
+
+```ts
+type MulFn = {
+    (a:number, b: number): number
+}
+const multiplicar: MulFn  = (a,b)=> a * b;
+```
+
+O también utilizando una interfaz
+
+```ts
+interface MulFn {
+    (a:number, b: number): number
+}
+const multiplicar: MulFn  = (a,b)=> a * b;
+```
+
+## Parámetro opciones y parámetros por defecto
+
+Una caracterítica interesante y muy útil al definir los tipos de tus funciones es la posibilidad de declarar que parámetros son opcionales.
+
+```ts
+const multiplicar: (a:number, b?: number): number  = (a,b)=> a * (b ?? 1);
+```
+Este ejemplo permite que el parámetro `b` no se utilice o sea `undefined`
+
+> *Importante!* El orden en que definies los parámetros opcionales es importante ya que al definir un parámetro opcional todos los parámetros siguientes deberán ser opcionales también.
+
+Otra forma de crear opcionalidad de parámetros es definir su valor por defecto. Typescript tratará dicho parámetro como un parámetro opcional
+
+```ts
+const multiplicar: (a:number, b: number = 1): number  = (a,b)=> a * b;
+multiplicar(2) // = 2 
+multiplicar(2, undefined) // 2
+```
+
+Esto implica que puedes "imitar" la opcionalidad de parámetros sin importar el orde, por ejemplo haciendo que el primer parámetro sea "opcional".
+
+```ts
+const multiplicar: (a:number = 1, b: number): number  = (a,b)=> a * b;
+multiplicar(undefined,2) // = 2 
+```
+
+## Async 
+
+Las funciones asíncronas en Typescript funcionan de la misma forma que en Javascript, solo que el tipo de retorno es en efecto una `Promise` genérica.
+
+```ts 
+async function somePromise(a: number, b: string): Promise<number> {
+    // logic
+}
+
+const somePromise = (a: number, b: string): Promise<number> => {
+    // logic
+}
+```
+## Generics
+
+Generics es en mi opinión una de las herramientas más poderosas de Typescript ya que permite total flexibilidad en la forma en que defines tus tipos, en el caso de declarar funciones lo puedes hacer de la siguiente forma
+
+```ts 
+function someFunction<GenericType>(a: GenericType): Array<GenericType> {
+    // some logic
+}
+```
+En este ejemplo la función toma un parámetro tipo `GenericType` y retorna un arreglo del mismo tipo, ¿cómo se usa?
+
+```ts
+someFunction<number>(10) // [10]
+```
+
+Esto también se puede lograr con `arrow functions` pero, existe un problema: Si estás trabajando con React (o cualquier framework que acepte algo similar a JSX) el compilador de Typescript no sabrá si estás usando `JSX` o un `Generic`, por lo que necesitas agregar algo que le permita identificar que se trata de un genérico
+
+```ts 
+const someFunction  = <GenericType extends unknown>(a: GenericType): Array<GenericType> => {
+    //some logic
+}
+```
+
+
+## Conclusión
+
+Existen varias formas de definir funciones, he dejado muchas afuera pero creo que estas son las formas más generales.
+Algunas que no han sido mecionadas:
+
+- Type Guards
+- Assertions
+- Generators 
+- Function Overloads
+- Modules
+- Classes
+
