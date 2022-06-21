@@ -89,8 +89,8 @@
 	};
 </script>
 
-<div class={`px-6 md:px-8 pt-9 pb-4 lg:px-10 lg:pt-12   dark:text-gray-200 text-gray-700`}>
-	<nav class="flex items-center justify-between mx-auto md:max-w-8xl">
+<div class={`px-6 md:px-12 pt-9 pb-4 lg:px-10 lg:pt-12   dark:text-gray-200 text-gray-700`}>
+	<nav class="flex items-center justify-between mx-auto">
 		<div class="flex flex-row items-center gap-4 md:gap-8 justify-between">
 			<a href="/" sveltekit:prefetch>
 				<figure class="w-10 "><picture><source srcset="/logo.png" type="image/webp"> <img  src="/logo.png" alt="Matias Hernández Logo"></picture></figure>
