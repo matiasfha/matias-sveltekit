@@ -3,6 +3,16 @@ import mdsvexConfig from "./mdsvex.config.js";
 import preprocess from 'svelte-preprocess';
 import netlify from '@sveltejs/adapter-netlify'
 import path from 'path'
+
+
+import { mdsvexGlobalComponents } from  './mdsvexGlobalComponents.js'
+
+const globalComponents = mdsvexGlobalComponents({
+  dir: `$components/mdx`,
+  list: ['Sponsor.svelte'],
+  extensions: mdsvexConfig.extensions
+})
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
     experimental: {
@@ -17,7 +27,7 @@ const config = {
     // for more information about preprocessorssg
     preprocess: [preprocess({
         "postcss": true
-    }), mdsvex(mdsvexConfig)],
+    }), globalComponents, mdsvex(mdsvexConfig)],
 
     kit: {
 

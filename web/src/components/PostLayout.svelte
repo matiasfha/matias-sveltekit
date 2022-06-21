@@ -20,16 +20,16 @@
 </script>
 
 <Seo {title} {description} {keywords} isBlogPost={true} />
-<div class="w-full pb-4 px-0 md:px-8">
+<div class="w-full pb-4 px-0">
 	<header
-		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[20rem]"
+		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[20rem] overflow-hidden"
 	>
 		<img
 			src={banner}
 			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm"
 			alt={title}
 		/>
-		<div class="flex flex-col max-w-3xl z-10  self-end mr-12">
+		<div class="flex flex-col max-w-[40vw] z-10  self-end mr-12">
 			<h1 class="text-left text-gray-100 font-bold text-xl md:text-3xl pb-8 m-0 px-4 md:px-0">
 				{title}
 			</h1>
@@ -46,7 +46,7 @@
 		</div>
 	</header>
 	<article
-		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto container max-w-6xl prose prose-lg dark:prose-dark mt-12 pt-[14rem] md:pt-[32rem]"
+		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto container  prose prose-lg dark:prose-dark mt-12 pt-[14rem] md:pt-[32rem]"
 	>
 		<slot />
 	</article>

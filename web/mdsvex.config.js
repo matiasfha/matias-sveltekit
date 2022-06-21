@@ -20,6 +20,33 @@ function processUrl(url, node) {
 	}
 }
 
+function remarkSponsor() {
+	return (node) => {
+		node.children = [
+			...node.children.slice(0, 6),
+			{
+				type: 'html',
+				value: '<Sponsor /> ',
+	
+			},
+			...node.children.slice(6)
+		]
+
+		if(node.children.length > 30) {
+			node.children = [
+				...node.children.slice(0, 30),
+				{
+					type: 'html',
+					value: '<Sponsor /> ',
+		
+				},
+				...node.children.slice(30)
+			]	
+		}
+		
+	}
+}
+
 const config = {
 	"extensions": [".svx"],
 	"layout": {
@@ -31,7 +58,7 @@ const config = {
 		"dashes": "oldschool"
 	},
 
-	"remarkPlugins": [headings, slug, highlight, abbr],
+	"remarkPlugins": [headings, slug, highlight, abbr, remarkSponsor],
 	"rehypePlugins": [[urls, processUrl], [autoLinkHeadings, { behavior: 'prepend' }]]
 };
 
