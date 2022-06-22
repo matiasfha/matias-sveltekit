@@ -6,19 +6,16 @@ import type { Latest } from '$lib/types';
 
 export async function get() {
 	try {
-		const cafeConTech = await getLatest('1081172', 'https://www.cafecon.tech');
+		const cafeConTech = await getLatest('https://anchor.fm/s/a1ac9eb8/podcast/rss');
 
 		/* Control remoto have a different url structure */
-		const controlRemoto = await getLatest('1057351', 'https://www.controlremoto.io');
-		let path = controlRemoto.title;
-		if (controlRemoto.title.includes(':')) {
-			path = controlRemoto.title.split(':')[1].trim();
-		}
-		controlRemoto.url = path.toLowerCase().replace(',', '').split(' ').join('-');
+		const controlRemoto = await getLatest('https://anchor.fm/s/5cfb84c8/podcast/rss');
+		
 		/*****/
 		const post = await getLatestPost();
 		const course = await getLatestCourse();
 		const article = await getLatestArticle();
+		
 		const latest: Latest[] = [
 			{
 				/* egghead */ href: course.url,
@@ -27,13 +24,15 @@ export async function get() {
 				tag: 'Egghead Course'
 			},
 			{
-				/* Cafe con Tech*/ href: cafeConTech.url,
+				/* Cafe con Tech*/ 
+				href: cafeConTech.url,
 				image: cafeConTech.image,
 				title: cafeConTech.title,
 				tag: 'Podcast: Café con Tech'
 			},
 			{
-				/* Control Remoto*/ href: `https://controlremoto.io/episodios/${controlRemoto.url}`,
+				/* Control Remoto*/ 
+				href: controlRemoto.url,
 				image: controlRemoto.image,
 				title: controlRemoto.title,
 				tag: 'Podcast: Control Remoto'

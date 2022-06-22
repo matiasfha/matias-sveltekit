@@ -2,13 +2,13 @@ import Parser from 'rss-parser';
 import type { FeedItem, PodcastItem } from '$lib/types';
 const parser: Parser<{}, FeedItem> = new Parser();
 
-export async function getAll(podcastId = '', podcastUrl = ''): Promise<PodcastItem[]> {
-	const result = await parser.parseURL(`https://feeds.buzzsprout.com/${podcastId}.rss`);
+export async function getAll(feedURL: string): Promise<PodcastItem[]> {
+	const result = await parser.parseURL(feedURL);
 	return result.items.map((item) => {
-		const url = item.enclosure?.url.replace(/\.[^/.]+$/, '').split(podcastId)[1];
+		const url = item.enclosure?.url
 		return {
 			...item,
-			url: `${podcastUrl}/${podcastId}${url}`,
+			url: item.link,
 			duration: item.itunes.duration,
 			image: item.itunes.image,
 			season: item.itunes.season,
@@ -18,8 +18,8 @@ export async function getAll(podcastId = '', podcastUrl = ''): Promise<PodcastIt
 	});
 }
 
-export async function getLatest(podcastId = '', podcastUrl = ''): Promise<PodcastItem> {
-	const items = await getAll(podcastId, podcastUrl);
+export async function getLatest(feedURL: string): Promise<PodcastItem> {
+	const items = await getAll(feedURL);
 
 	return items?.[0];
 }
