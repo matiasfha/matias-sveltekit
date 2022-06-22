@@ -2,6 +2,8 @@
 	import type { Latest } from '$lib/types';
 	import { t } from '$lib/translations';
 	export let latest: Latest[] = [];
+
+	console.log(latest)
 </script>
 
 <section class="mt-24">

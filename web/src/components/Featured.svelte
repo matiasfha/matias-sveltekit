@@ -57,7 +57,7 @@
 
 						{#if type === 'podcast'}
 							<div class="w-full font-body">
-								<Buzzsprout buzzsproutId={`1081172/${podcastId}`} />
+								<iframe src="https://anchor.fm/cafecontech/embed/episodes/Testing--React--Typescript-and-Remix-with-Kent-C--Dodds-e1k9unm/a-a85b5vd" height="160px" width="100%" frameborder="0" scrolling="no"></iframe>
 							</div>
 						{:else if description}
 							<div
