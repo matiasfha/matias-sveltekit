@@ -37,11 +37,12 @@ export default async function getCourses(): Promise<Array<Course>> {
 			return aDate < bDate ? 1 : -1;
 		})
 		.map(async (item) => {
-			const image = await Ogs({ url: item.http_url });
-
+			const url = item.http_url.replace('app.','')
+			const image = await Ogs({ url: item.url });
+			
 			return {
 				...item,
-				url: item.http_url,
+				url: item.url,
 				image: image.result.ogImage.url
 			};
 		});
