@@ -38,11 +38,11 @@ export default async function getCourses(): Promise<Array<Course>> {
 		})
 		.map(async (item) => {
 			const url = item.http_url.replace('app.','')
-			const image = await Ogs({ url: item.url });
+			const image = await Ogs({ url: url });
 			
 			return {
 				...item,
-				url: item.url,
+				url,
 				image: image.result.ogImage.url
 			};
 		});
