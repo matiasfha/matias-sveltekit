@@ -7,19 +7,7 @@ import type { Documents, Posts } from '../../../schema.types'
 import BlocksToMarkdown from '@sanity/block-content-to-markdown';
 import imageUrlBuilder from '@sanity/image-url'
 import { Octokit } from "@octokit/rest";
-import { createAppAuth } from '@octokit/auth-app'
-import { resolveSoa } from 'dns'
 
-// const octokit = new Octokit({
-//     authStrategy: createAppAuth,
-//     auth: {
-//         appId: 213907,
-//         installationId: 213907,
-//         clientId: 'Iv1.c6a966c13e75eb6f',
-//         clientSecret:'af7be05c3dfc4dcd7ed5c2cc8e02b0a21ff5addc',
-//         privateKey: import.meta.env.VITE_GITHUB_APP_CA
-//     }
-// });
 const octokit = new Octokit({
     auth: import.meta.env.VITE_GITHUB_TOKEN
 })
@@ -58,32 +46,39 @@ function generateMarkdown({
     description,
     bannerCredit,
     content
+}: {
+    date: string,
+    banner: string,
+    keywords: string[],
+    title: string,
+    description: string,
+    bannerCredit: string,
+    content: Posts['content'] 
 }) {
+    const keys = keywords.map((keyword: string) => `- ${keyword}\n`).join().replace(',','')
     return `
 ---
 date: ${date}
 banner: ${banner}
-keywords: ${keywords}
+keywords: \n${keys}
 title: ${title}
 description: ${description}
 bannerCredit: ${bannerCredit}
+tag: Posts
 ---
 
 ${BlocksToMarkdown(content, { projectId: 'cyypawp1', dataset: 'production' })}
                    
     `
 }
-
-//curl -i -X PUT -H 'Authorization: token <token_string>' -d 
-// '{"path": "<filename.extension>",
-// "message": "<Commit Message>", "committer": {"name": "<Name>", "email": "<E-Mail>"}, "content": "<Base64 Encoded>", "branch": "master"}' 
-//https://api.github.com/repos/<owner>/<repository>/contents/<filename.extension>
-
 async function createFileInRepo(content: string, title: string){
     try  {
         const slug = title.normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '')
             .replace(/\?|\¿/g, '')
+            .replace(' ','-')
+            .toLowerCase()
+            
 
         const repo = {
             owner: 'matiasfha',
@@ -158,44 +153,55 @@ async function createFileInRepo(content: string, title: string){
 }
 
 export async function post({ request }: RequestEvent) {
-    // if(!validateWebhook(request)){
-    //     return {
-    //         status: 401,
-    //         body: 'Invalid signature'
-    //     }
-    // }
-    const body = await request.json()
-    const markdown = generateMarkdown({
-        date : body._createdAt,    
-        banner : body.banner.asset._ref,
-        keywords : body.keywords,
-        title : body.title,
-        description : body.description,
-        bannerCredit : body.banner.bannerCredit,
-        content : body.content
-    })
-     
-     
-     return {
-         body: {
-             markdown
-         }
-     };
+    if(!validateWebhook(request)){
+        return {
+            status: 401,
+            body: 'Invalid signature'
+        }
+    }
+    try {
+        const body = await request.json()
+        
+        const markdown = generateMarkdown({
+            date : body._createdAt,    
+            banner : builder.image(body.banner.asset._ref).url(),
+            keywords : body.keywords,
+            title : body.title,
+            description : body.description,
+            bannerCredit : body.banner.bannerCredit,
+            content : body.content
+        })
+        
+        
+        const res = await createFileInRepo(markdown, body.title)
+        return {
+            body: {
+                res,
+                title: body.title,
+            }
+        };
+    } catch (e) {
+        console.error(e);
+        return {
+            status: 500,
+            body: e.message
+        };
+    }
 }
 
 export async function get({ params, request }: RequestEvent) {
-    // if(!validateWebhook(request)){
-    //     return {
-    //         status: 401,
-    //         body: 'Invalid signature'
-    //     }
-    // }
+    if(!validateWebhook(request)){
+        return {
+            status: 401,
+            body: 'Invalid signature'
+        }
+    }
     try {
 		const [post] = await client.query<Posts>('*[_type == "posts"]')
         
         const markdown = generateMarkdown({
                 date : post._createdAt,
-                banner : builder.image(post.banner.asset._ref),
+                banner : builder.image(post.banner.asset._ref).url(),
                 keywords : post.keywords,
                 title : post.title,
                 description : post.description,
