@@ -1,5 +1,5 @@
 import sanityClient from '@sanity/client'
-import { isValidRequest } from '@sanity/webhook'
+import { assertValidSignature, isValidRequest, isValidSignature, requireSignedRequest, WebhookSignatureFormatError, WebhookSignatureValueError } from '@sanity/webhook'
 import type { RequestEvent } from '@sveltejs/kit'
 import { createClient } from 'sanity-codegen'
 import type { Documents, Posts } from '../../../schema.types'
@@ -34,7 +34,7 @@ function validateWebhook(request: Request){
     request.headers.forEach((value, key) => {
         headers[key] = value
     })
-    return isValidRequest({...request, headers }, import.meta.env.SANITY_SECRET)
+    return isValidRequest({...request, headers }, import.meta.env.VITE_SANITY_SECRET)
     
 }
 
@@ -153,8 +153,24 @@ async function createFileInRepo(content: string, title: string){
 }
 
 export async function post({ request }: RequestEvent) {
-    if(!validateWebhook(request)){
-        return {
+    const signature  = request.headers.get('sanity-webhook-signature')
+    if (Array.isArray(signature)) {
+        throw new WebhookSignatureFormatError('Multiple signature headers received')
+      }
+    
+      if (typeof signature !== 'string') {
+        throw new WebhookSignatureValueError('Request contained no signature header')
+      }
+    
+      if (typeof request.body === 'undefined') {
+        throw new WebhookSignatureFormatError('Request contained no parsed request body')
+      }
+    
+      const payload = JSON.stringify(request.body)
+      try {
+        assertValidSignature(payload, signature, import.meta.env.VITE_SANITY_SECRET) 
+      }catch(e){
+            return {
             status: 401,
             body: {
                 error: 'Invalid Signature',
@@ -162,7 +178,9 @@ export async function post({ request }: RequestEvent) {
                 headers: request.headers
             }
         }
-    }
+      }
+      
+    
     try {
         const body = await request.json()
         
