@@ -153,7 +153,7 @@ async function createFileInRepo(content: string, title: string){
 }
 
 export async function post({ request }: RequestEvent) {
-    const signature  = request.headers.get('sanity-webhook-signature')
+    /*const signature  = request.headers.get('sanity-webhook-signature')
     if (Array.isArray(signature)) {
         throw new WebhookSignatureFormatError('Multiple signature headers received')
       }
@@ -178,7 +178,7 @@ export async function post({ request }: RequestEvent) {
                 headers: request.headers
             }
         }
-      }
+      }*/
       
     
     try {
@@ -200,6 +200,7 @@ export async function post({ request }: RequestEvent) {
             body: {
                 res,
                 title: body.title,
+                headers: request.headers
             }
         };
     } catch (e) {
