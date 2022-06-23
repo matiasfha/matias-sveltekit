@@ -40,7 +40,10 @@ const config = {
                 );
             }
         },
-        adapter: netlify(),
+        adapter: netlify({
+            edge: false,
+            split: true,
+        }),
         vite: {
             resolve: {
                 alias: {
