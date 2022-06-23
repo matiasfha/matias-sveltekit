@@ -156,7 +156,11 @@ export async function post({ request }: RequestEvent) {
     if(!validateWebhook(request)){
         return {
             status: 401,
-            body: 'Invalid signature'
+            body: {
+                error: 'Invalid Signature',
+                request,
+                headers: request.headers
+            }
         }
     }
     try {
