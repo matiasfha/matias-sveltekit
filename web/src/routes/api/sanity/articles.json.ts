@@ -213,12 +213,12 @@ export async function post({ request }: RequestEvent) {
 }
 
 export async function get({ params, request }: RequestEvent) {
-    if(!validateWebhook(request)){
-        return {
-            status: 401,
-            body: 'Invalid signature'
-        }
-    }
+    // if(!validateWebhook(request)){
+    //     return {
+    //         status: 401,
+    //         body: 'Invalid signature'
+    //     }
+    // }
     try {
 		const [post] = await client.query<Posts>('*[_type == "posts"]')
         
