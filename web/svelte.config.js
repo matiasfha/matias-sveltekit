@@ -9,7 +9,7 @@ import { mdsvexGlobalComponents } from  './mdsvexGlobalComponents.js'
 
 const globalComponents = mdsvexGlobalComponents({
   dir: `$components/mdx`,
-  list: ['Sponsor.svelte'],
+  list: ['Sponsor.svelte','Buzzsprout.svelte','CodeSandbox.svelte','EggheadLesson.svelte','TLDR.svelte','Twitter.svelte'],
   extensions: mdsvexConfig.extensions
 })
 

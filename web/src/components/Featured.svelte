@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Buzzsprout from './mdx/Buzzsprout.svelte';
 	import { t } from '$lib/translations';
 	export let image: string;
 	export let title: string;
@@ -7,7 +6,6 @@
 	export let description: string;
 	export let url: string;
 	export let type: string;
-	export let podcastId: string;
 </script>
 
 <section class="mt-12 ">
@@ -57,7 +55,7 @@
 
 						{#if type === 'podcast'}
 							<div class="w-full font-body">
-								<iframe src="https://anchor.fm/cafecontech/embed/episodes/Testing--React--Typescript-and-Remix-with-Kent-C--Dodds-e1k9unm/a-a85b5vd" height="160px" width="100%" frameborder="0" scrolling="no"></iframe>
+								<iframe src="https://anchor.fm/cafecontech/embed/episodes/Testing--React--Typescript-and-Remix-with-Kent-C--Dodds-e1k9unm/a-a85b5vd" height="160px" width="100%" frameborder="0" scrolling="no" title="Podcast Player"></iframe>
 							</div>
 						{:else if description}
 							<div

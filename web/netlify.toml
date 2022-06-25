@@ -3,7 +3,7 @@
   publish = "build"
   environment = { NODE_VERSION =  "16.5.1" }
 [dev]
-  command = "svelte-kit -dev"
+  command = "svelte-kit dev"
 
 [functions]
   directory = "netlify/functions"
