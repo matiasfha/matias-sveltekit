@@ -1,0 +1,41 @@
+
+---
+date: 2022-06-22T23:59:27Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/bf40011d9fe35b6ab24532a60ad965392149252d-9504x6336.jpg
+keywords: 
+- Keyword
+- Keyword2
+
+title: This is a test 2
+description: Test post from sanity webhook -> site function -> PR  as asfg
+bannerCredit: This is the author
+tag: Posts
+---
+
+# This is the heading 
+
+
+
+<TLDR>
+
+Testing the components
+
+</TLDR>
+
+
+
+asgasg
+
+
+
+Test post from sanity webhook -> site function ->  create file -> create gitub PR -> merge -> deploy
+
+
+
+more test 
+
+
+
+The idea is to automatically create an SVX file when a post is created in sanity
+                   
+    
