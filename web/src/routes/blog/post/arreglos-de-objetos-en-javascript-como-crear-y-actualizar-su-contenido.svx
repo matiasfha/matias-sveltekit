@@ -16,10 +16,6 @@ tag: Seed
 ---
 
 
-<script>
-import EggheadLesson from '$components/mdx/EggheadLesson.svelte';
-</script>
-
 Javascript es un lenguaje flexible que otorga diversas formas de efectuar una tarea determinada dejando libertad de decisión al desarrollador para elejir la que considere como mejor opción.
 
 Una de las estructuras de datos más utilizada en cualquier aplicación son los arreglos y en el caso de Javascript los arreglos de objetos son pan de cada día.

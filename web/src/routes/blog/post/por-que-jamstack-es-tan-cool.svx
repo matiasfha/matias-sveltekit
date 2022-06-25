@@ -13,10 +13,6 @@ tag: Post
 title: ¿Por que JamStack es tan cool?
 description: JamStack es una arquitectura, una filosofía o modelo que busca drásticamente eliminar la complejidad para crear y distribuir mejores aplicaciones en menos tiempo.
 ---
-<script>
-import Buzzsprout from '$components/mdx/Buzzsprout.svelte';
-</script>
-
 > ### TLDR; 
 > Este post es parte del episodio 7 de la segunda temporada de [Café con Tech](https://www.cafecon.tech)
 > <Buzzsprout buzzsproutId="1081172/8317715-por-que-jamstack-es-tan-cool" />

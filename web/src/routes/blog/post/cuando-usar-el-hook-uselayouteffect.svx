@@ -13,10 +13,6 @@ bannerCredit: <span>Photo by <a href="https://unsplash.com/@halacious?utm_source
   on <a href="https://unsplash.com/s/photos/layout?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 
 ---
-<script>
-import CodeSandbox from '$components/mdx/CodeSandbox.svelte';
-import TLDR from '$components/mdx/TLDR.svelte';
-</script>
 Y ¿Cuál es la diferencia con el hook `useEffect`?
 
 useLayoutEffect es similar en casi TODO a useEffect, solo tiene pequeñas diferencias.

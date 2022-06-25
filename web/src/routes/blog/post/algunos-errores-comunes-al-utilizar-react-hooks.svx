@@ -12,12 +12,6 @@ bannerCredit: <span>Photo by <a href="[https://unsplash.com/@brookanderson?utm_s
 
 ---
 
-<script>
-import Buzzsprout from '$components/mdx/Buzzsprout.svelte';
-import Twitter from '$components/mdx/Twitter.svelte';
-</script>
-
-
 > ### TLDR 
 Este post es también parte del episodio 17 del podcast Café con Tech
 > <Buzzsprout buzzsproutId="1081172/4822565-errores-comunes-con-react-hooks" />

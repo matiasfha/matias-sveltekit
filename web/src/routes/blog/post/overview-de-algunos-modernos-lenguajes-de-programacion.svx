@@ -19,10 +19,6 @@ bannerCredit: <span>Photo by <a href="https://unsplash.com/@steve_j?utm_source=u
 
 ---
 
-<script>
-import Buzzsprout from '$components/mdx/Buzzsprout.svelte';
-</script>
-
 > ## TLDR;
 > Este post es también parte del [episodio 24](http://www.cafecon.tech/1081172/5581075-overview-de-algunos-modernos-lenguajes-de-programacion) de [Cafe con Tech](http://www.cafecon.tech)
 > <Buzzsprout buzzsproutId="1081172/5581075-overview-de-algunos-modernos-lenguajes-de-programacion" />

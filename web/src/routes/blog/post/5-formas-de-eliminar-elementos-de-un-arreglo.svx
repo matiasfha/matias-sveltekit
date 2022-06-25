@@ -21,10 +21,6 @@ bannerCredit: Photo by <a href="https://unsplash.com/@devintavery?utm_source=uns
 favorite: true
 ---
 
-<script>
-import EggheadLesson from '$components/mdx/EggheadLesson.svelte';
-</script>
-
  > ### TLDR 
  Lección en video en [egghead](https://egghead.io/lessons/javascript-como-eliminar-elementos-dentro-de-un-arreglo?af=4cexzz)
 

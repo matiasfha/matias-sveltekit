@@ -21,10 +21,6 @@ favorite: true
 ---
 
 
-<script>
-import EggheadLesson from '$components/mdx/EggheadLesson.svelte';
-</script>
-
 ## TLDR;
 
 > Puedes ver este video en [egghead.io](https://egghead.io/lessons/react-crear-un-componente-wizard-usando-usestate-react-hooks?pl=hooks-3d62&af=4cexzz).

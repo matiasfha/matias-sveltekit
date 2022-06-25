@@ -11,9 +11,6 @@ title: Typescript Avanzado. Trucos y Tips
 description: Trucos y tips sobre typescript para avanzar en su uso.
 bannerCredit:
 ---
-<script>
-import Twitter from '$components/mdx/Twitter.svelte';
-</script>
 
 
 Si has llegado hasta aquí es por que ya sabes que usar Typescript en tus proyectos es una buena idea y ya pasaste el punto inicial de fricción de agregar tipos en tu código Javascript, ahora: *¿Qué más puedes hacer?*
