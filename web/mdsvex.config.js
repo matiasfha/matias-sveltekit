@@ -51,7 +51,10 @@ import path from 'path'
 
 function remmarkPath() {
 	return function transformer(tree, vFile) {
-		const filepath = path.relative('__dirname',vFile.filename).slice(2)
+		const filepath = path.relative('__dirname',vFile.filename).replace(/^(.){2}/, '')
+		if(!vFile.data.fm) {
+			vFile.data.fm = {}
+		}
 		vFile.data.fm.filepath = filepath
 		
 		

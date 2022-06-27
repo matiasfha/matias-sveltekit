@@ -1,4 +1,3 @@
-
 ---
 date: 2022-06-27T12:47:23Z
 banner: https://cdn.sanity.io/images/cyypawp1/production/b1a8b51f7d38d80f36fb5a6ef5304ed557de7763-1280x710.png
@@ -9,10 +8,9 @@ keywords:
 - Como eliminar
 - Eliminar
 - archivos
-
-title: Git: ¿Cómo eliminar un archivo de la historia?
-description: En ocasiones subes a tu repositorio un archivo equivocado con información sensible. ¿Cómo lo eliminas totalmente de la historia?
-bannerCredit: undefined
+title: Git ¿Cómo eliminar un archivo de la historia?
+description: En ocasiones subes a tu repositori`o un archivo equivocado con información sensible. ¿Cómo lo eliminas totalmente de la historia?
+bannerCredit:
 tag: Posts
 ---
 
@@ -52,7 +50,9 @@ En tu terminal, en el directorio root de tu repositorio ejecuta:
 
 
 
-`$ git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch ./web/.env" HEAD `
+```bash
+$ git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch ./web/.env" HEAD 
+```
 
 
 
@@ -60,12 +60,14 @@ Al ejecutar esta operaicón verás que en la terminal se mostrará un mensaje in
 
 
 
-`WARNING: git-filter-branch has a glut of gotchas generating mangled history  
+```bash
+WARNING: git-filter-branch has a glut of gotchas generating mangled history  
 rewrites. Hit Ctrl-C before proceeding to abort, then use an  
 alternative filtering tool such as 'git filter-repo'  
 (https://github.com/newren/git-filter-repo/) instead. See the  
 filter-branch manual page for more details; to squelch this warning,  
-set FILTER_BRANCH_SQUELCH_WARNING=1.`
+set FILTER_BRANCH_SQUELCH_WARNING=1.
+```
 
 
 
@@ -78,12 +80,16 @@ Una vez instalada (puedes usar `brew` para macOS o `pip`) puedes utilizarla con 
 
 
 
-`$ git filter-repo --path ./web/.env --invert-paths `
+```bash
+$ git filter-repo --path ./web/.env --invert-paths 
+```
 
 
 
 Después de esta operación puedes actualizar tu repositorio remoto
 
-`git push --all -f`
+```bash
+git push --all -f
+```
                    
     
