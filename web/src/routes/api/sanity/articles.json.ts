@@ -94,15 +94,15 @@ async function createFileInRepo(content: string, title: string) {
 			path: `web/src/routes/blog/post/${slug}.svx`
 		};
 
-		const repo = await octokit.rest.repos.getContent({
-			...config
-		});
+		// const repo = await octokit.rest.repos.getContent({
+		// 	...config
+		// });
 
 		const res = await octokit.rest.repos.createOrUpdateFileContents({
 			...config,
 			message: 'Create or Update: ' + title,
 			content: Buffer.from(content, 'utf8').toString('base64'),
-			sha: repo.data.sha,
+			// sha: repo.data.sha,
 			commiter: {
 				name: 'Site api',
 				email: 'api@matiashernandez.dev'
@@ -232,3 +232,17 @@ async function writeToHashnode(post: Posts) {
 		console.error(e);
 	}
 }
+
+// async function shareToTwitter() {
+//     const requestTokenURL = 'https://api.twitter.com/oauth/request_token?oauth_callback=oob&x_auth_access_type=write';
+//     const authorizeURL = new URL('https://api.twitter.com/oauth/authorize');
+//     const accessTokenURL = 'https://api.twitter.com/oauth/access_token';
+//     const oauth = OAuth({
+//     consumer: {
+//         key: consumer_key,
+//         secret: consumer_secret
+//     },
+//     signature_method: 'HMAC-SHA1',
+//     hash_function: (baseString, key) => crypto.createHmac('sha1', key).update(baseString).digest('base64')
+//     });
+// }
