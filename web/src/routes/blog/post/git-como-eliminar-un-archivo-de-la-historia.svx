@@ -74,7 +74,10 @@ Una vez instalada (puedes usar `brew` para macOS o `pip`) puedes utilizarla con 
 
 
 
-`$ git filter-repo --path ./web/.env --invert-paths `
+```bash  
+$ git filter-repo --path ./web/.env --invert-paths 
+
+```
 
 
 
