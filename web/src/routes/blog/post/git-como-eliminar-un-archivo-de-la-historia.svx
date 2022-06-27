@@ -4,10 +4,10 @@ banner: https://cdn.sanity.io/images/cyypawp1/production/b1a8b51f7d38d80f36fb5a6
 keywords: 
 - Git
 - Github
-,- Tutorial
-,- Como eliminar
-,- Eliminar
-,- repositorio
+- Tutorial
+- Como eliminar
+- Eliminar
+- repositorio
 
 title: Git: ¿Cómo eliminar un archivo de la historia?
 description: En ocasiones subes a tu repositorio un archivo equivocado con información sensible. ¿Cómo lo eliminas totalmente de la historia?
