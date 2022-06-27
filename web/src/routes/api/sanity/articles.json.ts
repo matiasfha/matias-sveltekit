@@ -74,15 +74,20 @@ ${BlocksToMarkdown(content, { projectId: 'cyypawp1', dataset: 'production' })}
                    
     `;
 }
+
+function slugify(text: string) {
+	return text
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '')
+		.replace(/\?|\¿/g, '')
+		.replace(/\s+/g, '-')
+		.trim()
+		.toLowerCase();
+}
+
 async function createFileInRepo(content: string, title: string) {
 	try {
-		const slug = title
-			.normalize('NFD')
-			.replace(/[\u0300-\u036f]/g, '')
-			.replace(/\?|\¿/g, '')
-			.replace(/\s+/g, '-')
-			.trim()
-			.toLowerCase();
+		const slug = slugify(title);
 		const config = {
 			owner: 'matiasfha',
 			repo: 'matias-sveltekit',
@@ -133,11 +138,12 @@ export async function post({ request }: RequestEvent) {
 		});
 
 		const res = await createFileInRepo(markdown, post.title);
+		await writeToDevTo(post);
+		await writeToHashnode(post);
 		return {
 			body: {
 				res,
-				title: post.title,
-				headers: request.headers
+				title: post.title
 			}
 		};
 	} catch (e) {
@@ -149,31 +155,80 @@ export async function post({ request }: RequestEvent) {
 	}
 }
 
-// export async function get({ request }: RequestEvent) {
-// 	try {
-// 		const [post] = await client.query<Posts>('*[_type == "posts"]');
+async function writeToDevTo(post: Posts) {
+	const article = {
+		title: post.title,
+		body_markdown: BlocksToMarkdown(post.content, { projectId: 'cyypawp1', dataset: 'production' }),
+		published: true,
+		main_image: post.banner.asset._ref,
+		canonical_url: 'https://matiashernandez.dev/blog/' + slugify(post.title),
+		description: post.description,
+		tags: post.keywords
+	};
+	try {
+		const res = await fetch('https://dev.to/api/articles', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'api-key': import.meta.env.VITE_DEVTO_TOKEN
+			},
+			body: JSON.stringify({ article })
+		});
+		return res.status;
+	} catch (e) {
+		console.error(e);
+	}
+}
 
-// 		const markdown = generateMarkdown({
-// 			date: post._createdAt,
-// 			banner: builder.image(post.banner.asset._ref).url(),
-// 			keywords: post.keywords,
-// 			title: post.title,
-// 			description: post.description,
-// 			bannerCredit: post.banner.bannerCredit,
-// 			content: post.content
-// 		});
-// 		const res = await createFileInRepo(markdown, post.title);
-// 		return {
-// 			body: {
-// 				res,
-// 				title: post.title
-// 			}
-// 		};
-// 	} catch (e) {
-// 		console.error(e);
-// 		return {
-// 			status: 500,
-// 			body: e.message
-// 		};
-// 	}
-// }
+async function writeToHashnode(post: Posts) {
+	const article = {
+		title: post.title,
+		contentMarkdown: BlocksToMarkdown(post.content, {
+			projectId: 'cyypawp1',
+			dataset: 'production'
+		}),
+		coverImageURL: post.banner.asset._ref,
+		isRepublished: {
+			originalArticleURL: 'https://matiashernandez.dev/blog/' + slugify(post.title)
+		},
+		tags: [
+			{
+				_id: '56744721958ef13879b94cad'
+			},
+			{
+				_id: '56a399f292921b8f79d3633c'
+			}
+		]
+	};
+	const query = {
+		operationName: 'createArticle',
+		query: `mutation createStory($title: String!, $contentMarkdown: String!, $coverImageURL: String!, $isRepublished: isRepublished, $tags: [TagsInput!]) {
+            createStory(input:{
+              title: $title
+              contentMarkdown: $contentMarkdown
+              coverImageURL: $coverImageURL
+              isRepublished: $isRepublished
+              tags: $tags
+            }) {
+              post {
+                author
+                title
+              }
+            }
+          }`,
+		variables: article
+	};
+	try {
+		const res = await fetch('https://api.hashnode.com/', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: import.meta.env.VITE_HASHNODE_TOKEN
+			},
+			body: JSON.stringify(query)
+		});
+		return res.status;
+	} catch (e) {
+		console.error(e);
+	}
+}

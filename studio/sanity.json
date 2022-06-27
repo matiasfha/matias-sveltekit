@@ -14,7 +14,11 @@
     "@sanity/default-login",
     "@sanity/desk-tool",
     "@sanity/dashboard",
-    "markdown"
+    "social-preview",
+    "netlify-deploy-status-badge",
+    "plausible-iframe",
+    "asset-source-unsplash",
+    "@sanity/code-input"
   ],
   "env": {
     "development": {
