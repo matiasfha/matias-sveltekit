@@ -7,6 +7,7 @@ import BlocksToMarkdown from '@sanity/block-content-to-markdown';
 import imageUrlBuilder from '@sanity/image-url';
 
 import { createFileInRepo, updateFileInRepo } from '$lib/utils/github';
+import { getDeployStatus } from '$lib/netlify';
 import writeToDevTo from './writeToDevTo';
 import writeToHashnode from './writeToHashnode';
 
@@ -97,6 +98,10 @@ export async function put({ request }: RequestEvent) {
 
 		const res = await updateFileInRepo(markdown, post.title);
 		console.log('File created in github');
+		const netlify = await getDeployStatus();
+		if (netlify) {
+			console.log('Deployed, ready to re-post');
+		}
 		// @TODO
 		// How to update the article on Dev.to and Hashnode?
 		return {
@@ -180,41 +185,39 @@ export async function post({ request }: RequestEvent) {
 // import type { Documents } from '../../../schema.types';
 // const client = createClient<Documents>(clientOptions);
 
-// export async function get({ request }: RequestEvent) {
-// 	try {
-// 		const [post] = await client.query<Posts>('*[_type == "posts"]');
+export async function get({ request }: RequestEvent) {
+	const res = await getDeployStatus();
+	// 	try {
+	// 		const [post] = await client.query<Posts>('*[_type == "posts"]');
 
-// 		const markdown = generateMarkdown({
-// 			date: post._createdAt,
-// 			banner: builder.image(post.banner.asset._ref).url(),
-// 			keywords: post.keywords,
-// 			title: post.title,
-// 			description: post.description,
-// 			bannerCredit: post.banner.bannerCredit,
-// 			content: post.content
-// 		});
-// 		//const res = await createFileInRepo(markdown, post.title);
-// 		// const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
-// 		console.log('File created in DevTo');
-// 		const hashnode = await writeToHashnode({
-// 			...post,
-// 			image: builder.image(post.banner.asset._ref).url()
-// 		});
-// 		console.log('File created in Hashnode');
+	// 		const markdown = generateMarkdown({
+	// 			date: post._createdAt,
+	// 			banner: builder.image(post.banner.asset._ref).url(),
+	// 			keywords: post.keywords,
+	// 			title: post.title,
+	// 			description: post.description,
+	// 			bannerCredit: post.banner.bannerCredit,
+	// 			content: post.content
+	// 		});
+	// 		//const res = await createFileInRepo(markdown, post.title);
+	// 		// const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
+	// 		console.log('File created in DevTo');
+	// 		const hashnode = await writeToHashnode({
+	// 			...post,
+	// 			image: builder.image(post.banner.asset._ref).url()
+	// 		});
+	// 		console.log('File created in Hashnode');
 
-// 		return {
-// 			body: {
-// 				title: post.title,
-// 				markdown,
-// 				// dev,
-// 				hashnode
-// 			}
-// 		};
-// 	} catch (e) {
-// 		console.error(e);
-// 		return {
-// 			status: 500,
-// 			body: e.message
-// 		};
-// 	}
-// }
+	return {
+		body: {
+			res
+		}
+	};
+	// 	} catch (e) {
+	// 		console.error(e);
+	// 		return {
+	// 			status: 500,
+	// 			body: e.message
+	// 		};
+	// 	}
+}

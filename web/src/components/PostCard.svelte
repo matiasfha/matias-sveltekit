@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { Post } from '$lib/types';
+	import { format } from 'date-fns'
 	export let post: Post;
-	console.log(post)
+	console.log(post.date)
 </script>
 
 <div class="flex flex-col">
@@ -17,7 +18,7 @@
 			</div>
 
 			<div class="mt-8 dark:text-gray-300 text-gray-500 text-md font-medium lowercase text-body">
-				{new Date(post.date).toLocaleDateString()}
+				{format(new Date(post.date), 'dd/MM/yyyy')}
 			</div>
 			<h2 class="md:text-2xl text-xl font-bold leading-tighter text-black dark:text-white ">
 				{post.title}
