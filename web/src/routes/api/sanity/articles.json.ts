@@ -97,16 +97,12 @@ export async function put({ request }: RequestEvent) {
 
 		const res = await updateFileInRepo(markdown, post.title);
 		console.log('File created in github');
-		const dev = await writeToDevTo(post);
-		console.log('File created in DevTo');
-		const hashnode = await writeToHashnode(post);
-		console.log('File created in Hashnode');
+		// @TODO
+		// How to update the article on Dev.to and Hashnode?
 		return {
 			body: {
 				res,
-				title: post.title,
-				dev,
-				hashnode
+				title: post.title
 			}
 		};
 	} catch (e) {
@@ -142,10 +138,14 @@ export async function post({ request }: RequestEvent) {
 
 		const res = await createFileInRepo(markdown, post.title);
 		console.log('File created in github');
-		const dev = await writeToDevTo(post);
+		const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
 		console.log('File created in DevTo');
-		const hashnode = await writeToHashnode(post);
+		const hashnode = await writeToHashnode({
+			...post,
+			image: builder.image(post.banner.asset._ref).url()
+		});
 		console.log('File created in Hashnode');
+
 		return {
 			body: {
 				res,
@@ -175,4 +175,46 @@ export async function post({ request }: RequestEvent) {
 //     signature_method: 'HMAC-SHA1',
 //     hash_function: (baseString, key) => crypto.createHmac('sha1', key).update(baseString).digest('base64')
 //     });
+// }
+// import { createClient } from 'sanity-codegen';
+// import type { Documents } from '../../../schema.types';
+// const client = createClient<Documents>(clientOptions);
+
+// export async function get({ request }: RequestEvent) {
+// 	try {
+// 		const [post] = await client.query<Posts>('*[_type == "posts"]');
+
+// 		const markdown = generateMarkdown({
+// 			date: post._createdAt,
+// 			banner: builder.image(post.banner.asset._ref).url(),
+// 			keywords: post.keywords,
+// 			title: post.title,
+// 			description: post.description,
+// 			bannerCredit: post.banner.bannerCredit,
+// 			content: post.content
+// 		});
+// 		//const res = await createFileInRepo(markdown, post.title);
+// 		// const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
+// 		console.log('File created in DevTo');
+// 		const hashnode = await writeToHashnode({
+// 			...post,
+// 			image: builder.image(post.banner.asset._ref).url()
+// 		});
+// 		console.log('File created in Hashnode');
+
+// 		return {
+// 			body: {
+// 				title: post.title,
+// 				markdown,
+// 				// dev,
+// 				hashnode
+// 			}
+// 		};
+// 	} catch (e) {
+// 		console.error(e);
+// 		return {
+// 			status: 500,
+// 			body: e.message
+// 		};
+// 	}
 // }

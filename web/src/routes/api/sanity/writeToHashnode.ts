@@ -2,14 +2,16 @@ import slugify from '$lib/utils/slugify';
 import BlocksToMarkdown from '@sanity/block-content-to-markdown';
 import type { Posts } from '../../../schema.types';
 
-export default async function writeToHashnode(post: Posts) {
+export default async function writeToHashnode(post: Posts & { image: string }) {
 	const article = {
 		title: post.title,
-		contentMarkdown: BlocksToMarkdown(post.content, {
+		contentMarkdown: `${BlocksToMarkdown(post.content, {
 			projectId: 'cyypawp1',
 			dataset: 'production'
-		}),
-		coverImageURL: post.banner.asset._ref,
+		})}
+        %%[buymeacoffee]
+        `,
+		coverImageURL: post.image,
 		isRepublished: {
 			originalArticleURL: 'https://matiashernandez.dev/blog/' + slugify(post.title)
 		},
@@ -23,17 +25,25 @@ export default async function writeToHashnode(post: Posts) {
 		]
 	};
 	const query = {
-		operationName: 'createArticle',
-		query: `mutation createStory($title: String!, $contentMarkdown: String!, $coverImageURL: String!, $isRepublished: isRepublished, $tags: [TagsInput!]) {
-            createStory(input:{
-              title: $title
-              contentMarkdown: $contentMarkdown
-              coverImageURL: $coverImageURL
-              isRepublished: $isRepublished
-              tags: $tags
-            }) {
+		operationName: 'createPublicationStory',
+		query: `mutation createPublicationStory(
+                $title: String!,
+                $contentMarkdown: String!,
+                $coverImageURL: String!,
+                $isRepublished: isRepublished, 
+                $tags: [TagsInput]!
+            ) {
+            createPublicationStory(
+                publicationId: "5f75e21237eb052c1b80d7ec",
+                input:{
+                    title: $title
+                    contentMarkdown: $contentMarkdown
+                    coverImageURL: $coverImageURL
+                    isRepublished: $isRepublished
+                    tags: $tags
+                }) {
               post {
-                author
+                slug
                 title
               }
             }
@@ -50,9 +60,10 @@ export default async function writeToHashnode(post: Posts) {
 			body: JSON.stringify(query)
 		});
 		const json = await res.json();
+		console.log(json.data.createStory);
 		return {
 			status: res.status,
-			slug: json.data.createStory.post.slug
+			slug: json
 		};
 	} catch (e) {
 		console.error(e);
