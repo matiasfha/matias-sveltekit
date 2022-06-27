@@ -32,8 +32,7 @@ Entonces, ¿Cómo eliminas totalmente esta información?
 
 Lo que realmente quieres es, re-escribir la historia de tu repositorio para así eliminar toda referencia a dicho archivo.
 
-Para esto necesitas  
-
+Para esto necesitas:
 
 1. Encontrar la ubicación o "path" del archivo dentro del repositorio
 2. Recorrer cada branch y commit
