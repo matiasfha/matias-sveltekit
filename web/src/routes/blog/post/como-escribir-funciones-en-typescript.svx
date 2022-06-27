@@ -119,7 +119,7 @@ En este ejemplo el tipo de la función es definido antes de la declaración de l
 También es posible extraer el tipo de la función para mejorar legibilidad o incluso para utilizarlo en otro lugar.
 
 ```ts
-type MulFn = (a:number, b: number): number
+type MulFn = (a:number, b: number) => number
 const multiplicar: MulFn  = (a,b)=> a * b;
 ```
 Esto también puede ser logrado utilizando la sintaxis de objeto
@@ -154,7 +154,7 @@ Este ejemplo permite que el parámetro `b` no se utilice o sea `undefined`
 Otra forma de crear opcionalidad de parámetros es definir su valor por defecto. Typescript tratará dicho parámetro como un parámetro opcional
 
 ```ts
-const multiplicar: (a:number, b: number = 1): number  = (a,b)=> a * b;
+const multiplicar: (a:number, b: number) => number  = (a,b = 1)=> a * b;
 multiplicar(2) // = 2 
 multiplicar(2, undefined) // 2
 ```
