@@ -56,7 +56,8 @@ function generateMarkdown({
 	const keys = keywords
 		.map((keyword: string) => `- ${keyword}\n`)
 		.join()
-		.replace(',', '');
+		.replace(/,+/g, '')
+		.trim();
 	return `
 ---
 date: ${date}
@@ -75,6 +76,7 @@ ${BlocksToMarkdown(content, { projectId: 'cyypawp1', dataset: 'production' })}
 
 export async function put({ request }: RequestEvent) {
 	const body = await request.json();
+	console.log(body);
 	if (!validateWebhook(request, body)) {
 		return {
 			status: 401,
@@ -86,6 +88,7 @@ export async function put({ request }: RequestEvent) {
 	}
 	try {
 		const post: Posts = body;
+
 		const markdown = generateMarkdown({
 			date: post._createdAt,
 			banner: builder.image(post.banner.asset._ref).url(),
@@ -95,7 +98,7 @@ export async function put({ request }: RequestEvent) {
 			bannerCredit: post.banner.bannerCredit,
 			content: post.content
 		});
-
+		console.log(markdown);
 		const res = await updateFileInRepo(markdown, post.title);
 		console.log('File created in github');
 		const netlify = await getDeployStatus();
@@ -181,43 +184,44 @@ export async function post({ request }: RequestEvent) {
 //     hash_function: (baseString, key) => crypto.createHmac('sha1', key).update(baseString).digest('base64')
 //     });
 // }
-// import { createClient } from 'sanity-codegen';
-// import type { Documents } from '../../../schema.types';
-// const client = createClient<Documents>(clientOptions);
+import { createClient } from 'sanity-codegen';
+import type { Documents } from '../../../schema.types';
+const client = createClient<Documents>(clientOptions);
 
 export async function get({ request }: RequestEvent) {
-	const res = await getDeployStatus();
-	// 	try {
-	// 		const [post] = await client.query<Posts>('*[_type == "posts"]');
+	// const res = await getDeployStatus();
+	try {
+		const [post] = await client.query<Posts>('*[_type == "posts"]');
 
-	// 		const markdown = generateMarkdown({
-	// 			date: post._createdAt,
-	// 			banner: builder.image(post.banner.asset._ref).url(),
-	// 			keywords: post.keywords,
-	// 			title: post.title,
-	// 			description: post.description,
-	// 			bannerCredit: post.banner.bannerCredit,
-	// 			content: post.content
-	// 		});
-	// 		//const res = await createFileInRepo(markdown, post.title);
-	// 		// const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
-	// 		console.log('File created in DevTo');
-	// 		const hashnode = await writeToHashnode({
-	// 			...post,
-	// 			image: builder.image(post.banner.asset._ref).url()
-	// 		});
-	// 		console.log('File created in Hashnode');
+		const markdown = generateMarkdown({
+			date: post._createdAt,
+			banner: builder.image(post.banner.asset._ref).url(),
+			keywords: post.keywords,
+			title: post.title,
+			description: post.description,
+			bannerCredit: post.banner.bannerCredit,
+			content: post.content
+		});
+		console.log(markdown);
+		//const res = await createFileInRepo(markdown, post.title);
+		// const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
+		// console.log('File created in DevTo');
+		// const hashnode = await writeToHashnode({
+		// 	...post,
+		// 	image: builder.image(post.banner.asset._ref).url()
+		// });
+		// console.log('File created in Hashnode');
 
-	return {
-		body: {
-			res
-		}
-	};
-	// 	} catch (e) {
-	// 		console.error(e);
-	// 		return {
-	// 			status: 500,
-	// 			body: e.message
-	// 		};
-	// 	}
+		return {
+			body: {
+				markdown
+			}
+		};
+	} catch (e) {
+		console.error(e);
+		return {
+			status: 500,
+			body: e.message
+		};
+	}
 }

@@ -33,11 +33,13 @@ export async function getDeployStatus() {
 			siteId: 'fc23c69d-0768-4412-be6f-a50ec4e4531c'
 		});
 		const deploy = deployList[0];
+
 		const result = await poll(async () => {
 			const state = await client.getSiteDeploy({
 				siteId: 'fc23c69d-0768-4412-be6f-a50ec4e4531c',
 				deployId: deploy.id
 			});
+
 			return state.state === 'ready';
 		});
 		return result;
