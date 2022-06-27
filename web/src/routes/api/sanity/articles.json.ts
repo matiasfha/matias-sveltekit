@@ -139,12 +139,17 @@ export async function post({ request }: RequestEvent) {
 		});
 
 		const res = await createFileInRepo(markdown, post.title);
-		await writeToDevTo(post);
-		await writeToHashnode(post);
+		console.log('File created in github');
+		const dev = await writeToDevTo(post);
+		console.log('File created in DevTo');
+		const hashnode = await writeToHashnode(post);
+		console.log('File created in Hashnode');
 		return {
 			body: {
 				res,
-				title: post.title
+				title: post.title,
+				dev,
+				hashnode
 			}
 		};
 	} catch (e) {
@@ -175,7 +180,10 @@ async function writeToDevTo(post: Posts) {
 			},
 			body: JSON.stringify({ article })
 		});
-		return res.status;
+		return {
+			status: res.status,
+			url: res.url
+		};
 	} catch (e) {
 		console.error(e);
 	}
@@ -228,7 +236,11 @@ async function writeToHashnode(post: Posts) {
 			},
 			body: JSON.stringify(query)
 		});
-		return res.status;
+		const json = await res.json();
+		return {
+			status: res.status,
+			slug: json.data.createStory.post.slug
+		};
 	} catch (e) {
 		console.error(e);
 	}
