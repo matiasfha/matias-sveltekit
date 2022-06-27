@@ -72,7 +72,7 @@ tag: Posts
 
 ${BlocksToMarkdown(content, { projectId: 'cyypawp1', dataset: 'production' })}
                    
-    `;
+    `.trim();
 }
 
 function slugify(text: string) {
