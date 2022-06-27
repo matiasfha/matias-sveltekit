@@ -65,8 +65,6 @@ alternative filtering tool such as 'git filter-repo'
 filter-branch manual page for more details; to squelch this warning,  
 set FILTER_BRANCH_SQUELCH_WARNING=1.`
 
-
-
 En este mensaje se indica que existe una herramienta alternativa llamada `filter-repo` que [puedes encontrar en github](https://github.com/newren/git-filter-repo/)   
   
 Una vez instalada (puedes usar `brew` para macOS o `pip`) puedes utilizarla con el siguiente comando en tu terminal  
