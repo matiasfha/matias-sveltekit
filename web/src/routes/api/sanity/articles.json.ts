@@ -81,6 +81,7 @@ function slugify(text: string) {
 		.replace(/[\u0300-\u036f]/g, '')
 		.replace(/\?|\¿/g, '')
 		.replace(/\s+/g, '-')
+		.replace(/:+/g, '')
 		.trim()
 		.toLowerCase();
 }
