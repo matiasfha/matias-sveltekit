@@ -10,5 +10,10 @@
     "hire": "Hire me",
     "navbar": {
         "articles": "Guest Writing"
+    },
+    "pricing": {
+        "title": "Weekly Pricing",
+        "exclusivity": "Weekly adds exclusivity",
+        "includes":"Copy and design included"
     }
 }

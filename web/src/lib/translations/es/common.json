@@ -10,5 +10,10 @@
     "hire": "Contratame",
     "navbar": {
         "articles": "Artículos Externos"
+    },
+    "pricing": {
+        "title": "Precion Semanal",
+        "exclusivity": "Una semana de publicidad exclusiva",
+        "includes":"Incluye diseño y redacción"
     }
 }
