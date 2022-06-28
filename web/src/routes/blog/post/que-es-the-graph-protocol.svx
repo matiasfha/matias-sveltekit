@@ -1,0 +1,142 @@
+---
+date: 2022-06-27T23:54:37Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/0766fe61d97fb0068cbbd8c52823d4168746fb19-1280x710.png
+keywords: 
+- Graph
+- Web3
+- Ethereum
+- Descentralizacion
+- Blockchain
+- GRT
+title: ¿Qué es The Graph Protocol?
+description: The Graph es un protocolo de indexación y consulta que permite crear APIs eficientes para acceder a los datos de cualquier smart contract.
+bannerCredit: undefined
+tag: Posts
+---
+
+<TLDR>  
+El protocolo **"The Graph"** es un protocolo de indexado y consulta que permite desarrollar APIs con datos almacenados en la blockchain. Los datos de estas APIs pueden ser consultados utilzando una API GraphQL, permitiendo crear nuevas API decentralizadas de alto rendimiento sobre una colección de datos de una blockchain.  
+</TLDR>
+
+
+
+## ¿Cuál es la importancia de The Graph?
+
+Con The Graph es posible trabajar con datos reales de múltiples blockchains y utilizar estos datos para crear utilices, simples y mejores experiencia de usuarios.   
+  
+The Graph es una pieza escencial en el stack de Web3 permitiendo interactuar con datos de la blockchain de forma directa y veloz, algo que no es posible hacer directamente al consultar la red.
+
+
+
+## ¿Qué es The Graph?
+
+[The Graph](https://thegraph.com/) es un protocolo para indexado y consulta de datos desde [varias blockchains](https://thegraph.com/blog/multiblockchain-support) utilizando GraphQL.  
+
+
+La idea tras el protocolo es ofrecer una forma sencilla y eficiente de obtener information de cualquier smart contract disponible en la blockchain para ser utilizada en cualquier aplicación descentralizada, es decir, The Graph permite a desarrolladores crear sus propias API descentralizadas - llamadas sub-graphs - para ser utilizadas por cualquier otro desarrollad@r.
+
+
+
+Indexado se refiere al proceso de transformar datos no ordenados en un set the datos que permita maximizar la eficiencia de consulta de los mismos.
+
+
+
+> Puedes leer más sobre que es el proceso de Indexado en [este artículo](https://pcweb.info/que-es-la-indexacion-en-bases-de-datos-definicion-significado-concepto/)
+
+
+
+![](https://cdn.sanity.io/images/cyypawp1/production/0e3dd4aa288c381704dbff9d2b8a41a55e715530-1195x289.png)
+
+
+
+The Graph, es además un ecosistema en donde participan varios actores para asegurar que el proceso de indexado se mantenga descentralizado. Developers, Indexers, Delegators y Curators son los distintos roles.
+
+* Indexers apuesta (stake) el token nativo $GRT y son incentivados para indexar subgraphs de manera correcta.
+* Delegators apuestan su $GRT en los indexadores para obtner una porción de las ganacias de los indexadores.
+* Curators, revisan y señalan distintos subgraphs para indicar su calidad y cuales deberen ser indexados en la red.
+
+## ¿Por qué The Graph es necesario?
+
+El protocolo The Graph se crea para resolver un problema, acceso a información de la blockchain. Pero ¿Por qué esto es un problema?
+
+Una blockchain (como Ethereum) es una "base de datos" pública, compartida y distribuida en una red de miles de computadores. La blockchain es una serie de datos y estados almacenados en bloques.  
+  
+Una transacción es el nombre del proceso de escribir datos en la blockchain, este proceso es firmado criptográficamente. La transacción y su firma criptográfica son almacenadas permanentemente en la blockchain siendo accesibles por quien lo desee en modo de lectura.
+
+Los datos almacenados en la blockchaion son de interés de muchos desarrolladores para crear nuevas y complejas experiencias de usuario pero existe un problema, la consulta de datos desde la blockchain es dificil y lenta.
+
+
+
+Cada smart contract define diferentes métodos que pueden ser accedidos para obtener cierta información, algunos de estos métodos están definidos en algunos estándares como [ERC-20](https://eips.ethereum.org/EIPS/eip-20) para tokens o [ERC-721](https://eips.ethereum.org/EIPS/eip-721) para NFT, pero si lo que necesitas es filtrar, mapear relaciones o realizar búsquedas complejas dentro de estos datos o entre smart contracts, tendrás un trabajo titánico y manual. La naturaleza de la blockchain permite que los datos que deseas encontrar puedan vivir en diferentes bloques, pero no se presentan mecanismos "nativos" para identificar, categorizar o consultar ese tipo de datos.
+
+
+
+El proceso sería mas o menos así:
+
+Imagina que quieres consultar por la existencia de un token NFT en particular que cumple con algunas características A, B y C.   
+  
+Necesitarás:
+
+* Obtener cada `tokenId` que se relaciona con esa colección de NFT en particular
+* Leer la metadata de cada token que quizá está almacenada en IPFS
+* Agregar los datos
+* Escribir una app que filtre los datos agregados en base a la características A, B y C
+
+Otra opción es crear tu propio servidor para procesar y almacenar transacciones. Almacenar estos datos en tu propia base de datos que deberá tener formas de indexación y finalmente crear una API sobre estos datos para poder utilizarlo en alguna app.
+
+Ambas opciones rompen la idea de descentralización de una blockchain y consumen bastante tiempo de desarrollo.
+
+#### En esta situación es endonde The Graph entra en juego.
+
+
+
+![](https://cdn.sanity.io/images/cyypawp1/production/129cfabf033caecfa995dd30e7f05ee47849c0ad-1300x686.png)
+
+Todos pueden usar el protocolo para indexar las transacciones que quieran para así ponerlas a disposición de usuarios por medio de consultas, esto se logra mediante la creación "subgraphs"
+
+
+
+En general un subgraph es un schema, como un schema de GraphQL. Un schema es una estructura de datos construida sobre cierto conjunto de datos que quieres consultar más adelante.
+
+Una vez definido el schema, podrás definir que eventos serán escuchados junto con los manejadores de eventos que manejaran los datos recibidos. Estos mappings cumplen el mismo objetivo que los _"resolvers" _en GraphQL, en donde defines la forma en que se obtienen los datos, aplicas cierta lógica para responder a la consulta con el formato correcto.
+
+
+
+Una vez que un desarrollador implementa el manifiesto de un subgraph, puede usar la herramienta de terminal `The Graph CLI` para guardar el subgraph en IPFS, inicianod hací el proceso de indexación.
+
+### El flujo de datos de un subgraph
+
+
+
+Para poder hacerte una idea de cómo funciona el protocolo desde el punto de vista de un desarrollador, es adecuado tener un lista de los pasos o flujo de datos del mismo.
+
+1. **Transacción: **Nuevos datos son agregados a la blockchain mediante una transacción o por la acción de un smart contract de alguna aplicación descentralizada.
+2. **Evento:** Uno o más eventos son emitidos por el o los smart contracts de interes.
+3. **Scan**: The Graph Node se mantiene escaneando la creación de nuevos bloques.
+4. **Discovery:** Is un bloque contiene un evento definido en uno de los subgraph, The Graph Node ejecuta el mapeo de dicho evento con el correspondiente método.
+5. **Consulta:** Una aplicación descentralizada (dApp) realiza una consulta al The Graph Node usando un api GraphQL. 
+6. **Presentación:** Los datos retornados por la consulta son retornados y desplegados en la UI de una dApp.
+
+
+
+## Conclusión
+
+Es fácil notar que una herramienta de indexado sobre datos de complejo acceso es benéfica para el desarrollo de multiples casos de uso. The Graph permite obtener datos específicos de una forma sencilla y familiar para muchos desarrolladores.
+
+
+
+Además, The Graph es también un protocolo descentralizado con incentivos económicos y una fuerte comunidad.
+
+Para más información sobre el protocolo revisa los siguientes enlaces.
+
+
+
+[Website](https://thegraph.com/)
+
+[Twitter](https://twitter.com/graphprotocol)
+
+[GitHub](https://github.com/graphprotocol)
+
+[Reddit](https://reddit.com/r/thegraph)
+
+[Discord](https://discord.gg/vtvv7FP)
