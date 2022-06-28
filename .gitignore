@@ -2,3 +2,12 @@
 .netlify
 .sveltekit
 node_modules
+studio/dist
+web/build
+
+yarn-error.log
+
+studio/dist/static/js/vendor.bundle.js
+studio/dist/static/js/app.bundle.js
+studio/dist/index.html
+studio/dist/static/css/main.css

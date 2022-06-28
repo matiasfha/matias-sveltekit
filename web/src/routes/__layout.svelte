@@ -10,7 +10,11 @@
 
 		const ts = await loadTranslations(initLocale, pathname); // keep this just before the `return`
 
-		return {};
+		return {
+			props: {
+				url
+			}
+		};
 	};
 </script>
 
@@ -18,12 +22,38 @@
 	import '../app.postcss';
 	import Footer from '$components/Footer.svelte';
 	import NavBar from '$components/NavBar.svelte';
+	import { fade } from "svelte/transition";
+	import  {
+		prefetchRoutes
+	} from '$app/navigation';
+	import { onMount } from 'svelte';
+	
+	export let url = "";
+	const pageTransitionDuration = 300;
+	let transition = false 
+
+	onMount(() => {
+		transition = window.matchMedia(`(prefers-reduced-motion: reduce)`).matches !== true
+		prefetchRoutes();
+	})
+
+
 </script>
 
 <!-- Navbar -->
 <NavBar />
 <main class="mx-auto max-w-7xl px-4 md:px-8">
-	<slot />
+	{#key url}
+		{#if !!transition}
+		<div in:fade={{  duration: pageTransitionDuration, delay: pageTransitionDuration }}
+			out:fade={{duration: pageTransitionDuration }}>
+			<slot />
+		</div>
+		{:else}
+			<slot />
+		{/if}
+	{/key}
+	
 </main>
 
 <Footer />

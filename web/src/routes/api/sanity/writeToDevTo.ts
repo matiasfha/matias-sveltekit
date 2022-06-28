@@ -12,7 +12,7 @@ ${BlocksToMarkdown(post.content, { projectId: 'cyypawp1', dataset: 'production' 
 `,
 		published: true,
 		main_image: post.image,
-		canonical_url: 'https://matiashernandez.dev/blog/' + slugify(post.title),
+		canonical_url: 'https://matiashernandez.dev/blog/post/' + slugify(post.title),
 		description: post.description,
 		tags: post.keywords.filter((item) => !item.includes(' ')).slice(0, 4)
 	};

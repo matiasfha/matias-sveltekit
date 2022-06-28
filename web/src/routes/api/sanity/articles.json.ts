@@ -203,18 +203,20 @@ export async function get({ request }: RequestEvent) {
 			content: post.content
 		});
 		console.log(markdown);
-		//const res = await createFileInRepo(markdown, post.title);
-		// const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
-		// console.log('File created in DevTo');
-		// const hashnode = await writeToHashnode({
-		// 	...post,
-		// 	image: builder.image(post.banner.asset._ref).url()
-		// });
-		// console.log('File created in Hashnode');
+		const res = await createFileInRepo(markdown, post.title);
+		const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
+		console.log('File created in DevTo');
+		const hashnode = await writeToHashnode({
+			...post,
+			image: builder.image(post.banner.asset._ref).url()
+		});
+		console.log('File created in Hashnode');
 
 		return {
 			body: {
-				markdown
+				markdown,
+				dev,
+				hashnode
 			}
 		};
 	} catch (e) {

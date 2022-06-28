@@ -13,7 +13,7 @@ export default async function writeToHashnode(post: Posts & { image: string }) {
         `,
 		coverImageURL: post.image,
 		isRepublished: {
-			originalArticleURL: 'https://matiashernandez.dev/blog/' + slugify(post.title)
+			originalArticleURL: 'https://matiashernandez.dev/blog/post/' + slugify(post.title)
 		},
 		tags: [
 			{
