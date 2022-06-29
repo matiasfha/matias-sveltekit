@@ -72,6 +72,7 @@
 						height="40"
 						id="escuelafrontend"
 						classes="filter dark:invert"
+						blur={false}
 					/>
 				</a>
 				<a href="https://github.com/matiasfha">

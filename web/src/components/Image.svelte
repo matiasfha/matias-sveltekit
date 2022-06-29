@@ -24,8 +24,7 @@
 
     export const lazyLoad = (image, src) => {                       // receieves the img node and the src string
         const loaded = () => {
-            imageReady = true 
-            
+            imageReady = true             
         }
         const observer = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting) {
@@ -72,5 +71,5 @@
         />
     </div>
     {/if}
-    <img use:lazyLoad={src} {alt} class={`${classes} ${imageReady ? 'opacity-100' : 'opacity-0'} transition-opacity`} {id} {width} {height}  decoding="async" loading="lazy" transition:fade={{ duration: 2000 }} />
+    <img use:lazyLoad={src} {alt} class={`${classes} ${imageReady ? 'opacity-100' : 'opacity-0'} transition-opacity`} {id} {width} {height}  decoding="async" loading="lazy" transition:fade={{ duration: 2000 }} /> 
 

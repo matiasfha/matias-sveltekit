@@ -24,7 +24,7 @@
 								alt={item.title}
 								classes="rounded-lg object-cover"
 								src={`${item.image}`}
-								width="220"
+								
 							/>
 						</div>
 
