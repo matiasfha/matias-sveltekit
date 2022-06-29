@@ -15,7 +15,7 @@
 			><div
 				class="aspect-w-2 aspect-h-1 h-1/4 rounded-lg transition group-hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2"
 			>
-				<Image alt="podcast" classes="rounded-lg object-cover" src={post.banner} />
+				<Image alt="podcast" classes="rounded-lg object-cover" src={post.banner} height="173" />
 			</div>
 
 			<div class="mt-8 dark:text-gray-300 text-gray-500 text-md font-medium lowercase text-body">

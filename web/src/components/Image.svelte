@@ -1,4 +1,20 @@
 <script lang="ts">
+    import { fade } from "svelte/transition";
+
+    // Props
+    export let src: string 
+    export let alt: string = "Post image"
+    export let width: string = undefined
+    export let height: string = "100%"
+    export let id: string = undefined 
+    export let classes: string = undefined
+    export let style: string = undefined
+    
+    
+    // State
+    $: imageReady = false
+
+    
     let options = {
         root: null,
         rootMargin: "0px",
@@ -7,7 +23,8 @@
 
     export const lazyLoad = (image, src) => {                       // receieves the img node and the src string
         const loaded = () => {
-            image.classList.add('visible')                          // manipulate the image node after load (trigger animations)
+            imageReady = true 
+            
         }
         const observer = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting) {
@@ -27,13 +44,10 @@
             }
         }
     }
-    export let src: string 
-    export let alt: string = "Post image"
-    export let width: string = undefined
-    export let height: string = undefined
-    export let id: string = undefined 
-    export let classes: string = undefined
-    export let style: string = undefined
+    
+    
 </script>
 
-<img use:lazyLoad={src} {alt} class={classes} {id} {width} {height} {style} decoding="async"/>
+
+<img use:lazyLoad={src} {alt} class={`${classes} ${imageReady ? 'opacity-100' : 'opacity-0'} transition-opacity`} {id} {width} {height}  decoding="async" loading="lazy" transition:fade={{ duration: 2000 }} />
+

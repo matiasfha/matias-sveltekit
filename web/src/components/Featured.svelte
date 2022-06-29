@@ -32,7 +32,7 @@
 									width="256"
 									alt="Featured illustration"
 									src={image}
-									class="object-center object-contain rounded-lg w-64"
+									classes="object-center object-contain rounded-lg w-64"
 								/>
 							</a>
 						</div>
