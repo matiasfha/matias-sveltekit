@@ -88,7 +88,7 @@
 </div>
 
 <section class="mt-12">
-	<h1 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">{$t('blog.title')}</h1>
+	<h2 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">{$t('blog.title')}</h2>
 	<div class="grid md:grid-cols-3 grid-cols-1 md:gap-16 gap-8 transition duration-150 ease-in-out">
 		{#each filteredPosts as post}
 			<PostCard {post} />

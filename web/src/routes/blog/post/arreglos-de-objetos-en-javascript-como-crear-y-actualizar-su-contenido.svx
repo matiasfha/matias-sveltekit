@@ -13,6 +13,7 @@ keywords:
 banner: https://res.cloudinary.com/matiasfha/image/upload/v1595045136/pierre-bamin-P2POGRtGprA-unsplash_gx6ozd.jpg
 bannerCredit: ""
 tag: Seed
+canonical: https://matiashernandez.dev/blog/post/arreglos-de-objetos-en-javascript-como-crear-y-actualizar-su-contenido
 ---
 
 

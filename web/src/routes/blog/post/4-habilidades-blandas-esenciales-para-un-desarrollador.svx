@@ -10,6 +10,7 @@ tag: Post
 title: 4 Habilidades Blandas Esenciales Para Un Desarrollador.
 description: Un desarrollador ya no es sólo alguien con grandes capacidades técnicas, si no, que debe ser capaz de comunicar ideas e intenciones.
 favorite: true
+canonical: https://matiashernandez.dev/blog/post/4-habilidades-blandas-esenciales-para-un-desarrollador
 ---
 
 <TLDR>

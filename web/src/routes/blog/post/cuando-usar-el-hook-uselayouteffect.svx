@@ -8,7 +8,7 @@ keywords:
 - useEffect
 tag: Seed
 title: "¿Cuándo usar el hook useLayoutEffect?"
-description: "¿Cuándo user el hook useLayoutEffect y cuál es la diferencia con useEffect?"
+description: "useLayoutEffect y useEffect son dos React hooks muy similares. ¿Cuándo usar uno u otro?"
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@halacious?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Halacious</a>
   on <a href="https://unsplash.com/s/photos/layout?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 

@@ -1,7 +1,8 @@
 <script context="module">
-	import { blockquote, h1 } from '$components/typography/index';
+	import { blockquote, h1, img } from '$components/typography/index';
+	import Image from './Image.svelte';
 	import { afterUpdate } from 'svelte';
-	export { blockquote, h1 };
+	export { blockquote, h1, img };
 	export const prerender = true;
 	export const hydrate = false;
 </script>
@@ -26,9 +27,9 @@
 	<header
 		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[20rem] overflow-hidden"
 	>
-		<img
+		<Image
 			src={banner}
-			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm"
+			classes=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm"
 			alt={title}
 		/>
 		<div class="flex flex-col max-w-[40vw] z-10  self-end mr-12">

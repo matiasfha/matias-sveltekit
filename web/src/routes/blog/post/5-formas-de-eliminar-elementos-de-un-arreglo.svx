@@ -19,6 +19,7 @@ title: 5 formas de eliminar elementos de un arreglo con Javascript
 description: Manipular arreglos es una tarea escencial y diaria en el desarrollo de software, una de esas manipulaciones es remover elementos de un arreglo. Javascript ofrece varias formas de hacerlo y su elección depende del caso de uso.
 bannerCredit: Photo by <a href="https://unsplash.com/@devintavery?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Devin Avery</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 favorite: true
+canonical: https://matiashernandez.dev/blog/post/5-formas-de-eliminar-elementos-de-un-arreglo
 ---
 
  > ### TLDR 

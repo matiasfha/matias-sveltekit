@@ -43,7 +43,7 @@
 </script>
 
 <Seo
-	title="Matias Hernández, creo contenido para ayudarte a subir de nivel"
+	title="Matias Hernández Website"
 	keywords={[
 		'Podcast',
 		'Artículos',

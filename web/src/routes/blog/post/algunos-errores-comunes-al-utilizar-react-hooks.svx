@@ -5,7 +5,7 @@ keywords:
 - React
 - Hooks
 tag: Seed
-title: Algunos errores comunes al utilizar React Hooks
+title: 6 errores comunes al utilizar React Hooks
 description: React introdujo la necesidad de un nuevo modelo mental para trabajar con hooks. Revisa aquí algunas buenas prácticas para mejorar tu proceso..
 bannerCredit: <span>Photo by <a href="[https://unsplash.com/@brookanderson?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText](https://unsplash.com/@brookanderson?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText)">Brook
   Anderson</a> on <a href="[https://unsplash.com/s/photos/hooks?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText](https://unsplash.com/s/photos/hooks?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText)">Unsplash</a></span>

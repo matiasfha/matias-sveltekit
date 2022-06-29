@@ -18,7 +18,7 @@ favorite: true
 ---
 Durante estas últimas semanas he estado trabajando con un proyecto utilizando React Native, y si bien React Native es, de alguna manera, 90% simplemente React, es tambien cierto que crea nuevos desafios.
 
-> Recomendado: [Comenzando con React Native](https://matiashernandez.dev/comenzando-con-react-native)
+> Recomendado: [Comenzando con React Native](https://matiashernandez.dev/blog/post/comenzando-con-react-native)
 
 Algunos de estos:
 
@@ -26,7 +26,7 @@ Algunos de estos:
 * Diferentes primitivas: Las primitivas utilizadas para crear la interfaz en una aplicación React Native son diferentes y si bien en mi caso esto no fue algo nuevo ya que he hecho algunas otras app con React Native, si implica tener que [mirar la documentacion](http://reactnative.dev/) basstante seguido para revisar algunas props o algunos elementos disponibles.
 * Es necesario implementar modulos nativos para resolver alguna tareas: Si bien la API de React Native y de herramientas como [expo](http://expo.io/) cubren gran parte de los casos de uso de una aplicación móvil genérica, muchas veces tenemos que crear nuestros propios módulos para resolver casos más complejos.
 
-> Relacionado: [Agregar módulos nativos a una aplicación React Native](https://matiashernandez.dev/agregar-modulos-nativos-a-una-aplicacion-react-native)
+> Relacionado: [Agregar módulos nativos a una aplicación React Native](https://matiashernandez.dev/blog/post/agregar-modulos-nativos-a-una-aplicacion-react-native)
 
 Es en este último desafío es en donde pase la última semana, implementando un wrapper en Java para exponer una API de un SDK.
 

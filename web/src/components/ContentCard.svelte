@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { ContentElement } from '$lib/types';
 	export let content: ContentElement;
+	import Image from './Image.svelte';
 </script>
 
 <div class="flex flex-col">
@@ -12,7 +13,7 @@
 			><div
 				class="aspect-w-2 aspect-h-1 h-1/4 rounded-lg transition group-hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2"
 			>
-				<img alt="podcast" class="rounded-lg object-cover" src={content.image} decoding="async" />
+				<Image alt="podcast" classes="rounded-lg object-cover" src={content.image}/>
 			</div>
 
 			<div class="mt-8 dark:text-gray-300 text-gray-500 text-md font-medium lowercase text-body">

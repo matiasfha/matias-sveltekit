@@ -16,7 +16,6 @@
 			.toLowerCase()
 			.split(' ')
 			.join('-');
-		console.log(slug);
 		siteUrl = `https://matiashernandez.dev/blog/post/${slug || ''}`;
 	}
 </script>

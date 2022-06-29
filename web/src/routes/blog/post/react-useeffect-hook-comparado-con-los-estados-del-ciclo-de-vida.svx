@@ -7,9 +7,8 @@ keywords:
 - hook
 - hooks
 tag: Seed
-title: React useEffect Hook Comparado con los Estados del Ciclo de Vida
-description: |-
-  El hook useEffect y los estados del ciclo de vida de un componente.
+title: React useEffect vs estados del ciclo de vida de una clase.
+description: El hook useEffect y los estados del ciclo de vida de un componente.
   Son comparables? Funcionan igual? Es uno del reemplazo del otro?.
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@markusspiske?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Markus
   Spiske</a> on <a href="https://unsplash.com/s/photos/effect?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>

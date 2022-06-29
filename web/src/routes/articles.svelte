@@ -107,7 +107,7 @@
 	/>
 </div>
 <section class="mt-12">
-	<h1 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">{$t('articles.title')}</h1>
+	<h2 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">{$t('articles.title')}</h2>
 	<div class="grid md:grid-cols-3 grid-cols-1 md:gap-16 gap-8">
 		{#each filteredArticles as content}
 			<ContentCard {content} />

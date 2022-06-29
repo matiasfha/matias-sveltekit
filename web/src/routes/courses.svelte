@@ -1,5 +1,6 @@
 <script lang="ts" context="module">
 	import type { Course } from '$lib/types';
+	
 	export async function load({ fetch }) {
 		try {
 			const response = await fetch('/api/courses.json');
@@ -22,6 +23,7 @@
 <script lang="ts">
 	import Featured from '$components/Featured.svelte';
 	import Seo from '$components/Seo.svelte';
+	import Image from '$components/Image.svelte';
 	import { t } from '$lib/translations';
 	export let courses: Course[];
 	const featured = courses.find((item) => item.id === 404918);
@@ -90,9 +92,9 @@
 	/>
 </div>
 <section class="mt-24">
-	<h1 class="leading-tight text-3xl md:text-4xl mb-3 dark:text-white text-ebony-clay-800s">
+	<h2 class="leading-tight text-3xl md:text-4xl mb-3 dark:text-white text-ebony-clay-800s">
 		{$t('common.courses')}
-	</h1>
+	</h2>
 	<div class="grid md:grid-cols-3 grid-cols-1 md:gap-16 gap-20">
 		{#each filteredCourse as item}
 			<div class="group peer flex flex-col ">
@@ -101,9 +103,9 @@
 						><div
 							class="aspect-w-2 aspect-h-1 w-full rounded-lg focus:ring transition group-hover:ring-2 ring-yellow-50 ring-offset-2"
 						>
-							<img
+							<Image
 								alt={item.title}
-								class="rounded-lg object-cover"
+								classes="rounded-lg object-cover"
 								src={`${item.image}`}
 								loading="lazy"
 								width="220"

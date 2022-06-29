@@ -6,7 +6,7 @@ keywords:
 - nvm
 - version
 tag: Post
-title: Definir la version de Node con NVM
+title: Como definir la version de Node utilizando NVM en tu proyecto
 description: NVM es la herramienta que te ayudara a controlar versiones de Node y
   También a definir cual es la versión en uso para tu proyecto
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@the_roaming_platypus?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">timJ</a>

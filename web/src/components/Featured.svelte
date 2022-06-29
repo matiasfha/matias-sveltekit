@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { t } from '$lib/translations';
+	import Image from './Image.svelte';
 	export let image: string;
 	export let title: string;
 	export let meta: string;
@@ -27,11 +28,10 @@
 					{#if type !== 'podcast'}
 						<div class="col-span-1 max-w-sm">
 							<a href={url}>
-								<img
+								<Image
 									width="256"
 									alt="Featured illustration"
 									src={image}
-									decoding="async"
 									class="object-center object-contain rounded-lg w-64"
 								/>
 							</a>

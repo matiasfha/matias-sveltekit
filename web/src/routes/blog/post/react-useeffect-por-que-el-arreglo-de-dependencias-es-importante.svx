@@ -7,7 +7,7 @@ keywords:
 - useEffect
 tag: Seed
 featured: true
-title: React useEffect ¿Por que el arreglo de dependencias es importante?
+title: La importancia del arreglo de dependencias
 description: React `useEffect` es quizá el hook que más confusiones genera a la hora
   de utilizarlo. Una confusión común es el uso del arreglo de dependencias
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@themisphotography?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Monirul
@@ -16,7 +16,7 @@ bannerCredit: <span>Photo by <a href="https://unsplash.com/@themisphotography?ut
 ---
 
 React `useEffect` es quizá el hook que más confusiones genera a la hora de utilizarlo.
-Algunas de esas confusiones se debe al intento de comparar su funcionamiento con los estados del ciclo de vida de un componente de clase, algo que aclaro en [este post anterior](https://matiashernandez.dev/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida)
+Algunas de esas confusiones se debe al intento de comparar su funcionamiento con los estados del ciclo de vida de un componente de clase, algo que aclaro en [este post anterior](https://matiashernandez.dev/blog/post/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida)
 
 > Recomendado:
 >
@@ -27,7 +27,7 @@ Algunas de esas confusiones se debe al intento de comparar su funcionamiento con
 El hook useEffect recibe dos argumentos, una funcion/callback que define el efecto deseado y un listado/arreglo de valores que definen las dependencias del efecto.
 Estas dependencias le sirven a React para saber cuándo o más bien **por qué** el efecto debe ejecutarse.
 
-Internamente useEffect "observa" este listado de dependencias y cuando uno de los valores de ellas cambia el efecto es emitido. Esto te permite optimizar la ejecución del efecto.
+Internamente useEffect "observa" este slistado de dependencias y cuando uno de los valores de ellas cambia el efecto es emitido. Esto te permite optimizar la ejecución del efecto.
 
 > Mantén en mente que React realiza una comparación utilizando [Object.is](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) para determinar si hubo un cambio en uno de los elementos. Si necesitas hacer una comparación "profunda" puedes utilizar este hook [useDeepCompareEffect](https://github.com/kentcdodds/use-deep-compare-effect)
 

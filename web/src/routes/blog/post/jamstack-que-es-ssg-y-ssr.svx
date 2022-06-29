@@ -10,7 +10,7 @@ keywords:
 - Gatsby
 - Next.js
 tag: Post
-title: 'JAMStack: ¿Qué es SSG y SSR?'
+title: '¿Qué significan las siglas SSG y SSR en JAMStack?'
 description: Una pregunta que suele aparecer en las foros y comunidades es la comparación
   entre Gatsby y Next.js o, la subyacente pregunta. Qué es SSG y SSR? Cuál debo usar
   para X caso de uso y cómo comenzar?

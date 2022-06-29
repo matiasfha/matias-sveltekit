@@ -17,7 +17,7 @@ description: Como utilizar useState React hook para crear un sencillo componente
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@draufsicht?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Andreas
   Gücklhorn</a> on <a href="https://unsplash.com/collections/9718937/solar?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 favorite: true
-
+canonical: https://matiashernandez.dev/blog/post/useState-para-crear-component-wizard 
 ---
 
 

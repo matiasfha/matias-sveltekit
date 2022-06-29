@@ -8,7 +8,7 @@ keywords:
 - " IOS Simulator"
 - " Android Studio"
 tag: Seed
-title: Comenzando con React Native
+title: ¿Cómo configurar y comenzar con React Native?
 description: React Native es un framework que permite utilizar Javascript y React
   para crear aplicaciones nativas. Para iniciar debes configurar algunas cosas
   primero.

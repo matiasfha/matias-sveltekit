@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Latest } from '$lib/types';
 	import { t } from '$lib/translations';
+	import Image from './Image.svelte';
 	export let latest: Latest[] = [];
 
 </script>
@@ -19,11 +20,10 @@
 						><div
 							class="aspect-w-2 aspect-h-1 w-full rounded-lg focus:ring transition group-hover:ring-2  dark:ring-yellow-50 ring-green-400 ring-offset-2"
 						>
-							<img
+							<Image
 								alt={item.title}
-								class="rounded-lg object-cover"
+								classes="rounded-lg object-cover"
 								src={`${item.image}`}
-								loading="lazy"
 								width="220"
 							/>
 						</div>
