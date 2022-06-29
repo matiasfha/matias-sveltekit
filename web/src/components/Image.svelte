@@ -1,15 +1,16 @@
 <script lang="ts">
     import { fade } from "svelte/transition";
-
+    import { decode } from 'blurhash'
+    import { onMount } from "svelte";
     // Props
     export let src: string 
     export let alt: string = "Post image"
     export let width: string = undefined
-    export let height: string = "100%"
+    export let height: string = undefined
     export let id: string = undefined 
     export let classes: string = undefined
     export let style: string = undefined
-    
+    export let blur: boolean = true
     
     // State
     $: imageReady = false
@@ -44,10 +45,32 @@
             }
         }
     }
-    
+     
+     
+    let canvas;
+    onMount(() => {
+        if (canvas) {
+            const pixels = decode("LEHV6nWB2yk8pyoJadR*.7kCMdnj", 100,100, 1);
+            const ctx = canvas.getContext("2d");
+            const imageData = ctx.createImageData(100,100);
+            imageData.data.set(pixels);
+            ctx.putImageData(imageData, 0, 0);
+        }
+    });
     
 </script>
 
 
-<img use:lazyLoad={src} {alt} class={`${classes} ${imageReady ? 'opacity-100' : 'opacity-0'} transition-opacity`} {id} {width} {height}  decoding="async" loading="lazy" transition:fade={{ duration: 2000 }} />
+    {#if !imageReady && blur}
+    <div style="width: 100%;height: 100%" transition:fade={{ duration: 2000}}>
+        <canvas 
+            bind:this={canvas}
+            width="100"
+            height="50"
+            class="rounded-lg"
+            style="width:100%;height:90%;"
+        />
+    </div>
+    {/if}
+    <img use:lazyLoad={src} {alt} class={`${classes} ${imageReady ? 'opacity-100' : 'opacity-0'} transition-opacity`} {id} {width} {height}  decoding="async" loading="lazy" transition:fade={{ duration: 2000 }} />
 

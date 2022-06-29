@@ -92,7 +92,7 @@
 			classes="object-contain backdrop-filter backdrop-blur-xl filter drop-shadow-2xl"
 			src={photo}
 			alt="This is me :D"
-			style="opacity: 1; transform: none;"
+			blur={false}
 		/>
 	</div>
 </div>

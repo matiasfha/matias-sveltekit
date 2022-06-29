@@ -26,15 +26,17 @@
 					class="flex lg:flex-row flex-col items-center justify-center sm:space-x-10 sm:space-y-0 space-y-5 0 w-full xl:pr-16"
 				>
 					{#if type !== 'podcast'}
-						<div class="col-span-1 max-w-sm">
-							<a href={url}>
-								<Image
-									width="256"
-									alt="Featured illustration"
-									src={image}
-									classes="object-center object-contain rounded-lg w-64"
-								/>
-							</a>
+						<div class="col-span-1 max-w-sm w-[24rem]">
+							<a
+								sveltekit:prefetch
+								class="group peer relative block w-full focus:outline-none"
+								href={url}
+								><div
+									class="aspect-w-2 aspect-h-1 h-1/4 rounded-lg transition "
+								>
+									<Image alt={title} classes="rounded-lg object-cover" src={image} height="173" />
+								</div>
+								</a>
 						</div>
 					{/if}
 					<div class="flex flex-col col-span-2 lg:items-start items-center w-full">
