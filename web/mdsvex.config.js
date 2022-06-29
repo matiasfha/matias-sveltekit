@@ -22,30 +22,31 @@ function processUrl(url, node) {
 
 function remarkSponsor() {
 	return (node,file) => {
-		if(file.filename.includes('sponsorships.svx')) {
-			return node
-		}
-		node.children = [
-			...node.children.slice(0, 6),
-			{
-				type: 'html',
-				value: '<Sponsor /> ',
-	
-			},
-			...node.children.slice(6)
-		]
-
-		if(node.children.length > 30) {
+		if(file.filename.includes('blog')) {
 			node.children = [
-				...node.children.slice(0, 30),
+				...node.children.slice(0, 6),
 				{
 					type: 'html',
 					value: '<Sponsor /> ',
 		
 				},
-				...node.children.slice(30)
-			]	
+				...node.children.slice(6)
+			]
+	
+			if(node.children.length > 30) {
+				node.children = [
+					...node.children.slice(0, 30),
+					{
+						type: 'html',
+						value: '<Sponsor /> ',
+			
+					},
+					...node.children.slice(30)
+				]	
+			}			
 		}
+		
+		
 		
 	}
 }
