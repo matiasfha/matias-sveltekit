@@ -3,6 +3,7 @@
 	import { afterUpdate } from 'svelte';
 	export { blockquote, h1 };
 	export const prerender = true;
+	export const hydrate = false;
 </script>
 
 <script>

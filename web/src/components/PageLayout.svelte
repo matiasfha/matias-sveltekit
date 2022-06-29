@@ -1,7 +1,7 @@
 <script context="module">
-	import { blockquote } from '$components/typography/index';
-	export { blockquote };
-
+	import { blockquote, h1 } from '$components/typography/index';
+	export { blockquote, h1 };
+	export const hydrate = false;
 	export const prerender = true;
 </script>
 
