@@ -21,7 +21,10 @@ function processUrl(url, node) {
 }
 
 function remarkSponsor() {
-	return (node) => {
+	return (node,file) => {
+		if(file.filename.includes('sponsorships.svx')) {
+			return node
+		}
 		node.children = [
 			...node.children.slice(0, 6),
 			{
