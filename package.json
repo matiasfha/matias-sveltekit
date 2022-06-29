@@ -1,5 +1,9 @@
 {
   "devDependencies": {
     "sanity-codegen": "0.9.8"
+  },
+  "dependencies": {
+    "@algolia/recommend": "4.13.1",
+    "@algolia/recommend-js": "1.5.0"
   }
 }

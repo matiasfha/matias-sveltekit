@@ -1,21 +1,43 @@
 <script context="module">
 	import { blockquote, h1, img } from '$components/typography/index';
 	import Image from './Image.svelte';
-	import { afterUpdate } from 'svelte';
+	import { afterUpdate, onMount } from 'svelte';
+
 	export { blockquote, h1, img };
 	export const prerender = true;
 	export const hydrate = false;
+	
 </script>
 
 <script>
 	import Seo from './Seo.svelte';
+	// Props
 	export let banner;
 	export let bannerCredit;
 	export let title;
 	export let description;
 	export let keywords;
 	export let filepath 
+	
+	// import { frequentlyBoughtTogether } from '@algolia/recommend-js';
+	// import recommend from '@algolia/recommend';
 
+	// const recommendClient =  recommend('UK85P6O65L', '583f18780571cfc60ef0b9c650e867c7');
+	// const indexName = 'netlify_fc23c69d-0768-4412-be6f-a50ec4e4531c*';
+	// const currentObjectID = 'YOUR_OBJECT_ID';
+	// onMount(() => {
+	// 	const res = frequentlyBoughtTogether({
+	// 	container: '#frequentlyBoughtTogether',
+	// 	recommendClient,
+	// 	indexName,
+	// 	objectIDs: [],
+	// 	itemComponent({ item }) {
+	// 		return JSON.stringify(item)
+	// 	},
+	// });
+	// console.log(res)
+	// });
+	
 	let currentUrl;
 	afterUpdate(() => {
 		currentUrl = window.location.href;
@@ -68,6 +90,8 @@
 				>Edita en github</a
 			>
 		</footer>
+		<div id="frequentlyBoughtTogether"></div>
+
 	</article>
 	
 </div>
