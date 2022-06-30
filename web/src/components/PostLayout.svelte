@@ -12,7 +12,6 @@
 	import { afterUpdate } from 'svelte';
 	import Seo from './Seo.svelte';
 	import Image from './Image.svelte';
-import type { Post } from '$lib/types';
 	
 
 	// Props
@@ -22,7 +21,8 @@ import type { Post } from '$lib/types';
 	export let description;
 	export let keywords;
 	export let filepath 
-	export let similarPosts: Post[] = [];
+	/** @type {import('$lib/types').Post[]} */
+	export let similarPosts = [];
 	
 	
 	let currentUrl;
@@ -82,7 +82,7 @@ import type { Post } from '$lib/types';
 
 		<div class="">
 			<h3>Artículos relacionados</h3>
-			<div class="grid grid-flow-col gap-2 grid-cols-3">
+			<div class={`grid gap-2 grid-cols-1 md:grid-cols-${similarPosts.length}`}>
 				{#each similarPosts as post}
 					<div class="flex flex-col">
 						<a href={`/blog/post/${post.slug}`} sveltekit:prefetch
