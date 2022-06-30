@@ -4,13 +4,16 @@ banner: https://res.cloudinary.com/matiasfha/image/upload/v1597115954/andreas-gu
 keywords:
 - Arreglos
 - Array
-- ES6
 - Array.reduce
 - Array.filter
 - Remover duplicados
-- egghead
-- lesson
-- tutorial
+- eliminar duplicados
+- eliminar duplicados array de objetos
+- eliminar repetidos array js
+- eliminar duplicados de array javascript
+- quitar duplicados
+- eliminar repetidos js
+- quitar duplicados javascript
 tag: Seed
 title: 4 formas de eliminar elementos duplicados en un arreglo con Javascript
 description: Remover elementos duplicados de un arreglo es una tarea común durante el desarrollo de software. Javascript ofrece varias formas de hacerlo y su elección depende del caso de uso.
