@@ -7,11 +7,58 @@ import path from 'path'
 
 import { mdsvexGlobalComponents } from  './mdsvexGlobalComponents.js'
 
+const similarPostsLoader = () => {
+    
+    const preprocessor = {
+        script(thing) {
+            const { content, filename, markup, attributes } = thing
+            if (!filename.match(/\.svx$/)) {
+                return { code: content }
+            }
+            if(!filename.match(/\/blog\/.*\.svx$/)) {
+                return { code: content }
+            }
+            const hasModuleContext = /^<script context="module">/.test(markup)
+            const isModulePass = attributes?.context === 'module'
+            const isValidPass = (hasModuleContext && isModulePass) || !hasModuleContext
+            if (!isValidPass) {
+              return { code: content }
+            }
+            return {
+                code: `
+                    import getSimilarPosts from "$api/getSimilarPosts"
+                    /** @type {import('./__types/[slug]').Load} */
+                    export async function load({params, fetch, url, session, stuff}) {
+                        try {
+                            const { pathname } = url
+                            const similarPosts = await getSimilarPosts(pathname)
+                            
+                            return {
+                                props: {
+                                    similarPosts
+                                }
+                            }			
+                        }catch(e) {
+                            return {
+                                status: 500,
+                                error: e
+                            }
+                        }
+                    }
+                \n${content}
+                `
+            }
+        }
+    }
+    return preprocessor
+}
+
 const globalComponents = mdsvexGlobalComponents({
   dir: `$components/mdx`,
   list: ['Sponsor.svelte','Buzzsprout.svelte','CodeSandbox.svelte','EggheadLesson.svelte','TLDR.svelte','Twitter.svelte'],
   extensions: mdsvexConfig.extensions
 })
+
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -27,7 +74,7 @@ const config = {
     // for more information about preprocessorssg
     preprocess: [preprocess({
         "postcss": true
-    }), globalComponents, mdsvex(mdsvexConfig)],
+    }), globalComponents, similarPostsLoader(), mdsvex(mdsvexConfig)],
 
     kit: {
 

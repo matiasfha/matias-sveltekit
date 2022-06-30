@@ -60,4 +60,6 @@ export interface Post {
 	slug: string;
 	featured?: boolean;
 	path: string;
+	similarPosts?: Post[];
+	filepath?: string;
 }

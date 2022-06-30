@@ -1,7 +1,6 @@
 <script context="module">
 	import { blockquote, h1, img } from '$components/typography/index';
-	import Image from './Image.svelte';
-	import { afterUpdate, onMount } from 'svelte';
+	
 
 	export { blockquote, h1, img };
 	export const prerender = true;
@@ -9,8 +8,13 @@
 	
 </script>
 
-<script>
+<script lang="ts">
+	import { afterUpdate } from 'svelte';
 	import Seo from './Seo.svelte';
+	import Image from './Image.svelte';
+import type { Post } from '$lib/types';
+	
+
 	// Props
 	export let banner;
 	export let bannerCredit;
@@ -18,30 +22,14 @@
 	export let description;
 	export let keywords;
 	export let filepath 
+	export let similarPosts: Post[] = [];
 	
-	// import { frequentlyBoughtTogether } from '@algolia/recommend-js';
-	// import recommend from '@algolia/recommend';
-
-	// const recommendClient =  recommend('UK85P6O65L', '583f18780571cfc60ef0b9c650e867c7');
-	// const indexName = 'netlify_fc23c69d-0768-4412-be6f-a50ec4e4531c*';
-	// const currentObjectID = 'YOUR_OBJECT_ID';
-	// onMount(() => {
-	// 	const res = frequentlyBoughtTogether({
-	// 	container: '#frequentlyBoughtTogether',
-	// 	recommendClient,
-	// 	indexName,
-	// 	objectIDs: [],
-	// 	itemComponent({ item }) {
-	// 		return JSON.stringify(item)
-	// 	},
-	// });
-	// console.log(res)
-	// });
 	
 	let currentUrl;
 	afterUpdate(() => {
 		currentUrl = window.location.href;
 	});
+	
 </script>
 
 <Seo {title} {description} {keywords} isBlogPost={true} />
@@ -78,6 +66,7 @@
 		<div class="border opacity-70 w-full mt-24 mb-12" />
 		Te pareció interesante?
 		Encuentra más contenido similar uniendote al <a class="underlined" href="/newsletter">Newsletter</a> o siguiendome en <a class="underlined" href="https://twitter.com/matiasfha" target="_blank">Twitter</a>.
+		
 		<footer class="flex items-center justify-end gap-4 pt-20">
 			<a
 				class="underlined text-ebony-clay-800 hover:text-ebony-clay-600 dark:text-gray-100 dark:hover:text-gray-200 focus:outline-none"
@@ -90,7 +79,31 @@
 				>Edita en github</a
 			>
 		</footer>
-		<div id="frequentlyBoughtTogether"></div>
+
+		<div class="">
+			<h3>Artículos relacionados</h3>
+			<div class="grid grid-flow-col gap-2 grid-cols-3">
+				{#each similarPosts as post}
+					<div class="flex flex-col">
+						<a href={`/blog/post/${post.slug}`} sveltekit:prefetch
+			class="group peer relative block w-full focus:outline-none">
+							<div class="rounded-lg max-h-40 transition group-hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2">
+								<img
+									src={post.banner}
+									alt={post.title}
+									class="object-cover w-full max-h-40 object-center rounded-md" 
+									/>
+							</div>
+							<h4 class="md:text-xl text-lg font-bold leading-tighter text-black dark:text-white absolute top-40">
+								{post.title}
+							</h4>
+						</a>
+					</div>
+				{/each}
+			</div>
+
+		</div>
+		
 
 	</article>
 	

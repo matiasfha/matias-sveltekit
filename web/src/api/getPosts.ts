@@ -19,12 +19,25 @@ export default async function getPosts(): Promise<Post[]> {
 		postPromises.push(promise);
 	}
 
-	const posts = await Promise.all(postPromises);
+	const res = await Promise.all(postPromises);
 
-	return posts.sort((a, b) => {
+	const posts: Post[] = res.sort((a, b) => {
 		const aDate = new Date(a.date).getTime();
 		const bDate = new Date(b.date).getTime();
 		return aDate < bDate ? 1 : -1;
+	});
+	return posts.map((post: Post) => {
+		// find similar post by keywords for the current post
+		const similarPosts = posts.filter((p) => {
+			const postKeywords = post.keywords;
+			const pKeywords = p.keywords;
+			const intersection = postKeywords.filter((keyword) => pKeywords.includes(keyword));
+			return intersection.length > 0;
+		});
+		return {
+			...post,
+			similarPosts
+		};
 	});
 }
 

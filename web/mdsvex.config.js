@@ -54,7 +54,7 @@ function remarkSponsor() {
 import path from 'path'
 
 function remmarkPath() {
-	return function transformer(tree, vFile) {
+	return async function transformer(tree, vFile) {
 		const filepath = path.relative('__dirname',vFile.filename).replace(/^(.){2}/, '')
 		if(!vFile.data.fm) {
 			vFile.data.fm = {}
