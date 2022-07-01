@@ -49,7 +49,9 @@ En tu terminal, en el directorio root de tu repositorio ejecuta:
 
 
 
-`$ git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch ./web/.env" HEAD `
+```bash
+$ git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch ./web/.env" HEAD 
+```
 
 
 
@@ -57,12 +59,14 @@ Al ejecutar esta operaicón verás que en la terminal se mostrará un mensaje in
 
 
 
-`WARNING: git-filter-branch has a glut of gotchas generating mangled history  
+```bash
+WARNING: git-filter-branch has a glut of gotchas generating mangled history  
 rewrites. Hit Ctrl-C before proceeding to abort, then use an  
 alternative filtering tool such as 'git filter-repo'  
 (https://github.com/newren/git-filter-repo/) instead. See the  
 filter-branch manual page for more details; to squelch this warning,  
-set FILTER_BRANCH_SQUELCH_WARNING=1.`
+set FILTER_BRANCH_SQUELCH_WARNING=1.
+```
 
 En este mensaje se indica que existe una herramienta alternativa llamada `filter-repo` que [puedes encontrar en github](https://github.com/newren/git-filter-repo/)   
   
@@ -82,4 +86,6 @@ $ git filter-repo --path ./web/.env --invert-paths
 
 Después de esta operación puedes actualizar tu repositorio remoto
 
-`git push --all -f`
+```
+$ git push --all -f
+```

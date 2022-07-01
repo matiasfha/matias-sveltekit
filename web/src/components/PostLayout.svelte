@@ -1,10 +1,8 @@
 <script context="module">
-	import { blockquote, h1, img } from '$components/typography/index';
+	import { blockquote, h1} from '$components/typography/index';
 	
 
-	export { blockquote, h1, img };
-	export const prerender = true;
-	export const hydrate = false;
+	export { blockquote, h1 };
 	
 </script>
 
@@ -80,6 +78,7 @@
 			>
 		</footer>
 
+		{#if similarPosts.length > 0}
 		<div class="">
 			<h3>Artículos relacionados</h3>
 			<div class={`grid gap-2 grid-cols-1 md:grid-cols-${similarPosts.length}`}>
@@ -103,7 +102,7 @@
 			</div>
 
 		</div>
-		
+		{/if}		
 
 	</article>
 	
