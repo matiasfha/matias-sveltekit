@@ -30,7 +30,7 @@ const similarPostsLoader = () => {
                     export const prerender = true;
                     import getSimilarPosts from "$api/getSimilarPosts"
                     /** @type {import('./__types/[slug]').Load} */
-                    export async function load({params, fetch, url, session, stuff}) {
+                    export async function load({url}) {
                         try {
                             const { pathname } = url
                             const similarPosts = await getSimilarPosts(pathname)
@@ -83,10 +83,13 @@ const config = {
         prerender: {
             enabled: true,
             onError: ({ status, path, referrer, referenceType }) => {
-                if (path.startsWith('/blog')) throw new Error('Missing a blog page!');
                 console.warn(
                     `${status} ${path}${referrer ? ` (${referenceType} from ${referrer})` : ''}`
                 );
+                if (path.startsWith('/blog')) {
+                    throw new Error('Missing a blog page!');
+                }
+                
             }
         },
         adapter: netlify({

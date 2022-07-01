@@ -85,9 +85,7 @@ Y finalmente una idea que sigue relacionada con el uso de `useEffect` pero que c
 Muchas veces en favor de mantener algunos conceptos estándares de la industria como DYI muchos evitan mover sus funciones dentro del `useEffect` pero muchas veces siguen callendo en el error de las dependencias. Esto me lleva a pensar en las abstracciones que nos forzamos a utilizar.
 
 Esta porfía de evitar la duplcación de codigo sólo por evitarlo de forma mañosa sin un trasfondo mayor lleva a crear abstracciones que muchas veces o son más complejas o son innecesarias y crear futuros problemas.
-En este sentido te invito a esuchar la charla de Kent C Dodds. AHA programming o Avoid Hefty Abstractions disponible en youtube.
-
-https://www.youtube.com/watch?v=wuVy7rwkCfc\](https://www.youtube.com/watch?v=wuVy7rwkCfc
+En este sentido te invito a esuchar la charla de Kent C Dodds. AHA programming o Avoid Hefty Abstractions disponible en [youtube.](https://www.youtube.com/watch?v=wuVy7rwkCfc)
 
 ### Conclusión
 
