@@ -6,6 +6,9 @@ keywords:
 - React
 - hooks
 - useEffect
+- use layout effeect
+- useeffect vs uselayouteffeect
+- react uselayouteffect
 tag: Seed
 title: "¿Cuándo usar el hook useLayoutEffect?"
 description: "useLayoutEffect y useEffect son dos React hooks muy similares. ¿Cuándo usar uno u otro?"
