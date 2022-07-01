@@ -86,6 +86,7 @@ Una vez definido el schema, podrás definir que eventos serán escuchados junto 
 Una vez que un desarrollador implementa el manifiesto de un subgraph, puede usar la herramienta de terminal `The Graph CLI` para guardar el subgraph en IPFS, iniciando así el proceso de indexación.
 
 > Revisa [este artículo](https://criptogen.com/que-es-ipfs/) para saber más sobre que es IPFS
+
 ### El flujo de datos de un subgraph
 
 Para poder hacerte una idea de cómo funciona el protocolo desde el punto de vista de un desarrollador, es adecuado tener una lista de los pasos o flujo de datos del mismo.
