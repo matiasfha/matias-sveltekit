@@ -59,9 +59,10 @@ function remmarkPath() {
 		if(!vFile.data.fm) {
 			vFile.data.fm = {}
 		}
+		
 		vFile.data.fm.filepath = filepath
-		
-		
+		const slug = filepath.match(/([\w-]+)\.(svelte\.md|md|svx)/i)?.[1]
+		vFile.data.fm.canonical = `https://matiashernandez.dev/blog/post/${slug}`	
 	}
 }
 

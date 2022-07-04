@@ -21,8 +21,8 @@
 	export let filepath 
 	/** @type {import('$lib/types').Post[]} */
 	export let similarPosts = [];
-	
-	
+	export let canonical 
+
 	let currentUrl;
 	afterUpdate(() => {
 		currentUrl = window.location.href;
@@ -30,7 +30,7 @@
 	
 </script>
 
-<Seo {title} {description} {keywords} isBlogPost={true} />
+<Seo {title} {description} {keywords} isBlogPost={true} canonical={canonical} />
 <div class="w-full pb-4 px-0">
 	<header
 		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[20rem] overflow-hidden"
