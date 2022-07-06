@@ -88,6 +88,7 @@
 		"sanity-codegen": "0.9.8",
 		"sharp": "0.30.7",
 		"svelte-blurhash": "1.2.1",
+		"svelte-image-preprocessor-cloudinary": "file:../../svelte-image-preprocessor-cloudinary",
 		"sveltekit-i18n": "2.2.2",
 		"svgo": "2.8.0",
 		"utf-8-validate": "5.0.7",

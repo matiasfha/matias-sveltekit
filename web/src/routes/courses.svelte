@@ -23,7 +23,6 @@
 <script lang="ts">
 	import Featured from '$components/Featured.svelte';
 	import Seo from '$components/Seo.svelte';
-	import Image from '$components/Image.svelte';
 	import { t } from '$lib/translations';
 	export let courses: Course[];
 	const featured = courses.find((item) => item.id === 404918);
@@ -103,9 +102,9 @@
 						><div
 							class="aspect-w-2 aspect-h-1 w-full rounded-lg focus:ring transition group-hover:ring-2 ring-yellow-50 ring-offset-2"
 						>
-							<Image
+							<img
 								alt={item.title}
-								classes="rounded-lg object-cover"
+								class="rounded-lg object-cover"
 								src={`${item.image}`}
 								loading="lazy"
 								width="220"

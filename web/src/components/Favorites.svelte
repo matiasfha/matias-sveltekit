@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { ContentElement } from '$lib/types';
-	import Image from './Image.svelte';
 	import { t } from '$lib/translations';
 	export let favorites: ContentElement[];
 </script>
@@ -18,12 +17,12 @@
 			>
 				<a href="/" class="focus:outline-none block w-fuill">
 					<div class="aspect-w-2 aspect-h-1 h-64 flex items-center justify-center mb-12 rounded-lg overflow-hidden">
-						<Image
+						<img
 							height="256"
 							alt={item.title}
 							aria-hidden="true"
 							src={item.image}
-							classes="rounded-lg object-cover h-64 w-full"
+							class="rounded-lg object-cover h-64 w-full"
 						/>
 					</div>
 				</a>

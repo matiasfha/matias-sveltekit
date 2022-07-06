@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { t } from '$lib/translations';
-	import Image from './Image.svelte';
 	export let image: string;
 	export let title: string;
 	export let meta: string;
@@ -34,7 +33,7 @@
 								><div
 									class="aspect-w-2 aspect-h-1 h-1/4 rounded-lg transition "
 								>
-									<Image alt={title} classes="rounded-lg object-cover" src={image} height="173" />
+									<img alt={title} class="rounded-lg object-cover" src={image} height="173" />
 								</div>
 								</a>
 						</div>

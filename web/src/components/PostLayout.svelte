@@ -9,7 +9,6 @@
 <script lang="ts">
 	import { afterUpdate } from 'svelte';
 	import Seo from './Seo.svelte';
-	import Image from './Image.svelte';
 	
 
 	// Props
@@ -35,9 +34,9 @@
 	<header
 		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[20rem] overflow-hidden"
 	>
-		<Image
+		<img
 			src={banner}
-			classes=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm"
+			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm"
 			alt={title}
 		/>
 		<div class="flex flex-col max-w-[40vw] z-10  self-end mr-12">
