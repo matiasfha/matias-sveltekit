@@ -38,7 +38,7 @@ Indexado se refiere al proceso de transformar datos no ordenados en un set de da
 
 > Puedes leer más sobre que es el proceso de Indexado en [este artículo](https://pcweb.info/que-es-la-indexacion-en-bases-de-datos-definicion-significado-concepto/)
 
-![](https://cdn.sanity.io/images/cyypawp1/production/0e3dd4aa288c381704dbff9d2b8a41a55e715530-1195x289.png)
+![Ecosistema The Graph](https://cdn.sanity.io/images/cyypawp1/production/0e3dd4aa288c381704dbff9d2b8a41a55e715530-1195x289.png)
 
 The Graph, es además un ecosistema en donde participan varios actores para asegurar que el proceso de indexado se mantenga descentralizado. Developers, Indexers, Delegators y Curators son los distintos roles.
 
@@ -75,7 +75,7 @@ Ambas opciones rompen la idea de descentralización de una blockchain y consumen
 
 #### En esta situación es en donde The Graph entra en juego.
 
-![](https://cdn.sanity.io/images/cyypawp1/production/129cfabf033caecfa995dd30e7f05ee47849c0ad-1300x686.png)
+![Como funciona The Graph](https://cdn.sanity.io/images/cyypawp1/production/129cfabf033caecfa995dd30e7f05ee47849c0ad-1300x686.png)
 
 Todos pueden usar el protocolo para indexar las transacciones que quieran para así ponerlas a disposición de usuarios por medio de consultas, esto se logra mediante la creación "subgraphs"
 

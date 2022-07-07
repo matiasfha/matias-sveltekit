@@ -9,7 +9,6 @@
     export let height: string = undefined
     export let id: string = undefined 
     export let classes: string = undefined
-    export let style: string = undefined
     export let blur: boolean = true
     
     // State

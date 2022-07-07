@@ -10,20 +10,19 @@
 	import { afterUpdate } from 'svelte';
 	import Seo from './Seo.svelte';
 	import Image from './Image.svelte';
-	
+	import type { Post } from '$lib/types';	
 
 	// Props
-	export let banner;
-	export let bannerCredit;
-	export let title;
-	export let description;
-	export let keywords;
-	export let filepath 
-	/** @type {import('$lib/types').Post[]} */
-	export let similarPosts = [];
-	export let canonical 
+	export let banner: string;
+	export let bannerCredit: string;
+	export let title: string;
+	export let description: string;
+	export let keywords: string[];
+	export let filepath: string 
+	export let similarPosts: Post[] = [];
+	export let canonical: string 
 
-	let currentUrl;
+	let currentUrl: string;
 	afterUpdate(() => {
 		currentUrl = window.location.href;
 	});
@@ -35,9 +34,9 @@
 	<header
 		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[20rem] overflow-hidden"
 	>
-		<Image
+		<img
 			src={banner}
-			classes=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm"
+			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm"
 			alt={title}
 		/>
 		<div class="flex flex-col max-w-[40vw] z-10  self-end mr-12">
@@ -49,11 +48,13 @@
 			>
 				{description}
 			</p>
+			{#if bannerCredit}
 			<h4
 				class="text-left text-gray-100 font-body leading-tight text-sm self-end absolute bottom-2 left-2 md:left-auto"
 			>
-				<!-- {@html bannerCredit} -->
+				{@html bannerCredit}
 			</h4>
+			{/if}
 		</div>
 	</header>
 	<article
@@ -77,6 +78,8 @@
 				>Edita en github</a
 			>
 		</footer>
+
+		<input type="hidden" name="IL_IN_ARTICLE">
 
 		{#if similarPosts.length > 0}
 		<div class="">

@@ -33,7 +33,6 @@ const similarPostsLoader = () => {
                     export async function load({url}) {
                         try {
                             const { pathname } = url
-                            console.log('pathname', pathname)
                             const similarPosts = await getSimilarPosts(pathname)
                             
                             return {
