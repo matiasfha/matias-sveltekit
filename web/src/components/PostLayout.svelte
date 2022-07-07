@@ -86,8 +86,10 @@
 	<article
 		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto prose prose-lg dark:prose-dark mt-12 pt-[14rem] md:pt-[32rem]"
 	>
+		<!--INFOLINKS_ON-->
 		<slot />
 
+		<!--INFOLINKS_OFF-->
 		<div class="border opacity-70 w-full mt-24 mb-12" />
 		Te pareció interesante?
 		Encuentra más contenido similar uniendote al <a class="underlined" href="/newsletter">Newsletter</a> o siguiendome en <a class="underlined" href="https://twitter.com/matiasfha" target="_blank">Twitter</a>.

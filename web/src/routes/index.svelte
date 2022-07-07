@@ -42,6 +42,7 @@
 	export let favorites: ContentElement[];
 </script>
 
+<!--INFOLINKS_OFF-->
 <Seo
 	title="Matias Hernández Website"
 	keywords={[
