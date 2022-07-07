@@ -8,7 +8,7 @@ keywords:
 - Tech
 - Comunicación
 - Soft Skills
-title: Consigue tu primer trabajo en Tech
+title: 10 ideas para conseguir tu primer trabajo en Tech
 description: Revisaremos 10 poderosas estrategias que te ayudarán a obtener un trabajo en tecnología durante este año 2022. 
 bannerCredit: Photo by <a href="https://unsplash.com/@austinchan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Austin Chan</a> on <a href="https://unsplash.com/s/photos/get-a-job?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>   
 tag: Posts
