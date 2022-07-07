@@ -1,4 +1,4 @@
-<script context="module">
+<script context="module" lang="ts">
 	import { blockquote, h1} from '$components/typography/index';
 	
 
@@ -9,20 +9,46 @@
 <script lang="ts">
 	import { afterUpdate } from 'svelte';
 	import Seo from './Seo.svelte';
-	import Image from './Image.svelte';
-	import type { Post } from '$lib/types';	
-
+	
 	// Props
-	export let banner: string;
-	export let bannerCredit: string;
-	export let title: string;
-	export let description: string;
-	export let keywords: string[];
-	export let filepath: string 
-	export let similarPosts: Post[] = [];
-	export let canonical: string 
+	/**
+	 * @type string
+	 */
+	export let banner;
+	/**
+	 * @type string
+	 */
+	export let bannerCredit
+	/**
+	 * @type string
+	 */
+	export let title
+	/**
+	 * @type string
+	 */
+	export let description
+	/**
+	 * @type string[]
+	 */
+	export let keywords
+	/**
+	 * @type string
+	 */
+	export let filepath
+	
+	/**
+	 * @type  import('$lib/types').Post[]
+	 */
+	export let similarPosts = [];
+	/**
+	 * @type string
+	 */
+	export let canonical
 
-	let currentUrl: string;
+	/**
+	 * @type string
+	 */
+	let currentUrl
 	afterUpdate(() => {
 		currentUrl = window.location.href;
 	});
