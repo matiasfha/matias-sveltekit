@@ -111,9 +111,7 @@ function log() {
 Sabemos que los hooks se basan en el funcionamiento de las closures, y uno de los hooks más "complejos" y utilizados es  ``useEffect``. Este hook se utiliza para ejecutar **efectos,** es decir, para sincronizar el estado interno del componente con algún estado externo. 
 
 > Puedes leer más en
-
 > [https://matiashernandez.dev/blog/post/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida](https://matiashernandez.dev/blog/post/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida)
-
 > [https://matiashernandez.dev/blog/post/react-useeffect-por-que-el-arreglo-de-dependencias-es-importante](https://matiashernandez.dev/blog/post/react-useeffect-por-que-el-arreglo-de-dependencias-es-importante)
 
 `useEffect` recibe un `callback` que es en efecto un closure y un arreglo de dependencias que le indica que "valores observar" para ejecutar el closure definido.
