@@ -43,7 +43,17 @@ function remarkSponsor() {
 					},
 					...node.children.slice(30)
 				]	
-			}			
+			}		
+			if(node.children.length > 60) {
+				node.children = [
+					...node.children.slice(0, node.children.length),
+					{
+						type: 'html',
+						value: '<Sponsor /> ',
+			
+					},
+				]		
+			}	
 		}
 		
 		

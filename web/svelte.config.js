@@ -33,6 +33,7 @@ const similarPostsLoader = () => {
                     export async function load({url}) {
                         try {
                             const { pathname } = url
+                            console.log('pathname', pathname)
                             const similarPosts = await getSimilarPosts(pathname)
                             
                             return {
@@ -41,6 +42,7 @@ const similarPostsLoader = () => {
                                 }
                             }			
                         }catch(e) {
+                            console.error(e)
                             return {
                                 status: 500,
                                 error: e
@@ -76,25 +78,27 @@ const config = {
     // for more information about preprocessorssg
     preprocess: [preprocess({
         "postcss": true
-    }), globalComponents, similarPostsLoader(), mdsvex(mdsvexConfig)],
+    }), globalComponents, mdsvex(mdsvexConfig), similarPostsLoader()],
 
     kit: {
 
         prerender: {
             enabled: true,
-            onError: ({ status, path, referrer, referenceType }) => {
-                console.warn(
-                    `${status} ${path}${referrer ? ` (${referenceType} from ${referrer})` : ''}`
+            onError: ({ status, path, referrer, referenceType, ...rest }) => {
+                const error = Object.keys(rest).map(key => `${key}: ${rest[key]}`).join(', ')
+                console.table(rest)
+                console.error(
+                    `${status} ${path}${referrer ? ` (${referenceType} from ${referrer}) ${error}` : ''}`
                 );
-                if (path.startsWith('/blog')) {
-                    throw new Error('Missing a blog page!');
-                }
+                // if (path.startsWith('/blog')) {
+                //     throw new Error('Missing a blog page!');
+                // }
                 
             }
         },
         adapter: netlify({
             edge: false,
-            split: true,
+            split: false,
         }),
         vite: {
             resolve: {
