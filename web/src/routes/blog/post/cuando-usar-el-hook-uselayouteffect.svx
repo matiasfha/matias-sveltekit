@@ -3,12 +3,12 @@ date: 2020-11-05T09:55:05-03:00
 banner: https://res.cloudinary.com/matiasfha/image/upload/v1604581117/halacious-tZc3vjPCk-Q-unsplash_jzsdkp.jpg
 keywords:
 - useLayoutEffect
-- React
-- hooks
+- React hooks
 - useEffect
-- use layout effeect
-- useeffect vs uselayouteffeect
 - react uselayouteffect
+- useEffect React
+- react hooks useeffect 
+- react hooks explained
 tag: Seed
 title: "¿Cuándo usar el hook useLayoutEffect?"
 description: "useLayoutEffect y useEffect son dos React hooks muy similares. ¿Cuándo usar uno u otro?"
