@@ -21,10 +21,11 @@ canonical: https://matiashernandez.dev/blog/post/useState-para-crear-component-w
 ---
 
 
-## TLDR;
 
-> Puedes ver este video en [egghead.io](https://egghead.io/lessons/react-crear-un-componente-wizard-usando-usestate-react-hooks?pl=hooks-3d62&af=4cexzz).
-> Este video es parte de una [colección](https://egghead.io/playlists/hooks-3d62&af=4cexzz) en donde se muestra progresivamente como crear un componente utilizando diferentes hooks y patrones de diseño
+<TLDR>
+Puedes ver este video en [egghead.io](https://egghead.io/lessons/react-crear-un-componente-wizard-usando-usestate-react-hooks?pl=hooks-3d62&af=4cexzz).
+Este video es parte de una [colección](https://egghead.io/playlists/hooks-3d62&af=4cexzz) en donde se muestra progresivamente como crear un componente utilizando diferentes hooks y patrones de diseño
+</TLDR>
 
 <EggheadLesson lessonId="react-crear-un-componente-wizard-usando-usestate-react-hooks" />
 

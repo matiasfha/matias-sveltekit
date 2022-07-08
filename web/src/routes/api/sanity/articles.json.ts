@@ -191,7 +191,7 @@ const client = createClient<Documents>(clientOptions);
 export async function get({ request }: RequestEvent) {
 	// const res = await getDeployStatus();
 	try {
-		const [post] = await client.query<Posts>('*[_type == "posts"]');
+		const [post] = await client.query<Posts>('*[_type == "posts"] | order(_createdAt desc)');
 
 		const markdown = generateMarkdown({
 			date: post._createdAt,
@@ -202,21 +202,20 @@ export async function get({ request }: RequestEvent) {
 			bannerCredit: post.banner.bannerCredit,
 			content: post.content
 		});
-		console.log(markdown);
+
 		const res = await createFileInRepo(markdown, post.title);
 		const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
-		console.log('File created in DevTo');
+
 		const hashnode = await writeToHashnode({
 			...post,
 			image: builder.image(post.banner.asset._ref).url()
 		});
-		console.log('File created in Hashnode');
 
 		return {
 			body: {
-				markdown,
-				dev,
-				hashnode
+				res,
+				hashnode,
+				dev
 			}
 		};
 	} catch (e) {

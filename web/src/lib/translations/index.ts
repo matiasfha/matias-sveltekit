@@ -14,7 +14,7 @@ const config: Config = {
 	initLocale: 'en',
 	fallbackLocale: 'en',
 	log: {
-		level: 'debug'
+		level: 'error'
 	},
 	loaders: [
 		{

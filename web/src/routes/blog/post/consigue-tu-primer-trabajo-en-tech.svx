@@ -1,0 +1,276 @@
+---
+date: 2022-07-06T21:06:54Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/1eb73bc1928743f5c46db0e2dade67e12050fa5e-5184x3456.jpg
+keywords: 
+- Trabajo
+- Conseguir Trabajo
+- Trabajo en Tech
+- Tech
+- Comunicación
+- Soft Skills
+title: 10 ideas para conseguir tu primer trabajo en Tech
+description: Revisaremos 10 poderosas estrategias que te ayudarán a obtener un trabajo en tecnología durante este año 2022. 
+tag: Post
+---
+
+Personalmente, llevo más de 12 años trabajando para diferentes clientes y compañías, y si bien tengo algo de experiencia entre entrevistas, aprender nuevos stack y nuevos trabajos no escribí este post solo basado en ello. Así que contacte a diferentes managers y recruiters tanto en startups, consultoras y compañías para saber un poco más qué es lo que están buscando.
+
+
+
+> **Importante! **Mi experiencia radica casi totalmente en el mercado laboral de Estados Unidos, ergo este post está orientado a encontrar un trabajo en una compañía ubicada allá.
+
+
+
+Algo importante de notar es que este año la industria a recibido varios golpes desde el sistema financiero provocando cierta retracción en la velocidad de contratación y los requerimientos. Personalmente no creo que sea algo para aterrorizarse, pero sí para mantener un grado de precaución a la hora de saltar a buscar trabajo en tecnología.
+
+
+
+Sigo pensando que el mundo de la tecnología es una apuesta segura y quizá uno de los mejores rubros para trabajar en el largo plazo, pero es bueno siempre tener algo de precaución, sobre todo si lo que buscas es cambiar carreras.
+
+
+
+Ok, sin más dilación
+
+## 10 ideas para obtener un trabajo en tecnología
+
+### Hablar Inglés
+
+Como mencioné al principio. Más del 95% de mi experiencia es en el mercado norteamericano y es también el lugar en donde podrás obtener los mejores salarios viviendo en Latino América, por lo tanto hablar Inglés es la habilidad que te abrirá puertas.
+
+
+
+Muchas compañías y startups buscan a sus colaboradores de forma remota para así acrecentar las posibilidades de encontrar talento y al mismo tiempo - hay que decirlo - abaratar sus costos. En este caso, la primera evaluación será si eres capaz de comunicarte fluídamente en Inglés.
+
+Así qué a practicar!
+
+
+
+> En este [episodio del podcast](https://anchor.fm/matias-francisco-hernandez-arellano/episodes/Recomendamos-Learn-English-e185oof) Control Remoto [Camilo](https://iamcamilo.me/) y Yo conversamos sobre la importancia de aprender Inglés y el cómo lograrlo
+
+### Actitud positiva o la actitud correcta.
+
+
+
+Obtener un trabajo de gran salario en tech no es una tarea difícil y compleja. Una de esas razones es la inmensa cantidad de sobre-optimismo y marketing dirigido que ha creado una especie de creencia de que basta con inscribirse en un bootcamp (muchas veces sobre-valorado) e inmediatamente después estarás ganando miles de dólares.
+
+Obviamente hay quienes han tenido este tipo de éxito meteórico, pero para la mayoría, conseguir ese objetivo requiere de trabajo, aprendizaje y una buena disposición a fallar y continuar.
+
+
+
+Muchos bootcamps o centros de entrenamiento ofrecen darte apoyo a la hora de buscar trabajo, incluso algunos van más allá dando 100% de seguridad de que al terminar el proceso tendrás trabajo, y si bien es así en muchos casos, también es cierto que hay ciertas condiciones como:
+
+1. Realizar N número de entrevistas diarias
+2. Aportar en Open Source
+3. Hacer networking, etc
+
+> El primer punto suele ser el que quiebra a muchos, recibir negaciones en múltiples entrevistas puede hacer desfallecer y desmotivar a cualquiera, y eso es algo que debes enfrentar y saber desde un principio.   
+> Fallar y recibir negativas es parte del proceso que te ayudará a crecer y mejorar.
+
+
+
+### Crea Valor
+
+  
+La razón más importante por la que cualquier compañía te contratará es porque cree que tu presencia y trabajo traerá cierto grado de valor. El entrevistador y finalmente quien toma la decisión final se estará siempre preguntando: ¿Por qué debería contratarte?
+
+
+
+En este punto debes preguntarte ¿cómo puedes ser de valor para futuros empleadores?
+
+En este punto existen varias "sub-estrategias" que puedes comenzar hacer inmediatamente, por ejemplo: Crear un perfil en redes sociales
+
+Mi red social predilecta es Twitter, pero puedes hacerlo en Instagram, TikTok, LinkedIn, Reddit, etc.
+
+
+
+Existen muchas personas que han conseguido su trabajo por medio de Twitter, por el simple hecho de crear valor para la comunidad. Muchos empleadores utilizan estas comunidades o espacios virtuales como una especie de benchmark.
+
+Puedes pensar en tu perfil social como una herramienta de marketing.
+
+> En el caso de Twitter hay muchas estrategias que te permitirán crecer tu cuenta, desde crear hilos, compartir listas de recursos, etc. Pero finalmente la principal estrategia es ser consistente y compartir contenido que realmente ayude a otros 
+
+
+
+### LinkedIn
+
+
+
+Quizá similar a la estrategia anterior, pero con un pequeño giro que lo diferencia.
+
+[LinkedIn](https://linkedin.com/in/mhernand) es la red social "profesional" por antonomasia, miles de reclutadores pasan su día mirando perfiles ahí tratando de encontrar su siguiente candidato. Algunos de estos reclutadores son muy serios en su trabajo y realmente pueden ayudarte a encontrar un trabajo.
+
+¿Pero qué pasa si estás recién comenzando y no tienes ninguna conexión?
+
+LinkedIn se basa en las conexiones laborales. ¿Cómo comienzas entonces?
+
+Lo primero que puedes hacer es encontrar personas que admiras o sigues, enviarles un mensaje bien intencionado y ser abierto sobre tu intención de encontrar un trabajo en tecnología y que te gustaría conectar con ellos. La gran mayoría aceptará.
+
+
+
+También te puedes unir a diferentes grupos de tecnologías en los que estés interesad@ y participar.
+
+Y obviamente, puedes crear contenido en LinkedIn, quizá incluso reutilizar el contenido que creas para otra plataforma.
+
+
+
+### Github
+
+
+
+Github se ha convertido en la red social más importante para los desarrolladores y quizá más aún para quienes están comenzando recientemente.
+
+
+
+Muchos posibles empleadores y reclutadores revisan perfiles de Github para conocer qué tipos de proyectos trabajas y sobre todo para conocer tu "consistencia".
+
+Desde cierto punto de vista se espera que tengas commits a diario, aunque esto sea poco realista tiene cierta relación con el trabajo al que estás postulando, finalmente, estarás creando código a diario.
+
+Si estás recién comenzando una de las formas más simples es contribuir a algún proyecto Open Source por ejemplo mejorando la documentación desde la gramática, redacción o errores (Incluso puedes aportar a corregir los artículos de este blog), luego al sentirte más seguro podrás comenzar a realizar contribuciones de código a las librerías que utilices.
+
+También puedes crear repositorios para tus proyectos personales, que es, en efecto, el siguiente punto
+
+
+
+### Proyectos personales
+
+
+
+La idea de crear estos proyectos es obtener dos resultados.
+
+1. Aprendizaje
+2. Mostrar a futuros empleadores que sabes lo que estás haciendo.
+
+El último punto puede ser quizá algo complejo, pues una simple aplicación de TODO creada a partir de un tutorial no dará el ancho para impresionar, pero aún así puede mostrar tu "viaje de aprendizaje".
+
+
+
+La idea aquí es pensar que estás armando un portafolio que mostrar, en donde querrás mostrar lo "más grandioso" que has hecho (o lo más útil, depende de como midas la "grandiosidad" del proyecto).
+
+
+
+Un ejemplo de proyecto personal/portafolio/sitio personal es el de [Goncy](https://twitter.com/goncy)
+
+[https://links.gonzalopozzo.com/](https://links.gonzalopozzo.com/)
+
+
+
+Y nuevamente enlazado con la creación de proyectos personales, llegamos al siguiente punto
+
+
+
+### Aprender/Construir en público
+
+
+
+Este es un movimiento que te invita a documentar de forma pública todo el proceso que llevas a cabo para producir cierto objetivo: Una app.
+
+
+
+Mientras utilizas tu tiempo aprendiendo y construyendo un producto puedes ir documentando tus ideas y aprendizajes a modo de video en youtube, blog o twitter (como mencioné unos momentos atrás, "full-circle").
+
+
+
+Si decides que quieres mantener un blog, existen muchos sitios que te permiten crear un espacio en internet, comenzar a escribir y alcanzar lectores rápidamente, opciones como:
+
+* [https://dev.to/](undefined)
+* [https://hashnode.com/](undefined) 
+* [https://medium.com/](undefined) (Incluso puedes monetizar tu contenido)
+* [https://mirror.xyz/](undefined) (Enfocado en Web3)
+
+Pero en mi opinión sería más adecuado tener un blog personalizado construido desde cero (y republicar en los otros medios) ya que esto muestra algo de pasión por lo que estás haciendo y es además una muy buena forma de aprender nuevos stack y exponerte a nuevas tecnologías.
+
+
+
+El poder del proceso de aprender/construir en público radica en la creación de un ciclo de feedback positivo, un ciclo casi imposible de conseguir al trabajar a solas, encerrado en un rincón del sótano.
+
+
+
+Hoy, muchas aplicaciones o SaaS apps han sido construidas de esta forma, logrando mejorar e incluso encontrar clientes ejemplos:
+
+* [TweetHunter](https://tweethunter.io/)
+* [SuperHuman](https://superhuman.com/)
+* [Snippets.style](https://snippets.style/) 
+
+
+
+### IRL Networking
+
+
+
+Éste método (conocer gente en la vida real y hacer conexiones) es quizá una de los más efectivos pero a la vez más complejos para quienes trabajan remoto en ciudades pequeñas en latino américa. (O si eres extremadamente introvertido quizá también sea un problema).
+
+
+
+El contacto en persona con otras personas que comparten los mismos intereses es quizá la forma más efectiva de crear redes que te apoyarán cuando lo requieras, como por ejemplo, recomendándote para un trabajo o dando alguna pista.
+
+
+
+#### ¿Cómo o dónde conseguir éstas redes?   
+
+
+Meetups y conferencias son la forma.
+
+
+
+Asistir a conferencias, puede ser más caro en términos de dinero neto, pero la ganancia de asistir puede ser mucho más alta ya que no sólo aprenderás mucho, si no que tendrás la oportunidad de conocer gente asombrosa, compartir ideas e incluso conocer empresas que están buscando gente como tú.
+
+
+
+Meetups, son ideales para comenzar a hacer redes pequeñas e incluso saltar a la fama como speaker. Si no hay un meetup de tu interés en donde vives, siempre puedes coordinar uno por ti mismo.
+
+En este punto es adecuado aprender una habilidad quizá despreciada por mucho tiempo por los desarrolladores: Comunicación humana.
+
+Aprender las habilidades básicas para presentarte, hacer conversación y escuchar te pueden llevar muy lejos.
+
+> En este punto te recomiendo un libro bastante imperecedero respecto a la comunicación interpersonal_: [Cómo ganar amigos e influir en las personas](https://amzn.to/3bZXFE5)_
+
+
+
+### Consigue un mentor
+
+
+
+Tener a alguien que te pueda guiar o quien pueda responder esas preguntas que no encuentras en stack overflow puede ser muy valorable.
+
+Un mentor puede ser alguien con basta experiencia o alguien que simplemente va un paso más adelante que tu.  
+
+
+> Por cierto, si estás leyendo esto, significa que estás comenzando. Puedes comunicarte conmigo para una mentoría gratuita.
+
+Tener un mentor que te ayude a validar o criticar tu proceso te permitirá iterar mucho más rápido y por ende, obtener resultados prontamente.
+
+¿Cómo conseguir un mentor? Es más fácil de lo que crees, hoy en día las personas son mucho más abiertas a ayudar a otros, sobre todo en nuestra industria, así que  contacta directamente a personas y verás que pronto tendrás una respuesta.
+
+
+
+Otro método es unirte a comunidades. 
+
+### Comunidades
+
+
+
+Similar a la idea de construir en público y buscar un mentor, es unirte a comunidades.   
+Al unirte a alguna comunidad te será más sencillo hacer redes, aprender, encontrar mentores y finalmente conseguir trabajo.
+
+Dos comunidades de habla hispana que recomiendo son:
+
+* [Frontend Café](https://frontend.cafe/)
+* [Dincy](https://discord.com/invite/rAmPWU6eHg) 
+
+
+
+### **Bonus**
+
+Aprende a entrevistarte.
+
+Llevar a cabo una entrevista es casi un arte en sí mismo, no sólo debes ser hábil técnicamente si no que también debes saber venderte frente a tu entrevistador.
+
+Comienza por revisar los valores centrales de la empresa, y todo lo que tengan publicado sobre su método de trabajo para ver si tu eres un buen candidato para ellos y viceversa. La entrevista es un proceso bi-direccional.
+
+
+
+> Nuevamente, en el podcast [Control Remoto](https://anchor.fm/matias-francisco-hernandez-arellano/episodes/Ep--2-La-Entrevista-e185omp) conversamos sobre el proceso de entrevistas, lo puedes escuchar en tu app favorita o [directamente aquí](https://anchor.fm/matias-francisco-hernandez-arellano/episodes/Ep--2-La-Entrevista-e185omp).
+
+  
+> Si estás buscando trabajo remoto, en Clevertech (donde trabajo) siempre hay oportunidades
+> [Revisa este enlace](https://clevertech.biz/link-tree/matias)

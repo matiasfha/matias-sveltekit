@@ -89,7 +89,7 @@
 						<li class="py-1">
 							<a
 								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="https://matiasfha.dev/consulting">{$t('common.consultancy')}</a
+								href="https://calendly.com/matiashernandez">{$t('common.consultancy')}</a
 							>
 						</li>
 						<li class="py-1">

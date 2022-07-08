@@ -45,6 +45,9 @@
 		{
 			title: $t('common.sponsor'),
 			href: locale.get() === 'en' ? '/sponsorships' : '/es/sponsorships'
+		},{
+			title: $t('common.uses'),
+			href: '/uses'
 		}
 	];
 	// Theme switcher

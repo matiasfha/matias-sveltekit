@@ -3,7 +3,6 @@ import getPosts from './getPosts';
 
 export default async function getSimlarPosts(filepath: string): Promise<Post[]> {
 	const posts = await getPosts();
-	console.log(filepath);
 	const post = posts.find((p) => p.filepath.includes(filepath));
 
 	const similarPosts = posts
@@ -13,7 +12,8 @@ export default async function getSimlarPosts(filepath: string): Promise<Post[]> 
 			const pKeywords = p.keywords;
 			const intersection = postKeywords.filter((keyword) => pKeywords.includes(keyword));
 			return intersection.length > 0;
-		});
+		})
+		.filter((p) => p.slug != null);
 
 	return similarPosts.slice(0, 3);
 }

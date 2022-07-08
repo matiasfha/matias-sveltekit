@@ -32,7 +32,7 @@
 	keywords={['newsletter', 'microbytes']}
 	description="Newsletter de micro-cursos"
 />
-
+<!--INFOLINKS_OFF-->
 <section class="mt-24">
 	<img
 		alt="illustration for React Desde Cero"

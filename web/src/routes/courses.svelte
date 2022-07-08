@@ -36,7 +36,7 @@
 		  })
 		: courses;
 </script>
-
+<!--INFOLINKS_OFF-->
 <Seo
 	title="Matias Hernández | Courses"
 	keywords={['Courses', 'Javascript', 'Tutorials', 'Instructor', 'React', 'egghead.io']}

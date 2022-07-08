@@ -5,7 +5,7 @@
 	export let meta: string;
 	export let description: string;
 	export let url: string;
-	export let type: string;
+	export let type: string = "post";
 </script>
 
 <section class="mt-12 ">

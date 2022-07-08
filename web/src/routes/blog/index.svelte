@@ -4,7 +4,7 @@
 		const res = await fetch(url);
 		if (res.ok) {
 			const { posts, featured } = await res.json();
-
+			
 			return {
 				props: {
 					posts,
@@ -25,12 +25,13 @@
 	import PostCard from '$components/PostCard.svelte';
 	import Seo from '$components/Seo.svelte';
 	import { t } from '$lib/translations';
+	import { format } from 'date-fns'
 
 	import type { Post } from '$lib/types';
 	export let posts: Post[];
 	export let featured: Post;
 	let searchItem: string;
-
+	
 	$: filteredPosts = searchItem
 		? posts.filter((item: Post) => {
 				const title = item.title?.toLowerCase() ?? '';
@@ -41,7 +42,7 @@
 		  })
 		: posts;
 </script>
-
+<!--INFOLINKS_OFF-->
 <Seo title="Matias Hernández | Blog" description="Mi blog personal" />
 
 <header
@@ -73,7 +74,11 @@
 	</div>
 </header>
 
-<Featured image={featured.banner} title={featured.title} url={`/blog/post/${featured.slug}`} />
+<Featured 
+image={featured.banner} title={featured.title} url={`/blog/post/${featured.slug}`} 
+meta={format(new Date(featured.date), 'dd/MM/yyyy')}
+description={featured.description}
+/>
 
 <div class="flex flex-row mt-12">
 	<input

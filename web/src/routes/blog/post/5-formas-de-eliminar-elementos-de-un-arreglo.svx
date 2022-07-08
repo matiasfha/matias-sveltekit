@@ -22,10 +22,9 @@ favorite: true
 canonical: https://matiashernandez.dev/blog/post/5-formas-de-eliminar-elementos-de-un-arreglo
 ---
 
- > ### TLDR 
- Lección en video en [egghead](https://egghead.io/lessons/javascript-como-eliminar-elementos-dentro-de-un-arreglo?af=4cexzz)
+ > El contenido de este artículo puede ser visto como una lección en video en [egghead](https://egghead.io/lessons/javascript-como-eliminar-elementos-dentro-de-un-arreglo?af=4cexzz)
 
-<EggheadLesson lessonId="javascript-como-eliminar-elementos-dentro-de-un-arreglo" />
+
 
 Javascript es un lenguaje muy flexible que ofrece múltiples formas de solucionar un problema.
 

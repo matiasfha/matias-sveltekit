@@ -1,4 +1,4 @@
-<script context="module">
+<script context="module" lang="ts">
 	import { blockquote, h1} from '$components/typography/index';
 	
 
@@ -10,19 +10,45 @@
 	import { afterUpdate } from 'svelte';
 	import Seo from './Seo.svelte';
 	
-
 	// Props
+	/**
+	 * @type string
+	 */
 	export let banner;
-	export let bannerCredit;
-	export let title;
-	export let description;
-	export let keywords;
-	export let filepath 
-	/** @type {import('$lib/types').Post[]} */
+	/**
+	 * @type string
+	 */
+	export let bannerCredit
+	/**
+	 * @type string
+	 */
+	export let title
+	/**
+	 * @type string
+	 */
+	export let description
+	/**
+	 * @type string[]
+	 */
+	export let keywords
+	/**
+	 * @type string
+	 */
+	export let filepath
+	
+	/**
+	 * @type  import('$lib/types').Post[]
+	 */
 	export let similarPosts = [];
-	export let canonical 
+	/**
+	 * @type string
+	 */
+	export let canonical
 
-	let currentUrl;
+	/**
+	 * @type string
+	 */
+	let currentUrl
 	afterUpdate(() => {
 		currentUrl = window.location.href;
 	});
@@ -48,18 +74,22 @@
 			>
 				{description}
 			</p>
+			{#if bannerCredit!=null && bannerCredit!=='undefined'}
 			<h4
 				class="text-left text-gray-100 font-body leading-tight text-sm self-end absolute bottom-2 left-2 md:left-auto"
 			>
-				<!-- {@html bannerCredit} -->
+				{@html bannerCredit}
 			</h4>
+			{/if}
 		</div>
 	</header>
 	<article
 		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto prose prose-lg dark:prose-dark mt-12 pt-[14rem] md:pt-[32rem]"
 	>
+		<!--INFOLINKS_ON-->
 		<slot />
 
+		<!--INFOLINKS_OFF-->
 		<div class="border opacity-70 w-full mt-24 mb-12" />
 		Te pareció interesante?
 		Encuentra más contenido similar uniendote al <a class="underlined" href="/newsletter">Newsletter</a> o siguiendome en <a class="underlined" href="https://twitter.com/matiasfha" target="_blank">Twitter</a>.
@@ -76,6 +106,8 @@
 				>Edita en github</a
 			>
 		</footer>
+
+		<input type="hidden" name="IL_IN_ARTICLE">
 
 		{#if similarPosts.length > 0}
 		<div class="">

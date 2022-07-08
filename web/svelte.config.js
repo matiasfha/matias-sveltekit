@@ -3,6 +3,7 @@ import mdsvexConfig from "./mdsvex.config.js";
 import preprocess from 'svelte-preprocess';
 import netlify from '@sveltejs/adapter-netlify'
 import path from 'path'
+import Inspect from 'vite-plugin-inspect'
 import { imagePreprocessor } from 'svelte-image-preprocessor-cloudinary';
 
 import { mdsvexGlobalComponents } from  './mdsvexGlobalComponents.js'
@@ -41,6 +42,7 @@ const similarPostsLoader = () => {
                                 }
                             }			
                         }catch(e) {
+                            console.error(e)
                             return {
                                 status: 500,
                                 error: e
@@ -82,19 +84,21 @@ const config = {
 
         prerender: {
             enabled: true,
-            onError: ({ status, path, referrer, referenceType }) => {
-                console.warn(
-                    `${status} ${path}${referrer ? ` (${referenceType} from ${referrer})` : ''}`
+            onError: ({ status, path, referrer, referenceType, ...rest }) => {
+                const error = Object.keys(rest).map(key => `${key}: ${rest[key]}`).join(', ')
+                console.table(rest)
+                console.error(
+                    `${status} ${path}${referrer ? ` (${referenceType} from ${referrer}) ${error}` : ''}`
                 );
-                if (path.startsWith('/blog')) {
-                    throw new Error('Missing a blog page!');
-                }
+                // if (path.startsWith('/blog')) {
+                //     throw new Error('Missing a blog page!');
+                // }
                 
             }
         },
         adapter: netlify({
             edge: false,
-            split: true,
+            split: false,
         }),
         vite: {
             resolve: {
