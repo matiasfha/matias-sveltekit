@@ -7,7 +7,7 @@
 </script>
 
 <script lang="ts">
-	import { afterUpdate } from 'svelte';
+	import { afterUpdate, onMount } from 'svelte';
 	import Seo from './Seo.svelte';
 	
 	// Props
@@ -53,6 +53,12 @@
 		currentUrl = window.location.href;
 	});
 	
+	let adsbygoogle = [{}]
+	onMount(() => {
+		if(window.adsbygoogle) {
+			adsbygoogle = (window.adsbygoogle || []).push({});
+		}
+	})
 </script>
 
 <Seo {title} {description} {keywords} isBlogPost={true} canonical={canonical} />
@@ -107,7 +113,13 @@
 			>
 		</footer>
 
-		<input type="hidden" name="IL_IN_ARTICLE">
+		<!-- <input type="hidden" name="IL_IN_ARTICLE"> -->
+		<ins class="adsbygoogle"
+			style="display:block; text-align:center;"
+			data-ad-layout="in-article"
+			data-ad-format="fluid"
+			data-ad-client="ca-pub-8352667732450998"
+			data-ad-slot="2293002483"></ins>
 
 		{#if similarPosts.length > 0}
 		<div class="">
