@@ -1,7 +1,7 @@
 import { mdsvex } from "mdsvex";
 import mdsvexConfig from "./mdsvex.config.js";
 import preprocess from 'svelte-preprocess';
-import netlify from '@sveltejs/adapter-netlify'
+import vercel from '@sveltejs/adapter-vercel'
 import path from 'path'
 import { imagePreprocessor } from 'svelte-image-preprocessor-cloudinary';
 
@@ -95,8 +95,8 @@ const config = {
                 
             }
         },
-        adapter: netlify({
-            edge: false,
+        adapter: vercel({
+            edge: true,
             split: false,
         }),
         vite: {
