@@ -26,7 +26,7 @@ const similarPostsLoader = () => {
             }
             return {
                 code: `
-                    export const hydrate = false
+                    //export const hydrate = false
                     export const prerender = true;
                     import getSimilarPosts from "$api/getSimilarPosts"
                     /** @type {import('./__types/[slug]').Load} */
