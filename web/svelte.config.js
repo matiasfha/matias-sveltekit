@@ -3,7 +3,6 @@ import mdsvexConfig from "./mdsvex.config.js";
 import preprocess from 'svelte-preprocess';
 import netlify from '@sveltejs/adapter-netlify'
 import path from 'path'
-import Inspect from 'vite-plugin-inspect'
 import { imagePreprocessor } from 'svelte-image-preprocessor-cloudinary';
 
 import { mdsvexGlobalComponents } from  './mdsvexGlobalComponents.js'
