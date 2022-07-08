@@ -26,19 +26,20 @@ export default async function getPosts(): Promise<Post[]> {
 		const bDate = new Date(b.date).getTime();
 		return aDate < bDate ? 1 : -1;
 	});
-	return posts.map((post: Post) => {
-		// find similar post by keywords for the current post
-		const similarPosts = posts.filter((p) => {
-			const postKeywords = post.keywords;
-			const pKeywords = p.keywords;
-			const intersection = postKeywords.filter((keyword) => pKeywords.includes(keyword));
-			return intersection.length > 0;
-		});
-		return {
-			...post,
-			similarPosts
-		};
-	});
+	return posts;
+	// return posts.map((post: Post) => {
+	// 	// find similar post by keywords for the current post
+	// 	const similarPosts = posts.filter((p) => {
+	// 		const postKeywords = post.keywords;
+	// 		const pKeywords = p.keywords;
+	// 		const intersection = postKeywords.filter((keyword) => pKeywords.includes(keyword));
+	// 		return intersection.length > 0;
+	// 	});
+	// 	return {
+	// 		...post,
+	// 		similarPosts
+	// 	};
+	// });
 }
 
 export async function getLatestPost() {

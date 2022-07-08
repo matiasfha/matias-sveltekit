@@ -1,5 +1,4 @@
 <script>
-	import escuelaFrontend from '$images/escuelafrontend.png';
 	import { locale, t } from '$lib/translations';
 </script>
 
@@ -55,7 +54,7 @@
 							>
 							<a href="http://escuelafrontend.com">
 								<img
-									src={escuelaFrontend}
+									src="/escuelafrontend.png"
 									alt="Escuela frontend logo"
 									width="40"
 									height="40"

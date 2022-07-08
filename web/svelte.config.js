@@ -3,7 +3,8 @@ import mdsvexConfig from "./mdsvex.config.js";
 import preprocess from 'svelte-preprocess';
 import netlify from '@sveltejs/adapter-netlify'
 import path from 'path'
-
+import Inspect from 'vite-plugin-inspect'
+import { imagePreprocessor } from 'svelte-image-preprocessor-cloudinary';
 
 import { mdsvexGlobalComponents } from  './mdsvexGlobalComponents.js'
 
@@ -77,7 +78,7 @@ const config = {
     // for more information about preprocessorssg
     preprocess: [preprocess({
         "postcss": true
-    }), globalComponents, mdsvex(mdsvexConfig), similarPostsLoader()],
+    }), globalComponents, similarPostsLoader(), mdsvex(mdsvexConfig), imagePreprocessor()],
 
     kit: {
 

@@ -74,7 +74,7 @@
 			>
 				{description}
 			</p>
-			{#if bannerCredit}
+			{#if bannerCredit!=null && bannerCredit!=='undefined'}
 			<h4
 				class="text-left text-gray-100 font-body leading-tight text-sm self-end absolute bottom-2 left-2 md:left-auto"
 			>

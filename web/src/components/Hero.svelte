@@ -1,8 +1,5 @@
 <script>
 	import CtaButton from '$components/CtaButton.svelte';
-	import Image from './Image.svelte';
-	import photo from '$images/me-optimized.png';
-	import escuelaFrontend from '$images/escuelafrontend.png';
 	import { fly } from 'svelte/transition';
 	import { t } from '$lib/translations';
 </script>
@@ -65,14 +62,13 @@
 					</svg>
 				</a>
 				<a href="https://escuelafrontend.com">
-					<Image
-						src={escuelaFrontend}
+					<img
+						src="/escuelafrontend.png"
 						alt="Escuela frontend logo"
 						width="40"
 						height="40"
 						id="escuelafrontend"
-						classes="filter dark:invert"
-						blur={false}
+						class="filter dark:invert"
 					/>
 				</a>
 				<a href="https://github.com/matiasfha">
@@ -87,13 +83,12 @@
 	</div>
 
 	<div class="mb-12 lg:mb-0 items-center justify-center flex">
-		<Image
+		<img
 			height="688"
 			width="544"
-			classes="object-contain backdrop-filter backdrop-blur-xl filter drop-shadow-2xl"
-			src={photo}
+			class="object-contain backdrop-filter backdrop-blur-xl filter drop-shadow-2xl"
+			src="/me-optimized.png"
 			alt="This is me :D"
-			blur={false}
 		/>
 	</div>
 </div>

@@ -76,6 +76,10 @@ function remmarkPath() {
 	}
 }
 
+
+/**
+ * @type { import('mdsvex').MdsvexOptions}
+ */
 const config = {
 	"extensions": [".svx"],
 	"layout": {

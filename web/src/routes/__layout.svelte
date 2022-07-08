@@ -19,7 +19,7 @@
 </script>
 
 <script>
-	import '../app.postcss';
+	import '../app.css';
 	import Footer from '$components/Footer.svelte';
 	import NavBar from '$components/NavBar.svelte';
 	import { fade } from "svelte/transition";

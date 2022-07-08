@@ -1,14 +1,9 @@
-const config = {
-	mode: "jit",
+/** @type {import('tailwindcss').Config} */
+module.exports = {
 	darkMode: "class",
-	purge: [
+	content: [
 		"./src/**/*.{html,js,svelte,ts}",
 	],
-	variants: {
-		extend: {
-			typography: ['dark', 'responsive']
-		}
-	},
 	theme: {
 		fontFamily: {
 			'sans': ['Poppins', 'sans-serif'],
@@ -91,6 +86,4 @@ const config = {
 		require('@tailwindcss/aspect-ratio'),
 		require('@tailwindcss/typography'),
 	],
-};
-
-module.exports = config;
+}
