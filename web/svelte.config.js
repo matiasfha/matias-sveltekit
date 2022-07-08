@@ -97,7 +97,7 @@ const config = {
         },
         adapter: vercel({
             edge: true,
-            split: false,
+            split: true,
         }),
         vite: {
             resolve: {
