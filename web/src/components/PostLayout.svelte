@@ -114,7 +114,7 @@
 		</footer>
 
 		<!-- <input type="hidden" name="IL_IN_ARTICLE"> -->
-		<ins class="adsbygoogle"
+		<ins class="adsbygoogle mt-10"
 			style="display:block; text-align:center;"
 			data-ad-layout="in-article"
 			data-ad-format="fluid"
@@ -177,5 +177,9 @@
 		.post-header::after {
 			transform: none;
 		}
+	}
+	ins iframe {
+		border: 1px transparent;
+		border-radius: 20px;
 	}
 </style>
