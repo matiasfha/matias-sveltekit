@@ -99,7 +99,7 @@
 				<figure class="w-10 "><picture><source srcset="/logo.png" type="image/webp"> <img  src="/logo.png" alt="Matias Hernández Logo"></picture></figure>
 			</a>
 			<a
-				class="underlined block whitespace-nowrap text-2xl font-medium focus:outline-none transition"
+				class="underlined whitespace-nowrap text-2xl font-medium focus:outline-none transition hidden md:block"
 				href="/"><h2>Matias Hernández</h2></a
 			>
 		</div>

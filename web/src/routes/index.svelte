@@ -46,24 +46,23 @@
 <Seo
 	title="Matias Hernández Website"
 	keywords={[
-		'Podcast',
-		'Artículos',
-		'Tutoriales',
 		'React',
 		'Javascript',
-		'Newsletter',
 		'Svelte',
 		'SvelteKit',
-		'Cursos',
 		'Typescript',
 		'Mentoría',
 		'Aprende React',
-		'Aprender',
 		'Learn React',
 		'React Workshops',
 		'React Training',
 		'Learn JavaScript',
-		'Learn TypeScript'
+		'Learn TypeScript',
+		'Consultoría',
+		'hooks react',
+		'useeffect',
+		'hook react',
+		'react tutorial'
 	]}
 	description="Personal site of Matias Hernandez, dev, instructor and podcaster. Helping devs to level up their careers as software Developers"
 />

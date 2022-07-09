@@ -71,8 +71,8 @@
 			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm"
 			alt={title}
 		/>
-		<div class="flex flex-col max-w-[40vw] z-10  self-end mr-12">
-			<h1 class="text-left text-gray-100 font-bold text-xl md:text-3xl pb-8 m-0 px-4 md:px-0">
+		<div class="flex flex-col max-w-[98vw] md:max-w-[40vw] z-10  self-end mx-auto md:ml-0 md:mr-12">
+			<h1 class="font-sans text-left text-gray-100 font-bold text-2xl md:text-3xl pb-8 m-0 pl-4 md:px-0 [text-shadow:0_4px_8px_rgba(0,0,0,1),0_20px_8px_rgba(0,0,0,0.3)]">
 				{title}
 			</h1>
 			<p
@@ -172,10 +172,12 @@
 		mix-blend-mode: multiply;
 		transform: skew(15deg, 0deg);
 		transform-origin: top right;
+		
 	}
 	@media (max-width: 767px) {
 		.post-header::after {
 			transform: none;
+			display: none;
 		}
 	}
 	ins iframe {

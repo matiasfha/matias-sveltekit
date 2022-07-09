@@ -2,9 +2,11 @@
 date: 2020-11-02T09:17:52-03:00
 banner: https://res.cloudinary.com/matiasfha/image/upload/v1604323837/monirul-islam-shakil-31I2Mi1UuxQ-unsplash_kkerl8.jpg
 keywords:
-- React
-- hooks
+- React hooks
+- hooks react
 - useEffect
+- dependencias
+- arreglos
 tag: Seed
 featured: true
 title: "React useEffect: La importancia del arreglo de dependencias"
