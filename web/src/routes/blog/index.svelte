@@ -18,6 +18,7 @@
 			error: new Error(`Could not load ${url}`)
 		};
 	}
+	export const prerender = true
 </script>
 
 <script lang="ts">
@@ -43,7 +44,7 @@
 		: posts;
 </script>
 <!--INFOLINKS_OFF-->
-<Seo title="Matias Hernández | Blog" description="Mi blog personal" />
+<Seo title="Blog" description="Mi blog personal" canonical="https://matiashernandez.dev/blog" />
 
 <header
 	class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative h-[20rem] bg-cover bg-no-repeat rounded-md"

@@ -2,29 +2,27 @@
 date: 2020-19-10T23:13:59-04:00
 banner: https://res.cloudinary.com/matiasfha/image/upload/v1597115954/andreas-gucklhorn-Ilpf2eUPpUE-unsplash_n8npgz.jpg
 keywords:
-- useState
-- hooks
-- hook
-- React
-- Wizard
-- componentes
-- lesson
-- tutorial
+- react patrones diseño
+- react componentes
+- react hooks
+- react hooks usereducer
+- react compound components
+- react useContext
+- react state reducer
+- react custom hooks
 tag: Post
-title: Crear un componente Wizard utilizando useState React hook
+title: Construye Componentes Avanzados con React Hooks y Patrones de Diseño
 description: Como utilizar useState React hook para crear un sencillo componente Wizard
   o multi-step
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@draufsicht?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Andreas
   Gücklhorn</a> on <a href="https://unsplash.com/collections/9718937/solar?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 favorite: true
-canonical: https://matiashernandez.dev/blog/post/useState-para-crear-component-wizard 
+canonical: https://matiashernandez.dev/blog/post/react-hooks-componentes-avanzados
 ---
 
-
-
 <TLDR>
-Puedes ver este video en [egghead.io](https://egghead.io/lessons/react-crear-un-componente-wizard-usando-usestate-react-hooks?pl=hooks-3d62&af=4cexzz).
-Este video es parte de una [colección](https://egghead.io/playlists/hooks-3d62&af=4cexzz) en donde se muestra progresivamente como crear un componente utilizando diferentes hooks y patrones de diseño
+Puedes ver este video en <a href="https://egghead.io/lessons/react-crear-un-componente-wizard-usando-usestate-react-hooks?pl=hooks-3d62&af=4cexzz">Egghead.io</a>.
+Este video es parte de un <a href="https://egghead.io/playlists/hooks-3d62&af=4cexzz">Curso</a> en donde se muestra progresivamente como crear un componente utilizando diferentes hooks y patrones de diseño
 </TLDR>
 
 <EggheadLesson lessonId="react-crear-un-componente-wizard-usando-usestate-react-hooks" />
@@ -209,4 +207,5 @@ const Wizard = ({ children }) => {
 
 Agregamos estos manejadores de eventos a cada botón y con esto ya tenemos una versión simplificada de un componente que permite navegar entre los elementos renderizados utilizando `useState` para manejar el estado.
 
-`useState` permite manejar el estado de un componente definido como una función. `useState` retorna un arreglo con dos elementos, el valor del estado y una función para modificar ese estado. Es posible pasar una función como argumento a la función modificadora, lo que permite acceder al estado actual y retornar el nuevo estado
+`useState` permite manejar el estado de un componente definido como una función. `useState` retorna un arreglo con dos elementos, el valor del estado y una función para modificar ese estado. Es posible pasar una función como argumento a la función modificadora, lo que permite acceder al estado actual y retornar el nuevo estado.
+

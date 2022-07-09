@@ -18,6 +18,7 @@
 			};
 		}
 	}
+	export const prerender = true
 </script>
 
 <script lang="ts">
@@ -38,9 +39,10 @@
 </script>
 <!--INFOLINKS_OFF-->
 <Seo
-	title="Matias Hernández | Courses"
+	title="Courses"
 	keywords={['Courses', 'Javascript', 'Tutorials', 'Instructor', 'React', 'egghead.io']}
 	description="Course materials for egghead.io"
+	canonical="https://matiashernandez.dev/courses"
 />
 <header
 	class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative h-[20rem] bg-cover bg-no-repeat rounded-md"

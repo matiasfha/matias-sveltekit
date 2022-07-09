@@ -85,6 +85,7 @@
 		'Aprende React'
 	]}
 	description={$t('articles.description')}
+	canonical="https://matiashernandez.dev/articles"
 />
 
 <Featured

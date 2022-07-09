@@ -15,6 +15,7 @@ const globalComponents = mdsvexGlobalComponents({
 })
 
 
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
     experimental: {
@@ -41,10 +42,6 @@ const config = {
                 console.error(
                     `${status} ${path}${referrer ? ` (${referenceType} from ${referrer}) ${error}` : ''}`
                 );
-                // if (path.startsWith('/blog')) {
-                //     throw new Error('Missing a blog page!');
-                // }
-                
             }
         },
         adapter: netlify({

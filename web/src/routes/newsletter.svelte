@@ -28,9 +28,10 @@
 </script>
 
 <Seo
-	title="Matias Hernández | MicroBytes newsletter"
+	title="MicroBytes newsletter"
 	keywords={['newsletter', 'microbytes']}
 	description="Newsletter de micro-cursos"
+	canonical="https://matiashernandez.dev/newsletter"
 />
 <!--INFOLINKS_OFF-->
 <section class="mt-24">

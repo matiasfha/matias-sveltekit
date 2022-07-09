@@ -17,7 +17,7 @@ Personalmente, llevo más de 12 años trabajando para diferentes clientes y comp
 
 
 
-> **Importante! **Mi experiencia radica casi totalmente en el mercado laboral de Estados Unidos, ergo este post está orientado a encontrar un trabajo en una compañía ubicada allá.
+> **Importante!** Mi experiencia radica casi totalmente en el mercado laboral de Estados Unidos, ergo este post está orientado a encontrar un trabajo en una compañía ubicada allá.
 
 
 
@@ -172,10 +172,10 @@ Mientras utilizas tu tiempo aprendiendo y construyendo un producto puedes ir doc
 
 Si decides que quieres mantener un blog, existen muchos sitios que te permiten crear un espacio en internet, comenzar a escribir y alcanzar lectores rápidamente, opciones como:
 
-* [https://dev.to/](undefined)
-* [https://hashnode.com/](undefined) 
-* [https://medium.com/](undefined) (Incluso puedes monetizar tu contenido)
-* [https://mirror.xyz/](undefined) (Enfocado en Web3)
+* [https://dev.to/](https://dev.to/)
+* [https://hashnode.com/](https://hashnode.com/) 
+* [https://medium.com/](https://medium.com/) (Incluso puedes monetizar tu contenido)
+* [https://mirror.xyz/](https://mirror.xyz/) (Enfocado en Web3)
 
 Pero en mi opinión sería más adecuado tener un blog personalizado construido desde cero (y republicar en los otros medios) ya que esto muestra algo de pasión por lo que estás haciendo y es además una muy buena forma de aprender nuevos stack y exponerte a nuevas tecnologías.
 
@@ -274,3 +274,4 @@ Comienza por revisar los valores centrales de la empresa, y todo lo que tengan p
   
 > Si estás buscando trabajo remoto, en Clevertech (donde trabajo) siempre hay oportunidades
 > [Revisa este enlace](https://clevertech.biz/link-tree/matias)
+
