@@ -7,7 +7,6 @@ const pages = ['about', 'newsletter', 'articles', 'blog']
 
 export async function get() {
   const posts = await getPosts()
-  console.log(posts)
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
     'Content-Type': 'application/xml',
