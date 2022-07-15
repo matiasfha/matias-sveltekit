@@ -1,9 +1,10 @@
 import getArticles from '$api/getAllExternalArticles';
 
-export async function get() {
+export async function GET() {
 	try {
 		const articles = await getArticles();
 		return {
+			status: 200,
 			body: {
 				articles,
 				featured: articles.find((item) => item.featured)

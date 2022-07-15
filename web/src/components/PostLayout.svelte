@@ -1,53 +1,28 @@
-<script context="module" lang="ts">
+<script context="module">
 	import { blockquote, h1} from '$components/typography/index';
+	// import type { Post } from '$lib/types';
 
 	export { blockquote, h1 };
 	
 </script>
 
-<script lang="ts">
+<script>
 	import { afterUpdate, onMount } from 'svelte';
 	import Seo from './Seo.svelte';
 	
 	// Props
-	/**
-	 * @type string
-	 */
-	export let banner;
-	/**
-	 * @type string
-	 */
-	export let bannerCredit
-	/**
-	 * @type string
-	 */
-	export let title
-	/**
-	 * @type string
-	 */
-	export let description
-	/**
-	 * @type string[]
-	 */
-	export let keywords
-	/**
-	 * @type string
-	 */
-	export let filepath
 	
-	/**
-	 * @type  import('$lib/types').Post[]
-	 */
-	export let similarPosts = [];
-	/**
-	 * @type string
-	 */
-	export let canonical
+	export let banner= "";
+	export let bannerCredit= "";
+	export let title= "";
+	export let description= "";
+	export let keywords= [];
+	export let filepath= "";
+	
+	export let similarPosts= [];
+	export let canonical= "";
 
-	/**
-	 * @type string
-	 */
-	let currentUrl
+	let currentUrl= "";
 	afterUpdate(() => {
 		currentUrl = window.location.href;
 	});

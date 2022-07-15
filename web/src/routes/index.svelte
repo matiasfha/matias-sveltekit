@@ -1,36 +1,3 @@
-<script context="module" lang="ts">
-	export async function load({ fetch, context }) {
-		try {
-			const url = '/api/latest.json';
-			const res = await fetch(url);
-			const favorites = await fetch('/api/favorites.json');
-
-			if (res.ok && favorites.ok) {
-				const latest: Latest[] = await res.json();
-				const favoritesData: ContentElement[] = await favorites.json();
-				return {
-					props: {
-						latest,
-						favorites: favoritesData
-					}
-				};
-			}
-
-			return {
-				status: res.status,
-				error: new Error(`Could not load ${url}`)
-			};
-		} catch (e) {
-			console.error(e);
-			return {
-				status: 500,
-				error: new Error(e.message)
-			};
-		}
-	}
-	export const prerender = true;
-</script>
-
 <script lang="ts">
 	import type { ContentElement, Latest } from '$lib/types';
 	import Seo from '$components/Seo.svelte';
@@ -40,6 +7,7 @@
 	import FavoritesSection from '$components/Favorites.svelte';
 	export let latest: Latest[];
 	export let favorites: ContentElement[];
+	
 </script>
 
 <!--INFOLINKS_OFF-->
@@ -76,7 +44,6 @@
 	description=""
 	url="https://www.cafecon.tech/1081172/8869619-testing-react-typescript-and-remix-with-kent-c-dodds"
 	type="podcast"
-	podcastId="8869619"
 />
 
 <LatestSection {latest} />

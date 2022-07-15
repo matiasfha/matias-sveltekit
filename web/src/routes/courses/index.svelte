@@ -1,30 +1,8 @@
-<script lang="ts" context="module">
-	import type { Course } from '$lib/types';
-	
-	export async function load({ fetch }) {
-		try {
-			const response = await fetch('/api/courses.json');
-			const json = await response.json();
-			return {
-				props: {
-					courses: json.courses
-				}
-			};
-		} catch (e) {
-			return {
-				status: 500,
-				message: e.message,
-				error: new Error(`Could not load courses`)
-			};
-		}
-	}
-	export const prerender = true
-</script>
-
 <script lang="ts">
 	import Featured from '$components/Featured.svelte';
 	import Seo from '$components/Seo.svelte';
 	import { t } from '$lib/translations';
+	import type { Course } from '$lib/types';
 	export let courses: Course[];
 	const featured = courses.find((item) => item.id === 404918);
 

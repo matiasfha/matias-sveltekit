@@ -1,30 +1,10 @@
-<script context="module">
-	export async function load({ fetch }) {
-		const url = '/api/newsletter.json';
-		const res = await fetch(url);
-		if (res.ok) {
-			const courses = await res.json();
-
-			return {
-				props: {
-					courses
-				}
-			};
-		}
-
-		return {
-			status: res.status,
-			error: new Error(`Could not load ${url}`)
-		};
-	}
-</script>
-
 <script lang="ts">
 	import Seo from '$components/Seo.svelte';
 	import CourseCard from '$components/CourseCard.svelte';
 	import microbytes from '$images/microbytes.png';
 	import blocksToHtml from '@sanity/block-content-to-html';
 	export let courses = [];
+
 </script>
 
 <Seo
@@ -90,19 +70,3 @@
 		codeId={'u2d6y6'}
 	/>
 </div>
-<!--
-<div class="grid grid-cols-1 gap-2">
-	{#each courses as course}
-		<CourseCard
-			logo={course.image.asset.url}
-			title={course.course}
-			description={blocksToHtml({
-				blocks: course.descriptionRaw,
-				projectId: 'cyypawp1',
-				dataset: 'production'
-			})}
-			convertKitId={course.tagId}
-		/>
-	{/each}
-</div>
--->

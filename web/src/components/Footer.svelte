@@ -17,7 +17,7 @@
 						class="text-secondary flex items-center justify-between mt-6 lg:flex-col lg:items-start"
 					>
 						<div class="flex md:space-x-4 justify-between w-full">
-							<a href="https://twitter.com/matiasfha"
+							<a href="https://twitter.com/matiasfha" name="Twitter"
 								><svg
 									width="40px"
 									height="40px"
@@ -35,7 +35,7 @@
 									/></svg
 								></a
 							>
-							<a href="http://egghead.io/instructors/matias-francisco-hernandez-arellano?af=4cexzz"
+							<a href="http://egghead.io/instructors/matias-francisco-hernandez-arellano?af=4cexzz" name="Egghead"
 								>
 								<svg width="40" height="40" viewBox="0 0 256 263" preserveAspectRatio="xMidYMid">
 									<path d="M128 262.4c-14.4 0-28-3.191-40.8-7.976-12.8-5.583-24-12.761-32.8-23.13-9.6-9.57-16.8-20.737-21.6-33.498-1.6-4.785-3.2-9.57-4.8-15.153h-.8l-.8-7.976c-9.6-3.988-16.8-13.559-19.2-22.332C4 141.17.8 124.42 0 109.267c0-11.964 6.4-23.13 17.6-27.915 7.2-3.19 17.6-6.38 29.6-7.976 8-16.749 16.8-31.903 26.4-43.068C90.4 10.368 108.8 0 128 0c19.2 0 37.6 10.368 54.4 30.308C192 41.473 200.8 55.83 208 73.376c12 2.393 22.4 4.785 30.4 7.976 11.2 4.785 17.6 15.951 17.6 27.915-.8 17.546-4.8 36.688-7.2 43.866-2.4 9.57-9.6 19.141-19.2 22.332l-.8 7.975h-.8c-.8 4.786-2.4 10.369-4.8 15.154-4.8 12.761-12 23.927-21.6 33.498-9.6 9.57-20.8 17.546-32.8 23.13-12.8 4.785-26.4 7.177-40.8 7.177z" fill="#FFF"/>
@@ -52,7 +52,7 @@
 								</svg>
 								</a
 							>
-							<a href="http://escuelafrontend.com">
+							<a href="http://escuelafrontend.com" name="Escuela Frontend">
 								<img
 									src="/escuelafrontend.png"
 									alt="Escuela frontend logo"
@@ -61,7 +61,7 @@
 									class="filter dark:invert"
 								/>
 							</a>
-							<a href="https://github.com/matiasfha">
+							<a href="https://github.com/matiasfha" name="Github">
 								<svg width="40px" height="40px" viewBox="0 0 1024 1024" fill="none"
 									><path
 										fill-rule="evenodd"
@@ -116,7 +116,7 @@
 				</div>
 			</div>
 
-			<div class="col-span-full mt-24 dark:text-blueGray-500 text-gray-500 text-lg md:mt-44">
+			<div class="col-span-full mt-24 dark:text-blueGray-500 text-gray-200 text-lg md:mt-44">
 				<span>All rights reserved</span>
 				<span class="block md:inline">© Matías Hernández 2021</span>
 			</div>

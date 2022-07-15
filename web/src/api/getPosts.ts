@@ -1,7 +1,7 @@
 import type { Post } from '$lib/types';
 
 export default async function getPosts(): Promise<Post[]> {
-	const modules = import.meta.glob(`../routes/blog/post/*.svx`);
+	const modules = import.meta.glob('../routes/blog/post/*.svx');
 
 	const postPromises = [];
 	for (const [path, resolver] of Object.entries(modules)) {

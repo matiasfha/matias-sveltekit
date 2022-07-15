@@ -1,7 +1,6 @@
 <script context="module">
 	import { blockquote, h1 } from '$components/typography/index';
 	export { blockquote, h1 };
-	export const prerender = true;
 </script>
 
 <script lang="ts">

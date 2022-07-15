@@ -1,24 +1,3 @@
-<script lang="ts" context="module">
-	export async function load({ fetch }) {
-		const url = '/api/articles.json';
-		const res = await fetch(url);
-		if (res.ok) {
-			const { articles, featured } = await res.json();
-			return {
-				props: {
-					articles,
-					featured
-				}
-			};
-		}
-
-		return {
-			status: res.status,
-			error: new Error(`Could not load ${url}`)
-		};
-	}
-</script>
-
 <script lang="ts">
 	import Featured from '$components/Featured.svelte';
 	import ContentCard from '$components/ContentCard.svelte';

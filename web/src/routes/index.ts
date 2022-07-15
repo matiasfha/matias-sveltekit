@@ -1,21 +1,22 @@
+import type { ContentElement, Latest } from '$lib/types';
 import { getLatestArticle } from '$api/getAllExternalArticles';
 import { getLatestCourse } from '$api/getEggheadCourses';
 import { getLatest } from '$api/getPodcast';
 import { getLatestPost } from '$api/getPosts';
-import type { Latest } from '$lib/types';
+import getFavorites from '$api/getFavorites';
 
-export async function get() {
+async function getLatestContent() {
 	try {
 		const cafeConTech = await getLatest('https://anchor.fm/s/a1ac9eb8/podcast/rss');
 
 		/* Control remoto have a different url structure */
 		const controlRemoto = await getLatest('https://anchor.fm/s/5cfb84c8/podcast/rss');
-		
+
 		/*****/
 		const post = await getLatestPost();
 		const course = await getLatestCourse();
 		const article = await getLatestArticle();
-		
+
 		const latest: Latest[] = [
 			{
 				/* egghead */ href: course.url,
@@ -24,14 +25,14 @@ export async function get() {
 				tag: 'Egghead Course'
 			},
 			{
-				/* Cafe con Tech*/ 
+				/* Cafe con Tech*/
 				href: cafeConTech.url,
 				image: cafeConTech.image,
 				title: cafeConTech.title,
 				tag: 'Podcast: Café con Tech'
 			},
 			{
-				/* Control Remoto*/ 
+				/* Control Remoto*/
 				href: controlRemoto.url,
 				image: controlRemoto.image,
 				title: controlRemoto.title,
@@ -52,14 +53,32 @@ export async function get() {
 			}
 		];
 
+		return latest;
+	} catch (e) {
+		console.error(e);
+		// @TODO Should it Throw?
+		return [];
+	}
+}
+
+/** @type {import('./__types/index').RequestHandler} */
+export async function GET({ fetch, context }) {
+	try {
+		const latest = await getLatestContent();
+		const favorites = await getFavorites();
+
 		return {
-			body: latest
+			status: 200,
+			body: {
+				latest,
+				favorites
+			}
 		};
 	} catch (e) {
 		console.error(e);
 		return {
 			status: 500,
-			body: e.message
+			error: new Error(e.message)
 		};
 	}
 }

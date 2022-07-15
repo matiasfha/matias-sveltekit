@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let href: string;
 	export let text: string;
-	export let variant: 'primary' | 'secondary';
+	export let variant: 'primary' | 'secondary' = 'primary';
 	export let onClick = () => null;
 
 	const darkClasses = `bg-ebony-clay-600 

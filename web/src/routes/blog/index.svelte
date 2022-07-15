@@ -1,25 +1,3 @@
-<script lang="ts" context="module">
-	export async function load({ fetch }) {
-		const url = '/api/blog.json';
-		const res = await fetch(url);
-		if (res.ok) {
-			const { posts, featured } = await res.json();
-			
-			return {
-				props: {
-					posts,
-					featured
-				}
-			};
-		}
-
-		return {
-			status: res.status,
-			error: new Error(`Could not load ${url}`)
-		};
-	}
-	export const prerender = true
-</script>
 
 <script lang="ts">
 	import Featured from '$components/Featured.svelte';

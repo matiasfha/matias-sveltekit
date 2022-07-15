@@ -34,9 +34,13 @@ export default async function getCourses(): Promise<Array<any>> {
 	return allMicrobytes;
 }
 
-export async function get() {
+export async function GET() {
 	const courses = await getCourses();
+
 	return {
-		body: courses
+		status: 200,
+		body: {
+			courses
+		}
 	};
 }
