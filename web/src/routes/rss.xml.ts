@@ -7,7 +7,7 @@ export async function GET() {
 		title: 'Matias Hernández',
 		description:
 			'Personal site of Matias Hernandez, dev, instructor and podcaster. Helping devs to level up their careers as software Developers',
-		id: 'https://matiashernandez.dev',
+		id: 'https://matiashernandez.dev/',
 		link: 'https://matiashernandez.dev',
 		language: 'es',
 		feedLinks: {
