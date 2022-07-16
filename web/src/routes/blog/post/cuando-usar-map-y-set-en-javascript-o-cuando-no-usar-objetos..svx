@@ -1,0 +1,235 @@
+---
+date: 2022-07-15T22:10:55Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/a9ee573469fab51bb49ce4cd9ebc91b365b88a81-1280x710.jpg
+keywords: 
+- Cuando usar map y set
+- Javascript Map
+- Javascript Set
+- Map vs Set
+- no usar objetos
+title: Cuando usar Map y Set en Javascript o cuando no usar objetos.
+description: Los objetos en Javascript son quizá la estructura de datos más utilizada pero, ¿estás seguro que es la estructura adecuada?.
+Map y Set pueden ser una mejor solución.
+bannerCredit: undefined
+tag: Posts
+---
+
+Crear aplicaciones web es en general solucionar problemas de como manipular y desplegar cierto conjunto de datos de una forma entendible para el usuario. Es por esto que decidir la estructura de datos correcta puede facilitar el manejo de datos más adelante, ahorrando tiempo y haciendo el código más comprensible o con mejor performance.
+
+En Javascript hay dos estructuras de datos predominantes para manejar colecciones de datos: Objetos y Arreglos.
+
+> Puedes leer más sobre como trabajar con arreglos revisando [este artículo escrito para Escuela Frontend](https://www.escuelafrontend.com/articulos/metodos-de-arreglos) o [este curso gratuito hecho para egghead.io](https://egghead.io/courses/manipulacion-eficiente-de-arreglos-con-javascript-1e17fc6f)
+
+
+
+#### Objetos
+
+Los objetos son creados utilizando llaves `{}` y una lista de propiedades, estas propiedades corresponden a un par clave-valor donde la clave debe ser un string.
+
+Dada la flexibilidad de Javascript, es posible ir agregando nuevos pares clave-valor a un objeto de forma dinámica, pero no es técnicamente correcto, esto lo puedes ver al utilizar Typescript, como en el ejemplo de la siguiente imagen.
+
+![](https://cdn.sanity.io/images/cyypawp1/production/84227d556467aed469f7fcc199226253349f1bf6-1682x680.png)
+
+<caption>Puedes probar este ejemplo [directamente en el playground](https://www.typescriptlang.org/play?#code/DYUwLgBA9gRgVhAvBA3gKApiBDAXBAcmwIBoMsZ8CYC0BfNNWOAbQIGMCBdJQztIA)</caption>
+
+En la imagen superior puedes ver que typescript informa un error,  que básicamente indica que estás intentando acceder la propiedad `c` en un objeto que no la contiene. ¿Por qué ocurre esto?
+
+Porque los objetos son una estructura pensada para almacenar datos estáticos y no "crecer" en el tiempo.
+
+Además, tienen algunas otras características que pueden o no ser adecuadas para ciertos casos de uso.
+
+* Las claves de una propiedad solo pueden ser strings.
+* Los objetos no mantienen el orden de inserción.
+* Hay propiedades inexistentes en el objeto que pueden ser requeridas al manipular una colección: enumerar, tamaño, etc.
+
+Aún así, los objetos son la decisión por defacto para almacenar estructuras de datos complejas o para transmitir información, dado lo fácil que transformar el objeto a JSON.
+
+#### Arreglos
+
+Por otro lado, los arreglos son fabulosos para crear y manipular colecciones ordenadas e indexadas de datos.
+
+Crear un arreglo es sencillo, tan solo debes usar las llaves cuadradas `[]` y ya está, puedes comenzar a insertar todo tipo de valores en el, es decir, es una estructura de datos de tipo general.
+
+Pero, ¿qué ocurre si necesitas una colección de valores únicos?
+
+Ciertamente, puedes lograrlo con un arreglo, pero requiere de más código y lógica externa a la propia estructura.
+
+> [¿Cómo remover duplicados de un arreglo?](/blog/post/4-formas-de-eliminar-elementos-duplicados-en-un-arreglo-con-javascript)
+
+
+
+## Map
+
+Un `Map` es una colección de pares tipo clave-valor (como un objeto) donde la clave puede ser de cualquier tipo, siendo la principal diferencia con un objeto, además de ciertos métodos que permiten una simple manipulación proveyendo una forma eficiente de buscar y obtener datos.
+
+Además un `Map` permite que se agreguen datos de forma dinámica.
+
+![](https://cdn.sanity.io/images/cyypawp1/production/636142577db72ffd84f78278a76c44aa0c019607-1466x818.png)
+
+<caption>Puedes revisar este código [en el playground de typescript](https://www.typescriptlang.org/play?#code/MYewdgzgLgBAtgQwA4wLwzAUwO4wLLIAUAlAFCJIB0EmUhA5AvQDSP1kXW2ECMrYAVzgAjTACd25ZFzoBvDAjiYAXDHoA5RZnoBfZmoFgYIYQCtaISaQD01mAHkYSAZgAmmCDAAWCYONKkoJCwFABMaBg4+ESkMHEwANpsrEwAusyx8Ql89IIi4vTpmXEJ8mBaqhpauvr0hsZmFoWkxEA)</caption>
+
+> Notar que si utilizas la misma clave múltiples veces para agregar un valor, siempre se reemplazará el valor con el último agregado.
+
+
+
+Una vez creado el `Map` querrás obtener sus valores, para ello utilizarás el método `get()`.
+
+```javascript
+
+map.get('a') // 'a'
+
+map.get({ name: 'Name'}) // 'un objeto' 
+
+map.get('no existe') // undefined
+
+console.log(map)/* Map (3) { 
+  "a" => "a", 
+  1 => "number", 
+  {"name": "Name"} => "un objeto" 
+} */
+```
+
+`Map` tiene algunos otros métodos y propiedades que facilitan su uso, algunas de las más comunes son:
+
+* `Map.size` para obtener el total de elementos del `Map`.
+* `Map.has(key)` para buscar un elemento identificado por `key`.
+* `Map.delete(key)` para eliminar un elemento.
+* `Map.clear()` para eliminar todos los elementos del `Map`.
+
+Además `Map` incluye algunos métodos que te permiten iterar sobre los elementos del mismo, estos métodos retornan un tipo `MapIterator` que permite el uso de loops `for-of` o `forEach` directamente.
+
+```javascript
+const map = new Map()
+map.set('a','a')
+map.set(1,'number')
+map.set({ name: 'Name'}, 'un objeto')
+
+console.log(map.keys()) // MapIterator {"a",1,{ name: 'Name'}}
+
+console.log(map.values()) // MapIterator {'a','number','un objeto'}
+
+console.log(map.entries())
+/* MapIterator {'a' => 'a', 1 => 'number', {name: 'Name'} => 'un objeto'} */
+
+map.forEach((value, key) => {
+  console.log(`key: ${key}, value: ${value}`)
+})
+/*
+key: a, value: a
+key: 1, value: number
+key: [object Object], value: un objeto
+*/
+
+for(const [key, value] of map) {
+  console.log(`key: ${key}, value: ${value}`)
+}
+/*
+key: a, value: a
+key: 1, value: number
+key: [object Object], value: un objeto
+*/
+```
+
+También es posible convertir un objeto a un `Map` o viceversa
+
+```javascript
+// Convertir objeto a Map
+
+const properties = {
+ 'a': 'a',
+ 'b': 'algo más',
+ 'c': 'c'
+ }
+ 
+ const map = new Map(Object.entries(properties))
+ 
+ // Convertir Map a Objeto
+ 
+ const obj = Object.fromEntries(map)
+```
+
+#### ¿Cuándo usar Map u Object?
+
+Si bien son estructuras de datos similares hay ciertos momentos para decantar por uno u otro, a modo de resumen:
+
+Usa `Map` cuando:
+
+* Necesitas almacenar información en donde las claves no son siempre strings.
+* Necesitas una estructura de datos donde los objetos pueden ser ordenados.
+* Necesitas realizar búsquedas eficientes en los datos (sin utilizar librerías externas).
+
+#### Propiedades y métodos
+
+
+
+## Set
+
+Un `Set` es una colección de elementos unicos que pueden ser de cualquier tipo, muy similar a un arreglo. Esta también es una colección ordenada de elementos.
+
+Puedes crear e inicializar un `Set` usando `new`.
+
+```javascript
+const set = new Set();
+
+// O con valores iniciales
+
+const set2 = new Set(['a','b',3])
+console.log(set2) // {'a','b',3}
+
+```
+
+Al igual que `Map`, `Set` también tiene métodos que te permiten agregar o eliminar elementos del mismo.
+
+```javascript
+const set = new Set();
+set.add('a');
+set.add('b');
+set.add(3);
+
+console.log(set) // {'a','b',3}
+
+set.add(3) // No se puede agregar el mismo elemento
+// El resultado es el mismo que anteriormente
+console.log(set) // {'a','b',3}
+```
+
+`Set` también cuenta con el método `Set.has(element)` para saber si un element está o no en un set, además del método `Set.delete(element)` para eliminar un elemento.
+
+
+
+Para iterar sobre un `Set` puedes usar el método `Set.values()` que retorna  un `SetIterator`, sobre este iterador puedes utilizar `forEach` o `for-of`.
+
+`Set` y `Array` son similarres y puedes convertirlos entre sí utilizando el operador `spread`.
+
+```javascript
+const set = new Set()
+set.add('a')
+set.add('b')
+set.add(3)
+
+const arr = [...set]
+```
+
+#### ¿Cuándo usar Set o Array?
+
+En general, usarás Set cuando necesites una colección de elementos únicos.
+
+Por ejemplo, en una sola linea puedes crear un arreglo sin duplicados utilizando `Set`
+
+```javascript
+const unicos = [ ...new Set([1, 1, 2, 2, 2, 3])] // (3) [1, 2, 3]
+```
+
+#### Propiedades y métodos
+
+
+
+
+
+### En resúmen
+
+En este breve artículo pudiste conocer sobre dos estructuras de datos (lamentablemente) poco utilizadas en el desarrollo con Javascript.
+
+Dos estructuras de datos que permiten realizar diferentes tareas de forma más eficiente.
+
+Además, revisamos cuando es o no adecuado utilizar objetos y arreglos.
