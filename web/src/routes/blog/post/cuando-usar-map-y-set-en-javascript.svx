@@ -8,8 +8,7 @@ keywords:
 - Map vs Set
 - no usar objetos
 title: Cuando usar Map y Set en Javascript o cuando no usar objetos.
-description: Los objetos en Javascript son quizá la estructura de datos más utilizada pero, ¿estás seguro que es la estructura adecuada?.
-Map y Set pueden ser una mejor solución.
+description: Los objetos en Javascript son quizá la estructura de datos más utilizada pero, ¿estás seguro que es la estructura adecuada?. Map y Set pueden ser una mejor solución.
 bannerCredit: undefined
 tag: Posts
 ---
@@ -20,8 +19,6 @@ En Javascript hay dos estructuras de datos predominantes para manejar coleccione
 
 > Puedes leer más sobre como trabajar con arreglos revisando [este artículo escrito para Escuela Frontend](https://www.escuelafrontend.com/articulos/metodos-de-arreglos) o [este curso gratuito hecho para egghead.io](https://egghead.io/courses/manipulacion-eficiente-de-arreglos-con-javascript-1e17fc6f)
 
-
-
 #### Objetos
 
 Los objetos son creados utilizando llaves `{}` y una lista de propiedades, estas propiedades corresponden a un par clave-valor donde la clave debe ser un string.
@@ -30,7 +27,7 @@ Dada la flexibilidad de Javascript, es posible ir agregando nuevos pares clave-v
 
 ![](https://cdn.sanity.io/images/cyypawp1/production/84227d556467aed469f7fcc199226253349f1bf6-1682x680.png)
 
-<caption>Puedes probar este ejemplo [directamente en el playground](https://www.typescriptlang.org/play?#code/DYUwLgBA9gRgVhAvBA3gKApiBDAXBAcmwIBoMsZ8CYC0BfNNWOAbQIGMCBdJQztIA)</caption>
+<small>Puedes probar este ejemplo <a href="https://www.typescriptlang.org/play?#code/DYUwLgBA9gRgVhAvBA3gKApiBDAXBAcmwIBoMsZ8CYC0BfNNWOAbQIGMCBdJQztIA">directamente en el playground</a></small>
 
 En la imagen superior puedes ver que typescript informa un error,  que básicamente indica que estás intentando acceder la propiedad `c` en un objeto que no la contiene. ¿Por qué ocurre esto?
 
@@ -65,12 +62,11 @@ Un `Map` es una colección de pares tipo clave-valor (como un objeto) donde la c
 Además un `Map` permite que se agreguen datos de forma dinámica.
 
 ![](https://cdn.sanity.io/images/cyypawp1/production/636142577db72ffd84f78278a76c44aa0c019607-1466x818.png)
+<small>Puedes revisar este código <a href="https://www.typescriptlang.org/play?#code/MYewdgzgLgBAtgQwA4wLwzAUwO4wLLIAUAlAFCJIB0EmUhA5AvQDSP1kXW2ECMrYAVzgAjTACd25ZFzoBvDAjiYAXDHoA5RZnoBfZmoFgYIYQCtaISaQD01mAHkYSAZgAmmCDAAWCYONKkoJCwFABMaBg4+ESkMHEwANpsrEwAusyx8Ql89IIi4vTpmXEJ8mBaqhpauvr0hsZmFoWkxEA">en el playground de typescript</a></small>
 
-<caption>Puedes revisar este código [en el playground de typescript](https://www.typescriptlang.org/play?#code/MYewdgzgLgBAtgQwA4wLwzAUwO4wLLIAUAlAFCJIB0EmUhA5AvQDSP1kXW2ECMrYAVzgAjTACd25ZFzoBvDAjiYAXDHoA5RZnoBfZmoFgYIYQCtaISaQD01mAHkYSAZgAmmCDAAWCYONKkoJCwFABMaBg4+ESkMHEwANpsrEwAusyx8Ql89IIi4vTpmXEJ8mBaqhpauvr0hsZmFoWkxEA)</caption>
+
 
 > Notar que si utilizas la misma clave múltiples veces para agregar un valor, siempre se reemplazará el valor con el último agregado.
-
-
 
 Una vez creado el `Map` querrás obtener sus valores, para ello utilizarás el método `get()`.
 
@@ -159,7 +155,18 @@ Usa `Map` cuando:
 * Necesitas realizar búsquedas eficientes en los datos (sin utilizar librerías externas).
 
 #### Propiedades y métodos
-
+| Propiedades/Métodos | Descripción | Valor de Retorno |
+|--- | --- | ---|
+| set(key, value) | Agrega un nuevo par al Map | `Map` |
+| delete(key) | Eliminar un par clave-valor identificado por key | Boolean |
+| get(key) | Retorna el valor de `key` | value |
+| has(key) | Revisa la presencia de un elemento identificado por `key` | Boolean |
+| clear() | Remueve todos los elementos | - |
+| keys() | Retorna todas las claves | MapIterator |
+| values() | Retorna todos los valores | MapIterator |
+| entries() | Retorna todas las claves y valores | MapIterator |
+| forEach() | Itera sobre el `Map` en orden de inserción | - |
+| size | Retorna el número de elementos. | Number |
 
 
 ## Set
@@ -222,7 +229,17 @@ const unicos = [ ...new Set([1, 1, 2, 2, 2, 3])] // (3) [1, 2, 3]
 
 #### Propiedades y métodos
 
-
+| Propiedades/Métodos | Descripción | Valor de retorno |
+|--- | --- | ---|
+| add(value) | Agrega un nuevo elemento | `Set` |
+| delete(value) | Remueve el elemento especificado | Boolean |
+| has(item) | Busca la presencia de un elemento | Boolean |
+| clear() | Elimina todos los valores del Set | - |
+| keys() | Retorna todos los valores (igual que `values()`) | `SetIterator` |
+| values() | Retorna todos los valores (igual que `keys()`) | `SetIterator` |
+| entries() | Retorna todos los valores (igual que `keys()` y `values()`) | `SetIterator` |
+| forEach() | Itera en orden de inserción | - |
+| size | Retorna el total de elementos | Number |
 
 
 

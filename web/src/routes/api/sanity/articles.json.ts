@@ -217,17 +217,17 @@ export async function GET({ request }: RequestEvent) {
 			content: post.content
 		});
 
-		const res = await createFileInRepo(markdown, post.title);
-		const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
+		//const res = await createFileInRepo(markdown, post.title);
+		//const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
 
-		const hashnode = await writeToHashnode({
-			...post,
-			image: builder.image(post.banner.asset._ref).url()
-		});
+		// const hashnode = await writeToHashnode({
+		// 	...post,
+		// 	image: builder.image(post.banner.asset._ref).url()
+		// });
 
 		return {
 			body: {
-				res,
+				//res,
 				//hashnode,
 				//dev,
 				markdown

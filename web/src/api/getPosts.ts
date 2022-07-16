@@ -7,6 +7,7 @@ export default async function getPosts(): Promise<Post[]> {
 	for (const [path, resolver] of Object.entries(modules)) {
 		const promise = resolver().then((post) => {
 			const slug = path.match(/([\w-]+)\.(svelte\.md|md|svx)/i)?.[1] ?? null;
+			console.log({ path });
 			return {
 				slug: slug
 					.normalize('NFD')

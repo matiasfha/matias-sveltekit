@@ -50,6 +50,9 @@ module.exports = {
 									borderRadius: '3px',
 									color: theme('colors.ebony-clay.700'),
 									fontStyle: 'italic'
+								},
+								th: {
+									color: '#fde68a'
 								}
 							}
 						]
@@ -62,7 +65,8 @@ module.exports = {
 								},
 								code: {
 									color: theme('colors.gray.200'),
-								}
+								},
+								
 
 							}
 						]
