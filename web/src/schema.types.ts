@@ -347,7 +347,17 @@ export interface Posts extends SanityDocument {
    *
    *
    */
-  content?: Array<SanityKeyed<SanityBlock>>;
+  content?: Array<
+    | SanityKeyed<SanityBlock>
+    | SanityKeyed<{
+        _type: "image";
+        asset: SanityReference<SanityImageAsset>;
+        crop?: SanityImageCrop;
+        hotspot?: SanityImageHotspot;
+      }>
+    | SanityKeyed<Code>
+    | SanityKeyed<Table>
+  >;
 }
 
 export type Link = {
@@ -392,3 +402,17 @@ export type Documents =
   | Microbytes
   | Page
   | Posts;
+
+/**
+ * This interface is a stub. It was referenced in your sanity schema but
+ * the definition was not actually found. Future versions of
+ * sanity-codegen will let you type this explicity.
+ */
+type Code = any;
+
+/**
+ * This interface is a stub. It was referenced in your sanity schema but
+ * the definition was not actually found. Future versions of
+ * sanity-codegen will let you type this explicity.
+ */
+type Table = any;

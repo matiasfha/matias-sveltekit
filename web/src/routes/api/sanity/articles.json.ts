@@ -36,6 +36,21 @@ async function validateWebhook(request: Request, body: Request['body']) {
 	);
 }
 
+const serializers = {
+	types: {
+		code: (props) => '```' + props.node.language + '\n' + props.node.code + '\n```',
+		table: (props) => {
+			const { rows } = props.node;
+			const headers = rows[0].cells;
+			const headersMarkdown = headers.map((header) => `${header}`).join(' | ');
+			const separator = '|' + headers.map((_) => '---').join(' | ') + '|';
+			const rowsContent = rows.slice(1, rows.length).map((row) => row.cells);
+			const rowsMarkdown = rowsContent.map((row) => `| ${row.join(' | ')} |`).join('\n');
+			return `| ${headersMarkdown} |\n${separator}\n${rowsMarkdown}`;
+		}
+	}
+};
+
 function generateMarkdown({
 	date,
 	banner,
@@ -69,7 +84,7 @@ bannerCredit: ${bannerCredit}
 tag: Posts
 ---
 
-${BlocksToMarkdown(content, { projectId: 'cyypawp1', dataset: 'production' })}
+${BlocksToMarkdown(content, { projectId: 'cyypawp1', dataset: 'production', serializers })}
                    
     `.trim();
 }
@@ -213,8 +228,9 @@ export async function GET({ request }: RequestEvent) {
 		return {
 			body: {
 				res,
-				hashnode,
-				dev
+				//hashnode,
+				//dev,
+				markdown
 			}
 		};
 	} catch (e) {
