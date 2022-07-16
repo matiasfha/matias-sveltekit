@@ -8,7 +8,7 @@ import { similarPostsLoader } from './preprocessors/similarPosts.js'
 
 const globalComponents = mdsvexGlobalComponents({
   dir: `$components/mdx`,
-  list: ['Sponsor.svelte','Buzzsprout.svelte','CodeSandbox.svelte','EggheadLesson.svelte','TLDR.svelte','Twitter.svelte'],
+  list: ['Sponsor.svelte','Buzzsprout.svelte','CodeSandbox.svelte','EggheadLesson.svelte','TLDR.svelte','Twitter.svelte','Podcast.svelte'],
   extensions: mdsvexConfig.extensions
 })
 

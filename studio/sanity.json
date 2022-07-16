@@ -18,7 +18,8 @@
     "netlify-deploy-status-badge",
     "plausible-iframe",
     "asset-source-unsplash",
-    "@sanity/code-input"
+    "@sanity/code-input",
+    "table"
   ],
   "env": {
     "development": {

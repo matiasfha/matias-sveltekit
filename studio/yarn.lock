@@ -9794,6 +9794,11 @@ sanity-plugin-social-preview@0.1.5:
   dependencies:
     "@sanity/image-url" "^0.140.22"
 
+sanity-plugin-table@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npmjs.org/sanity-plugin-table/-/sanity-plugin-table-2.3.0.tgz#432bf3d626b6678f38fecc7a09488603403a6ddb"
+  integrity sha512-5aTTjL7Bpyc52MqWg+d/Gk8qDy3XuyQ0IT23qFCXXYolhPNIQQSOUVgKHMWdXgTC5OvcnXhTMCh5oRBCXXtbOw==
+
 sanity@^3.0.0-dev-preview.7:
   version "3.0.0-dev-preview.9"
   resolved "https://registry.npmjs.org/sanity/-/sanity-3.0.0-dev-preview.9.tgz"

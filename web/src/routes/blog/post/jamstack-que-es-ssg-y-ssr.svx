@@ -19,9 +19,9 @@ bannerCredit: <span>Photo by <a href="https://unsplash.com/@arstyy?utm_source=un
 
 ---
 
-> TLDR; Este contenido fue publicado como episodio mi podcast [Café con Tech](http://www.cafecon.tech/1081172/6725749-jamstack-que-es-ssg-y-ssr)
+> TLDR; Este contenido fue publicado como episodio mi podcast [Café con Tech](https://anchor.fm/cafecontech/episodes/JAMStack-Qu-es-SSG-y-SSR-e1k9um9)
 
-<Buzzsprout buzzsproutId="1081172/6725749-jamstack-que-es-ssg-y-ssr" />
+<Podcast episode="JAMStack-Qu-es-SSG-y-SSR-e1k9um9" />
 
 Cuando hablamos de _JAMstack_ consideramos una colección de tecnologías que se complementan para permitir la producción de aplicaciones mediante el uso de sitios estáticos.
 

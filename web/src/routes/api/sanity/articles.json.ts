@@ -74,9 +74,8 @@ ${BlocksToMarkdown(content, { projectId: 'cyypawp1', dataset: 'production' })}
     `.trim();
 }
 
-export async function put({ request }: RequestEvent) {
+export async function PUT({ request }: RequestEvent) {
 	const body = await request.json();
-	console.log(body);
 	if (!validateWebhook(request, body)) {
 		return {
 			status: 401,
@@ -121,7 +120,7 @@ export async function put({ request }: RequestEvent) {
 		};
 	}
 }
-export async function post({ request }: RequestEvent) {
+export async function POST({ request }: RequestEvent) {
 	const body = await request.json();
 	if (!validateWebhook(request, body)) {
 		return {
@@ -188,7 +187,7 @@ import { createClient } from 'sanity-codegen';
 import type { Documents } from '../../../schema.types';
 const client = createClient<Documents>(clientOptions);
 
-export async function get({ request }: RequestEvent) {
+export async function GET({ request }: RequestEvent) {
 	// const res = await getDeployStatus();
 	try {
 		const [post] = await client.query<Posts>('*[_type == "posts"] | order(_createdAt desc)');

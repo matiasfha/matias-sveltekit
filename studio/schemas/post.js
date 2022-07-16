@@ -54,7 +54,7 @@ export default
           title: 'Content',
           name: 'content',
           type: 'array',
-          of: [{type: 'block'}, { type: 'image'}, { type: 'code'}],
+          of: [{type: 'block'}, { type: 'image'}, { type: 'code'}, { type: 'table'}],
           validation: Rule => Rule.required()
         }
       ]

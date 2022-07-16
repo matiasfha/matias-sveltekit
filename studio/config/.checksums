@@ -8,5 +8,7 @@
   "sanity-plugin-netlify-deploy-status-badge": "f4302d53933615325853c58a226af2f9206d055688e932cb636a4ace2e8b85c4",
   "sanity-plugin-plausible-iframe": "427b2755250ffadc5d961da1d83e2d53525a825b1d1bfe18331246398e3427d0",
   "netlify-deploy-status-badge": "f4302d53933615325853c58a226af2f9206d055688e932cb636a4ace2e8b85c4",
-  "plausible-iframe": "427b2755250ffadc5d961da1d83e2d53525a825b1d1bfe18331246398e3427d0"
+  "plausible-iframe": "427b2755250ffadc5d961da1d83e2d53525a825b1d1bfe18331246398e3427d0",
+  "sanity-plugin-table": "e56785cc6cecbacf8ebe6bb99ffae32b973e233503c0714497ac7df3042863f1",
+  "table": "e56785cc6cecbacf8ebe6bb99ffae32b973e233503c0714497ac7df3042863f1"
 }
