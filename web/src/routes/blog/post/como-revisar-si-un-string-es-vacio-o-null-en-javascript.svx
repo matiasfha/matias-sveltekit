@@ -1,0 +1,104 @@
+---
+date: 2022-07-17T21:00:51Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/886c6356519ca42ab1019caa2f2b37e3efa5ca5c-1280x710.png
+keywords: 
+- string empty o null
+- string vacio
+- string null
+- string vacío javascript
+- javascript strings
+title: ¿Cómo revisar si un string es vacío o null en Javascript?
+description: Saber si un string está vació o incluso si es `null` es importante para varias operaciones en una aplicación web, por ejemplo: Revisar los datos provenientes de una API externa, caja de texto o incluso tu base de datos. ¿Cómo identificas un string null o vació en Javascript?
+bannerCredit: undefined
+tag: Posts
+---
+
+Lo primero que debemos conocer es que, en Javascript, existe una diferencia sustancial entre `null` y vacío.
+
+Si declaras una variable y le asignas un valor vació `""` y luego la comparas con otra variable a la que asignaste `null` como valor podrás fácilmente notar que son diferentes con tan solo revisar su tipo
+
+
+
+```javascript
+const str1 = ""
+const str2 = null
+
+console.log(typeof str1) // "string"
+console.log(typeof str2) // "object"
+
+console.log(str1 == str2) //false
+console.log(str1 === str2) //false
+
+```
+
+> Puedes encontrar un demo del código de [este artículo en este enlace](https://jsitor.com/TAe0bY7YCX)
+
+Es bueno recordar también que es o que significa `null`.
+
+Es un **valor literal** en Javascript que representa intencionalmente un valor nulo. Es uno de los[ valores primitivos](https://developer.mozilla.org/es/docs/Glossary/Primitive) del lenguaje.
+
+Normalmente lo utilizarás en APIs dónde esperas un objeto pero que por alguna razón de la lógica del negocio este objeto no se puede obtener.
+
+Por cierto `null` y `undefined` tampoco son lo mismo!
+
+```javascript
+typeof null        // object (bug en ECMAScript, debería ser null)
+typeof undefined   // undefined
+null === undefined // false
+null  == undefined // true
+```
+
+> Este es un buen momento para revisar las diferencias entre los distintos operadores de igualdad e identidad en Javascript. Un buen artículo explicando esto [lo podrás encontrar en Escuela Frontend](https://www.escuelafrontend.com/articulos/nadie-te-ensena-sobre-la-igualdad-en-js), escrito por el gran [Horacio Herrera](https://twitter.com/hhg2288)
+
+
+
+Ahora, que está claro que `null` y un string vacío no son lo mismo:
+
+## ¿Cómo revisas si un string es vacío?
+
+Ya sabes que un string vació es efectivamente eso, un string que no contiene carácteres, para comprobar esto basta con utilizar el operador `===`
+
+```javascript
+const str = "";
+if(str === "") {
+  console.log("El string está vacío");
+}
+```
+
+¿Pero que ocurre si el string contiene espacios en blanco?  
+¿Consideras estos "blanks" como un string vacío?
+
+
+
+En efecto, los espacios en blanco `"  "` son caracteres por lo que la comparación no resultará. Esto puede ser fácilmente resuelto al remover estos espacios primero y luego comparar.
+
+```javascript
+const whiteSpaces= "  ";
+if(whiteSpaces.trim() === "") {
+  console.log("El string está vacío");
+}
+```
+
+Otra forma de revisar si el string está vacio, es decir, no tiene caracteres, es utilizando la propiedad `length`.
+
+Un `String` es un objeto, pero comparte algunas propiedades con los arreglos, como la propiedad `length` que representa la longitud de la cadena de texto.
+
+> Puedes saber más sobre esta propiedad [visitando la documentación de MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/String/length)
+
+```javascript
+const whiteSpaces= "  ";
+if(whiteSpaces.trim().length === 0) {
+  console.log("El string está vacío");
+}
+```
+
+## ¿Cómo revisas si un string es null?
+
+Esto es sencillo, ya que `null` es un valor que una variable puede contener, entonces bastaría con comparar la variable string que tienes con el valor `null`
+
+```javascript
+const nullStr = null;
+if (nullStr === null) {
+  console.log("nullStr es null");
+}
+```
