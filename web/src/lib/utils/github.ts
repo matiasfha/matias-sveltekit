@@ -13,22 +13,22 @@ export async function createFileInRepo(content: string, title: string) {
 			path: `web/src/routes/blog/post/${slug}.svx`
 		};
 
-		const repo = await octokit.rest.repos.getContent({
-			...config
-		});
-		console.log(repo);
-		// const res = await octokit.rest.repos.createOrUpdateFileContents({
-		// 	...config,
-		// 	message: 'Create or Update: ' + title,
-		// 	content: Buffer.from(content, 'utf8').toString('base64'),
-		// 	// sha: repo.data.sha,
-		// 	commiter: {
-		// 		name: 'Site api',
-		// 		email: 'api@matiashernandez.dev'
-		// 	}
+		// const repo = await octokit.rest.repos.getContent({
+		// 	...config
 		// });
-		// return res;
-		return repo;
+		// console.log(repo);
+		const res = await octokit.rest.repos.createOrUpdateFileContents({
+			...config,
+			message: 'Create or Update: ' + title,
+			content: Buffer.from(content, 'utf8').toString('base64'),
+			// sha: repo.data.sha,
+			commiter: {
+				name: 'Site api',
+				email: 'api@matiashernandez.dev'
+			}
+		});
+		return res;
+		// return repo;
 	} catch (e) {
 		console.error('github', e);
 	}

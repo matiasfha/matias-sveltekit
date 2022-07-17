@@ -218,19 +218,19 @@ export async function GET() {
 		});
 
 		const res = await createFileInRepo(markdown, post.title);
-		//const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
+		const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
 
-		// const hashnode = await writeToHashnode({
-		// 	...post,
-		// 	image: builder.image(post.banner.asset._ref).url()
-		// });
+		const hashnode = await writeToHashnode({
+			...post,
+			image: builder.image(post.banner.asset._ref).url()
+		});
 
 		return {
 			body: {
 				res,
-				//hashnode,
-				//dev,
-				markdown
+				hashnode,
+				dev
+				// markdown
 			}
 		};
 	} catch (e) {
