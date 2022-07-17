@@ -202,7 +202,7 @@ import { createClient } from 'sanity-codegen';
 import type { Documents } from '../../../schema.types';
 const client = createClient<Documents>(clientOptions);
 
-export async function GET({ request }: RequestEvent) {
+export async function GET() {
 	// const res = await getDeployStatus();
 	try {
 		const [post] = await client.query<Posts>('*[_type == "posts"] | order(_createdAt desc)');
@@ -217,7 +217,7 @@ export async function GET({ request }: RequestEvent) {
 			content: post.content
 		});
 
-		//const res = await createFileInRepo(markdown, post.title);
+		const res = await createFileInRepo(markdown, post.title);
 		//const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
 
 		// const hashnode = await writeToHashnode({
@@ -227,7 +227,7 @@ export async function GET({ request }: RequestEvent) {
 
 		return {
 			body: {
-				//res,
+				res,
 				//hashnode,
 				//dev,
 				markdown

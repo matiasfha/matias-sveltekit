@@ -60,7 +60,7 @@ export default async function writeToHashnode(post: Posts & { image: string }) {
 			body: JSON.stringify(query)
 		});
 		const json = await res.json();
-		console.log(json.data.createStory);
+
 		return {
 			status: res.status,
 			slug: json
