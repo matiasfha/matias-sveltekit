@@ -2,7 +2,7 @@
 	import type { Post } from '$lib/types';
 	import { format } from 'date-fns'
 	export let post: Post;
-	
+
 </script>
 
 <div class="flex flex-col">
