@@ -78,8 +78,8 @@ function generateMarkdown({
 date: ${date}
 banner: ${banner}
 keywords: \n${keys}
-title: ${title}
-description: ${description}
+title: "${title}"
+description: "${description}"
 bannerCredit: ${bannerCredit}
 tag: Posts
 ---

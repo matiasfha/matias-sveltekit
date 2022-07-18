@@ -47,7 +47,7 @@ const config = {
         },
         adapter: netlify({
             edge: false,
-            split: false,
+            split: true,
         }),
     },
 

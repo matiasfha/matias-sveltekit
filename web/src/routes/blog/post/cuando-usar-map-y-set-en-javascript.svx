@@ -25,7 +25,7 @@ Los objetos son creados utilizando llaves `{}` y una lista de propiedades, estas
 
 Dada la flexibilidad de Javascript, es posible ir agregando nuevos pares clave-valor a un objeto de forma dinámica, pero no es técnicamente correcto, esto lo puedes ver al utilizar Typescript, como en el ejemplo de la siguiente imagen.
 
-![](https://cdn.sanity.io/images/cyypawp1/production/84227d556467aed469f7fcc199226253349f1bf6-1682x680.png)
+![Objetos](https://cdn.sanity.io/images/cyypawp1/production/84227d556467aed469f7fcc199226253349f1bf6-1682x680.png)
 
 <small>Puedes probar este ejemplo <a href="https://www.typescriptlang.org/play?#code/DYUwLgBA9gRgVhAvBA3gKApiBDAXBAcmwIBoMsZ8CYC0BfNNWOAbQIGMCBdJQztIA">directamente en el playground</a></small>
 
@@ -61,7 +61,7 @@ Un `Map` es una colección de pares tipo clave-valor (como un objeto) donde la c
 
 Además un `Map` permite que se agreguen datos de forma dinámica.
 
-![](https://cdn.sanity.io/images/cyypawp1/production/636142577db72ffd84f78278a76c44aa0c019607-1466x818.png)
+![Ejemplo de Map](https://cdn.sanity.io/images/cyypawp1/production/636142577db72ffd84f78278a76c44aa0c019607-1466x818.png)
 <small>Puedes revisar este código <a href="https://www.typescriptlang.org/play?#code/MYewdgzgLgBAtgQwA4wLwzAUwO4wLLIAUAlAFCJIB0EmUhA5AvQDSP1kXW2ECMrYAVzgAjTACd25ZFzoBvDAjiYAXDHoA5RZnoBfZmoFgYIYQCtaISaQD01mAHkYSAZgAmmCDAAWCYONKkoJCwFABMaBg4+ESkMHEwANpsrEwAusyx8Ql89IIi4vTpmXEJ8mBaqhpauvr0hsZmFoWkxEA">en el playground de typescript</a></small>
 
 
