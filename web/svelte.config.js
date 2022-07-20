@@ -61,7 +61,6 @@ const rootDomain = process.env.VITE_DOMAIN; // or your server IP for dev
      // 'https://polyfill.io',
    ],
    'worker-src': ["'self'"],
-   'unsafe-inline': ["'self'"],
  };
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -78,7 +77,6 @@ const config = {
     }), globalComponents, similarPostsLoader(), mdsvex(mdsvexConfig)],
 
     kit: {
-        csp:cspDirectives,
         prerender: {
             enabled: true,
             onError: ({ status, path, referrer, referenceType, ...rest }) => {
