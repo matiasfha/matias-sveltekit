@@ -78,10 +78,7 @@ const config = {
     }), globalComponents, similarPostsLoader(), mdsvex(mdsvexConfig)],
 
     kit: {
-        csp:{
-            mode:"hash",
-            directives:{"script-src":["self"]},
-        },
+        csp:cspDirectives,
         prerender: {
             enabled: true,
             onError: ({ status, path, referrer, referenceType, ...rest }) => {
