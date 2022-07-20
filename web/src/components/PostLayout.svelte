@@ -72,7 +72,7 @@
 		<!--INFOLINKS_OFF-->
 		<div class="border opacity-70 w-full mt-24 mb-12" />
 		Te pareció interesante?
-		Encuentra más contenido similar uniendote al <a class="underlined" href="/newsletter">Newsletter</a> o siguiendome en <a class="underlined" href="https://twitter.com/matiasfha" target="_blank">Twitter</a>.
+		Encuentra más contenido similar uniendote al <a class="underlined" href="https://matiashernandez.dev/newsletter">Newsletter</a> o siguiendome en <a class="underlined" href="https://twitter.com/matiasfha" target="_blank">Twitter</a>.
 		
 		<footer class="flex items-center justify-end gap-4 pt-20">
 			<a

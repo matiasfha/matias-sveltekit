@@ -111,7 +111,7 @@ React.useLayoutEffect(() => {
 ..
 Exácto!!, sin importar que el efecto de `useLayoutEffect` sea declarado después de `useEffect` el efecto es emitido antes! ¿Por qué?. Por que el efecto de `useLayoutEffect` es emitido de forma síncrona.
 
-En definitiva usa useLayoutEffect si tu efecto busca mutar el DOM y obtener datos de este y useEffect el 99% de las veces.
+En definitiva usa useLayoutEffect si tu efecto busca mutar el DOM y obtener datos de este y [useEffect](/blog/post/react-useeffect-por-que-el-arreglo-de-dependencias-es-importante) el 99% de las veces.
 
 Por lo general tu efecto busca sincronizar algún estado interno con un estado externo sin significar un cambio visual inmediato.
 

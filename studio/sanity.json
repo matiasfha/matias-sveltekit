@@ -19,7 +19,8 @@
     "plausible-iframe",
     "asset-source-unsplash",
     "@sanity/code-input",
-    "table"
+    "table",
+    "markdown"
   ],
   "env": {
     "development": {

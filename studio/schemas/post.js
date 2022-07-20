@@ -56,7 +56,7 @@ export default
           type: 'array',
           of: [{type: 'block'}, { type: 'image'}, { type: 'code'}, { type: 'table'}],
           validation: Rule => Rule.required()
-        }
+        },
       ]
 
     }

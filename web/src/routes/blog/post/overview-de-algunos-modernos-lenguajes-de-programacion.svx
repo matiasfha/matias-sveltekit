@@ -3,10 +3,11 @@ date: 2020-09-23T23:23:01-03:00
 banner: https://res.cloudinary.com/matiasfha/image/upload/v1600914347/steve-johnson-xL88x9Tqch0-unsplash_h9aqd8.jpg
 keywords:
 - Rust
-- " Elm"
+- Elm
 - Clojure
 - Elixir
 - Overview
+- Typescript
 tag: Seed
 title: Overview de algunos modernos lenguajes de programación
 description: 'Existen diversos lenguajes de programación pero podemos llamar a algunos
@@ -80,7 +81,7 @@ Uno de sus objetivos es ser eficitiente y tener una gran performance en runtime.
 
 - Revisión de tipos estáticos
 - Un sistema de datos seguro (si el compilador te dice que es cierto tipo, entonces lo es )
-- Tiene datos reales, nada de \`any\` (alo! Typescript)
+- Tiene datos reales, nada de \`any\` (alo! [Typescript](/blog/post/typescript-avanzado))
 - No incluye el [“error del billon de dolares”](https://www.youtube.com/watch?v=ybrQvs4x0Ps), es decir, no existen referencias \`null\` ni \`undefined\` ni similares.
 - Tiene un compilador que de verdad entrega ayuda cuando existen errores
 - Es un lenguaje con datos inmutables por defecto, pero ofrece formas de modicar este comportamiento

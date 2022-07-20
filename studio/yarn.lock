@@ -9766,7 +9766,7 @@ sanity-plugin-asset-source-unsplash@0.2.1:
 
 sanity-plugin-markdown@2.1.1:
   version "2.1.1"
-  resolved "https://registry.npmjs.org/sanity-plugin-markdown/-/sanity-plugin-markdown-2.1.1.tgz"
+  resolved "https://registry.npmjs.org/sanity-plugin-markdown/-/sanity-plugin-markdown-2.1.1.tgz#1e17792a2aeb00d6da798d35b74acb1aa7080658"
   integrity sha512-9fxt4Q/zv+BOJx2S3d8j6FSiaOLAEZHWPh63qm/77IWMX2+E4gVgtm4YOzF5EtS8vvSCmQ2+sVZQVrvJchj/nA==
   dependencies:
     "@reach/auto-id" "^0.13.2"

@@ -97,3 +97,5 @@ Pero en general para evitar estos errores comunes hay simples soluciones:
 * No optimizar prematuramente
 * Utilizar y no ignorar el plugin de eslint para hooks
 * Y no crear abstracciones innecesarias
+
+> También te recomiendo leer el post [React useEffect vs estados del ciclo de vida de una clase.](/blog/post/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida)

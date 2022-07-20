@@ -4,6 +4,8 @@ banner: https://res.cloudinary.com/matiasfha/image/upload/v1596050181/ferenc-alm
 keywords:
 - React
 - Hooks
+- react hooks
+- useEffect
 tag: Seed
 title: Que son los Hooks
 description: "¿Qué son los Hooks en React? ¿De dónde nacen y por qué?"
@@ -37,7 +39,7 @@ Entonces basado en todos estos problemas nacio Hooks, como un intento (bastante 
 La idea trás hooks mantiene la filosofía implementada por react, composición y un flujo de datos explicito, pero ya no sólo entre componentes, si no, dentro de un componente.
 
 una crítica de los primeros días de hooks es que se acrecenta la curva de aprendizaje de React ya que existen multiples conceptos y formas de resolver un mismo problema, pero: Si se adopta (como se ha hecho hasta ahora) el uso de hooks como la formar primaria de escribir una aplicación React, en realidad se reduciría el número de conceptos con los que hay que lidiar. Aquí los principiantes lo tienen algo más fácil. No tiene un modelo mental que modificar y sólo deben ir directamente a utilizar y entender Hooks.
-Para los más viejitos, quizá sea una curva de aprendizaje un poco más empinada ya que el modelo mental internalizado genera ciertos choques que impiden entender del todo el funcionamiento de hooks. useEffect te estoy mirando a ti.
+Para los más viejitos, quizá sea una curva de aprendizaje un poco más empinada ya que el modelo mental internalizado genera ciertos choques que impiden entender del todo el funcionamiento de hooks. [useEffect](/blog/post/react-useeffect-por-que-el-arreglo-de-dependencias-es-importante ) te estoy mirando a ti.
 
 #### ¿Entonces que son los hooks?
 

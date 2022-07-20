@@ -170,3 +170,5 @@ La comunidad de Clojure, si bien menor en comparación con Java, Python o Javasc
 Clojure es un lenguaje entretenido, con una sintaxis que inicialmente parece compleja pero que en realidad es de las más sencillas que me he encontrado, es versátil y puedes transformarte en un full stack developer escribiendo Clojure y Clojurescript.
 
 Te invito a saltar a este mundo y comenzar a aprender un nuevo lenguaje, quizá no para convertirte en un _clojurist_ pero siempre, aprender un nuevo lenguaje, un nuevo paradigma y técnicas te ayudaran a ser mejor en lo que haces día a día.
+
+> También te puede interesar el artículo [Overview de algunos modernos lenguajes de programación](/blog/post/overview-de-algunos-modernos-lenguajes-de-programacion)

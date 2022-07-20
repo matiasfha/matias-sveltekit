@@ -47,3 +47,7 @@
 /blog/post/fijando-expectativas-como-manejar-y-crear-buenas-expectativas /blog/post/fijando-expectativas 
 /blog/post/¿qué-es-un-closure-en-javascript /blog/post/que-es-un-closure-en-javascript
 /blog/post/react-native:-promesas-y-callbacks-en-modulos-nativos /blog/post/react-native-promesas-y-callbacks-en-modulos-nativos 
+/svelte-stats/js/script.js https://plausible.io/js/script.js 200
+/svelte-stats/api/event https://plausible.io/api/event 200
+
+/svelte-aviso/script.js https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js  200
