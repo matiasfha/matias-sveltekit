@@ -21,27 +21,28 @@ export const similarPostsLoader = () => {
       if (!isValidPass) {
         return { code: content };
       }
+      
       return {
         code: `
                     import getSimilarPosts from "$api/getSimilarPosts"
                     /** @type {import('./__types/[slug]').Load} */
                     export async function load({url}) {
-                        try {
-                            const { pathname } = url
-                            const similarPosts = await getSimilarPosts(pathname)
-                            
-                            return {
-                                props: {
-                                    similarPosts
-                                }
-                            }			
-                        }catch(e) {
-                            console.error(e)
-                            return {
-                                status: 500,
-                                error: e
-                            }
-                        }
+                          try {
+                              const { pathname } = url
+                              const similarPosts = await getSimilarPosts(pathname)
+                              console.log(similarPosts)
+                              return {
+                                  props: {
+                                      similarPosts
+                                  }
+                              }			
+                          }catch(e) {
+                              console.error(e)
+                              return {
+                                  status: 500,
+                                  error: e
+                              }
+                          }
                     }
                 \n${content}
                 `,

@@ -20,6 +20,9 @@
 			<div class="mt-8 dark:text-gray-300 text-gray-500 text-md font-medium lowercase text-body">
 				{format(new Date(post.date), 'dd/MM/yyyy')}
 			</div>
+			<span class="mt-8 dark:text-gray-300 text-gray-500 text-sm italic lowercase text-body">
+				{post.readingTime.text}
+			</span>
 			<h2 class="md:text-2xl text-xl font-bold leading-tighter text-black dark:text-white ">
 				{post.title}
 			</h2></a

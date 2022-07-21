@@ -18,7 +18,7 @@ Este post es parte del episodio 12 de la primera temporada de <a href="https://w
 </TLDR>
 
 
-<Buzzsprout buzzsproutId="1081172/4452938-4-habilidades-blandas-esenciales-para-un-desarrollador" />
+<Podcast episode="4-Habilidades-blandas-esenciales-para-un-desarrollador-e1k9unl" />
 
 
 En toda área de la vida tanto profesional como personal hay una serie de habilidades que se desarrollan, algunas de forma natural y otras por aprendizaje o adaptación que te permiten desenvolverte de mejor manera.

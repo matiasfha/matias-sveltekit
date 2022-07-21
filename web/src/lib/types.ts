@@ -63,4 +63,5 @@ export interface Post {
 	similarPosts?: Post[];
 	filepath?: string;
 	html?: string;
+	rawContent: string;
 }

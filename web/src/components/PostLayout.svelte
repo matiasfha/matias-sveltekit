@@ -1,5 +1,6 @@
 <script context="module">
 	import { blockquote, h1} from '$components/typography/index';
+import { format } from 'date-fns';
 	// import type { Post } from '$lib/types';
 
 	export { blockquote, h1 };
@@ -21,7 +22,9 @@
 	
 	export let similarPosts= [];
 	export let canonical= "";
-
+	export let readingTime= {};
+	export let date = 0
+	
 	let currentUrl= "";
 	afterUpdate(() => {
 		currentUrl = window.location.href;
@@ -49,11 +52,17 @@
 			<h1 class="font-sans text-left text-gray-100 font-bold text-2xl md:text-3xl pb-8 m-0 pl-4 md:px-0 [text-shadow:0_4px_8px_rgba(0,0,0,1),0_20px_8px_rgba(0,0,0,0.3)]">
 				{title}
 			</h1>
+			<div
+				class="text-left text-gray-100 font-body leading-tight text-sm self-end flex-grow m-0 pt-2 b-6"
+			>
+				{format(new Date(date), 'dd/MM/yyyy')} - {readingTime.text}
+			</div>
 			<p
-				class="text-left text-gray-100 font-body leading-tight text-lg max-w-4xl z-10 hidden md:block flex-grow m-0"
+				class="text-left text-gray-100 font-body leading-tight text-lg max-w-4xl z-10 hidden md:block flex-grow m-0 self-end"
 			>
 				{description}
 			</p>
+			
 			{#if bannerCredit!=null && bannerCredit!=='undefined'}
 			<h4
 				class="text-left text-gray-100 font-body leading-tight text-sm self-end absolute bottom-2 left-2 md:left-auto"
@@ -64,7 +73,7 @@
 		</div>
 	</header>
 	<article
-		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto prose prose-lg dark:prose-dark mt-12 pt-[14rem] md:pt-[32rem]"
+		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto prose prose-lg dark:prose-dark mt-12 pt-[14rem] md:pt-[32rem] prose-a:whitespace-pre-line "
 	>
 		<!--INFOLINKS_ON-->
 		<slot />
