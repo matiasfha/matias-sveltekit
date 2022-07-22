@@ -1,6 +1,6 @@
 import slugify from '$lib/utils/slugify';
-import BlocksToMarkdown from '@sanity/block-content-to-markdown';
-import type { Documents, Posts } from '../../../schema.types';
+import type { Posts } from '../../../schema.types';
+import { getRawMarkdown } from './generateMarkdown';
 
 const serializers = {
 	types: {
@@ -21,7 +21,8 @@ export default async function writeToDevTo(post: Posts & { image: string }) {
 	const article = {
 		title: post.title,
 		body_markdown: `
-${BlocksToMarkdown(post.content, { projectId: 'cyypawp1', dataset: 'production', serializers })}
+${getRawMarkdown(post.content)}
+
 ![Footer Social Card.jpg](https://cdn.hashnode.com/res/hashnode/image/upload/v1615457338201/5yOtr5SdF.jpeg)
 ✉️ [Únete a Micro-bytes](https://microbytes.matiashernandez.dev)         🐦 Sígueme en [Twitter](https://twitter.com/matiasfha)           ❤️ [Apoya mi trabajo](https://buymeacoffee.com/matiasfha) 
 `,

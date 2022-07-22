@@ -47,6 +47,9 @@ const serializers = {
 			const rowsContent = rows.slice(1, rows.length).map((row) => row.cells);
 			const rowsMarkdown = rowsContent.map((row) => `| ${row.join(' | ')} |`).join('\n');
 			return `| ${headersMarkdown} |\n${separator}\n${rowsMarkdown}`;
+		},
+		image: (props) => {
+			return `[!${props.node.alt}](${builder.image(props.node)})`;
 		}
 	}
 };
@@ -229,8 +232,8 @@ export async function GET() {
 			body: {
 				res,
 				hashnode,
-				dev
-				// markdown
+				dev,
+				markdown
 			}
 		};
 	} catch (e) {

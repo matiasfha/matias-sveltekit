@@ -5,6 +5,12 @@ export default
       type: 'document',
       fields: [
         {
+          title: 'Title',
+          name: 'title',
+          type: 'string',
+          validation: Rule => Rule.required()
+        },
+        {
           title: 'Date',
           name: 'date',
           type: 'date',
@@ -38,12 +44,7 @@ export default
           },
           validation: Rule => Rule.required().unique().min(2)
         },
-        {
-          title: 'Title',
-          name: 'title',
-          type: 'string',
-          validation: Rule => Rule.required()
-        },
+        
         {
           title: 'Summary',
           name: 'description',
@@ -54,7 +55,24 @@ export default
           title: 'Content',
           name: 'content',
           type: 'array',
-          of: [{type: 'block'}, { type: 'image'}, { type: 'code'}, { type: 'table'}],
+          of: [{type: 'block'}, { type: 'image', fields: [
+            {
+              title: 'Alt Text',
+              name: 'alt',
+              type: 'string'
+            },
+            {
+              title: 'Caption',
+              name: 'caption',
+              type: 'array',
+              of: [{type: 'block'}]
+            },
+            {
+              title: 'Title',
+              name: 'title',
+              type: 'string'
+            }
+          ]}, { type: 'code'}, { type: 'table'}],
           validation: Rule => Rule.required()
         },
       ]

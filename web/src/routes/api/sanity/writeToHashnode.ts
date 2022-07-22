@@ -1,31 +1,12 @@
 import slugify from '$lib/utils/slugify';
-import BlocksToMarkdown from '@sanity/block-content-to-markdown';
 import type { Posts } from '../../../schema.types';
-
-const serializers = {
-	types: {
-		code: (props) => '```' + props.node.language + '\n' + props.node.code + '\n```',
-		table: (props) => {
-			const { rows } = props.node;
-			const headers = rows[0].cells;
-			const headersMarkdown = headers.map((header) => `${header}`).join(' | ');
-			const separator = '|' + headers.map((_) => '---').join(' | ') + '|';
-			const rowsContent = rows.slice(1, rows.length).map((row) => row.cells);
-			const rowsMarkdown = rowsContent.map((row) => `| ${row.join(' | ')} |`).join('\n');
-			return `| ${headersMarkdown} |\n${separator}\n${rowsMarkdown}`;
-		}
-	}
-};
+import { getRawMarkdown } from './generateMarkdown';
 
 export default async function writeToHashnode(post: Posts & { image: string }) {
 	const article = {
 		title: post.title,
-		contentMarkdown: `${BlocksToMarkdown(post.content, {
-			projectId: 'cyypawp1',
-			dataset: 'production',
-			serializers
-		})}
-        %%[buymeacoffee]
+		contentMarkdown: `${getRawMarkdown(post.content)}
+        	%%[buymeacoffee]
         `,
 		coverImageURL: post.image,
 		isRepublished: {

@@ -137,6 +137,68 @@ function remarkSimilarPosts() {
 		
 	}
 }
+// replaces all properties of source with those of target
+function replace(source, target) {
+	for (const property in source) {
+	  delete source[property];
+	}
+  
+	Object.assign(source, target);
+  }
+  
+  function extractCaption(node) {
+	const captionRegex = new RegExp(/(\{caption=([^\{\}]+)\})/);
+	if (!node.alt || !captionRegex.text(node.alt)) {
+	  return { alt: node.alt };
+	}
+  
+	const [captionWithControl, _, caption] = captionRegex.exec(node.alt);
+  
+	return {
+	  caption,
+	  alt: node.alt.replace(captionWithControl, "")
+	}
+  }
+  
+  function addCaptionsToImages(opts) {
+	return tree => {
+	  visit(tree, ["image"], node => {
+		//const { alt, caption } = extractCaption(node);
+		// do nothing if there's no caption
+		//if (!caption) return;
+		const caption = ""
+		const { alt } = node
+  
+		const imgElement = { ...node, alt };
+		
+		const captionElement = {
+		  type: "figcaption",
+		  data: { hName: "figcaption" },
+		  children: [{ type: "text", value: caption || ""}],
+		};
+  
+		const figureElement = {
+		  type: "figure",
+		  data: { hName: "figure" },
+		  children: [{
+			...imgElement,
+			url: 'https://res.cloudinary.com/matiasfh/image/fetch/'+imgElement.url
+		  }, captionElement],
+		};
+  
+		// in-place replacement of the image node with figure
+		// replace(node, figureElement);
+		const newNode = {
+			...node,
+			type: 'figure',
+			children: figureElement.children,
+			data: figureElement.data
+		}
+		console.log(newNode)
+		return newNode;
+	  });
+	};
+  }
 /**
  * @type { import('mdsvex').MdsvexOptions}
  */
