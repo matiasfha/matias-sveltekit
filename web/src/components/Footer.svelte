@@ -17,7 +17,7 @@
 						class="text-secondary flex items-center justify-between mt-6 lg:flex-col lg:items-start"
 					>
 						<div class="flex md:space-x-4 justify-between w-full">
-							<a href="https://twitter.com/matiasfha" name="Twitter"
+							<a href="https://twitter.com/matiasfha" name="Twitter" rel="me"
 								><svg
 									width="40px"
 									height="40px"
@@ -61,7 +61,7 @@
 									class="filter dark:invert"
 								/>
 							</a>
-							<a href="https://github.com/matiasfha" name="Github">
+							<a href="https://github.com/matiasfha" name="Github" rel="me">
 								<svg width="40px" height="40px" viewBox="0 0 1024 1024" fill="none"
 									><path
 										fill-rule="evenodd"

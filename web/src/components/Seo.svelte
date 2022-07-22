@@ -49,4 +49,5 @@
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:image" content={image} />
+	<link href="https://twitter.com/matiasfha" rel="me">
 </svelte:head>
