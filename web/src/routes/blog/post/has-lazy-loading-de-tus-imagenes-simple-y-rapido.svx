@@ -63,4 +63,4 @@ El atributo `onload` es parte de la API, permite ejecutar una función `callback
 
 Cómo siempre, esto es algo a tener en cuenta ya que no todos los navegadores pueden soportar nuevos atributos, la situación actual es la de la siguiente imágen
 
-[!Table que muestra el soporte de navegadores para el atributo loading](https://cdn.sanity.io/images/cyypawp1/production/9c7bcf7e46f4283f3347949b79c62ef6bf52f9cb-1475x699.png)
+![Table que muestra el soporte de navegadores para el atributo loading](https://cdn.sanity.io/images/cyypawp1/production/9c7bcf7e46f4283f3347949b79c62ef6bf52f9cb-1475x699.png)
