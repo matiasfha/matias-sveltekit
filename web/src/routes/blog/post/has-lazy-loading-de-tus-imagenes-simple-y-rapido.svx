@@ -1,0 +1,66 @@
+---
+date: 2022-07-22T13:28:16Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/99b7cfbfeafcd8c5434a341568b83c60a0ba9d82-4894x3263.jpg
+keywords: 
+- Lazy Loading images html
+- lazy loading imagenes
+- que es lazy loading
+title: "Has Lazy loading de tus imágenes simple y rápido"
+description: "Lazy loading es una optimización que permite cargar ciertas partes de tu web a medida son requeridas por el usuario, por ejemplo las imágenes de tu web."
+bannerCredit: undefined
+tag: Posts
+---
+
+Lazy loading ha sido un término que ha estado en nuestros oídos por al menos unos 15 años, durante este tiempo han existido muchas técnicas para implementar la "carga lenta" de contenido en tu sitio web, pero siempre haciendo uso de diferentes trucos con Javascript.
+
+
+
+Es decir, para evitar que el navegador cargue todas las imágenes de sitio inmediatamente y hacerlo "bajo demanda" cuando el usuario realmente necesite verlas (como al hacer scroll), necesitas agregar Javascript al mix (por ejemplo usando [IntersectionObserver](https://developer.mozilla.org/es/docs/Web/API/Intersection_Observer_API)).
+
+
+
+Pero eso cambió: Ahora simplemente debes agregar el atributo `loading="lazy"` para lograrlo.
+
+
+
+## ¿Cómo usar lazy loading en tus imágenes?
+
+La estructura HTML es simple
+
+
+
+```html
+
+<img
+
+    src="https://images.unsplash.com/photo-1589432249902-15ab45101111?auto=format&fit=crop&w=1178&q=80"
+
+    loading="lazy"
+
+    onload="alert('Imagen cargada!');"
+
+/>
+
+```
+
+Listo, tus imágenes cargaran de forma "lazy" cuando sea necesario.
+
+
+
+El atributo `loading` puede recibir diferentes valores:
+
+* `auto` - El valor por defecto que utilza lo que el navegador decida.
+* `lazy` - Carga la imagen caundo se vuelve visible basado en el scroll.
+* `eager` - Carga la imagen inmediatamente.
+
+
+
+El atributo `onload` es parte de la API, permite ejecutar una función `callback` cuando la imagen es finalmente cargada.
+
+
+
+## ¿Cuál es el soporte de navegadores?
+
+Cómo siempre, esto es algo a tener en cuenta ya que no todos los navegadores pueden soportar nuevos atributos, la situación actual es la de la siguiente imágen
+
+[!Table que muestra el soporte de navegadores para el atributo loading](https://cdn.sanity.io/images/cyypawp1/production/9c7bcf7e46f4283f3347949b79c62ef6bf52f9cb-1475x699.png)
