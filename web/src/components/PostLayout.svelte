@@ -43,7 +43,7 @@ import { format } from 'date-fns';
 </script>
 
 <Seo {title} {description} {keywords} isBlogPost={true} canonical={canonical} />
-<div class="w-full pb-4 px-0" h-entry>
+<div class="w-full pb-4 px-0 h-entry" >
 	<header
 		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[20rem] overflow-hidden"
 	>
