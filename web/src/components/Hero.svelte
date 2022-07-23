@@ -14,7 +14,7 @@
 		<div class="flex flex-auto flex-col" style="opacity: 1;">
 			<div style="opacity: 1; transform: none;">
 				<h1
-					class="text-3xl md:text-4xl text-black dark:text-white text-center md:text-left"
+					class="text-3xl md:text-4xl text-black dark:text-white text-center md:text-left p-note"
 				>
 					{$t('home.presentation')}
 				</h1>
@@ -86,7 +86,7 @@
 		<img
 			height="688"
 			width="544"
-			class="object-contain backdrop-filter backdrop-blur-xl filter drop-shadow-2xl"
+			class="object-contain backdrop-filter backdrop-blur-xl filter drop-shadow-2xl u-photo"
 			src="/me-optimized.png"
 			alt="This is me :D"
 		/>
