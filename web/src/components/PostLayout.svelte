@@ -59,7 +59,7 @@ import { format } from 'date-fns';
 			<div
 				class="text-left text-gray-100 font-body leading-tight text-sm self-end flex-grow m-0 pt-2 b-6"
 			>
-				<span class="dt-published inline-block">{format(new Date(date), 'dd/MM/yyyy')}</span> - {readingTime.text}
+			<time class="dt-published" datetime="YYYY-MM-DD HH:MM:SS">{format(new Date(date), 'dd/MM/yyyy')}</time> - {readingTime.text}
 			</div>
 			<p
 				class="text-left text-gray-100 font-body leading-tight text-lg max-w-4xl z-10 hidden md:block flex-grow m-0 self-end"
@@ -77,7 +77,7 @@ import { format } from 'date-fns';
 		</div>
 	</header>
 	<article
-		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto prose prose-lg dark:prose-dark mt-12 pt-[14rem] md:pt-[32rem] prose-a:whitespace-pre-line "
+		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto prose prose-lg dark:prose-dark mt-12 pt-[14rem] md:pt-[32rem] prose-a:whitespace-pre-line e-content"
 	>
 		<!--INFOLINKS_ON-->
 		<slot />
@@ -136,6 +136,7 @@ import { format } from 'date-fns';
 
 	</article>
 	<a href={currentUrl} class="invisible u-url">Current Url</a>
+	<a rel="author" class="p-author h-card invisible" href="https://matiashernandez.dev">Matías Hernández</a>
 	
 </div>
 
