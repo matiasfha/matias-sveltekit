@@ -49,7 +49,7 @@ import { format } from 'date-fns';
 	>
 		<img
 			src={banner}
-			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm"
+			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm u-photo"
 			alt={title}
 		/>
 		<div class="flex flex-col max-w-[98vw] md:max-w-[40vw] z-10  self-end mx-auto md:ml-0 md:mr-12">
@@ -135,6 +135,8 @@ import { format } from 'date-fns';
 		{/if}		
 
 	</article>
+	<time class="dt-published invisible" datetime="YYYY-MM-DD HH:MM:SS">{format(new Date(date), 'dd/MM/yyyy')}</time>
+	<div class="p-name invisible">{title}</div>
 	<a href={currentUrl} class="invisible u-url">Current Url</a>
 	<a rel="author" class="p-author h-card invisible" href="https://matiashernandez.dev">Matías Hernández</a>
 	
