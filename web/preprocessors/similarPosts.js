@@ -26,14 +26,16 @@ export const similarPostsLoader = () => {
         code: `
                     import getSimilarPosts from "$api/getSimilarPosts"
                     /** @type {import('./__types/[slug]').Load} */
-                    export async function load({url}) {
+                    export async function load({fetch, url}) {
                           try {
                               const { pathname } = url
                               const similarPosts = await getSimilarPosts(pathname)
-                              console.log(similarPosts)
+                              const mentions = await fetch('/blog/post/mentions.json?url='+url)
+                              
                               return {
                                   props: {
-                                      similarPosts
+                                      similarPosts,
+                                      feed: []
                                   }
                               }			
                           }catch(e) {

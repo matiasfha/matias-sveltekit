@@ -24,6 +24,10 @@ import { format } from 'date-fns';
 	export let canonical= "";
 	export let readingTime= {};
 	export let date = 0
+
+	export let feed
+
+	console.log({ feed })
 	
 	let currentUrl= "";
 	afterUpdate(() => {
@@ -39,7 +43,7 @@ import { format } from 'date-fns';
 </script>
 
 <Seo {title} {description} {keywords} isBlogPost={true} canonical={canonical} />
-<div class="w-full pb-4 px-0">
+<div class="w-full pb-4 px-0" h-entry>
 	<header
 		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[20rem] overflow-hidden"
 	>
@@ -49,13 +53,13 @@ import { format } from 'date-fns';
 			alt={title}
 		/>
 		<div class="flex flex-col max-w-[98vw] md:max-w-[40vw] z-10  self-end mx-auto md:ml-0 md:mr-12">
-			<h1 class="font-sans text-left text-gray-100 font-bold text-2xl md:text-3xl pb-8 m-0 pl-4 md:px-0 [text-shadow:0_4px_8px_rgba(0,0,0,1),0_20px_8px_rgba(0,0,0,0.3)]">
+			<h1 class="font-sans text-left text-gray-100 font-bold text-2xl md:text-3xl pb-8 m-0 pl-4 md:px-0 [text-shadow:0_4px_8px_rgba(0,0,0,1),0_20px_8px_rgba(0,0,0,0.3)] p-name">
 				{title}
 			</h1>
 			<div
 				class="text-left text-gray-100 font-body leading-tight text-sm self-end flex-grow m-0 pt-2 b-6"
 			>
-				{format(new Date(date), 'dd/MM/yyyy')} - {readingTime.text}
+				<span class="dt-published inline-block">{format(new Date(date), 'dd/MM/yyyy')}</span> - {readingTime.text}
 			</div>
 			<p
 				class="text-left text-gray-100 font-body leading-tight text-lg max-w-4xl z-10 hidden md:block flex-grow m-0 self-end"
@@ -131,6 +135,7 @@ import { format } from 'date-fns';
 		{/if}		
 
 	</article>
+	<a href={currentUrl} class="invisible u-url">Current Url</a>
 	
 </div>
 
