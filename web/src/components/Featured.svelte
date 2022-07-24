@@ -48,7 +48,7 @@
 						</a>
 						{#if meta}
 							<p
-								class="my-4 font-medium opacity-75 font-body text-left capitalize text-ebony-clay-800 py-1 px-2 rounded bg-green-400 inline-block w-[max-content]"
+								class="my-4 font-medium opacity-75 font-body self-start capitalize text-ebony-clay-800 py-1 px-2 rounded bg-green-400 inline-block w-[max-content]"
 							>
 								{meta}
 							</p>

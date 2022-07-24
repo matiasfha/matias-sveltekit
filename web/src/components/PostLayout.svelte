@@ -25,9 +25,9 @@ import { format } from 'date-fns';
 	export let readingTime= {};
 	export let date = 0
 
-	export let feed
-
-	console.log({ feed })
+	export let likes = []
+	export let retweet = []
+	
 	
 	let currentUrl= "";
 	afterUpdate(() => {
@@ -83,22 +83,67 @@ import { format } from 'date-fns';
 		<slot />
 
 		<!--INFOLINKS_OFF-->
-		<div class="border opacity-70 w-full mt-24 mb-12" />
-		Te pareció interesante?
-		Encuentra más contenido similar uniendote al <a class="underlined" href="https://matiashernandez.dev/newsletter">Newsletter</a> o siguiendome en <a class="underlined" href="https://twitter.com/matiasfha" target="_blank">Twitter</a>.
+		<div class="flex flex-col mt-20 pb-10 border-b border-t border-gray-500 border-collapse">
+
+			<div>
+			<h3>😃 Gracias por leer!</h3>
+			<p>
+			Te pareció interesante?
+			Encuentra más contenido similar uniendote al <a class="underlined" href="https://matiashernandez.dev/newsletter">Newsletter</a> o siguiendome en 
+			<a class="underlined" href="https://twitter.com/matiasfha" target="_blank">Twitter</a>.
+			</p>
+			</div>
+			<a
+					class="underlined self-end"
+					href={`https://github.com/matiasfha/matias-sveltekit/edit/main/web/${filepath}`}
+					>⚙️ Edita en github</a
+				>
+		</div>
 		
-		<footer class="flex items-center justify-end gap-4 pt-20">
-			<a
-				class="underlined text-ebony-clay-800 hover:text-ebony-clay-600 dark:text-gray-100 dark:hover:text-gray-200 focus:outline-none"
-				href={`https://twitter.com/share?ref_src=twsrc%5Etfw&url=${currentUrl}`}
-				>Comparte en Twitter</a
-			>
-			<a
-				class="underlined text-ebony-clay-800 hover:text-ebony-clay-600 dark:text-gray-100 dark:hover:text-gray-200 focus:outline-none"
-				href={`https://github.com/matiasfha/matias-sveltekit/edit/main/web/${filepath}`}
-				>Edita en github</a
-			>
-		</footer>
+	</article>
+	{#if likes.length || retweet.length}
+	<section class="md:mt-10 py-6 px-4 mx-auto mb-10 rounded-xl md:w-3/5 border border-gray-400 flex flex-col gap-4">
+		<span class="text-lg dark:text-gray-100">Sigue la conversación en Twitter</span>
+		
+		<a
+			href={`https://twitter.com/intent/tweet/?text=Te%20invito%20a%20leer%20este%20buen%20artículo&url=${currentUrl}/&via=matiafsha`}
+			target="_blank" rel="noopener noreferrer"
+			class="bg-[#1d9bf0] hover:bg-blue-400 transition-colors text-white p-3 rounded-xl text-sm inline-flex items-center focus:outline-none w-52">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+			</svg> Comparte en Twitter
+		</a>
+			
+		
+		{#if likes.length }
+		<div class="flex -space-x-4">
+			<span class="px-2 rounded-full text-gray-700 flex items-center h-8 text-xs mr-4 bg-gray-300">han dado Like ❤️ </span>
+			{#each retweet as entry}
+			<a href={entry.author.url}>
+				<img class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800" src="{entry.author.photo}" alt="{entry.author.name}" loading="lazy">
+			</a>
+			{/each}
+			{#if retweet.length > 10}
+				<span class="flex justify-center items-center w-8 h-8 text-xs font-medium text-white bg-gray-700 rounded-full border-2 border-white hover:bg-gray-600 dark:border-gray-800" href="#">+{retweet.length - 10}</span>
+			{/if}
+		</div>		
+		{/if}
+		{#if retweet.length}
+		
+		<div class="flex -space-x-4">
+			<span class="px-2 rounded-full text-gray-700 flex items-center h-8 text-xs mr-4 bg-gray-300">han hecho RT</span>
+			{#each retweet as entry}
+			<a href={entry.author.url}>
+				<img class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800" src="{entry.author.photo}" alt="{entry.author.name}" loading="lazy">
+			</a>
+			{/each}
+			{#if retweet.length > 10}
+				<span class="flex justify-center items-center w-8 h-8 text-xs font-medium text-white bg-gray-700 rounded-full border-2 border-white hover:bg-gray-600 dark:border-gray-800" href="#">+{retweet.length - 10}</span>
+			{/if}
+		</div>		
+		{/if}			
+		
+	</section>
+	{/if}
 
 		<!-- <input type="hidden" name="IL_IN_ARTICLE"> -->
 		<ins class="adsbygoogle mt-10"
@@ -109,21 +154,22 @@ import { format } from 'date-fns';
 			data-ad-slot="2293002483"></ins>
 
 		{#if similarPosts.length > 0}
-		<div class="">
-			<h3>Artículos relacionados</h3>
+		<section class="prose prose-lg dark:prose-dark mx-auto">
+			<h3>📖 Continúa leyendo</h3>
 			<div class={`grid gap-2 grid-cols-1 md:grid-cols-${similarPosts.length}`}>
 				{#each similarPosts as post}
 					<div class="flex flex-col">
 						<a href={post.path}
 			class="group peer relative block w-full focus:outline-none">
-							<div class="rounded-lg max-h-40 transition group-hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2">
+							<div class="rounded-lg h-40 transition group-hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2">
 								<img
 									src={post.banner}
 									alt={post.title}
-									class="object-cover w-full max-h-40 object-center rounded-md" 
+									class="object-cover w-full h-40 object-center rounded-md" 
 									/>
 							</div>
-							<h4 class="md:text-xl text-lg font-bold leading-tighter text-black dark:text-white absolute top-40">
+							<span class="text-sm"><time datetime="YYYY-MM-DD HH:MM:SS">{format(new Date(post.date), 'dd/MM/yyyy')}</time> - {post.readingTime.text}	</span>
+							<h4 class="md:text-xl text-lg font-bold leading-tighter text-black dark:text-white">
 								{post.title}
 							</h4>
 						</a>
@@ -131,10 +177,10 @@ import { format } from 'date-fns';
 				{/each}
 			</div>
 
-		</div>
+		</section>
 		{/if}		
 
-	</article>
+	<!-- </article> -->
 	<time class="dt-published invisible" datetime="YYYY-MM-DD HH:MM:SS">{format(new Date(date), 'dd/MM/yyyy')}</time>
 	<div class="p-name invisible">{title}</div>
 	<a href={currentUrl} class="invisible u-url">Current Url</a>

@@ -31,11 +31,13 @@ export const similarPostsLoader = () => {
                               const { pathname } = url
                               const similarPosts = await getSimilarPosts(pathname)
                               const mentions = await fetch('/blog/post/mentions.json?url='+url)
-                              
+                              const { likes, retweet } = await mentions.json()
+                              console.log({retweet}) 
                               return {
                                   props: {
                                       similarPosts,
-                                      feed: []
+                                      likes,
+                                      retweet
                                   }
                               }			
                           }catch(e) {
