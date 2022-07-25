@@ -1,5 +1,6 @@
 import type { Post } from '$lib/types';
 import getPosts from './getPosts';
+import { StringUtils } from 'turbocommons-ts';
 
 export default async function getSimlarPosts(filepath: string): Promise<Post[]> {
 	const posts = await getPosts();
@@ -7,13 +8,19 @@ export default async function getSimlarPosts(filepath: string): Promise<Post[]> 
 
 	const similarPosts = posts
 		.filter((p) => p.slug !== post.slug)
-		.filter((p) => {
+		.map((p) => {
 			const postKeywords = post.keywords;
 			const pKeywords = p.keywords;
-			const intersection = postKeywords.filter((keyword) => pKeywords.includes(keyword));
-			return intersection.length > 0;
+			const similarity = StringUtils.compareSimilarityPercent(
+				postKeywords.join(','),
+				pKeywords.join('')
+			);
+			return {
+				...p,
+				similarity
+			};
 		})
-		.filter((p) => p.slug != null);
+		.sort((a, b) => b.similarity - a.similarity);
 
 	return similarPosts.slice(0, 3);
 }
