@@ -114,20 +114,20 @@ import { format } from 'date-fns';
 		</a>
 			
 		
-		{#if likes.length }
+		{#if likes.length > 0 }
 		<div class="flex -space-x-4">
 			<span class="px-2 rounded-full text-gray-700 flex items-center h-8 text-xs mr-4 bg-gray-300">han dado Like ❤️ </span>
-			{#each retweet as entry}
+			{#each likes as entry}
 			<a href={entry.author.url}>
 				<img class="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800" src="{entry.author.photo}" alt="{entry.author.name}" loading="lazy">
 			</a>
 			{/each}
-			{#if retweet.length > 10}
+			{#if likes.length > 10}
 				<span class="flex justify-center items-center w-8 h-8 text-xs font-medium text-white bg-gray-700 rounded-full border-2 border-white hover:bg-gray-600 dark:border-gray-800" href="#">+{retweet.length - 10}</span>
 			{/if}
 		</div>		
 		{/if}
-		{#if retweet.length}
+		{#if retweet.length > 0}
 		
 		<div class="flex -space-x-4">
 			<span class="px-2 rounded-full text-gray-700 flex items-center h-8 text-xs mr-4 bg-gray-300">han hecho RT</span>
