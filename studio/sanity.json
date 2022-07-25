@@ -20,7 +20,8 @@
     "asset-source-unsplash",
     "@sanity/code-input",
     "table",
-    "markdown"
+    "markdown",
+    "@sanity/scheduled-publishing"
   ],
   "env": {
     "development": {
