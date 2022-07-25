@@ -94,12 +94,12 @@
 
 <div class={`px-6 md:px-12 pt-9 pb-4 lg:px-10 lg:pt-12   dark:text-gray-200 text-gray-700`}>
 	<nav class="flex items-center justify-between mx-auto">
-		<div class="flex flex-row items-center gap-4 md:gap-8 justify-between">
-			<a href="https://matiashernandez.dev" rel="me" sveltekit:prefetch class="h-card">
+		<div class="flex flex-row items-center gap-4 md:gap-8 justify-between h-card">
+			<a href="https://matiashernandez.dev" rel="me" sveltekit:prefetch class="u-url u-uid" >
 				<figure class="w-10 "><picture><source srcset="/logo.png" type="image/webp"> <img  src="/logo.png" alt="Matias Hernández Logo"></picture></figure>
 			</a>
 			<a
-				class="underlined whitespace-nowrap text-2xl font-medium focus:outline-none transition hidden md:block"
+				class="underlined whitespace-nowrap text-2xl font-medium focus:outline-none transition hidden md:block p-name"
 				href="/"><h2>Matias Hernández</h2></a
 			>
 		</div>

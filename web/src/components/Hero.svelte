@@ -82,7 +82,7 @@
 		</div>
 	</div>
 
-	<div class="mb-12 lg:mb-0 items-center justify-center flex">
+	<div class="mb-12 lg:mb-0 items-center justify-center flex h-card">
 		<img
 			height="688"
 			width="544"

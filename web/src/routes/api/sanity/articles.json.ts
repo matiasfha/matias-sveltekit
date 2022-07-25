@@ -230,10 +230,11 @@ export async function GET() {
 
 		return {
 			body: {
-				res,
-				hashnode,
-				dev,
-				markdown
+				post
+				// res,
+				// hashnode,
+				// dev,
+				// markdown
 			}
 		};
 	} catch (e) {
