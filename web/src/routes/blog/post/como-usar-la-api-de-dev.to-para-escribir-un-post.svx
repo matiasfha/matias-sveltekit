@@ -82,4 +82,4 @@ Para obtener tu `ApiKey` debes, en tu cuenta de dev.to ingresar en `Settings -> 
 
 
 
-[!undefined](https://cdn.sanity.io/images/cyypawp1/production/8b2594b6a53ad981a6683df5c9c2f1a19eb83592-3070x1574.png)
+![dev.to settings](https://cdn.sanity.io/images/cyypawp1/production/8b2594b6a53ad981a6683df5c9c2f1a19eb83592-3070x1574.png)
