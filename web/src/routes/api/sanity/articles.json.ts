@@ -7,7 +7,6 @@ import BlocksToMarkdown from '@sanity/block-content-to-markdown';
 import imageUrlBuilder from '@sanity/image-url';
 
 import { createFileInRepo, updateFileInRepo } from '$lib/utils/github';
-import { getDeployStatus } from '$lib/netlify';
 import writeToDevTo from './writeToDevTo';
 import writeToHashnode from './writeToHashnode';
 
