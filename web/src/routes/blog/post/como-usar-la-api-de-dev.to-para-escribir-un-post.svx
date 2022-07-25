@@ -1,0 +1,85 @@
+---
+date: 2022-07-25T12:23:09Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/547eea5e9a48f28957adbad0eb3345eb453d55d5-1280x710.png
+keywords: 
+- javascript api
+- dev.to api
+- sveltekit api
+- serverless function
+title: "¿Cómo usar la api de Dev.to para escribir un post?"
+description: "La republicación de contenido puede ayudar a llegar a más lectores, pero puede ser tedioso, ¿como mejoras el proceso? Automatizando los pasos, y para ello puedes usar las API de los servicios como dev.to"
+bannerCredit: undefined
+tag: Posts
+---
+
+Uno de los proceso que realizo cuando escribo un post o artículo es la republicación de ellos en distintas comunidades como por ejemplo [dev.to](https://dev.to). Esto ayuda a llegar a más lectores (siempre y cuando mantengas la url canonica apuntando al sitio original).
+
+Pero esto puede ser bastante tedioso, escribir en tu sitio, copiar, editar el contenido y pegar en el siguiente editor, pero, como buen desarrollador, siempre busco formas de automatizar el proceso :D
+
+
+
+Mi actual flujo de trabajo a la hora de crear un post/artículo es:
+
+1. Escribir el contenido en [Sanity](https://sanity.io) y publicar.
+2. Esto envía un webhook a una función "serverless" de mi sitio web en netlify.
+3. Esta función convierte el contenido a markdown.
+4. Se crea un archivo en mi [repositorio en github](https://github.com/matiasfha/matias-sveltekit) (me gusta tener mi contenido en archivos markdown).
+5. Espera por el build en netlify
+6. Usa la api de [dev.to](https://dev.to/matiasfha) para escribir el mismo contenido.
+7. Lo mismo se hace para [hashnode](https://h.matiashernandez.dev/) y [medium](https://medium.com/@matiasfh)
+
+
+
+### ¿Cómo utilizar la api de Dev.to?
+
+Dev. to ( y los otros servicios nombrados) proveed de una API REST que permite publicar contenido, el proceso es simple:
+
+
+
+```javascript
+export default async function writeToDevTo(post) {
+	const article = {
+		title: post.title,
+		body_markdown: post.content,
+		published: true,
+		main_image: post.image,
+		canonical_url: post.canonicalUrl
+		description: post.description,
+		tags: 'javascript, spanish, webdev'
+	};
+
+	try {
+		const res = await fetch('https://dev.to/api/articles', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'api-key': import.meta.env.VITE_DEVTO_TOKEN
+			},
+			body: JSON.stringify({ article })
+		});
+		return {
+			status: res.status,
+			url: res.url
+		};
+	} catch (e) {
+		console.error(e);
+		return {
+			status: 500,
+			error: e
+		};
+	}
+}
+```
+
+Sólo requieres de una pequeña función que:
+
+* Crea un objeto con el contenido del post, indicando los atributos requeridos
+* Realiza una llamada POST al endpoint `https://dev.to/api/articles`
+* Usa el token de autorización
+* Retorna 200 si todo fue bien o 500 en caso contrario
+
+Para obtener tu `ApiKey` debes, en tu cuenta de dev.to ingresar en `Settings -> Extensions` y hacer scroll hasta el final, has click en `Generate API Key` y ya tienes lo necesario.
+
+
+
+[!undefined](https://cdn.sanity.io/images/cyypawp1/production/8b2594b6a53ad981a6683df5c9c2f1a19eb83592-3070x1574.png)
