@@ -1,0 +1,126 @@
+---
+date: 2022-07-25T00:37:26Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/c1dc566e4e0a878e0f6c5ef13747567a754b429d-1280x710.png
+keywords: 
+- Array sort
+- ordernar arreglo
+- ordernar array
+- Javascript order arreglo
+- Javascript Array sort
+title: "¿Cómo ordernar un Arreglo de arreglos con Javascript?"
+description: "Un arreglo puede contener cualquier tipo de elemento, incluso otro arreglo. ¿Cómo ordenas un arreglo de arreglos basado en algún valor del arreglo interno?"
+bannerCredit: undefined
+tag: Posts
+---
+
+El método `sort()` te permite ordenar los elementos de cualquier arreglo, retornando el arreglo ordenado, pero también cambiando la posición de los elementos del arreglo original.
+
+
+
+En su forma más básica, `sort` intentará ordenar los elementos basado en su contenido, es decir, si el arreglo contiene strings, este será ordenado de forma alfabética. 
+
+El método `sort` "transforma" (cast) los elementos del arreglo a `strings` y los compara entre si para determinar el orden.
+
+```javascript
+let numbers = [0, 1 , 2, 3, 10, 20, 30 ];
+numbers.sort();
+console.log(numbers);
+// [0,1, 10, 2, 20, 3, 30]
+
+```
+
+En este caso el método `sort` ordena erradamente el número `10` antes que el `2` por que el string `"10"` viene antes que el string `"2"` al comparar strings.
+
+
+
+Pero el método `sort` también puede recibir un argumento que te permite definir cómo se debe realizar el ordenamiento.mento que define la forma en que se hará la comparación.
+
+
+
+> Encuentra más información sobre el método `sort` [en la documentación en MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+
+
+
+Es este argumento el que te permitirá ordenar un arreglo bi-dimensional como el siguiente:
+
+```javascript
+const data = [
+  ['Matias', 5, "07/24/2022"],
+  ['Nicole', 7, "07/14/2022"],
+  ['Inti', 10, "07/20/2022"],
+  ['Mía', 3, "07/22/2022"],
+ ]
+```
+
+Un arreglo de arreglos o arreglo bi-dimensional en donde cada sub-arreglo contiene un string, un número y una fecha en formato string.
+
+
+
+¿Cómo puedes ordenar este arreglo en base a la fecha del 3 elemento del sub-arreglo?
+
+
+
+En realidad es sólo utilizar el método `sort` junto a su argumento: "la función comparadora".
+
+En el caso del arreglo `data`, al llamar `sort` directamente, este será ordenado por el primer elemento del arreglo interno.
+
+
+
+```javascript
+console.log(data.sort())
+/*
+[
+  ['Inti', 10, "07/20/2022"],
+  ['Matias', 5, "07/24/2022"],
+  ['Mía', 3, "07/22/2022"],
+  ['Nicole', 7, "07/14/2022"],
+]
+*/
+```
+
+Pero, el argumento que recibe `sort` te permite definir que quieres comparar y así poder ordenar por este atributo.
+
+
+
+```javascript
+
+data.sort((a, b) => {
+
+   // realizar alguna comparación
+
+   // retornar 0 si ambos valores son iguales
+
+   // retornar -1 si a va primero que b
+
+   // retornar 1 si b va primero que a
+
+})
+
+```
+
+Entonces, en este caso de uso, lo que se busca es ordenar el arreglo `data` basado en el tercer elemento del sub-arreglo, es decir el indice `2`, por lo tanto la función de comparación usará ese indice para realizar la comparación.
+
+
+
+```javascript
+data.sort((a, b) => {
+  const dateA = new Date(a[2])
+  const dateB = new Date(b[2])
+  
+  return dateA - dateB
+})
+
+/*[
+  ['Nicole', 7, "07/14/2022"],
+  ['Mía', 3, "07/22/2022"],
+  ['Inti', 10, "07/20/2022"],
+  ['Matias', 5, "07/24/2022"],
+]
+*/
+```
+
+Y eso es :D, para ordenar un arreglo bi-dimensional debes usar el indice del sub-arreglo para la función de comparación.
+
+
+
+> Como tip adicional, para comparar fechas solo debes sustraer ambas fechas 🔥
