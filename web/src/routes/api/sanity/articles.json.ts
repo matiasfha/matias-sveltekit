@@ -92,6 +92,31 @@ ${BlocksToMarkdown(content, { projectId: 'cyypawp1', dataset: 'production', seri
     `.trim();
 }
 
+async function writePost(post: Posts) {
+	const markdown = generateMarkdown({
+		date: post._createdAt,
+		banner: builder.image(post.banner.asset._ref).url(),
+		keywords: post.keywords,
+		title: post.title,
+		description: post.description,
+		bannerCredit: post.banner.bannerCredit,
+		content: post.content
+	});
+
+	const github = await createFileInRepo(markdown, post.title);
+	const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
+	const hashnode = await writeToHashnode({
+		...post,
+		image: builder.image(post.banner.asset._ref).url()
+	});
+	const medium = await writeToMedium(post);
+	return {
+		github,
+		dev,
+		hashnode,
+		medium
+	};
+}
 export async function PUT({ request }: RequestEvent) {
 	const body = await request.json();
 	if (!validateWebhook(request, body)) {
@@ -115,13 +140,9 @@ export async function PUT({ request }: RequestEvent) {
 			bannerCredit: post.banner.bannerCredit,
 			content: post.content
 		});
-		console.log(markdown);
+
 		const res = await updateFileInRepo(markdown, post.title);
-		console.log('File created in github');
-		const netlify = await getDeployStatus();
-		if (netlify) {
-			console.log('Deployed, ready to re-post');
-		}
+
 		// @TODO
 		// How to update the article on Dev.to and Hashnode?
 		return {
@@ -138,6 +159,7 @@ export async function PUT({ request }: RequestEvent) {
 		};
 	}
 }
+
 export async function POST({ request }: RequestEvent) {
 	const body = await request.json();
 	if (!validateWebhook(request, body)) {
@@ -150,33 +172,15 @@ export async function POST({ request }: RequestEvent) {
 		};
 	}
 	try {
-		const post: Posts = body;
-		const markdown = generateMarkdown({
-			date: post._createdAt,
-			banner: builder.image(post.banner.asset._ref).url(),
-			keywords: body.keywords,
-			title: post.title,
-			description: post.description,
-			bannerCredit: post.banner.bannerCredit,
-			content: post.content
-		});
-
-		const res = await createFileInRepo(markdown, post.title);
-		console.log('File created in github');
-		const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
-		console.log('File created in DevTo');
-		const hashnode = await writeToHashnode({
-			...post,
-			image: builder.image(post.banner.asset._ref).url()
-		});
-		console.log('File created in Hashnode');
+		const [post] = await client.query<Posts>('*[_type == "posts"] | order(_createdAt desc)');
+		const { github, hashnode, dev, medium } = await writePost(post);
 
 		return {
 			body: {
-				res,
-				title: post.title,
+				github,
 				dev,
-				hashnode
+				hashnode,
+				medium
 			}
 		};
 	} catch (e) {
@@ -203,6 +207,7 @@ export async function POST({ request }: RequestEvent) {
 // }
 import { createClient } from 'sanity-codegen';
 import type { Documents } from '../../../schema.types';
+import { writeToMedium } from './writeToMedium';
 const client = createClient<Documents>(clientOptions);
 
 export async function GET() {
@@ -210,30 +215,14 @@ export async function GET() {
 	try {
 		const [post] = await client.query<Posts>('*[_type == "posts"] | order(_createdAt desc)');
 
-		const markdown = generateMarkdown({
-			date: post._createdAt,
-			banner: builder.image(post.banner.asset._ref).url(),
-			keywords: post.keywords,
-			title: post.title,
-			description: post.description,
-			bannerCredit: post.banner.bannerCredit,
-			content: post.content
-		});
-
-		const res = await createFileInRepo(markdown, post.title);
-		const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
-
-		const hashnode = await writeToHashnode({
-			...post,
-			image: builder.image(post.banner.asset._ref).url()
-		});
+		const { github, hashnode, dev, medium } = await writePost(post);
 
 		return {
 			body: {
-				post
-				// res,
-				// hashnode,
-				// dev,
+				github,
+				hashnode,
+				dev,
+				medium
 				// markdown
 			}
 		};

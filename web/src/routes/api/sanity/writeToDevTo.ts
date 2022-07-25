@@ -42,12 +42,15 @@ ${getRawMarkdown(post.content)}
 			},
 			body: JSON.stringify({ article })
 		});
-		console.log(await res.json());
 		return {
 			status: res.status,
 			url: res.url
 		};
 	} catch (e) {
 		console.error(e);
+		return {
+			status: 500,
+			error: e
+		};
 	}
 }
