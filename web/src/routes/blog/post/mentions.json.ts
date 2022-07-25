@@ -10,7 +10,6 @@ const retweet = ['repost-of'];
 const messages = ['mention-of', 'in-reply-to'];
 
 const hasRequiredFields = (entry) => {
-	console.log({ entry });
 	const { author, published, content } = entry;
 	return author.name && published && content;
 };

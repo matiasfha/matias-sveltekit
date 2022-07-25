@@ -185,6 +185,11 @@ import { format } from 'date-fns';
 	<div class="p-name invisible">{title}</div>
 	<a href={currentUrl} class="invisible u-url">Current Url</a>
 	<a rel="author" class="p-author h-card invisible" href="https://matiashernandez.dev">Matías Hernández</a>
+	<div class="mx-auto flex flex-row w-64">
+		<a href="https://xn--sr8hvo.ws/%E2%8F%B0%F0%9F%92%90%F0%9F%A6%82/previous">←</a>
+		An IndieWeb Webring 🕸💍
+		<a href="https://xn--sr8hvo.ws/%E2%8F%B0%F0%9F%92%90%F0%9F%A6%82/next">→</a>
+	</div>
 	
 </div>
 
