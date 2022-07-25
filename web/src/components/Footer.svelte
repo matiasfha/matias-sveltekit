@@ -2,7 +2,12 @@
 	import { locale, t } from '$lib/translations';
 </script>
 
-<footer class="pb-16 mt-32 pt-32 border-t border-gray-200 dark:border-gray-800 px-10 w-full">
+<footer class="pb-16 mt-32 pt-16 border-t border-gray-200 dark:border-gray-800 px-10 w-full">
+	<div class="mx-auto flex flex-row w-64 dark:text-gray-200 text-ebony-clay-500 pb-32">
+		<a href="https://xn--sr8hvo.ws/%E2%8F%B0%F0%9F%92%90%F0%9F%A6%82/previous">←</a>
+		An IndieWeb Webring 🕸💍
+		<a href="https://xn--sr8hvo.ws/%E2%8F%B0%F0%9F%92%90%F0%9F%A6%82/next">→</a>
+	</div>
 	<div class="relative">
 		<div
 			class="relative grid gap-x-4 grid-cols-4 md:grid-cols-8 lg:gap-x-6 lg:grid-cols-12 mx-auto  grid-rows-max-content"
