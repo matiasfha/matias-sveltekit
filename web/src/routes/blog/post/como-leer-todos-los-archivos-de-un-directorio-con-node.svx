@@ -1,0 +1,135 @@
+---
+date: 2022-07-26T14:09:28Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/4c0c29d5aa0868caf2cadb45378eb974c56042bd-1280x710.png
+keywords: 
+- leer directorio
+- read folder
+- node leer directorio
+- como leer archivos
+- como leer archivos node
+- nodejs
+- nodejs leer archivos
+title: "¿Cómo leer todos los archivos de un directorio con Node?"
+description: "Un directorio puede contener no solo archivos, si no, también múltiples directorios anidados. ¿Cómo puedes obtener un listado de todos los archivos existentes en un directorio dado utilizando Nodejs?"
+bannerCredit: undefined
+tag: Posts
+---
+
+Una tarea común en una aplicación en un servidor es obtener un listado de archivos que existen dentro de algún directorio para después realizar alguna tarea con ellos. 
+
+
+
+Nodejs ofrece una [API que permite trabajar con archivos ](https://nodejs.org/api/fs.html) incluyendo la posibilidad de leer el contenido de un directorio de forma síncrona y asíncrona (con callbacks o promesas).
+
+```javascript
+/* Leer el contenido de un directorio de forma sincrona */
+
+// files es un arreglo con los nombres de los archivos dentro del directorio
+import fs from 'node:fs'
+const files = fs.readdirSync('./mi-directorio') 
+
+
+
+/* Leer el contenido de un directorio de forma asincrona usando callbacks*/
+import fs from 'node:fs'
+let files = []
+fs.readdir('./mi-directorio',(err, result) => {
+  if(err) {
+    console.error(err)
+    throw Error(err)
+  }
+  files = result
+}) 
+
+
+/* Leer el contenido de un directorio de forma asincrona usando promesas*/
+import fs from 'node:fs'
+
+const files = await fs.promises.readdir('./mi-directorio')
+```
+
+Pero esto solo retornará la lista de archivos y directorios del "primer nivel", es decir, si tienes un estructura de directorio como:
+
+[!undefined](https://cdn.sanity.io/images/cyypawp1/production/b91ee49cf2ad62712750880e2b1dc611fb3b23fb-480x370.png)
+
+El resultado será:
+
+```javascript
+[
+  'node_modules',
+  'public',
+  'src',
+  '.gitignore',
+  'package.json',
+  'README.md'
+]
+```
+
+## ¿Cómo obtener todos los archivos incluyendo los sub-directorios?
+
+Recursión es la respuesta:
+
+```javascript
+async function readAllFiles(path, arrayOfFiles = []){
+	const files = fs.readdirSync(path)
+	files.forEach(file => {
+		const stat = fs.statSync(`${path}/${file}`)
+		if(stat.isDirectory()){
+			readAllFiles(`${path}/${file}`, arrayOfFiles)
+		}else{
+			arrayOfFiles.push(`${path}/${file}`)
+		}
+	}
+	)
+	return arrayOfFiles
+}
+```
+
+La función de arriba realiza la lectura del contenido de un directorio
+
+```
+
+const file = fs.readdirSync(path)
+
+```
+
+Luego, para cada uno de los elementos del arreglo retornado `files.forEach` revisa si dicho elemento es o no un directorio
+
+```
+
+const stat = fs.statSync(`${path}/${file}`)
+
+if(stat.isDirectory())
+
+```
+
+En caso de ser un directorio, realiza una llamada recursiva, cambiando el primer argumento para que sea el actual directorio.
+
+```
+
+readAllFiles(`${path}/${file}`, arrayOfFiles)
+
+```
+
+En caso contrario, simplemente almacena en el arreglo `arrayOfFiles` el archivo.
+
+Así, el resultado de leer la estructura de directorios anterior el resultado será
+
+```
+
+[  
+    ................  
+    'public/favicon.ico',
+
+    'public/index.html,
+
+    'public/robots.txt',  
+    'src/index.css',
+
+    'src/index.js',  
+    '.gitignore',  
+    'package.json',  
+    'README.md'  
+]
+
+```
