@@ -1,0 +1,177 @@
+
+---
+date: 2022-07-31T17:03:50Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/c1979c830e67b18f2153fd1577ff8fc2dad96fea-1280x710.png
+keywords: 
+- Javascript
+- FontFace
+- Custom FontFace
+- Javascript FontFace
+- FileReader
+- Javascript FileReader
+- upload custom fontface
+- dynamic fonts
+- fuentes dinámicas
+- vanilla Javascript
+title: "Añade fuentes de forma dinámica a tu web usando Javascript y FontFace"
+description: "Sabías que puedes renderizar texto con fuentes personalizadas subidas por tus usuarios?.
+Utilizando la API FontFace puedes agregar nuevas fuentes de forma dinámica a tu web.
+"
+bannerCredit: undefined
+tag: Posts
+---
+Utilizar fuentes personalizadas en tu web es una práctica común que puedes lograr haciendo uso de css y  de la regla `@font-face`, pero que ocurre si quieres permitir a tus usuarios cambiar la fuente que utilizan para renderizar lo que ven en base a una fuente que ellos pueden subir?.   
+  
+Bienvenido Javascript y FontFace.
+
+
+
+### ¿Cuándo puede ser esto útil?
+
+Es claro que puedes utilizar cualquier fuente por medio de css, pero el caso de uso aquí es algo diferente.
+
+Imagina que tienes un sistema de templates o temas/themes para permitir que tus usuarios personalicen su interfaz como gusten. Una de las posibles personalizaciones es cambiar la fuente utilizada, pero no sólo seleccionando de un listado pre-definido, si no, también permitiendo que suban sus propias fuentes.
+
+¿Cómo muestras una vista previa de cómo se vería esta fuente? Lo que necesitas es:
+
+* Cargar la fuente
+* Insertarla en el documento
+* Utilizarla para renderizar el contenido.
+
+Esto es posible gracias a la API [FontFace](https://developer.mozilla.org/en-US/docs/Web/API/FontFace/FontFace) y [FileReader](https://developer.mozilla.org/en-US/docs/Web/API/FileReader)
+
+
+
+## ¿Cómo "subir" una fuente?
+
+Lo primero será permitir al usuario subir una nueva fuente, esto es básicamente permitir que el usuario suba un archivo.   
+  
+Puedes usar cualquier framework o librería que gustes, pero también puede hacerse con simple "vanilla Javascript".
+
+
+
+```javascript
+/** HTML
+<input type="fileInput" id="file" accept={".ttf"} />
+<button type="button" id="uploadBtn">Upload Font</button>
+**/
+
+
+const fileInput = document.getElementById("fileInput");
+const uploadBtn = document.getElementById("upload");
+
+uploadBtn.addEventListener("click", async () => {
+  const fontFile = fileInput.files[0]
+});
+```
+
+Lo que este pequeño snippet de código realiza es:
+
+1. Obtiene referencias a los elementos `fileInput` y `uploadBtn` desde el DOM.
+2. Agrega un "listener" al botón `uploadBtn` para "escuchar" por el evento `click`
+3. Si el botón `uploadBtn` recibe el evento, un callback se ejecuta leyendo desde el input `fileInput` el archivo seleccionado por el usuario
+
+
+
+Ahora, toca insertar en el documento la nueva fuente
+
+> Este es un demo, pero para completarlo deberías asegurarte que el archivo, tiene al menos la extensión requerida.
+
+
+
+## Insertar una nueva fuente en el documento.
+
+Ya tienes una referencia al archivo seleccionado por el usuario, para poder insertar esta nueva fuente necesitarás usar la api `FontFace`.
+
+Esta api permite controlar el origen de una fuente, sea esta una URL externa o un buffer. También permite conocer y controlar cuando la fuente es cargada.
+
+Además, necesitarás convertir el contenido de ese archivo a una representación como "data URL" (una representación en base64 de la data del archivo), para esto usarás la api `FileReader`.
+
+
+
+`FileReader` es un objeto que permite a tu app leer un archivo y almacenar esa información utilizando un objeto File o Blob
+
+
+
+El objeto [File](https://developer.mozilla.org/es/docs/Web/API/File) provee información del archivo permitiendote manipularlo. Por ejemplo convirtiendo su información a otro formato, en este caso utilizarás [`FileReader.readAsDataURL`.](https://developer.mozilla.org/es/docs/Web/API/FileReader/readAsDataURL)
+
+
+
+```javascript
+/**
+ * Recibe una referencia a un archivo `File`
+*/
+const convertFontFiletoBase64 = async (file) => {
+  const result_base64 = await new Promise((resolve) => {
+    // crea un objeto FileReader
+    const fileReader = new FileReader(); 
+    // Agrega un callback a ser ejecutado cuando el fileReader este "listo"
+    fileReader.onload = () => resolve(fileReader.result);
+    
+    // Obtiene la información del archivo
+    fileReader.readAsDataURL(file);
+  });
+  return result_base64;
+};
+
+
+uploadBtn.addEventListener("click", async () => {
+  // Obtiene la información del archivo en formato base64
+  const base64 = await convertFontFiletoBase64(fileInput.files[0]);
+  
+  // Crea una referencia al objeto FontFace 
+  const fontFace = new FontFace("uploadedFont", `url(${base64})`);
+  
+  // Agrega la nueva fuente al documento
+  document.fonts.add(fontFace); //
+  
+  
+  try {
+    // Carga la fuente
+    await fontFace.load();
+    
+  } catch (e) {
+    console.error(e);
+  }
+});
+
+```
+
+Una vez leída la información del archivo en formato base 64, utilizarás `FontFace` para crear una referencia, luego utilizando `document.fonts.add()` se agrega la nueva fuente y finalmente se solicita que dicha fuente se cargue con `fontFace.load()`
+
+
+
+En este punto ya estás listo para mostrar un previo utilizando como nombre de la fuente el string `uploadedFont` (que fue pasado a la creación de `FontFace`).
+
+## Mostrar una vista previa de la fuente
+
+Para esta tarea simplemente necesitarás un contenedor de texto cuyo estilo este definido para usar la nueva fuente `uploadedFont`
+
+```html
+<style>
+  #textContainer span {
+    font-family: "uploadedFont";
+  }
+</style>
+
+<div id="textContainer">
+  <span>
+    Sample Text
+  </span>
+</div>
+```
+
+También puedes hacerlo dinámicamente utilizando Javascript.
+
+```javascript
+....  
+  try {
+    await fontFace.load();
+    const textContainer = document.getElementById("textContainer");
+    textContainer.setAttribute("style", "font-family: uploadedFont");
+
+  } catch (e) {
+    console.error(e);
+  }
+ ...
+```
