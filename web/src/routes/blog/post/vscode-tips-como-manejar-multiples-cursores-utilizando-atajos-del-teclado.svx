@@ -1,0 +1,46 @@
+
+---
+date: 2022-08-01T16:19:44Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/e4229b1d6218ecc3df1b3f36dc90348d7f3a33cb-1280x710.png
+keywords: 
+- VSCode
+- VSCode Tips
+- VSCode shorthcuts
+- VSCode cursores
+title: "VScode Tips: Cómo manejar múltiples cursores utilizando atajos del teclado"
+description: "VSCode es quizá el editor de código mas utilizado. ¿Pero sabes sacarle todo el potencial? Puedes utilizar sus múltiples atajos de teclado para manejar diferentes situaciones como por ejemplo. Múltiples cursores."
+bannerCredit: undefined
+tag: Posts
+---
+VSCode es un poderoso editor de código con muchas funcionalidades y plugins, pero quizá la mejor manera de realmente utilizar su potencial para aumentar tu velocidad al utilizarlo es saber utilizar sus atajos de teclado.
+
+
+
+Es un tema común entre desarrolladores: Usar atajos del teclado "mejora tu productividad" vs utilizar el mouse. Así que en este breve post verás como utilizar el teclado para crear múltiples cursores en tu editor.
+
+
+
+## ¿Cómo agregar múltiples cursores en VSCode?
+
+
+
+![Múltiples cursores en VSCode](https://cdn.sanity.io/images/cyypawp1/production/4eebcbebc356dd8fbcb29233f9fceacd52a656ce-588x337.gif)
+
+Tener múltiples cursores te permite editar código más rápido y hacerlo con el teclado sería mucho más rápido y cómodo ¿no?
+
+
+
+Estos son los atajos que necesitas aprender:
+
+| Atajo | OS |
+|--- | ---|
+| ⌥ Opt + ⌘ Cmd and then ↑ or ↓ | Mac |
+| Ctrl + Alt and then ↑ or ↓ | Windows |
+| Shift + Alt and then ↑ or ↓ | Linux |
+|  |  |
+
+Para salir del uso de múltiples cursores y volver a un sólo cursor, presiona `Esc`.
+
+
+
+Y para ver o modificar los atajos de teclado, tan solo debes ir a: “Archivo” → “Preferencias” → “Atajos de Teclado”.
