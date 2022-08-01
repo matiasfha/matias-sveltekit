@@ -64,4 +64,7 @@ export interface Post {
 	filepath?: string;
 	html?: string;
 	rawContent: string;
+	readingTime: {
+		text: string;
+	};
 }

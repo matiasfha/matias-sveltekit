@@ -6,54 +6,12 @@ import urls from 'rehype-urls'
 import autoLinkHeadings from 'rehype-autolink-headings'
 import getReadingTime from "reading-time";
 import { visit } from "unist-util-visit";
-import { StringUtils } from 'turbocommons-ts';
-import fs from 'fs'
-import {globby} from 'globby'
-import matter from 'gray-matter';
-
-let memoizedPosts = new Map()
-const getPosts = async () => {
-	if(memoizedPosts.size === 0) {
-		const files = await globby(["src/routes/blog/post/*.svx"]);
-		for(const file of files) {
-			const slug = file.match(/([\w-]+)\.(svelte\.md|md|svx)/i)?.[1] ?? null;
-			memoizedPosts.set(slug, { slug, ...matter.read(file) })
-		}
-	}
-
-	return Array.from(memoizedPosts.values())
-}
 
 
-
-const getSimilarPosts = async (filepath) => {
-	const posts = await getPosts();
-	const slug = filepath.match(/([\w-]+)\.(svelte\.md|md|svx)/i)?.[1] ?? null;
-	const post = posts.find((p) => p.slug === slug);
-	
-	const map = new Map();
-	posts.forEach((p) => {
-		console.log('Checking similarity for', p.slug, 'with', slug)
-		const similarity = StringUtils.compareByLevenshtein(
-			String(p.content),
-			String(post.content)
-		);
-		map.set(p.slug, {
-			similarity,
-			post: p
-		});
-		
-	});
-
-	const sorted = Array.from(map.values()).sort((a, b) => a.similarity - b.similarity);
-	return sorted.map((p) => p.post).slice(0, 3);
-}
-
-	
 
 function processUrl(url, node) {
 	if (node.tagName === "a") {
-		node.properties.class = "underlined"
+		node.properties.class = node.properties.class + " underlined"
 
 		if (!url.href.startsWith("/")) {
 			// Open external links in new tab
@@ -130,75 +88,134 @@ function remarkReadingTime() {
 		
 	}
 }
+/** 
+* @typedef {import('unist').Node} Node
+* @typedef {import('unified').Transformer} Transformer 
+* @typedef { {
+		type: "element";
+		tagName: string;
+		properties: {
+			[prop: string]: string | undefined;
+		};
+		children?: Node[];
+	} 
+} HtmlBaseElementNode
+* @typedef { HtmlBaseElementNode & Node } HtmlElementNode
+*/
+/**
+ * Returns the `<articke>` node.
+ * The second node returned is the parent of the first node.
+ * @param {Node} node
+ * @returns {[HtmlElementNode, HtmlElementNode]}
+ */
+ export function findArticleNode(root) {
+	let [body, bodyParent] = findTagName(root, "body");
+	let [article, articleParent] = findTagName(root, "article");
+  
+	if (article) {
+	  return [article, articleParent || root];
+	}
+	else {
+	  return [
+		body || root ,
+		bodyParent || root
+	  ];
+	}
+  }
 
-function remarkSimilarPosts() {
-	return async function(info, file) {
-		file.data.fm['similarPosts'] = await getSimilarPosts(file.data.fm.filepath)
-		
+  /**
+ * Recursively crawls the HAST tree and finds the first element with the specified tag name.
+ * @param {Node} node
+ * @param {string} tagName
+ * @returns [[HtmlElementNode | undefined, HtmlElementNode | undefined]]
+ */
+function findTagName(node, tagName) {
+	if (isHtmlElementNode(node) && node.tagName === tagName) {
+	  return [node, undefined];
+	}
+  
+	if (node.children) {
+	  let parent = node;
+	  for (let child of parent.children) {
+		let [found] = findTagName(child, tagName);
+		if (found) {
+		  return [found, parent];
+		}
+	  }
+	}
+  
+	return [undefined, undefined];
+  }
+
+
+function toc() {
+	/**
+	 * @param {Node} node
+	 */
+	return function transformer(root) {
+		// Find the <article node
+		let [articleNode, articleParent] = findArticleNode(root);
+		let headings = findHeadings(articleNode);
+		console.log(headings)
+		return root
+
 	}
 }
-// replaces all properties of source with those of target
-function replace(source, target) {
-	for (const property in source) {
-	  delete source[property];
-	}
-  
-	Object.assign(source, target);
+
+/**
+ * @typdef {import('unist').Parent} Parent
+ * @typedef {"h1" | "h2" | "h3" | "h4" | "h5" | "h6" } HeadingTagName
+ * @typedef { HtmlElementNode & { tagName: HeadingTagName } } HeadingNode
+ */
+
+/**
+ * Finds all HTML heading nodes (`<h1>` through `<h6>`)
+ * @params {Parent} Node
+ * @returns {HeadingNode[]}
+ */
+export function findHeadings(node) {
+  let headingNodes = [];
+  findHeadingsRecursive(node, headingNodes);
+  return headingNodes;
+}
+/**
+ * 
+ * @param {Node} node 
+ * @returns {node is HtmlBaseElementNode}
+ */
+function isHtmlElementNode(node) {
+	return typeof node === "object" &&
+	  node.type === "element" &&
+	  typeof node.tagName === "string" &&
+	  "properties" in node &&
+	  typeof node.properties === "object";
   }
-  
-  function extractCaption(node) {
-	const captionRegex = new RegExp(/(\{caption=([^\{\}]+)\})/);
-	if (!node.alt || !captionRegex.text(node.alt)) {
-	  return { alt: node.alt };
-	}
-  
-	const [captionWithControl, _, caption] = captionRegex.exec(node.alt);
-  
-	return {
-	  caption,
-	  alt: node.alt.replace(captionWithControl, "")
-	}
+/**
+ * 
+ * @param {Node} node 
+ * @returns { node is HeadingNode}
+ */
+function isHeadingNode(node) {
+	return isHtmlElementNode(node) && ["h1", "h2", "h3", "h4", "h5", "h6"].includes(/** @type {HeadingTagName} */(node.tagName));
   }
-  
-  function addCaptionsToImages(opts) {
-	return tree => {
-	  visit(tree, ["image"], node => {
-		//const { alt, caption } = extractCaption(node);
-		// do nothing if there's no caption
-		//if (!caption) return;
-		const caption = ""
-		const { alt } = node
-  
-		const imgElement = { ...node, alt };
-		
-		const captionElement = {
-		  type: "figcaption",
-		  data: { hName: "figcaption" },
-		  children: [{ type: "text", value: caption || ""}],
-		};
-  
-		const figureElement = {
-		  type: "figure",
-		  data: { hName: "figure" },
-		  children: [{
-			...imgElement,
-			url: 'https://res.cloudinary.com/matiasfh/image/fetch/'+imgElement.url
-		  }, captionElement],
-		};
-  
-		// in-place replacement of the image node with figure
-		// replace(node, figureElement);
-		const newNode = {
-			...node,
-			type: 'figure',
-			children: figureElement.children,
-			data: figureElement.data
-		}
-		console.log(newNode)
-		return newNode;
-	  });
-	};
+/**
+ * Recursively crawls the HAST tree and adds all HTML heading nodes to the given array.
+ * @params {Node} node
+ * @params {HeadingNode[]} headingNodes
+ */
+function findHeadingsRecursive(node,headingNodes) {
+  if (isHeadingNode(node)) {
+    headingNodes.push(node);
   }
+
+  if (node.children) {
+    let parent = node;
+    for (let child of parent.children) {
+      findHeadingsRecursive(child, headingNodes);
+    }
+  }
+}
+
 /**
  * @type { import('mdsvex').MdsvexOptions}
  */
@@ -213,8 +230,8 @@ const config = {
 		"dashes": "oldschool"
 	},
 
-	"remarkPlugins": [remarkReadingTime,headings, slug, highlight, abbr, remarkSponsor, remmarkPath],
-	"rehypePlugins": [[urls, processUrl], [autoLinkHeadings, { behavior: 'prepend' }]]
+	"remarkPlugins": [remarkReadingTime, headings, slug, highlight, abbr, remarkSponsor, remmarkPath],
+	"rehypePlugins": [[urls, processUrl],  [autoLinkHeadings, { behavior: 'prepend' }], toc]
 };
 
-export default config;
+export default config

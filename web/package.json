@@ -50,6 +50,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@jsdevtools/rehype-toc": "3.0.2",
     "@octokit/auth-app": "3.6.1",
     "@octokit/rest": "18.12.0",
     "@sanity/block-content-to-html": "2.0.0",
@@ -66,10 +67,8 @@
     "feed": "4.2.2",
     "graphql": "15.5.1",
     "graphql-request": "3.5.0",
-    "gray-matter": "4.0.3",
     "mdsvex": "latest",
     "open-graph": "0.2.6",
-    "redis": "4.2.0",
     "remark-autolink-headings": "6.1.0",
     "remark-highlight.js": "6.0.0",
     "remark-oembed": "1.2.2",
@@ -78,8 +77,6 @@
     "rss-parser": "3.12.0",
     "sanitize-html": "2.7.1",
     "sanity-codegen": "0.9.8",
-    "shar": "0.2.0",
-    "sharp": "^0.30.7",
     "sveltekit-i18n": "2.2.2",
     "turbocommons-ts": "3.8.0",
     "vite": "^3.0.0"

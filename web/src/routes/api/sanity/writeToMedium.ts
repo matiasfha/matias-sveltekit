@@ -1,27 +1,39 @@
 import slugify from '$lib/utils/slugify';
 import type { Posts } from 'src/schema.types';
 import { getRawMarkdown } from './generateMarkdown';
-
+const USER_ID = '141f5601d7971ac8cfaaa88d4c909a1134f148586299e7b6b591e09679b63085c';
+const TOKEN = import.meta.env.VITE_MEDIUM_TOKEN;
 export async function writeToMedium(post: Posts) {
 	try {
-		const res = await fetch('https://api.medium.com/v1/users/781cea6a33de/posts', {
+		const data = {
+			title: post.title,
+			contentFormat: 'markdown',
+			content: getRawMarkdown(post.content),
+			canonicalUrl: 'https://matiashernandez.dev/blog/post/' + slugify(post.title),
+			tags: ['javascript', 'web development', 'javascript tips', 'spanish'],
+			publishStatus: 'public'
+		};
+
+		const res = await fetch(`https://api.medium.com/v1/users/${USER_ID}/posts`, {
 			method: 'POST',
 			headers: {
-				Authorization: 'Bearer 29b9a4b510f94346e95cc4985059e1b3d1749b8c66d63cf0abf1efcf58eac8139'
+				Authorization: `Bearer ${TOKEN}`,
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				'Accept-Charset': 'utf-8'
 			},
-			body: JSON.stringify({
-				title: post.title,
-				contentFormat: 'markdown',
-				content: getRawMarkdown(post.content),
-				canonicalUrl: 'https://matiashernandez.dev/blog/post/' + slugify(post.title),
-				tags: ['javascript', 'web development', 'javascript tips', 'spanish'],
-				publishStatus: 'public'
-			})
+			body: JSON.stringify(data)
 		});
-		const json = await res.json();
+		if (res.ok) {
+			const json = await res.json();
+			return {
+				status: res.status,
+				slug: json
+			};
+		}
 		return {
 			status: res.status,
-			slug: json
+			error: res.statusText
 		};
 	} catch (e) {
 		console.error(e);

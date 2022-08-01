@@ -23,7 +23,7 @@ const config = {
     // for more information about preprocessorssg
     preprocess: [preprocess({
         "postcss": true
-    }), globalComponents, similarPostsLoader(), mdsvex(mdsvexConfig)],
+    }), globalComponents, mdsvex(mdsvexConfig),similarPostsLoader()],
 
     kit: {
         prerender: {

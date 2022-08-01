@@ -2,27 +2,12 @@ import slugify from '$lib/utils/slugify';
 import type { Posts } from '../../../schema.types';
 import { getRawMarkdown } from './generateMarkdown';
 
-const serializers = {
-	types: {
-		code: (props) => '```' + props.node.language + '\n' + props.node.code + '\n```',
-		table: (props) => {
-			const { rows } = props.node;
-			const headers = rows[0].cells;
-			const headersMarkdown = headers.map((header) => `${header}`).join(' | ');
-			const separator = '|' + headers.map((_) => '---').join(' | ') + '|';
-			const rowsContent = rows.slice(1, rows.length).map((row) => row.cells);
-			const rowsMarkdown = rowsContent.map((row) => `| ${row.join(' | ')} |`).join('\n');
-			return `| ${headersMarkdown} |\n${separator}\n${rowsMarkdown}`;
-		}
-	}
-};
-
 export default async function writeToDevTo(post: Posts & { image: string }) {
 	const article = {
 		title: post.title,
 		body_markdown: `
 ${getRawMarkdown(post.content)}
-
+\n\n
 ![Footer Social Card.jpg](https://cdn.hashnode.com/res/hashnode/image/upload/v1615457338201/5yOtr5SdF.jpeg)
 ✉️ [Únete a Micro-bytes](https://microbytes.matiashernandez.dev)         🐦 Sígueme en [Twitter](https://twitter.com/matiasfha)           ❤️ [Apoya mi trabajo](https://buymeacoffee.com/matiasfha) 
 `,

@@ -3,12 +3,15 @@ import { isValidSignature } from '@sanity/webhook';
 import type { RequestEvent } from '@sveltejs/kit';
 import type { Posts } from '../../../schema.types';
 
-import BlocksToMarkdown from '@sanity/block-content-to-markdown';
 import imageUrlBuilder from '@sanity/image-url';
 
 import { createFileInRepo, updateFileInRepo } from '$lib/utils/github';
+import { writeToMedium } from './writeToMedium';
 import writeToDevTo from './writeToDevTo';
 import writeToHashnode from './writeToHashnode';
+import { createClient } from 'sanity-codegen';
+import type { Documents } from '../../../schema.types';
+import { generateMarkdown } from './generateMarkdown';
 
 const clientOptions = {
 	projectId: 'cyypawp1',
@@ -19,79 +22,10 @@ const clientOptions = {
 	useCdn: true // `false` if you want to ensure fresh data
 };
 
+const client = createClient<Documents>(clientOptions);
 const builder = imageUrlBuilder(sanityClient(clientOptions));
 
-async function validateWebhook(request: Request, body: Request['body']) {
-	const headers = {};
-
-	request.headers.forEach((value, key) => {
-		headers[key] = value;
-	});
-
-	return isValidSignature(
-		JSON.stringify(body),
-		headers['sanity-webhook-signature'],
-		import.meta.env.VITE_SANITY_SECRET
-	);
-}
-
-const serializers = {
-	types: {
-		code: (props) => '```' + props.node.language + '\n' + props.node.code + '\n```',
-		table: (props) => {
-			const { rows } = props.node;
-			const headers = rows[0].cells;
-			const headersMarkdown = headers.map((header) => `${header}`).join(' | ');
-			const separator = '|' + headers.map((_) => '---').join(' | ') + '|';
-			const rowsContent = rows.slice(1, rows.length).map((row) => row.cells);
-			const rowsMarkdown = rowsContent.map((row) => `| ${row.join(' | ')} |`).join('\n');
-			return `| ${headersMarkdown} |\n${separator}\n${rowsMarkdown}`;
-		},
-		image: (props) => {
-			return `[!${props.node.alt}](${builder.image(props.node)})`;
-		}
-	}
-};
-
-function generateMarkdown({
-	date,
-	banner,
-	keywords,
-	title,
-	description,
-	bannerCredit,
-	content
-}: {
-	date: string;
-	banner: string;
-	keywords: string[];
-	title: string;
-	description: string;
-	bannerCredit: string;
-	content: Posts['content'];
-}) {
-	const keys = keywords
-		.map((keyword: string) => `- ${keyword}\n`)
-		.join()
-		.replace(/,+/g, '')
-		.trim();
-	return `
----
-date: ${date}
-banner: ${banner}
-keywords: \n${keys}
-title: "${title}"
-description: "${description}"
-bannerCredit: ${bannerCredit}
-tag: Posts
----
-
-${BlocksToMarkdown(content, { projectId: 'cyypawp1', dataset: 'production', serializers })}
-                   
-    `.trim();
-}
-
-async function writePost(post: Posts) {
+async function writePost(post: Posts, update = false) {
 	const markdown = generateMarkdown({
 		date: post._createdAt,
 		banner: builder.image(post.banner.asset._ref).url(),
@@ -102,119 +36,45 @@ async function writePost(post: Posts) {
 		content: post.content
 	});
 
-	const github = await createFileInRepo(markdown, post.title);
-	const dev = await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() });
-	const hashnode = await writeToHashnode({
-		...post,
-		image: builder.image(post.banner.asset._ref).url()
-	});
-	const medium = await writeToMedium(post);
-	return {
-		github,
-		dev,
-		hashnode,
-		medium
-	};
-}
-export async function PUT({ request }: RequestEvent) {
-	const body = await request.json();
-	if (!validateWebhook(request, body)) {
-		return {
-			status: 401,
-			body: {
-				message: 'Invalid signature',
-				signature: request.headers.get('sanity-webook-signature')
-			}
-		};
+	let promises = [];
+	if (!update) {
+		promises = [
+			await createFileInRepo(markdown, post.title),
+			await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() }),
+			await writeToHashnode({
+				...post,
+				image: builder.image(post.banner.asset._ref).url()
+			}),
+			await writeToMedium(post)
+		];
+	} else {
+		promises = [await createFileInRepo(markdown, post.title)];
 	}
+
 	try {
-		const post: Posts = body;
-
-		const markdown = generateMarkdown({
-			date: post._createdAt,
-			banner: builder.image(post.banner.asset._ref).url(),
-			keywords: body.keywords,
-			title: post.title,
-			description: post.description,
-			bannerCredit: post.banner.bannerCredit,
-			content: post.content
-		});
-
-		const res = await updateFileInRepo(markdown, post.title);
-
-		// @TODO
-		// How to update the article on Dev.to and Hashnode?
+		const res = await Promise.all(promises);
 		return {
-			body: {
-				res,
-				title: post.title
-			}
+			github: res[0] ?? null,
+			dev: res[1] ?? null,
+			hashnode: res[2] ?? null,
+			medium: res[3] ?? null
 		};
 	} catch (e) {
-		console.error(e);
 		return {
-			status: 500,
-			body: e.message
+			github: null,
+			dev: null,
+			hashnode: null,
+			medium: null,
+			error: e
 		};
 	}
 }
 
-export async function POST({ request }: RequestEvent) {
-	const body = await request.json();
-	if (!validateWebhook(request, body)) {
-		return {
-			status: 401,
-			body: {
-				message: 'Invalid signature',
-				signature: request.headers.get('sanity-webook-signature')
-			}
-		};
-	}
-	try {
-		const [post] = await client.query<Posts>('*[_type == "posts"] | order(_createdAt desc)');
-		const { github, hashnode, dev, medium } = await writePost(post);
-
-		return {
-			body: {
-				github,
-				dev,
-				hashnode,
-				medium
-			}
-		};
-	} catch (e) {
-		console.error(e);
-		return {
-			status: 500,
-			body: e.message
-		};
-	}
-}
-
-// async function shareToTwitter() {
-//     const requestTokenURL = 'https://api.twitter.com/oauth/request_token?oauth_callback=oob&x_auth_access_type=write';
-//     const authorizeURL = new URL('https://api.twitter.com/oauth/authorize');
-//     const accessTokenURL = 'https://api.twitter.com/oauth/access_token';
-//     const oauth = OAuth({
-//     consumer: {
-//         key: consumer_key,
-//         secret: consumer_secret
-//     },
-//     signature_method: 'HMAC-SHA1',
-//     hash_function: (baseString, key) => crypto.createHmac('sha1', key).update(baseString).digest('base64')
-//     });
-// }
-import { createClient } from 'sanity-codegen';
-import type { Documents } from '../../../schema.types';
-import { writeToMedium } from './writeToMedium';
-const client = createClient<Documents>(clientOptions);
-
-export async function GET() {
-	// const res = await getDeployStatus();
+async function generateContent(update = false) {
 	try {
 		const [post] = await client.query<Posts>('*[_type == "posts"] | order(_createdAt desc)');
 
-		const { github, hashnode, dev, medium } = await writePost(post);
+		const { github, hashnode, dev, medium } = await writePost(post, update);
 
 		return {
 			body: {
@@ -232,4 +92,50 @@ export async function GET() {
 			body: e.message
 		};
 	}
+}
+
+async function validateWebhook(request: Request, body: Request['body']) {
+	const headers = {};
+
+	request.headers.forEach((value, key) => {
+		headers[key] = value;
+	});
+
+	return isValidSignature(
+		JSON.stringify(body),
+		headers['sanity-webhook-signature'],
+		import.meta.env.VITE_SANITY_SECRET
+	);
+}
+
+export async function PUT({ request }: RequestEvent) {
+	const body = await request.json();
+	if (!validateWebhook(request, body)) {
+		return {
+			status: 401,
+			body: {
+				message: 'Invalid signature',
+				signature: request.headers.get('sanity-webook-signature')
+			}
+		};
+	}
+	return await generateContent(true);
+}
+
+export async function POST({ request }: RequestEvent) {
+	const body = await request.json();
+	if (!validateWebhook(request, body)) {
+		return {
+			status: 401,
+			body: {
+				message: 'Invalid signature',
+				signature: request.headers.get('sanity-webook-signature')
+			}
+		};
+	}
+	return await generateContent();
+}
+
+export async function GET() {
+	return await generateContent();
 }

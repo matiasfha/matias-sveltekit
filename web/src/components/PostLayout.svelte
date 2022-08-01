@@ -1,7 +1,6 @@
 <script context="module">
 	import { blockquote, h1} from '$components/typography/index';
 import { format } from 'date-fns';
-	// import type { Post } from '$lib/types';
 
 	export { blockquote, h1 };
 	
