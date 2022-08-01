@@ -1,0 +1,1116 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "matias-site",
+      "version": "1.0.3",
+      "platform": "node",
+      "private": true,
+      "scripts": {
+        "dev": "vite dev",
+        "build": "vite build",
+        "preview": "vite preview",
+        "check": "svelte-check --tsconfig ./tsconfig.json",
+        "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+        "lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
+        "format": "prettier --write --plugin-search-dir=. ."
+      },
+      "devDependencies": {
+        "@esbuild-plugins/node-globals-polyfill": "0.1.1",
+        "@esbuild-plugins/node-modules-polyfill": "0.1.4",
+        "@sveltejs/kit": "v1.0.0-next.377",
+        "@typescript-eslint/eslint-plugin": "^4.19.0",
+        "@typescript-eslint/parser": "^4.19.0",
+        "autoprefixer": "10.4.7",
+        "crypto-browserify": "3.12.0",
+        "cssnano": "^5.0.6",
+        "eslint": "^7.22.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-svelte3": "^3.2.0",
+        "globby": "13.1.2",
+        "netlify": "11.0.2",
+        "open-graph-scraper": "4.9.0",
+        "postcss": "8.4.14",
+        "postcss-load-config": "^3.1.0",
+        "postcss-nested": "5.0.5",
+        "prettier": "~2.2.1",
+        "prettier-plugin-svelte": "^2.2.0",
+        "prism-themes": "1.9.0",
+        "reading-time": "1.5.0",
+        "rehype-add-classes": "1.0.0",
+        "rehype-autolink-headings": "6.0.0",
+        "rehype-urls": "1.1.1",
+        "remark-abbr": "1.4.1",
+        "rollup-plugin-node-polyfills": "0.2.1",
+        "svelte": "^3.34.0",
+        "svelte-check": "^2.0.0",
+        "svelte-image-preprocessor-cloudinary": "0.0.3",
+        "svelte-preprocess": "^4.7.4",
+        "tailwindcss": "3.1.5",
+        "typescript": "4.7.4",
+        "unist-util-visit": "4.1.0",
+        "vite-imagetools": "^4.0.4"
+      },
+      "type": "module",
+      "dependencies": {
+        "@octokit/auth-app": "3.6.1",
+        "@octokit/rest": "18.12.0",
+        "@sanity/block-content-to-html": "2.0.0",
+        "@sanity/block-content-to-markdown": "0.0.5",
+        "@sanity/client": "3.3.2",
+        "@sanity/image-url": "1.0.1",
+        "@sanity/webhook": "1.0.2",
+        "@sveltejs/adapter-netlify": "next",
+        "@tailwindcss/aspect-ratio": "0.4.0",
+        "@tailwindcss/typography": "0.5.3",
+        "@types/node": "14.18.21",
+        "date-fns": "2.28.0",
+        "dotenv": "10.0.0",
+        "feed": "4.2.2",
+        "graphql": "15.5.1",
+        "graphql-request": "3.5.0",
+        "gray-matter": "4.0.3",
+        "mdsvex": "latest",
+        "open-graph": "0.2.6",
+        "redis": "4.2.0",
+        "remark-autolink-headings": "6.1.0",
+        "remark-highlight.js": "6.0.0",
+        "remark-oembed": "1.2.2",
+        "remark-reading-time": "2.0.1",
+        "remark-slug": "6.1.0",
+        "rss-parser": "3.12.0",
+        "sanitize-html": "2.7.1",
+        "sanity-codegen": "0.9.8",
+        "shar": "0.2.0",
+        "sharp": "^0.30.7",
+        "sveltekit-i18n": "2.2.2",
+        "turbocommons-ts": "3.8.0",
+        "vite": "^3.0.0"
+      }
+    },
+    "prefix": "/Users/matias/Development/matiasfha/matias-sveltekit/web"
+  },
+  "2 debug pnpm:context": {
+    "currentLockfileExists": false,
+    "storeDir": "/Users/matias/Library/pnpm/store/v3",
+    "virtualStoreDir": "/Users/matias/Development/matiasfha/matias-sveltekit/web/node_modules/.pnpm"
+  },
+  "3 debug pnpm:stage": {
+    "prefix": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "stage": "resolution_started"
+  },
+  "4 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@esbuild-plugins/node-modules-polyfill/0.1.4",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@esbuild-plugins/node-modules-polyfill",
+      "rawSpec": "0.1.4"
+    }
+  },
+  "5 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@esbuild-plugins/node-modules-polyfill/0.1.4",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "6 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/autoprefixer/10.4.7",
+    "wanted": {
+      "dependentId": ".",
+      "name": "autoprefixer",
+      "rawSpec": "10.4.7"
+    }
+  },
+  "7 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/autoprefixer/10.4.7",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "8 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/crypto-browserify/3.12.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "crypto-browserify",
+      "rawSpec": "3.12.0"
+    }
+  },
+  "9 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/crypto-browserify/3.12.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "10 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/globby/13.1.2",
+    "wanted": {
+      "dependentId": ".",
+      "name": "globby",
+      "rawSpec": "13.1.2"
+    }
+  },
+  "11 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/globby/13.1.2",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "12 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/open-graph-scraper/4.9.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "open-graph-scraper",
+      "rawSpec": "4.9.0"
+    }
+  },
+  "13 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/open-graph-scraper/4.9.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "14 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/netlify/11.0.2",
+    "wanted": {
+      "dependentId": ".",
+      "name": "netlify",
+      "rawSpec": "11.0.2"
+    }
+  },
+  "15 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/netlify/11.0.2",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "16 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/postcss/8.4.14",
+    "wanted": {
+      "dependentId": ".",
+      "name": "postcss",
+      "rawSpec": "8.4.14"
+    }
+  },
+  "17 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/postcss/8.4.14",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "18 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/postcss-nested/5.0.5",
+    "wanted": {
+      "dependentId": ".",
+      "name": "postcss-nested",
+      "rawSpec": "5.0.5"
+    }
+  },
+  "19 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/postcss-nested/5.0.5",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "20 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/prism-themes/1.9.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "prism-themes",
+      "rawSpec": "1.9.0"
+    }
+  },
+  "21 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prism-themes/1.9.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "22 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/reading-time/1.5.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "reading-time",
+      "rawSpec": "1.5.0"
+    }
+  },
+  "23 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/reading-time/1.5.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "24 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/rehype-add-classes/1.0.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "rehype-add-classes",
+      "rawSpec": "1.0.0"
+    }
+  },
+  "25 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/rehype-add-classes/1.0.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "26 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/rehype-autolink-headings/6.0.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "rehype-autolink-headings",
+      "rawSpec": "6.0.0"
+    }
+  },
+  "27 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/rehype-autolink-headings/6.0.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "28 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/rehype-urls/1.1.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "rehype-urls",
+      "rawSpec": "1.1.1"
+    }
+  },
+  "29 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/rehype-urls/1.1.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "30 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/remark-abbr/1.4.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "remark-abbr",
+      "rawSpec": "1.4.1"
+    }
+  },
+  "31 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/remark-abbr/1.4.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "32 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@esbuild-plugins/node-modules-polyfill/0.1.4",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "33 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/rollup-plugin-node-polyfills/0.2.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "rollup-plugin-node-polyfills",
+      "rawSpec": "0.2.1"
+    }
+  },
+  "34 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/rollup-plugin-node-polyfills/0.2.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "35 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/crypto-browserify/3.12.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "36 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/svelte-image-preprocessor-cloudinary/0.0.3",
+    "wanted": {
+      "dependentId": ".",
+      "name": "svelte-image-preprocessor-cloudinary",
+      "rawSpec": "0.0.3"
+    }
+  },
+  "37 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/svelte-image-preprocessor-cloudinary/0.0.3",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "38 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/autoprefixer/10.4.7",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "39 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/open-graph-scraper/4.9.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "40 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/netlify/11.0.2",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "41 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/postcss/8.4.14",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "42 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/postcss-nested/5.0.5",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "43 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prism-themes/1.9.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "44 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/rehype-add-classes/1.0.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "45 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/rehype-urls/1.1.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "46 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/rehype-autolink-headings/6.0.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "47 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/remark-abbr/1.4.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "48 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/rollup-plugin-node-polyfills/0.2.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "49 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/svelte-image-preprocessor-cloudinary/0.0.3",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "50 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-config-prettier/8.5.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "eslint-config-prettier",
+      "rawSpec": "^8.1.0"
+    }
+  },
+  "51 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-config-prettier/8.5.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "52 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/tailwindcss/3.1.5",
+    "wanted": {
+      "dependentId": ".",
+      "name": "tailwindcss",
+      "rawSpec": "3.1.5"
+    }
+  },
+  "53 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tailwindcss/3.1.5",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "54 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-config-prettier/8.5.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "55 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/postcss-load-config/3.1.4",
+    "wanted": {
+      "dependentId": ".",
+      "name": "postcss-load-config",
+      "rawSpec": "^3.1.0"
+    }
+  },
+  "56 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/postcss-load-config/3.1.4",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "57 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/unist-util-visit/4.1.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "unist-util-visit",
+      "rawSpec": "4.1.0"
+    }
+  },
+  "58 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/unist-util-visit/4.1.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "59 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/typescript/4.7.4",
+    "wanted": {
+      "dependentId": ".",
+      "name": "typescript",
+      "rawSpec": "4.7.4"
+    }
+  },
+  "60 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/typescript/4.7.4",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "61 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/cssnano/5.1.12",
+    "wanted": {
+      "dependentId": ".",
+      "name": "cssnano",
+      "rawSpec": "^5.0.6"
+    }
+  },
+  "62 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/cssnano/5.1.12",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "63 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/tailwindcss/3.1.5",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "64 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/postcss-load-config/3.1.4",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "65 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@octokit/auth-app/3.6.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@octokit/auth-app",
+      "rawSpec": "3.6.1"
+    }
+  },
+  "66 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@octokit/auth-app/3.6.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "67 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/unist-util-visit/4.1.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "68 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@octokit/rest/18.12.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@octokit/rest",
+      "rawSpec": "18.12.0"
+    }
+  },
+  "69 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@octokit/rest/18.12.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "70 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@sanity/block-content-to-html/2.0.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@sanity/block-content-to-html",
+      "rawSpec": "2.0.0"
+    }
+  },
+  "71 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@sanity/block-content-to-html/2.0.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "72 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@sanity/block-content-to-markdown/0.0.5",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@sanity/block-content-to-markdown",
+      "rawSpec": "0.0.5"
+    }
+  },
+  "73 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@sanity/block-content-to-markdown/0.0.5",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "74 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@sanity/client/3.3.2",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@sanity/client",
+      "rawSpec": "3.3.2"
+    }
+  },
+  "75 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@sanity/client/3.3.2",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "76 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/typescript/4.7.4",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "77 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@sanity/image-url/1.0.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@sanity/image-url",
+      "rawSpec": "1.0.1"
+    }
+  },
+  "78 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@sanity/image-url/1.0.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "79 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/prettier-plugin-svelte/2.7.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "prettier-plugin-svelte",
+      "rawSpec": "^2.2.0"
+    }
+  },
+  "80 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prettier-plugin-svelte/2.7.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "81 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/globby/13.1.2",
+    "size": 6877,
+    "status": "started"
+  },
+  "82 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/reading-time/1.5.0",
+    "size": 4255,
+    "status": "started"
+  },
+  "83 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@sanity/webhook/1.0.2",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@sanity/webhook",
+      "rawSpec": "1.0.2"
+    }
+  },
+  "84 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@sanity/webhook/1.0.2",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "85 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/cssnano/5.1.12",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "86 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@octokit/auth-app/3.6.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "87 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@tailwindcss/aspect-ratio/0.4.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@tailwindcss/aspect-ratio",
+      "rawSpec": "0.4.0"
+    }
+  },
+  "88 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@tailwindcss/aspect-ratio/0.4.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "89 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@octokit/rest/18.12.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "90 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@tailwindcss/typography/0.5.3",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@tailwindcss/typography",
+      "rawSpec": "0.5.3"
+    }
+  },
+  "91 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@tailwindcss/typography/0.5.3",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "92 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@sanity/block-content-to-html/2.0.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "93 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@sanity/block-content-to-markdown/0.0.5",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "94 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@sanity/client/3.3.2",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "95 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/date-fns/2.28.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "date-fns",
+      "rawSpec": "2.28.0"
+    }
+  },
+  "96 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/date-fns/2.28.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "97 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@sanity/image-url/1.0.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "98 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@types/node/14.18.21",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@types/node",
+      "rawSpec": "14.18.21"
+    }
+  },
+  "99 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@types/node/14.18.21",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "100 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/dotenv/10.0.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "dotenv",
+      "rawSpec": "10.0.0"
+    }
+  },
+  "101 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/dotenv/10.0.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "102 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@sanity/webhook/1.0.2",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "103 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prettier-plugin-svelte/2.7.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "104 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@tailwindcss/aspect-ratio/0.4.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "105 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/graphql/15.5.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "graphql",
+      "rawSpec": "15.5.1"
+    }
+  },
+  "106 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/graphql/15.5.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "107 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@tailwindcss/typography/0.5.3",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "108 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/graphql-request/3.5.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "graphql-request",
+      "rawSpec": "3.5.0"
+    }
+  },
+  "109 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/graphql-request/3.5.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "110 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/open-graph/0.2.6",
+    "wanted": {
+      "dependentId": ".",
+      "name": "open-graph",
+      "rawSpec": "0.2.6"
+    }
+  },
+  "111 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/open-graph/0.2.6",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "112 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@types/node/14.18.21",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "113 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/dotenv/10.0.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "114 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/reading-time/1.5.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "fetched"
+  },
+  "115 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/globby/13.1.2",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "fetched"
+  },
+  "116 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/date-fns/2.28.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "117 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/graphql/15.5.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "118 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/open-graph/0.2.6",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "119 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/graphql-request/3.5.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "120 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/prettier/2.2.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "prettier",
+      "rawSpec": "~2.2.1"
+    }
+  },
+  "121 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prettier/2.2.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "122 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/remark-autolink-headings/6.1.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "remark-autolink-headings",
+      "rawSpec": "6.1.0"
+    }
+  },
+  "123 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/remark-autolink-headings/6.1.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "124 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/remark-highlight.js/6.0.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "remark-highlight.js",
+      "rawSpec": "6.0.0"
+    }
+  },
+  "125 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/remark-highlight.js/6.0.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "126 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/prettier/2.2.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "127 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/remark-autolink-headings/6.1.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "128 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/remark-oembed/1.2.2",
+    "wanted": {
+      "dependentId": ".",
+      "name": "remark-oembed",
+      "rawSpec": "1.2.2"
+    }
+  },
+  "129 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/remark-oembed/1.2.2",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "130 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/remark-highlight.js/6.0.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "131 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/remark-oembed/1.2.2",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "132 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/eslint-plugin-svelte3/3.4.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "eslint-plugin-svelte3",
+      "rawSpec": "^3.2.0"
+    }
+  },
+  "133 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-svelte3/3.4.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "134 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/remark-slug/6.1.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "remark-slug",
+      "rawSpec": "6.1.0"
+    }
+  },
+  "135 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/remark-slug/6.1.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "136 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/eslint-plugin-svelte3/3.4.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "137 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/rss-parser/3.12.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "rss-parser",
+      "rawSpec": "3.12.0"
+    }
+  },
+  "138 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/rss-parser/3.12.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "139 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/remark-slug/6.1.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "140 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/rss-parser/3.12.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "141 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/feed/4.2.2",
+    "wanted": {
+      "dependentId": ".",
+      "name": "feed",
+      "rawSpec": "4.2.2"
+    }
+  },
+  "142 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/feed/4.2.2",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "143 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/sanity-codegen/0.9.8",
+    "wanted": {
+      "dependentId": ".",
+      "name": "sanity-codegen",
+      "rawSpec": "0.9.8"
+    }
+  },
+  "144 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/sanity-codegen/0.9.8",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "145 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/sanity-codegen/0.9.8",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "146 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/gray-matter/4.0.3",
+    "wanted": {
+      "dependentId": ".",
+      "name": "gray-matter",
+      "rawSpec": "4.0.3"
+    }
+  },
+  "147 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/gray-matter/4.0.3",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "148 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/redis/4.2.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "redis",
+      "rawSpec": "4.2.0"
+    }
+  },
+  "149 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/redis/4.2.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "150 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@esbuild-plugins/node-globals-polyfill/0.1.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@esbuild-plugins/node-globals-polyfill",
+      "rawSpec": "0.1.1"
+    }
+  },
+  "151 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@esbuild-plugins/node-globals-polyfill/0.1.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "152 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/mdsvex/0.10.6",
+    "wanted": {
+      "dependentId": ".",
+      "name": "mdsvex",
+      "rawSpec": "latest"
+    }
+  },
+  "153 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/mdsvex/0.10.6",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "154 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/mdsvex/0.10.6",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "155 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/svelte-check/2.8.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "svelte-check",
+      "rawSpec": "^2.0.0"
+    }
+  },
+  "156 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/svelte-check/2.8.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "157 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/svelte-check/2.8.0",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "158 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/remark-reading-time/2.0.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "remark-reading-time",
+      "rawSpec": "2.0.1"
+    }
+  },
+  "159 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/remark-reading-time/2.0.1",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "160 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/sveltekit-i18n/2.2.2",
+    "wanted": {
+      "dependentId": ".",
+      "name": "sveltekit-i18n",
+      "rawSpec": "2.2.2"
+    }
+  },
+  "161 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/sveltekit-i18n/2.2.2",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "162 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/sveltekit-i18n/2.2.2",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "163 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/@sveltejs/adapter-netlify/1.0.0-next.71",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@sveltejs/adapter-netlify",
+      "rawSpec": "next"
+    }
+  },
+  "164 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/@sveltejs/adapter-netlify/1.0.0-next.71",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "165 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/svelte-preprocess/4.10.7",
+    "wanted": {
+      "dependentId": ".",
+      "name": "svelte-preprocess",
+      "rawSpec": "^4.7.4"
+    }
+  },
+  "166 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/svelte-preprocess/4.10.7",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "resolved"
+  },
+  "167 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/svelte-preprocess/4.10.7",
+    "requester": "/Users/matias/Development/matiasfha/matias-sveltekit/web",
+    "status": "found_in_store"
+  },
+  "168 debug pnpm:fetching-progress": {
+    "attempt": 1,
+    "packageId": "registry.npmjs.org/feed/4.2.2",
+    "size": 24929,
+    "status": "started"
+  },
+  "169 error pnpm": {
+    "code": "ERR_PNPM_MALFORMED_METADATA",
+    "hint": "This might mean that the package was unpublished from the registry",
+    "spec": {
+      "fetchSpec": "0.2.0",
+      "name": "shar",
+      "type": "version"
+    },
+    "pkgsStack": [],
+    "err": {
+      "name": "pnpm",
+      "message": "Received malformed metadata for \"shar\"",
+      "code": "ERR_PNPM_MALFORMED_METADATA",
+      "stack": "pnpm: Received malformed metadata for \"shar\"\n    at default_1 (/Users/matias/.nvm/versions/node/v16.15.1/lib/node_modules/pnpm/dist/pnpm.cjs:85269:15)\n    at exports2.default (/Users/matias/.nvm/versions/node/v16.15.1/lib/node_modules/pnpm/dist/pnpm.cjs:85407:60)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async resolveNpm (/Users/matias/.nvm/versions/node/v16.15.1/lib/node_modules/pnpm/dist/pnpm.cjs:85819:22)\n    at async Object.resolve (/Users/matias/.nvm/versions/node/v16.15.1/lib/node_modules/pnpm/dist/pnpm.cjs:86031:28)\n    at async run (/Users/matias/.nvm/versions/node/v16.15.1/lib/node_modules/pnpm/dist/pnpm.cjs:92979:23)"
+    }
+  }
+}

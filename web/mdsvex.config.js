@@ -231,7 +231,7 @@ const config = {
 	},
 
 	"remarkPlugins": [remarkReadingTime, headings, slug, highlight, abbr, remarkSponsor, remmarkPath],
-	"rehypePlugins": [[urls, processUrl],  [autoLinkHeadings, { behavior: 'prepend' }], toc]
+	"rehypePlugins": [[urls, processUrl],  [autoLinkHeadings, { behavior: 'prepend' }]]
 };
 
 export default config
