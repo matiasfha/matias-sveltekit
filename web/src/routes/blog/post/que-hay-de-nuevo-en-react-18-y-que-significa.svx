@@ -19,21 +19,16 @@ tag: Posts
 La nueva versión de React trae consigo varios cambios y mejoras como por ejemplo: procesamiento por lotes automático (automatic batching), nuevas API comostartTransition, streaming SSR y un nuevo soporte para Suspense.
 
 
-
 La gran mayoría de estas características son soportadas por un nuevo desarrollo escencial: "renderizado concurrente". Un cambio interno que permite el desarrollo de nuevas y poderosas características de cara a los desarrolladores de aplicaciones y librerías.
-
 
 
 Revisemos cuales son estás nuevas características y mejoras y desentrañemos que significa cada una.
 
 
-
 # ¿Qué es "React Concurrente"?
 
 
-
 Esta es la característica escencial de todos los cambios agregados a React 18, es lo que está bajo el capó, permitiendo nuevos desarrollos, pero: ¿Qué es?
-
 
 
 ## ¿Qué es concurrencia?
@@ -41,19 +36,15 @@ Esta es la característica escencial de todos los cambios agregados a React 18, 
 Concurrencia singnifica que dos o más tareas puede sobreponerse, imagina una llamada telefónica, esta es no concurrente ya que solo puedes tomar una llamada a la vez, pero, también es posible que dejes una llamada en espera, tomes la segunda llamada por un tiempo determinado y retornes a la primera llamada.
 
 
-
 O como lo pone Dan Abramov en la siguiente imagen:
 
-![undefined](https://cdn.sanity.io/images/cyypawp1/production/db0e186c07d99ba7898eb259169e70ab9d34caa3-1580x590.png)
-
+![concurrent react example](https://cdn.sanity.io/images/cyypawp1/production/db0e186c07d99ba7898eb259169e70ab9d34caa3-1580x590.png)
 
 
 Este ejemplo sirve para inmediatamente descartar y aclarar que concurrencia no significa que puedes desarrollar dos o más tareas al mismo tiempo, si no, que en cualquier momento dado puedes estar atendiendo dos o más tareas (llamadas en el ejemplo), elijiendo cual ejecutar.
 
 
-
 Ahora, tal como lo indica el [post de anuncio de React 18](https://reactjs.org/blog/2022/03/29/react-v18.html), concurrencia no es una característica en si mismo. Es un mecanismo detrás del telón que permite a React preparar múltiples versiones de la UI al mismo tiempo. Un detalles de implementación.
-
 
 
 Esto implica que como desarrollador de aplicaciones con React no verás directamente como la concurrencia funciona o fue implementada, si no, que verás los efectos que ofrece por medio de nuevas API o mejoras en rendimiento.
@@ -88,7 +79,7 @@ Suspense, es una característica largamente esperada, una de las primeras muestr
 
 
 
-<YouTube youTubeId="[nLF0n9SACd4](https://www.youtube.com/watch?v=nLF0n9SACd4)" />
+<YouTube youTubeId="nLF0n9SACd4" />
 
 
 
@@ -114,7 +105,7 @@ Ahora con Suspense, un componente (llamémosle `DataLoader`) puede, durante el r
 
 
 
-React, recibirá este aviso y utilizará el componente Suspense más cercano en el árbol de componentes para desplegar un fallback mientras espera que el componente `DataLoader` termine su operación).
+React, recibirá este aviso y utilizará el componente Suspense más cercano en el árbol de componentes para desplegar un fallback mientras espera que el componente `DataLoader` termine su operación.
 
 
 
@@ -229,11 +220,8 @@ Este hook permite generar IDs únicos tanto en el cliente como en el servidor y 
 
 
 
->   
-Hidratacion o Hydration es un proceso utilizado cuando se hace renderizado en el servidor (SSR), dado que el proceso de renderizar los componentes se ejecuta en dos pasos: (simplificado).
-
+> Hidratacion o Hydration es un proceso utilizado cuando se hace renderizado en el servidor (SSR), dado que el proceso de renderizar los componentes se ejecuta en dos pasos: (simplificado).
 > 1. Se envía HTML no interactivo renderizado en el servidor.
-
 > 2.	Se agrega/inserta la interactividad una vez que javascript termina de cargar.
 
 
