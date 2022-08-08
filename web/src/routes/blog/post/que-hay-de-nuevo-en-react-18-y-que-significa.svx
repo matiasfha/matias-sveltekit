@@ -1,0 +1,295 @@
+
+---
+date: 2022-08-08T10:36:39Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/896babf204f57d039014d5e62cc06e7726da8acd-1280x710.png
+keywords: 
+- React 18
+- Suspense
+- React Suspense
+- React automatic batching
+- Concurrent react
+- react concurrencia
+- que es React
+- React
+title: "¿Qué hay de nuevo en React 18? ¿Y que significa?"
+description: "La nueva versión de React trae consigo varios cambios y mejoras como por ejemplo:  procesamiento por lotes automático (automatic batching), nuevas API como startTransition, streaming SSR y un nuevo soporte para Suspense, ¿Qué significa todo esto?"
+bannerCredit: undefined
+tag: Posts
+---
+La nueva versión de React trae consigo varios cambios y mejoras como por ejemplo: procesamiento por lotes automático (automatic batching), nuevas API comostartTransition, streaming SSR y un nuevo soporte para Suspense.
+
+
+
+La gran mayoría de estas características son soportadas por un nuevo desarrollo escencial: "renderizado concurrente". Un cambio interno que permite el desarrollo de nuevas y poderosas características de cara a los desarrolladores de aplicaciones y librerías.
+
+
+
+Revisemos cuales son estás nuevas características y mejoras y desentrañemos que significa cada una.
+
+
+
+# ¿Qué es "React Concurrente"?
+
+
+
+Esta es la característica escencial de todos los cambios agregados a React 18, es lo que está bajo el capó, permitiendo nuevos desarrollos, pero: ¿Qué es?
+
+
+
+## ¿Qué es concurrencia?
+
+Concurrencia singnifica que dos o más tareas puede sobreponerse, imagina una llamada telefónica, esta es no concurrente ya que solo puedes tomar una llamada a la vez, pero, también es posible que dejes una llamada en espera, tomes la segunda llamada por un tiempo determinado y retornes a la primera llamada.
+
+
+
+O como lo pone Dan Abramov en la siguiente imagen:
+
+![undefined](https://cdn.sanity.io/images/cyypawp1/production/db0e186c07d99ba7898eb259169e70ab9d34caa3-1580x590.png)
+
+
+
+Este ejemplo sirve para inmediatamente descartar y aclarar que concurrencia no significa que puedes desarrollar dos o más tareas al mismo tiempo, si no, que en cualquier momento dado puedes estar atendiendo dos o más tareas (llamadas en el ejemplo), elijiendo cual ejecutar.
+
+
+
+Ahora, tal como lo indica el [post de anuncio de React 18](https://reactjs.org/blog/2022/03/29/react-v18.html), concurrencia no es una característica en si mismo. Es un mecanismo detrás del telón que permite a React preparar múltiples versiones de la UI al mismo tiempo. Un detalles de implementación.
+
+
+
+Esto implica que como desarrollador de aplicaciones con React no verás directamente como la concurrencia funciona o fue implementada, si no, que verás los efectos que ofrece por medio de nuevas API o mejoras en rendimiento.
+
+
+
+Basado en el ejemplo de la llamada telefónica, cuando estás en una llamada y recibes una segunda llamada que consideras urgente, puedes, poner la primera llamada en espera, es decir, puedes interrumpir la primera tarea.
+
+
+
+Esta interrupción es una propiedad clave en la concurrencia en React: El renderizado es interruptible. Antes de esta implementación, una vez que el renderizado inicia, nada puede interrumpirlo hasta que el usuario ve el resultado en pantalla.
+
+
+
+Con la nueva implementación (y una vez que la "activas") React puede iniciar el renderizado de un árbol de componentes, pausar en medio del proceso para realizar otra tarea (renderizar otro trozo del árbol de componentes) y continuar más tarde.
+
+
+
+React garantiza que la interfaz se mantendrá consistente y en sincronía, incluso si un renderizado es interrumpido.
+
+
+
+Un ejemplo más directo es el uso de `useState`. Hasta ahora React solo podía trabajar en la actualización de un estado a la vez, es decir, todos los cambios de estado son considerados "urgentes". Pero ahora con el nuevo proceso de concurrencia y APIs como `startTransition`, puedes marcar transiciones de estados como **_"no urgentes"_** permitiendo que otras operaciones con mayor importancia tomen precedencia.
+
+
+
+## ¿Qué es Suspense?
+
+
+
+Suspense, es una característica largamente esperada, una de las primeras muestras de esta fue en una presentación hecha por [Dan Abramov en JSConf Iceland 2018](https://www.youtube.com/watch?v=nLF0n9SACd4)
+
+
+
+<YouTube youTubeId="[nLF0n9SACd4](https://www.youtube.com/watch?v=nLF0n9SACd4)" />
+
+
+
+Ahora (al fin) en React 18 puedes utilizar Suspense para la obtención de datos (data fetching) por medio de frameworks como Relay, Next.js, Remix, etc.
+
+
+
+Pero, ¿Qué es?
+
+Imagina un componente que necesita realizar una tarea asíncrona antes de ser renderizado, por ejemplo, obtener datos desde alguna API.
+
+
+
+Antes de Suspense, este componente se quedaría en un estado de "cargando" (por ejemplo `isLoading = true`) y renderizaría algún tipo de componente de respaldo o fallback (por ejemplo mostrar un Loader)
+
+
+
+Es decir, el componente se encarga de si mismo para mostrar en al interfaz que está esperando algo.
+
+
+
+Ahora con Suspense, un componente (llamémosle `DataLoader`) puede, durante el renderizado avisar que aún no está listo, que hay datos faltantes y parar el renderizado hasta completar la operación de obtención de datos.
+
+
+
+React, recibirá este aviso y utilizará el componente Suspense más cercano en el árbol de componentes para desplegar un fallback mientras espera que el componente `DataLoader` termine su operación).
+
+
+
+Otra forma de explicarlo, es haciendo referencia a un bloque `try/catch` pero para los estados de carga. Cuando un componente avisa que "aun no está listo", evento que ocurre durante el "intento" (`try`) de renderizado, el bloqueSuspense más cercano (`catch`) muestra el fallback. Después cuando laPromise es resuelta, el renderizado del componente se "reintenta" o "resume".
+
+
+
+## ¿Qué es "automatic batching?
+
+
+
+Una nueva característica o cambio que React 18 trae consigo es el "automatic batching".
+
+
+
+Batching (o procesado por lotes) es cuando React agrupa múltiples actualizaciones de estado y las ejecuta en un sólo re-render.
+
+
+
+Previo a este cambio, la única parte en donde esta agrupación de cambios de estado es ejecutada es dentro de los manejadores de eventos como `onClick`, es decir, cambios de estado dentro de promesas y manejadores de eventos nativos, no son ejecutados en grupo, pero ahora si lo serán.
+
+```javascript
+// Antes: El componente se renderizará dos veces, una vez por cada llamada a `setState`
+setTimeout(() => {
+  setCount(c => c + 1);
+  setFlag(f => !f);
+
+}, 1000);
+
+
+// Ahora: El componente se renderizará solo una vez
+setTimeout(() => {
+  setCount(c => c + 1);
+  setFlag(f => !f);
+
+}, 1000);,
+```
+
+
+
+## ¿Qué son Transiciones de estado?
+
+
+
+Este es un nuevo concepto en React, concepto que permite diferenciar entre actualizaciones de estado urgentes y no urgentes.
+
+
+
+Un ejemplo de esto es:
+
+
+
+* **Urgente**: Cambios en un input (el usuario está tecleando), click en un botón, arrastrar un elemento, etc. Por lo general, interacciones del usuario.
+* **Transición**: Cambios de una vista o representación de la UI a otra.
+
+
+
+El ejemplo clásico de esta característica es una interfaz de búsqueda en donde existe un input que permite al usuario escribir y una lista de resultados.
+
+
+
+Esta interfaz realiza la búsqueda de forma inmediata, es decir, mientras el usuario esta escribiendo en el input.
+
+
+
+La expectativa del usuario es poder escribir rápidamente lo que busca en el input y que el resultado aparecerá "de apoco" a medida escribe.
+
+
+
+Hasta ahora, para lograr este efecto se utilizan técnicas como "debouncing", ahora con las nuevas API ofrecidas por React, este efecto - Permitir que se escriba de inmediato y obtener un pequeño desface en la transición de la lista de búsqueda - se puede lograr al marcar un cambio como "transición".
+
+
+
+```javascript
+import {startTransition} from 'react';
+
+// Urgente: Mostrar inmediatamente lo que se esta escribiendo
+setInputValue(input);
+
+// Marcar los otros cambios de estados como transición
+startTransition(() => {
+  /	/ Transicion: Mostrar los resutlados
+  setSearchQuery(input);
+});
+```
+
+
+
+Esto quiere decir, que los cambios en la UI solicitados por `setSearchQuery` son marcados como no urgentes y pueden ser interrumpidos.
+
+
+
+> Debouncing es una estrategia para manejar situaciones que "pasan muy amenudo", por ejemplo el escribir en un input. La idea es lanzar una búsqueda cada vez que el usuario escribe en el input, pero la escritura es un proceso rápido y la búsqueda puede tomar tiempo. Esta técnica permite "esperar" a que el usuario haga una pausa para ejecutar la tarea subyacente
+
+## Nuevos hooks
+
+
+
+React 18 introduce nuevos hooks que permiten manejar de forma adecuada las nuevas características ofrecidas, estos hooks son:
+
+
+
+### `useId`
+
+
+
+Este hook permite generar IDs únicos tanto en el cliente como en el servidor y así evitar problemas en el proceso de hidratación. Su uso es importante ya que permite el correcto funcionamiento de las nuevas capacidades de streaming the HTML.
+
+
+
+> IMPORTANTE Este hook no es para generar los valores `key` de una lista. Para ello debes usar la información de tus datos. Te invito a leer más sobre [como funciona la propkey en este artículo para Escuela Frontend.](https://www.escuelafrontend.com/articulos/como-funciona-la-prop-key-en-react)
+
+
+
+>   
+Hidratacion o Hydration es un proceso utilizado cuando se hace renderizado en el servidor (SSR), dado que el proceso de renderizar los componentes se ejecuta en dos pasos: (simplificado).
+
+> 1. Se envía HTML no interactivo renderizado en el servidor.
+
+> 2.	Se agrega/inserta la interactividad una vez que javascript termina de cargar.
+
+
+
+### `useTransition`
+
+
+
+Este hook junto a `startTransition` te permiten marcar cambios de estados como no urgentes.
+
+
+
+Los cambios de estados son considerados urgentes por defecto. React permitirá que los estados marcados como no urgentes sean interrumpidos si un cambio urgente ocurre.
+
+
+
+### `useDeferedValue`
+
+
+
+Es una implementación similar a la estrategía de debouncing permitiendo diferir renderizados de partes no urgentes de la UI. Este renderizado es interruptible y no bloqueará las acciones del usuario.
+
+
+
+### `useSyncExternalStore`
+
+
+
+Este hook permite que sistemas de manejo de estado externos a React puedan soportar lecturas concurrentes forzando que los cambios de este store sean sincronos. Ya no necesitarás utilizar `useEffect` para implementar suscripciones a fuentes de datos externos.
+
+
+
+> Tal como dice la documentación, este hook esta pensado para ser utilizado por librerías de manejo de estado y no directamente en el código de aplicaciones
+
+
+
+### `useInsertionEffect`
+
+
+
+Este hook permite que librerías de CSS-in-JS mejores ciertos aspectos del proceso de inyección de estilos. Este hook se ejecutará después de que el DOM sea manipulado pero antes de los efecots de "layout" lean los cambios.
+
+
+
+Este es un hook 100% pensado para desarrolladores de librerías de CSS-in-JS.
+
+
+
+
+
+## Conclusión
+
+
+
+En términos generales, estos son los cambios más importantes en React, el siguiente paso es migrar tu aplicación a React 18 y comenzar a implementar los cambios necesarios para adoptar y aprovechar las nuevas características como Suspense y transiciones.
+
+
+
+Puedes encontrar más detalles [en este enlace a una de las discusiones del grupo de trabajo de react.](https://github.com/reactwg/react-18/discussions/46) (en inglés)
