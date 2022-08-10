@@ -41,7 +41,7 @@ import { format } from 'date-fns';
 	})
 </script>
 
-<Seo {title} {description} {keywords} isBlogPost={true} canonical={canonical} />
+<Seo {title} {description} {keywords} isBlogPost={true} canonical={canonical} {banner} />
 <div class="w-full pb-4 px-0 h-entry" >
 	<header
 		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[20rem] overflow-hidden"
@@ -144,7 +144,7 @@ import { format } from 'date-fns';
 	</section>
 	{/if}
 
-		<!-- <input type="hidden" name="IL_IN_ARTICLE"> -->
+		
 		<ins class="adsbygoogle mt-10"
 			style="display:block; text-align:center;"
 			data-ad-layout="in-article"
