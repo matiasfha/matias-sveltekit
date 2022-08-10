@@ -22,7 +22,8 @@ const config = {
     // Consult https://github.com/sveltejs/svelte-preprocess
     // for more information about preprocessorssg
     preprocess: [preprocess({
-        "postcss": true
+        "postcss": true,
+        preserve: ['partytown']
     }), globalComponents, mdsvex(mdsvexConfig),similarPostsLoader()],
 
     kit: {

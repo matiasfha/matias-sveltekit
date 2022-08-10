@@ -1,3 +1,7 @@
+<script context="module">
+	export const hydrate = false 
+	export const prerender = true
+</script>
 <script lang="ts">
 	import type { ContentElement, Latest } from '$lib/types';
 	import Seo from '$components/Seo.svelte';
@@ -42,7 +46,7 @@
 	title="Testing, React, Typescript and Remix with Kent C. Dodds"
 	meta="3rd Season Episode 01"
 	description=""
-	url="https://www.cafecon.tech/1081172/8869619-testing-react-typescript-and-remix-with-kent-c-dodds"
+	url="https://anchor.fm/cafecontech/episodes/Testing--React--Typescript-and-Remix-with-Kent-C--Dodds-e1k9unm/a-a85b5vd"
 	type="podcast"
 />
 

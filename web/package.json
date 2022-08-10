@@ -51,6 +51,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@builder.io/partytown": "0.6.4",
     "@jsdevtools/rehype-toc": "3.0.2",
     "@octokit/auth-app": "3.6.1",
     "@octokit/rest": "18.12.0",

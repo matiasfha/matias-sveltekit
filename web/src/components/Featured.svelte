@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { t } from '$lib/translations';
+	import { AnchorFm } from 'sveltekit-embed';
+	
 	export let image: string;
 	export let title: string;
 	export let meta: string;
@@ -56,7 +58,17 @@
 
 						{#if type === 'podcast'}
 							<div class="w-full font-body">
-								<iframe src="https://anchor.fm/cafecontech/embed/episodes/Testing--React--Typescript-and-Remix-with-Kent-C--Dodds-e1k9unm/a-a85b5vd" height="160px" width="100%" frameborder="0" scrolling="no" title="Podcast Player"></iframe>
+								<iframe
+									data-testid="buzzsprout"
+									class="buzzsprout-mdx-embed"
+									title={`cafecontech-Testing--React--Typescript-and-Remix-with-Kent-C--Dodds-e1k9unm/a-a85b5vd`}
+									src={`https://anchor.fm/cafecontech/embed/episodes/Testing--React--Typescript-and-Remix-with-Kent-C--Dodds-e1k9unm/a-a85b5vd`}
+									width="100%"
+									height="200"
+									frameBorder="0"
+									scrolling="no"
+								/>
+								
 							</div>
 						{:else if description}
 							<div

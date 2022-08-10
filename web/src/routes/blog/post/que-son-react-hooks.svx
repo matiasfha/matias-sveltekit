@@ -18,4 +18,4 @@ bannerCredit: <span>Photo by <a href="https://unsplash.com/@steve_j?utm_source=u
 
 
 > TLDR; Este post es parte del episodio 16 de la primera temporada de de mi podcast [Café con Tech](https://www.cafecon.tech)
-<Buzzsprout buzzsproutId="1081172/4728410-react-hooks" />
+<Podcast episode="cafecontech/embed/episodes/React-Hooks-e1k9um8" />
