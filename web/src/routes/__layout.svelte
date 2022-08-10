@@ -64,7 +64,7 @@
   <script bind:this={scriptEl}></script>
 
   <!-- Infolinks ads  -->
-	<script type="text/javascript">
+	<script type="text/partytown">
 		var infolinks_pid = 3369090;
 		var infolinks_wsid = 0;
 	</script>
