@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 <script>
 	import { afterUpdate, onMount } from 'svelte';
 	import Seo from './Seo.svelte';
-	
+	import { Cloudinary } from 'cloudinary-core'
 	// Props
 	
 	export let banner= "";
@@ -27,10 +27,12 @@ import { format } from 'date-fns';
 	export let likes = []
 	export let retweet = []
 	
-	
+
 	let currentUrl= "";
 	afterUpdate(() => {
 		currentUrl = window.location.href;
+		const cl = Cloudinary.new({ cloud_name: 'matiasfha' });
+		cl.responsive()
 	});
 	
 	let adsbygoogle = [{}]
@@ -41,14 +43,15 @@ import { format } from 'date-fns';
 	})
 </script>
 
-<Seo {title} {description} {keywords} isBlogPost={true} canonical={canonical} {banner} />
+<Seo {title} {description} {keywords} isBlogPost={true} canonical={canonical} banner={banner} />
 <div class="w-full pb-4 px-0 h-entry" >
 	<header
 		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[20rem] overflow-hidden"
 	>
 		<img
 			src={banner}
-			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm u-photo"
+			data-src={banner}
+			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm u-photo cld-responsive"
 			alt={title}
 		/>
 		<div class="flex flex-col max-w-[98vw] md:max-w-[40vw] z-10  self-end mx-auto md:ml-0 md:mr-12">

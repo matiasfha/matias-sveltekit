@@ -19,6 +19,8 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^4.19.0
   '@typescript-eslint/parser': ^4.19.0
   autoprefixer: 10.4.7
+  cloudinary: 1.30.1
+  cloudinary-core: 2.13.0
   crypto-browserify: 3.12.0
   cssnano: ^5.0.6
   date-fns: 2.28.0
@@ -80,6 +82,8 @@ dependencies:
   '@tailwindcss/aspect-ratio': 0.4.0_tailwindcss@3.1.5
   '@tailwindcss/typography': 0.5.3_tailwindcss@3.1.5
   '@types/node': 14.18.21
+  cloudinary: 1.30.1
+  cloudinary-core: 2.13.0_lodash@4.17.21
   date-fns: 2.28.0
   dotenv: 10.0.0
   feed: 4.2.2
@@ -2021,7 +2025,6 @@ packages:
   /@tootallnate/once/1.1.2:
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
     engines: {node: '>= 6'}
-    dev: true
     optional: true
 
   /@tootallnate/once/2.0.0:
@@ -2240,7 +2243,6 @@ packages:
   /acorn-walk/8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
     engines: {node: '>=0.4.0'}
-    dev: true
     optional: true
 
   /acorn/7.4.1:
@@ -2351,7 +2353,6 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       tslib: 2.4.0
-    dev: true
     optional: true
 
   /astral-regex/2.0.0:
@@ -2660,7 +2661,6 @@ packages:
   /bytes/3.1.2:
     resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
     engines: {node: '>= 0.8'}
-    dev: true
     optional: true
 
   /cacheable-lookup/5.0.4:
@@ -2849,7 +2849,6 @@ packages:
       lodash: '>=4.0'
     dependencies:
       lodash: 4.17.21
-    dev: true
 
   /cloudinary/1.30.0:
     resolution: {integrity: sha512-4f1YmUS+QxhTdpPd+kYpjgTYDxJAxpyZ8TXOnCa2NE2Iew2JwKQwvo4o5YkCM9HbcH+NzymlMocxSDafhLaBmQ==}
@@ -2864,6 +2863,20 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /cloudinary/1.30.1:
+    resolution: {integrity: sha512-Vri+R4VZXZUQWJ3vOoB5b0vjigxI/INRhzZF8E0A1O07bBNrwWAvodtDyumIk3RvEcgxzjvnqq83CPqoUyzEtA==}
+    engines: {node: '>=0.6'}
+    dependencies:
+      cloudinary-core: 2.13.0_lodash@4.17.21
+      core-js: 3.6.5
+      lodash: 4.17.21
+      q: 1.5.1
+    optionalDependencies:
+      proxy-agent: 5.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /color-convert/1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
@@ -2947,7 +2960,6 @@ packages:
     resolution: {integrity: sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==}
     deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
     requiresBuild: true
-    dev: true
 
   /core-util-is/1.0.2:
     resolution: {integrity: sha512-3lqz5YjWTYnW6dlDa5TLaTCcShfar1e40rmcJVwCBJC6mWlFuj0eCHIElmG1g5kyuJ/GD+8Wn4FFCcz4gJPfaQ==}
@@ -3205,7 +3217,6 @@ packages:
   /data-uri-to-buffer/3.0.1:
     resolution: {integrity: sha512-WboRycPNsVw3B3TL559F7kuBUM4d8CgMEvk6xEJlOp7OBPjt6G7z8WMWlD2rOFZLk6OYfFIUGsCOWzcQH9K2og==}
     engines: {node: '>= 6'}
-    dev: true
     optional: true
 
   /data-uri-to-buffer/4.0.0:
@@ -3294,7 +3305,6 @@ packages:
       escodegen: 1.14.3
       esprima: 4.0.1
       vm2: 3.9.10
-    dev: true
     optional: true
 
   /delayed-stream/1.0.0:
@@ -3305,7 +3315,6 @@ packages:
   /depd/2.0.0:
     resolution: {integrity: sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==}
     engines: {node: '>= 0.8'}
-    dev: true
     optional: true
 
   /deprecation/2.3.1:
@@ -3746,7 +3755,6 @@ packages:
       optionator: 0.8.3
     optionalDependencies:
       source-map: 0.6.1
-    dev: true
     optional: true
 
   /escodegen/2.0.0:
@@ -3897,7 +3905,6 @@ packages:
   /estraverse/4.3.0:
     resolution: {integrity: sha512-39nnKffWz8xN1BU/2c79n9nB9HDzo0niYUqx6xyqUnyoAnQyyWpOTdZEeiCch8BBu515t4wp9ZmgVfVhn9EBpw==}
     engines: {node: '>=4.0'}
-    dev: true
 
   /estraverse/5.3.0:
     resolution: {integrity: sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==}
@@ -4019,7 +4026,6 @@ packages:
   /file-uri-to-path/2.0.0:
     resolution: {integrity: sha512-hjPFI8oE/2iQPVe4gbrJ73Pp+Xfub2+WI2LlXDbsaJBwT5wuMh35WNWVYYTpnz895shtwfyutMFLFywpQAFdLg==}
     engines: {node: '>= 6'}
-    dev: true
     optional: true
 
   /fill-range/7.0.1:
@@ -4145,7 +4151,6 @@ packages:
       graceful-fs: 4.2.10
       jsonfile: 4.0.0
       universalify: 0.1.2
-    dev: true
     optional: true
 
   /fs.realpath/1.0.0:
@@ -4164,7 +4169,6 @@ packages:
     dependencies:
       readable-stream: 1.1.14
       xregexp: 2.0.0
-    dev: true
     optional: true
 
   /function-bind/1.1.1:
@@ -4235,7 +4239,6 @@ packages:
       ftp: 0.3.10
     transitivePeerDependencies:
       - supports-color
-    dev: true
     optional: true
 
   /getpass/0.1.7:
@@ -4338,7 +4341,6 @@ packages:
 
   /graceful-fs/4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
-    dev: true
 
   /graphql-request/3.5.0_graphql@15.5.1:
     resolution: {integrity: sha512-Io89QpfU4rqiMbqM/KwMBzKaDLOppi8FU8sEccCE4JqCgz95W9Q8bvxQ4NfPALLSMvg9nafgg8AkYRmgKSlukA==}
@@ -4571,7 +4573,6 @@ packages:
       setprototypeof: 1.2.0
       statuses: 2.0.1
       toidentifier: 1.0.1
-    dev: true
     optional: true
 
   /http-proxy-agent/4.0.1:
@@ -4583,7 +4584,6 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
-    dev: true
     optional: true
 
   /http-proxy-agent/5.0.0:
@@ -4635,7 +4635,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       safer-buffer: 2.1.2
-    dev: true
     optional: true
 
   /iconv-lite/0.6.3:
@@ -4715,12 +4714,10 @@ packages:
 
   /ip/1.1.8:
     resolution: {integrity: sha512-PuExPYUiu6qMBQb4l06ecm6T6ujzhmh+MeJcW9wa89PoAz5pvd4zPgN5WJV104mb6S2T1AwNIAaB70JNrLQWhg==}
-    dev: true
     optional: true
 
   /ip/2.0.0:
     resolution: {integrity: sha512-WKa+XuLG1A1R0UWhl2+1XQSi+fZWMsYKffMZTTYsiZaUD8k2yDAj5atimTUD2TZkyCkNEeYE5NhFZmupOGtjYQ==}
-    dev: true
     optional: true
 
   /is-arrayish/0.3.2:
@@ -4812,7 +4809,6 @@ packages:
 
   /isarray/0.0.1:
     resolution: {integrity: sha512-D2S+3GLxWH+uhrNEcoh/fnmYeP8E8/zHl644d/jdA0g2uyXvy3sb0qxotE+ne0LtccHknQzWwZEzhak7oJ0COQ==}
-    dev: true
     optional: true
 
   /isarray/1.0.0:
@@ -4943,7 +4939,6 @@ packages:
     resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}
     optionalDependencies:
       graceful-fs: 4.2.10
-    dev: true
     optional: true
 
   /jsonwebtoken/8.5.1:
@@ -5162,7 +5157,6 @@ packages:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
     dependencies:
       yallist: 3.1.1
-    dev: true
     optional: true
 
   /lru-cache/6.0.0:
@@ -5353,7 +5347,6 @@ packages:
   /netmask/2.0.2:
     resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
     engines: {node: '>= 0.4.0'}
-    dev: true
     optional: true
 
   /no-case/3.0.4:
@@ -5570,7 +5563,6 @@ packages:
       socks-proxy-agent: 5.0.1
     transitivePeerDependencies:
       - supports-color
-    dev: true
     optional: true
 
   /pac-resolver/5.0.1:
@@ -5580,7 +5572,6 @@ packages:
       degenerator: 3.0.2
       ip: 1.1.8
       netmask: 2.0.2
-    dev: true
     optional: true
 
   /param-case/3.0.4:
@@ -6216,12 +6207,10 @@ packages:
       socks-proxy-agent: 5.0.1
     transitivePeerDependencies:
       - supports-color
-    dev: true
     optional: true
 
   /proxy-from-env/1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
-    dev: true
     optional: true
 
   /psl/1.9.0:
@@ -6252,7 +6241,6 @@ packages:
   /q/1.5.1:
     resolution: {integrity: sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==}
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
-    dev: true
 
   /qs/6.11.0:
     resolution: {integrity: sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==}
@@ -6298,7 +6286,6 @@ packages:
       http-errors: 2.0.0
       iconv-lite: 0.4.24
       unpipe: 1.0.0
-    dev: true
     optional: true
 
   /rc/1.2.8:
@@ -6323,7 +6310,6 @@ packages:
       inherits: 2.0.4
       isarray: 0.0.1
       string_decoder: 0.10.31
-    dev: true
     optional: true
 
   /readable-stream/2.3.7:
@@ -6729,7 +6715,6 @@ packages:
 
   /setprototypeof/1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
-    dev: true
     optional: true
 
   /sha.js/2.4.11:
@@ -6821,7 +6806,6 @@ packages:
   /smart-buffer/4.2.0:
     resolution: {integrity: sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==}
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
-    dev: true
     optional: true
 
   /socks-proxy-agent/5.0.1:
@@ -6833,7 +6817,6 @@ packages:
       socks: 2.7.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
     optional: true
 
   /socks/2.7.0:
@@ -6842,7 +6825,6 @@ packages:
     dependencies:
       ip: 2.0.0
       smart-buffer: 4.2.0
-    dev: true
     optional: true
 
   /sorcery/0.10.0:
@@ -6909,7 +6891,6 @@ packages:
   /statuses/2.0.1:
     resolution: {integrity: sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==}
     engines: {node: '>= 0.8'}
-    dev: true
     optional: true
 
   /stdopt/2.2.0:
@@ -6929,7 +6910,6 @@ packages:
 
   /string_decoder/0.10.31:
     resolution: {integrity: sha512-ev2QzSzWPYmy9GuqfIVildA4OdcGLeFZQrq5ys6RtiuF+RQQiZWr8TZNyAcuVXyQRYfEO+MsoB/1BuQVhOJuoQ==}
-    dev: true
     optional: true
 
   /string_decoder/1.1.1:
@@ -7303,7 +7283,6 @@ packages:
   /toidentifier/1.0.1:
     resolution: {integrity: sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==}
     engines: {node: '>=0.6'}
-    dev: true
     optional: true
 
   /tough-cookie/2.5.0:
@@ -7536,7 +7515,6 @@ packages:
   /unpipe/1.0.0:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
-    dev: true
     optional: true
 
   /update-browserslist-db/1.0.5_browserslist@4.21.3:
@@ -7662,7 +7640,6 @@ packages:
     dependencies:
       acorn: 8.8.0
       acorn-walk: 8.2.0
-    dev: true
     optional: true
 
   /w3c-hr-time/1.0.2:
@@ -7778,7 +7755,6 @@ packages:
 
   /xregexp/2.0.0:
     resolution: {integrity: sha512-xl/50/Cf32VsGq/1R8jJE5ajH1yMCQkpmoS10QbFZWl2Oor4H0Me64Pu2yxvsRWK3m6soJbmGfzSR7BYmDcWAA==}
-    dev: true
     optional: true
 
   /xtend/4.0.2:
@@ -7787,7 +7763,6 @@ packages:
 
   /yallist/3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
-    dev: true
     optional: true
 
   /yallist/4.0.0:

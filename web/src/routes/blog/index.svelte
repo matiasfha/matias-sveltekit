@@ -7,6 +7,21 @@
 	import { format } from 'date-fns'
 
 	import type { Post } from '$lib/types';
+
+	import { Cloudinary } from 'cloudinary-core'
+	import { browser } from '$app/env';
+	import { afterUpdate } from 'svelte';
+	
+	afterUpdate(() => {
+		if(browser) {
+			const cl = Cloudinary.new({ cloud_name: 'matiasfha' });
+			cl.responsive()
+		}
+	})
+		
+	
+	
+
 	export let posts: Post[];
 	export let featured: Post;
 	let searchItem: string;

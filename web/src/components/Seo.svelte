@@ -8,7 +8,12 @@
 	export let banner: string = undefined;
 	let slug = '/';
 	let siteUrl = 'https://matiashernandez.dev';
-	const image = banner || getOgImage({ text: title, tags: keywords ?? [] });
+	let image  = getOgImage({ text: title, tags: keywords ?? [] });
+	if(banner) {
+		image = banner.split('upload/').join('upload/c_scale,w_1024/l_logo,y_10,x_15,g_north_east,w_60/');
+		
+	}
+	
 	if (isBlogPost) {
 		slug = title
 			.normalize('NFD')
@@ -19,6 +24,8 @@
 			.join('-');
 		siteUrl = `https://matiashernandez.dev/blog/post/${slug || ''}`;
 	}
+	
+
 </script>
 
 <svelte:head>

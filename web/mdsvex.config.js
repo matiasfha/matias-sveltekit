@@ -89,95 +89,60 @@ function remarkReadingTime() {
 	}
 }
 
+import { v2 as cloudinary } from 'cloudinary';
+import 'dotenv/config'
+
+cloudinary.config({
+	cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET,
+	secure: true
+});
+
+async function uploadImage(imagePath, withLogo = false) {
+	/**
+	 * @type {import('cloudinary/types/index').UploadApiOptions}'}
+	 */
+	let cloudinaryOptions = {
+		use_filename: true,
+		unique_filename: false,
+		overwrite: true,
+		resource_type: 'image',
+	};
+	if(withLogo) {
+		cloudinaryOptions['transformation'] = [
+			{overlay: 'logo',width: 400 ,x: '300',y: '100', gravity: 'north_east'},
+			{flag: 'layer_apply',}
+		]
+	}
+	
+	try {
+		// Upload the image
+		return await cloudinary.uploader.upload(imagePath, cloudinaryOptions);
+		
+	} catch (error) {
+		console.error(error);
+	}
+}
 
 function cloudinaryImages() {
 	/**
 	 * @param {Node} node
 	 */
-	return function transformer(tree, vFile) {
+	return async function transformer(tree, vFile) {
 		// // Find the <article node
 		// let [imgNode, ] = findImgNode(tree);
 		// console.log(imgNode)
 		// return root
-		console.log(vFile.data.fm.banner) // Upload this to cloudinary
+		const image = vFile.data.fm.banner
+		if(!image.includes('https://res.cloudinary.com')) {
+			const { url} = await uploadImage(image,)
+			vFile.data.fm['banner'] = url
+		}
 
 	}
 }
-
-/** 
-* @typedef {import('unist').Node} Node
-* @typedef {import('unified').Transformer} Transformer 
-* @typedef { {
-		type: "element";
-		tagName: string;
-		properties: {
-			[prop: string]: string | undefined;
-		};
-		children?: Node[];
-	} 
-} HtmlBaseElementNode
-* @typedef { HtmlBaseElementNode & Node } HtmlElementNode
-*/
-/**
- * Returns the `<img>` node.
- * The second node returned is the parent of the first node.
- * @param {Node} node
- * @returns {[HtmlElementNode, HtmlElementNode]}
- */
- export function findImgNode(root) {
-	let [body, bodyParent] = findTagName(root, "body");
-	let [img, imgParent] = findTagName(root, "img");
-  
-	if (img) {
-	  return [img, imgParent || root];
-	}
-	else {
-	  return [
-		body || root ,
-		bodyParent || root
-	  ];
-	}
-  }
-
-  /**
- * Recursively crawls the HAST tree and finds the first element with the specified tag name.
- * @param {Node} node
- * @param {string} tagName
- * @returns [[HtmlElementNode | undefined, HtmlElementNode | undefined]]
- */
-function findTagName(node, tagName) {
-	if (isHtmlElementNode(node) && node.tagName === tagName) {
-	  return [node, undefined];
-	}
-  
-	if (node.children) {
-	  let parent = node;
-	  for (let child of parent.children) {
-		let [found] = findTagName(child, tagName);
-		if (found) {
-		  return [found, parent];
-		}
-	  }
-	}
-  
-	return [undefined, undefined];
-  }
-
-
-
-
-/**
- * 
- * @param {Node} node 
- * @returns {node is HtmlBaseElementNode}
- */
-function isHtmlElementNode(node) {
-	return typeof node === "object" &&
-	  node.type === "element" &&
-	  typeof node.tagName === "string" &&
-	  "properties" in node &&
-	  typeof node.properties === "object";
-  }
+               
 
 
 /**
@@ -194,7 +159,7 @@ const config = {
 		"dashes": "oldschool"
 	},
 
-	"remarkPlugins": [remarkReadingTime, headings, slug, highlight, abbr, remarkSponsor, remmarkPath],
+	"remarkPlugins": [remarkReadingTime, headings, slug, highlight, abbr, remarkSponsor, remmarkPath, cloudinaryImages],
 	"rehypePlugins": [[urls, processUrl],  [autoLinkHeadings, { behavior: 'prepend' }]]
 };
 

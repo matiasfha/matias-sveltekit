@@ -2,7 +2,9 @@
 	import type { Post } from '$lib/types';
 	import { format } from 'date-fns'
 	export let post: Post;
-
+	
+	
+	
 </script>
 
 <div class="flex flex-col">
@@ -14,7 +16,7 @@
 			><div
 				class="aspect-w-2 aspect-h-1 h-1/4 rounded-lg transition group-hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2"
 			>
-				<img alt={post.title} class="rounded-lg object-cover" src={post.banner} height="173" loading="lazy" decoding="async"/>
+				<img alt={post.title} class="rounded-lg object-cover cld-responsive" data-src={`${post.banner}`} src={post.banner} height="173" loading="lazy" decoding="async"/>
 			</div>
 
 			<div class="mt-8 dark:text-gray-300 text-gray-500 text-md font-medium lowercase text-body">
