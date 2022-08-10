@@ -84,10 +84,12 @@
 
 	<div class="mb-12 lg:mb-0 items-center justify-center flex h-card">
 		<img
-			height="688"
-			width="544"
+			sizes="(min-width: 30em) 34em, 100vw"
 			class="object-contain backdrop-filter backdrop-blur-xl filter drop-shadow-2xl u-photo"
-			src="/me-optimized.png"
+			srcset="https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,w_288/https://matiashernandez.dev/me-optimized.png 288w,
+			https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,w_358/https://matiashernandez.dev/me-optimized.png 358w,
+    	        https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,w_544/https://matiashernandez.dev/me-optimized.png 544w"
+			src="https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,c_scale,w_544/https://matiashernandez.dev/me-optimized.png"
 			alt="This is me :D"
 		/>
 	</div>

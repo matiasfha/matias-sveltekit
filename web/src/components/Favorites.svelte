@@ -21,9 +21,16 @@
 							height="256"
 							alt={item.title}
 							aria-hidden="true"
-							src={item.image}
-							class="rounded-lg object-cover h-64 w-full"
+							class="object-contain backdrop-filter backdrop-blur-xl filter drop-shadow-2xl u-photo"
+							sizes="(min-width: 30em) 40em, 100vw"
+							srcset={`https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_70,w_256/${item.image} 256w,
+								https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_70,w_640/${item.image} 640w`}
+							src={`https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,w_640,c_scale/${item.image}`}
+							loading="lazy"
+							decoding="async"
+							
 						/>
+						
 					</div>
 				</a>
 				<div>

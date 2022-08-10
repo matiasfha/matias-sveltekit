@@ -23,6 +23,8 @@
 								alt={item.title}
 								class="rounded-lg object-cover"
 								src={`${item.image}`}
+								loading="lazy"
+								decoding="async"
 								
 							/>
 						</div>

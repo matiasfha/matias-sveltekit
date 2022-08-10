@@ -1,5 +1,4 @@
 <script lang="ts">
-	import logo from '$images/logo.png';
 	import { blur } from 'svelte/transition';
 	import { t, locale } from '$lib/translations';
 	import { theme } from '$lib/stores';
@@ -96,7 +95,7 @@
 	<nav class="flex items-center justify-between mx-auto">
 		<div class="flex flex-row items-center gap-4 md:gap-8 justify-between h-card">
 			<a href="https://matiashernandez.dev" rel="me" sveltekit:prefetch class="u-url u-uid" >
-				<figure class="w-10 "><picture><source srcset="/logo.png" type="image/webp"> <img  src="/logo.png" alt="Matias Hernández Logo"></picture></figure>
+				<figure class="w-10 "><picture><source srcset="https://res.cloudinary.com/matiasfha/image/fetch/f_webp,q_auto,c_scale,w_40/https://matiashernandez.dev/logo.png" type="image/webp"> <img  src="https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,c_scale,w_40/https://matiashernandez.dev/logo.png" alt="Matias Hernández Logo"></picture></figure>
 			</a>
 			<a
 				class="underlined whitespace-nowrap text-2xl font-medium focus:outline-none transition hidden md:block p-name"
