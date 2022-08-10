@@ -24,8 +24,8 @@
 							class="object-contain backdrop-filter backdrop-blur-xl filter drop-shadow-2xl u-photo"
 							sizes="(min-width: 30em) 40em, 100vw"
 							srcset={`https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_70,w_256/${item.image} 256w,
-								https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_70,w_640/${item.image} 640w`}
-							src={`https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,w_640,c_scale/${item.image}`}
+								https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_70,w_580/${item.image} 580w`}
+							src={`https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,w_580,c_scale/${item.image}`}
 							loading="lazy"
 							decoding="async"
 							

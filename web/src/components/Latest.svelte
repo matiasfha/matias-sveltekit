@@ -20,9 +20,11 @@
 							class="aspect-w-2 aspect-h-1 w-full rounded-lg focus:ring transition group-hover:ring-2  dark:ring-yellow-50 ring-green-400 ring-offset-2"
 						>
 							<img
+								width="363"
+								height="181"
 								alt={item.title}
 								class="rounded-lg object-cover"
-								src={`${item.image}`}
+								src={item.image.includes('cloudinary') ? item.image : `https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,c_scale,w_363/${item.image}`}
 								loading="lazy"
 								decoding="async"
 								

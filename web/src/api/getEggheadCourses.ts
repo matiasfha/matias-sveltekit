@@ -37,13 +37,13 @@ export default async function getCourses(): Promise<Array<Course>> {
 			return aDate < bDate ? 1 : -1;
 		})
 		.map(async (item) => {
-			const url = item.http_url.replace('app.','')
+			const url = item.http_url.replace('app.', '');
 			const image = await Ogs({ url: url });
-			
+
 			return {
 				...item,
 				url,
-				image: image.result.ogImage.url
+				image: image.result.ogImage.url.split('now.sh').join('vercel.app')
 			};
 		});
 	const data = await Promise.all(sorted);
