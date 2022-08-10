@@ -19,7 +19,7 @@
 	>
 		<div class="relative z-10 px-5 sm:text-left text-center py-10">
 			<div
-				class="space-y-5 mx-auto flex items-center justify-center max-w-screen-xl w-full sm:mb-4 md:my-12 lg:m-0 mt-0 mb-15"
+				class="space-y-5 mx-auto flex items-center justify-center md:max-w-screen-xl w-full sm:mb-4 md:my-12 lg:m-0 mt-0 mb-15"
 			>
 				<div
 					class="flex lg:flex-row flex-col items-center justify-center sm:space-x-10 sm:space-y-0 space-y-5 0 w-full xl:pr-16"
@@ -38,7 +38,7 @@
 								</a>
 						</div>
 					{/if}
-					<div class="flex flex-col col-span-2 lg:items-start items-center w-full">
+					<div class="flex flex-col col-span-2 lg:items-start items-center w-full px-6 md:px-0">
 						<a href={url}
 							><h3
 								class="lg:text-3xl md:text-2xl text-xl text-left font-extrabold dark:text-white text-gray-800 leading-tight"

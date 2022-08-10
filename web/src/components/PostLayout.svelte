@@ -46,32 +46,33 @@ import { format } from 'date-fns';
 <Seo {title} {description} {keywords} isBlogPost={true} canonical={canonical} banner={banner} />
 <div class="w-full pb-4 px-0 h-entry" >
 	<header
-		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[20rem] overflow-hidden"
+		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[23rem] overflow-hidden"
 	>
 		<img
 			src={banner}
 			data-src={banner}
-			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] filter blur-sm u-photo cld-responsive"
+			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] h-[12rem] filter blur-sm u-photo cld-responsive"
 			alt={title}
 		/>
-		<div class="flex flex-col max-w-[98vw] md:max-w-[40vw] z-10  self-end mx-auto md:ml-0 md:mr-12">
-			<h1 class="font-sans text-left text-gray-100 font-bold text-2xl md:text-3xl pb-8 m-0 pl-4 md:px-0 [text-shadow:0_4px_8px_rgba(0,0,0,1),0_20px_8px_rgba(0,0,0,0.3)] p-name">
+		<div class="flex flex-col max-w-[98vw] md:max-w-[40vw] z-10  self-end mx-auto md:ml-0 md:mr-12 mt-[14rem] md:mt-0 text-left font-body leading-tight text-gray-100">
+			<h1 class="font-sans text-left font-bold text-2xl md:text-3xl pb-8 m-0 pl-4 md:px-0 [text-shadow:0_4px_8px_rgba(0,0,0,1),0_20px_8px_rgba(0,0,0,0.3)] p-name">
 				{title}
 			</h1>
 			<div
-				class="text-left text-gray-100 font-body leading-tight text-sm self-end flex-grow m-0 pt-2 b-6"
+				class="text-sm self-end flex-grow m-0 pt-2 pb-8 mr-8"
 			>
-			<time class="dt-published" datetime="YYYY-MM-DD HH:MM:SS">{format(new Date(date), 'dd/MM/yyyy')}</time> - {readingTime.text}
+				<time class="dt-published" datetime="YYYY-MM-DD HH:MM:SS">{format(new Date(date), 'dd/MM/yyyy')}</time> - {readingTime.text}
+			
 			</div>
 			<p
-				class="text-left text-gray-100 font-body leading-tight text-lg max-w-4xl z-10 hidden md:block flex-grow m-0 self-end"
+				class="text-lg max-w-4xl z-10 hidden md:block flex-grow m-0 self-end pl-2"
 			>
 				{description}
 			</p>
 			
 			{#if bannerCredit!=null && bannerCredit!=='undefined'}
 			<h4
-				class="text-left text-gray-100 font-body leading-tight text-sm self-end absolute bottom-2 left-2 md:left-auto"
+				class="text-sm self-end absolute bottom-2 left-2 md:left-auto"
 			>
 				{@html bannerCredit}
 			</h4>
@@ -183,7 +184,6 @@ import { format } from 'date-fns';
 		{/if}		
 
 	<!-- </article> -->
-	<time class="dt-published invisible" datetime="YYYY-MM-DD HH:MM:SS">{format(new Date(date), 'dd/MM/yyyy')}</time>
 	<div class="p-name invisible">{title}</div>
 	<a href={currentUrl} class="invisible u-url">Current Url</a>
 	<a rel="author" class="p-author h-card invisible" href="https://matiashernandez.dev">Matías Hernández</a>
