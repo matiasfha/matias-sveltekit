@@ -1,7 +1,7 @@
 
 ---
 date: 2022-08-08T10:36:39Z
-banner: https://cdn.sanity.io/images/cyypawp1/production/896babf204f57d039014d5e62cc06e7726da8acd-1280x710.png
+banner: https://cdn.sanity.io/images/cyypawp1/production/e6045cce8e5a79665c0e304dc77c0dd94917d42a-1280x710.png
 keywords: 
 - React 18
 - Suspense
