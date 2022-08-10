@@ -5,9 +5,10 @@
 	export let keywords: string[] = undefined;
 	export let canonical: string = undefined;
 	export let isBlogPost: boolean = false;
+	export let banner: string = undefined;
 	let slug = '/';
 	let siteUrl = 'https://matiashernandez.dev';
-	const image = getOgImage({ text: title, tags: keywords ?? [] });
+	const image = banner || getOgImage({ text: title, tags: keywords ?? [] });
 	if (isBlogPost) {
 		slug = title
 			.normalize('NFD')

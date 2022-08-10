@@ -88,6 +88,22 @@ function remarkReadingTime() {
 		
 	}
 }
+
+
+function cloudinaryImages() {
+	/**
+	 * @param {Node} node
+	 */
+	return function transformer(tree, vFile) {
+		// // Find the <article node
+		// let [imgNode, ] = findImgNode(tree);
+		// console.log(imgNode)
+		// return root
+		console.log(vFile.data.fm.banner) // Upload this to cloudinary
+
+	}
+}
+
 /** 
 * @typedef {import('unist').Node} Node
 * @typedef {import('unified').Transformer} Transformer 
@@ -103,17 +119,17 @@ function remarkReadingTime() {
 * @typedef { HtmlBaseElementNode & Node } HtmlElementNode
 */
 /**
- * Returns the `<articke>` node.
+ * Returns the `<img>` node.
  * The second node returned is the parent of the first node.
  * @param {Node} node
  * @returns {[HtmlElementNode, HtmlElementNode]}
  */
- export function findArticleNode(root) {
+ export function findImgNode(root) {
 	let [body, bodyParent] = findTagName(root, "body");
-	let [article, articleParent] = findTagName(root, "article");
+	let [img, imgParent] = findTagName(root, "img");
   
-	if (article) {
-	  return [article, articleParent || root];
+	if (img) {
+	  return [img, imgParent || root];
 	}
 	else {
 	  return [
@@ -148,36 +164,8 @@ function findTagName(node, tagName) {
   }
 
 
-function toc() {
-	/**
-	 * @param {Node} node
-	 */
-	return function transformer(root) {
-		// Find the <article node
-		let [articleNode, articleParent] = findArticleNode(root);
-		let headings = findHeadings(articleNode);
-		console.log(headings)
-		return root
 
-	}
-}
 
-/**
- * @typdef {import('unist').Parent} Parent
- * @typedef {"h1" | "h2" | "h3" | "h4" | "h5" | "h6" } HeadingTagName
- * @typedef { HtmlElementNode & { tagName: HeadingTagName } } HeadingNode
- */
-
-/**
- * Finds all HTML heading nodes (`<h1>` through `<h6>`)
- * @params {Parent} Node
- * @returns {HeadingNode[]}
- */
-export function findHeadings(node) {
-  let headingNodes = [];
-  findHeadingsRecursive(node, headingNodes);
-  return headingNodes;
-}
 /**
  * 
  * @param {Node} node 
@@ -190,31 +178,7 @@ function isHtmlElementNode(node) {
 	  "properties" in node &&
 	  typeof node.properties === "object";
   }
-/**
- * 
- * @param {Node} node 
- * @returns { node is HeadingNode}
- */
-function isHeadingNode(node) {
-	return isHtmlElementNode(node) && ["h1", "h2", "h3", "h4", "h5", "h6"].includes(/** @type {HeadingTagName} */(node.tagName));
-  }
-/**
- * Recursively crawls the HAST tree and adds all HTML heading nodes to the given array.
- * @params {Node} node
- * @params {HeadingNode[]} headingNodes
- */
-function findHeadingsRecursive(node,headingNodes) {
-  if (isHeadingNode(node)) {
-    headingNodes.push(node);
-  }
 
-  if (node.children) {
-    let parent = node;
-    for (let child of parent.children) {
-      findHeadingsRecursive(child, headingNodes);
-    }
-  }
-}
 
 /**
  * @type { import('mdsvex').MdsvexOptions}
