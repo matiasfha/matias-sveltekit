@@ -51,7 +51,7 @@ import { format } from 'date-fns';
 		<img
 			src={banner}
 			data-src={banner}
-			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] h-[12rem] filter blur-sm u-photo cld-responsive"
+			class=" overflow-cover w-full absolute top-0 left-0 z-0 max-h-[32rem] h-[12rem] md:h-auto filter blur-sm u-photo cld-responsive"
 			alt={title}
 		/>
 		<div class="flex flex-col max-w-[98vw] md:max-w-[40vw] z-10  self-end mx-auto md:ml-0 md:mr-12 mt-[14rem] md:mt-0 text-left font-body leading-tight text-gray-100">
