@@ -133,8 +133,8 @@ function cloudinaryImages() {
 		if(vFile.data.fm.banner) {
 			const image = vFile.data.fm.banner
 			if(!image.includes('https://res.cloudinary.com')) {
-				const { url} = await uploadImage(image,)
-				vFile.data.fm['banner'] = url
+				const { secure_url} = await uploadImage(image,)
+				vFile.data.fm['banner'] = secure_url
 			}
 		}
 		
