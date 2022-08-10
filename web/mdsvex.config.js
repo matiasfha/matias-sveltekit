@@ -130,15 +130,14 @@ function cloudinaryImages() {
 	 * @param {Node} node
 	 */
 	return async function transformer(tree, vFile) {
-		// // Find the <article node
-		// let [imgNode, ] = findImgNode(tree);
-		// console.log(imgNode)
-		// return root
-		const image = vFile.data.fm.banner
-		if(!image.includes('https://res.cloudinary.com')) {
-			const { url} = await uploadImage(image,)
-			vFile.data.fm['banner'] = url
+		if(vFile.data.fm.banner) {
+			const image = vFile.data.fm.banner
+			if(!image.includes('https://res.cloudinary.com')) {
+				const { url} = await uploadImage(image,)
+				vFile.data.fm['banner'] = url
+			}
 		}
+		
 
 	}
 }
