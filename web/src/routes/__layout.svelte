@@ -47,19 +47,20 @@
         if (url.hostname === 'www.google-analytics.com') {
           const proxyUrl = new URL(`${siteUrl}/ga`)
           return proxyUrl
-        }else if(url.hostname === 'pagead2.googlesyndication.com') {
-		  const proxyUrl = new URL(`${siteUrl}/pagead`)
-		  return proxyUrl
-		}else if(url.hostname === 'googleads.g.doubleclick.net') {
-		  const proxyUrl = new URL(`${siteUrl}/doubleclick`)
-		  return proxyUrl
-		}else if(url.hostname === 'marketingplatform.google.com') {
-		  const proxyUrl = new URL(`${siteUrl}/platform`)
-		  return proxyUrl
-		}else if(url.hostname === 'resources.infolinks.com') {
-		  const proxyUrl = new URL(`${siteUrl}/infolinks`)
-		  return proxyUrl
-		}
+        }
+		// else if(url.hostname === 'pagead2.googlesyndication.com') {
+		//   const proxyUrl = new URL(`${siteUrl}/pagead`)
+		//   return proxyUrl
+		// }else if(url.hostname === 'googleads.g.doubleclick.net') {
+		//   const proxyUrl = new URL(`${siteUrl}/doubleclick`)
+		//   return proxyUrl
+		// }else if(url.hostname === 'marketingplatform.google.com') {
+		//   const proxyUrl = new URL(`${siteUrl}/platform`)
+		//   return proxyUrl
+		// }else if(url.hostname === 'resources.infolinks.com') {
+		//   const proxyUrl = new URL(`${siteUrl}/infolinks`)
+		//   return proxyUrl
+		// }
         return url
       }
     }
@@ -74,9 +75,9 @@
 		var infolinks_pid = 3369090;
 		var infolinks_wsid = 0;
 	</script>
-	<script type="text/partytown"  src="https://resources.infolinks.com/js/infolinks_main.js"></script>
+	<script type="text/javascript"  defer src="https://resources.infolinks.com/js/infolinks_main.js"></script>
 	<script type="text/partytown" defer data-domain="matiashernandez.dev" src="https://matiashernandez.dev/svelte-stats/js/script.js" data-api="/svelte-stats/api/event"></script>		
-	<script type="text/partytown"  async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8352667732450998"
+	<script type="text/javascript"  defer async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8352667732450998"
      crossorigin="anonymous"></script>
 
 </svelte:head>
