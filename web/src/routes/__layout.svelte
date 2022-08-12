@@ -51,7 +51,7 @@
 		  const proxyUrl = new URL(`${siteUrl}/pagead`)
 		  return proxyUrl
 		}else if(url.hostname === 'googleads.g.doubleclick.net') {
-		  const proxyUrl = new URL(`${siteUrl}/pagead`)
+		  const proxyUrl = new URL(`${siteUrl}/doubleclick`)
 		  return proxyUrl
 		}else if(url.hostname === 'resources.infolinks.com') {
 		  const proxyUrl = new URL(`${siteUrl}/infolinks`)
