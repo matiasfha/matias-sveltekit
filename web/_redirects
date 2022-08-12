@@ -54,3 +54,4 @@
 /proxytown/doubleclick https://googleads.g.doubleclick.net 200
 /proxytown/ga https://www.google-analytics.com/analytics.js 200
 /proxytown/infolinks https://resources.infolinks.com/js/infolinks_main.js 200
+/proxytown/platform https://marketingplatform.google.com 200
