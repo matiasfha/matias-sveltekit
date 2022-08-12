@@ -40,7 +40,7 @@
   <script>
     // Config options
     partytown = {
-      forward: ['dataLayer.push'],
+      forward: ['adsbygoogle.push'],
       resolveUrl: (url) => {
         const siteUrl = 'https://matiashernandez.dev/proxytown'
 
@@ -48,6 +48,9 @@
           const proxyUrl = new URL(`${siteUrl}/ga`)
           return proxyUrl
         }else if(url.hostname === 'pagead2.googlesyndication.com') {
+		  const proxyUrl = new URL(`${siteUrl}/pagead`)
+		  return proxyUrl
+		}else if(url.hostname === 'googleads.g.doubleclick.net') {
 		  const proxyUrl = new URL(`${siteUrl}/pagead`)
 		  return proxyUrl
 		}else if(url.hostname === 'resources.infolinks.com') {
@@ -64,7 +67,7 @@
   <script bind:this={scriptEl}></script>
 
   <!-- Infolinks ads  -->
-	<script type="text/partytown">
+	<script type="text/javascript">
 		var infolinks_pid = 3369090;
 		var infolinks_wsid = 0;
 	</script>
