@@ -10,8 +10,7 @@
 	let siteUrl = 'https://matiashernandez.dev';
 	let image  = getOgImage({ text: title, tags: keywords ?? [] });
 	if(banner) {
-		image = banner.split('upload/').join('upload/c_scale,w_1024/l_logo,y_10,x_15,g_north_east,w_60/');
-		
+		image = banner.split('upload/').join('upload/e_auto_contrast,g_south_west,l_text:montserrat_30:@matiasfha,x_20,y_10/c_scale,w_1024/l_logo,y_10,x_15,g_north_east,w_60/');	
 	}
 	
 	if (isBlogPost) {

@@ -110,10 +110,14 @@ async function uploadImage(imagePath, withLogo = false) {
 		resource_type: 'image',
 	};
 	if(withLogo) {
+
 		cloudinaryOptions['transformation'] = [
+			{effect: "auto_contrast", gravity: "south_west", overlay: {font_family: "montserrat", font_size: 30, text: "%40matiasfha"}, x: 20, y: 10},
 			{overlay: 'logo',width: 400 ,x: '300',y: '100', gravity: 'north_east'},
-			{flag: 'layer_apply',}
+			{flag: 'layer_apply',},
+			
 		]
+		
 	}
 	
 	try {

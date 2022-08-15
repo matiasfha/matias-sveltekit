@@ -1,4 +1,3 @@
-
 ---
 date: 2022-08-15T10:14:06Z
 banner: https://cdn.sanity.io/images/cyypawp1/production/c916e9d5946503a8db5b5818d0b2e606f6cfeb63-1280x710.png
@@ -11,12 +10,11 @@ description: "Funciones lambda, funciones serverless, funciones como servicio o 
 bannerCredit: undefined
 tag: Posts
 ---
+
 Una de las tecnologías que ha revolucionado la forma en que creamos la arquitectura de un nuevo proyecto de software ha sido sin lugar a dudas "The Cloud", pero más directamente el concepto de "Serverless", incluso, el uso de estas plataformas y servicios han dado rápido crecimiento a una forma particular de diseñar aplicaciones: JamStack. Pero, ¿qué es exactamente serverless?
 
 > **Relacionados**
-
 > ¿Qué significan las siglas SSG y SSR en JAMStack?
-
 > ¿Por qué JamStack es tan cool?
 
 Al rededor del concepto Serverless (Sin servidor) habrás escuchado otro grupo de conceptos como: _Funciones lambda_, _funciones serverless,funciones como servicio o serverless frameworks_ en este artículo encontrarás un breve análisis sobre estos conceptos.
@@ -146,4 +144,4 @@ Y dado que el costo de mantenimiento es bajo y ya que normalmente estas funcione
 Pero, justamente este último punto puede ser un punto en contra. **Cold-start. **Ya que estas funciones son "apagadas" cuando no están en uso sufren de algo conocido como arranque en frío. Puede pasar que al hacer una llamada a la función esta no se encuentre activa y la activación de la misma puede tomar más tiempo del esperado.
 
   
-Otro punto que puedes considerar como en contra es que estas funciones se ejecutan en un ambiente algo restringido, por ejemplo, no tienes acceso a un sistema de archivos ni tampoco es posible almacenar un estado en memoria .
+Otro punto que puedes considerar como en contra es que estas funciones se ejecutan en un ambiente algo restringido, por ejemplo, no tienes acceso a un sistema de archivos ni tampoco es posible almacenar un estado en memorias.

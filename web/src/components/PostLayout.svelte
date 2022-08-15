@@ -105,7 +105,7 @@ import { format } from 'date-fns';
 		
 	</article>
 	{#if likes.length || retweet.length}
-	<section class="md:mt-10 py-6 px-4 mx-auto mb-10 rounded-xl md:w-3/5 border border-gray-400 flex flex-col gap-4">
+	<section class="md:mt-10 py-6 px-4 mx-auto mb-20 rounded-xl md:w-3/5 border border-gray-400 flex flex-col gap-4">
 		<span class="text-lg dark:text-gray-100">Sigue la conversación en Twitter</span>
 		
 		<a
@@ -157,7 +157,7 @@ import { format } from 'date-fns';
 			data-ad-slot="2293002483"></ins>
 
 		{#if similarPosts.length > 0}
-		<section class="prose prose-lg dark:prose-dark mx-auto">
+		<section class="prose prose-lg dark:prose-dark mx-auto mt-20">
 			<h3>📖 Continúa leyendo</h3>
 			<div class={`grid gap-2 grid-cols-1 md:grid-cols-${similarPosts.length}`}>
 				{#each similarPosts as post}
