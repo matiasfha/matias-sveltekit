@@ -1,0 +1,149 @@
+
+---
+date: 2022-08-15T10:14:06Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/c916e9d5946503a8db5b5818d0b2e606f6cfeb63-1280x710.png
+keywords: 
+- Serverless
+- que es serverless
+- funciones serverless
+title: "¿Qué es serverless?"
+description: "Funciones lambda, funciones serverless, funciones como servicio o serverless frameworks ¿Qué significa todo esto? en este artículo encontrarás un breve análisis sobre estos conceptos."
+bannerCredit: undefined
+tag: Posts
+---
+Una de las tecnologías que ha revolucionado la forma en que creamos la arquitectura de un nuevo proyecto de software ha sido sin lugar a dudas "The Cloud", pero más directamente el concepto de "Serverless", incluso, el uso de estas plataformas y servicios han dado rápido crecimiento a una forma particular de diseñar aplicaciones: JamStack. Pero, ¿qué es exactamente serverless?
+
+> **Relacionados**
+
+> ¿Qué significan las siglas SSG y SSR en JAMStack?
+
+> ¿Por qué JamStack es tan cool?
+
+Al rededor del concepto Serverless (Sin servidor) habrás escuchado otro grupo de conceptos como: _Funciones lambda_, _funciones serverless,funciones como servicio o serverless frameworks_ en este artículo encontrarás un breve análisis sobre estos conceptos.
+
+
+
+Personalmente, soy un "fanático" de los servicios _serverless_ muchas de las cosas que desarrollo como proyectos personales utilizan esta arquitectura, creo que entender que hay detrás de este concepto te ayudará a sacarle mejor provecho y saber cuando utilizarlos.
+
+### ¿Serverless = Sin servidor?
+
+Sin bien la traducción literal de serverless sería "sin servidor", en realidad no significa exactamente eso, al contrario, en esta arquitectura sigue existiendo un o más servidores que ejecutan tu código, pero **como desarrollador no te preocupas de su existencia.**
+
+El código que escribes, debe ejecutarse y servirse en algún lado, ¿no?. La diferencia con arquitecturas previas es que en este caso tú _- el desarrollador - _no tienes que preocuparte por el trabajo de operaciones que implica implementar y mantener un servidor. Solo tendrás que preocuparte del código que deseas ejecutar, no de la infraestructura donde este se ejecuta.
+
+
+
+Toda la administración, implementación, escalabilidad y un sin fin de otros procesos necesarios son manejados por un tercero: un proveedor de servicios en la nube, permitiendote enfocarte en lo que realmente deberías, desarrollar tu producto o idea.
+
+En otras palabras, con esta arquitectura podrás ejecutar tu código backend sin tener que preocuparte de donde este se ejecuta. 
+
+Esta es una ventaja, un sitio o aplicación JAMStack suele estar íntimamente relacionado con la idea del uso de servicio serverless. 
+
+Un sitio JAMStack es por lo general un sitio estático, pero: ¿Qué ocurre si necesitas implementar alguna lógica que debe correr en tu Backend, por ejemplo: acceso a una base de datos? 
+
+Podrías echar mano de algún framework como Laravel (PHP), Node o Ruby on Rails y construir toda una api Rest que te permita acceder a los datos, implementar un servidor y hacer deploy de tu cliente JAMStack y tu aplicación backend. 
+
+Pero también podrás utilizar funciones serverless, donde solo incluidrás algunos archivos que dentro solo tienen el código relacionado con la lógica que deseas implementar y dejarás que el servicio de host se encargue de hacer que dicho código se ejecute y escale.
+
+
+
+Una gran ventaja en este punto es la escalabilidad automática y el coste. Por lo general, los proveedores de servicio serverless solo te cobrarán por el uso que tu código requiera, es decir, no pagarás por los momentos en que no se está ejecutando (por cierto, la mayoría de estos servicios tiene planes gratuitos bastante amplios).
+
+Un ejemplo de función serverless que yo utilizo es en este sitio. Cada vez que escribo un nuevo post o artículo, mi CMS hace una llamada (por medio de un webhook) a una URL en ruta parte de este sitio web, esa URL solo tiene el código para manejar una petición POST.
+
+Esta función recibe la llamada POST, obtiene los datos para generar un documento Markdown que luego usará para comunicarse con github, medium, dev.to y hashnode.Así puedo escribir mi contenido en mi CMS (de forma centralizada) y automáticamente hacer re-post en distintos servicios. Esta función serverless está alojada en Netlify.
+
+
+
+¿Cómo se ve esta función?
+
+
+
+```typescript
+
+
+export async function POST({ request }: RequestEvent) {
+	const body = await request.json();
+	if (!validateWebhook(request, body)) {
+		return {
+			status: 401,
+			body: {
+				message: 'Invalid signature',
+				signature: request.headers.get('sanity-webook-signature')
+			}
+		};
+	}
+	return await generateContent();
+}
+
+
+async function generateContent(update = false) {
+	try {
+		const [post] = await client.query<Posts>('*[_type == "posts"] | order(_createdAt desc)');
+
+		const { github, hashnode, dev, medium } = await writePost(post, update);
+
+		return {
+			body: {
+				github,
+				hashnode,
+				dev,
+				medium
+				// markdown
+			}
+		};
+	} catch (e) {
+		console.error(e);
+		return {
+			status: 500,
+			body: e.message
+		};
+	}
+}
+```
+
+  
+
+
+### ¿Donde puedo alojar mis funciones serverless?
+
+Aquí hay muchas opciones, quizá la más común es el servicio ofrecido por AWS: Lambda. 
+
+Pero todos los proveedores de servicios en la nube tiene su versión de funciones serverless:
+
+* Microsoft Azure tiene Azure functions.
+* Google Cloud tiene Cloud functions.  
+
+
+Pero no sólo los gigantes ofrecen estos servicios, también otro tipo de proveedores ofrecen ejecutar funciones por ti en modo serverless, por ejemplo Netlify y Vercel, ambos servicios se encargarán no solo de hacer deploy de tu aplicación, si no también de implementar tus funciones.  En la siguiente imagen puedes ver algunas de las fuciones que Netlify ejecuta por mi para este sitio:
+
+
+
+![undefined](https://cdn.sanity.io/images/cyypawp1/production/0085c7f86ec4d241ca6e40c92f3418d64dbc0b8c-1368x1115.png)
+
+  
+
+
+Las funciones que en la imagen puedes ver son funciones generadas al momento de hacer el deploy de mi sitio gracias a que están integradas en el framework con que el sitio fue desarrollado: [SvelteKit](https://kit.svelte.dev/).   
+También puedes encontrar este tipo de integración en [Next.js](https://nextjs.org/).
+
+Algunas de las características que se suelen implementar como funciones serverless son: Procesamiento de pagos con Strip, envío de correo electrónico con SendGrid, procesamiento de imagenes, acceso a bases de datos, autentificación, acceso a API de terceros, etc.
+
+  
+
+
+### Pros y Cons
+
+  
+Pero, no todo es color de rosa y siempre hay costos y beneficios de las desiciones que tomes a la hora de implementar tu sitio web o aplicaciones.
+
+Una de las ventajas más importantes de una implementación serverless es que no existe costo (tiempo, aprendizaje, y monetario) de mantenimiento ni aprovisionamiento del servidor.
+
+Y dado que el costo de mantenimiento es bajo y ya que normalmente estas funciones solo utilizan recursos cuando son ejecutadas el costo económico del servicio también es bajo.
+
+
+
+Pero, justamente este último punto puede ser un punto en contra. **Cold-start. **Ya que estas funciones son "apagadas" cuando no están en uso sufren de algo conocido como arranque en frío. Puede pasar que al hacer una llamada a la función esta no se encuentre activa y la activación de la misma puede tomar más tiempo del esperado.
+
+  
+Otro punto que puedes considerar como en contra es que estas funciones se ejecutan en un ambiente algo restringido, por ejemplo, no tienes acceso a un sistema de archivos ni tampoco es posible almacenar un estado en memoria .
