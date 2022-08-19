@@ -6,12 +6,12 @@ import type { Posts } from '../../../../schema.types';
 import imageUrlBuilder from '@sanity/image-url';
 
 import { createFileInRepo, updateFileInRepo } from '$lib/utils/github';
-import { writeToMedium } from '../writeToMedium';
-import writeToDevTo from '../writeToDevTo';
-import writeToHashnode from '../writeToHashnode';
+import { writeToMedium } from './writeToMedium';
+import writeToDevTo from '$api/writeToDevTo';
+import writeToHashnode from '$api/writeToHashnode';
 import { createClient } from 'sanity-codegen';
 import type { Documents } from '../../../../schema.types';
-import { generateMarkdown } from '../generateMarkdown';
+import { generateMarkdown } from '$api/generateMarkdown';
 
 const clientOptions = {
 	projectId: 'cyypawp1',

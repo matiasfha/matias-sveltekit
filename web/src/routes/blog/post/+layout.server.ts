@@ -1,4 +1,5 @@
 import fetchSimilarPosts from '$api/getSimilarPosts';
+import { getWebMetions } from '$api/getWebMentions';
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ url }) => {
@@ -12,11 +13,13 @@ export const load: LayoutServerLoad = async ({ url }) => {
 		console.error(e);
 	}
 	try {
-		const mentions = await fetch(new URL('/api/mentions'));
-		({ likes, retweet } = await mentions.json());
+		const mentions = await getWebMetions(pathname);
+		likes = mentions.likes;
+		retweet = mentions.retweet;
 	} catch (e) {
 		console.error(e);
 	}
+
 	return {
 		similarPosts,
 		likes,
