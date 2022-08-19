@@ -7,6 +7,10 @@
 </script>
 
 <script>
+	/** @type {import('./$types').PageData} */
+	export let data;
+	
+	
 	import { afterUpdate, onMount } from 'svelte';
 	import Seo from './Seo.svelte';
 	import { Cloudinary } from 'cloudinary-core'
@@ -19,13 +23,13 @@
 	export let keywords= [];
 	export let filepath= "";
 	
-	export let similarPosts= [];
+	let similarPosts = data?.similarPosts || [];
 	export let canonical= "";
 	export let readingTime= {};
 	export let date = 0
 
-	export let likes = []
-	export let retweet = []
+	export let likes = data?.likes || []
+	export let retweet = data?.retweet || []
 		
 
 	let currentUrl= "";
@@ -41,6 +45,7 @@
 			adsbygoogle = (window.adsbygoogle || []).push({});
 		}
 	})
+	
 </script>
 
 <Seo {title} {description} {keywords} isBlogPost={true} canonical={canonical} banner={banner} />

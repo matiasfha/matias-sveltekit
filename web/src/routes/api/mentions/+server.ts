@@ -1,5 +1,6 @@
 import { json as json$1 } from '@sveltejs/kit';
-/** @type {import('./$types').RequestHandler} */
+
+import type { RequestHandler } from './$types';
 import sanitizeHTML from 'sanitize-html';
 
 const API = 'https://webmention.io/api';
@@ -8,7 +9,6 @@ const domain = 'matiashernandez.dev';
 
 const likes = ['like-of'];
 const retweet = ['repost-of'];
-const messages = ['mention-of', 'in-reply-to'];
 
 const hasRequiredFields = (entry) => {
 	const { author, published, content } = entry;
@@ -22,12 +22,10 @@ const sanitize = (entry) => {
 	return entry;
 };
 
-export async function GET({ url }) {
+export const GET: RequestHandler = async ({ url }) => {
 	const { search } = url;
 	const params = search.split('?url=')[1];
-	console.log(params);
 	const target = 'https://matiashernandez.dev' + decodeURIComponent(params) + '/';
-	console.log({ target });
 
 	let webmentions = `${API}/mentions.jf2?domain=${domain}&token=${TOKEN}&target=${target}`;
 
@@ -49,4 +47,4 @@ export async function GET({ url }) {
 	return json$1({
 		feed: []
 	});
-}
+};
