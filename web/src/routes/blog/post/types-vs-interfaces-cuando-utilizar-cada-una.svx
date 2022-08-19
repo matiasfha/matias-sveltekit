@@ -1,0 +1,333 @@
+
+---
+date: 2022-08-19T10:42:40Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/56ffcd800c6a9a10fbefb884d2fed59c6500fc86-1280x710.png
+keywords: 
+- Typescript
+- Types
+- Interfaces
+- Types vs Interfaces
+- Typescript Tipos
+- Typescript Interfaces
+- Que es Types
+title: "Types vs Interfaces ¿Cuándo utilizar cada una?"
+description: "Una pregunta común cuando comienzas a escribir Typescript es: ¿Debo usar Types o Interfaces, cuál es la diferencia?, en este artículo te ayudaré a aclarar a decidir que utilizar y por qué."
+bannerCredit: undefined
+tag: Posts
+---
+Una pregunta común cuando comienzas a escribir Typescript es: ¿Debo usar Types o Interfaces, cuál es la diferencia?, en este artículo te ayudaré a aclarar a decidir que utilizar y por qué.
+
+
+
+En Typescript puedes definir el tipo de un dato o una función escribiendo su definición directamente en donde declaras dicho trozo de código, como en el siguiente ejemplo:
+
+
+
+```typescript
+function get3DCoord(point: { x: number, y:number}):
+  {x: number, y: number, z:number} 
+{
+  // Hacer algún calculo
+  return coord3d
+}
+```
+
+Pero, dicha metodología o sintaxis puede volverse confusa rápidamente. Además, ¿qué ocurre si quieres utilizar el mismo tipo retornado por esta función en diferentes partes? Aquí es donde entras los alias de tipo `Type Aliases`
+
+## Type Alias
+
+Esta es una forma conveniente de hacer referencia a un tipo más de una vez, como si de una variable se tratase. Un alias de tipo es exactamente lo que su nombre indica: Un nombre para un tipo, utilizando el mismo ejemplo anterior:
+
+
+
+```typescript
+type Point = {
+  x: number;
+  y: number;
+}
+
+type Point3D = {
+  x: number;
+  y: number;
+  z: number;
+}
+function get3DCoord(point: Point): Point3D {
+  // Hacer algún calculo
+  return coord3d
+}
+```
+
+Lo que claramente permite una mejor legibilidad y mantenibilidad del código. Pero no solo se "ve mejor", si no que también permite dar "nombre" a toda forma de tipado, no solo tipos objetos, puedes utilizar uniones, intersecciones y utilidades, incluso hacer referencia a otros tipos que hayas creado.
+
+Importante notar que estos alias son **sólo alias, **es decir, este alias siempre hará referencia a su contenido, no crea un nuevo tipo de dato.
+
+## Interfaces
+
+Otra forma de declarar o definir un nombre para un tipo objeto es utilizar la palabra clave `interface`.
+
+
+
+```typescript
+interface Point {
+  x: number;
+  y: number;
+}
+
+interface Point3D {
+  x: number;
+  y: number;
+  z: number;
+}
+function get3DCoord(point: Point): Point3D {
+  // Hacer algún calculo
+  return coord3d
+}
+```
+
+Como vez, el cambio es sutil y el funcionamiento (hasta este punto) es el mismo que anteriormente.
+
+¿Entonces como decides que utilizar en tu código?
+
+## Types vs Interfaces
+
+Lo primero que revisaremos son sus similitudes. Son tan parecidos entre sí que la mayoría de las veces puedes usar ambas formas de manera intercambiable. Casi todas las características de una `interface` estan disponibles al usar `type`, pero con una importante diferencia que revisaremos más adelante.
+
+
+
+##### Types e interfaces pueden ser utilizados para describes objetos o funciones.
+
+
+
+```typescript
+/* Type Alias */
+
+type SomeData = {
+  id: number | string;
+  userName: string;
+  location: LocationType // Este es otro alias
+}
+
+type SomeFunction =  (data: SomeData) => void;
+
+
+/* Interface  */
+
+interface SomeData {
+  id: number | string;
+  userName: string;
+  location: LocationType;
+}
+
+interface SomeFunction {
+  (data: SomeData): void;
+}
+```
+
+En este ejemplo se utiliza la palabra clave `type`para crear un alias a un objeto y otro alias para definir el tipode una función. Pero lo mismo puede realizarse utilizando `interface`. Ambas versiones pueden ser reutilizadas y exportadas.
+
+
+
+##### Puedes extender types e interfaces.
+
+Extender un tipo es básicamente agregar más características o atributos, en el caso de un alias utilizando `type` esto se logra al utilizar la intersección de tipos `&`. En el caso de una `interface`la extención se realiza utilizando `extends` (muy similar a extender una clase).
+
+
+
+```typescript
+/* Type Alias */
+
+type SomeData = {
+  id: number | string;
+  userName: string;
+  location: LocationType // Este es otro alias
+}
+
+type GlobalData = SomeData & {
+  phone: number;
+}
+
+
+/* Interface  */
+
+interface SomeData {
+  id: number | string;
+  userName: string;
+  location: LocationType;
+}
+
+interface GlobaData extends SomeData {
+  phone: number;
+}
+```
+
+Además es posible "mezclar" ambas formas. Una `interface` puede extender un `type` y viceversa, un `type` puede extender una `interface` utilizando el operador intersección `&`
+
+```typescript
+
+type SomeData = {
+  id: number | string;
+  userName: string;
+  location: LocationType // Este es otro alias
+}
+
+
+interface GlobaData extends SomeData {
+  phone: number;
+}
+
+
+/**************************/
+
+
+interface SomeData {
+  id: number | string;
+  userName: string;
+  location: LocationType // Este es otro alias
+}
+
+
+type GlobaData = SomeData & {
+  phone: number;
+}
+```
+
+
+
+Y aquí acaban lñas similitudes y comienzan las diferencias, diferencias que se hacen notar en usos más avanzados de Typescript y que no todos los desarrolladores encontrarán necesarias, por lo tanto la decisión de si usar `type` o `interface` queda más a cargo de tu gusto o de la decisión del equipo. 
+
+> A modo general, puedes usar `interface` hasta que te sea necesario utilizar  características de `type`.
+
+
+
+##### Sólo `type` puede crear alias para tipos primitivos, uniones o tuplas:
+
+```typescript
+type MiNumero = number;
+
+type StringOrArray = string | any[]
+
+type Tupla = [string, number]
+```
+
+##### Sólo `interface`posee la característica de "mezclado de declaraciones" (Declaration Merging).
+
+
+
+Esta característica es cuando el compilador de Typescript mezcla dos o más tipos en una sola declaración basado en que dichas deficiones comparten el mismo nombre dentro del módulo.
+
+
+
+```typescript
+interface Dog {
+  name: string;
+}
+
+interface Dog {
+  breed: string;
+}
+
+interface Dog {
+  owner: Person
+}
+
+class MyDog implements Dog {
+  name = "Rocky"
+  breed = "unknown";
+  owner = {
+    name: "Me"
+  }
+}
+
+const myDog = new MyDog();
+console.log(myDog) // {name: "Rocky", breed: "unknown", owner: { name: "Me"}}
+```
+
+Dado que cada una de las interfaces utilizadas en el ejemplo tienen el mismo nombre, Typescript las reconocerá y utilizará como si de una sola interfaz se tratase.
+
+
+
+Ahora bien, si alguna de las propiedades de las interfaces que se uniran comparte el mismo nombre pero diferente tipo, Typescript emitirá un error. Pero, si dicha propiedad es una función, entonces Typescript unirá esta propiedad creando una sobrecarga de funciones.
+
+
+
+```typescript
+interface Dog {
+  bark(volume: number);
+}
+
+interface Dog {
+  bark(type: 'low' | 'high');
+}
+
+const dog: Dog = {
+  bark: (volumeOrType) => volumeOrType
+}
+
+console.log(dog.bark(100)) // bark(volume: number) es utilizada
+console.log(dog.bark("low")) // bark(type: 'low' | 'high') es utilizada
+```
+
+> **Importante: **Al mezclar interfaces que contengan funciones de igual definición, la función en la última interfaz declarada aparecer como función inicial en la interfaz mezclada, es decir, **la última interfaz declarada tiene precedencia.**
+
+
+
+Ahora, ¿para que puede ser útil esta característica de las interfaces en Typescript? 
+
+Esta funcionalidad es muy utilizada por autores de librerías para proveer a sus usuarios formas de extender las definiciones de tipos de una manera segura, por ejemplo, revisa el siguiente código.
+
+
+
+```typescript
+/* Esta es MyAwesomeLibrary */
+export interface WithReturn<Data> {
+  data: Promise<Data>
+  returnData: Record<string, unknown>
+}
+
+/* Ahora el código del usuario de la librería */
+
+import { WithReturn } from 'awesone-library'
+
+declare module 'awesome-library' {
+  export interface WithReturn {
+    foo: { extra: string }
+  } 
+}
+
+
+// En otra parte de tu aplicación
+
+import { WithReturn } from 'awesome-library'
+
+const returnData: WithReturn<typeof data> 
+/*
+  returnData = { 
+    data: Promise<typeof data>,
+    returnData: Record<string, unknown>,
+    foo: { extra: string
+    }
+ */
+    
+```
+
+### En conclusión
+
+¿Cuándo usar `interface` o `type`?
+
+
+
+Por lo general verás el uso de `interface` en la construcción de librerías, en otras palabras si lo que estás desarrollando es una aplicación, lo más probable es que puedas usar cualquiera de las dos formas de definr un tipo, pero:
+
+
+
+Usa `type` cuando:
+
+* Necesitas definir alias para tipos primitivos.
+* Necesitas definir una tupla.
+* Necesitas definir el tipo de una función.
+* Necesitas deifnir uniones, uniones disjuntas, condicionales, mapped types, etc.
+
+Usa `interface` cuando:
+
+* Cuando quieres utilizar el mecanismo de "mezcla de declaraciones" (declaration mergin)
+* Cuando no existe ninguna necesidad de usar `type` al crear un tipo para un objeto.
