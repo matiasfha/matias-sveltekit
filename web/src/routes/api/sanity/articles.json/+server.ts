@@ -6,7 +6,7 @@ import type { Posts } from '../../../../schema.types';
 import imageUrlBuilder from '@sanity/image-url';
 
 import { createFileInRepo, updateFileInRepo } from '$lib/utils/github';
-import { writeToMedium } from './writeToMedium';
+import { writeToMedium } from '$api/writeToMedium';
 import writeToDevTo from '$api/writeToDevTo';
 import writeToHashnode from '$api/writeToHashnode';
 import { createClient } from 'sanity-codegen';

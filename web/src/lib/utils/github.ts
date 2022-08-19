@@ -10,7 +10,7 @@ export async function createFileInRepo(content: string, title: string) {
 		const config = {
 			owner: 'matiasfha',
 			repo: 'matias-sveltekit',
-			path: `web/src/routes/blog/post/${slug}.svx`
+			path: `web/src/routes/blog/post/${slug}/+page.svx`
 		};
 
 		// const repo = await octokit.rest.repos.getContent({
