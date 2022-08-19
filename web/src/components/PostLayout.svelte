@@ -1,6 +1,6 @@
 <script context="module">
 	import { blockquote, h1} from '$components/typography/index';
-import { format } from 'date-fns';
+	import { format } from 'date-fns';
 
 	export { blockquote, h1 };
 	
@@ -26,7 +26,7 @@ import { format } from 'date-fns';
 
 	export let likes = []
 	export let retweet = []
-	
+		
 
 	let currentUrl= "";
 	afterUpdate(() => {

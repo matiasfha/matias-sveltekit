@@ -1,12 +1,12 @@
 import type { Post } from '$lib/types';
 
 export default async function getPosts(): Promise<Post[]> {
-	const modules = import.meta.glob('../routes/blog/post/*.svx');
+	const modules = import.meta.glob('../routes/blog/post/**/+page.svx');
 
 	const postPromises = [];
 	for (const [path, resolver] of Object.entries(modules)) {
 		const promise = resolver().then((post) => {
-			const slug = path.match(/([\w-]+)\.(svelte\.md|md|svx)/i)?.[1] ?? null;
+			const slug = path.slice(0, -4).slice(9).split('/+').shift();
 			return {
 				slug: slug
 					.normalize('NFD')
@@ -28,19 +28,6 @@ export default async function getPosts(): Promise<Post[]> {
 		return aDate < bDate ? 1 : -1;
 	});
 	return posts;
-	// return posts.map((post: Post) => {
-	// 	// find similar post by keywords for the current post
-	// 	const similarPosts = posts.filter((p) => {
-	// 		const postKeywords = post.keywords;
-	// 		const pKeywords = p.keywords;
-	// 		const intersection = postKeywords.filter((keyword) => pKeywords.includes(keyword));
-	// 		return intersection.length > 0;
-	// 	});
-	// 	return {
-	// 		...post,
-	// 		similarPosts
-	// 	};
-	// });
 }
 
 export async function getLatestPost() {

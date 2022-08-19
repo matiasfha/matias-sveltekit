@@ -12,7 +12,7 @@
 		<a
 			sveltekit:prefetch
 			class="group peer relative block w-full focus:outline-none"
-			href={post.path}
+			href={post.slug}
 			><div
 				class="aspect-w-2 aspect-h-1 h-1/4 rounded-lg transition group-hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2"
 			>

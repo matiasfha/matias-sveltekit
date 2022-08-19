@@ -24,7 +24,7 @@ const config = {
     preprocess: [preprocess({
         "postcss": true,
         preserve: ['partytown']
-    }), globalComponents, mdsvex(mdsvexConfig),similarPostsLoader()],
+    }), globalComponents, mdsvex(mdsvexConfig)],
 
     kit: {
         prerender: {
