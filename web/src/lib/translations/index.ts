@@ -74,6 +74,18 @@ const config: Config = {
 			key: 'courses',
 			routes: ['/courses'],
 			loader: async () => (await import('./es/courses.json')).default
+		},
+		{
+			locale: 'en',
+			key: 'about',
+			routes: ['/about'],
+			loader: async () => (await import('./en/about.json')).default
+		},
+		{
+			locale: 'es',
+			key: 'about',
+			routes: ['/es/about'],
+			loader: async () => (await import('./es/about.json')).default
 		}
 	]
 };

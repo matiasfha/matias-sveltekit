@@ -11,9 +11,7 @@ export async function GET() {
     'Cache-Control': 'max-age=0, s-maxage=3600',
     'Content-Type': 'application/xml',
   }
-  return {
-    headers,
-    body: `<?xml version="1.0" encoding="UTF-8" ?>
+  return new Response(`<?xml version="1.0" encoding="UTF-8" ?>
     <urlset
       xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
       xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
@@ -46,6 +44,6 @@ export async function GET() {
     `
         )
         .join('')}
-    </urlset>`,
-  }
+    </urlset>`, { headers })
+  
 }

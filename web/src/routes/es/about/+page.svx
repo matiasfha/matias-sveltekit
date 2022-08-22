@@ -3,8 +3,10 @@ layout: pages
 title: Un poco sobre mi :D
 description: Un pequeño resumen sobre mi :D
 ---
-
-# Hola! Soy Matias 👋
+<script>
+    import AMA from '$components/mdx/AMA.svelte'
+</script>
+<AMA />
 
 Soy un ingeniero de producto/software chileno, padre, podcaster y creador de contenido. Nací en 1986 y crecí en una pequeaña ciuidad de la costa del Maule, Chile. Estudié Ingeniería Civil Informática (algo así como Ingeniería en Computación) y obtuve mi primer trabajo real en una Startup de unos compañeros creando software de visión computacional.
 He escrito código para:

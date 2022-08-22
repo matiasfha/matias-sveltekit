@@ -3,7 +3,6 @@
 	export let data: PageData;
 	$: ({ latest, favorites } = data);
 
-	import type { ContentElement, Latest } from '$lib/types';
 	import Seo from '$components/Seo.svelte';
 	import Hero from '$components/Hero.svelte';
 	import Featured from '$components/Featured.svelte';

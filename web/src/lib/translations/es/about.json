@@ -1,0 +1,12 @@
+{
+    "ask":"Pregunta lo que quieras",
+    "call":"Coordinemos una llamada",
+    "coffee":"Invitame un café",
+    "uses":"Cosas que uso",
+    "title":"Hola, soy Matías 👋",
+    "issue":"Crea un issue en el repo",
+    "publishing":"Publicando tu pregunta...",
+    "send": "Envía tu pregunta",
+    "support":"¿Te gusta mi contenido? Invitame un café",
+    "uses_text":"¿Te interesa conocer que utilizo para realizar mi trabajo? <a href='/uses'>Revisa esta página</a> donde encontrarás un listado."
+}

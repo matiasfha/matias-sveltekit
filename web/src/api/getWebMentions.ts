@@ -1,5 +1,3 @@
-import { json as json$1 } from '@sveltejs/kit';
-
 import sanitizeHTML from 'sanitize-html';
 
 const API = 'https://webmention.io/api';

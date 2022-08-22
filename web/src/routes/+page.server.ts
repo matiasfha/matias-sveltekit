@@ -14,7 +14,7 @@ async function getLatestContent() {
 
 		/*****/
 		const post = await getLatestPost();
-		console.log({ post });
+
 		const course = await getLatestCourse();
 		const article = await getLatestArticle();
 
@@ -40,7 +40,7 @@ async function getLatestContent() {
 				tag: 'Podcast: Control Remoto'
 			},
 			{
-				/* post */ href: `/blog/post/${post.slug}`,
+				/* post */ href: post.slug,
 				image: post.banner,
 				title: post.title,
 				tag: 'Post'
