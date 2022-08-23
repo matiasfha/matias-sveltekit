@@ -48,6 +48,19 @@
 	
 </script>
 
+
+<svelte:head>
+  	<!-- Infolinks ads  -->
+	<script type="text/javascript">
+		var infolinks_pid = 3369090;
+		var infolinks_wsid = 0;
+	</script>
+	<script type="text/javascript"  defer src="https://resources.infolinks.com/js/infolinks_main.js"></script>
+	<script type="text/javascript"  defer async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8352667732450998"
+     crossorigin="anonymous"></script>
+
+</svelte:head>
+
 <Seo {title} {description} {keywords} isBlogPost={true} canonical={canonical} banner={banner} />
 <div class="w-full pb-4 px-0 h-entry" >
 	<header

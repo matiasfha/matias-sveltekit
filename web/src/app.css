@@ -3,10 +3,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap');
 @import './prism-night-owl.css';
 
-code[class*='language-'], pre[class*='language-'] {
-  font-family: 'Fira Code', monospace;
-  font-style: normal !important;
-  tab-size: 2 !important
+code[class*='language-'],
+pre[class*='language-'] {
+	font-family: 'Fira Code', monospace;
+	font-style: normal !important;
+	tab-size: 2 !important;
+}
+
+.bytemd {
+	border-radius: 0.5rem !important;
+	height: 400px !important;
+	background: white !important;
+}
+
+.bytemd-body {
+	height: 330px !important;
+	background-color: transparent !important;
+}
+
+.CodeMirror {
+	text-align: left !important;
+}
+
+.bytemd-status {
+	font-size: 10px !important;
+	padding-bottom: 0.5rem;
+}
+
+.bytemd-status strong {
+	font-size: 10px !important;
 }
 
 @tailwind base;
@@ -15,28 +40,29 @@ code[class*='language-'], pre[class*='language-'] {
 @tailwind utilities;
 
 @layer utilities {
-  .underlined {
-    position: relative;
-    text-decoration: none; 
-    white-space: nowrap;
-    &:focus {
-      outline: none;
-    }
-    &:after {
-      content: '';
-      height: 2px;
-      transform: scaleX(0);
-      transition: transform 0.25s ease;
-      transform-origin: left;
-      left: 0;
-      bottom: -4px;
-      width: 100%;
-      display: block;
-      position: absolute;
-    }
-    &:hover:after, &:focus:after {
-      background-color: currentColor;
-      transform: scaleX(1);
-    }
-  }
+	.underlined {
+		position: relative;
+		text-decoration: none;
+		white-space: nowrap;
+		&:focus {
+			outline: none;
+		}
+		&:after {
+			content: '';
+			height: 2px;
+			transform: scaleX(0);
+			transition: transform 0.25s ease;
+			transform-origin: left;
+			left: 0;
+			bottom: -4px;
+			width: 100%;
+			display: block;
+			position: absolute;
+		}
+		&:hover:after,
+		&:focus:after {
+			background-color: currentColor;
+			transform: scaleX(1);
+		}
+	}
 }

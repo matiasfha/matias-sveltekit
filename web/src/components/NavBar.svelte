@@ -8,7 +8,6 @@
 	const getCurrentRoute = () => {
 		if (browser) {
 			const { pathname } = window.location;
-			console.log(pathname);
 			return pathname;
 		}
 		return '';

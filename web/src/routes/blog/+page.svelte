@@ -73,7 +73,7 @@
 
 
 <Featured 
-image={featured.banner} title={featured.title} url={`/blog/post/${featured.slug}`} 
+image={featured.banner} title={featured.title} url={featured.slug} 
 meta={format(new Date(featured.date), 'dd/MM/yyyy')}
 description={featured.description}
 />

@@ -10,9 +10,9 @@ keywords:
 ---
 
 <script>
-    import AMA from '$components/mdx/AMA.svelte'
+    import Tabs from '$components/ContactTabs/index.svelte'
 </script>
-<AMA />
+<Tabs />
 
 
 I am a Chilean product/software engineer, father, podcaster and content creator. I was born in 1986 and grew up in a small town on the coast of Maule, Chile. I studied Computer Civil Engineering (something like Computer Engineering) and got my first real job in a Startup of some colleagues creating computer vision software. I have written code for:

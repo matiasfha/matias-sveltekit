@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { t } from '$lib/translations';
-	import { AnchorFm } from 'sveltekit-embed';
 	
 	export let image: string;
 	export let title: string;

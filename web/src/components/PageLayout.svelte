@@ -2,7 +2,7 @@
 	import { blockquote } from '$components/typography/index';
 	
 	export { blockquote };
-	export const hydrate = false;
+	
 </script>
 
 <script>
