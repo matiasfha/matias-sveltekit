@@ -57,7 +57,7 @@
 								</svg>
 								</a
 							>
-							<a href="http://escuelafrontend.com" name="Escuela Frontend">
+							<a href="https://www.escuelafrontend.com/instructores/matias-hernandez-arellano" name="Escuela Frontend">
 								<img
 									src="/escuelafrontend.png"
 									alt="Escuela frontend logo"
