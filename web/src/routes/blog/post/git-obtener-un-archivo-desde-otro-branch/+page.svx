@@ -1,0 +1,135 @@
+
+---
+date: 2022-08-25T22:00:57Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/2935c65c98d7be0cfa1edec4623124aa28fb5b6c-1280x710.png
+keywords: 
+- git
+- git branch
+- git checkout
+- git commands
+- git checkout branch
+- git checkout file from another branch
+- git switch branch
+- using git
+- usando git
+- branch feature
+- git checkout archivo de otro branch
+title: "Git: Obtener un archivo desde otro branch"
+description: "Es muy común que al estar trabajando en tu proyecto necesites obtener un archivo que existe otro branch. Por suerte Git ofrece herramientas para obtenerlo.
+
+"
+bannerCredit: undefined
+tag: Posts
+---
+En más de una ocasión he tenido la necesidad de recuperar un (o varios) archivo desde una branch diferente a la que estoy trabajando y una y otra vez debo realizar una búsqueda ya que siempre olvido el comando requerido.
+
+
+
+Por suerte para tod@s `git` ofrece soluciones para casi todos los problemas que puedas imaginar (relacionados con archivos y versiones). En este artículo veremos algunas formas de solucionar este problema.
+
+
+
+## ¿Cómo obtengo un archivo desde otro branch?
+
+
+
+Primero definamos una situación en donde este problema aparezca:
+
+Estás trabajando en un branch llamada `migration`, en este branch tienes un archivo llamado `src/migration-tools/`.
+
+
+
+En otro branch, llamémosle `features` se ha realizado otro trabajo pero no ha sido sincronizado con los cambios que están en `migration`.
+
+
+
+Ahora, te tocó trabajar en el branch `features`, así que creas un nuevo branch desde ahí y te das cuenta que necesitas algunas de las herramientas de `migration-tools`.
+
+¿Qué haces?.
+
+* ¿Abres el repositorio en el browser y copias y pegas el script que necesitas?
+
+* ¿Comienzas a crear pull-requests y hacer merge de los diferentes branch para poder tener acceso a esos archivos?
+
+
+
+En mi opinión ninguna de las anteriores, la solución es: "Traer el directorio completo hacia tu branch".
+
+
+
+Aquí hay 3 posibles formas de resolverlo.
+
+#### Git checkout
+
+El comando `git checkout` te permite de una forma sencilla obtener un archivo o directorio desde otro branch, tan solo debes seguir esta sintaxis para ejecutarlo.
+
+```bash
+
+$ git checkout <el-otro-branch> -- path/a/tu/archivo
+
+```
+
+Para resolver el caso de uso lo que harías será:
+
+
+
+```bash
+
+$ git checkout features  
+  
+$ git checkout -b features-work-in-progress
+
+$ git checkout migration -- src/migration-tools
+
+```
+
+
+
+Esto es, primero asegurarte que estás en el branch adecuado, luego crear un branch para trabajar `features-work-in-progress` y luego obtener la copia del directorio.
+
+
+
+#### Git restore y git switch
+
+Quizá no estés del todo al tanto con `git switch`, esto por que es un comando relativamente nuevo añadido a **git**.
+
+> `switch` es básicamente una simplificación del comando `checkout` que en este caso solo te permite cambiar de branches (o más especificamente cambiar el HEAD actual)
+
+* `git restore` restaura tu "espacio de trabajo" eliminando los cambios que no han sido "commiteados" (a falta de mejor traducción).
+* `git switch` te permite cambiar branches.
+
+¿Como funcionan en conjunto para lograr obtener un archivo o directorio desde otra branch?
+
+
+
+Primero, debes cambiar al branch en donde quieres trabajar y "agregar" el nuevo archivo o directorio
+
+`git switch features-work-in-progress`
+
+Luego obtienes el directorio desde la otra branch
+
+`git restore --source  migration -- src/migration-tools`
+
+
+
+Finalmente guarda tus cambios  `commit` y actualiza tu repositorio `push`.
+
+#### Git show
+
+Una última opción es utilizar `git show`. Este comando te permite "ver" diferentes tipos de objetos dentro del repositorio.
+
+El proceso sería como sigue:
+
+Cambia a el branch donde trabajarás
+
+`git switch features-work-in-progress`
+
+Luego obtienes el directorio desde la otra branch
+
+`git show --source  migration -- src/migration-tools`
+
+Listo, ya puedes hacer `push` a tu branch.
+
+
+
+En definitiva **git** es una herramienta que ofrece muchas opciones para resolver problems que te encuentras durante la "administración" de tu código, como este problema de obtener un archivo o directorio desde otro branch con el que me encuentro comúnmente.
