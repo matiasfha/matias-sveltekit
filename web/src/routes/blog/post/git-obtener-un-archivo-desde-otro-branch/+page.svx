@@ -126,7 +126,7 @@ Cambia a el branch donde trabajarás
 
 Luego obtienes el directorio desde la otra branch
 
-`git show --source  migration -- src/migration-tools`
+`git show migration:./src/migration-tools > ./src/migration-tools`
 
 Listo, ya puedes hacer `push` a tu branch.
 
