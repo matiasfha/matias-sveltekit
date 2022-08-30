@@ -14,7 +14,8 @@ keywords:
 - usando git
 - branch feature
 - git checkout archivo de otro branch
-title: "Git: Obtener un archivo desde otro branch"
+- como obtener un archivo de otro branch
+title: "Git: Cómo Obtener un archivo desde otro branch"
 description: "Es muy común que al estar trabajando en tu proyecto necesites obtener un archivo que existe otro branch. Por suerte Git ofrece herramientas para obtenerlo.
 
 "
