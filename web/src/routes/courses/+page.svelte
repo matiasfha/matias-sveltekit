@@ -2,22 +2,21 @@
 	// Suggestion (check code before using, and possibly convert to data.X access later):
 	import type { PageData } from './$types';
 	export let data: PageData;
-	$: ({ courses } = data);
-
+	
 	import Featured from '$components/Featured.svelte';
 	import Seo from '$components/Seo.svelte';
 	import { t } from '$lib/translations';
 	import type { Course } from '$lib/types';
-	const featured = courses.find((item) => item.id === 404918);
-
+	const featured = data.courses.find((item) => item.id === 611059);
+	
 	let searchItem: string;
 
 	$: filteredCourse = searchItem
-		? courses.filter((item: Course) => {
+		? data.courses.filter((item: Course) => {
 				const title = item.title?.toLowerCase() ?? '';
 				return title.includes(searchItem.toLowerCase());
 		  })
-		: courses;
+		: data.courses;
 </script>
 <!--INFOLINKS_OFF-->
 <Seo
