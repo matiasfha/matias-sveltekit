@@ -1,9 +1,10 @@
-import type { ContentElement, Latest } from '$lib/types';
-import { getLatestArticle } from '$api/getAllExternalArticles';
-import { getLatestCourse } from '$api/getEggheadCourses';
-import { getLatest } from '$api/getPodcast';
-import { getLatestPost } from '$api/getPosts';
-import getFavorites from '$api/getFavorites';
+import type { PageServerLoad } from './$types';
+import type { Latest } from '$lib/types';
+import { getLatestArticle } from '$lib/api/getAllExternalArticles';
+import { getLatestCourse } from '$lib/api/getEggheadCourses';
+import { getLatest } from '$lib/api/getPodcast';
+import { getLatestPost } from '$lib/api/getPosts';
+import getFavorites from '$lib/api/getFavorites';
 
 async function getLatestContent() {
 	try {
@@ -20,7 +21,7 @@ async function getLatestContent() {
 
 		const latest: Latest[] = [
 			{
-				/* egghead */ href: course.url,
+				/* egghead */ href: course.url + '?af=4cexzz',
 				image: course.image,
 				title: course.title,
 				tag: 'Egghead Course'
@@ -51,6 +52,14 @@ async function getLatestContent() {
 				image: article.image,
 				title: article.title,
 				tag: `published at: ${article.tag}`
+			},
+			/* youtube */
+			{
+				href: 'https://youtu.be/v3WUL7gK9Kw',
+				image:
+					'https://res.cloudinary.com/matiasfha/image/upload/v1662082980/web3-youtube_xqpfxj.png',
+				title: 'Web3: Fullstack Development con Ethereum y SvelteKit',
+				tag: `Youtube Video`
 			}
 		];
 
@@ -58,12 +67,12 @@ async function getLatestContent() {
 	} catch (e) {
 		console.error(e);
 		// @TODO Should it Throw?
-		return [];
+		return [] as Latest[];
 	}
 }
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ fetch, context }) {
+export const load: PageServerLoad = async () => {
 	try {
 		const latest = await getLatestContent();
 		const favorites = await getFavorites();
@@ -81,4 +90,7 @@ export async function load({ fetch, context }) {
 			}
 		};
 	}
-}
+};
+
+export const hydrate = false;
+export const prerender = true;

@@ -180,7 +180,7 @@
 			<div class={`grid gap-2 grid-cols-1 md:grid-cols-${similarPosts.length}`}>
 				{#each similarPosts as post}
 					<div class="flex flex-col">
-						<a href={post.path}
+						<a href={post.slug}
 			class="group peer relative block w-full focus:outline-none">
 							<div class="rounded-lg h-40 transition group-hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2">
 								<img

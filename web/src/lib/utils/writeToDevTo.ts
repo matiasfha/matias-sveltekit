@@ -1,5 +1,5 @@
 import slugify from '$lib/utils/slugify';
-import type { Posts } from '../schema.types';
+import type { Posts } from '../../schema.types';
 import { getRawMarkdown } from './generateMarkdown';
 
 export default async function writeToDevTo(post: Posts & { image: string }) {

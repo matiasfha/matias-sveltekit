@@ -1,7 +1,8 @@
-import getPosts from '$api/getPosts';
+import type { RequestHandler } from './$types';
+import getPosts from '$lib/api/getPosts';
 import { Feed } from 'feed';
 
-export async function GET() {
+export const GET: RequestHandler = async () => {
 	const posts = await getPosts();
 	const feed = new Feed({
 		title: 'Matias Hernández',
@@ -37,4 +38,4 @@ export async function GET() {
 			'Content-Type': 'application/atom+xml'
 		}
 	});
-}
+};

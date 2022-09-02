@@ -1,29 +1,24 @@
-<script lang="ts">
-	// Suggestion (check code before using, and possibly convert to data.X access later):
-	import type { PageData } from './$types';
-	export let data: PageData;
-	$: ({ articles, featured } = data);
-
+<script>
+	/** @type {import('./$types').PageData} */
+	export let data;
+	
 	import Featured from '$components/Featured.svelte';
 	import ContentCard from '$components/ContentCard.svelte';
 	import Seo from '$components/Seo.svelte';
 	import { t } from '$lib/translations';
-
-	import type { ContentElement } from '$lib/types';
-
-	export let articles: ContentElement[];
-	export let featured: ContentElement;
-	let searchItem: string;
+	/** @type { string }*/
+	let searchItem;
 
 	$: filteredArticles = searchItem
-		? articles.filter((item: ContentElement) => {
+		? data.articles.filter((item) => {
 				const title = item.title?.toLowerCase() ?? '';
 				return (
 					title.includes(searchItem.toLowerCase()) ||
 					item.tag?.toLowerCase()?.includes(searchItem.toLowerCase())
 				);
 		  })
-		: articles;
+		: data.articles;
+	
 </script>
 <!--INFOLINKS_OFF-->
 <header
@@ -73,11 +68,11 @@
 />
 
 <Featured
-	image={featured.image}
-	title={featured.title}
-	meta={featured.tag}
-	description={featured.description}
-	url={featured.url}
+	image={data.featured.image}
+	title={data.featured.title}
+	meta={data.featured.tag}
+	description={data.featured.description}
+	url={data.featured.url}
 />
 
 <div class="flex flex-row mt-12">

@@ -2,22 +2,21 @@
 	// Suggestion (check code before using, and possibly convert to data.X access later):
 	import type { PageData } from './$types';
 	export let data: PageData;
-	$: ({ courses } = data);
-
+	
 	import Featured from '$components/Featured.svelte';
 	import Seo from '$components/Seo.svelte';
 	import { t } from '$lib/translations';
 	import type { Course } from '$lib/types';
-	const featured = courses.find((item) => item.id === 404918);
-
+	const featured = data.courses.find((item) => item.id === 611059);
+	
 	let searchItem: string;
 
 	$: filteredCourse = searchItem
-		? courses.filter((item: Course) => {
+		? data.courses.filter((item: Course) => {
 				const title = item.title?.toLowerCase() ?? '';
 				return title.includes(searchItem.toLowerCase());
 		  })
-		: courses;
+		: data.courses;
 </script>
 <!--INFOLINKS_OFF-->
 <Seo
@@ -60,8 +59,19 @@
 	image={featured.image}
 	title={featured.title}
 	meta={featured.access_state}
-	url={featured.url}
-	description="In this course, you will find a step-by-step guide to build a complex component using different design patterns implemented with the Hooks API."
+	url={`${featured.url}?af=4cexzz`}
+	description={`
+	<p>Web3 is a paradigm shift in how applications are interacted with, ran, and built.</p>
+
+
+	<p>While you build this application you will learn how to:</p>
+	<ul class="list-disc list-inside">
+		<li>Write a smart contract using Solidity language.</li>
+		<li>Test the smart contract using just JavaScript through the waffle framework.</li>
+		<li>Communicate and interact with the smart contract using ethers.js in a SvelteKit application.</li>
+		<li>Deploy your smart contract to make it public and accessible to anyone.</li>
+	</ul>
+	`}
 />
 <div class="flex flex-row mt-12">
 	<input
@@ -82,7 +92,7 @@
 		{#each filteredCourse as item}
 			<div class="group peer flex flex-col ">
 				<div class="md:mb-4 mb-2 ">
-					<a class="relative block w-full focus:outline-none " href={item.url}
+					<a class="relative block w-full focus:outline-none " href={`${item.url}?af=4cexzz`}
 						><div
 							class="aspect-w-2 aspect-h-1 w-full rounded-lg focus:ring transition group-hover:ring-2 ring-yellow-50 ring-offset-2"
 						>

@@ -1,6 +1,7 @@
-import getCourses from '$api/getEggheadCourses';
+import type { PageServerLoad } from './$types';
+import getCourses from '$lib/api/getEggheadCourses';
 
-export async function load() {
+export const load: PageServerLoad = async () => {
 	try {
 		const courses = await getCourses();
 		return {
@@ -14,4 +15,4 @@ export async function load() {
 			}
 		};
 	}
-}
+};

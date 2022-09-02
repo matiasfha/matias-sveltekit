@@ -5,13 +5,13 @@ import type { Posts } from '../../../../schema.types';
 
 import imageUrlBuilder from '@sanity/image-url';
 
-import { createFileInRepo, updateFileInRepo } from '$lib/utils/github';
-import { writeToMedium } from '$api/writeToMedium';
-import writeToDevTo from '$api/writeToDevTo';
-import writeToHashnode from '$api/writeToHashnode';
+import { createFileInRepo, updateFileInRepo } from '$lib/api/github';
+import { writeToMedium } from '$lib/api/writeToMedium';
+import writeToDevTo from '$lib/utils/writeToDevTo';
+import writeToHashnode from '$lib/api/writeToHashnode';
 import { createClient } from 'sanity-codegen';
 import type { Documents } from '../../../../schema.types';
-import { generateMarkdown } from '$api/generateMarkdown';
+import { generateMarkdown } from '$lib/utils/generateMarkdown';
 
 const clientOptions = {
 	projectId: 'cyypawp1',
@@ -48,7 +48,7 @@ async function writePost(post: Posts, update = false) {
 			await writeToMedium(post)
 		];
 	} else {
-		promises = [await createFileInRepo(markdown, post.title)];
+		promises = [await updateFileInRepo(markdown, post.title)];
 	}
 
 	try {
@@ -103,11 +103,11 @@ async function validateWebhook(request: Request, body: Request['body']) {
 export async function PUT({ request }: RequestEvent) {
 	const body = await request.json();
 	if (!validateWebhook(request, body)) {
-		return json$1(
-			{
+		return new Response(
+			JSON.stringify({
 				message: 'Invalid signature',
 				signature: request.headers.get('sanity-webook-signature')
-			},
+			}),
 			{
 				status: 401
 			}
@@ -119,11 +119,11 @@ export async function PUT({ request }: RequestEvent) {
 export async function POST({ request }: RequestEvent) {
 	const body = await request.json();
 	if (!validateWebhook(request, body)) {
-		return json$1(
-			{
+		return new Response(
+			JSON.stringify({
 				message: 'Invalid signature',
 				signature: request.headers.get('sanity-webook-signature')
-			},
+			}),
 			{
 				status: 401
 			}

@@ -74,7 +74,7 @@
 								class="max-w-screen-md font-body text-ebony-clay-800 dark:text-gray-50 text-left"
 							>
 								<p>
-									{description}
+									{@html description}
 								</p>
 							</div>
 						{/if}

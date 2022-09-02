@@ -2,7 +2,6 @@
 	import '../app.css';
 	import Footer from '$components/Footer.svelte';
 	import NavBar from '$components/NavBar.svelte';
-	import { onMount } from 'svelte'
 
 </script>
 

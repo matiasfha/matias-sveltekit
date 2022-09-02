@@ -1,4 +1,5 @@
 import { request, gql } from 'graphql-request';
+import type { PageServerLoad } from './$types';
 
 type Source = {
 	course: string;
@@ -27,17 +28,12 @@ const query = gql`
 		}
 	}
 `;
-export default async function getCourses(): Promise<Array<any>> {
+
+export const load: PageServerLoad = async () => {
 	const { allMicrobytes } = await request<{
 		allMicrobytes: Array<Source>;
 	}>('https://cyypawp1.api.sanity.io/v1/graphql/production/default', query);
-	return allMicrobytes;
-}
-
-export async function load() {
-	const courses = await getCourses();
-
 	return {
-		courses
+		courses: allMicrobytes
 	};
-}
+};

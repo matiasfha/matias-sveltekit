@@ -1,12 +1,13 @@
 import slugify from '$lib/utils/slugify';
-import type { Posts } from '../schema.types';
+import type { Posts } from '../../schema.types';
 import { getRawMarkdown } from './generateMarkdown';
 
 export default async function writeToHashnode(post: Posts & { image: string }) {
 	const article = {
 		title: post.title,
 		contentMarkdown: `${getRawMarkdown(post.content)}
-        	%%[buymeacoffee]
+\n\n
+%%[buymeacoffee]
         `,
 		coverImageURL: post.image,
 		isRepublished: {
