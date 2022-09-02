@@ -27,7 +27,6 @@
 			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"],
 			"$components": ["./src/components"],
-			"$api/*": ["./src/api/*"],
 			"$images": ["./src/image"],
 			"$utils": ["./src/lib/util"],
 		},

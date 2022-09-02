@@ -1,5 +1,5 @@
 import { Octokit } from '@octokit/rest';
-import slugify from './slugify';
+import slugify from '../utils/slugify';
 
 export async function createFileInRepo(content: string, title: string) {
 	try {

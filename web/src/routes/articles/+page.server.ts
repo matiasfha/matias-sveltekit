@@ -1,10 +1,8 @@
-import getArticles from '$api/getAllExternalArticles';
-
-/** @type {import('./$types').PageServerLoad} */
-export async function load() {
+import getArticles from '$lib/api/getAllExternalArticles';
+import type { PageServerLoad } from './$types';
+export const load: PageServerLoad = async () => {
 	try {
 		const articles = await getArticles();
-		console.log({ articles });
 		return {
 			articles,
 			featured: articles.find((item) => item.featured)
@@ -15,4 +13,4 @@ export async function load() {
 			featured: null
 		};
 	}
-}
+};

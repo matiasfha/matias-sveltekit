@@ -1,5 +1,5 @@
-import fetchSimilarPosts from '$api/getSimilarPosts';
-import { getWebMetions } from '$api/getWebMentions';
+import fetchSimilarPosts from '$lib/api/getSimilarPosts';
+import { getWebMetions } from '$lib/api/getWebMentions';
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ url }) => {

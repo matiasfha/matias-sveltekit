@@ -15,7 +15,7 @@
 			<div
 				class="bg-white dark:bg-gray-800 dark:text-gray-200 shadow-sm rounded-lg overflow-hidden p-5 text-center hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2"
 			>
-				<a href="/" class="focus:outline-none block w-fuill" name={item.title}>
+				<a href={item.url} class="focus:outline-none block w-fuill" name={item.title}>
 					<div class="aspect-w-2 aspect-h-1 h-64 flex items-center justify-center mb-12 rounded-lg overflow-hidden">
 						<img
 							height="256"

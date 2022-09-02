@@ -3,8 +3,7 @@
 	// Suggestion (check code before using, and possibly convert to data.X access later):
 	import type { PageData } from './$types';
 	export let data: PageData;
-	$: ({ posts, featured } = data);
-
+	console.log(data.featured)
 	import Featured from '$components/Featured.svelte';
 	import PostCard from '$components/PostCard.svelte';
 	import Seo from '$components/Seo.svelte';
@@ -30,14 +29,14 @@
 	let searchItem: string;
 	
 	$: filteredPosts = searchItem
-		? posts.filter((item: Post) => {
+		? data.posts.filter((item: Post) => {
 				const title = item.title?.toLowerCase() ?? '';
 				const keywords = item.keywords;
 				return (
 					title.includes(searchItem.toLowerCase()) || keywords?.includes(searchItem.toLowerCase())
 				);
 		  })
-		: posts;
+		: data.posts;
 </script>
 <!--INFOLINKS_OFF-->
 <Seo title="Blog" description="Mi blog personal" canonical="https://matiashernandez.dev/blog" />
@@ -73,9 +72,9 @@
 
 
 <Featured 
-image={featured.banner} title={featured.title} url={featured.slug} 
-meta={format(new Date(featured.date), 'dd/MM/yyyy')}
-description={featured.description}
+image={data.featured.banner} title={data.featured.title} url={data.featured.slug} 
+meta={format(new Date(data.featured.date), 'dd/MM/yyyy')}
+description={data.featured.description}
 />
 
 <div class="flex flex-row mt-12">

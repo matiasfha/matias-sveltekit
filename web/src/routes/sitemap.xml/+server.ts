@@ -1,17 +1,18 @@
+import type { RequestHandler } from './$types';
+import getPosts from '$lib/api/getPosts';
 
-import getPosts from '$api/getPosts';
+const website = 'https://matiashernandez.dev';
 
-const website = 'https://matiashernandez.dev'
+const pages = ['about', 'newsletter', 'articles', 'blog'];
 
-const pages = ['about', 'newsletter', 'articles', 'blog']
-
-export async function GET() {
-  const posts = await getPosts()
-  const headers = {
-    'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml',
-  }
-  return new Response(`<?xml version="1.0" encoding="UTF-8" ?>
+export const GET: RequestHandler = async () => {
+	const posts = await getPosts();
+	const headers = {
+		'Cache-Control': 'max-age=0, s-maxage=3600',
+		'Content-Type': 'application/xml'
+	};
+	return new Response(
+		`<?xml version="1.0" encoding="UTF-8" ?>
     <urlset
       xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
       xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
@@ -25,25 +26,30 @@ export async function GET() {
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
       </url>
-      ${pages.map(page => `
+      ${pages
+				.map(
+					(page) => `
         <url>
             <loc>${website}/${page}</loc>
             <changefreq>daily</changefreq>
             <priority>0.7</priority>
         </url>
-        `)
-        .join('')}
+        `
+				)
+				.join('')}
       ${posts
-        .map(post =>
-          `
+				.map(
+					(post) =>
+						`
     <url>
         <loc>${website}/blog/post/${post.slug}</loc>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
     </url>
     `
-        )
-        .join('')}
-    </urlset>`, { headers })
-  
-}
+				)
+				.join('')}
+    </urlset>`,
+		{ headers }
+	);
+};
