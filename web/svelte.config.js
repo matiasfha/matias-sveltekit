@@ -4,11 +4,10 @@ import preprocess from 'svelte-preprocess';
 import netlify from '@sveltejs/adapter-netlify'
 
 import { mdsvexGlobalComponents } from  './preprocessors/mdsvexGlobalComponents.js'
-import { similarPostsLoader } from './preprocessors/similarPosts.js'
 
 const globalComponents = mdsvexGlobalComponents({
   dir: `$components/mdx`,
-  list: ['Sponsor.svelte','Buzzsprout.svelte','CodeSandbox.svelte','EggheadLesson.svelte','TLDR.svelte','Twitter.svelte','Podcast.svelte','YouTube.svelte'],
+  list: ['Sponsor.svelte','Buzzsprout.svelte','CodeSandbox.svelte','EggheadLesson.svelte','TLDR.svelte','Twitter.svelte','Podcast.svelte','YouTube.svelte','Disclaimer.svelte'],
   extensions: mdsvexConfig.extensions
 })
 

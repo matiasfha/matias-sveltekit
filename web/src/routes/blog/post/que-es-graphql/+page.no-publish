@@ -1,0 +1,585 @@
+---
+date: 2022-08-10T23:13:59.000-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1611543353/caspar-camille-rubin-fPkvU7RDmCo-unsplash_uh7g7z.jpg 
+keywords:
+- Graphql
+- Que es Graphql
+- Introduccion a graphql
+- Intro a graphql
+- Por que graphql
+- graphql clients
+- clients graphql
+- servidores graphql
+- especificacion graphql
+- graphql rest
+- graphql vs rest
+title: ¿Qué es GraphQL?
+description: ESLint es una herramienta de análisis estático de tu código que te ayuda a evitar errores comunes.
+---
+
+<Disclaimer title="Repost">
+<p>Este artículo fue originalmente publicado en Escuela Frontend.</p>
+<p>Visita el contenido original en este <a href="">enlace.</a></p>
+</Disclaimer>
+
+GraphQL es un lenguaje de consulta (query language) que ha sido visto como una mejora en eficiencia, flexibilidad y potencial sobre formas previas de implementar una API.
+
+> API significa (en inglés) Application Programming Interface (interfaz de programación de aplicación). Es la forma que diferentes aplicaciones pueden compartir datos, al exponer una interfaz pública. Usualmente esta interfaz esta determinada por una URL y una serie de parémtros que permiten consultar o enviar datos.
+
+GraphQL es la [especificación de un lenguaje de consulta](https://spec.graphql.org/) que se enfoca en la forma en que se obtienen los datos. Fue originalmente desarrollado y presentado por Facebook, pero actualmente el estándar es mantenido como open source por una creciente comunidad.
+
+Puedes ver la Keynote en donde se presentó la especificación en el siguiente video.
+
+Al ser una especificación, GraphQL no está atado a ningún lenguaje o base de datos en particular, si no más bien cada lenguaje puede implementar su propia solución para soportar la especificación. La gran mayoría de las implementaciones son utilizadas sobre HTTP, aquí la principal idea es enviar `POST` una consulta `query` a una URL en particular.
+
+
+![diagrama graphql](https://graphql-engine-cdn.hasura.io/learn-hasura/assets/graphql-react/graphql-on-http.png)
+<caption>Diagrama obtenido de la documentación de <a href="https://hasura.io">Hasura</a></caption>
+
+En este diagrama puedes encontrar una descripción de la comunicación entre un cliente y servidor de GraphQL.
+
+1. El cliente crea una consulta GraphQL (`query`) que describe la información que se quiere obtener. 
+2. El servidor expone una sola URL `endpoint` (usualmente `/graphql`)
+3. El cliente ejecuta una llamada `POST` al endpoint provisto por el servidor enviando la consulta definida como un string JSON.
+4. El servidor recibe la consulta, la procesa y responde con datos en formato JSON que tiene la misma estructura que la consulta recibida.
+
+
+GraphQL permite el uso de "declarative data fetching" (obtención de datos declarativa), es decir, el cliente es quien define y especifica que datos necesita exactamente.
+
+> A modo de comparación en el caso de una API tipo REST, el servidor expone múltiples endpoint para cada uno de los recursos expuestos y es el servidor quien define que datos se retornan en cada url.
+
+Esta idea de permitir al cliente definir los datos requeridos permite evitar algunos problemas de "sobre consulta" existentes en la arquitectura REST en donde muchas veces un endpoint retorna una excesiva cantidad de datos, creando dificultades en asegurar que el cliente está recibiendo el set de datos correcto.
+
+Otro problema que GraphQL intenta resolver es el consultar diferentes recursos o entidades relacionadas, en el caso de REST esto implica consultar diferentes endpoints, en GraphQL todas las consultas son enviadas a un mismo endpoint provisto por el servidor.
+
+## Características
+
+Hay una serie de características claves en el diseño de GraphQL: Declarativo, Jerárquico, Instrospectivo y fuertemente tipado.
+
+### Declarativo
+Las consultas en GraphQL son **declarativas**, es decir, el cliente declara exactamente qué campos o atributos necesita. La respuesta recibida **solo** incluirá dichas propiedades.
+
+```graphql
+{
+    user(id: "1") {
+        name
+        address
+        email
+    }
+}
+```
+El código anterior muestra una consulta que permite obtener un `user` identificado por el `id` "1". Esta consulta solicita los campos `name`, `address` e `email`.
+
+La posible respuesta a esta consulta será un objeto en formato JSON cuyo atributo `data` será un objeto que contiene los campos solicitados.
+
+```json
+{
+    "data": {
+        "user": {
+            "name":"Matías",
+            "address":"Some place",
+            "email":"hola@matiashernandez.dev"
+        }
+    }
+}
+```
+
+### Jerárquica
+
+Las consultas en GraphQL son jerárquicas. Los datos retornados siguen la misma forma o definición de la consulta. 
+
+```graphql
+{
+    user(id: "1") {
+        name
+        address
+        email
+        networks {
+            name
+            url
+        }
+    }
+}
+```
+
+La consulta anterior ha sido extendida para incluir el campo `networks` que a su vez solicita los campos `name` y `url`.
+
+```json
+{
+    "data": {
+        "user": {
+            "name":"Matías",
+            "address":"Some place",
+            "email":"hola@matiashernandez.dev",
+            "networks" [
+                {
+                    "name": "twitter",
+                    "url:" "https://twitter.com/matiasfha",
+                },
+                {
+                    "name":"Polywork",
+                    "url":"https://tl.matiashernandez.dev"
+                }
+            ]
+        }
+    }
+}
+```
+
+La respuesta ahora incluye un arreglo con todos los valores asociados a la propiedad `networks` de este `user` en particular.
+GraphQL no tiene opinión ni fuerza una forma de almacenamiento de datos en particular, por lo que es incluso posible que `users` y `networks` estén almacenados en distintas bases de datos. Si esto fuese así, es el servidor que implementa la especificación GraphQL y expone el endpoint quien debe ocuparse de recolectar los datos (implementación de  `resolvers`).
+
+### Instrospectivo o auto-documentado
+
+La [Introspección](https://spec.graphql.org/June2018/#sec-Introspection) es una característica que permite que clientes puedan obtener el esquema que da forma a los datos utilizados por ese endpoint GraphQL. Esto permite la creación de herramientas como [GraphiQL](https://github.com/graphql/graphiql), un playground para el servidor que permite ejecutar consultas, pero por sobre todo acceder a la documentación existente.
+
+Por medio de esta característica es posible conocer que otras propiedades pueden ser consultadas para el campo `networks` sin la necesidad de mirar el código del servidor.
+
+```graphql
+{
+    _schema {
+        types {
+            name
+            kind
+            description
+        }
+    }
+}
+```
+
+Esta consulta retornará la descripción del esquema, algo similar a:
+
+```json
+{
+  "data": {
+    "__schema": {
+      "types": [
+        {
+          "name": "Network",
+          "kind": "OBJECT",
+          "description": "A description of a social network"
+        }
+      ]
+    }
+  }
+}
+```
+
+### Fuertemente Tipado
+
+La especificación describe [un sistema de tipos](https://spec.graphql.org/June2018/#sec-Type-System) lo que permite definir las capacidades que cada valor o campo tendrá dentro del servidor GraphQL.
+
+Los tipos utilizados dentro del esquema son muy similares a los tipos encontrados en [Typescript](https://youtu.be/EflWb988wfc) y otros lenguajes, incluyendo primitivas como `String`,`Boolean`, `Int` y tipos más avanzados.
+
+```graphql
+type Network {
+  name: String!
+  url: String!
+  priority: Int
+}
+```
+Este ejemplo define un tipo objeto llamado `Network`, que se compone de dos campos requeridos `name` y `url`, ambos del tipo `String` y un campo opcional `priority` de tipo `Int`.
+
+El esquema de GraphQL es definido utilizando el sistema de tipos, lo que permite al servidor determinar si una consulta es o no válida antes de intentar ejecutarla.
+
+Este sistema de tipos permite asegurar que las consultas son sintácticamente correctas, evitando así ambigüedades y errores.
+
+## Arquitecturra
+
+Las implementaciones de GraphQL constan de dos partes esenciales:
+
+* Un cliente que es ejecutado en tu aplicación web o móvil
+* Un servidor, que expone un endpoint, recibe las consultas y realiza el mapeo de dichas consultas (`query`) con su correspondiente set de datos (`resolvers`).
+
+### Servidor
+
+Comencemos por el servidor, primero, crea un directorio y dentro de él dos directorios más
+
+```bash
+$ mkdir graphql-demo
+$ cd graphql-demo
+$ mkdir servidor client
+```
+
+Ahora, dentro del servidor, crearemos un nuevo proyecto, instalar las dependencias y escribir el código.
+
+```bash 
+$ npm init -y
+$ npm install cors @faker-js/faker @graphql-tools/graphql-file-loader @graphql-tools/load @graphql-tools/schema express express-graphql graphql
+```
+
+Ahora actualiza el archivo `package.json` y agrega:
+
+```json
+"scripts" {
+    "start": "nodemon server.js"
+},
+"type": "module"
+```
+
+Ahora es tiempo de construir el `schema` para luego crear los `resolvers` para cada query.
+
+El esquema lo crearemos directamente escribiendo GraphQL, para eso: crea un directorio llamado `graphql` y dentro un archivo `index.graphql`
+
+```graphql
+type Article {
+  title: String
+  author: User!
+  slug: String!
+  content: String!
+}
+
+type User {
+  name: String!
+  email: String!
+  articles: [Article]
+  id: String!
+}
+
+type Query {
+  """
+  Obtiene una lista de usuarios
+  """
+  users: [User]
+  """
+  Retorna un Usuario identificado por id
+  """
+  user(id: String!): User!
+  """
+  Obtiene una lista de articulos
+  """
+  articles: [Article]
+}
+```
+
+En este archivo defines los tipos de tus datos o entidades, además de cuáles serán los nombres para las consultas y los datos retornados.
+
+Aquí has creado dos tipos: `Article` y `User`. Cada uno define sus propios atributos indicando cuáles son requeridos al utilizar el símbolo `!`.
+
+Además, se definen las consultas disponibles dentro del tipo objeto `Query`. En este caso, tu API podrás permitir consultas para `users`, `user` y `articles`.
+
+Ahora, definiremos los resolvers. Dado que este un demo pequeño, puedes escribir los resolvers directamente en el archivo principal.
+
+Crea un archivo llamado `server.js` y dentro de él crea un objeto llamado `resolvers`.
+
+Este objeto tiene la misma estructura que el tipo `Query` definido anteriormente.
+
+```js 
+const resolvers = {
+    users: () => null,
+    user: (obj, args) => null,
+    articles: () => null
+}
+```
+
+Puedes asumir que los datos provienen de alguna API externa o base de datos, para este caso usaremos [fakerjs](https://fakerjs.dev/) para crear datos de prueba.
+
+Crea un archivo llamado `data.js` esta será la forma de emular una API o DB.
+
+```js
+// Mock data 
+import {faker} from '@faker-js/faker'
+const userCreator = () => ({
+    name: faker.name.firstName(),
+    email: faker.internet.email(),
+    id: faker.datatype.uuid()
+  });
+  
+
+const users = [...new Array(7)].map(() => userCreator())
+
+const articleCreator = () => ({
+    title: faker.lorem.words(5),
+    slug: faker.lorem.slug(),
+    content: faker.lorem.paragraphs(),
+    author: faker.helpers.arrayElements(users, 1)[0] // Relacion con User
+})
+
+const articles = [...new Array(7)].map(() => articleCreator())
+
+export {
+    articles,
+    users
+}
+```
+
+Este archivo simplemente crea un arreglo de usuarios y otro de artículos con datos ficticios.
+
+De vuelta al archivo `server.js`
+
+Es hora de importar los datos ficticios y definir los `resolvers`.
+
+```js
+/* Resolvers */
+import { articles, users } from './data.js'; //fake data
+const resolvers = {
+    Query: {
+        users: () => {
+            return users.map(u => {
+                // Encontrar los articulos del usuario
+                return {
+                    ...u,
+                    articles: articles.filter(a => {
+                        return a.author.id === u.id
+                    })
+                }
+            })
+        },
+        user: (obj, args) => {
+            if(args.userId) {
+                const user = users.find(u => u.id === userId)
+                return {
+                    ...user,
+                    articles: articles.find(a => a.author.id === args.userId)
+                }
+            }
+            return null;
+        },
+        articles: () => articles
+    }
+}
+```
+
+Importante notar que la función `user` recibe dos argumentos. Estos argumentos están definidos por graphql desde la definición de la query, ya que esta `query` contiene argumentos.
+
+Ahora, utilizando una de las dependencias instaladas, definiras el `schema` e iniciaremos el servidor (mismo archivo)
+```js
+
+import express from 'express'
+import cors from 'cors'
+import { graphqlHTTP } from 'express-graphql'
+import { loadSchemaSync } from '@graphql-tools/load'
+import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
+import { addResolversToSchema } from '@graphql-tools/schema'
+
+// Carga la definición de tipos
+const typeDefs = loadSchemaSync('./graphql/index.graphql', {
+    loaders: [new GraphQLFileLoader()]
+});
+
+// Asocia los tipos con loss resolvers creando el schema
+const schema = addResolversToSchema({
+    schema: typeDefs,
+    resolvers,
+})
+
+
+const app = express();
+app.use(cors()) // Nos aseguramos de poder acceder al servidor
+// Añade el servicio graphql y graphiql
+app.use('/graphql', graphqlHTTP({
+    schema,
+    graphiql: true
+}))
+app.listen(4000)
+console.log('Tu servidor GraphQL esta corriendo en http://localhost:4000/graphql')
+```
+
+Con esto en su lugar, ya puedes iniciar tu servidor con `npm run start` y visitar `http://localhost:4000/graphql` en donde verás el cliente gráfico y documentación.
+![graphiql](https://res.cloudinary.com/matiasfha/image/upload/v1661526428/Screen_Shot_2022-08-26_at_10.18.41_fygkvo.png)
+
+### Cliente
+
+Para el cliente, creamos una pequeña app React utilizando [vitejs](https://vitejs.dev/).
+
+Para eso, dentro de la raíz de tu proyecto, ejecuta
+
+```bash
+
+$ npm create vite@latest
+```
+
+Sigue las instrucciones y selección `react`.
+
+Ahora, agregarás algunas dependencias para poder comunicarte con tu servidor GraphQL.
+
+```bash
+$ npm install graphql graphql-request
+$ npm install
+```
+
+Ahora ya puedes editar el código de esta pequeña app. Abre `src/App.jsx`. Puedes eliminar su contenido.
+
+Dado que este es un pequeño demo, definiremos los componentes directamente en este archivo.
+
+Primero, definir como se consultarán los datos.
+
+```jsx 
+
+import { gql, GraphQLClient } from 'graphql-request'
+
+const usersQuery = gql`
+  query users {
+    users {
+      id
+      name
+      email
+      articles {
+        title
+        slug
+      } 
+    }
+  }
+`
+
+const articlesQuery = gql`
+  query articles {
+    articles {
+      title
+      author {
+        name
+      }
+      slug
+    }
+  }
+`
+const client = new GraphQLClient('http://localhost:4000/graphql', { headers: {} })
+
+async function requestUsers() {
+  try {
+    const data = await client.request(usersQuery)
+    return data.users;
+  }catch(e){
+    console.error(e);
+    return []
+  }
+}
+
+async function requestArticles() {
+  try {
+    const data = await client.request(articlesQuery)
+    return data.articles;
+  }catch(e){
+    console.error(e);
+    return []
+  }
+}
+
+```
+
+Con este trozo de código (que nada tiene que ver con React y puede ser utilizado en cualquier framework). Has definido:
+- Dos consultas utilizando `gql` para poder escribir directamente en GraphQL
+- Un cliente utilizando `GraphqlClient`
+- Dos funciones asíncronas que ejecutan la llamada al servidor y retornan los datos correspondientes.
+
+Ahora, creemos un componente para desplegar los usuarios.
+
+```jsx
+const UsersTable = () => {
+  const [users, setUsers] = useState(null)  
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const res = await requestUsers()
+      setUsers(res)
+    }
+    getUsers()
+  }, [])
+
+  return users!==null ? (
+    <>
+    <h2>Users</h2>
+    <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Artículos</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map(user =>(
+            <tr>
+              <td>{user.id}</td>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td>{user.articles.map(a => a.title).join(' | ')}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>  
+      </>
+  ):null
+}
+
+```
+
+Este componente es una simple tabla que despliega los usuarios obtenidos utilizando `requestUsers`.
+
+Usando `useEffect` ejecuta la llamada al servidor GraphQL al momento de renderizar el componente y almacena esos datos en el estado utilizando `useState`.
+
+También puedes consultar datos reaccionando a un evento de usuario como en este componente para desplegar artículos.
+
+```jsx
+const ArticlesTable = () => {
+  const [articles, setArticles] = useState(null)  
+
+  const fetchArticles  = async () => {
+    const data = await requestArticles()
+    setArticles(data)
+  }
+  return articles!==null ? (
+    <>
+    <h2>Articles</h2>
+    <table>
+        <thead>
+          <tr>
+            <th>Titulo</th>
+            <th>Autor</th>
+            <th>Slug</th>
+          </tr>
+        </thead>
+        <tbody>
+          {articles.map(article =>(
+            <tr>
+              <td>{article.title}</td>
+              <td>{article.author.name}</td>
+              <td>{article.slug}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>  
+      </>
+  ):<button onClick={fetchArticles}>Fetch Articles</button>
+}
+```
+Muy similar al anterior componente, pero esta vez se renderiza un botón que al ser clickeado ejecuta una función para obtener los datos.
+
+Finalmente, renderiza los componentes 
+
+```jsx
+function App() {
+
+  return (
+    <div className="App">
+      <h1>Graphql Demo</h1>
+      <UsersTable />          
+      <hr />
+      <ArticlesTable />
+    </div>
+  )
+}
+
+export default App
+```
+
+Puedes ver todo en funcionamiento al abrir dos terminales y en una ejecutar el servidor y en otra el cliente
+
+```bash
+$ npm run start # Servidor 
+$ npm run dev # Client
+```
+
+## Conclusión
+
+GraphQL es la especificación de un lenguaje de consulta y un "runtime" mantenida por la comunidad open-source. Busca resolver varios problemas encontrados en las ya tradicionales implementaciones de REST como `over/under fetching`, uso ineficiente de las llamadas de red, etc.
+
+
+Sin embargo, GraphQL no es un reemplazo directo de REST dado que son conceptos diferentes e incluso pueden convivir en una misma implementación.
+
+
+<Disclaimer title="Repost">
+<p>Este artículo fue originalmente publicado en Escuela Frontend.</p>
+<p>Visita el contenido original en este <a href="">enlace.</a></p>
+</Disclaimer>

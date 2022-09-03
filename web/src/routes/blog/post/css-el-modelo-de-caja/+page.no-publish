@@ -1,0 +1,244 @@
+---
+date: 2022-09-02T23:13:59.000-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1611543353/caspar-camille-rubin-fPkvU7RDmCo-unsplash_uh7g7z.jpg 
+keywords:
+- Graphql
+- Que es Graphql
+- Introduccion a graphql
+- Intro a graphql
+- Por que graphql
+- graphql clients
+- clients graphql
+- servidores graphql
+- especificacion graphql
+- graphql rest
+- graphql vs rest
+title: "CSS: El modelo de Caja"
+description: ESLint es una herramienta de análisis estático de tu código que te ayuda a evitar errores comunes.
+---
+
+<Disclaimer title="Repost">
+<p>Este artículo fue originalmente publicado en Escuela Frontend.</p>
+<p>Visita el contenido original en este <a href="">enlace.</a></p>
+</Disclaimer>
+CSS es un lenguaje que a muchos les trae dolores de cabeza, mientras otros, simplemente lo dejan como un actor secundario de su trabajo, pero como desarrolladores web CSS es una parte escencial de nuestro trabajo ¿Qué sería de la web sin CSS?
+
+¿Puedes explicar el modelo de caja?. Esta es una pregunta que me he encontrado a lo menos un par de veces en entrevistas a lo largo del tiempo y no siempre pude responderla correctamente, además: ¿De que me sirve saber que es para hacer mi trabajo?
+
+En definitiva conocer las partes escenciales o criticas de las tecnologías que utilizamos día a día te ayudará a ser un mejor desarrollador, ser más productivo, ser más creativo y finalmente ser más libre.
+
+En este artículo revisaremos como el navegador usa el modelo de caja para definir el layout de tu web y como esto afecta la forma en que escribirás CSS.
+
+## El modelo de caja
+
+El modelo de caja comprende algunas propiedades que definen como se verá tu sitio: `box-sizing`, `border`, `padding` y `margin`. Estas propeidades finalmente afectan como tu contenido será desplegado.
+
+Puedes imaginar la siguiente analogía: Un sandwich
+
+- *El contenido* es la hamburgesa junto al queso y condimentos.
+- *El padding* es la miga del pan que toca tu hamburgesa.
+- *El borde* Es la corteza del pan, saturada de semillas de sesamo.
+- *El margin* es el "espacio" entre la corteza y lo que sea que este cerca de ella. 
+
+> Para el ejemplo del margin puedes imaginar a una persona y considerar su *espacio personal* como margen. Esta idea la obtuve de Josh W. Comeau
+
+Las devtools del navegador (en este caso Chrome) pueden ayudarte a visualizar cada una de estas propiedades en contexto.
+
+![Screen Shot 2022-08-30 at 06 41 19](https://user-images.githubusercontent.com/282006/187416853-3c48b97b-53ad-476e-83f4-49d16af4fc63.png)
+![Screen Shot 2022-08-30 at 06 41 31](https://user-images.githubusercontent.com/282006/187416861-953cde3d-a974-4afb-8707-ad60c8cb93fb.png)
+![Screen Shot 2022-08-30 at 06 41 37](https://user-images.githubusercontent.com/282006/187416864-a617b1d2-ea5c-48e9-aa79-8ff0aac5b523.png)
+
+En estas imágenes puedes ver:
+- A la izquierda el sitio web de Escuela Frontend
+- A la derecha las herramientas de desarrollo en la tab elementos, que te permite seleccionar un elemento del DOM.
+
+Es en la parte derecha donde verás el siguiente modelo:
+![Screen Shot 2022-08-30 at 06 44 20](https://user-images.githubusercontent.com/282006/187417199-2c8d5323-cde0-4411-858d-8a7fa6a6ee78.png)
+
+Esta caja muestra las 4 propiedes del modelo de caja. Al mover el cursos sobre cada una de ellas podrás ver iluminado en el color indicado que parte del elemento (en el lado izquierd) es afectado por cada una de esas propiedades.
+
+En definitiva este modelo de caja controla el layout o comportamiento de tu elemento respecto a los elementos adyacentes.
+
+Revisemos ahora cada una de estas propiedades
+
+> Familiarizarte con las herramientas de desarrollo de tu navegador favorito es quizá una de las mejores habilidades que puedes adoptar/aprender ya que te ayudarán en tu día a día para resolver diferentes tipos de problemas.
+
+
+## Box sizing
+
+Esta propiedad es la que define como se calcularán las otras propiedes: `padding`, `margin` y `border` y permitirá al navegador definir el tamaño de tu elemento.
+
+Esta propiedad provee tres valores que puedes utilizar para modificar su comportamiento.
+* `border-box`
+* `padding-box` (Sólo en Firefox)
+* `content-box`
+
+El valor por defecto pes `content-box`, es valor indica al navegador que los valores de `margin`, `padding` y `border` deben ser calculados "fuera de la caja". Lo que implica que el tamaño final de tu elemento puede no ser el esperado ya que el cáculo del tamaño final implica la adición de las propiedades utilizadas.
+
+Basado en esta idea, revisa el siguiente snippet de código y piensa, que tamaño tendrá el elemento final?.
+
+
+```html
+<style>
+  
+section {
+  width: 200px;
+}
+.box {
+  width: 100%;
+  padding: 20px;
+  border: 4px solid green;
+  height: 0px;
+}
+</style>
+
+<section>
+  <div class="box"</div>
+</section>
+```
+
+Este código dibuja un rectangulo con borde verde. ¿Que tamaño tiene el elemento `.box`?
+
+Basado en lo conversado hasta aquí, realicemos el cálculo.
+
+* El valor por defecto de la propiedad `box-sizing` es `content-box`.
+* El tamaño definido es 100%, es decir el tamaño **del contenido** debe ser igual que todo el espacio disponible en el padre: `200px`.
+* Tiene un `padding` de `20px`en cada lado.
+* Tiene un `border` de `4px` en cada lado.
+* Cálculo: `200px + 20px*2 + 4px*2 = 248px`.
+
+> Al utilizar el valor por defecto para `box-sizing` y especificar el tamaño del elemento caja a `100%` lo que indicas es que el tamaño del contenido debe ser `100%`.
+
+El resultado es un valor que muy probablemente no es lo esperado o deseado. Aún peor quizá en el caso de la altura del elemento. El elemento está vacío y la propiedad `height` definida como `0px`, ¿cuál debería ser su altura?.
+
+Basados en el cálculo anterior: `0px + 20px*2 + 4px*2 = 48px`.
+
+![Tamaño de la caja](https://res.cloudinary.com/matiasfha/image/upload/v1661871422/Screen_Shot_2022-08-30_at_10.56.20_llxylz.png)
+
+En la imagen puedes ver como las herramientas de desarrollo interpretan el tamaño del ejemplo.
+Puedes encontrar el código en [este enlace a jsfiddle](https://jsfiddle.net/matiasfh/hv0nmbx1/2/)
+
+OK, este es el comportamiento por defecto del navegador, pero no nos hace mucho sentido, ¿qué podemos hacer?. Utilizar un nuevo conjunto de reglas para el cálculo del tamaño, es decir, usar otro valor para la propiedad `box-sizing`.
+
+### `border-box`
+
+`border-box` es el otro valor posible para la propiedad `box-sizing`. Aquí el comportamiento del cálculo es quizá mas intuitivo para un ser humano.
+
+En este caso, se incluye el `padding` y `border` dentro del cálculo del tamaño del contenido (no se suma al tamaño del contenido). Otra forma de verlo es que el cálculo del tamaño se realiza agregando `margin`, `padding` y `border` **dentro de la caja**.
+
+Puedes ver la diferencia [en este jsfiddle](https://jsfiddle.net/matiasfh/hv0nmbx1/3/)
+
+Es por esto que (al menos en mi opinión) es una buena idea utilizar `border-box` como valor por defecto, para esto solo debes agregar este pequeño snippet de css en tus proyectos.
+
+```css
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+```
+
+Esto indica que todos los elementos, incluyendo los pseudo-elementos `::before` y `::after` utilizarán `border-box` como método para calcular el tamaño de la caja.
+
+Revismos ahora el resto de las propiedades del modelo.
+
+## Padding
+
+Considera esta propiedad como el espacio interno entre el contenido y el borde de la caja. Es común utilizar `padding` para definir espacio entre los contenidos, por ejemplo en una barra de navegación como [la de este ejemplo](https://jsfiddle.net/matiasfh/4aonz6bt/1/).
+
+![Ejemplo de padding](https://res.cloudinary.com/matiasfha/image/upload/v1661872407/Screen_Shot_2022-08-30_at_11.13.16_v9bfon.png)
+
+En la imagen puedes ver coloreado en un tono verde el tamaño de la propiedad `padding` que es el espacio entre el contenido y el borde.
+
+Esta propiedad puede ser definida con diferentes valores para cada una de las direciones.
+
+```css
+.box {
+  padding: 20px;
+}
+
+.individual {
+  padding-top: 20px;
+  padding-right: 40px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+
+}
+/* esta es la version abreviada de la misma definicion anterior */
+.shorthand {
+    padding: 20px 40px 10px 50px;
+}
+```
+
+`padding` es una propiedad que utiliza medidas. ¿Qué unidades de medida acepta?. Muchas, pero las más comunes y recomendadas son: `px`,`em` y `rem`.
+
+## Margin
+
+Tal como comenté al inicio del artículo el margen de un elemento es la propiedad que identifica el espacio exterior del elemento (aka. El espacio personal).
+
+Su "sintaxis" es similar a `padding` y muchas otras pudiendo utilizarse en formato largo, o abreviada.
+
+
+```css
+.box {
+  marign: 20px;
+}
+
+.individual {
+  marign-top: 20px;
+  margin-right: 40px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+
+}
+/* esta es la version abreviada de la misma definicion anterior */
+.shorthand {
+    margin: 20px 40px 10px 50px;
+}
+```
+
+> La sintaxis de abreviación de una propiedad tiene algunos "trucos".
+> Si dos valores son pasados el primer valor es utilizado para las sub-propiedades verticales y el segundo para las propiedades horizontales.
+> Si se pasan los 4 valores, se aplican **siempre** en el mismo orden `top`,`right`,`bottom`,`left`.
+
+A diferencia de la propiedad `padding` (y `border`), `margin` acepta valores negativos. Esto implica que el elemento puede ser *"sacado"* de su elemento padre, [como en este ejemplo](https://jsfiddle.net/matiasfh/a62wscr1/1/)
+
+![margin negativo](https://res.cloudinary.com/matiasfha/image/upload/v1661872407/Screen_Shot_2022-08-30_at_11.13.16_v9bfon.png)
+
+**Cuidado** que si bien visualmente parece que al cambiar los márgenes cambias la posición del elemento el concepto real no es eso, si no, **los margenes modifican el espacio entre elementos**, un margen negativo disminuye el espacio entre elementos causando que se posición uno sobre otro.
+
+
+## Border
+
+La cuarta propiedad del modelo de caja es `border`, que a su vez se compone de tres sub-propiedades: `width`, `style` y `color`.
+
+Su "sintaxis" es la siguiente
+```css 
+.box {
+   border: 1px solid red;
+}
+
+.full {
+   border-width: 1px;
+   border-color: red;
+   border-style: solid;
+}
+```
+
+> **Importante** la propiedad `border-width` es requerida, sin ella el borde no se mostrará.
+> Si no se define `border-color` el borde tomará el color de la fuente utilizada, propiedad `color`.
+
+Hay varios tipos de estilop de borde: `solid`,`dotted`, `dashed`,`double`,`groove`,`ridge`,`inset`,`outset` y `dashed solid`.
+
+Además existe la propiedad `border-radius` que en realidad define el radio de las esquinas de un elemento
+
+## Conclusión.
+
+Es importante conocer "los fundamentos" de las tecnologías con las que trabajamos día a día, incluso si podemos llevar a cabo nuestro trabajo sin ese conocimiento, el saber nos permitirá ser más efectivos, en este caso, implementando diseños de manera correcta.
+
+El modelo de caja de CSS es la base de todo el sistema de layout que el navegador sigue para desplegar tu sitio web o aplicación, conocer sus sutilesas te evitará varios dolores de cabeza.
+
+<Disclaimer title="Repost">
+<p>Este artículo fue originalmente publicado en Escuela Frontend.</p>
+<p>Visita el contenido original en este <a href="">enlace.</a></p>
+</Disclaimer>

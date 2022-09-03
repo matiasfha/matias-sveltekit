@@ -6,9 +6,9 @@ import type { Posts } from '../../../../schema.types';
 import imageUrlBuilder from '@sanity/image-url';
 
 import { createFileInRepo, updateFileInRepo } from '$lib/api/github';
-import { writeToMedium } from '$lib/api/writeToMedium';
+import { writeToMedium } from '$lib/utils/writeToMedium';
 import writeToDevTo from '$lib/utils/writeToDevTo';
-import writeToHashnode from '$lib/api/writeToHashnode';
+import writeToHashnode from '$lib/utils/writeToHashnode';
 import { createClient } from 'sanity-codegen';
 import type { Documents } from '../../../../schema.types';
 import { generateMarkdown } from '$lib/utils/generateMarkdown';

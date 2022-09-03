@@ -36,7 +36,6 @@
                     size: 'invisible',
                     theme: 'dark',
                 });
-                console.log({ hcaptchaWidgetID })
             }
         }
     });

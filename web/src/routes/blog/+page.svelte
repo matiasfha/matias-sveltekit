@@ -3,7 +3,6 @@
 	// Suggestion (check code before using, and possibly convert to data.X access later):
 	import type { PageData } from './$types';
 	export let data: PageData;
-	console.log(data.featured)
 	import Featured from '$components/Featured.svelte';
 	import PostCard from '$components/PostCard.svelte';
 	import Seo from '$components/Seo.svelte';

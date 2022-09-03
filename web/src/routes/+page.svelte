@@ -50,7 +50,7 @@
 	image="https://res.cloudinary.com/dg3gyk0gu/image/upload/v1661961863/course-resources/full-stack-web3-and-blockchain-development-on-ethereum-with-sveltekit/og-banner.png"
 	title="Full Stack Web3 and Blockchain Development on Ethereum with SvelteKit"
 	meta="Pro: Curso en Egghead"
-	description="description={`
+	description={`
 		<p>Web3 is a paradigm shift in how applications are interacted with, ran, and built.</p>
 	
 	
@@ -61,7 +61,7 @@
 			<li>Communicate and interact with the smart contract using ethers.js in a SvelteKit application.</li>
 			<li>Deploy your smart contract to make it public and accessible to anyone.</li>
 		</ul>
-		`}"
+		`}
 	url="https://egghead.io/playlists/full-stack-web3-and-blockchain-development-on-ethereum-with-sveltekit-f522ceec??af=4cexzz"
 	type="course"
 />

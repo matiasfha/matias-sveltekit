@@ -5,7 +5,7 @@
 		class="text-blue-600 absolute top-0 left-0
   transform -translate-y-2/4 -translate-x-2/4
   rounded-full
-  bg-blue-50
+  dark:bg-ebony-clay-600 bg-gray-100
   p-2"
 	>
 		<i fill="currentColor">

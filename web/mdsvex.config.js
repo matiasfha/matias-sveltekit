@@ -162,7 +162,7 @@ const config = {
 		"dashes": "oldschool"
 	},
 
-	"remarkPlugins": [remarkReadingTime, headings, slug, highlight, abbr, remarkSponsor, remmarkPath, cloudinaryImages],
+	"remarkPlugins": [remarkReadingTime, headings, slug, abbr, remarkSponsor, remmarkPath, cloudinaryImages],
 	"rehypePlugins": [[urls, processUrl],  [autoLinkHeadings, { behavior: 'prepend' }]]
 };
 
