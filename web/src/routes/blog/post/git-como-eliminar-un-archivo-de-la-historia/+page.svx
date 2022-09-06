@@ -86,6 +86,6 @@ $ git filter-repo --path ./web/.env --invert-paths
 
 Después de esta operación puedes actualizar tu repositorio remoto
 
-```
+```bash
 $ git push --all -f
 ```

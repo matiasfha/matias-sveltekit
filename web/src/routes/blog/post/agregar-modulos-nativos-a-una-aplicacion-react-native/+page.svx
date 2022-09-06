@@ -35,7 +35,7 @@ Quizás necesitas utilizar un SDK o librería externa, en el caso de paquetes _j
 ![import aar](https://res.cloudinary.com/matiasfha/image/upload/c_scale,w_auto:100,dpr_auto/v1602963871/import-aar_aehans.png)
 
 1. Ahora abre el archivo `build.gradle` de tu app y agrega una nueva linea al bloque de dependencias:
-```
+```bash
     dependencies { compile project(":my-library-module") }
 ```
    1. Haz click en _Sync Project With Gradle Files_.

@@ -1,7 +1,4 @@
-import headings from "remark-autolink-headings";
-import slug from "remark-slug";
-import highlight from 'remark-highlight.js';
-import abbr from 'remark-abbr';
+
 import urls from 'rehype-urls'
 import autoLinkHeadings from 'rehype-autolink-headings'
 import getReadingTime from "reading-time";
@@ -145,8 +142,51 @@ function cloudinaryImages() {
 
 	}
 }
-               
 
+import Prism from 'prismjs'
+import loadLanguages from 'prismjs/components/index.js';
+loadLanguages(['typescript','java','bash'])
+import escape from 'escape-html';
+// escape curlies, backtick, \t, \r, \n to avoid breaking output of {@html `here`} in .svelte
+const escape_svelty = (str)  =>
+	str
+		.replace(
+			/[{}`]/g,
+			(c) => ({ '{': '&#123;', '}': '&#125;', '`': '&#96;' }[c])
+		)
+		.replace(/\\([trn])/g, '&#92;$1');
+
+ /**
+  * @param code {string} - code to highlight
+  * @param lang {string} - code language
+  * @param meta {string} - code meta
+  * @returns {Promise<string>} - highlighted html
+  */
+function highlighterFn(code, lang = 'js', meta) {
+	
+	let _lang = lang.toLowerCase()
+	const langs = {
+		'ts':'typescript'
+	}
+	
+	if(!Prism.languages[lang]) {
+		_lang = langs[lang]
+	}
+	const highlighted = escape_svelty(
+		_lang
+			? Prism.highlight(code, Prism.languages[_lang], _lang)
+			: escape(code)
+	);
+	return `
+	<div class="relative my-12">
+		<div class="codeblock">
+			<pre class="language-${_lang} line-numbers relative pt-20">
+				<h4 class="absolute top-0 right-1">${_lang}</h4>
+				{@html \`<code class="language-${_lang}">${highlighted}</code>\`}
+			</pre>
+		</div>
+	</div>`;
+}
 
 /**
  * @type { import('mdsvex').MdsvexOptions}
@@ -158,12 +198,15 @@ const config = {
 		pages: "./src/components/PageLayout.svelte",
 		sponsor: "./src/components/SponsorLayout.svelte",
 	},
-	"smartypants": {
-		"dashes": "oldschool"
+	// "smartypants": {
+	// 	"dashes": "oldschool"
+	// },
+	highlight: {
+		highlighter: highlighterFn
 	},
 
-	"remarkPlugins": [remarkReadingTime, headings, slug, abbr, remarkSponsor, remmarkPath, cloudinaryImages],
-	"rehypePlugins": [[urls, processUrl],  [autoLinkHeadings, { behavior: 'prepend' }]]
+	"remarkPlugins": [remarkReadingTime, remarkSponsor, remmarkPath, cloudinaryImages],
+	"rehypePlugins": [[urls, processUrl],  [autoLinkHeadings, { behavior: 'wrap' }]]
 };
 
 export default config

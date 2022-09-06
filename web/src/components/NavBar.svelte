@@ -2,7 +2,7 @@
 	import { blur } from 'svelte/transition';
 	import { t, locale } from '$lib/translations';
 	import { theme } from '$lib/stores';
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 
 	const getCurrentRoute = () => {
@@ -101,7 +101,7 @@
 				href="/"><h2>Matias Hernández</h2></a
 			>
 		</div>
-		<ul class="hidden lg:flex">
+		<ul class="hidden xl:flex">
 			{#each menuLinks as item}
 				{#if !item.hide}
 					<li class="px-5 py-2">
@@ -192,7 +192,7 @@
 
 		<button
 			on:click={() => (menu = !menu)}
-			class="md:hidden self-end z-20 transform duration-500 ease-in-out hover:scale-110 motion-reduce:transform-none  dark:text-white text-ebony-clay-500 m-2 focus:outline-none"
+			class="xl:hidden self-end z-20 transform duration-500 ease-in-out hover:scale-110 motion-reduce:transform-none  dark:text-white text-ebony-clay-500 m-2 focus:outline-none"
 		>
 			<svg
 				class="h-8 w-8"

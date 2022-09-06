@@ -87,16 +87,14 @@ async function readAllFiles(path, arrayOfFiles = []){
 
 La función de arriba realiza la lectura del contenido de un directorio
 
-```
-
+```js
 const file = fs.readdirSync(path)
 
 ```
 
 Luego, para cada uno de los elementos del arreglo retornado `files.forEach` revisa si dicho elemento es o no un directorio
 
-```
-
+```js
 const stat = fs.statSync(`${path}/${file}`)
 
 if(stat.isDirectory())
@@ -105,8 +103,7 @@ if(stat.isDirectory())
 
 En caso de ser un directorio, realiza una llamada recursiva, cambiando el primer argumento para que sea el actual directorio.
 
-```
-
+```js
 readAllFiles(`${path}/${file}`, arrayOfFiles)
 
 ```
@@ -115,8 +112,7 @@ En caso contrario, simplemente almacena en el arreglo `arrayOfFiles` el archivo.
 
 Así, el resultado de leer la estructura de directorios anterior el resultado será
 
-```
-
+```js
 [  
     ................  
     'public/favicon.ico',

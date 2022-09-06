@@ -1,5 +1,5 @@
 <script context="module">
-	import { blockquote, h1} from '$components/typography/index';
+	import { blockquote, h1 } from '$components/typography/index';
 	import { format } from 'date-fns';
 
 	export { blockquote, h1 };
@@ -9,8 +9,12 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	export let data;
+	import 'prismjs/plugins/line-numbers/prism-line-numbers.css';	
+	import Prism from 'prismjs'
+	import 'prismjs/plugins/line-numbers/prism-line-numbers.js'
 	
-	
+
+
 	import { afterUpdate, onMount } from 'svelte';
 	import Seo from './Seo.svelte';
 	import { Cloudinary } from 'cloudinary-core'
@@ -44,6 +48,7 @@
 		if(window.adsbygoogle) {
 			adsbygoogle = (window.adsbygoogle || []).push({});
 		}
+		Prism.highlightAll()
 	})
 	
 </script>
@@ -62,7 +67,7 @@
 </svelte:head>
 
 <Seo {title} {description} {keywords} isBlogPost={true} canonical={canonical} banner={banner} />
-<div class="w-full pb-4 px-0 h-entry" >
+<div class="w-full pb-4 px-0 h-entry overflow-x-hidden" >
 	<header
 		class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[23rem] overflow-hidden"
 	>
@@ -98,7 +103,7 @@
 		</div>
 	</header>
 	<article
-		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto prose prose-lg dark:prose-dark mt-12 pt-[14rem] md:pt-[32rem] prose-a:whitespace-pre-line e-content"
+		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto prose prose-lg dark:prose-dark mt-12 pt-[14rem] md:pt-[32rem] prose-a:whitespace-pre-line e-content px-4"
 	>
 		<!--INFOLINKS_ON-->
 		<slot />
@@ -240,5 +245,6 @@
 		border: 1px transparent;
 		border-radius: 20px;
 	}
+
 	
 </style>

@@ -1,6 +1,6 @@
 <script lang="ts">
     import 'bytemd/dist/index.css'
-    import { browser } from "$app/env";
+    import { browser } from "$app/environment";
     import { onDestroy, onMount } from "svelte";
     import { t } from '$lib/translations';
 

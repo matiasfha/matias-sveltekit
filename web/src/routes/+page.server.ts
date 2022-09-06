@@ -92,5 +92,4 @@ export const load: PageServerLoad = async () => {
 	}
 };
 
-export const hydrate = false;
 export const prerender = true;

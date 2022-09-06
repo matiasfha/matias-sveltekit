@@ -12,7 +12,7 @@
 	import type { Post } from '$lib/types';
 
 	import { Cloudinary } from 'cloudinary-core'
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import { afterUpdate } from 'svelte';
 	
 	afterUpdate(() => {

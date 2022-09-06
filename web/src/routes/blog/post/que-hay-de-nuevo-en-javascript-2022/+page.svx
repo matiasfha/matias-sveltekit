@@ -76,7 +76,7 @@ Square.#getPerimeter()
 
 Podrás revisar si cierto método o propiedad privada de una clase existe en la instancia de clase utilzando la nueva palabra clave `in`.
 
-```
+```js
 class PrivateClass {
     constructor() {
         super();
