@@ -19,11 +19,12 @@ keywords:
 - css box sizing
 title: "CSS: El Modelo de Caja y Cómo Implementarlo"
 description: Es importante conocer &quot;los fundamentos&quot; de las tecnologías con las que trabajamos día a día, incluso si podemos llevar a cabo nuestro trabajo sin ese conocimiento, el saber nos permitirá ser más efectivos, en este caso, implementando diseños de manera correcta.
+canonical: https://www.escuelafrontend.com/articulos/css-el-modelo-de-caja
 ---
 
 <Disclaimer title="Repost">
 <p>Este artículo fue originalmente publicado en Escuela Frontend.</p>
-<p>Visita el contenido original en este <a href="">enlace.</a></p>
+<p>Visita el contenido original en este <a href="https://www.escuelafrontend.com/articulos/css-el-modelo-de-caja">enlace.</a></p>
 </Disclaimer>
 CSS es un lenguaje que a muchos les trae dolores de cabeza, mientras otros, simplemente lo dejan como un actor secundario de su trabajo, pero como desarrolladores web CSS es una parte escencial de nuestro trabajo ¿Qué sería de la web sin CSS?
 
