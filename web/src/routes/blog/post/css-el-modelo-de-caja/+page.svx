@@ -1,20 +1,24 @@
 ---
-date: 2022-09-02T23:13:59.000-04:00
-banner: https://res.cloudinary.com/matiasfha/image/upload/v1611543353/caspar-camille-rubin-fPkvU7RDmCo-unsplash_uh7g7z.jpg 
+date: 2022-09-07T12:13:59.000-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1662567782/css_gii0iq.png
 keywords:
-- Graphql
-- Que es Graphql
-- Introduccion a graphql
-- Intro a graphql
-- Por que graphql
-- graphql clients
-- clients graphql
-- servidores graphql
-- especificacion graphql
-- graphql rest
-- graphql vs rest
-title: "CSS: El modelo de Caja"
-description: ESLint es una herramienta de análisis estático de tu código que te ayuda a evitar errores comunes.
+- css
+- css box model
+- box model
+- modelo de caja
+- css modelo de caja
+- que es box model
+- que es modelo de caja
+- que es css box model
+- escuela frontend
+- escuelafrontend
+- margin
+- padding
+- box-sizing
+- border-box
+- css box sizing
+title: "CSS: El Modelo de Caja y Cómo Implementarlo"
+description: Es importante conocer &quot;los fundamentos&quot; de las tecnologías con las que trabajamos día a día, incluso si podemos llevar a cabo nuestro trabajo sin ese conocimiento, el saber nos permitirá ser más efectivos, en este caso, implementando diseños de manera correcta.
 ---
 
 <Disclaimer title="Repost">

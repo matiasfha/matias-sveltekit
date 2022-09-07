@@ -131,13 +131,22 @@ function cloudinaryImages() {
 	 * @param {Node} node
 	 */
 	return async function transformer(tree, vFile) {
-		if(vFile.data.fm.banner) {
-			const image = vFile.data.fm.banner
-			if(!image.includes('https://res.cloudinary.com')) {
-				const { secure_url} = await uploadImage(image,)
-				vFile.data.fm['banner'] = secure_url
+		try  {
+			if(vFile.data.fm.banner) {
+				const image = vFile.data.fm.banner
+				if(!image.includes('https://res.cloudinary.com')) {
+					const res = await uploadImage(image,)
+					if(res?.secure_url) {
+						vFile.data.fm['banner'] = res.secure_url
+					}
+					
+				}
 			}
+		}catch(e){
+			console.error(e)
+			vFile.data.fm['banner'] = vFile.data.fm.banner
 		}
+		
 		
 
 	}
@@ -145,7 +154,7 @@ function cloudinaryImages() {
 
 import Prism from 'prismjs'
 import loadLanguages from 'prismjs/components/index.js';
-loadLanguages(['typescript','java','bash','rust','clojure','elm','elixir','jsx','objectivec'])
+loadLanguages(['typescript','java','bash','rust','clojure','elm','elixir','jsx','objectivec','gql','graphql','json'])
 import escape from 'escape-html';
 // escape curlies, backtick, \t, \r, \n to avoid breaking output of {@html `here`} in .svelte
 const escape_svelty = (str)  =>

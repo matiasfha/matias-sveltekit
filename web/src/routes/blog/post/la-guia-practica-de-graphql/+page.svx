@@ -1,6 +1,6 @@
 ---
-date: 2022-08-10T23:13:59.000-04:00
-banner: https://res.cloudinary.com/matiasfha/image/upload/v1611543353/caspar-camille-rubin-fPkvU7RDmCo-unsplash_uh7g7z.jpg 
+date: 2022-09-07T12:13:59.000-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1662567886/graphql_qbpkg1.png
 keywords:
 - Graphql
 - Que es Graphql
@@ -13,8 +13,11 @@ keywords:
 - especificacion graphql
 - graphql rest
 - graphql vs rest
-title: ¿Qué es GraphQL?
-description: ESLint es una herramienta de análisis estático de tu código que te ayuda a evitar errores comunes.
+- escuela frontend
+- escuelafrontend
+title: "La Guía Práctica de GraphQL: ¿El Futuro de las APIs?"
+description: GraphQL es la especificación de un lenguaje de consulta y un "runtime" mantenida por la comunidad open-source.
+canonnical: https://www.escuelafrontend.com/articulos/guia-practica-de-graphql
 ---
 
 <Disclaimer title="Repost">
