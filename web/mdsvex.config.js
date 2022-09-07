@@ -145,7 +145,7 @@ function cloudinaryImages() {
 
 import Prism from 'prismjs'
 import loadLanguages from 'prismjs/components/index.js';
-loadLanguages(['typescript','java','bash'])
+loadLanguages(['typescript','java','bash','rust','clojure','elm','elixir','jsx','objectivec'])
 import escape from 'escape-html';
 // escape curlies, backtick, \t, \r, \n to avoid breaking output of {@html `here`} in .svelte
 const escape_svelty = (str)  =>
