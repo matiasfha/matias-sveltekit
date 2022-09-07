@@ -165,25 +165,23 @@ const escape_svelty = (str)  =>
 function highlighterFn(code, lang = 'js', meta) {
 	
 	let _lang = lang.toLowerCase()
-	const langs = {
-		'ts':'typescript'
-	}
 	
-	if(!Prism.languages[lang]) {
-		_lang = langs[lang]
-	}
 	const highlighted = escape_svelty(
 		_lang
 			? Prism.highlight(code, Prism.languages[_lang], _lang)
 			: escape(code)
 	);
 	return `
-	<div class="relative my-12">
-		<div class="codeblock">
-			<pre class="language-${_lang} line-numbers relative pt-20">
-				<h4 class="absolute top-0 right-1">${_lang}</h4>
-				{@html \`<code class="language-${_lang}">${highlighted}</code>\`}
-			</pre>
+	<div class="relative my-12 code-block">
+		<div class="fullbleed-wrapper">
+			<div class="snippet">
+				<span class="snippet-lang">${_lang}</span>
+				<pre class="language-${_lang}">
+					{@html \`<code class="language-${_lang}">
+						${highlighted}
+					</code>\`}
+				</pre>
+			</div>
 		</div>
 	</div>`;
 }

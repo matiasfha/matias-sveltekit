@@ -39,10 +39,10 @@ En general un efecto es una función que ejecuta cierta lógica para sincronizar
 
 ```javascript
 useEffect(() => {
-    	fetch("/api/data").then(
-    		res => setState(res.data)
-    	)
-    }, [setState])
+	fetch("/api/data").then(
+		res => setState(res.data)
+	)
+}, [setState])
 ```
 
 ### Y por que las dependencias son importantes?

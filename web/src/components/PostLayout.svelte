@@ -9,12 +9,7 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	export let data;
-	import 'prismjs/plugins/line-numbers/prism-line-numbers.css';	
-	import Prism from 'prismjs'
-	import 'prismjs/plugins/line-numbers/prism-line-numbers.js'
 	
-
-
 	import { afterUpdate, onMount } from 'svelte';
 	import Seo from './Seo.svelte';
 	import { Cloudinary } from 'cloudinary-core'
@@ -48,7 +43,7 @@
 		if(window.adsbygoogle) {
 			adsbygoogle = (window.adsbygoogle || []).push({});
 		}
-		Prism.highlightAll()
+		
 	})
 	
 </script>
