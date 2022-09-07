@@ -26,6 +26,7 @@ canonical: https://www.escuelafrontend.com/articulos/css-el-modelo-de-caja
 <p>Este artículo fue originalmente publicado en Escuela Frontend.</p>
 <p>Visita el contenido original en este <a href="https://www.escuelafrontend.com/articulos/css-el-modelo-de-caja">enlace.</a></p>
 </Disclaimer>
+
 CSS es un lenguaje que a muchos les trae dolores de cabeza, mientras otros, simplemente lo dejan como un actor secundario de su trabajo, pero como desarrolladores web CSS es una parte escencial de nuestro trabajo ¿Qué sería de la web sin CSS?
 
 ¿Puedes explicar el modelo de caja?. Esta es una pregunta que me he encontrado a lo menos un par de veces en entrevistas a lo largo del tiempo y no siempre pude responderla correctamente, además: ¿De que me sirve saber que es para hacer mi trabajo?
@@ -245,5 +246,5 @@ El modelo de caja de CSS es la base de todo el sistema de layout que el navegado
 
 <Disclaimer title="Repost">
 <p>Este artículo fue originalmente publicado en Escuela Frontend.</p>
-<p>Visita el contenido original en este <a href="">enlace.</a></p>
+<p>Visita el contenido original en este <a href="https://www.escuelafrontend.com/articulos/css-el-modelo-de-caja">enlace.</a></p>
 </Disclaimer>
