@@ -1,0 +1,127 @@
+
+---
+date: 2022-09-08T14:24:14Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/de4d4119cd7db75b2942e534acf5e67b16d0a7a3-1708x948.png
+keywords: 
+- Javascript Intl
+- Javascript DateTimeFormat
+- Javascript Internationalization
+- JS Intl
+- JS internationalization
+- Como formatear fechas
+- Como dar formato a fechas
+- Intl
+title: "Formateando fechas en Javascript"
+description: "Trabajar con fechas en Javascript no siempre es divertido, y darle diferentes formatos puede ser un problema. ¿Sabías que puedes lograrlo sin necesitar una librería externa?. Bienvenido Intl.DateTimeFormat"
+bannerCredit: undefined
+tag: Posts
+---
+Una tarea particularmente problemática en Javascript es trabajar con fechas y darle formato a estas. 
+
+Muchas veces este formato está definido por el diseño o por el lenguaje que los diferentes usuarios utilizan.
+
+
+
+Por años, hemos utilizado librerías de terceros como `moment-js` para conseguir formatear las fechas, pero Javascript tiene soporte para esto gracias al objeto **Intl**.
+
+
+
+### DateTimeFormat
+
+
+
+Este es uno los constructores disponibles en el objeto **Intl** que permite trabajar con fechas.
+
+Tiene diferentes métodos pero en particular el que nos interesa en este artículo es **format**.
+
+
+
+El constructor `DateTimeFormat` recibe como parámetros un string que identifica el lenguaje que se utilizará, y un objeto opcional que permite definir diferentes opciones de formateo; Desde aquí puedes usar directamente el método `format` que recibe la fecha que quieres trabajar.
+
+
+
+```javascript
+const date = new Date(); //la fecha de hoy
+
+
+
+// Fecha en formato USA
+const usaDate = new Intl.DateTimeFormat('en-US').format(date) // 9/8/2022
+
+// Fecha en formato Chile
+const clDate = new Intl.DateTimeFormat('es-CL').format(date) // 08-09-2022
+
+// Fecha en formato Aleman
+const deDate = new Intl.DateTimeFormat('de').format(date) // 8.9.2022
+
+// Fecha en formato Arabico egipto
+const arDate = new Intl.DateTimeFormat('ar-eg').format(date) // ٨‏/٩‏/٢٠٢٢
+```
+
+Así de sencillo puedes obtener un string con el formato correcto de fecha para diferentes lenguajes.
+
+Pero hay más. Puedes utilizar el segundo argumento de `DateTImeFormat` para definir opciones de formato que pueden ayudarte no solo a presentar la fecha en base al lenguaje, si no, también a mejorar la forma en que se presenta la información.
+
+
+
+```javascript
+// Utilizando las opciones
+
+const options = {
+  year: "2-digit",
+  month: "long",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric",
+  weekday: "long",
+  hour12: true,
+  timeZone: 'America/Santiago'
+}
+
+// Fecha en formato USA
+const usaDate2 = new Intl.DateTimeFormat('en-US', options).format(date)
+// Thursday, September 8, 22 at 10:20:54 AM
+
+const clDate2 = new Intl.DateTimeFormat('es-CL', options).format(date)
+// jueves, 8 de septiembre de 22, 10:20:54 a. m.
+
+// Fecha en formato Aleman
+const deDate2 = new Intl.DateTimeFormat('de', options).format(date)
+//Donnerstag, 8. September 22 um 10:20:54 AM
+
+// Fecha en formato Arabico egipto
+const arDate2 = new Intl.DateTimeFormat('ar-eg', options).format(date)
+// الخميس، ٨ سبتمبر ٢٢ في ١٠:٢٠:٥٤ ص
+
+```
+
+El constructor `DateTimeFormat` acepta una larga lista de opciones
+
+
+
+```javascript
+type Options = {
+  dateStyle: 'full' | 'long' | 'medium' | 'short',
+  timeStyle: 'full' | 'long' | 'medium' | 'short',
+  calendar: 'buddhist' | 'chinese' | 'coptic' | 'dangi' | 'ethioaa' | 'ethiopic' | 'gregory' | 'hebrew' | 'indian' | 'islamic' | 'islamic-umalqura' | 'islamic-tbla' | 'islamic-civil' | 'islamic-rgsa' | 'iso8601' | 'japanese' | 'persian' | 'roc' | 'islamicc',
+  dayPeriod: 'narrow' | 'short' | 'long',
+  numberingSystem: 'arab' | 'arabext' | 'bali' | 'beng' | 'deva' | 'fullwide' | ' gujr' | 'guru' | 'hanidec' | 'khmr' | ' knda' | 'laoo' | 'latn' | 'limb' | 'mlym' | 'mong' | 'mymr' | 'orya' | 'tamldec' | 'telu' | 'thai' | 'tibt',
+  localeMatcher: 'lookup' | 'best fit',
+  year: "numeric" | "2-digit",
+  month: "numeric" | "2-digit" | "long" | "short" | "narrow",
+  day: "numeric" | "2-digit",
+  hour: "numeric" | "2-digit",
+  minute: "numeric" | "2-digit",
+  second: "numeric" | "2-digit",
+  era: "long" | "short" | "narrow",
+  weekday: "long" | "short" | "narrow",
+  hourCycle: 'h11'|'h12'|'h23'|'h24',
+  hour12: boolean,
+  timeZone: string,
+  formatMatcher: 'basic' |'best fit',
+  timeZoneName: 'long' | 'short' |'shortOffset'|'longOffset'|'shortGeneric'| 'longGeneric'
+}
+```
+
+Te invito a revisar la [documentación en MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat) para concer más sobre cada opcion.
