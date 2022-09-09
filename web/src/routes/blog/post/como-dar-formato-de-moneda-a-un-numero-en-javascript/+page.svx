@@ -1,0 +1,163 @@
+
+---
+date: 2022-09-09T10:23:13Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/d3718cd51ad159148d08d5e1df1d75c417a28be3-1280x710.png
+keywords: 
+- Intl Javascript
+- Intl
+- Internationalization
+- Internacionalizacion
+- Javascript Internationalization
+- Javascript Internacionalización
+- JS Internationalization
+- JS Internacionalización
+- i18n
+- format numbers
+- formatear numeros
+- compact numbers
+title: "¿Cómo dar formato de moneda a un número en Javascript?"
+description: "Una de las necesidades de personalizar/internacionalizar tu sitio web es por ejemplo mostrar valores monetarios en diferentes monedas, o modificar la forma en que los números se presenta. Puedes lograr esto solo usando Javascript y la API Intl.NumberFormat"
+bannerCredit: undefined
+tag: Posts
+---
+El objeto **Intl** provee una API rica en constructores que te permiten manipular como se muestra un contenido para casi todas tus necesidades.
+
+Un requerimiento común es tener que mostrar números en diferentes formatos, o valores monetarios, esto lo puedes lograr al utilizar **Intl.NumberFormat.**
+
+
+
+> También puedes formatear fechas, [en este artículo de muestro como](https://matiashernandez.dev/blog/post/formateando-fechas-en-javascript)
+
+
+
+Los constructores provistos por la API **Intl** aceptan dos argumentos  
+
+
+1. el valor de `locale` o puesto en simple, el identificador del lenguaje que quieres utilizar
+2. `options`: Un objeto que te permite definir diferentes opciones de formato.
+
+Cada constructor expone a lo menos un método llamado `format` que recibe el valor al que quieres dar formato.
+
+Un ejemplo de que puedes lograr con esta API, es convertir un valor a diferentes monedas.
+
+```javascript
+function currencyFormatter({ currency, value}) {
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    minimumFractionDigits: 2,
+    currency
+  }) 
+  return formatter.format(value)
+}
+
+const value = 123456
+
+const dollar = currencyFormatter({
+  currency: "USD",
+  value
+}) //$123,456.00
+
+const pound = currencyFormatter({
+  currency: "GBP",
+  value
+}) // £123,456.00
+
+
+const peso =  currencyFormatter({
+  currency: "CLP",
+  value
+}) // CLP 123,456.00
+
+const dinar = currencyFormatter({
+  currency: "DZD",
+  value
+}) // DZD 123,456.00
+
+```
+
+En este ejemplo lo primero que encontrarás es la creación de una función.
+
+Esta función  `currencyFormatter` acepta un objeto con dos atributos:
+
+* `currency` que es un string con el código de moneda que quieres utilizar
+* `value` el valor numérico que quierres formatear.
+
+Internamente la función hace uso de **Intl.NumberFormat** con el lenguaje `en-US` y define las opciones de formato
+
+* `style`: tiene el valor de `"currency"` para indicar que se mostrará en formato de moneda.
+* `minimumFractionDigits`: define el todal minimo de digitos fraccionales (después del punto) que se mostrarán.
+* `currency`: un string que identifica el código de moneda requerido.
+
+Como ves en el ejemplo, puedes transformar un valor (en este caso  el número `123456` ) a diferentes formatos de moneda.
+
+
+
+Pero, esto puede ir más allá, el número de opciones es bastante largo permitiendote definir diferentes partes del formato.
+
+```typescript
+type Options = {
+    compactDisplay?: "short" | "long"; // Only used when notation is "compact"
+    currencyDisplay?: "symbol" | "narrowSymbol" | "code" | "name";
+    currencySign?: "standard" | "accounting";
+    localeMatcher?: "lookup" | "best fit";
+    notation?: "standard" | "scientific" | "engineering" | "compact";
+    numberingSystem?: 'arab' | 'arabext' | 'bali' | 'beng' | 'deva' | 'fullwide' | 'gujr' | 'guru' | 'hanidec' | 'khmr' | 'knda' | 'laoo' | 'latn' | 'limb' | 'mlym' | 'mong' | 'mymr' | 'orya' | 'tamldec' | 'telu' | 'thai' | 'tibt';
+    signDisplay?: "auto" | "always" | "exceptZero" | "negative" | "never" ;
+    style?: "decimal" | "currency" | "percent" | "unit";
+    unit?: string;
+    unitDisplay?: "long" | "short" | "narrow";
+    useGrouping?: "always" | "auto" | boolean | "min2";
+    roundingMode?: "ceil" | "floor" | "expand" | "trunc" | "halfCeil" | "halfFloor" | "halfExpand" | "halfTrunc" | halfEven";
+    roundingPriority?: "auto" | "morePrecision" | "lessPrecision";
+    roundingIncrement?: 1 | 2 | 5 | 10 | 20 | 25 | 50 | 100 | 200 | 250 | 500 | 1000 | 2000 | 2500 | 5000;
+    trailingZeroDisplay?: "auto" | "stripIfInteger";
+    minimumIntegerDigits?: number;
+    minimumFractionDigits?: number;
+    maximumFractionDigits?: number;
+    minimumSignificantDigits?: number;
+    maximumSignificantDigits?: number;
+}
+```
+
+Además, si por alguna razón este set de opciones no cumple con  lo que necesitas, puedes hacer uso de otro método expuesto por **NumberFormat**: `formatToParts`.
+
+Este método retorna un arreglo de objetos que representan el valor numérico como string dividido en partes, así tu puedes manipular como desees el formato.
+
+```javascript
+const formatToParts = new Intl.NumberFormat('en-US', {
+  currency: 'USD',
+  style: 'currency',
+  minimumFractionDigits: 2
+}).formatToParts(value) 
+/*
+[
+  { type: "currency", value: "$"},
+  { type: "integer", value: "123" },
+  { type: "group", value: "," },
+  { type: "integer", value: "456" },
+  { type: "decimal", value: "." },
+  { type: "fraction", value: "00" }
+]
+```
+
+Pero no solo puedes dar formato de moneda a tus números, también puedes modificar la forma en que el número se muestra.
+
+```javascript
+function formatCompact(value) {
+  const result = new Intl.NumberFormat(
+    'en-US',
+    { notation: "compact"}
+  ).format(value)
+  return result;
+}
+
+const res1 = formatCompact(123)     // 123
+const res2 = formatCompact(1234)    // 1.2K
+const res3 = formatCompact(12345)   // 12K
+const res4 = formatCompact(123456)  // 123K
+const res5 = formatCompact(1234567) // 1.2M
+```
+
+La forma compacta de un número es un formato muy utilizado en redes sociales y otras aplicaciones web/móviles ya que permite "resumir" un valor sin perder su significancia y además que bastante bien en la interfaz.
+
+Para este caso se utiliza la opción `notation` con el valor `compact` y Javascript hará su magia.
