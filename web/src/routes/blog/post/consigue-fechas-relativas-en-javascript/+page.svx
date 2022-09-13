@@ -1,0 +1,91 @@
+
+---
+date: 2022-09-13T13:56:48Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/603c8cd24f17e427d1cc7c068c3ec86baf63dade-1280x710.png
+keywords: 
+- Intl
+- Intl Javascript
+- Intl JS
+- Internacionalizacion
+- Internacionalizacion JS
+- Internacionalizacion Javascript
+- Fechas Relativas
+- Fechas Relativas JS
+- Fechas Relativas Javascript
+title: "Consigue fechas relativas en Javascript"
+description: "Hace X días. Es una forma diferente de desplegar la fechas del contenido de tu aplicación web. ¿Cómo puedes mostrar fechas relativas? Usando Intl.RelativeTimeFormat"
+bannerCredit: undefined
+tag: Posts
+---
+Las fechas pueden ser algo bastante engorroso de trabajar, una de esas complicaciones nace cuando el requerimiento es el de mostrar la fecha de algún contenido de la aplicación en formato relativo a la fecha actual: `Hace 2 semanas`. 
+
+
+
+Por suerte, Javascript ofrece una solución nativa para esto *Intl.RelativeTimeFormat*.
+
+
+
+Al igual que los otros constructores expuesto por el objeto *Intl*, este constructor recibe dos argumentos, el primero un string que identifica el lenguaje que se quiere utilizar, y el segundo un set de opciones:
+
+
+
+> Te invito a leer los otros artículos sobre Internacionalización:  
+> [Formato de Fechas](https://matiashernandez.dev/blog/post/formateando-fechas-en-javascript) y [Formato de números](https://matiashernandez.dev/blog/post/como-dar-formato-de-moneda-a-un-numero-en-javascript) 
+
+
+
+```typescript
+type Options = {
+    localeMatches: 'best fit' | 'lookup',
+    numeric: 'always' |'auto'  // The format of the output
+    style: 'long' | 'short' | 'narrow'
+}
+```
+
+El método `format` de este constructor también recibe dos argumentos:
+
+* Un valor entero que indica el total de tiempo que se quiere mostrar
+* Un string que identifica la unidad de tiempo a utilizar. (`day`,`month`,`year`, etc)
+
+
+
+```javascript
+const formatter = new Intl.RelativeTimeFormat('es-ES');
+const monthAgo = formatter.format(-1, 'month') // hace 1 mes
+const futureMonth = formatter.format(1, 'month') // en 1 mes
+```
+
+### ¿Cómo utilizar las fechas relativas?
+
+SI hablamos de fechas relativas es casi obvio que estarás usando fechas en alguna parte, por ejemplo: Tienes una colección de artículos que tienen una fecha de publicación, pero no quieres mostrar la fecha si no un texto indicando hace cuanto tiempo fueron creados.
+
+
+
+Para lograrlo deberás hacer algo de matemáticas de fechas para obtener la diferencia y usar ese valor para obtener el texto relativo.
+
+```javascript
+const publicationDate = new Date('2022/01/05')
+
+const currentDate = new Date()
+
+const msPerDay = 1000 * 60 * 60 * 24;
+
+const diffTime = Math.abs(currentDate - publicationDate);
+const diffDays = Math.ceil(diffTime / msPerDay);
+
+
+const enRtf = new Intl.RelativeTimeFormat("en-US", {
+  numeric: 'auto',
+});
+
+console.log(enRtf.format(-diffDays, "day")); // 251 days ago
+console.log(enRtf.format(-diffDays/30, "month")); //8.367 months ago
+
+
+const esRtf = new Intl.RelativeTimeFormat("es-ES", {
+  numeric: 'auto',
+});
+
+console.log(esRtf.format(-diffDays, "day")); // hace 251 días
+console.log(esRtf.format(-diffDays / 30, "month")); // hace 8.367 meses
+```
