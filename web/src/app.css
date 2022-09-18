@@ -12,44 +12,51 @@
 	}
 
 	.snippet-lang {
-		position: absolute;
-		top: 0px;
-		right: 16px;
-		font-size: 18px;
+		background-color: hsl(210deg, 15%, 20%);
+		font-size: 14px;
+		padding: 10px;
 		text-transform: uppercase;
+		text-align: right;
 		color: #fde68a;
 		opacity: 0.6;
 		font-weight: bold;
 		font-family: 'Fira Code';
-		pointer-events: none;
-		height: 20px;
-		@media (max-width: 768px) {
-			right: 35px;
-		}
+		border: none;
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		align-items: center;
+		justify-content: right;
 	}
 
 	.snippet {
 		background: rgb(1, 22, 39);
 		position: relative;
-		display: flex;
-		font-size: 18px;
+		display: grid;
+		align-items: center;
+		grid-template-rows: 40px 1fr;
 		max-width: 1200px;
 		margin-left: auto;
 		margin-right: auto;
-		flex: 50 1 0%;
 		z-index: 2;
-		overflow: auto;
 		outline-offset: 2px;
 		border-radius: 6px;
-		box-shadow: 0px 0px 10px 10px rgba(1, 22, 39, 0.99);
-		padding-left: 0.5rem;
+		overflow: hidden;
+		pre {
+			margin-top: -20px;
+			margin-bottom: -20px;
+		}
 		code {
 			font-family: 'Fira Code', monospace;
 			font-style: normal !important;
 			tab-size: 2 !important;
 			min-width: 100%;
+			line-height: calc(1em + 0.725rem);
+			font-size: 1rem;
+			font-weight: 500;
+			-webkit-font-smoothing: antialiased;
 			& > span:first-of-type {
-				margin-left: -130px;
+				margin-left: -120px;
 			}
 		}
 

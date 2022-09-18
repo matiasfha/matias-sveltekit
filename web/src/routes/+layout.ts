@@ -8,7 +8,7 @@ export const load: LayoutLoad = async ({ url }) => {
 
 	const initLocale = locale.get() || defaultLocale; // set default if no locale already set
 
-	const ts = await loadTranslations(initLocale, pathname); // keep this just before the `return`
+	await loadTranslations(initLocale, pathname); // keep this just before the `return`
 
 	return {
 		url

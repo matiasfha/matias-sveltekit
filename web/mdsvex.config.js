@@ -156,6 +156,7 @@ import Prism from 'prismjs'
 import loadLanguages from 'prismjs/components/index.js';
 loadLanguages(['typescript','java','bash','rust','clojure','elm','elixir','jsx','objectivec','gql','graphql','json'])
 import escape from 'escape-html';
+import { randomUUID } from 'crypto';
 // escape curlies, backtick, \t, \r, \n to avoid breaking output of {@html `here`} in .svelte
 const escape_svelty = (str)  =>
 	str
@@ -180,11 +181,15 @@ function highlighterFn(code, lang = 'js', meta) {
 			? Prism.highlight(code, Prism.languages[_lang], _lang)
 			: escape(code)
 	);
+
+	
 	return `
 	<div class="relative my-12 code-block">
 		<div class="fullbleed-wrapper">
 			<div class="snippet">
-				<span class="snippet-lang">${_lang}</span>
+				<div class="snippet-lang">
+					<span>${_lang}</span>
+				</div>
 				<pre class="language-${_lang}">
 					{@html \`<code class="language-${_lang}">
 						${highlighted}
@@ -192,7 +197,8 @@ function highlighterFn(code, lang = 'js', meta) {
 				</pre>
 			</div>
 		</div>
-	</div>`;
+	</div>
+	`;
 }
 
 /**
