@@ -1,0 +1,116 @@
+
+---
+date: 2022-09-18T22:37:42Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/0454dba88957b4b63d8e49ddb774288404ec172c-1280x710.png
+keywords: 
+- Intl
+- Intl Javascript
+- Intl JS
+- Internacionalización
+- Internacionalización Javascript
+- Internacionalización JS
+- Pluralización
+- Pluralización JS
+- Pluralizacion
+- Pluralizacion Javascript
+title: "¿Cómo pluralizar un string basado en el lenguaje en Javascript?"
+description: "La pluralización de textos es otra tarea que se puede complejizar cuando tu aplicación soporta más y diferentes lenguajes, pero Javascript ofrece una solución. Intl.PluralRules."
+bannerCredit: undefined
+tag: Posts
+---
+El objeto **Intl** también admite una forma de definir cómo formatear contenido "pluralizado" sensible al lenguaje, este es el constructor *PluralRules*.
+
+Un caso de uso para esta función es mostrar la cantidad de elementos que existen en una colección; idealmente, esto debería respetar la numeración gramatical en cada idioma que elijas usar.
+
+```javascript
+function pluralize(locale, count, singular, plural) {
+    const pluralRules = new Intl.PluralRules(locale);
+    const numbering = pluralRules.select(count);
+    switch (numbering) {
+        case 'one':
+        return count + ' ' + singular;
+        case 'other':
+        return count + ' ' + plural;
+        default:
+        throw new Error('Unknown: '+ numberig);
+    }
+}
+
+function showItemsQuantity(count) {
+    return pluralize('en-US', count, 'item', 'items')
+}
+
+const zeroItem = showItemsQuantity(0) // 0 items
+const oneItem = showItemsQuantity(1) // 1 item
+const manyItem = showItemsQuantity(12) // 12 items
+
+// Spanish
+function mostrarCantidadCajas(count) {
+    return pluralize('es-ES', count, 'caja', 'cajas')
+}
+const ceroItem = mostrarCantidadCajas(0) // 0 cajas
+const unoItem = mostrarCantidadCajas(1) // 1 caja
+const muchosItem = mostrarCantidadCajas(12) // 12 cajas
+```
+
+<small>Revisa el demo [en este playground](https://jsitor.com/exTjrc0s_V)</small>
+
+  
+> Nota: en un escenario del mundo real, no escribirías los plurales  
+> como en este fragmento; serían parte de tus archivos de traducción
+
+Tal vez este ejemplo sea demasiado ingenuo ya que el inglés y el español tienen solo dos reglas de pluralización; sin embargo, no todos los idiomas siguen esta regla, algunos tienen solo una forma plural, mientras que otros tienen múltiples formas.
+
+> Este ejemplo ha sido tomado del [blog de V8](https://v8.dev/features/intl-pluralrules)
+
+```javascript
+const suffixes = new Map([
+  ['zero',  'cathod'],
+  ['one',   'gath'],
+  // Note: the `two` form happens to be the same as the `'one'`
+  // form for this word specifically, but that is not true for
+  // all words in Welsh.
+  ['two',   'gath'],
+  ['few',   'cath'],
+  ['many',  'chath'],
+  ['other', 'cath'],
+]);
+const pr = new Intl.PluralRules('cy');
+const formatWelshCats = (n) => {
+  const rule = pr.select(n);
+  const suffix = suffixes.get(rule);
+  return `${n} ${suffix}`;
+};
+
+formatWelshCats(0);   // '0 cathod'
+formatWelshCats(1);   // '1 gath'
+formatWelshCats(1.5); // '1.5 cath'
+formatWelshCats(2);   // '2 gath'
+formatWelshCats(3);   // '3 cath'
+formatWelshCats(6);   // '6 chath'
+formatWelshCats(42);  // '42 cath'
+```
+
+Este constructor al igual que los demás expuestos por *Intl* acepta un segundo argumento para definir opciones, una de esas opciones es el `type` que te permite definir la regla de selección. Por defecto usa la forma `cardinal`. Si desea obtener el indicador `ordinal` para un número (por ejemplo, para crear una lista), puede hacerlo como el siguiente ejemplo.
+
+
+
+```javascript
+const pr = new Intl.PluralRules('en-US',{
+    type: 'ordinal'
+})
+const suffixes = {
+    one: 'st',
+    two: 'nd',
+    few: 'rd',
+    other: 'th'
+}
+
+const formatOrdinals = n => `${n}${suffixes[pr.select(n)]}`
+formatOrdinals(0) // 0th
+formatOrdinals(1) //1sst
+formatOrdinals(2) // //2nd
+formatOrdinals(40) //40th
+formatOrdinals(63) // 63rd
+formatOrdinals(100) // 100nd
+```
