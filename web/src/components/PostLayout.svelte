@@ -1,6 +1,6 @@
 <script context="module">
 	import { blockquote, h1 } from '$components/typography/index';
-	import { format } from 'date-fns';
+	
 
 	export { blockquote, h1 };
 	
@@ -13,6 +13,7 @@
 	import { afterUpdate, onMount } from 'svelte';
 	import Seo from './Seo.svelte';
 	import { Cloudinary } from 'cloudinary-core'
+	import RelativeDateFormat from './RelativeDateFormat.svelte';
 	// Props
 	
 	export let banner= "";
@@ -25,7 +26,7 @@
 	let similarPosts = data?.similarPosts || [];
 	export let canonical= "";
 	export let readingTime= {};
-	export let date = 0
+	export let date = ''
 
 	export let likes = data?.likes || []
 	export let retweet = data?.retweet || []
@@ -79,7 +80,9 @@
 			<div
 				class="text-sm self-end flex-grow m-0 pt-2 pb-8 mr-8"
 			>
-				<time class="dt-published" datetime="YYYY-MM-DD HH:MM:SS">{format(new Date(date), 'dd/MM/yyyy')}</time> - {readingTime.text}
+				<time class="dt-published" datetime="YYYY-MM-DD HH:MM:SS">
+				<RelativeDateFormat {date} />		
+				</time> - {readingTime.text}
 			
 			</div>
 			<p
@@ -189,7 +192,9 @@
 									class="object-cover w-full h-40 object-center rounded-md" 
 									/>
 							</div>
-							<span class="text-sm"><time datetime="YYYY-MM-DD HH:MM:SS">{format(new Date(post.date), 'dd/MM/yyyy')}</time> - {post.readingTime.text}	</span>
+							<span class="text-sm"><time datetime="YYYY-MM-DD HH:MM:SS">
+								<RelativeDateFormat date={post.date} />
+							</time> - {post.readingTime.text}	</span>
 							<h4 class="md:text-xl text-lg font-bold leading-tighter text-black dark:text-white">
 								{post.title}
 							</h4>

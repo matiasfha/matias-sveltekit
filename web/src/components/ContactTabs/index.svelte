@@ -1,10 +1,10 @@
 <script lang="ts">
     import { t } from '$lib/translations';
-import About from './About.svelte';
+    import About from './About.svelte';
     
     import AMA from './AMA.svelte'    
-import Calendly from './Calendly.svelte';
-import Coffee from './Coffee.svelte';
+    import Calendly from './Calendly.svelte';
+    import Coffee from './Coffee.svelte';
     let currentTab = 1
     
     const tabs = [

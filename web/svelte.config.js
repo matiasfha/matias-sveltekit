@@ -22,7 +22,7 @@ const config = {
     // for more information about preprocessorssg
     preprocess: [preprocess({
         "postcss": true,
-        preserve: ['partytown']
+        preserve: ['ld+json']
     }), globalComponents, mdsvex(mdsvexConfig)],
 
     kit: {

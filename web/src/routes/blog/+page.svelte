@@ -7,8 +7,7 @@
 	import PostCard from '$components/PostCard.svelte';
 	import Seo from '$components/Seo.svelte';
 	import { t } from '$lib/translations';
-	import { format } from 'date-fns'
-
+	
 	import type { Post } from '$lib/types';
 
 	import { Cloudinary } from 'cloudinary-core'
@@ -72,7 +71,7 @@
 
 <Featured 
 image={data.featured.banner} title={data.featured.title} url={data.featured.slug} 
-meta={format(new Date(data.featured.date), 'dd/MM/yyyy')}
+meta={new Intl.DateTimeFormat('es-CL').format(new Date(data.featured.date))}
 description={data.featured.description}
 />
 

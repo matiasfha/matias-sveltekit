@@ -1,10 +1,9 @@
 <script lang="ts">
 	import type { Post } from '$lib/types';
-	import { format } from 'date-fns'
+	import RelativeDateFormat from './RelativeDateFormat.svelte';
 	export let post: Post;
 	
-	
-	
+
 </script>
 
 <div class="flex flex-col">
@@ -20,7 +19,7 @@
 			</div>
 
 			<div class="mt-8 dark:text-gray-300 text-gray-500 text-md font-medium lowercase text-body">
-				{format(new Date(post.date), 'dd/MM/yyyy')}
+				<RelativeDateFormat date={post.date} />
 			</div>
 			<span class="mt-8 dark:text-gray-300 text-gray-500 text-sm italic lowercase text-body">
 				{post.readingTime.text}
