@@ -1,8 +1,0 @@
-[build]
-  command = "pnpm build || ( npm install pnpm && pnpm build )"
-  publish = "build"
-  environment = { NODE_VERSION =  "16.5.1", NPM_FLAGS = "--prefix=/dev/null" }
-[dev]
-  command = "vite dev"
-
-  
