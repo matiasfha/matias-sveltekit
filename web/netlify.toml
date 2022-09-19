@@ -1,10 +1,9 @@
 [build]
-  command = "npm run build"
+  command = "pnpm build || ( npm install pnpm && pnpm build )"
   publish = "build"
   environment = { NODE_VERSION =  "16.5.1" }
 [dev]
   command = "vite dev"
 
-[functions]
-  directory = "netlify/functions"
-  node_bundler  = "esbuild"
+[build.environment]
+  NPM_FLAGS="--prefix=/dev/null"
