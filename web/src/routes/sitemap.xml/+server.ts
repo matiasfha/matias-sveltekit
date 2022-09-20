@@ -42,7 +42,7 @@ export const GET: RequestHandler = async () => {
 					(post) =>
 						`
     <url>
-        <loc>${website}/blog/post/${post.slug}</loc>
+        <loc>${website}${post.slug}</loc>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
     </url>
