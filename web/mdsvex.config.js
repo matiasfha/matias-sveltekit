@@ -70,8 +70,11 @@ function remmarkPath() {
 		}
 		
 		vFile.data.fm.filepath = filepath
-		const slug = filepath.match(/([\w-]+)\.(svelte\.md|md|svx)/i)?.[1]
-		vFile.data.fm.canonical = `https://matiashernandez.dev/blog/post/${slug}`	
+		if(!vFile.data.fm.canonical){
+			const slug = filepath.slice(11,-10)
+			vFile.data.fm.canonical = `https://matiashernandez.dev${slug}`	
+		}
+		
 	}
 }
 
@@ -156,7 +159,6 @@ import Prism from 'prismjs'
 import loadLanguages from 'prismjs/components/index.js';
 loadLanguages(['typescript','java','bash','rust','clojure','elm','elixir','jsx','objectivec','gql','graphql','json'])
 import escape from 'escape-html';
-import { randomUUID } from 'crypto';
 // escape curlies, backtick, \t, \r, \n to avoid breaking output of {@html `here`} in .svelte
 const escape_svelty = (str)  =>
 	str

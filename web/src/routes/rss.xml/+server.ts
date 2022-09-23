@@ -25,9 +25,9 @@ export const GET: RequestHandler = async () => {
 	});
 	posts.forEach((post) => {
 		feed.addItem({
-			id: `${baseUrl}/blog/post/${post.slug}`,
+			id: `${baseUrl}${post.slug}`,
 			title: post.title,
-			link: `${baseUrl}/blog/post/${post.slug}`,
+			link: `${baseUrl}${post.slug}`,
 			date: new Date(post.date),
 			description: post.description,
 			image: post.banner,

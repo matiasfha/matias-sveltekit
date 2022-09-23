@@ -6,7 +6,7 @@ export default async function getPosts(): Promise<Post[]> {
 	const postPromises = [];
 	for (const [path, resolver] of Object.entries(modules)) {
 		const promise = resolver().then((post) => {
-			const slug = path.slice(0, -4).slice(12).split('/+').shift();
+			const slug = path.slice(12, -10);
 			return {
 				slug: slug
 					.normalize('NFD')

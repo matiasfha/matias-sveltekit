@@ -17,7 +17,7 @@ keywords:
 - escuelafrontend
 title: "La Guía Práctica de GraphQL: ¿El Futuro de las APIs?"
 description: GraphQL es la especificación de un lenguaje de consulta y un "runtime" mantenida por la comunidad open-source.
-canonnical: https://www.escuelafrontend.com/articulos/guia-practica-de-graphql
+canonical: https://www.escuelafrontend.com/articulos/guia-practica-de-graphql
 ---
 
 <Disclaimer title="Repost">
