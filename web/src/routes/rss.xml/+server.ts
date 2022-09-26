@@ -16,7 +16,7 @@ export const GET: RequestHandler = async () => {
 			atom: `${baseUrl}/atom.xml`,
 			rss2: `${baseUrl}/rss.xml`
 		},
-		copyright: '',
+		copyright: 'Matías Hernández <hola@matiashernandez.dev>',
 		author: {
 			name: 'Matías Hernández',
 			email: 'hola@matiashernandez.dev'
@@ -42,8 +42,8 @@ export const GET: RequestHandler = async () => {
 	});
 	return new Response(feed.rss2(), {
 		headers: {
-			'Content-Type': 'application/xml',
-			'Cache-Control': 'max-age=0, s-maxage=3600'
+			'Content-Type': 'application/rss+xml;charset=UTF-8',
+			'Cache-Control': 'max-age=86400, must-revalidate'
 		}
 	});
 };

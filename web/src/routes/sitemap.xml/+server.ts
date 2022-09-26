@@ -3,14 +3,24 @@ import getPosts from '$lib/api/getPosts';
 
 const website = 'https://matiashernandez.dev';
 
-const pages = ['about', 'newsletter', 'articles', 'blog'];
+const pages = [
+	'about',
+	'newsletter',
+	'articles',
+	'blog',
+	'uses',
+	'es/about',
+	'sponsorships',
+	'es/sponsorships'
+];
 
 export const GET: RequestHandler = async () => {
 	const posts = await getPosts();
 	const headers = {
-		'Cache-Control': 'max-age=0, s-maxage=3600',
+		'Cache-Control': 'max-age=604800 must-revalidate',
 		'Content-Type': 'application/xml'
 	};
+
 	return new Response(
 		`<?xml version="1.0" encoding="UTF-8" ?>
     <urlset
