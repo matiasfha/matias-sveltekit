@@ -1,0 +1,154 @@
+
+---
+date: 2022-09-26T19:03:14Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/7dd30234f60d0009c94cad0a237c9797df8fbdee-1280x710.png
+keywords: 
+- Javascript Array
+- Array
+- Encontrar en un arreglo con Javascript
+- Arreglos Javascript
+- Array.every
+- Array.some
+title: "Método de Arreglos: Array.every y Array.some"
+description: "Existen varios métodos de arreglos que te permiten obtener información valiosa. Dos de estos métodos son `Array.every` y `Array.some` que retornan un valor boolean si todos o alguno de los elementos cumplen con una función de prueba. "
+bannerCredit: undefined
+tag: Posts
+---
+Para comenzar, un muy pequeño repaso a que es (a grosso modo) un arreglo:
+
+  
+Los arreglos, son una sencilla estructura de datos basada en indices, que podemos crear al escribir `[]` , son parte esencial en cualquier aplicación ya que casi todo tipo de datos que queramos mostrar en la interfaz será representado por una colección.
+
+En general un arreglo (`Array`) es representado por una sola variable en donde puedes almacenar múltiples y diferentes elementos.
+
+```javascript
+const array = [1,2,3,'cuatro', { number: 5} ]
+
+console.log(array[3]); // "cuatro"
+```
+
+En este pequeño ejemplo se muestra que un arreglo puede almacenar cualquier tipo de elementos “al mismo tiempo”. Y en la siguiente linea se muestra como acceder a un elemento del arreglo utilizando un indice numérico.
+
+El objeto Arreglo tiene varios métodos que permiten manipular su contenido. Estos métodos son parte del prototipo por lo que puedes acceder a ellos desde cualquier instancia.
+
+  
+Algunos de estos métodos son "inmutables", estos métodos reciben como argumento una función tipo “callback” que el método ejecutará cada vez que itera sobre los elementos del arreglo. En esta función callback definimos lo que queremos lograr pero no indicamos el como lograrlo, cada método simplemente aplica nuestra lógica, es decir **son métodos declarativos**.
+
+
+
+## Array.some y Array.every
+
+Estos métodos son parecidos pero opuestos, ambos retornan un valor booleano `true` o `false` si se cumple o no la condición definida.
+
+Definamos un arreglo con que trabajar:
+
+```javascript
+const users = [
+  {
+  	id: 'efe5f844-788f-42e3-8706-ae7312958576',
+  	username: 'Justin Elliott',
+  	twitter: '@justinElliot',
+  	email: 'justin.elliott@example.com'
+  },
+  {
+  	id: '309b8b06-b5f5-42a2-9808-8bda5da90fb9',
+  	username: 'Paul C Wiggins',
+  	twitter: '@RealPaul',
+  	email: 'paul.wiggins@example.com'
+  },
+  {
+  	id: '47b793e4-d1cd-4ff7-8f85-37c5c3268fc0',
+  	username: 'Margaret J Pitre',
+  	twitter: '@mpitre',
+  	email: 'margaret.pitre@example.com'
+  },
+  {
+  	id: 'a34b752c-2ac7-420e-ab0b-8ccf8d18deb6',
+  	username: 'Sharon J Jenkins',
+  	twitter: null,
+  	email: 'sharon.jenkins@example.com'
+  }
+]
+```
+
+Este es un sencillo arreglo de objetos en donde cada objeto contiene 4 propiedades. Sobre este arreglo utilizaremos `Array.some` y `Array.every` para comprobar ciertas propiedades.
+
+* `Array.some` retornará `true `si **al menos uno de los elementos** del arreglo **"cumple**” la prueba.
+* `Array.every` retorna `true` sólo cuando **todos los elementos** del arreglo "**cumplen**" con la función de prueba.
+
+### Array.some
+
+```javascript
+
+/***
+ * Array.some
+ */
+function isUsernameJustin(item) {
+  return item.username.includes('Justin')
+}
+
+const isThereAnyJustin = users.some(isUsernameJustin)
+
+/* ↓ ↓ ↓ ↓ ↓ ↓ Forma abreviada ↓ ↓ ↓ ↓ ↓ ↓ */
+
+const isThereAnyJustin2 = users.some(item => item.username.includes('Justin'))
+
+console.log({ isThereAnyJustin, isThereAnyJustin2 }) // true
+
+
+
+```
+
+
+
+Este método recibe una función callback, cuyo único argumento hacer referencia a un `item` del arreglo que esta ciendo iterado.
+
+En este caso set utilizó la función `isUsernameJustin` que revisa si la propiedad `username` del `item` incluye el string `Justin`.  
+
+
+> También se puede escribir de forma "abreviada" usando functiones flecha (arrow functions).
+
+> Puedes leer más sobre funciones flecha, cómo funcionan y cómo usarlas en [este artículo](https://www.escuelafrontend.com/articulos/arrow-functions) escrito para[ Escuela Frontend](https://www.escuelafrontend.com/articulos/arrow-functions)
+
+
+
+La variable `isThereAnyJustin` será verdadera **si alguno de** los item tienen el string `Justin`.
+
+### Array.every
+
+
+
+En el segundo ejemplo podemos ver dos usos de `Array.every` a modo de verificación de  que **todos los elementos** del arreglo tienen cierto valor.
+
+
+
+```javascript
+/**
+ * Array.every
+ */
+
+function haveTwitter(item) {
+  return item.twitter
+}
+
+const doAllHaveTwitter = users.every(haveTwitter)
+
+/* ↓ ↓ ↓ ↓ ↓ ↓ Forma abreviada ↓ ↓ ↓ ↓ ↓ ↓ */
+
+const doAllHaveTwitter2 = users.every(item => item.twitter)
+
+console.log({ doAllHaveTwitter, doAllHaveTwitter2 })
+
+function haveUsername(item) {
+  return item.username
+}
+const doAllHaveUsername = users.every(haveUsername)
+
+/* ↓ ↓ ↓ ↓ ↓ ↓ Forma abreviada ↓ ↓ ↓ ↓ ↓ ↓ */
+
+const doAllHaveUsername2 = users.every(item => item.username)
+
+console.log({ doAllHaveUsername, doAllHaveUsername2 })
+```
+
+Como siempre, peudes encontrar [un demo de este código en el playground.](https://jsitor.com/5hkEUdb-y)
