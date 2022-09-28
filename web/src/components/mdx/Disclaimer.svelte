@@ -1,5 +1,5 @@
-<script>
-    export let title
+<script lang="ts">
+    export let title: string = ""
 </script>
 <aside
 	class="text-lg border-l-4 rounded-3xl border-orange-800 italic transparent dark:text-gray-200 text-ebony-clay-600 relative mt-4 mb-8"
