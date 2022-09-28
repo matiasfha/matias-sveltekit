@@ -1,0 +1,141 @@
+
+---
+date: 2022-09-28T13:05:28Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/6e0ce6df5cbf36909b6fc2676d4c425ba103c1bf-1280x710.png
+keywords: 
+- React
+- React useRef
+- useRef
+- React formularios
+- React forms
+- React componentes
+- React componentes no controlados
+- React uncontrolled
+- React uncontrolled components
+- formularios
+title: "React: Manejando formularios con useRef - Componentes no controlados"
+description: "React define dos formas de trabajar con estos elementos. Componentes controlados y no-controlados. Los no-controlados son aquellos manejados mediante el uso del hook useRef."
+bannerCredit: undefined
+tag: Posts
+---
+En cualquier aplicación web obtener datos de tus usuarios es esencial.
+
+Un formulario es básicamente un conjunto de elementos que capturan información.
+
+Los elementos de un formulario funcionan ligeramente diferente a otros elementos HTML base ya que estos, de forma nativa, manejan un estado interno que les permite almacenar los datos capturados.
+
+  
+React define dos formas de trabajar con estos elementos.
+
+* Componentes controlados
+* Componentes no-controlados
+
+## Componentes no controlados
+
+En esta definición de componentes, el elemento HTML que permite capturar información (como un `<input >`) no es manejado por el estado de su componente Padre, si no, se utiliza directamente el DOM.
+
+Si sigues esta ruta, necesitarás un método que te permita acceder a esa información desde dentro de un componente React, para esto utilizarás el hook `useRef`.
+
+
+
+Un **ref** es una "válvula de escape" del flujo de datos de un componente React. El flujo normal es que las `props` sean la única forma en que un componente padre interactúe con los componente que renderiza. Si necesitas modificar un componente hijo, simplemente actualizas las `props` y este se re-renderizará.
+
+
+
+**ref** te provee una forma de acceder a los nodos del DOM o elementos que son creados "on-the-fly" en el renderizado, ejemplos de uso de esto es:
+
+* Manejar el foco o selección de texto de un elemento
+* Inicializar animaciones de forma imperativa.
+* Integración de librerías externas no directamente compatibles con React.
+
+
+
+## ¿Cuándo usar useRef?
+
+Antes de continuar, es importante saber cuándo utilizar este mecanismo en vez de `useState` para crear componentes controlados.
+
+
+
+En general no hay una gran regla que te obligue a usar uno u otro, pero una buen patrón a seguir es pensar que si tu formulario no es complejo, no es muy extenso, y no tiene grandes requerimientos de validación u otros, entonces `useRef` será suficiente y quizá más sencillo de trabajar.
+
+Un caso de uso en el que siempre recurro al uso de `useRef` es en los formularios de Login o Contacto en donde el número de elementos es bajo. En el caso de un formulario de Login normalmente hablamos de dos input, uno para el nombre de usuario y otro para la contraseña.
+
+Es más, usemos este caso de uso para un ejemplo.
+
+
+
+<StackBlitzid="vitejs-vite-lisp2r"title="React: Components no controlados"file="src/App.jsx"/>
+
+
+
+Este ejemplo esta hecho con [Vite](https://vitejs.dev/) y [Tailwindcss](https://tailwindcss.com/) .
+
+Revisemos que hay en el código excluyendo las clases.
+
+* Un componente llamado `Input`
+* Un componente principal llamado `App`
+
+Es en este último componente en donde nos concetraremos.
+
+Este componente es quien renderiza el formulario y maneja los datos.
+
+A modo extra simplificado:
+
+```javascript
+function App() {
+  const emailRef = React.useRef(null);
+
+  const passwordRef = React.useRef(null);
+
+  // Event handler
+  function handleSubmit(event) {
+    event.preventDefault();
+    const email = emailRef.current?.value;
+    const password = passwordRef.current?.value;
+
+    if (email && password) {
+      alert('Login existoso');
+    } else {
+      alert('No has ingresado los datos');
+    }
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+    >
+      <input ref={emailRef} placeholder="Email" />
+      <input ref={passwordRef} type="password" placeholder="Contraseña" />
+      <button type="submit">
+         Log in
+      </button>
+    </form>
+  );
+}
+```
+
+
+
+* El componente simplemente renderiza un elemento `form`, dos elementos `input` y un elemento `button`.
+* Para manejar el **envío** del formulario simplemente utiliza el evento `onSubmit` asociandole una función llamada `handleSubmit`.
+* Cada input tiene una prop llamada *ref* que hace referencia a una variable diferente
+* Al inicio del componente se definen dos variables llamdas `emailRef` y `passwordRef` cada una creada a partir del uso de `React.useRef` que inicialmente tiene el valor `null`.
+
+Estas variables definidas a partir de `useRef` harán referencia a los elementos DOM de cada input.
+
+<Disclaimer>
+
+Es importante destacar que `useRef` permite persistir valroes entre renderizados del componente.  
+Puede ser utilizado para almacenar valores mutables que <strong>no causen un re-renderizado</strong> al ser actualizados.
+
+</Disclaimer>
+
+Un `ref` es un objeto que tiene una propiedad llamada `current`. Esta propiedad es la que mantedrá el valor o referencia necesaria.
+
+
+
+Ahora, cuando el formulario es enviado al presionar el botón `Login` la función `handleSubmit` es ejecutada, dentro de ella puedes ver que se leen los valores de `emailRef` y `passwordRef` accediendo a la propiedad `current` y en particular a la propieda `value`.
+
+La propiedad `value` proviene del nodo del DOM al que se está accediendo.
+
+> Recuerda que al utilizar la prop `ref` en un nodo del dom, la variable creada por `useRef` mantendrá una referencia a ese nodo teniendo acceso a todas las propiedades de ese nodo.
