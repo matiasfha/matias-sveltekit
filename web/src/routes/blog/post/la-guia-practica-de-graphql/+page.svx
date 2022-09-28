@@ -20,6 +20,7 @@ description: GraphQL es la especificación de un lenguaje de consulta y un "runt
 canonical: https://www.escuelafrontend.com/articulos/guia-practica-de-graphql
 ---
 
+
 <Disclaimer title="Repost">
 <p>Este artículo fue originalmente publicado en Escuela Frontend.</p>
 <p>Visita el contenido original en este <a href="https://www.escuelafrontend.com/articulos/guia-practica-de-graphql">enlace.</a></p>

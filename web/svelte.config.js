@@ -7,7 +7,7 @@ import { mdsvexGlobalComponents } from  './preprocessors/mdsvexGlobalComponents.
 
 const globalComponents = mdsvexGlobalComponents({
   dir: `$components/mdx`,
-  list: ['Sponsor.svelte','Buzzsprout.svelte','CodeSandbox.svelte','EggheadLesson.svelte','TLDR.svelte','Twitter.svelte','Podcast.svelte','YouTube.svelte','Disclaimer.svelte'],
+  list: ['Sponsor.svelte','Buzzsprout.svelte','CodeSandbox.svelte','EggheadLesson.svelte','TLDR.svelte','Twitter.svelte','Podcast.svelte','YouTube.svelte','Disclaimer.svelte','StackBlitz.svelte'],
   extensions: mdsvexConfig.extensions
 })
 
