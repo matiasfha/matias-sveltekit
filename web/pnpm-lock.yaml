@@ -99,7 +99,7 @@ devDependencies:
   '@esbuild-plugins/node-globals-polyfill': 0.1.1_esbuild@0.15.7
   '@esbuild-plugins/node-modules-polyfill': 0.1.4_esbuild@0.15.7
   '@hcaptcha/types': 1.0.2
-  '@sveltejs/kit': 1.0.0-next.484_svelte@3.50.0+vite@3.1.0
+  '@sveltejs/kit': 1.0.0-next.505_svelte@3.50.0+vite@3.1.0
   '@typescript-eslint/eslint-plugin': 4.33.0_3ekaj7j3owlolnuhj3ykrb7u7i
   '@typescript-eslint/parser': 4.33.0_hxadhbs2xogijvk7vq4t2azzbu
   autoprefixer: 10.4.7_postcss@8.4.14
@@ -1830,8 +1830,8 @@ packages:
       set-cookie-parser: 2.5.1
     dev: false
 
-  /@sveltejs/kit/1.0.0-next.484_svelte@3.50.0+vite@3.1.0:
-    resolution: {integrity: sha512-Y3l8OmlgmfJX3m081rMUZmmEQWHtiSsj3+YWYK/CQ4V99jqoztXPz/4cAxUt5mC45jVF5Ee9ykmh6GzkYjvfAQ==}
+  /@sveltejs/kit/1.0.0-next.505_svelte@3.50.0+vite@3.1.0:
+    resolution: {integrity: sha512-vg2WvWiUB7useJZOKbdM8WOXv10WD7SVDER74IXd1t/TWb/uXHzwMQ/ZAsXZFdxQsz1cDGFub3iC76PW+j58Pg==}
     engines: {node: '>=16.14'}
     hasBin: true
     requiresBuild: true
