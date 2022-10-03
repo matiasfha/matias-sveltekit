@@ -99,16 +99,23 @@ async function listenNetlify() {
 	}
 }
 
-// export async function GET() {
-// 	try {
-// 		const list = await listenNetlify();
-// 		if (list.isReady) {
-// 			await repost();
-// 			return new Response('Repost successfull', {
-// 				status: 200
-// 			});
-// 		}
-// 	} catch (e) {
-// 		throw error(e);
-// 	}
-// }
+export async function GET() {
+	try {
+		//const { markdown, title } = await getLastPostMarkdown();
+		//await createFileInRepo(markdown, title);
+		//const deploy = await listenNetlify();
+
+		//if (deploy.isReady) {
+		await repost();
+		return new Response('Post and repost created', {
+			status: 200
+		});
+		//}
+		// return new Response('Deploy failed or did not finished', {
+		// 	status: 500
+		// });
+	} catch (e) {
+		console.error(e);
+		throw error(e);
+	}
+}
