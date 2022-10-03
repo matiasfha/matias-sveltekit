@@ -1,0 +1,131 @@
+
+---
+date: 2022-10-03T14:23:09Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/b5c0c63a6a2cfb57d1cb1a6d5a6665565cb04fd3-1280x710.png
+keywords: 
+- Typescript
+- Typescript Unions
+- Typescript discriminated Unions
+- Typescript Uniones
+- Typescript Uniones Discriminadas
+- React props opciones
+- React props
+title: "Typescript: Uniones discriminadas o como crear argumentos opcionales y dependientes"
+description: "Es común tener componentes o funciones que aceptan argumentos que dependen entre sí, dónde una puede estar presente y la otra no.
+
+¿Sabías que con Typescript puedes asegurarte de que este comportamiento se cumpla correctamente?"
+bannerCredit: undefined
+tag: Posts
+---
+Es común tener componentes o funciones que aceptan argumentos que dependen entre sí, dónde una puede estar presente y la otra no.
+
+¿Sabías que con Typescript puedes asegurarte de que este comportamiento se cumpla correctamente?
+
+
+
+Veamos una situación imaginaria usando React
+
+Tienes un componente que representa un gato, y este gato puede estar vivo o muerto y este comportamiento o estado está definido por las props que recibe.
+
+
+
+```jsx
+function Cat({ isAlive, isDead}) {
+  if(isAlive != null && isDead != null) {
+    throw 'Ambas props no pueden estar definidas'
+  } 
+  let str = isAlive ? 'vivo' : 'muerto'
+  
+  return <>Este gato esta {str}</>
+}
+
+
+<Cat isAlive isDead />
+```
+
+ Pero evidentemente este gato no puede estar en ambos estados a la vez, si no, sería un gato the Schrödinger en vez de un gato real.
+
+
+
+Además, el significado de ambas prop  `isAlive` y `isDead` es similar pero contrario, por lo que para asegurar el correcto funcionamiento tendrías que escribir bloques condicionales que revisen las props y darle prioridad a una sobre otra.
+
+
+
+#### ¿Cómo puedes representar esto con typescript y por qué lo harías?
+
+
+
+La idea de representar este comportamiento con Typescript es que el equívoco uso de las props sea detectado antes de que el código sea ejecutado y sin necesidad de escribir extra lógica para revisar el contenido de las props.
+
+
+
+Para lograrlo harás uso de una combinación de propiedades opcionales, el tipo `never` y uniones.
+
+```typescript
+/*
+* Props de un gato vivo
+* Si isAlive está presente entonces isDead no debe estarlo 
+*/
+type LivingCat = { isAlive: boolean, isDead?: never }
+
+/*
+* Props de un gato muerto
+* Si isDead está presente entonces isLive no debe estarlo 
+*/
+type DeadCat = { isAlive?: never, isDead: boolean }
+
+/*
+* Crea una unión de las tipos definidos
+*/
+type RealCatProps = LivingCat | DeadCat 
+
+/*
+* Solo una prop puede estar presente. 
+* La validación de este comportamiento se realiza en tiempo de compilación
+*/
+const RealCat = ({ isAlive, isDead}: RealCatProps) => {
+    const str = isAlive ? 'living' : 'dead'
+    return <>this is a {str} real cat</>
+}
+```
+
+En éste código se definen dos tipos muy similare `LivingCat` y `DeadCat`  la diferencia radica en que propiedad esta definida como `never`.
+
+
+
+En el primer caso, `isDead` se marca como opcional y como `never`, es decir, nunca será utilizada o definida.
+
+
+
+> El tipo `never` es utilizado cuando estás seguro que "algo" jamás ocurrirá.
+
+
+
+En el segundo caso, ocurre lo contrario. La propiedad `isLiving` está marcada como opcional y como `never`.
+
+  
+Finalmente, creas una unión de los tipos, creando el tipo `RealCatProps` y usarás dicho tipo para definir las props del component `RealCat`.
+
+Este component `RealCat` podrá ser instanciado sólo con una de las props, pero jamás ambas.
+
+
+
+```typescript
+const RealApp = () => {
+    return <RealCat isAlive />
+}
+
+/*
+* Esto falla en tiempo de compilación ya que ambas props están presentes
+*/
+const ReailFalingApp = () => {
+    return <RealCat isAlive={false} isDead={false} />
+}
+```
+
+  
+Te invito a jugar con el código en este ejemplo con React o en el [playground de typescript](https://www.typescriptlang.org/play?ssl=19&ssc=1&pln=35&pc=2#code/C4TwDgpgBAygFgJwPYBMCWA7A5hBAFZMAZygF4oBvAKClqjSIEEAbNANwgC4oAjJJZhACGGADQ06DACLCU3PgOEYqAXypUAxkgxFgsRKkw4EAYSF7yACgr0mrDqNsyhKFd3jJ02XASTEAlGQAfJTqdFAIEMAArggYUAA8QQAqcAy2UEL6nka4ZsAJAPRBqlSFAFRU5VAAQkjAcFBghCQaIrzQYEJERBAomXpEQgC20MBoo1VQJnAQGgDWUABmSAhQbEKs6KBQSEtQDdBCCFjRoxjAJBgQfQdIHVAo2tCYB7NQWsNgzxdQzEhYNAaKBVQqabS6bKGbwIRhgMBkKCWQKkELUcKRGJxRIeaHGfK2FjsF5EZz9YqldSgSBQAAy7CMBPINgYRI48n4ghEjmksgA-Nxrhw1mpqdAyUzKIT7BABVAhbgeaTZBzFO01GVKtUTJFzEd4tEMGhtLt9ocDuAIK1deNsJkQdV0EQNAgJpg9f1DcblOUwWKoAAlYTMfK+YiI+lsRnmKAAHwABRKY+oKlMAPIYZggXbXJqED7tHidbq9foxrLjSbVVLQDZbczejJPXOvf3METkj5IL5oQRrSvQUHgnR6IObSXWaXEpVktyB4OhlootESWhaEdQXRrcismVQPlQADk9iMh6g3EPKFkh9XESisXiSQa6XSWQoW5Ud82BYKFI1w8hMdmDhBErGXUIMXvbEEiAgld2JKA-xTLUoFSdIliEXsSCLNpol6eg9DaeJtCzKA8OgZ5TTeToWnleoDgAd3uGNzSGUYDgmQdfQA0dhF7AAxTYjBAxFkWCCC6ExB9ElgmN4I4UgKAw5hek-XkXEU5TVMQkoVCAA)
+
+
+
+<StackBlitz id="vitejs-vite-r37ylv" />
