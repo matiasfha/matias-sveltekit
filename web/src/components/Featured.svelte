@@ -28,7 +28,7 @@
 					{#if type !== 'podcast'}
 						<div class="col-span-1 max-w-sm w-[24rem]">
 							<a
-								sveltekit:prefetch
+								data-sveltekit-prefetch
 								class="group peer relative block w-full focus:outline-none"
 								href={url}
 								><div

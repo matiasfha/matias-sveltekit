@@ -6,7 +6,7 @@
 <div class="flex flex-col">
 	<div class="md:mb-4 mb-2">
 		<a
-			sveltekit:prefetch
+			data-sveltekit-prefetch
 			class="group peer relative block w-full focus:outline-none"
 			href={content.url}
 			><div

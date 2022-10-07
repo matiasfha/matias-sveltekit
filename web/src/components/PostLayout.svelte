@@ -82,7 +82,7 @@
 			>
 				<time class="dt-published" datetime="YYYY-MM-DD HH:MM:SS">
 				<RelativeDateFormat {date} />		
-				</time> - {readingTime.text}
+				</time> - {#if readingTime } {readingTime.text} {/if}
 			
 			</div>
 			<p

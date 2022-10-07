@@ -64,7 +64,7 @@ Es más, usemos este caso de uso para un ejemplo.
 
 
 
-<StackBlitzid="vitejs-vite-lisp2r"title="React: Components no controlados"file="src/App.jsx"/>
+<StackBlitz id="vitejs-vite-lisp2r"title="React: Components no controlados"file="src/App.jsx"/>
 
 
 

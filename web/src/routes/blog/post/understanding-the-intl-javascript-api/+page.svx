@@ -25,7 +25,7 @@ featured: true
 <p>Check the original content at  <a href="https://egghead.io/blog/understanding-the-intl-javascript-api?af=4cexzz">this link.</a></p>
 </Disclaimer>
 
-# Knowing the **Intl** Javascript API
+# Knowing the Intl Javascript API
 Personalizing the user experience is becoming more critical every day, even more so if your application or content is consumed by users in different parts of the world who most likely use other languages, date formats, currency, etc.
 
 There are multiple solutions to make your content adapt to the location or language of your users. Still, many of these methods have become outdated, complex, or dependent on a particular framework.

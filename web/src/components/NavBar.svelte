@@ -93,7 +93,7 @@
 <div class={`px-6 md:px-12 pt-9 pb-4 lg:px-10 lg:pt-12   dark:text-gray-200 text-gray-700`}>
 	<nav class="flex items-center justify-between mx-auto">
 		<div class="flex flex-row items-center gap-4 md:gap-8 justify-between h-card">
-			<a href="https://matiashernandez.dev" rel="me" sveltekit:prefetch class="u-url u-uid" >
+			<a href="https://matiashernandez.dev" rel="me" data-sveltekit-prefetch class="u-url u-uid" >
 				<figure class="w-10 "><picture><source srcset="https://res.cloudinary.com/matiasfha/image/fetch/f_webp,q_auto,c_scale,w_40/https://matiashernandez.dev/logo.png" type="image/webp"> <img  src="https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,c_scale,w_40/https://matiashernandez.dev/logo.png" alt="Matias Hernández Logo"></picture></figure>
 			</a>
 			<a
@@ -106,7 +106,7 @@
 				{#if !item.hide}
 					<li class="px-5 py-2">
 						<a
-							sveltekit:prefetch
+							data-sveltekit-prefetch
 							class="hover:text-primary underlined focus:text-primary block whitespace-nowrap text-lg font-medium focus:outline-none text-secondary"
 							href={item.href}>{item.title}</a
 						>
@@ -230,7 +230,7 @@
 						class="px-5 py-6 text-lg text-left border-b-2 dark:border-ebony-clay-100 border-ebony-clay-600"
 					>
 						<a
-							sveltekit:prefetch
+							data-sveltekit-prefetch
 							class="hover:text-primary underlined focus:text-primary block whitespace-nowrap text-lg font-medium focus:outline-none text-secondary"
 							href={item.href}>{item.title}</a
 						>
