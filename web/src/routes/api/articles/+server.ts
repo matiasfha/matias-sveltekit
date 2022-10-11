@@ -101,8 +101,8 @@ async function listenNetlify() {
 
 export async function GET() {
 	try {
-		//const { markdown, title } = await getLastPostMarkdown();
-		//await createFileInRepo(markdown, title);
+		const { markdown, title } = await getLastPostMarkdown();
+		await createFileInRepo(markdown, title);
 		//const deploy = await listenNetlify();
 
 		//if (deploy.isReady) {

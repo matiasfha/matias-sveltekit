@@ -3,9 +3,12 @@ import type { Posts } from '../../schema.types';
 import { getRawMarkdown } from './generateMarkdown';
 
 export default async function writeToDevTo(post: Posts & { image: string }) {
+	const canonical = 'https://matiashernandez.dev/blog/post/' + slugify(post.title);
 	const article = {
 		title: post.title,
 		body_markdown: `
+> Este artículo fue originalmente escrito en [https://matiashernandez.dev](${canonical})
+\n\n
 ${getRawMarkdown(post.content)}
 \n\n
 ![Footer Social Card.jpg](https://cdn.hashnode.com/res/hashnode/image/upload/v1615457338201/5yOtr5SdF.jpeg)
@@ -13,7 +16,7 @@ ${getRawMarkdown(post.content)}
 `,
 		published: true,
 		main_image: post.image,
-		canonical_url: 'https://matiashernandez.dev/blog/post/' + slugify(post.title),
+		canonical_url: canonical,
 		description: post.description,
 		tags: 'javascript, spanish, webdev'
 	};
