@@ -84,7 +84,11 @@ function remarkReadingTime() {
 		visit(info, ["text","code"], (node) => {
 			text += node.value
 		})
-		file.data.fm['readingTime'] = getReadingTime(text)
+		if(file.data.fm !== undefined) {
+			file.data.fm['readingTime'] = getReadingTime(text)
+		}else{
+			console.erro(file)
+		}
 		
 	}
 }
