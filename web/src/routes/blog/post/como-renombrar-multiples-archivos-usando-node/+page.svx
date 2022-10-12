@@ -1,0 +1,247 @@
+
+---
+date: 2022-10-12T08:45:03Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/6ff1ffec4dac12aeeee97778b19454c59270874d-1280x710.png
+keywords: 
+- node fs
+- Nodejs fs
+- Node rename file
+- how to rename file
+- nodejs renombrar 
+- nodejs rename
+- node renombrar archivo
+- nodejs streams
+title: "Como renombrar múltiples archivos usando Node"
+description: "Renombrar archivos es una operación común  con node. Y para esto Node.js ofrece varias opciones, desde el uso de Stream hasta un método específicamente creado con el objetivo de renombrar `fs.rename`"
+bannerCredit: undefined
+tag: Posts
+---
+Nodejs permite acceso al sistema de archivos y una de las operaciones que se realizan con archivos es cambiar su nombre o moverlos de un lugar a otro.
+
+
+
+### ¿Que herramientas ofrece Node.js para realizar esta acción?
+
+
+
+Cambiar el nombre de un archivo es escencialmente:
+
+* Crear un nuevo archivo con el nombre deseado (y ubicación requerida)
+* Leer el contenido del archivo original
+* Escribir el contenido en el nuevo archivo
+* Eliminar el archivo original
+
+  
+Node.js ofrece un modulo que contiene todo lo que necesitas para trabajar con archivos: `fs`.
+
+
+
+Dentro de este módulos tenemos opciones.
+
+
+
+### Usar streams para realizar la copia.
+
+
+
+Si estás trabajando con archivos de gran tamaño, una buena opción es utilizar streams para manipularlos.
+
+> De forma general un **stream** es una secuencia de datos disponible durante el tiempo. Esto permite leer y procesar los datos en pequeños trozos.
+
+A la hora de trabajar con **streams** también hay opciones, revisemos algunas
+
+ 
+
+Leer y escribir el contenido del archivo
+
+```javascript
+const fs = require('fs')
+const original = './directorioOriginal/ArchivoOriginal.txt'
+const readStream = fs.createReadStream(original)
+const writeStream = fs.createWriteStream('./otroFolder/ArchivoCopia,.txt')
+
+
+readStream.on('data', (chunk) => {
+    writeStream.write(chunk)
+})
+
+function eliminarArchivo(archivo) {
+  fs.unlink(archivo, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    console.log('Archivo original eliminado')
+  })
+}
+
+readStream.on('close', () => {
+  eliminarArchivo(original)
+})
+
+
+
+
+
+
+```
+
+  
+En este ejemplo se crea un stream de lectura del archivo original y otro de escritura para el nuevo nombre.
+
+El stream de lectura lee el archivo por trozos y cada vez que esto se ejecuta `.on('data',() => {})` el stream de escritura escribe ese contenido.
+
+Una vez que se terminó de leer `.on('close')` se eliminar el archivo original usando `fs.unlink`.
+
+
+
+Una opción más concisa es usar el método `pipe`
+
+```javascript
+const fs = require('fs')
+const original = './directorioOriginal/ArchivoOriginal.txt'
+const readStream = fs.createReadStream(original)
+const writeStream = fs.createWriteStream('./otroFolder/ArchivoCopia.txt')
+
+function eliminarArchivo(archivo) {
+  fs.unlink(archivo, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    console.log('Archivo original eliminado')
+  })
+}
+
+// Lectura y copia en una sola linea
+readStream.pipe(writeStream)
+
+writeStream.on('finish', () => {
+    console.log('Copy successfully done)
+    eliminarArchivo()
+})
+
+```
+
+### Leer y escribir archivo para copiar/renombrar
+
+Siguiendo el patrón de "Leer, Copiar, Eliminar", también puedes usar otro métodos de Node.js.
+
+```javascript
+const fs = require('fs')
+const original = './directorioOriginal/ArchivoOriginal.txt'
+
+function eliminarArchivo(archivo) {
+  fs.unlink(archivo, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    console.log('Archivo original eliminado')
+  })
+}
+
+function leerArchivo(callback) {
+  // Leer el archivo original
+  fs.readFile(original, 'utf8', function (err,data) {
+    if (err) {
+      return console.log(err);
+    }
+    callback(data)
+    
+  });  
+}
+
+
+function escribirArchivo(data){
+  fs.writeFile('./otroFolder/NuevoArchivo.txt', data, function (err) {
+    if (err) return console.log(err);
+    console.log(Archivo Escrito);
+    eliminarArchivo(original)
+  });  
+}
+
+leerArchivo((data) => escribirArchivo(data) )
+
+```
+
+Pero este método es algo engorroso no?
+
+
+
+### Copiar el archivo para renombrar
+
+
+
+Nodejs también ofrece un método para copiar archivos `fs.copyFile` y su contraparte síncrona `fs.copyFileSync`.
+
+
+
+```javascript
+const fs = require('fs')
+const original = './directorioOriginal/ArchivoOriginal.txt'
+
+function eliminarArchivo(archivo) {
+  fs.unlink(archivo, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    console.log('Archivo original eliminado')
+  })
+}
+
+
+fs.copyFile(original, "./otroFolder/NuevoArchivo.txt", (err) => {
+  if (err) {
+    console.log("Oops! An Error Occured:", err);
+  }
+  else {
+    eliminarArchivo(original)
+    console.log("Archivo copiado")
+  }
+});
+```
+
+Esta forma es más concisa pero al leer el código, si bien, se entiende que se ha copiado y eliminado el archivo original (ergo, se renombró) la intención del código no es clara. Para esto nodejs ofrece otro método
+
+
+
+### Renombrar el archivo con `rename`
+
+Una forma más directa de renombrar archivos es utilizar `fs.renameFile` o su contraparte sincrona `fs.renameFileSync`
+
+Estos método realizan la misma operación: "Leer, escribir, eliminar" pero esconden esta implementación ofreciendo una abstracción más clara de la intención del método: Renombrar.
+
+```javascript
+const fs = require('fs')
+const original = './directorioOriginal/ArchivoOriginal.txt'
+const nuevo = './otroFolder/NuevoArchivo.txt'
+
+fs.rename(original, nuevo, () => { console.log('Archivo renombrado') })
+
+
+```
+
+Este método es evidentemente más consiso. 
+
+También se puede hacer de forma sincrona o utilizando promesas
+
+
+
+```javascript
+// Sincrona
+const fs = require('fs')
+const original = './directorioOriginal/ArchivoOriginal.txt'
+const nuevo = './otroFolder/NuevoArchivo.txt'
+
+fs.renameSync(original, nuevo)
+console.log('Archivo renombrado')
+
+
+// Usando promesas
+const { promises: Fs } = require('fs')
+
+await Fs.rename(original, nuevo)  
+console.log('Archivo renombrado')
+```
