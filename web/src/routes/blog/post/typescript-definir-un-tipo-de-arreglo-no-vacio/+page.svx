@@ -1,0 +1,167 @@
+
+---
+date: 2022-10-28T12:11:25Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/6bed84037fd1a854f148a375e5dd18420e960e0a-1280x710.png
+keywords: 
+- Typescript
+- Typescript Array
+- Typescript type guard
+- type guard
+- typescript arreglo
+- typescript empty array
+title: "Typescript: Definir un tipo de arreglo no vacío"
+description: "Siempre estamos trabajando con Arreglos y en Typescript esto no es una excepción.
+¿Cómo puedes estar seguro de que un arreglo no está vacío con tan solo revisar su tipo?"
+bannerCredit: undefined
+tag: Posts
+---
+Typescript es un poderoso y expresivo lenguaje, que permite evitar que publiques bugs. 
+
+> Recuerda, Typescript no es sólo un "super set" sobre Javascript, si no, es un lenguaje "Turing completo" en su sistema de tipos, es decir, puedes implementar complejos algoritmos usando sólo tipos.
+
+Pero su poder reside en que tan bien expresas las restricciones de tu aplicación, es decir, como defines tus tipos.
+
+
+
+Typescript te fuerza a pensar de una forma diferente al momento de implementar una solución. Debes pensar en como los datos fluyen a traves de tu programa y como esta información es transformada de "una forma a otra". Es decir, debes pensar en que **tipos** usarás.
+
+
+
+Un tipo de dato que utilizamos constantemente es `Array`. 
+
+Un arreglo permite trabajar con colecciones de datos de forma simple y eficiente.
+
+
+
+> **Relacionados**
+
+> [Métodos de Arreglo: Array.every y Array.some](https://matiashernandez.dev/blog/post/metodo-de-arreglos-array.every-y-array.some)
+
+> [Manipular Arreglos de objetos](https://matiashernandez.dev/blog/post/arreglos-de-objetos-en-javascript-como-crear-y-actualizar-su-contenido)
+
+> [La guía definitiva de Métodos de Arreglos](https://escuelafrontend.com/articulos/metodos-de-arreglos) (escuela frontend)
+
+> [Curso: Manipulación Eficiente de Arreglos con Javascript](https://egghead.io/playlists/manipulacion-eficiente-de-arreglos-con-javascript-1e17fc6f?af=4cexzz)
+
+
+
+Tanto en Javascript como en Typescript un arreglo puede ser inicializado tan sólo usando `[]` y puedes **definir su tipo **de similar forma o usando la forma genérica `Array<T>`
+
+```typescript
+// Un arreglo que puede contener cualquier tipo y se inicializa vació
+const arr: unknown[] = []
+
+// Otra forma de definir el tipo
+const arr2: Array<unknown> = []
+
+// Un arreglo de strings inicializado con un elemento
+const arr3: string[] = ['str']
+```
+
+## ¿Cómo evitar el uso de arreglos vacíos con Typescript?
+
+Un arreglo puede entonces estar vacío o contener `n` elementos. 
+
+Es tarea común verificar si un arreglo está o no vació para asi poder operar sobre él. ¿Cómo puedes determinar si un arreglo está vació?
+
+En Javascript ésta tarea se realiza con un bloque condicional y revisando la propiedad `.length` del arreglo.  
+
+
+Pero, ¿es posible utilizar **el lenguaje de tipos** de Typescript para evitar que un arreglo esté vacío sin tener que usar un condicional?
+
+  
+La idea aquí es permitir que Typescript revise el flujo de datos y nos muestre un error si estás tratando de acceder a un arreglo vacío.
+
+
+
+Lo que harás será crear un nuevo tipo similar a `Array` que te permite definir un arreglo que no puede ser vació por definición.
+
+Llamemos a este tipo `NonEmptyArray`.
+
+```typescript
+type NonEmptyArray<T> = [T, ...T[]]
+
+const emptyArr: NonEmptyArray<Item> = [] // error ❌
+
+const emptyArr2: Array<Item> = [] // ok ✅ 
+
+function expectNonEmptyArray(arr: NonEmptyArray<unknown>) {
+    console.log('Array no vacío', arr)
+}
+
+expectNonEmptyArray([]) // No puedes pasar arreglo vacío. ❌
+
+expectNonEmptyArray(['algun valor']) // ok ✅ 
+```
+
+
+
+Así cada vez que requieras que, por ejemplo, el parámetro de una función sea un arreglo que no puede estar vacío, puedes usar `NonEmptyArray` .
+
+
+
+El único inconveniente es que ahora requerirás una función "type guard" ya que simplemente revisar si la propiedad `lenth` de un arreglo no es 0, no lo transformará a ser tipo `NonEmptyArray`
+
+
+
+```typescript
+function getArr(arr: NonEmptyArray<string>) {
+  return arr;
+}
+
+const arr3 = ['1']
+if (arr3.length > 0)) {
+  // ⛔️ Error: Argument of type 'string[]' is not
+  // assignable to parameter of type 'NonEmptyArr<string>'.
+  getArr(arr3);
+}
+```
+
+Este error ocurre por que `getArr` espera que el argumento sea `NonEmptyArray` pero `arr3` es del tipo `Array`.
+
+
+
+#### Type guards
+
+Una función "type-guard" te permite "ayudar" a Typescript a inferir correctamente el tipo de alguna variable.
+
+Se trata de una sencilla función que retorna un valor boolean. Si este valor es `true` entonces Typescript considerará que la variable evaluad es de un tipo u otro.
+
+
+
+```typescript
+// Type Guard
+function isNonEmpty<A>(arr: Array<A>): arr is NonEmptyArray<A>{
+    return arr.length > 0
+}
+```
+
+Esta función recibe un arreglo genérico (por eso el uso de `A`), y revisa si la propiedad `length` es mayor que `0`. 
+
+Esta función esta marcada para retornar `arr is NonEmptyArray<A>`  es decir, que que el valor de la condición evaluad es `true` Typescript entenderá que el parámetro utilizar `arr` es del tipo `NonEmptyArray`
+
+
+
+```typescript
+// Type Guard
+function isNonEmpty<A>(arr: Array<A>): arr is NonEmptyArray<A>{
+    return arr.length > 0
+}
+
+function getArr(arr: NonEmptyArray<string>) {
+  return arr;
+}
+
+const arr3 = ['1']
+//     ^?   const arr3: string[]
+if (isNonEmpty(arr3)) {
+  getArr(arr3);
+//        ^? const arr3: NonEmptyArray<string>
+}
+```
+
+Una forma simple de entender el type guard es que "transformas" un tipo a otro tipo si y sólo si cierta condición se cumple. Lo que hace que esta transformación sea segura en comparación a un simple type cast `as NonEmptyArray`
+
+
+
+Revisa el [playground de typescript con estos ejemplos](https://www.typescriptlang.org/play?#code/C4TwDgpgBAcg9gOwKIFsygIICcsEMQA8AKgHxQC8UA2kQDRQB0TRVAuqwFAcDGiAzsCgQ0mHAC5YiVOhDY8hAJLBhZSmygB6DUJxwsUQDLkPfoOEy5AJglz8BJSorVWm7XADWUQKDkULgDMArgjcwACWiEIAHpDB8Mgisjj4ABS44pJx5omEgW4IcADuCCQAlFAA3hxQVVC8CHxwADYQDA1wAOZJAOQ2IFB5UABuuNwAt3Cd9KlYxRwAvlwQURAxUvE9SWylWpJQYP4QACYQfLu4fKlQUxBtrYPDYwyGC0srGaLyG524DW2Bd61YTqsLauDzeLjbIjgaAAcX8qQOHACQVC4RCfFi0lABAwJBSaR6OJKEimUHR6SxCXkRIq1SgWAgwH8WAQlxwLQgCDawAAFlAyAAGOZ+QLBMKstqMuT4rASTFrLIEARYEJckrlSr0xnM1lTADcwuMdUEUwAzI4qJ0AIxAjjbOkAPQA-BwQr4oEl0fKZDLTcVSrSoJLgNKzcUDfa6VVnXMgA).
