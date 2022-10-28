@@ -13,6 +13,7 @@ import navigation from './navigation'
 import navItem from './navItem'
 import newsletterCourses from './newsletterCourses'
 import post from './post'
+import markdownPost from './markdownPost'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -56,5 +57,6 @@ export default createSchema({
       ]
     },
     post, 
+    markdownPost
   ]),
 })

@@ -240,11 +240,6 @@
 			transform: none;
 			display: none;
 		}
-	}
-	ins iframe {
-		border: 1px transparent;
-		border-radius: 20px;
-	}
-
+	}	
 	
 </style>
