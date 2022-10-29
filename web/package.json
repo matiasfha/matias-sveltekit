@@ -72,7 +72,7 @@
     "open-graph": "0.2.6",
     "prismjs": "1.29.0",
     "remark-reading-time": "2.0.1",
-    "rss-parser": "3.12.0",
+    "rss-parser": "github:matiasfha/rss-parser",
     "sanitize-html": "2.7.1",
     "sanity-codegen": "0.9.8",
     "sveltekit-i18n": "2.2.2",

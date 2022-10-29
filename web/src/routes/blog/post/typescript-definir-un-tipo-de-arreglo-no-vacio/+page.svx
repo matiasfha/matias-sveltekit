@@ -34,13 +34,9 @@ Un arreglo permite trabajar con colecciones de datos de forma simple y eficiente
 
 
 > **Relacionados**
-
 > [Métodos de Arreglo: Array.every y Array.some](https://matiashernandez.dev/blog/post/metodo-de-arreglos-array.every-y-array.some)
-
 > [Manipular Arreglos de objetos](https://matiashernandez.dev/blog/post/arreglos-de-objetos-en-javascript-como-crear-y-actualizar-su-contenido)
-
 > [La guía definitiva de Métodos de Arreglos](https://escuelafrontend.com/articulos/metodos-de-arreglos) (escuela frontend)
-
 > [Curso: Manipulación Eficiente de Arreglos con Javascript](https://egghead.io/playlists/manipulacion-eficiente-de-arreglos-con-javascript-1e17fc6f?af=4cexzz)
 
 

@@ -82,7 +82,8 @@
 		</div>
 	</div>
 
-	<div class="mb-12 lg:mb-0 items-center justify-center flex h-card">
+	<div class="mb-12 lg:mb-0 items-center justify-center flex flex-col h-card relative">
+		<div class="absolute bg-gradient-to-b dark:from-ebony-clay-300 dark:via-ebony-clay-500 dark:to-ebony-clay-500  from-gray-400 via-gray-200 to-gray-100 rounded-full blur-3xl top-1/4 w-[150%] h-[110%]"></div>
 		<img
 			sizes="(min-width: 30em) 34em, 100vw"
 			class="object-contain backdrop-filter backdrop-blur-xl filter drop-shadow-2xl u-photo"
@@ -92,5 +93,7 @@
 			src="https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,c_scale,w_544/https://matiashernandez.dev/me-optimized.png"
 			alt="This is me :D"
 		/>
+		<div class="bg-gradient-to-b dark:from-ebony-clay-300 dark:via-ebony-clay-500 dark:to-ebony-clay-500  from-gray-400 via-gray-200 to-gray-100 z-10 absolute -bottom-8 rounded-xl w-[110%] h-20 blur-lg"></div>
+		
 	</div>
 </div>
