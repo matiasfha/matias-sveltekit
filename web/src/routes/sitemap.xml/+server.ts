@@ -11,7 +11,13 @@ const pages = [
 	'uses',
 	'es/about',
 	'sponsorships',
-	'es/sponsorships'
+	'es/sponsorships',
+	'react',
+	'typescript',
+	'javascript',
+	'node',
+	'css',
+	'graphql'
 ];
 
 export const GET: RequestHandler = async () => {

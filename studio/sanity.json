@@ -21,7 +21,8 @@
     "@sanity/code-input",
     "table",
     "markdown",
-    "@sanity/scheduled-publishing"
+    "@sanity/scheduled-publishing",
+    "@sanity/vision"
   ],
   "env": {
     "development": {

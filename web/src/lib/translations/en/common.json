@@ -6,6 +6,7 @@
     "ama": "AMA",
     "about": "About",
     "courses": "Courses",
+    "articles":"Articles",
     "sponsor": "Sponsorships",
     "hire": "Hire me",
     "uses": "Uses",
@@ -17,5 +18,6 @@
         "exclusivity": "Weekly adds exclusivity",
         "includes":"Copy and design included"
     },
-    "all_about": "All about "
+    "all_about": "All about ",
+    "newsletter_text": "Don't forget to join to the newsltter so you will not miss any of the content I share. (Spanish)"
 }

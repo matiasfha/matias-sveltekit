@@ -6,6 +6,7 @@
 	import Featured from '$components/Featured.svelte';
 	import PostCard from '$components/PostCard.svelte';
 	import Seo from '$components/Seo.svelte';
+	import NewsletterForm from '$components/NewsletterForm.svelte';
 	import { t } from '$lib/translations';
 	
 	import type { Post } from '$lib/types';
@@ -73,12 +74,13 @@ meta={new Intl.DateTimeFormat('es-CL').format(new Date(data.featured.date))}
 description={data.featured.description}
 />
 
+<NewsletterForm />
 <div class="flex flex-row mt-12">
 	<input
 		type="text"
 		placeholder={$t('common.search')}
 		aria-label={$t('common.search')}
-		class="border-secondary hover:border-primary focus:border-primary focus:bg-secondary px-8 py-6 w-full dark:text-white bg-transparent border rounded-lg focus:outline-none"
+		class="shadow-md border-secondary hover:border-primary focus:border-primary focus:bg-secondary px-8 py-6 w-full dark:text-white bg-gray-50 border rounded-lg focus:outline-none"
 		bind:value={searchItem}
 	/>
 </div>

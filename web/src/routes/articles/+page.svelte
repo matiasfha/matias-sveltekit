@@ -6,6 +6,7 @@
 	import ContentCard from '$components/ContentCard.svelte';
 	import Seo from '$components/Seo.svelte';
 	import { t } from '$lib/translations';
+	import NewsletterForm from '$components/NewsletterForm.svelte';
 	/** @type { string }*/
 	let searchItem;
 
@@ -75,14 +76,14 @@
 	url={data.featured.url}
 />
 
+<NewsletterForm />
+
 <div class="flex flex-row mt-12">
 	<input
 		type="text"
-		name="firstName"
-		autocomplete="name"
 		placeholder={$t('common.search')}
-		aria-label="Search"
-		class="border-secondary hover:border-primary focus:border-primary focus:bg-secondary px-8 py-6 w-full dark:text-white bg-transparent border rounded-lg focus:outline-none"
+		aria-label={$t('common.search')}
+		class="shadow-md border-secondary hover:border-primary focus:border-primary focus:bg-secondary px-8 py-6 w-full dark:text-white bg-gray-50 border rounded-lg focus:outline-none"
 		bind:value={searchItem}
 	/>
 </div>

@@ -26,6 +26,7 @@ const query = gql`
 			published_at
 			tag
 			featured
+			category
 		}
 	}
 `;

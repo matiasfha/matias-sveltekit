@@ -37,6 +37,11 @@ export default {
           title: 'Description',
           name: 'description',
           type: 'text'
+        },
+        {
+          title: 'Category',
+          name: 'category',
+          type: 'string'
         }
      
      ]

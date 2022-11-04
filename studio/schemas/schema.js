@@ -57,6 +57,5 @@ export default createSchema({
       ]
     },
     post, 
-    markdownPost
   ]),
 })

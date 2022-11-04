@@ -6,6 +6,7 @@
     "ama": "Pregunta lo que quieras",
     "about": "Sobre Mí",
     "courses": "Cursos",
+    "articles":"Artículos",
     "sponsor": "Auspicios",
     "hire": "Contratame",
     "uses": "Usos",
@@ -17,5 +18,6 @@
         "exclusivity": "Una semana de publicidad exclusiva",
         "includes":"Incluye diseño y redacción"
     },
-    "all_about": "Todo sobre "
+    "all_about": "Todo sobre ",
+    "newsletter_text": "No olvides unirte a mi newsletter y así no perderte ningún contenido. Artículos, cursos y más."
 }
