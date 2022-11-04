@@ -1,0 +1,183 @@
+
+---
+date: 2022-11-04T18:14:14Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/aa3d66aff6a811d464a4693f4042306a22870ecd-1280x710.png
+keywords: 
+- JSX
+- React
+- jsx react
+- react jsx
+- jsx vs js
+- javascript vs jsx
+- javascript jsx
+title: "¿Qué es JSX? ¿Por qué usamos JSX en React y como funciona?"
+description: "¿Qué es lo primero que te sorprende al ver un componente React cuando recién estás comenzando? WTF!! es ese código como HTML dentro de Javascript!!!
+
+Sip, eso es JSX, pero, ¿por que existe?,¿Para qué es? ¿Y cómo funciona?"
+bannerCredit: undefined
+
+---
+Una de las primeras cosas que saltan a la vista la primera vez que comienzas a trabajar o aprender React es esa extraña sintaxis, muy similar a HTML pero dentro de Javascript.
+
+Esa sintaxis que utiliza `<>` es JSX, pero: ¿Qué es JSX y por qué es utilizado en React?
+
+JSX es una abstracción sobre la API `React.createElement` que permite expresar de forma aún más declarativa la definición de la UI que quieres renderizar.
+
+JSX es una forma más intuitiva de crear componentes.
+
+Pero primero, ¿Cómo se React crea componentes?
+
+## El mundo sin JSX
+
+React ofrece una API “cruda” que te permite crear componentes y en realidad realizar todo lo que pienses sin necesidad de utilizar JSX.
+
+Esta API es la que se encarga de la creación de los componentes y elementos sin que tengas que tocar directamente la API imperativa del DOM, aún así la API de React mantiene cierta semejanza con el DOM.
+
+DOM API:
+
+`document.createElement(‘h1’)`
+
+React API.
+
+`React.createElement(‘h1’, props)`
+
+La gran (e importante) diferencia es que la API de React acepta props. Un objeto que describe los atributos que este componente u elemento tendrá. En el caso de la API del DOM, si quieres modificar, por ejemplo, el contenido de texto de un elemento harías:
+
+```javascript
+const h1 = document.createElement('h1') h1.textNode = "Este es el título"
+```
+
+Con la API de React tienes una forma más declarativa:
+
+```javascript
+const h1 = React.createElement('h1', { children: 'Este es el titulo' })
+```
+
+Es también importante notar que para poder ejecutar React en el browser debes agregar dos script base `react` y `react-dom`.
+
+`react` es la librería que implementa las API necesarias para crear y manejar tus componentes. `react-dom` es quien "traduce" el árbol de componentes de React a algo que el DOM pueda entender.
+
+Entonces, crear componentes React es utilizar esta API, ¿imaginas como es escribir componentes anidados de esta forma?
+
+```javascript
+const h1 = React.createElement('h1', { children: 'Este es el titulo' })
+
+const el1 = React.createElement('li',null,'Elemento 1')
+const el2 = React.createElement('li',null,'Elemento 1')
+
+const list = React.creatElement('ul', {
+  children: [el1, el2] 
+})
+
+const contenedor = React.createElement('div', 
+  { 
+    className: 'container',
+    children: [h1, list]
+    
+  }
+ )
+
+// Renderiza los elementos
+const root = document.getElementById('root')
+ReactDOM.render(contenedor, root)
+```
+
+¿Bastante incomodo cierto?
+
+
+
+## Bienvenido JSX
+
+Ya sabes como funciona React "bajo el capó", y no es conviente escribir componentes de esa forma.
+
+Pero hay una forma de estructurar elementos del DOM que todo desarrollador web conoce: HTML, que tal, si existiera una forma de utilizar esa nomenclatura dentro de Javascript.
+
+
+
+```javascript
+const Contenedor () => (
+  <div
+    <h1>Este es el titulo</h1>
+    <ul>
+      <li>Elemento 1</li>
+      <li>Elemento 2</li>
+    </ul>
+  </div>
+)
+
+// Renderiza los elementos
+const root = document.getElementById('root')
+ReactDOM.render(<Contenedor />, root)
+```
+
+Esto es JSX, una forma más "simple" de hacer uso de la API de React.
+
+Pero JSX no es javascript por lo que necesitamos algunas herramientas extra, en particular [Babel](https://babeljs.io/).
+
+> ¿Sabes que es Babel? Si, quieres saber más [te invito a leer este artículo en FreeCodeCamp](https://www.freecodecamp.org/espanol/news/que-es-babel/)
+
+Babel se encarga de transpilar o transformar el código JSX en javascript puro, es decir en llamadas a `React.createElement`.
+
+Es una buena idea recordar que tras el uso de JSX hay un grupo de llamadas a `React.createElement` a modo de “compilador humano". Esto te ayudará cuando necesites realizar operaciones complejas sobre JSX.
+
+## Props
+
+Otro punto importante cuando trabajas con JSX y con componentes en React es el concepto de Props.
+
+En React los componentes son representados por funciones que encapsulan lógica y descripción de la UI usando JSX. También sabemos que un componente React es en cierta forma una unidad aislada del mundo, pero al mismo tiempo sabemos que debe existir una forma de que el componente se comunique con el mundo exterior. Para esto se usa el concepto de **props**.
+
+Al igual que las funciones aceptan argumentos, un componente React acepta “valores” que son pasados por medio de un objeto llamado **props**.
+
+Recordemos la API cruda de `React.createElement`
+
+```javascript
+React.createElement(type, [props],[...children])
+```
+
+Lo que esta definición indica es que un componente creado con `React.createElement` acepta un objeto opcional llamado **props** y un número indefinido de hijos.
+
+Para escribir lo mismo en JSX y pasar estos valores llamados props, simplemente agregamos “atributos” a la declaración
+
+```javascript
+<Title color="red">Este es el Titulo</Title>
+```
+
+En este ejemplo `color=“red”` define una **prop** llamada `color` con el valor string `red` ¿Cómo se reciben las props en un componente?
+
+Cuando definimos un componente, en realidad estamos creando una función que retorna JSX, para que esta función sea considerada un componente React valido debe aceptar solo un argumento, este único argumento es el que llamamos **props**.
+
+```javascript
+const Title = (props) => {
+	const { color, children } = props 
+	return <h1>{children} - {color}</h1>
+}
+```
+
+El componente título es una función que acepta un argumento, este argumento llamado **props** es un objeto cuyos atributos son los nombres que has dado a las props, por lo que puedes usar destructuring para acceder a ellos (puedes hacerlo también directamente en los argumentos).
+
+Existe una prop por defecto que no fue definida por ti. **children**. Esta prop (opcional) hace referencia a el tercer argumento de `React.createElement.` **children** es una estructura de datos opaca, es decir, no hay que lidiar con ella directamente, si no, utilizando las utilidades que la propia API ofrece.
+
+**children** puede ser: Un string, boolean, número, null, un elemento, un componente, o un array de los anteriores.
+
+Además en este ejemplo pudiste ver otra característica de JSX. Interpolación. Esta es la forma en que puedes definir declaraciones javascript dentro de tu JSX, es muy similar a usar template literals, es una forma de “poner valores” desde un mundo en otro.
+
+En el ejemplo, abrimos el uso de JSX y usamos las llaves `{}`para determinar que estaremos interpolando javascript dentro de JSX.
+
+Puedes interpolar lo que sea dentro de las llaves `{}` mientras sea javascript válido, solo recuerda que lo que estás haciendo al interpolar dentro de JSX es en realidad creando un nuevo **children** que es el tercer arugmento de `React.createElement`
+
+```javascript
+const Title = (props) => {
+	const { color, children } = props 
+	return <h1>{children} - {color}</h1>
+}
+↓	↓	↓	↓	↓	↓	↓	↓	↓	↓	↓	↓
+
+const Title = (props) => {
+	const { color, childrn } = props
+	return React.createElement('h1',null, children, " _ ", color)
+}
+↓	↓	↓	↓	↓	↓	↓	↓	↓	↓	↓	↓
+const Title = ({ color, children })=> {
+	return React.createElement('h1',null, children, " _ ", color)
+}
+```
