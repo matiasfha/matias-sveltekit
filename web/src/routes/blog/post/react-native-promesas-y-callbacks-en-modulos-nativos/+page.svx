@@ -7,7 +7,7 @@ keywords:
 - Native Module
 - Promises
 - Callbacks
-tag: Seed
+tag: React
 title: 'React Native: Promesas y Callbacks en módulos nativos'
 description: React Native ofrece estructuras de datos que permiten desarrollar módulos
   nativos que exponen el uso de Promesas y Callbacks a tu aplicación React Native

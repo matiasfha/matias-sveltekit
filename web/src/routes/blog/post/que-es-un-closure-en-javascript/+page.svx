@@ -7,7 +7,7 @@ keywords:
 - React
 - Fundamentos
 - Stale Closure
-tag: Seed
+tag: Javascript
 title: ¿Qué es un closure en Javascript?
 description: ¿Qué es un Closure y por que es relevante al desarrollar con React u otro framework?
 bannerCredit: Photo by <a href="https://unsplash.com/@nickrbolton?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nick Bolton</a> on <a href="https://unsplash.com/s/photos/closure?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>  

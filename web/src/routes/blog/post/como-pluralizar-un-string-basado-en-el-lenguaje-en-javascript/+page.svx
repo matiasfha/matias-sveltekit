@@ -1,4 +1,3 @@
-
 ---
 date: 2022-09-18T22:37:42Z
 banner: https://cdn.sanity.io/images/cyypawp1/production/0454dba88957b4b63d8e49ddb774288404ec172c-1280x710.png
@@ -16,7 +15,7 @@ keywords:
 title: "¿Cómo pluralizar un string basado en el lenguaje en Javascript?"
 description: "La pluralización de textos es otra tarea que se puede complejizar cuando tu aplicación soporta más y diferentes lenguajes, pero Javascript ofrece una solución. Intl.PluralRules."
 bannerCredit: undefined
-tag: Posts
+tag: Javascript
 ---
 El objeto **Intl** también admite una forma de definir cómo formatear contenido "pluralizado" sensible al lenguaje, este es el constructor *PluralRules*.
 

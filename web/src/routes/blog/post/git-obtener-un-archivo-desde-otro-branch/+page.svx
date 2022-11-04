@@ -1,4 +1,3 @@
-
 ---
 date: 2022-08-25T22:00:57Z
 banner: https://cdn.sanity.io/images/cyypawp1/production/2935c65c98d7be0cfa1edec4623124aa28fb5b6c-1280x710.png
@@ -16,11 +15,9 @@ keywords:
 - git checkout archivo de otro branch
 - como obtener un archivo de otro branch
 title: "Git: Cómo Obtener un archivo desde otro branch"
-description: "Es muy común que al estar trabajando en tu proyecto necesites obtener un archivo que existe otro branch. Por suerte Git ofrece herramientas para obtenerlo.
-
-"
+description: "Es muy común que al estar trabajando en tu proyecto necesites obtener un archivo que existe otro branch. Por suerte Git ofrece herramientas para obtenerlo."
 bannerCredit: undefined
-tag: Posts
+tag: Git
 ---
 En más de una ocasión he tenido la necesidad de recuperar un (o varios) archivo desde una branch diferente a la que estoy trabajando y una y otra vez debo realizar una búsqueda ya que siempre olvido el comando requerido.
 

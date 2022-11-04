@@ -11,7 +11,7 @@ keywords:
 title: ¿Cómo revisar si un string es vacío o null en Javascript?
 description: "Saber si un string está vació o incluso si es `null` es importante para varias operaciones en una aplicación web, por ejemplo: Revisar los datos provenientes de una API externa, caja de texto o incluso tu base de datos. ¿Cómo identificas un string null o vació en Javascript?"
 bannerCredit: undefined
-tag: Posts
+tag: Javascript
 ---
 
 Lo primero que debemos conocer es que, en Javascript, existe una diferencia sustancial entre `null` y vacío.

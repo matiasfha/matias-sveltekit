@@ -11,7 +11,7 @@ keywords:
 title: "Git: ¿Cómo eliminar un archivo de la historia?"
 description: En ocasiones subes a tu repositorio un archivo equivocado con información sensible. ¿Cómo lo eliminas totalmente de la historia?
 bannerCredit: undefined
-tag: Posts
+tag: Git
 ---
 
 Git es una herramienta asombrosa, y que ciertamente cambió la forma en que desarrollamos software, y la llegada de Github años atrás cambió la forma en que compartimos nuestros desarrollos.

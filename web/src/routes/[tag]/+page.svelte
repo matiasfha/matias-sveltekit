@@ -1,18 +1,18 @@
-
 <script lang="ts">
 	// Suggestion (check code before using, and possibly convert to data.X access later):
 	import type { PageData } from './$types';
 	export let data: PageData;
-	import Featured from '$components/Featured.svelte';
 	import PostCard from '$components/PostCard.svelte';
 	import Seo from '$components/Seo.svelte';
 	import { t } from '$lib/translations';
+    import { page } from '$app/stores';
 	
 	import type { Post } from '$lib/types';
 
 	import { Cloudinary } from 'cloudinary-core'
 	import { browser } from '$app/environment';
 	import { afterUpdate } from 'svelte';
+	import { HtmlTag } from 'svelte/internal';
 	
 	afterUpdate(() => {
 		if(browser) {
@@ -23,6 +23,7 @@
 		
 	
 	let searchItem: string;
+    let currentTag = $page.params.tag.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
 	
 	$: filteredPosts = searchItem
 		? data.posts.filter((item: Post) => {
@@ -34,8 +35,8 @@
 		  })
 		: data.posts;
 </script>
-<!--INFOLINKS_OFF-->
-<Seo title="Blog" description="Mi blog personal" canonical="https://matiashernandez.dev/blog" />
+
+<Seo title={currentTag} description={`All about ${currentTag}`} canonical="https://matiashernandez.dev/blog" />
 
 <header
 	class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative h-[20rem] bg-cover bg-no-repeat rounded-md"
@@ -43,12 +44,12 @@
 	<div class="backdrop-blur-sm  w-full absolute top-0 left-0 z-0 h-full" />
 	<div class="flex flex-col z-10 px-4 md:px-2">
 		<h1 class="text-left text-gray-100 font-bold text-2xl md:text-4xl pb-8 m-0 ">
-			{$t('blog.title')}
+			{currentTag}
 		</h1>
 		<p
 			class="text-left text-gray-100 font-body leading-tight text-lg max-w-4xl z-10 hidden md:block flex-grow m-0"
 		>
-			{$t('blog.presentation')}
+			{$t('common.all_about')} {currentTag}
 		</p>
 		<h4
 			class="text-left text-gray-100 font-body leading-tight text-sm self-end absolute bottom-2 left-2 md:left-auto"
@@ -67,11 +68,6 @@
 </header>
 
 
-<Featured 
-image={data.featured.banner} title={data.featured.title} url={data.featured.slug} 
-meta={new Intl.DateTimeFormat('es-CL').format(new Date(data.featured.date))}
-description={data.featured.description}
-/>
 
 <div class="flex flex-row mt-12">
 	<input
@@ -83,12 +79,6 @@ description={data.featured.description}
 	/>
 </div>
 
-
-<section class="mt-12 flex flex-wrap">
-	{#each data.tags as tag}
-	<a href={`/${tag.toLowerCase()}`} class="relative mb-4 mr-4 block h-auto w-auto rounded-full px-6 py-3 transition text-primary bg-gray-200 hover:bg-gray-300 text-ebony-clay-500 dark:bg-ebony-clay-500 dark:hover:bg-ebony-clay-400  dark:text-gray-200">{tag}</a>
-	{/each}
-</section>
 
 <section class="mt-12">
 	<h2 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">{$t('blog.title')}</h2>

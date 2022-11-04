@@ -14,7 +14,7 @@ keywords:
 - Do I need Redux
 - Necesito usar Redux
 - Alternativa a Redux
-tag: Seed
+tag: React
 title: No necesitas Redux
 description: Una pregunta común entre quienes están comenzando con React es si necesita
   aprender o integrar Redux en sus aplicaciones.

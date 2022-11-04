@@ -18,6 +18,7 @@ keywords:
 description: As your app grows you may want to display your content in different formats and even different languages. Javascript offers an API for this purpose, the **Intl** object.
 canonical: https://egghead.io/blog/understanding-the-intl-javascript-api?af=4cexzz
 featured: true
+tag: Javascript
 ---
 
 <Disclaimer title="Repost">

@@ -9,7 +9,7 @@ keywords:
 - Gatsby
 - Next.js
 - Next
-tag: Post
+tag: Jamstack
 title: ¿Por que JamStack es tan cool?
 description: JamStack es una arquitectura, una filosofía o modelo que busca drásticamente eliminar la complejidad para crear y distribuir mejores aplicaciones en menos tiempo.
 ---

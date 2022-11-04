@@ -15,7 +15,7 @@ function processUrl(url, node) {
 			node.properties.target = "_blank"
 			// Fix a security concern with offsite links
 			// See: https://web.dev/external-anchors-use-rel-noopener/
-			node.properties.rel = "noopener"
+			node.properties.rel = "noreferrer noopener"
 		}
 	}
 }

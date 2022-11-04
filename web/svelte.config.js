@@ -28,7 +28,7 @@ const config = {
     kit: {
         prerender: {
             enabled: true,
-            onError: ({ status, path, referrer, referenceType, ...rest }) => {
+            handleHttpError: ({ status, path, referrer, referenceType, ...rest }) => {
                 const error = Object.keys(rest).map(key => `${key}: ${rest[key]}`).join(', ')
                 console.table(rest)
                 console.error(

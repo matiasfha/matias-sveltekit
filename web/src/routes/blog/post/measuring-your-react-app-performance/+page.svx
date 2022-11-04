@@ -11,7 +11,7 @@ description:
 bannerCredit:
   <span>Photo by <a href="https://unsplash.com/@rockthechaos?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Kolleen  Gladden</a>
   on <a href="https://unsplash.com/s/photos/performance?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
-tag: Post
+tag: React
 ---
 
 > This is an old post written in my medium site.

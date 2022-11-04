@@ -1,4 +1,3 @@
-
 ---
 date: 2022-07-31T17:03:50Z
 banner: https://cdn.sanity.io/images/cyypawp1/production/c1979c830e67b18f2153fd1577ff8fc2dad96fea-1280x710.png
@@ -18,7 +17,7 @@ description: "Sabías que puedes renderizar texto con fuentes personalizadas sub
 Utilizando la API FontFace puedes agregar nuevas fuentes de forma dinámica a tu web.
 "
 bannerCredit: undefined
-tag: Posts
+tag: Javascript
 ---
 Utilizar fuentes personalizadas en tu web es una práctica común que puedes lograr haciendo uso de css y  de la regla `@font-face`, pero que ocurre si quieres permitir a tus usuarios cambiar la fuente que utilizan para renderizar lo que ven en base a una fuente que ellos pueden subir?.   
   

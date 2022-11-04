@@ -69,7 +69,7 @@ keywords: \n${keys}
 title: "${title}"
 description: "${description}"
 bannerCredit: ${bannerCredit}
-tag: Posts
+
 ---
 ${getRawMarkdown(content)}`;
 }

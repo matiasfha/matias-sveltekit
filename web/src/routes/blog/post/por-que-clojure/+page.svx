@@ -4,7 +4,7 @@ banner: https://res.cloudinary.com/matiasfha/image/upload/v1602556838/Clojure_lo
 keywords:
 - Clojure
 - Listp
-tag: Post
+
 title: "¿Por qué Clojure?"
 description: Clojure es un lenguaje variante de Lips, flexible, funcional, dinámico
   y entretenido.

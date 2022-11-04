@@ -1,4 +1,3 @@
-
 ---
 date: 2022-08-08T10:36:39Z
 banner: https://cdn.sanity.io/images/cyypawp1/production/e6045cce8e5a79665c0e304dc77c0dd94917d42a-1280x710.png
@@ -14,7 +13,7 @@ keywords:
 title: "¿Qué hay de nuevo en React 18? ¿Y que significa?"
 description: "La nueva versión de React trae consigo varios cambios y mejoras como por ejemplo:  procesamiento por lotes automático (automatic batching), nuevas API como startTransition, streaming SSR y un nuevo soporte para Suspense, ¿Qué significa todo esto?"
 bannerCredit: undefined
-tag: Posts
+tag: React
 ---
 La nueva versión de React trae consigo varios cambios y mejoras como por ejemplo: procesamiento por lotes automático (automatic batching), nuevas API comostartTransition, streaming SSR y un nuevo soporte para Suspense.
 

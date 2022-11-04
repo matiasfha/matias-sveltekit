@@ -6,7 +6,7 @@ keywords:
 - Hooks
 - react hooks
 - useEffect
-tag: Seed
+tag: React
 title: Que son los Hooks
 description: "¿Qué son los Hooks en React? ¿De dónde nacen y por qué?"
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@flowforfrank?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ferenc

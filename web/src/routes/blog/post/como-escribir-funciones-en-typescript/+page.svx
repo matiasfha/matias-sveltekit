@@ -13,7 +13,7 @@ keywords:
 - definicion de funciones
 - declaracion de tipos
 - anotacion de tipos de funciones
-tag: Post
+tag: Typescript
 title: Como escribir funciones en Typescript
 description: Diferentes formas de escribir o declarar tus funciones en Typescript con varios ejemplos.
 bannerCredit: Photo by <a href="https://unsplash.com/@gamell?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joan Gamell</a> on <a href="https://unsplash.com/s/photos/functions?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>

@@ -1,4 +1,3 @@
-
 ---
 date: 2022-10-28T12:11:25Z
 banner: https://cdn.sanity.io/images/cyypawp1/production/6bed84037fd1a854f148a375e5dd18420e960e0a-1280x710.png
@@ -13,7 +12,7 @@ title: "Typescript: Definir un tipo de arreglo no vacío"
 description: "Siempre estamos trabajando con Arreglos y en Typescript esto no es una excepción.
 ¿Cómo puedes estar seguro de que un arreglo no está vacío con tan solo revisar su tipo?"
 bannerCredit: undefined
-tag: Posts
+tag: Typescript
 ---
 Typescript es un poderoso y expresivo lenguaje, que permite evitar que publiques bugs. 
 

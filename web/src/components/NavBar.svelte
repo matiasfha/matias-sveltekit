@@ -192,7 +192,7 @@
 
 		<button
 			on:click={() => (menu = !menu)}
-			class="xl:hidden self-end z-20 transform duration-500 ease-in-out hover:scale-110 motion-reduce:transform-none  dark:text-white text-ebony-clay-500 m-2 focus:outline-none"
+			class="xl:hidden self-end z-30 transform duration-500 ease-in-out hover:scale-110 motion-reduce:transform-none  dark:text-white text-ebony-clay-500 m-2 focus:outline-none"
 		>
 			<svg
 				class="h-8 w-8"
@@ -222,14 +222,14 @@
 		{#if menu}
 			<ul
 				transition:blur={{ duration: 500 }}
-				class="flex flex-col w-full h-full dark:bg-ebony-clay-600 bg-gray-500 dark:text-gray-200 text-ebony-clay-600 text-center z-10 fixed top-0 left-0 py-10 overflow-y-auto backdrop-filter backdrop-blur-lg bg-opacity-30"
+				class="flex flex-col w-full h-full dark:bg-ebony-clay-600 bg-gray-500 dark:text-gray-200 text-ebony-clay-600 text-center z-20 fixed top-0 left-0 py-10 overflow-y-auto backdrop-filter backdrop-blur-lg bg-opacity-30"
 			>
 				{#each menuLinks as item}
 					<li
-						on:click={() => (menu = !menu)}
 						class="px-5 py-6 text-lg text-left border-b-2 dark:border-ebony-clay-100 border-ebony-clay-600"
 					>
 						<a
+							on:click={() => (menu = !menu)}
 							data-sveltekit-prefetch
 							class="hover:text-primary underlined focus:text-primary block whitespace-nowrap text-lg font-medium focus:outline-none text-secondary"
 							href={item.href}>{item.title}</a

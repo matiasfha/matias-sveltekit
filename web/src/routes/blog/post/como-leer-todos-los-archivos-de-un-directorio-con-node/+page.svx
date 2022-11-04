@@ -12,7 +12,7 @@ keywords:
 title: "¿Cómo leer todos los archivos de un directorio con Node?"
 description: "Un directorio puede contener no solo archivos, si no, también múltiples directorios anidados. ¿Cómo puedes obtener un listado de todos los archivos existentes en un directorio dado utilizando Nodejs?"
 bannerCredit: undefined
-tag: Posts
+tag: Node
 ---
 
 Una tarea común en una aplicación en un servidor es obtener un listado de archivos que existen dentro de algún directorio para después realizar alguna tarea con ellos. 

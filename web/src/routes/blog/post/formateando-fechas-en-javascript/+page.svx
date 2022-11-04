@@ -1,4 +1,3 @@
-
 ---
 date: 2022-09-08T14:24:14Z
 banner: https://cdn.sanity.io/images/cyypawp1/production/de4d4119cd7db75b2942e534acf5e67b16d0a7a3-1708x948.png
@@ -14,7 +13,7 @@ keywords:
 title: "Formateando fechas en Javascript"
 description: "Trabajar con fechas en Javascript no siempre es divertido, y darle diferentes formatos puede ser un problema. ¿Sabías que puedes lograrlo sin necesitar una librería externa?. Bienvenido Intl.DateTimeFormat"
 bannerCredit: undefined
-tag: Posts
+tag: Javascript
 ---
 Una tarea particularmente problemática en Javascript es trabajar con fechas y darle formato a estas. 
 

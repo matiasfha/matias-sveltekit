@@ -9,7 +9,7 @@ keywords:
 title: "¿Cómo usar la api de Dev.to para escribir un post?"
 description: "La republicación de contenido puede ayudar a llegar a más lectores, pero puede ser tedioso, ¿como mejoras el proceso? Automatizando los pasos, y para ello puedes usar las API de los servicios como dev.to"
 bannerCredit: undefined
-tag: Posts
+
 ---
 
 Uno de los proceso que realizo cuando escribo un post o artículo es la republicación de ellos en distintas comunidades como por ejemplo [dev.to](https://dev.to). Esto ayuda a llegar a más lectores (siempre y cuando mantengas la url canonica apuntando al sitio original).

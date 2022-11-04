@@ -14,7 +14,7 @@ keywords:
 title: ¿Qué es The Graph Protocol?
 description: The Graph es un protocolo de indexación y consulta que permite crear APIs eficientes para acceder a los datos de cualquier smart contract.
 bannerCredit: undefined
-tag: Posts
+
 ---
 
 <TLDR>  

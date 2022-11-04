@@ -10,7 +10,7 @@ keywords:
 title: Cuando usar Map y Set en Javascript o cuando no usar objetos.
 description: Los objetos en Javascript son quizá la estructura de datos más utilizada pero, ¿estás seguro que es la estructura adecuada?. Map y Set pueden ser una mejor solución.
 bannerCredit: undefined
-tag: Posts
+tag: Javascript
 ---
 
 Crear aplicaciones web es en general solucionar problemas de como manipular y desplegar cierto conjunto de datos de una forma entendible para el usuario. Es por esto que decidir la estructura de datos correcta puede facilitar el manejo de datos más adelante, ahorrando tiempo y haciendo el código más comprensible o con mejor performance.

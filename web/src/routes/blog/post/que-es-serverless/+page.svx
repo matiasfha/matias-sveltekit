@@ -8,7 +8,7 @@ keywords:
 title: "¿Qué es serverless?"
 description: "Funciones lambda, funciones serverless, funciones como servicio o serverless frameworks ¿Qué significa todo esto? en este artículo encontrarás un breve análisis sobre estos conceptos."
 bannerCredit: undefined
-tag: Posts
+
 ---
 
 Una de las tecnologías que ha revolucionado la forma en que creamos la arquitectura de un nuevo proyecto de software ha sido sin lugar a dudas "The Cloud", pero más directamente el concepto de "Serverless", incluso, el uso de estas plataformas y servicios han dado rápido crecimiento a una forma particular de diseñar aplicaciones: JamStack. Pero, ¿qué es exactamente serverless?

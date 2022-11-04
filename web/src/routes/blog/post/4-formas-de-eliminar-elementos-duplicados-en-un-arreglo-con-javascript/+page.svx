@@ -14,7 +14,7 @@ keywords:
 - quitar duplicados
 - eliminar repetidos js
 - quitar duplicados javascript
-tag: Seed
+tag: Javascript
 title: 4 formas de eliminar elementos duplicados en un arreglo con Javascript
 description: Remover elementos duplicados de un arreglo es una tarea común durante el desarrollo de software. Javascript ofrece varias formas de hacerlo y su elección depende del caso de uso.
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@draufsicht?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Andreas Gücklhorn</a> on <a href="https://unsplash.com/collections/9718937/solar?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>

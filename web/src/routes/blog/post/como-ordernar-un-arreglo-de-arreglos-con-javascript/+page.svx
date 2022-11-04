@@ -10,7 +10,7 @@ keywords:
 title: "¿Cómo ordernar un Arreglo de arreglos con Javascript?"
 description: "Un arreglo puede contener cualquier tipo de elemento, incluso otro arreglo. ¿Cómo ordenas un arreglo de arreglos basado en algún valor del arreglo interno?"
 bannerCredit: undefined
-tag: Posts
+tag: Javascript
 ---
 
 El método `sort()` te permite ordenar los elementos de cualquier arreglo, retornando el arreglo ordenado, pero también cambiando la posición de los elementos del arreglo original.

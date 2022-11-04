@@ -13,7 +13,7 @@ keywords:
 title: "Types vs Interfaces ¿Cuándo utilizar cada una?"
 description: "Una pregunta común cuando comienzas a escribir Typescript es: ¿Debo usar Types o Interfaces, cuál es la diferencia?, en este artículo te ayudaré a aclarar a decidir que utilizar y por qué."
 bannerCredit: undefined
-tag: Posts
+tag: Typescript
 ---
 Una pregunta común cuando comienzas a escribir Typescript es: ¿Debo usar Types o Interfaces, cuál es la diferencia?, en este artículo te ayudaré a aclarar a decidir que utilizar y por qué.
 

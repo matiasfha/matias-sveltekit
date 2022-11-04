@@ -15,7 +15,7 @@ keywords:
 title: "Consigue fechas relativas en Javascript"
 description: "Hace X días. Es una forma diferente de desplegar la fechas del contenido de tu aplicación web. ¿Cómo puedes mostrar fechas relativas? Usando Intl.RelativeTimeFormat"
 bannerCredit: undefined
-tag: Posts
+tag: Javascript
 ---
 Las fechas pueden ser algo bastante engorroso de trabajar, una de esas complicaciones nace cuando el requerimiento es el de mostrar la fecha de algún contenido de la aplicación en formato relativo a la fecha actual: `Hace 2 semanas`. 
 

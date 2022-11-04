@@ -15,7 +15,7 @@
 		}
 	}
 	export let content = "Tu producto o servicio podría estar aquí";
-	export let highlight: string;
+	export let highlight: string = '';
 </script>
 
 

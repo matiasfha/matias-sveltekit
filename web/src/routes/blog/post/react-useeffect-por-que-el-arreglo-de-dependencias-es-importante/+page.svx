@@ -7,7 +7,7 @@ keywords:
 - useEffect
 - dependencias
 - arreglos
-tag: Seed
+tag: React
 featured: true
 title: "React useEffect: La importancia del arreglo de dependencias"
 description: React `useEffect` es quizá el hook que más confusiones genera a la hora

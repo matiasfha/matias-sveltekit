@@ -15,7 +15,7 @@ keywords:
 title: "Entendiendo async y await en Javascript"
 description: "async/await es parte de ese azucar sintáctico que javascript a ido incorporando para dar entregar una mejor experiencia de desarrollo, pero que es realmente async/await y como ocupar sus características?"
 bannerCredit: undefined
-tag: Posts
+tag: Javascript
 ---
 
 ## Async/Await

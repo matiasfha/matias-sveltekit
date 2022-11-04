@@ -14,7 +14,7 @@ keywords:
 title: "Como renombrar múltiples archivos usando Node"
 description: "Renombrar archivos es una operación común  con node. Y para esto Node.js ofrece varias opciones, desde el uso de Stream hasta un método específicamente creado con el objetivo de renombrar `fs.rename`"
 bannerCredit: undefined
-tag: Posts
+tag: Node
 ---
 Nodejs permite acceso al sistema de archivos y una de las operaciones que se realizan con archivos es cambiar su nombre o moverlos de un lugar a otro.
 

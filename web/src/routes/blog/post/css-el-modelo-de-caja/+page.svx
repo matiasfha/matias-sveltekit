@@ -20,6 +20,7 @@ keywords:
 title: "CSS: El Modelo de Caja y Cómo Implementarlo"
 description: Es importante conocer &quot;los fundamentos&quot; de las tecnologías con las que trabajamos día a día, incluso si podemos llevar a cabo nuestro trabajo sin ese conocimiento, el saber nos permitirá ser más efectivos, en este caso, implementando diseños de manera correcta.
 canonical: https://www.escuelafrontend.com/articulos/css-el-modelo-de-caja
+tag: CSS
 ---
 
 <Disclaimer title="Repost">

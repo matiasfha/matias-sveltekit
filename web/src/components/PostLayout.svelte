@@ -51,14 +51,20 @@
 
 
 <svelte:head>
-  	<!-- Infolinks ads  -->
-	<script type="text/javascript">
-		var infolinks_pid = 3369090;
-		var infolinks_wsid = 0;
-	</script>
-	<script type="text/javascript"  defer src="https://resources.infolinks.com/js/infolinks_main.js"></script>
-	<script type="text/javascript"  defer async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8352667732450998"
+  	<script type="text/javascript"  defer async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8352667732450998"
      crossorigin="anonymous"></script>
+
+	 <!-- MailerLite Universal -->
+	<script>
+		(function(m,a,i,l,e,r){ m['MailerLiteObject']=e;function f(){
+		var c={ a:arguments,q:[]};var r=this.push(c);return "number"!=typeof r?r:f.bind(c.q);}
+		f.q=f.q||[];m[e]=m[e]||f.bind(f.q);m[e].q=m[e].q||f.q;r=a.createElement(i);
+		var _=a.getElementsByTagName(i)[0];r.async=1;r.src=l+'?v'+(~~(new Date().getTime()/1000000));
+		_.parentNode.insertBefore(r,_);})(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
+		
+		var ml_account = ml('accounts', '3081949', 'x4j7h5e8a3', 'load');
+	</script>
+	<!-- End MailerLite Universal -->
 
 </svelte:head>
 
@@ -103,10 +109,16 @@
 	<article
 		class="dark:text-gray-300 text-ebony-clay-800 py-12 mx-auto prose prose-lg dark:prose-dark mt-12 pt-[14rem] md:pt-[32rem] prose-a:whitespace-pre-line e-content px-4"
 	>
-		<!--INFOLINKS_ON-->
+		<ins class="adsbygoogle"
+		style="display:block; text-align:center;"
+		data-ad-layout="in-article"
+		data-ad-format="fluid"
+		data-ad-client="ca-pub-8352667732450998"
+		data-ad-slot="2293002483"></ins>
+
 		<slot />
 
-		<!--INFOLINKS_OFF-->
+		
 		<div class="flex flex-col mt-20 pb-10 border-b border-t border-gray-500 border-collapse">
 
 			<div>
@@ -114,7 +126,7 @@
 			<p>
 			Te pareció interesante?
 			Encuentra más contenido similar uniendote al <a class="underlined" href="https://matiashernandez.dev/newsletter">Newsletter</a> o siguiendome en 
-			<a class="underlined" href="https://twitter.com/matiasfha" target="_blank">Twitter</a>.
+			<a class="underlined" href="https://twitter.com/matiasfha" target="_blank" rel="noreferrer">Twitter</a>.
 			</p>
 			</div>
 			<a
@@ -169,14 +181,14 @@
 	</section>
 	{/if}
 
-		
-		<ins class="adsbygoogle mt-10"
-			style="display:block; text-align:center;"
-			data-ad-layout="in-article"
-			data-ad-format="fluid"
-			data-ad-client="ca-pub-8352667732450998"
-			data-ad-slot="2293002483"></ins>
-
+	<div class="mx-auto prose prose-lg mt-20">
+		<ins class="adsbygoogle"
+		style="display:block; text-align:center;"
+		data-ad-layout="in-article"
+		data-ad-format="fluid"
+		data-ad-client="ca-pub-8352667732450998"
+		data-ad-slot="1950272341"></ins>
+	</div>
 		{#if similarPosts.length > 0}
 		<section class="prose prose-lg dark:prose-dark mx-auto mt-20">
 			<h3>📖 Continúa leyendo</h3>
@@ -241,5 +253,12 @@
 			display: none;
 		}
 	}	
+
+	.adblock {
+		width: 320px;
+		height: 100px;
+	}
+	@media(min-width: 500px) { .adblock { width: 468px; height: 60px; } }
+	@media(min-width: 800px) { .adblock { width: 728px; height: 90px; } }
 	
 </style>

@@ -7,7 +7,7 @@ keywords:
 - React
 - Android
 - Native Module
-tag: Seed
+tag: React
 title: Agregar Módulos Nativos a Una Aplicación React Native
 description: React Native permite usar código nativo aprovechando el potencial de cada plataforma. Permite implementar nuevas características directamente en la plataforma.
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@szmigieldesign?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Lukasz

@@ -16,7 +16,7 @@ keywords:
 title: "React: Manejando formularios con useRef - Componentes no controlados"
 description: "React define dos formas de trabajar con estos elementos. Componentes controlados y no-controlados. Los no-controlados son aquellos manejados mediante el uso del hook useRef."
 bannerCredit: undefined
-tag: Posts
+tag: React
 ---
 En cualquier aplicación web obtener datos de tus usuarios es esencial.
 

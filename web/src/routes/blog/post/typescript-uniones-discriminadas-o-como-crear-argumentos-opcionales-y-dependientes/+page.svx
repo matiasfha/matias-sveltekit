@@ -1,4 +1,3 @@
-
 ---
 date: 2022-10-03T14:23:09Z
 banner: https://cdn.sanity.io/images/cyypawp1/production/b5c0c63a6a2cfb57d1cb1a6d5a6665565cb04fd3-1280x710.png
@@ -15,7 +14,7 @@ description: "Es común tener componentes o funciones que aceptan argumentos que
 
 ¿Sabías que con Typescript puedes asegurarte de que este comportamiento se cumpla correctamente?"
 bannerCredit: undefined
-tag: Posts
+tag: Typescript
 ---
 Es común tener componentes o funciones que aceptan argumentos que dependen entre sí, dónde una puede estar presente y la otra no.
 

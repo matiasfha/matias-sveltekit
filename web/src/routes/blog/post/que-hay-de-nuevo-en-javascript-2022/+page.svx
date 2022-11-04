@@ -6,7 +6,7 @@ keywords:
 - Javascript
 - ES2022 
 - Features 
-tag: Post
+tag: Javascript
 title: ¿Qué hay de nuevo en Javascript 2022?
 description: Javascript es un lenguaje que no para de crecer y evolucionar, y este 2022 viene cargado de nuevas características.
 bannerCredit: 

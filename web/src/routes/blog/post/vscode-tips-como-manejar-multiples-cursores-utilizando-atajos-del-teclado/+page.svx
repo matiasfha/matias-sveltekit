@@ -10,7 +10,7 @@ keywords:
 title: "VScode Tips: Cómo manejar múltiples cursores utilizando atajos del teclado"
 description: "VSCode es quizá el editor de código mas utilizado. ¿Pero sabes sacarle todo el potencial? Puedes utilizar sus múltiples atajos de teclado para manejar diferentes situaciones como por ejemplo. Múltiples cursores."
 bannerCredit: undefined
-tag: Posts
+
 ---
 VSCode es un poderoso editor de código con muchas funcionalidades y plugins, pero quizá la mejor manera de realmente utilizar su potencial para aumentar tu velocidad al utilizarlo es saber utilizar sus atajos de teclado.
 

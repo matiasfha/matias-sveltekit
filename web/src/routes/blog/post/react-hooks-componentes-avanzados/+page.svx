@@ -10,7 +10,7 @@ keywords:
 - react useContext
 - react state reducer
 - react custom hooks
-tag: Post
+tag: React
 title: Construye Componentes Avanzados con React Hooks y Patrones de Diseño
 description: Como utilizar useState React hook para crear un sencillo componente Wizard
   o multi-step

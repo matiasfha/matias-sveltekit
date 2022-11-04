@@ -18,7 +18,7 @@ keywords:
 title: "¿Cómo dar formato de moneda a un número en Javascript?"
 description: "Una de las necesidades de personalizar/internacionalizar tu sitio web es por ejemplo mostrar valores monetarios en diferentes monedas, o modificar la forma en que los números se presenta. Puedes lograr esto solo usando Javascript y la API Intl.NumberFormat"
 bannerCredit: undefined
-tag: Posts
+tag: Javascript
 ---
 El objeto **Intl** provee una API rica en constructores que te permiten manipular como se muestra un contenido para casi todas tus necesidades.
 

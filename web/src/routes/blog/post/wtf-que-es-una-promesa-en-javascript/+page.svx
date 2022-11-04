@@ -1,4 +1,3 @@
-
 ---
 date: 2022-09-07T02:51:11Z
 banner: https://cdn.sanity.io/images/cyypawp1/production/2e83c37b5506427db241f046575270124020a1fd-1280x710.png
@@ -17,7 +16,7 @@ title: "WTF ¿Qué es una promesa en Javascript?"
 description: "Una Promesa, es un objeto que permite manipular acciones asíncronas dentro de un lenguaje de un solo hilo como Javascript.
 ¿WTF? "
 bannerCredit: undefined
-tag: Posts
+tag: Javascript
 ---
 # ¿WTF son las promesas?
 

@@ -8,7 +8,7 @@ keywords:
 title: "Has Lazy loading de tus imágenes simple y rápido"
 description: "Lazy loading es una optimización que permite cargar ciertas partes de tu web a medida son requeridas por el usuario, por ejemplo las imágenes de tu web."
 bannerCredit: undefined
-tag: Posts
+tag: HTML
 ---
 
 Lazy loading ha sido un término que ha estado en nuestros oídos por al menos unos 15 años, durante este tiempo han existido muchas técnicas para implementar la "carga lenta" de contenido en tu sitio web, pero siempre haciendo uso de diferentes trucos con Javascript.

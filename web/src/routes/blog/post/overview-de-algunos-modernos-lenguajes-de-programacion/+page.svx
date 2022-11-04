@@ -8,7 +8,7 @@ keywords:
 - Elixir
 - Overview
 - Typescript
-tag: Seed
+
 title: Overview de algunos modernos lenguajes de programación
 description: 'Existen diversos lenguajes de programación pero podemos llamar a algunos
   de ellos pueden ser considerados modernos, este es un overview de al menos 4 de
