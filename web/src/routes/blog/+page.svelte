@@ -1,4 +1,3 @@
-
 <script lang="ts">
 	// Suggestion (check code before using, and possibly convert to data.X access later):
 	import type { PageData } from './$types';
@@ -7,26 +6,25 @@
 	import PostCard from '$components/PostCard.svelte';
 	import Seo from '$components/Seo.svelte';
 	import NewsletterForm from '$components/NewsletterForm.svelte';
-	import { t } from '$lib/translations';
-	
-	import type { Post } from '$lib/types';
+	import { t, locale } from '$lib/translations';
+	console.log(locale.get());
 
-	import { Cloudinary } from 'cloudinary-core'
+	import { Cloudinary } from 'cloudinary-core';
 	import { browser } from '$app/environment';
 	import { afterUpdate } from 'svelte';
-	
+	import type { Posts } from '$lib/api/getPosts';
+
 	afterUpdate(() => {
-		if(browser) {
+		if (browser) {
 			const cl = Cloudinary.new({ cloud_name: 'matiasfha' });
-			cl.responsive()
+			cl.responsive();
 		}
-	})
-		
-	
+	});
+
 	let searchItem: string;
-	
+
 	$: filteredPosts = searchItem
-		? data.posts.filter((item: Post) => {
+		? data.posts.filter((item: typeof Posts.element) => {
 				const title = item.title?.toLowerCase() ?? '';
 				const keywords = item.keywords;
 				return (
@@ -35,6 +33,7 @@
 		  })
 		: data.posts;
 </script>
+
 <!--INFOLINKS_OFF-->
 <Seo title="Blog" description="Mi blog personal" canonical="https://matiashernandez.dev/blog" />
 
@@ -67,11 +66,12 @@
 	</div>
 </header>
 
-
-<Featured 
-image={data.featured.banner} title={data.featured.title} url={data.featured.slug} 
-meta={new Intl.DateTimeFormat('es-CL').format(new Date(data.featured.date))}
-description={data.featured.description}
+<Featured
+	image={data.featured.banner}
+	title={data.featured.title}
+	url={data.featured.slug}
+	meta={new Intl.DateTimeFormat('es-CL').format(new Date(data.featured.date))}
+	description={data.featured.description}
 />
 
 <NewsletterForm />
@@ -85,10 +85,13 @@ description={data.featured.description}
 	/>
 </div>
 
-
 <section class="mt-12 flex flex-wrap">
 	{#each data.tags as tag}
-	<a href={`/${tag.toLowerCase()}`} class="relative mb-4 mr-4 block h-auto w-auto rounded-full px-6 py-3 transition text-primary bg-gray-200 hover:bg-gray-300 text-ebony-clay-500 dark:bg-ebony-clay-500 dark:hover:bg-ebony-clay-400  dark:text-gray-200">{tag}</a>
+		<a
+			href={`/topic/${tag.toLowerCase()}`}
+			class="relative mb-4 mr-4 block h-auto w-auto rounded-full px-6 py-3 transition text-primary bg-gray-200 hover:bg-gray-300 text-ebony-clay-500 dark:bg-ebony-clay-500 dark:hover:bg-ebony-clay-400  dark:text-gray-200"
+			>{tag}</a
+		>
 	{/each}
 </section>
 
@@ -100,7 +103,6 @@ description={data.featured.description}
 		{/each}
 	</div>
 </section>
-
 
 <style>
 	header {

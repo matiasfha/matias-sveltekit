@@ -1,56 +1,52 @@
-import { request, gql } from 'graphql-request';
-import type { Course } from '$lib/types';
-import Ogs from 'open-graph-scraper';
+import { client, builder } from '$lib/utils/sanityClient';
+import { z } from 'zod';
 
-const eggheadQuery = gql`
-	{
-		instructor(slug: "matias-hernandez") {
-			playlists {
-				id
-				http_url
-				slug
-				title
-				watched_count
-				created_at
-				description
-				duration
-				access_state
-				tags {
-					name
-				}
-			}
-		}
-	}
-`;
-export default async function getCourses(): Promise<Array<Course>> {
-	const {
-		instructor: { playlists: courses }
-	} = await request<{ instructor: { playlists: Array<Course & { http_url: string }> } }>(
-		'https://app.egghead.io/graphql',
-		eggheadQuery
-	);
-
-	const sorted = courses
-		.sort((a, b) => {
-			const aDate = new Date(a.created_at).getTime();
-			const bDate = new Date(b.created_at).getTime();
-			return aDate < bDate ? 1 : -1;
+const Course = z.object({
+	title: z.string(),
+	updated_at: z.string(),
+	category: z.string().nullable(),
+	language: z.array(z.string()).length(1),
+	type: z.array(z.string()).length(1),
+	image: z.object({
+		_type: z.string(),
+		asset: z.object({
+			_ref: z.string(),
+			_type: z.string()
 		})
-		.map(async (item) => {
-			const url = item.http_url.replace('app.', '');
-			const image = await Ogs({ url: url });
+	}),
+	featured: z.boolean().nullable(),
+	url: z.string(),
+	description: z.string().nullable()
+});
 
-			return {
-				...item,
-				url,
-				image: image.result.ogImage.url.split('now.sh').join('vercel.app')
-			};
-		});
-	const data = await Promise.all(sorted);
-	return data;
+export const Courses = z.array(Course);
+
+function getQuery(lang: string) {
+	return `*[_type == "egghead-courses" && language match "${lang}"] | order(updated_at desc)`;
 }
 
-export async function getLatestCourse(): Promise<Course> {
-	const courses = await getCourses();
-	return courses?.[0];
+const projection = `{
+	image, title, category, language, updated_at, type, featured, url, description
+  }`;
+
+export default async function getCourses(lang: string) {
+	const courses = await client.fetch(`${getQuery(lang)}${projection}`).then((result) => {
+		return Courses.parse(result);
+	});
+	return courses.map((item) => {
+		return {
+			...item,
+			image: builder.image(item.image).url()
+		};
+	});
+}
+
+export async function getLatestCourse(lang: string) {
+	const course = await client.fetch(`${getQuery(lang)}[0]${projection}`).then((result) => {
+		return Course.parse(result);
+	});
+	return {
+		...course,
+		image: builder.image(course.image).url()
+	};
 }

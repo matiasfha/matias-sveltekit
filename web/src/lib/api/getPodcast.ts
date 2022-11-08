@@ -1,20 +1,31 @@
 import Parser from 'rss-parser';
-import type { FeedItem, PodcastItem } from '$lib/types';
-const parser: Parser<{}, FeedItem> = new Parser();
+import z, { string } from 'zod';
 
-export async function getAll(feedURL: string): Promise<PodcastItem[]> {
+const Item = z.object({
+	link: z.string(),
+	title: z.string(),
+	pubDate: z.string(),
+	contentSnippet: z.string(),
+	isoDate: z.string(),
+	itunes: z.object({
+		duration: z.string(),
+		image: z.string()
+	})
+});
+
+const Items = z.array(Item);
+const parser = new Parser();
+
+export async function getAll(feedURL: string) {
 	try {
-		const result = await parser.parseURL(feedURL);
+		const result = await parser.parseURL(feedURL).then((result) => Items.parse(result.items));
 
-		return result.items.map((item) => {
+		return result.map((item) => {
 			return {
-				...item,
 				url: item.link,
 				duration: item.itunes.duration,
 				image: item.itunes.image,
-				season: item.itunes.season,
-				episode: item.itunes.episode,
-				keywords: item.itunes.keywords
+				title: item.title
 			};
 		});
 	} catch (e) {
@@ -23,7 +34,7 @@ export async function getAll(feedURL: string): Promise<PodcastItem[]> {
 	}
 }
 
-export async function getLatest(feedURL: string): Promise<PodcastItem> {
+export async function getLatest(feedURL: string) {
 	const items = await getAll(feedURL);
 
 	return items?.[0];

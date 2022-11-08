@@ -5,16 +5,15 @@ import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // import models
-import siteSettings from './siteSettings'
 import favorites from './favorites'
 import externalArticles from './externalArticles'
-import link from './link'
-import navigation from './navigation'
-import navItem from './navItem'
 import newsletterCourses from './newsletterCourses'
 import post from './post'
-import markdownPost from './markdownPost'
-
+import courses from './courses'
+import pages from './pages'
+import pricing from './pricing'
+import buymeacoffee from './buymeacoffee'
+import i18n from './i18nSettings'
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -22,40 +21,14 @@ export default createSchema({
   // Then proceed to concatenate our document type
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
-    link,
-    navItem,
-    navigation,
-    siteSettings,
     favorites,
     externalArticles,
     newsletterCourses,
-    {
-      title: 'Page',
-      name: 'page',
-      type: 'document',
-      fields: [
-        {
-          title: 'Name',
-          name: 'name',
-          type: 'string'
-        },
-        {
-          title: 'Content',
-          name: 'content',
-          type: 'array',
-          of: [{type: 'block'}]
-        },
-        {
-          name: 'slug',
-          title: 'Slug',
-          type: 'slug',
-          options: {
-            source: 'name',
-          },
-        },
-        
-      ]
-    },
+    courses,
     post, 
+    pages,
+    pricing,
+    buymeacoffee,
+    i18n
   ]),
 })

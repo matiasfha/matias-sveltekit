@@ -1,31 +1,31 @@
 <script lang="ts">
-	// Suggestion (check code before using, and possibly convert to data.X access later):
 	import type { PageData } from './$types';
 	export let data: PageData;
-	
+
 	import Featured from '$components/Featured.svelte';
 	import Seo from '$components/Seo.svelte';
 	import NewsletterForm from '$components/NewsletterForm.svelte';
 	import { t } from '$lib/translations';
-	import type { Course } from '$lib/types';
-	const featured = data.courses.find((item) => item.id === 611059);
-	
+
+	const featured = data.courses.find((item) => item.featured);
+
 	let searchItem: string;
 
 	$: filteredCourse = searchItem
-		? data.courses.filter((item: Course) => {
+		? data.courses.filter((item) => {
 				const title = item.title?.toLowerCase() ?? '';
 				return title.includes(searchItem.toLowerCase());
 		  })
 		: data.courses;
 </script>
-<!--INFOLINKS_OFF-->
+
 <Seo
 	title="Courses"
 	keywords={['Courses', 'Javascript', 'Tutorials', 'Instructor', 'React', 'egghead.io']}
 	description="Course materials for egghead.io"
 	canonical="https://matiashernandez.dev/courses"
 />
+
 <header
 	class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative h-[20rem] bg-cover bg-no-repeat rounded-md"
 >
@@ -59,20 +59,9 @@
 <Featured
 	image={featured.image}
 	title={featured.title}
-	meta={featured.access_state}
-	url={`${featured.url}?af=4cexzz`}
-	description={`
-	<p>Web3 is a paradigm shift in how applications are interacted with, ran, and built.</p>
-
-
-	<p>While you build this application you will learn how to:</p>
-	<ul class="list-disc list-inside">
-		<li>Write a smart contract using Solidity language.</li>
-		<li>Test the smart contract using just JavaScript through the waffle framework.</li>
-		<li>Communicate and interact with the smart contract using ethers.js in a SvelteKit application.</li>
-		<li>Deploy your smart contract to make it public and accessible to anyone.</li>
-	</ul>
-	`}
+	meta={featured.type}
+	url={featured.url}
+	description={featured.description}
 />
 <NewsletterForm />
 <div class="flex flex-row mt-12">
@@ -109,7 +98,7 @@
 						<div
 							class="mt-8 text-ebony-clay-800 text-md font-medium capitalize text-body py-1 px-2 rounded bg-green-400 inline-block w-[max-content]"
 						>
-							{item.access_state}
+							{item.type}
 						</div>
 						<div class="text-2xl font-medium md:text-3xl text-black dark:text-white mt-4">
 							{item.title}

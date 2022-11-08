@@ -1,60 +1,46 @@
-import { request, gql } from 'graphql-request';
-import type { ContentElement } from '$lib/types';
-interface ExternalArticleSource {
-	url: string;
-	title: string;
-	image: {
-		asset: {
-			url: string;
-		};
-	};
-	published_at: string;
-	tag: string;
-	featured?: boolean;
-}
+import z from 'zod';
+import { client, builder } from '$lib/utils/sanityClient';
 
-const query = gql`
-	query articles {
-		allExternalArticles {
-			url
-			title
-			image {
-				asset {
-					url
-				}
-			}
-			published_at
-			tag
-			featured
-			category
-		}
-	}
-`;
-export default async function getArticles(): Promise<Array<ContentElement>> {
-	const { allExternalArticles } = await request<{
-		allExternalArticles: Array<ExternalArticleSource>;
-	}>('https://cyypawp1.api.sanity.io/v1/graphql/production/default', query);
-
-	const sorted = allExternalArticles
-		.sort((a, b) => {
-			const aDate = new Date(a.published_at).getTime();
-			const bDate = new Date(b.published_at).getTime();
-			return aDate > bDate ? -1 : 1;
+const Article = z.object({
+	url: z.string(),
+	title: z.string(),
+	image: z.object({
+		asset: z.object({
+			_ref: z.string()
 		})
-		.map((item) => {
+	}),
+	published_at: z.string().nullable(),
+	tag: z.string(),
+	featured: z.boolean().nullable(),
+	description: z.string().nullable()
+});
+
+export const Articles = z.array(Article);
+
+const getQuery = (lang: string) =>
+	`*[_type == "external-articles" && language match "${lang}"] | order(_createdAt desc){
+		url, title, image, published_at, tag, featured, description
+	}`;
+export default async function getArticles(lang: string) {
+	try {
+		const articles = await client.fetch(getQuery(lang)).then((result) => {
+			return Articles.parse(result);
+		});
+
+		return articles.map((item) => {
 			return {
-				url: item.url,
-				title: item.title,
-				image: item.image.asset.url,
-				published_at: item.published_at,
-				tag: item.tag,
-				featured: item.featured
+				...item,
+				image: builder.image(item.image).url()
 			};
 		});
-	return sorted;
+	} catch (e) {
+		console.error(e);
+		return [];
+	}
 }
 
-export async function getLatestArticle(): Promise<ContentElement> {
-	const articles = await getArticles();
-	return articles.at(0);
+export async function getLatestArticle(lang: string) {
+	const query = getQuery(lang);
+	const article = await client.fetch(`${query}[0]`).then((result) => Article.parse(result));
+	return { ...article, image: builder.image(article.image).url() };
 }

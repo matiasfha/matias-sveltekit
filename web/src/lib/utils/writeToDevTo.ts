@@ -1,8 +1,8 @@
+import type { Posts } from '$lib/api/getPosts';
 import slugify from '$lib/utils/slugify';
-import type { Posts } from '../../schema.types';
-import { getRawMarkdown } from './generateMarkdown';
+import { getRawMarkdown } from './sanityClient';
 
-export default async function writeToDevTo(post: Posts & { image: string }) {
+export default async function writeToDevTo(post: typeof Posts.element) {
 	const canonical = 'https://matiashernandez.dev/blog/post/' + slugify(post.title);
 	const article = {
 		title: post.title,

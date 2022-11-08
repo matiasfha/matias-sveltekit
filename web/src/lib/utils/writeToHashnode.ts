@@ -1,8 +1,8 @@
+import type { Posts } from '$lib/api/getPosts';
 import slugify from '$lib/utils/slugify';
-import type { Posts } from '../../schema.types';
-import { getRawMarkdown } from './generateMarkdown';
+import { getRawMarkdown } from './sanityClient';
 
-export default async function writeToHashnode(post: Posts & { image: string }) {
+export default async function writeToHashnode(post: typeof Posts.element) {
 	const article = {
 		title: post.title,
 		contentMarkdown: `${getRawMarkdown(post.content)}

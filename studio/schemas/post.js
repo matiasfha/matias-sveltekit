@@ -75,6 +75,18 @@ export default
           ]}, { type: 'code'}, { type: 'table'}],
           validation: Rule => Rule.required()
         },
+        {
+          title: 'Language',
+          name: 'language',
+          type: 'array',
+          of: [{type: 'string'}],
+          options: {
+            list: [
+              {title: 'English', value: 'en'},
+              {title: 'Español', value: 'es'},
+            ]
+          }
+        },
       ]
 
     }

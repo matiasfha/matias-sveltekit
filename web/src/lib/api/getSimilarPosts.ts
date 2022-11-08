@@ -1,9 +1,8 @@
-import type { Post } from '$lib/types';
 import getPosts from './getPosts';
 import { StringUtils } from 'turbocommons-ts';
 
-export default async function getSimlarPosts(filepath: string): Promise<Post[]> {
-	const posts = await getPosts();
+export default async function getSimilarPosts(filepath: string, lang = 'en') {
+	const posts = await getPosts(lang);
 	const post = posts.find((p) => p.filepath.includes(filepath));
 
 	const similarPosts = posts

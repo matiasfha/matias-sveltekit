@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { blur } from 'svelte/transition';
-	import { t, locale } from '$lib/translations';
 	import { theme } from '$lib/stores';
-	import { browser } from '$app/environment';
-	import { goto } from '$app/navigation';
+	import { afterNavigate } from '$app/navigation';
+	import { isEn } from '$lib/utils/isEn';
+	import { locale } from '$lib/translations';
+	import { enhance } from '$app/forms';
+	let selectedLang = locale.get();
 
-	const getCurrentRoute = () => {
-		if (browser) {
-			const { pathname } = window.location;
-			return pathname;
-		}
-		return '';
-	};
+	$: currentRoute = '/';
+	afterNavigate(() => {
+		const { pathname } = window.location;
+		currentRoute = pathname;
+	});
 
 	// @TODO this can go in sanity
 	$: menuLinks = [
@@ -24,27 +24,28 @@
 			href: '/blog'
 		},
 		{
-			title: $t('common.navbar.articles'),
+			title: isEn() ? 'Guest Articles' : 'Artículos Externos',
 			href: '/articles'
 		},
 		{
-			title: $t('common.courses'),
+			title: isEn() ? 'Courses' : 'Cursos',
 			href: '/courses'
 		},
 		{
 			title: 'Newsletter',
 			href: '/newsletter',
-			hide: locale.get() === 'en'
+			hide: isEn()
 		},
 		{
-			title: $t('common.about'),
-			href: locale.get() === 'en' ? '/about' : '/es/about'
+			title: isEn() ? 'About' : 'Sobre mí',
+			href: '/about'
 		},
 		{
-			title: $t('common.sponsor'),
-			href: locale.get() === 'en' ? '/sponsorships' : '/es/sponsorships'
-		},{
-			title: $t('common.uses'),
+			title: isEn() ? 'Sponsorships' : 'Auspicios',
+			href: '/sponsorships'
+		},
+		{
+			title: isEn() ? 'Uses' : 'Usos',
 			href: '/uses'
 		}
 	];
@@ -65,36 +66,27 @@
 	};
 	let menu = false;
 
-	$: showDropdown = false;
-	$: selectedLang = locale.get();
-
-	const toggleDropdown = () => {
-		showDropdown = !showDropdown;
-	};
-
-	const changeLang = (lang: 'en' | 'es') => {
-		const route = getCurrentRoute();
-		locale.set(lang);
-		selectedLang = lang;
-		showDropdown = false;
-		if (route === '/about' && lang == 'es') {
-			goto('/es/about');
-		} else if (route === '/es/about' && lang == 'en') {
-			goto('/about');
-		}
-		if(route === '/sponsorships' && lang == 'es') {
-			goto('/es/sponsorships');
-		} else if(route === '/es/sponsorships' && lang == 'en') {
-			goto('/sponsorships');
-		}
-	};
+	function handleLangChange(event) {
+		event.target.parentElement.submit();
+	}
 </script>
 
 <div class={`px-6 md:px-12 pt-9 pb-4 lg:px-10 lg:pt-12   dark:text-gray-200 text-gray-700`}>
 	<nav class="flex items-center justify-between mx-auto">
 		<div class="flex flex-row items-center gap-4 md:gap-8 justify-between h-card">
-			<a href="https://matiashernandez.dev" rel="me" data-sveltekit-prefetch class="u-url u-uid" >
-				<figure class="w-10 "><picture><source srcset="https://res.cloudinary.com/matiasfha/image/fetch/f_webp,q_auto,c_scale,w_40/https://matiashernandez.dev/logo.png" type="image/webp"> <img  src="https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,c_scale,w_40/https://matiashernandez.dev/logo.png" alt="Matias Hernández Logo"></picture></figure>
+			<a href="https://matiashernandez.dev" rel="me" data-sveltekit-prefetch class="u-url u-uid">
+				<figure class="w-10 ">
+					<picture
+						><source
+							srcset="https://res.cloudinary.com/matiasfha/image/fetch/f_webp,q_auto,c_scale,w_40/https://matiashernandez.dev/logo.png"
+							type="image/webp"
+						/>
+						<img
+							src="https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,c_scale,w_40/https://matiashernandez.dev/logo.png"
+							alt="Matias Hernández Logo"
+						/></picture
+					>
+				</figure>
 			</a>
 			<a
 				class="underlined whitespace-nowrap text-2xl font-medium focus:outline-none transition hidden md:block p-name"
@@ -149,44 +141,19 @@
 				>
 			</li>
 			<li>
-				<button
-					type="button"
-					class="px-2 bg-ebony-clay-600 dark:bg-gray-100 rounded-full w-8 h-8 text-gray-100 dark:text-ebony-clay-800 mt-1 pl-[0.4rem]  ml-2"
-					id="menu-button"
-					aria-expanded="true"
-					aria-haspopup="true"
-					on:click={toggleDropdown}
-				>
-					{selectedLang.toUpperCase()}
-				</button>
-
-				{#if showDropdown}
-					<div
-						class="origin-top-right absolute right-0 mt-2 w-26 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-10"
-						role="menu"
-						aria-orientation="vertical"
-						aria-labelledby="menu-button"
-						tabindex="-1"
+				<form method="POST" action="/?/setLang" use:enhance>
+					<select
+						class="px-2 bg-ebony-clay-600 dark:bg-gray-100 rounded-full h-8 text-gray-100 dark:text-ebony-clay-800 mt-1 pl-[0.4rem]  ml-2"
+						id="menu-button"
+						name="lang"
+						bind:value={selectedLang}
+						on:change={handleLangChange}
 					>
-						<div class="py-1" role="none">
-							<!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-							<button
-								class="text-gray-700 block px-4 py-2 text-sm"
-								role="menuitem"
-								tabindex="-1"
-								id="menu-item-0"
-								on:click={() => changeLang('en')}>EN</button
-							>
-							<button
-								class="text-gray-700 block px-4 py-2 text-sm"
-								role="menuitem"
-								tabindex="-1"
-								id="menu-item-1"
-								on:click={() => changeLang('es')}>ES</button
-							>
-						</div>
-					</div>
-				{/if}
+						<option value="es">ES</option>
+						<option value="en">EN</option>
+					</select>
+					<input type="hidden" name="location" bind:value={currentRoute} />
+				</form>
 			</li>
 		</ul>
 

@@ -1,9 +1,9 @@
+import type { Posts } from '$lib/api/getPosts';
 import slugify from '$lib/utils/slugify';
-import type { Posts } from '../../schema.types';
-import { getRawMarkdown } from './generateMarkdown';
+import { getRawMarkdown } from './sanityClient';
 const USER_ID = '141f5601d7971ac8cfaaa88d4c909a1134f148586299e7b6b591e09679b63085c';
 const TOKEN = import.meta.env.VITE_MEDIUM_TOKEN;
-export async function writeToMedium(post: Posts) {
+export async function writeToMedium(post: typeof Posts.element) {
 	try {
 		const data = {
 			title: post.title,

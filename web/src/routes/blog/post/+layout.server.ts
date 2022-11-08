@@ -2,13 +2,14 @@ import fetchSimilarPosts from '$lib/api/getSimilarPosts';
 import { getWebMetions } from '$lib/api/getWebMentions';
 import type { LayoutServerLoad } from './$types';
 
-export const load: LayoutServerLoad = async ({ url }) => {
+export const load: LayoutServerLoad = async ({ url, cookies }) => {
+	const lang = cookies.get('lang') || 'en';
 	let similarPosts = [];
 	let likes = [];
 	let retweet = [];
 	const { pathname } = url;
 	try {
-		similarPosts = await fetchSimilarPosts(pathname);
+		similarPosts = await fetchSimilarPosts(pathname, lang);
 	} catch (e) {
 		console.error(e);
 	}

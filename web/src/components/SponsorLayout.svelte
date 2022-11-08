@@ -5,8 +5,8 @@
 
 <script lang="ts">
 	import Seo from '$components/Seo.svelte';
-	
 </script>
+
 <!--INFOLINKS_OFF-->
 <Seo
 	title="Matias Hernández | Sponsorhips"
@@ -35,7 +35,8 @@
 		Sponsorship and advertising
 	</h1>
 	<p class="text-gray-200 w-3/4 md:w-1/4 text-sm md:text-lg font-body">
-		Become a sponsor and advertise your product or service to an audience of over 6,000 web developers.
+		Become a sponsor and advertise your product or service to an audience of over 6,000 web
+		developers.
 	</p>
 </header>
 

@@ -42,6 +42,18 @@ export default {
           title: 'Category',
           name: 'category',
           type: 'string'
+        },
+        {
+          title: 'Language',
+          name: 'language',
+          type: 'array',
+          of: [{type: 'string'}],
+          options: {
+            list: [
+              {title: 'English', value: 'en'},
+              {title: 'Español', value: 'es'},
+            ]
+          }
         }
      
      ]

@@ -1,10 +1,10 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import path from 'node:path'
-import { imagetools } from "vite-imagetools";
+
 
 /** @type {import('vite').UserConfig} */
 const config = {
-	plugins: [sveltekit(), imagetools({ force: true })],
+	plugins: [sveltekit()],
 	resolve: {
 		alias: {
 			'$components': path.resolve('./src/components'),
@@ -12,6 +12,10 @@ const config = {
 			'$utils': path.resolve('./src/lib/utils'),
 		}
 	},
+	optimizeDeps: {
+		exclude: ['is-buffer']
+	}
+	
 	
 };
 

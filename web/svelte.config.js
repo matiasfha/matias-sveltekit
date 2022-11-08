@@ -1,11 +1,11 @@
 import { mdsvex } from "mdsvex";
-import mdsvexConfig from "./mdsvex.config.js";
+import mdsvexConfig from "./mdsvex.config/index.js";
 import preprocess from 'svelte-preprocess';
 import netlify from '@sveltejs/adapter-netlify'
 
 import { mdsvexGlobalComponents } from  './preprocessors/mdsvexGlobalComponents.js'
 
-const globalComponents = mdsvexGlobalComponents({
+export const globalComponents = mdsvexGlobalComponents({
   dir: `$components/mdx`,
   list: ['Sponsor.svelte','Buzzsprout.svelte','CodeSandbox.svelte','EggheadLesson.svelte','TLDR.svelte','Twitter.svelte','Podcast.svelte','YouTube.svelte','Disclaimer.svelte','StackBlitz.svelte'],
   extensions: mdsvexConfig.extensions
@@ -34,10 +34,6 @@ const config = {
                 console.error(
                     `${status} ${path}${referrer ? ` (${referenceType} from ${referrer}) ${error}` : ''}`
                 );
-                // if (path.startsWith('/blog')) {
-                //     throw new Error('Missing a blog page!');
-                // }
-                
             }
         },
         adapter: netlify({

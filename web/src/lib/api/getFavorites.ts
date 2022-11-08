@@ -1,4 +1,3 @@
-import { request, gql } from 'graphql-request';
 import type { ContentElement } from '$lib/types';
 
 type FavoriteSource = Omit<ContentElement, 'image'> & {
@@ -9,29 +8,15 @@ type FavoriteSource = Omit<ContentElement, 'image'> & {
 	};
 };
 
-const query = gql`
-	query favorites {
-		allFavorites {
-			url
-			title
-			image {
-				asset {
-					url
-				}
-			}
-			tag
-		}
-	}
-`;
-export default async function getFavorites(): Promise<Array<ContentElement>> {
-	const { allFavorites } = await request<{
-		allFavorites: Array<FavoriteSource>;
-	}>('https://cyypawp1.api.sanity.io/v1/graphql/production/default', query);
-	const sorted = allFavorites.map((item) => {
+import { client, builder } from '$lib/utils/sanityClient';
+export default async function getFavorites(lang: string): Promise<Array<ContentElement>> {
+	const query = `*[_type == "favorites" && language match "${lang}"]`;
+	const favorites = await client.fetch<FavoriteSource[]>(query);
+	const sorted = favorites.map((item) => {
 		return {
 			url: item.url,
 			title: item.title,
-			image: item.image.asset.url,
+			image: builder.image(item.image).url(),
 			tag: item.tag
 		};
 	});

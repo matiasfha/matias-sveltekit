@@ -1,39 +1,24 @@
-import { request, gql } from 'graphql-request';
 import type { PageServerLoad } from './$types';
+import z from 'zod';
+import { client, builder } from '$lib/utils/sanityClient';
+const Source = z.object({
+	course: z.string(),
+	image: z.object({
+		asset: z.object({
+			_ref: z.string()
+		})
+	}),
+	tagId: z.string(),
+	description: z.string()
+});
 
-type Source = {
-	course: string;
-	image: {
-		asset: {
-			altText: string;
-			url: string;
-		};
-	};
-	tagId: string;
-	descriptionRaw: string;
-};
-
-const query = gql`
-	query {
-		allMicrobytes {
-			course
-			image {
-				asset {
-					altText
-					url
-				}
-			}
-			tagId
-			descriptionRaw
-		}
-	}
-`;
+export const Newsletters = z.array(Source);
 
 export const load: PageServerLoad = async () => {
-	const { allMicrobytes } = await request<{
-		allMicrobytes: Array<Source>;
-	}>('https://cyypawp1.api.sanity.io/v1/graphql/production/default', query);
+	const courses = await client
+		.fetch('*[_type == "microbytes"]{ course, image, tagId, description}')
+		.then((result) => Newsletters.parse(result));
 	return {
-		courses: allMicrobytes
+		courses: courses.map((item) => ({ ...item, image: builder.image(item.image).url() }))
 	};
 };

@@ -16,13 +16,12 @@
     "@sanity/dashboard",
     "social-preview",
     "netlify-deploy-status-badge",
-    "plausible-iframe",
     "asset-source-unsplash",
     "@sanity/code-input",
     "table",
-    "markdown",
-    "@sanity/scheduled-publishing",
-    "@sanity/vision"
+    "@sanity/vision",
+    "mdide",
+    "@sanity/document-internationalization"
   ],
   "env": {
     "development": {

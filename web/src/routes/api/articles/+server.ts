@@ -2,6 +2,7 @@ import { createFileInRepo } from '$lib/api/github';
 import type { RequestEvent, RequestHandler } from './$types';
 import { error } from '@sveltejs/kit';
 import { getLastPostMarkdown, repost, validateWebhook } from './utils';
+import { client } from '$lib/utils/sanityClient';
 
 export const POST = async ({ request }: RequestEvent) => {
 	const body = await request.json();
@@ -101,19 +102,27 @@ async function listenNetlify() {
 
 export async function GET() {
 	try {
-		const { markdown, title } = await getLastPostMarkdown();
-		await createFileInRepo(markdown, title);
-		//const deploy = await listenNetlify();
+		try {
+			const { markdown, title } = await getLastPostMarkdown();
 
-		//if (deploy.isReady) {
-		await repost();
-		return new Response('Post and repost created', {
-			status: 200
-		});
+			await createFileInRepo(markdown, title);
+			//const deploy = await listenNetlify();
+
+			//if (deploy.isReady) {
+			await repost();
+			return new Response('Post and repost created', {
+				status: 200
+			});
+		} catch (e) {
+			console.error(e);
+			return new Response(
+				JSON.stringify({ message: 'Deploy failed or did not finished', error: e }),
+				{
+					status: 500
+				}
+			);
+		}
 		//}
-		// return new Response('Deploy failed or did not finished', {
-		// 	status: 500
-		// });
 	} catch (e) {
 		console.error(e);
 		throw error(e);

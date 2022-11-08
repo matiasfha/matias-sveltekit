@@ -13,17 +13,21 @@ export const getDefaultDocumentNode = ({ schemaType }) => {
   return S.document().views([S.view.form()])
 }
 
+const i18nItem = S.listItem()
+  .title(`i18n Settings`)
+  .child(
+    S.documentList()
+      .title(`i18n Settings`)
+      .schemaType('i18n')
+      .filter('_type == "i18n" && __i18n_lang == "en"')
+      .canHandleIntent(S.documentTypeList('i18n').getCanHandleIntent())
+  )
 
 export default () =>
   S.list()
     .title('Base')
     .items([
-      S.listItem()
-        .title('Settings')
-        .child(
-          S.document()
-            .schemaType('siteSettings')
-            .documentId('siteSettings')
-        ),
-      ...S.documentTypeListItems().filter(listItem => !['siteSettings'].includes(listItem.getId()))
+      i18nItem,
+      ...S.documentTypeListItems().filter(listItem => !['i18n'].includes(listItem.getId())),
+      
     ])

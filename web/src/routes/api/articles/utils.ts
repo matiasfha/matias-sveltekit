@@ -1,26 +1,9 @@
-import sanityClient from '@sanity/client';
-import { isValidSignature } from '@sanity/webhook';
-import type { Posts, Documents } from '../../../../schema.types';
-
-import imageUrlBuilder from '@sanity/image-url';
-
+// import { isValidSignature } from '@sanity/webhook';
 import { writeToMedium } from '$lib/utils/writeToMedium';
 import writeToDevTo from '$lib/utils/writeToDevTo';
 import writeToHashnode from '$lib/utils/writeToHashnode';
-import { createClient } from 'sanity-codegen';
 import { generateMarkdown } from '$lib/utils/generateMarkdown';
-
-const clientOptions = {
-	projectId: 'cyypawp1',
-	dataset: 'production',
-	fetch,
-	apiVersion: '2022-06-23', // use current UTC date - see "specifying API version"!
-	token: '', // or leave blank for unauthenticated usage
-	useCdn: true // `false` if you want to ensure fresh data
-};
-
-const client = createClient<Documents>(clientOptions);
-const builder = imageUrlBuilder(sanityClient(clientOptions));
+import { client, builder } from '$lib/utils/sanityClient';
 
 export async function repost() {
 	const { markdown, ...post } = await getLastPostMarkdown();
@@ -39,15 +22,18 @@ export async function validateWebhook(request: Request, body: Request['body']) {
 		headers[key] = value;
 	});
 
-	return isValidSignature(
-		JSON.stringify(body),
-		headers['sanity-webhook-signature'],
-		import.meta.env.VITE_SANITY_SECRET
-	);
+	// return isValidSignature(
+	// 	JSON.stringify(body),
+	// 	headers['sanity-webhook-signature'],
+	// 	import.meta.env.VITE_SANITY_SECRET
+	// );
+	return headers['sanity-webhook-signature'] === import.meta.env.VITE_SANITY_SECRET;
 }
 
 export async function getLastPostMarkdown() {
-	const [post] = await client.query<Posts>('*[_type == "posts"] | order(_createdAt desc)');
+	console.log('*[_type == "posts"] | order(_createdAt desc)[0]');
+	const post = await client.fetch('*[_type == "posts"] | order(_createdAt desc)[0]');
+	console.log(post);
 	const markdown = generateMarkdown({
 		date: post._createdAt,
 		banner: builder.image(post.banner.asset._ref).url(),

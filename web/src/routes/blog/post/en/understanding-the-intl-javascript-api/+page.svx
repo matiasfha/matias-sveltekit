@@ -19,6 +19,7 @@ description: As your app grows you may want to display your content in different
 canonical: https://egghead.io/blog/understanding-the-intl-javascript-api?af=4cexzz
 featured: true
 tag: Javascript
+lang: en
 ---
 
 <Disclaimer title="Repost">

@@ -7,14 +7,14 @@ const lang = {
 };
 
 const config: Config = {
-	translations: {
-		en: { lang },
-		es: { lang }
-	},
-	initLocale: 'en',
+	// translations: {
+	// 	en: { lang },
+	// 	es: { lang }
+	// },
+	// initLocale: 'en',
 	fallbackLocale: 'en',
 	log: {
-		level: 'error'
+		level: 'debug'
 	},
 	loaders: [
 		{
@@ -30,65 +30,65 @@ const config: Config = {
 		{
 			locale: 'en',
 			key: 'home',
-			routes: ['/'],
+			// routes: ['/', ''],
 			loader: async () => (await import('./en/home.json')).default
 		},
 		{
 			locale: 'es',
 			key: 'home',
-			routes: ['/'],
+			// routes: ['/', ''],
 			loader: async () => (await import('./es/home.json')).default
 		},
 		{
 			locale: 'en',
 			key: 'articles',
-			routes: ['/articles'],
+			// routes: ['/articles'],
 			loader: async () => (await import('./en/articles.json')).default
 		},
 		{
 			locale: 'es',
 			key: 'articles',
-			routes: ['/articles'],
+			// routes: ['/articles'],
 			loader: async () => (await import('./es/articles.json')).default
 		},
 		{
 			locale: 'en',
 			key: 'blog',
-			routes: ['/blog'],
+			// routes: ['/blog'],
 			loader: async () => (await import('./en/blog.json')).default
 		},
 		{
 			locale: 'es',
 			key: 'blog',
-			routes: ['/blog'],
+			// routes: ['/blog'],
 			loader: async () => (await import('./es/blog.json')).default
 		},
 		{
 			locale: 'en',
 			key: 'courses',
-			routes: ['/courses'],
+			// routes: ['/courses'],
 			loader: async () => (await import('./en/courses.json')).default
 		},
 		{
 			locale: 'es',
 			key: 'courses',
-			routes: ['/courses'],
+			// routes: ['/courses'],
 			loader: async () => (await import('./es/courses.json')).default
 		},
 		{
 			locale: 'en',
 			key: 'about',
-			routes: ['/about'],
+			// routes: ['/about'],
 			loader: async () => (await import('./en/about.json')).default
 		},
 		{
 			locale: 'es',
 			key: 'about',
-			routes: ['/es/about'],
+			// routes: ['/about'],
 			loader: async () => (await import('./es/about.json')).default
 		}
 	]
 };
 
 export const { t, locale, locales, loading, loadTranslations } = new i18n(config);
-// loading.subscribe(($loading) => $loading && console.log('Loading translations...'));
+loading.subscribe(($loading) => $loading && console.log('Loading translations...', $loading));
