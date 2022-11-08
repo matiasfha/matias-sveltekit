@@ -1,7 +1,10 @@
 export function setDefaultLang() {
-	return async function (info, file) {
-		if (!file.data.fm.lang) {
-			file.data.fm.lang = 'es';
+	return async function (info, vFile) {
+		if (!vFile.data.fm) {
+			vFile.data.fm = {};
+		}
+		if (!vFile.data.fm.lang) {
+			vFile.data.fm.lang = 'es';
 		}
 	};
 }

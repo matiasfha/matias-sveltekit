@@ -17,21 +17,21 @@ const Post = z.lazy(() =>
 		rawContent: z.string().optional(),
 		readingTime: z.object({
 			text: z.string()
-		})
+		}),
+		lang: z.string()
 	})
 );
 
 export const Posts = z.array(Post);
 
-export default async function getPosts(lang: string): Promise<Post[]> {
-	let enModules = import.meta.glob(`../../routes/blog/post/en/**/+page.svx`);
-	let esModules = import.meta.glob(`../../routes/blog/post/es/**/+page.svx`);
-	const modules = lang === 'en' ? enModules : esModules;
+export default async function getPosts(lang: string) {
+	let modules = import.meta.glob(`../../routes/blog/post/**/+page.svx`);
 
 	const postPromises = [];
 	for (const [path, resolver] of Object.entries(modules)) {
 		const promise = resolver().then((post) => {
 			const slug = path.slice(12, -10);
+
 			return {
 				slug: slug
 					.normalize('NFD')
@@ -47,11 +47,13 @@ export default async function getPosts(lang: string): Promise<Post[]> {
 
 	const res = await Promise.all(postPromises).then((p) => Posts.parse(p));
 
-	const posts = res.sort((a, b) => {
-		const aDate = new Date(a.date).getTime();
-		const bDate = new Date(b.date).getTime();
-		return aDate < bDate ? 1 : -1;
-	});
+	const posts = res
+		.filter((item) => item.lang === lang)
+		.sort((a, b) => {
+			const aDate = new Date(a.date).getTime();
+			const bDate = new Date(b.date).getTime();
+			return aDate < bDate ? 1 : -1;
+		});
 	return posts;
 }
 

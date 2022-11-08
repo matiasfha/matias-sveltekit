@@ -13,7 +13,7 @@ title: "Typescript: How to create a non empty array Type"
 description: "We are always working with arrays and in Typescript this is no exception.
 How can you be sure that an array is not empty just by checking its type?"
 bannerCredit: undefined
-
+lang: en
 ---
 Typescript is a powerful and expressive language, which allows you to avoid publishing bugs.
 
