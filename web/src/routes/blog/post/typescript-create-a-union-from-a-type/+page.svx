@@ -1,4 +1,3 @@
-
 ---
 date: 2022-11-09T15:52:43Z
 banner: https://cdn.sanity.io/images/cyypawp1/production/428ac20e8abb465a4b0109f52c52e876127c9eb6-1280x710.png
@@ -14,15 +13,16 @@ description: "There are times when you need to create a union type based on a pr
 
 How can you achieve this? By creating a utility type that takes advantage of generics and mapped types"
 bannerCredit: undefined
+lang: en
 
 ---
 How can you transform a Typescript Type into a Union Type? And most important, Why would you want to do that?
 
-Well, a few days ago I encounter my self refactoring a piece of code from the usage of multiple `useState` that handled related state into a `useReducer`.
+A few days ago, I encountered myself refactoring a code from using multiple `useState` that handled related states into a `useReducer`.
 
-> My rule of thumb is: If you have 3 related `useState` you should move that to be a `useReducer`
+> My rule of thumb is: If you have 3 related `useState`, you should move that to be a `useReducer`
 
-The issue came because the state was a vast set of properties, and I wanted to cut back the time of refactoring, so want to reuse some of the previous code.
+The issue came because the state was a vast set of properties, and I wanted to cut back the time of refactoring, so I want to reuse some of the previous code.
 
 So, I decided that I needed to create the actions for this new reducer based on the names of the State, so basically **created a union type based on the State type.**
 
@@ -33,7 +33,7 @@ So, the use case:
 * I had a type to represent a State
 * I want to create a list of actions based on that State
 
-The goal was to do something like the following snippet
+The goal was to do something like the following snippet.
 
 ```typescript
 type State = {
@@ -83,9 +83,9 @@ The idea is to automatically take the `State` type to create the `Actions` type.
 
 
 
-To achive this behavior, I was in need of  a utility type that takes in an unknown type and spits out a Union with a specific shape
+I needed a utility type that takes in an unknown type and spits out a Union with a specific shape to achieve this behavior.
 
-So, a clear use case to Generics and Mapped Types
+So, a clear use case for Generics and Mapped Types.
 
 
 
@@ -93,11 +93,11 @@ So, a clear use case to Generics and Mapped Types
 
 More on that in this Twitter thread
 
-<Twitter id="1590038839921283073" />
+<Twitter id="matiasfha/status/1590038839921283073" />
 
->   
-**Mapped Types:  
-**The main idea of this is to take the properties of a type `T` to create a new type by using those properties in another way
+   
+> **Mapped Types**:  
+> The main idea of this is to take the properties > of a type `T` to create a new type by using those > properties in another way
 
 
 
@@ -165,3 +165,4 @@ function reducer(state: State, action: Actions) {
 ```
 
 Check it out [in the typescript playground](https://tsplay.dev/wOA4lm)
+

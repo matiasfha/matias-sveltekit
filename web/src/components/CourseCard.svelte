@@ -1,7 +1,10 @@
 <script lang="ts">
+	import { PortableText, DefaultListItem } from '@portabletext/svelte';
+	import type { PortableTextBlock } from '@portabletext/types';
+
 	export let logo: string;
 	export let title: string;
-	export let description: string;
+	export let description: PortableTextBlock;
 	export let formId: string;
 	export let codeId: string;
 
@@ -53,7 +56,14 @@
 			<div
 				class="max-w-screen-md font-body text-left pt-8 prose dark:text-gray-300 text-ebony-clay-800"
 			>
-				{@html description}
+				<PortableText
+					value={description}
+					components={{
+						listItem: {
+							normal: DefaultListItem
+						}
+					}}
+				/>
 			</div>
 
 			<div class="w-full flex flex-col md:flex-row mt-12 gap-4 md:gap-16">

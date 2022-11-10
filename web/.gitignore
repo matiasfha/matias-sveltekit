@@ -25,3 +25,6 @@ typechain
 cache
 artifacts
 .vscode
+/test-results/
+/playwright-report/
+/playwright/.cache/

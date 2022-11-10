@@ -1,16 +1,7 @@
 import type { PageServerLoad } from './$types';
 import { builder, client } from '$lib/utils/sanityClient';
 import z from 'zod';
-
-// const Block = z.lazy(() =>
-// 	z.object({
-// 		_type: z.string().optional(),
-// 		_key: z.string().optional(),
-// 		style: z.string().optional(),
-// 		children: z.array(Block).optional(),
-// 		markDefs: z.array(Block).optional()
-// 	})
-// );
+import { error } from '@sveltejs/kit';
 
 const Page = z.object({
 	text: z.any(),
@@ -34,23 +25,22 @@ async function getPage({ lang, slug }: { lang: string; slug: string }) {
             text, title, keywords, description, header
         }`
 	);
-	console.log(`*[_type == "page" && slug == "${slug}" && language match "${lang}"][0]{
-		text, title, keywords, description, header
-	}`);
 	return res;
 }
 
 export const load: PageServerLoad = async ({ params, cookies }) => {
 	const { slug } = params;
-	const lang = cookies.get('lang') ?? 'en';
-	const page = await getPage({ lang, slug }).then((res) => {
-		return Page.parse(res);
-	});
 
-	return {
-		// content: compiled.code,
-		...page,
-		header: page.header ? builder.image(page.header).url() : null,
-		slug
-	};
+	const lang = cookies.get('lang') ?? 'en';
+	const result = await getPage({ lang, slug });
+	if (result) {
+		const page = Page.parse(result);
+		return {
+			// content: compiled.code,
+			...page,
+			header: page.header ? builder.image(page.header).url() : null,
+			slug
+		};
+	}
+	throw error(404, 'Not found');
 };

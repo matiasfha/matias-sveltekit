@@ -7,14 +7,13 @@
 	import Seo from '$components/Seo.svelte';
 	import NewsletterForm from '$components/NewsletterForm.svelte';
 	import { t, locale } from '$lib/translations';
-	console.log(locale.get());
 
 	import { Cloudinary } from 'cloudinary-core';
 	import { browser } from '$app/environment';
-	import { afterUpdate } from 'svelte';
+	import { onMount } from 'svelte';
 	import type { Posts } from '$lib/api/getPosts';
 
-	afterUpdate(() => {
+	onMount(() => {
 		if (browser) {
 			const cl = Cloudinary.new({ cloud_name: 'matiasfha' });
 			cl.responsive();
@@ -80,7 +79,7 @@
 		type="text"
 		placeholder={$t('common.search')}
 		aria-label={$t('common.search')}
-		class="shadow-md border-secondary hover:border-primary focus:border-primary focus:bg-secondary px-8 py-6 w-full dark:text-white bg-gray-50 border rounded-lg focus:outline-none"
+		class="shadow-md border-secondary hover:border-primary focus:border-primary focus:bg-secondary px-8 py-6 w-full dark:text-gray-300 bg-gray-50 border rounded-lg focus:outline-none"
 		bind:value={searchItem}
 	/>
 </div>

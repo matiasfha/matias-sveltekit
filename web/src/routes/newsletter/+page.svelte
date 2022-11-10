@@ -7,8 +7,7 @@
 	import Seo from '$components/Seo.svelte';
 	import CourseCard from '$components/CourseCard.svelte';
 	import microbytes from '$images/microbytes.png';
-	import blocksToHtml from '@sanity/block-content-to-html';
-
+	console.log(courses);
 </script>
 
 <Seo
@@ -52,24 +51,16 @@
 
 <div class="grid grid-cols-1 gap-2">
 	<CourseCard
-		logo={courses[1].image.asset.url}
+		logo={courses[1].image}
 		title={courses[1].course}
-		description={blocksToHtml({
-			blocks: courses[1].descriptionRaw,
-			projectId: 'cyypawp1',
-			dataset: 'production'
-		})}
+		description={courses[1].description}
 		formId={'4616584'}
 		codeId={'g5i0m4'}
 	/>
 	<CourseCard
-		logo={courses[0].image.asset.url}
+		logo={courses[0].image}
 		title={courses[0].course}
-		description={blocksToHtml({
-			blocks: courses[0].descriptionRaw,
-			projectId: 'cyypawp1',
-			dataset: 'production'
-		})}
+		description={courses[0].description}
 		formId={'5395967'}
 		codeId={'u2d6y6'}
 	/>

@@ -12,16 +12,16 @@ const pages = [
 	'es/about',
 	'sponsorships',
 	'es/sponsorships',
-	'react',
-	'typescript',
-	'javascript',
+	'topic/react',
+	'topic/typescript',
+	'topic/javascript',
 	'node',
 	'css',
 	'graphql'
 ];
 
-export const GET: RequestHandler = async () => {
-	const posts = await getPosts();
+export const GET: RequestHandler = async ({ cookies }) => {
+	const posts = await getPosts(cookies.get('lang') ?? 'en');
 	const headers = {
 		'Cache-Control': 'max-age=604800 must-revalidate',
 		'Content-Type': 'application/xml'
