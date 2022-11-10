@@ -28,6 +28,8 @@ const config = {
     kit: {
         prerender: {
             enabled: true,
+            crawl: true,
+            entries: ["*"],
             handleHttpError: ({ status, path, referrer, referenceType, ...rest }) => {
                 const error = Object.keys(rest).map(key => `${key}: ${rest[key]}`).join(', ')
                 console.table(rest)
