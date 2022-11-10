@@ -13,6 +13,8 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 16
+    - name: CD into web
+      run: cd web
     - name: Install dependencies
       run: pnpm install
     - name: Install Playwright Browsers
