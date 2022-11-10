@@ -19,5 +19,9 @@
         "includes":"Incluye diseño y redacción"
     },
     "all_about": "Todo sobre ",
-    "newsletter_text": "No olvides unirte a mi newsletter y así no perderte ningún contenido. Artículos, cursos y más."
+    "newsletter_text": "No olvides unirte a mi newsletter y así no perderte ningún contenido. Artículos, cursos y más.",
+    "404": {
+        "title": "Lo siento, esta pagina no existe",
+        "read_more":"No te preocupes, aquí hay algo para leer"
+    }
 }
