@@ -25,6 +25,7 @@ Te permite extraer propiedades de un objeto, items de un arreglo de una manera "
 Pensemos en una estructura de datos común y una tarea repetitiva
 
 ```javascript
+
 const usuario = {
     firstName: 'Matias',
     lastName: 'Hernández',
@@ -40,6 +41,7 @@ Es una tarea común, obtener alguna propiedad de un objeto para ser utilizada de
 Lo que **destructuring** permite, es hacer este proceso de una manera más directa:
 
 ```javascript
+
 const { firstName, lastName } = usuario
 ```
 
@@ -50,6 +52,7 @@ Este código simplemente dice: Crea dos variables: `firstName` y `lastName` y to
 Genial no?. Ese es sólo un nivel, esto puede ser utilizando de forma anidada tantas veces como desees.
 
 ```javascript
+
 const usuario = {
   firstName: 'Matias',
   lastName: 'Hernández',
@@ -69,6 +72,7 @@ Puedes destructurar en tanto niveles como gustes, pero intenta siempre mantener 
 Pero esta sintaxis no está limitada solo a objetos, también podemos destructurar arreglos.
 
 ```javascript
+
 const arreglo = ['Hola','soy','Matias']
 ```
 
@@ -90,6 +94,7 @@ La forma sin destructuración sería
 
 
 ```javascript
+
 const saludo = arreglo[0]
 const nombre = arreglo[2]
 ```
@@ -97,6 +102,7 @@ const nombre = arreglo[2]
 Pero si usamos destruturación podemos nombre las variables de forma directa
 
 ```javascript
+
 const [saludo, , nombre ] = arreglo
 ```
 
@@ -119,6 +125,7 @@ Al destructurar un arreglo hacemos uso de la posición del elemento en el arregl
 Veamos un ejemplo más "interesante"
 
 ```javascript
+
 function doSomeCalc({x, y, z = 10}( {
   return Math.floor((x + y + z ) / 3)
 }
@@ -137,6 +144,7 @@ Este <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Op
 Una vez revises el contenido del artículo, te propongo el siguiente desafío: refactorizar el siguiente código utilizando desctructuring.
 
 ```javascript
+
 function doSomeDestructuring(){
   const data = {
     title: 'Wanda Vision',

@@ -55,9 +55,6 @@
 			font-size: 1rem;
 			font-weight: 500;
 			-webkit-font-smoothing: antialiased;
-			& > span:first-of-type {
-				margin-left: -120px;
-			}
 		}
 
 		@media (max-width: 1200px) {

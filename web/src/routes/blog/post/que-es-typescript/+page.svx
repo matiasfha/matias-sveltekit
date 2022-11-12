@@ -37,6 +37,7 @@ Los lenguajes de programación se pueden categorizar de variadas formas, una de 
 La idea del tipado es evitar que utilices un tipo de información o variable para hacer otra cosa, por ejemplo
 
 ```js
+
     const length = 14 // un número
     console.log(length("algun texto")) // length es usado cómo una función
 ```

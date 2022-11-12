@@ -77,7 +77,8 @@ El código anterior muestra una consulta que permite obtener un `user` identific
 
 La posible respuesta a esta consulta será un objeto en formato JSON cuyo atributo `data` será un objeto que contiene los campos solicitados.
 
-```json
+```js
+on
 {
     "data": {
         "user": {
@@ -109,7 +110,8 @@ Las consultas en GraphQL son jerárquicas. Los datos retornados siguen la misma 
 
 La consulta anterior ha sido extendida para incluir el campo `networks` que a su vez solicita los campos `name` y `url`.
 
-```json
+```js
+on
 {
     "data": {
         "user": {
@@ -154,7 +156,8 @@ Por medio de esta característica es posible conocer que otras propiedades puede
 
 Esta consulta retornará la descripción del esquema, algo similar a:
 
-```json
+```js
+on
 {
   "data": {
     "__schema": {
@@ -215,7 +218,8 @@ $ npm install cors @faker-js/faker @graphql-tools/graphql-file-loader @graphql-t
 
 Ahora actualiza el archivo `package.json` y agrega:
 
-```json
+```js
+on
 "scripts" {
     "start": "nodemon server.js"
 },
@@ -269,7 +273,8 @@ Crea un archivo llamado `server.js` y dentro de él crea un objeto llamado `reso
 
 Este objeto tiene la misma estructura que el tipo `Query` definido anteriormente.
 
-```js 
+```js
+ 
 const resolvers = {
     users: () => null,
     user: (obj, args) => null,
@@ -282,6 +287,7 @@ Puedes asumir que los datos provienen de alguna API externa o base de datos, par
 Crea un archivo llamado `data.js` esta será la forma de emular una API o DB.
 
 ```js
+
 // Mock data 
 import {faker} from '@faker-js/faker'
 const userCreator = () => ({
@@ -315,6 +321,7 @@ De vuelta al archivo `server.js`
 Es hora de importar los datos ficticios y definir los `resolvers`.
 
 ```js
+
 /* Resolvers */
 import { articles, users } from './data.js'; //fake data
 const resolvers = {
@@ -349,6 +356,7 @@ Importante notar que la función `user` recibe dos argumentos. Estos argumentos 
 
 Ahora, utilizando una de las dependencias instaladas, definiras el `schema` e iniciaremos el servidor (mismo archivo)
 ```js
+
 
 import express from 'express'
 import cors from 'cors'
@@ -409,7 +417,8 @@ Dado que este es un pequeño demo, definiremos los componentes directamente en e
 
 Primero, definir como se consultarán los datos.
 
-```jsx 
+```js
+x 
 
 import { gql, GraphQLClient } from 'graphql-request'
 
@@ -469,7 +478,8 @@ Con este trozo de código (que nada tiene que ver con React y puede ser utilizad
 
 Ahora, creemos un componente para desplegar los usuarios.
 
-```jsx
+```js
+x
 const UsersTable = () => {
   const [users, setUsers] = useState(null)  
 
@@ -516,7 +526,8 @@ Usando `useEffect` ejecuta la llamada al servidor GraphQL al momento de renderiz
 
 También puedes consultar datos reaccionando a un evento de usuario como en este componente para desplegar artículos.
 
-```jsx
+```js
+x
 const ArticlesTable = () => {
   const [articles, setArticles] = useState(null)  
 
@@ -553,7 +564,8 @@ Muy similar al anterior componente, pero esta vez se renderiza un botón que al 
 
 Finalmente, renderiza los componentes 
 
-```jsx
+```js
+x
 function App() {
 
   return (

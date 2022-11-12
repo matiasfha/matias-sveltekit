@@ -26,7 +26,8 @@ También es posible marcar estos atributos como privados usando `#` como prefijo
 
 Usando la misma sintaxis, también será posible marcar métodos y `accessors` como  privados creando un mejor sistema de encapsulamiento.
 
-```js 
+```js
+ 
 class Button {
     //Por defecto todos los atributos son públicos
     color = "red"
@@ -46,7 +47,8 @@ console.log(button.#disabled)
 Siguiendo con las clases, ahora será posible definir *atributos y métodos estáticos*. Para esto una nueva sintaxis será utilizada `static`.
 Estos métodos y atributos estáticos también podrán ser privados.
 
-```js 
+```js
+ 
 class Square {
     static #side = 100
 
@@ -77,6 +79,7 @@ Square.#getPerimeter()
 Podrás revisar si cierto método o propiedad privada de una clase existe en la instancia de clase utilzando la nueva palabra clave `in`.
 
 ```js
+
 class PrivateClass {
     constructor() {
         super();
@@ -113,7 +116,8 @@ Permite utilizar valores en tiempo de ejecución para determinar dependencies.
 Resource Initialization: Permite definir recursos y producir errores evitando que el módulo sea utilizado.
 
 
-```js 
+```js
+ 
 // Dynamic dependency pathing:
 const strings = await import(`/i18n/${navigator.language}`)
 
@@ -139,7 +143,8 @@ Hasta ahora el orden de ejecucuón (post-order) ha sido siempore sincrono y dete
 También tendremos un nuevo método en nuestros queridos arreglos: `at`.
 
 Permitirá obtener un elemento desde un indice determinado. Igual que al usar `[]` pero permitirá el uso de indices negativos.
-```js 
+```js
+ 
 const array = [0,1,2,3,4,5]
 
 array[array.length - 1]) //5
@@ -153,6 +158,7 @@ array.at(-2) // 4
 Nuevo método `Object.hasOwn`, que provee una nueva forma  (segura y siempre accesible) de revisar si un objeto tiene ciertas propiedades.
 
 ```js
+
 const obj = { foo: 'bar' }
 let hasFoo = Object.hasOwn(obj, 'foo');
 console.log(hasFoo) // true

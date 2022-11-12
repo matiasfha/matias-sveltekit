@@ -50,6 +50,7 @@ El método `format` de este constructor también recibe dos argumentos:
 
 
 ```javascript
+
 const formatter = new Intl.RelativeTimeFormat('es-ES');
 const monthAgo = formatter.format(-1, 'month') // hace 1 mes
 const futureMonth = formatter.format(1, 'month') // en 1 mes
@@ -64,6 +65,7 @@ SI hablamos de fechas relativas es casi obvio que estarás usando fechas en algu
 Para lograrlo deberás hacer algo de matemáticas de fechas para obtener la diferencia y usar ese valor para obtener el texto relativo.
 
 ```javascript
+
 const publicationDate = new Date('2022/01/05')
 
 const currentDate = new Date()

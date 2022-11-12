@@ -37,7 +37,8 @@ En este ejemplo podemos ver el uso de useState, y como utilizar la forma funcion
 
 Para comenzar, crearemos la base de nuestro componente creando un contenedor que mantendrá otros dos contenedores, uno para el contenido que se renderizará y otro para los botones necesarios para la navegación.
 
-```jsx
+```js
+x
 const Wizard = ({ children }) => {
   return (
     <div className="wizard">
@@ -50,7 +51,8 @@ const Wizard = ({ children }) => {
 
 Con esto en su lugar ya podemos definir los componentes que irán dentro de nuestro wizard y definir el aspecto que tendrán cuando sean renderizados para eso crearemos en este caso tres componentes simples que llamaremos page que simplemente contienen un título indicando la página a la que corresponden y agregamos esto dentro de nuestra aplicación.
 
-```jsx
+```js
+x
 const Page1 = () => (
   <div>
     <h1>Pagina 1</h1>
@@ -82,7 +84,8 @@ const App = () => {
 Nuestro objetivo ahora es mostrar una página a la vez, por lo que necesitamos manipular los componentes que el wizard recibe. Para esto, utilizaremos la API React.Children que permite manipular el objeto children, en este caso, convirtiéndolo a un arreglo de elementos.
 También usaremos una variable auxiliar `currentPage` que mantendrá la página que se renderizará y utilizaremos un índice para indicar la selección. En este caso utilizamos el primer indice lo que renderizará sólo la prima página que hemos creado.
 
-```jsx
+```js
+x
 const Wizard = ({ children }) => {
   const pages = React.Children.toArray(children);
   const currentPage = pages[0];
@@ -102,7 +105,8 @@ Es necesario que el componente seleccionado en currentPage sea variable, se modi
 
 Este estado lo podemos manejar con el hook `useState` que retorna el arreglo con dos elementos, un valor que llamamos `activePageIndex` y una función que sirve para definir el valor del estado que llamaremos `setActivePageIndex`.
 
-```jsx
+```js
+x
 const Wizard = ({ children }) => {
   const [activePageIndex, setActivePageIndex] = React.useState(0);
   const pages = React.Children.toArray(children);
@@ -121,7 +125,8 @@ Además, useState puede recibir un valor inicial que será en este caso el prime
 
 Utilizaremos el valor de `activePageIndex` para definir si se muestra o no cada botón. Para eso simplemente escribimos una condicional ternaría indicando que se renderice el botón con cierta condición o se renderice null.
 
-```jsx
+```js
+x
 const Wizard = ({ children }) => {
   const [activePageIndex, setActivePageIndex] = React.useState(0);
   const pages = React.Children.toArray(children);
@@ -158,7 +163,8 @@ Para eso, definiremos dos funciones, una para cuando el botón atrás es presion
 
 Este método puede recibir una función que recibe como parámetro el estado actual y modifica el estado en base al valor retornado. En este caso, disminuye el índice en -1. De forma similar al presionar el botón Siguiente, el índice se incrementará en 1.
 
-```jsx
+```js
+x
 const Wizard = ({ children }) => {
   const [activePageIndex, setActivePageIndex] = React.useState(0);
   const pages = React.Children.toArray(children);

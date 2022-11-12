@@ -83,7 +83,8 @@ Puedes ver una representación de un AST utilizando [https://astexplorer.net](ht
 
 Un ejemplo de AST es 
 
-```jsx
+```js
+x
 function setCount(v) {
     return v + 1;
 }
@@ -91,7 +92,8 @@ function setCount(v) {
 
 y el AST correspondiente
 
-```jsx
+```js
+x
 {
   "type": "Program",
   "start": 0,
@@ -163,7 +165,8 @@ Estas reglas son aplicadas por medio de un "transformador". El transformador es 
 
 Un ejemplo de definición de regla es:
 
-```jsx
+```js
+x
 export default function(context) {
   return {
     Identifier(node) {
@@ -186,25 +189,29 @@ Este es e último paso del proceso. Aquí es donde se define cómo se muestran l
 La forma más simple de comenzar es primer, tener un proyecto javascript en el que utilizar ESLint.
 Creemos entonces un simple proyecto al que agregar ESLInt, comienza por crear un directorio en donde almacenar tu proyecto, puedes hacer todo esto directamente en tu terminal.
 
-```jsx
+```js
+x
 mkdir linting
 ```
 
 Ahora ingresa en el directorio para comenzar a trabajar
 
-```jsx
+```js
+x
 cd linting
 ```
 
 Creemos nuestro primer archivo javascript, que para este ejemplo será muy simple
 
-```jsx
+```js
+x
 touch app.js
 ```
 
 Ahora, agreguemos algo de código en este archivo, ábrelo en tu editor favorito y escribe
 
-```jsx
+```js
+x
 const nombre = 'Matias'
 
 const persona = {nombre}
@@ -221,7 +228,8 @@ Es claro a simple vista algunos problemas de formato con este simple código ade
 
 Ahora inicia este proyecto utilizando `npm`
 
-```jsx
+```js
+x
 npm init
 ```
 
@@ -233,7 +241,8 @@ Ahora con el proyecto javascript preparado agreguemos eslint.
 
 Lo primero es instalar ESLint en nuestro proyecto, para ello volveremos a nuestra terminal y utilizaremos `npm` para instalar esta dependencia
 
-```jsx
+```js
+x
 npm install eslint --save-dev
 ```
 
@@ -241,7 +250,8 @@ Utilizamos el argumento  `--save-dev` para indicarle a `npm` que queremos guarda
 
 Una vez instalado,  puede iniciar la configuración al ejecutar
 
-```jsx
+```js
+x
 npx eslint --init
 ```
 
@@ -249,7 +259,8 @@ este comando ( en particular el argumento`--init`) es el que activará ESLint en
 
 El proceso de creación de este archivo se ejecutará en la consola y te hará algunas preguntas comenzando por: ¿Cómo te gustaría usar ESLint?
 
-```jsx
+```js
+x
 ? How would you like to use ESLint? …
   To check syntax only
   To check syntax and find problems
@@ -260,7 +271,8 @@ Selecciona la última opción "Para revisar sintaxis, encontrar problemas y refo
 
 La siguiente pregunta será
 
-```jsx
+```js
+x
 What type of modules does your project use? …
   JavaScript modules (import/export)
 ❯ CommonJS (require/exports)
@@ -271,7 +283,8 @@ En este caso seleccionas `CommonJS` ya que no usaremos ninguna herramienta exter
 
 La siguiente pregunta será:
 
-```jsx
+```js
+x
 ? Which framework does your project use? …
   React
   Vue.js
@@ -282,7 +295,8 @@ Por ahora seleccionarás "None of these"
 
 Luego te preguntará si usas Typescript o no.
 
-```jsx
+```js
+x
 ? Does your project use TypeScript? › No / Yes
 ```
 
@@ -290,7 +304,8 @@ Seleccionarás `No`
 
 La siguiente pregunta será sobre el estilo de código que quieres usar: `¿Cómo te gustaría definir un estilo para tu proyecto?`
 
-```jsx
+```js
+x
 ✔ How would you like to define a style for your project? …
 ❯ Use a popular style guide
   Answer questions about your style
@@ -303,7 +318,8 @@ Luego se te preguntará por el tipo de archivo para la configuración cuyas opci
 
 Finalmente verás el mensaje de aviso que se instalarán algunas dependencias extras y la siguiente pregunta
 
-```jsx
+```js
+x
 ? Would you like to install them now with npm? › No / Yes
 ```
 
@@ -313,7 +329,8 @@ Al terminar este proceso podrás notar que un nuevo archivo fue creado en el dir
 
 Finalmente agreguemos algunas reglas simples en el archivo de configuración. Abre el archivo `.eslintrc.js` (Si elegiste el formato javascript) y verás lo siguiente:
 
-```jsx
+```js
+x
 module.exports = {
   env: {
     browser: true,
@@ -333,7 +350,8 @@ module.exports = {
 
 Ahora, agreguemos una nueva guía al arreglo `extends` y algunas reglas al objeto `rules`
 
-```jsx
+```js
+x
 module.exports = {
   env: {
     browser: true,
@@ -362,7 +380,8 @@ El uso más simple que puedes darle a ESLint es revisar tu código de forma manu
 
 Abre el archivo `package.json` en tu editor de texto favorito y agrega la sección `scripts` 
 
-```jsx
+```js
+x
 ...
 "scripts": {
   ...
@@ -376,13 +395,15 @@ Con este comando estarás ejecutando ESLint en todo los archivos con extensión 
 
 Ahora vuelve a tu terminal y puedes ejecutar
 
-```jsx
+```js
+x
 npm run lint
 ```
 
 y verás el resultado que mostrará los errores del código que tienes escrito en `app.js`
 
-```jsx
+```js
+x
 /Users/matias/Development/linting/.eslintrc.js
    8:5   error  Strings must use doublequote  quotes
    9:5   error  Strings must use doublequote  quotes
@@ -400,19 +421,22 @@ y verás el resultado que mostrará los errores del código que tienes escrito e
 
 Podemos intentar que ESLint arregle algunos de estos problemas automáticamente utilizando el argumento `--fix`. Abre tu archivo `package.json` para agregar un nuevo script:
 
-```jsx
+```js
+x
 "lint-fix": "eslint . --ext .js --fix"
 ```
 
 Y ahora en la terminal
 
-```jsx
+```js
+x
 npm run lint-fix
 ```
 
 Y el resultado será
 
-```jsx
+```js
+x
 /Users/matias/Development/linting/app.js
   10:7  error  Parsing error: Identifier 'persona' has already been declared
 

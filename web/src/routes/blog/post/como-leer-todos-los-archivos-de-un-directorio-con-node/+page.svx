@@ -22,6 +22,7 @@ Una tarea común en una aplicación en un servidor es obtener un listado de arch
 Nodejs ofrece una [API que permite trabajar con archivos ](https://nodejs.org/api/fs.html) incluyendo la posibilidad de leer el contenido de un directorio de forma síncrona y asíncrona (con callbacks o promesas).
 
 ```javascript
+
 /* Leer el contenido de un directorio de forma sincrona */
 
 // files es un arreglo con los nombres de los archivos dentro del directorio
@@ -55,6 +56,7 @@ Pero esto solo retornará la lista de archivos y directorios del "primer nivel",
 El resultado será:
 
 ```javascript
+
 [
   'node_modules',
   'public',
@@ -70,6 +72,7 @@ El resultado será:
 Recursión es la respuesta:
 
 ```javascript
+
 async function readAllFiles(path, arrayOfFiles = []){
 	const files = fs.readdirSync(path)
 	files.forEach(file => {
@@ -88,6 +91,7 @@ async function readAllFiles(path, arrayOfFiles = []){
 La función de arriba realiza la lectura del contenido de un directorio
 
 ```js
+
 const file = fs.readdirSync(path)
 
 ```
@@ -95,6 +99,7 @@ const file = fs.readdirSync(path)
 Luego, para cada uno de los elementos del arreglo retornado `files.forEach` revisa si dicho elemento es o no un directorio
 
 ```js
+
 const stat = fs.statSync(`${path}/${file}`)
 
 if(stat.isDirectory())
@@ -104,6 +109,7 @@ if(stat.isDirectory())
 En caso de ser un directorio, realiza una llamada recursiva, cambiando el primer argumento para que sea el actual directorio.
 
 ```js
+
 readAllFiles(`${path}/${file}`, arrayOfFiles)
 
 ```
@@ -113,6 +119,7 @@ En caso contrario, simplemente almacena en el arreglo `arrayOfFiles` el archivo.
 Así, el resultado de leer la estructura de directorios anterior el resultado será
 
 ```js
+
 [  
     ................  
     'public/favicon.ico',

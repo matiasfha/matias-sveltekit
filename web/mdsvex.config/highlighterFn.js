@@ -20,12 +20,12 @@ export function highlighterFn(code, lang = 'js', meta) {
 
 	let _lang = lang.toLowerCase();
 
-	const highlighted = escape_svelty(
-		_lang
-			? Prism.highlight(code, Prism.languages[_lang], _lang)
-			: escape(code)
-	);
-
+	// const highlighted = escape_svelty(
+	// 	_lang
+	// 		? Prism.highlight(code, Prism.languages[_lang], _lang)
+	// 		: escape(code)
+	// );
+	const highlighted = escape_svelty(Prism.highlight(code, Prism.languages[_lang], _lang))
 
 	return `
 	<div class="relative my-12 code-block">

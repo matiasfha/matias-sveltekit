@@ -72,6 +72,7 @@ Una vez creado el `Map` querrás obtener sus valores, para ello utilizarás el m
 
 ```javascript
 
+
 map.get('a') // 'a'
 
 map.get({ name: 'Name'}) // 'un objeto' 
@@ -95,6 +96,7 @@ console.log(map)/* Map (3) {
 Además `Map` incluye algunos métodos que te permiten iterar sobre los elementos del mismo, estos métodos retornan un tipo `MapIterator` que permite el uso de loops `for-of` o `forEach` directamente.
 
 ```javascript
+
 const map = new Map()
 map.set('a','a')
 map.set(1,'number')
@@ -129,6 +131,7 @@ key: [object Object], value: un objeto
 También es posible convertir un objeto a un `Map` o viceversa
 
 ```javascript
+
 // Convertir objeto a Map
 
 const properties = {
@@ -176,6 +179,7 @@ Un `Set` es una colección de elementos unicos que pueden ser de cualquier tipo,
 Puedes crear e inicializar un `Set` usando `new`.
 
 ```javascript
+
 const set = new Set();
 
 // O con valores iniciales
@@ -188,6 +192,7 @@ console.log(set2) // {'a','b',3}
 Al igual que `Map`, `Set` también tiene métodos que te permiten agregar o eliminar elementos del mismo.
 
 ```javascript
+
 const set = new Set();
 set.add('a');
 set.add('b');
@@ -209,6 +214,7 @@ Para iterar sobre un `Set` puedes usar el método `Set.values()` que retorna  un
 `Set` y `Array` son similarres y puedes convertirlos entre sí utilizando el operador `spread`.
 
 ```javascript
+
 const set = new Set()
 set.add('a')
 set.add('b')
@@ -224,6 +230,7 @@ En general, usarás Set cuando necesites una colección de elementos únicos.
 Por ejemplo, en una sola linea puedes crear un arreglo sin duplicados utilizando `Set`
 
 ```javascript
+
 const unicos = [ ...new Set([1, 1, 2, 2, 2, 3])] // (3) [1, 2, 3]
 ```
 

@@ -50,6 +50,7 @@ Puedes usar cualquier framework o librería que gustes, pero también puede hace
 
 
 ```javascript
+
 /** HTML
 <input type="fileInput" id="file" accept={".ttf"} />
 <button type="button" id="uploadBtn">Upload Font</button>
@@ -97,6 +98,7 @@ El objeto [File](https://developer.mozilla.org/es/docs/Web/API/File) provee info
 
 
 ```javascript
+
 /**
  * Recibe una referencia a un archivo `File`
 */
@@ -163,6 +165,7 @@ Para esta tarea simplemente necesitarás un contenedor de texto cuyo estilo este
 También puedes hacerlo dinámicamente utilizando Javascript.
 
 ```javascript
+
 ....  
   try {
     await fontFace.load();

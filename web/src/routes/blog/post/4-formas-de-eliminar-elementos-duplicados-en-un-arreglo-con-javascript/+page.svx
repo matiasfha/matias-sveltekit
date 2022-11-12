@@ -39,12 +39,14 @@ De forma interna, `filter` itera sobre los elementos del arreglo y aplica la fun
 Para este caso de remover elementos duplicados utilizamos como método auxiliar la función `Array.indexOf`. Este método retorna Array.indexOf retorna el primer indice del arreglo en donde se encuentre un elemento dado.
 
 ```javascript
-    let data = [1,2,6,1,2,5,9,'33','33'];
 
-    let result = data.filter((item,index)=>{
-      return data.indexOf(item) === index;
-    })
-    console.log(result); //[1,2,6,5,9,'33']
+
+  let data = [1,2,6,1,2,5,9,'33','33'];
+
+  let result = data.filter((item,index)=>{
+    return data.indexOf(item) === index;
+  })
+  console.log(result); //[1,2,6,5,9,'33']
 ```
 En este caso, podemos identificar un duplicado cuando el indice no es igual al resultado de `indexOf`.
 `data.indexOf(item) === index` ,retornará siempre la primera ocurrencia del `item`.
@@ -58,13 +60,15 @@ El objeto global **Set** es una estructura de datos, una colección de valores q
 Es posible iterar sobre los elementos en el orden de inserción.
 
 ```javascript
-    let data = [1,2,6,1,2,5,9,'33','33'];
 
-    const dataArr = new Set(data);
 
-    let result = [...dataArr];
+  let data = [1,2,6,1,2,5,9,'33','33'];
 
-    console.log(result); //[1,2,6,5,9,'33']
+  const dataArr = new Set(data);
+
+  let result = [...dataArr];
+
+  console.log(result); //[1,2,6,5,9,'33']
 ```
 
 El caso de utilizar **Set** para remover duplicados es bastante simple, creamos un nuevo **Set** basado en el arreglo original utilizando _new Set_.
@@ -82,16 +86,18 @@ El método `Array.reduce` también puede ser utilizado con el mismo propósito.
 `Array.reduce` recibe dos parámetros, una función , llamada reductora, que tiene a lo menos dos argumentos: el acumulador y el item actual de la iteración y como segundo parámetro que indica el valor inicial en este caso un arreglo vacío
 
 ```javascript
-    let data = [1,2,6,1,2,5,9,'33','33'];
 
-    const result = data.reduce((acc,item)=>{
-      if(!acc.includes(item)){
-      	acc.push(item);
-      }
-      return acc;
-    },[])
 
-    console.log(result); //[1,2,6,5,9,'33']
+  let data = [1,2,6,1,2,5,9,'33','33'];
+
+  const result = data.reduce((acc,item)=>{
+    if(!acc.includes(item)){
+      acc.push(item);
+    }
+    return acc;
+  },[])
+
+  console.log(result); //[1,2,6,5,9,'33']
 ```
 
 En este caso la función utilizada simplemente revisa si el item actual se encuentra dentro del resultado identificado por la variable `acc`, de no estarlo, simplemente agrega el valor al acumulador
@@ -105,6 +111,7 @@ Aquí es necesario utilizar un arreglo auxiliar para almacenar el resultado del 
 Al iterar sobre el arreglo se utiliza un bloque condicional que verifica que el item no exista ya dentro del arreglo de valores únicos utilizando `Array.includes`, que permite determinar si un elemento existe o no dentro del arreglo.
 
 ```javascript
+
 
     let data = [1,2,6,1,2,5,9,'33','33'];
 

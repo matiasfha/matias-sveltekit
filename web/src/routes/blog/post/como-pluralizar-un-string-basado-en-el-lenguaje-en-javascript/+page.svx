@@ -22,6 +22,7 @@ El objeto **Intl** también admite una forma de definir cómo formatear contenid
 Un caso de uso para esta función es mostrar la cantidad de elementos que existen en una colección; idealmente, esto debería respetar la numeración gramatical en cada idioma que elijas usar.
 
 ```javascript
+
 function pluralize(locale, count, singular, plural) {
     const pluralRules = new Intl.PluralRules(locale);
     const numbering = pluralRules.select(count);
@@ -63,6 +64,7 @@ Tal vez este ejemplo sea demasiado ingenuo ya que el inglés y el español tiene
 > Este ejemplo ha sido tomado del [blog de V8](https://v8.dev/features/intl-pluralrules)
 
 ```javascript
+
 const suffixes = new Map([
   ['zero',  'cathod'],
   ['one',   'gath'],
@@ -95,6 +97,7 @@ Este constructor al igual que los demás expuestos por *Intl* acepta un segundo 
 
 
 ```javascript
+
 const pr = new Intl.PluralRules('en-US',{
     type: 'ordinal'
 })

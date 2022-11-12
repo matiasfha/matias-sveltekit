@@ -28,7 +28,8 @@ Tienes un componente que representa un gato, y este gato puede estar vivo o muer
 
 
 
-```jsx
+```js
+x
 function Cat({ isAlive, isDead}) {
   if(isAlive != null && isDead != null) {
     throw 'Ambas props no pueden estar definidas'

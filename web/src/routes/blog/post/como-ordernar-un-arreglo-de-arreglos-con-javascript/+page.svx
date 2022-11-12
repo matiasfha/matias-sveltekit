@@ -22,6 +22,7 @@ En su forma más básica, `sort` intentará ordenar los elementos basado en su c
 El método `sort` "transforma" (cast) los elementos del arreglo a `strings` y los compara entre si para determinar el orden.
 
 ```javascript
+
 let numbers = [0, 1 , 2, 3, 10, 20, 30 ];
 numbers.sort();
 console.log(numbers);
@@ -44,6 +45,7 @@ Pero el método `sort` también puede recibir un argumento que te permite defini
 Es este argumento el que te permitirá ordenar un arreglo bi-dimensional como el siguiente:
 
 ```javascript
+
 const data = [
   ['Matias', 5, "07/24/2022"],
   ['Nicole', 7, "07/14/2022"],
@@ -67,6 +69,7 @@ En el caso del arreglo `data`, al llamar `sort` directamente, este será ordenad
 
 
 ```javascript
+
 console.log(data.sort())
 /*
 [
@@ -83,6 +86,7 @@ Pero, el argumento que recibe `sort` te permite definir que quieres comparar y a
 
 
 ```javascript
+
 
 data.sort((a, b) => {
 
@@ -103,6 +107,7 @@ Entonces, en este caso de uso, lo que se busca es ordenar el arreglo `data` basa
 
 
 ```javascript
+
 data.sort((a, b) => {
   const dateA = new Date(a[2])
   const dateB = new Date(b[2])

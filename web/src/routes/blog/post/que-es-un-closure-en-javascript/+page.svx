@@ -26,7 +26,8 @@ Un elemento escencial en el desarrollo de software es la existencia y uso de fun
 
 En Javascript un **closure** es creado cada vez que una función es creado, y dado que este tipo de funciones pueden acceder a valores fuera de su propio contexto, el uso de **closures** permite crear y manejar el concepto de **estado** o variables privadas que pueden ser accesibles incluso  cuando la función padre dejo de existir después de su invocación.
 
-```jsx
+```js
+x
 function exterior(){
 	const mensaje = 'Hola mundo';
   function interior() {
@@ -60,7 +61,8 @@ Un problema que se presenta con este extensivo uso de closures es el de "el clos
 
 Revisemos el siguiente código
 
-```jsx
+```js
+x
 function contador(){
   let value = 0;
   function incrementar() {
@@ -95,7 +97,8 @@ Esta es un "stale closure". El closure `log` capturó el valor de `mensaje` en l
 
 La solución es "sencilla". Primer debemos notar que el closure `log` se cerró sobre la variable `mensaje` que no es la variable que cambia. Entonces, debemos refactorizar este trozo de código para cerrar nuestro closure sobre la variable que realmente cambia
 
-```jsx
+```js
+x
 ...
 ...
 function log() {
@@ -123,7 +126,8 @@ Si no indicas ningún valor en el arreglo de dependencias el closure usado como 
 
 Otro caso es con el hook `useState`. Este hook retorna una tupla con el valor del estado y una función que permite actualizar el estado.
 
-```jsx
+```js
+x
 function Contador() {
   const [count, setCount] = useState(0);
 

@@ -125,7 +125,7 @@ Estas variables definidas a partir de `useRef` harán referencia a los elementos
 
 <Disclaimer>
 
-Es importante destacar que `useRef` permite persistir valroes entre renderizados del componente.  
+Es importante destacar que `useRef` permite persistir valores entre renderizados del componente.  
 Puede ser utilizado para almacenar valores mutables que <strong>no causen un re-renderizado</strong> al ser actualizados.
 
 </Disclaimer>
