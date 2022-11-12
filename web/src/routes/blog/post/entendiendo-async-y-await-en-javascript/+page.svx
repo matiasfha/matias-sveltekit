@@ -22,7 +22,7 @@ tag: Javascript
 
 [En un artículo anterior revisamos que son las promesas](https://matiashernandez.dev/blog/post/wtf-que-es-una-promesa-en-javascript) y como trabajar con ellas, a modo de recordatorio:
 
-```javascript
+```js
 
   
 const sleep = time => new Promise((resolve, reject) => setTimeout(resolve, time));
@@ -42,7 +42,7 @@ En modo general puedes considerar una función que retorna una promesa como una 
 
 Una función asíncrona es aquella declarada utilizando la palabra clave `async`. Esta puede ser usada en funciones normales o en arrow functions.
 
-```javascript
+```js
 
   
 async function doSomething() {  
@@ -56,7 +56,7 @@ const doSomething = async () => {
 
 Básicamente lo que estás haciendo es indicándole al intérprete que la función `doSomething` retornará **siempre** una promesa.
 
-```javascript
+```js
 
   
 const doSomething = async () => {  
@@ -81,7 +81,7 @@ Pero, a pesar de ser semánticamente lo mismo para el interprete el uso de `asyn
 
 El uso de `async` para declarar tu función te permite usar una nueva palabra clave: `await` que de forma muy resumida, te permite literalmente esperar a que la promesa esté resuelta.
 
-```javascript
+```js
 
 // sin async/await
 const getData = () => {
@@ -115,7 +115,7 @@ El objeto Promise nos ofrece 3 métodos que te permiten controlar el flujo de la
 - `catch` define el trozo de código que se ejecutará si la promesa fue rechazada, es decir, tu manejo de errores. En el caso de `async/await` no tenemos la misma definición pero, podemos decantar al nunca bien ponderado bloque `try`
 
 
-```javascript
+```js
 
   
 
@@ -137,7 +137,7 @@ El bloque `finally` es lo que puedes escribir directamente fuera del bloque `try
 Ahora, ¿qué ocurre si tienes varias promesas y varios bloque `try/catch` ?
 
 
-```javascript
+```js
 
   
 
@@ -170,7 +170,7 @@ Una forma de mejorar la legibilidad de esto es simplemente poner todo dentro de 
 
 
 
-```javascript
+```js
 
 const test = async () => {
   try {
@@ -198,7 +198,7 @@ En resumen `async/await` es una notación o sintaxis que busca simplificar el pr
 
 Imagina que tienes que ejecutar múltiples llamadas asíncronas a una API externa, cada llamada a la API demora casi 1 segundo.
 
-```javascript
+```js
 
 const test = async _ => {
   const one = await fetchOne()

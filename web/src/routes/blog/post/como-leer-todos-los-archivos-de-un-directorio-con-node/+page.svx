@@ -21,7 +21,8 @@ Una tarea común en una aplicación en un servidor es obtener un listado de arch
 
 Nodejs ofrece una [API que permite trabajar con archivos ](https://nodejs.org/api/fs.html) incluyendo la posibilidad de leer el contenido de un directorio de forma síncrona y asíncrona (con callbacks o promesas).
 
-```javascript
+```js
+
 
 /* Leer el contenido de un directorio de forma sincrona */
 
@@ -55,7 +56,8 @@ Pero esto solo retornará la lista de archivos y directorios del "primer nivel",
 
 El resultado será:
 
-```javascript
+```js
+
 
 [
   'node_modules',
@@ -71,7 +73,8 @@ El resultado será:
 
 Recursión es la respuesta:
 
-```javascript
+```js
+
 
 async function readAllFiles(path, arrayOfFiles = []){
 	const files = fs.readdirSync(path)

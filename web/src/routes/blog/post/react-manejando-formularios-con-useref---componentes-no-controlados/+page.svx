@@ -81,7 +81,8 @@ Este componente es quien renderiza el formulario y maneja los datos.
 
 A modo extra simplificado:
 
-```javascript
+```js
+
 function App() {
   const emailRef = React.useRef(null);
 

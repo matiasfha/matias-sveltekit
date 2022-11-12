@@ -47,7 +47,7 @@ Te permite remover el último elemento de un arreglo cambiando el tamaño del ar
 
 El elemento que se remueve es retornado a menos que no queden elementos en el arreglo, en ese caso obtienes `undefined`.
 
-```javascript
+```js
 
 
 const elementos  = [1,2,3,'4',5]
@@ -63,7 +63,7 @@ console.log(elementos) // [1,2,3,'4']
 
 Este es el método opuesto a Array.pop, permitiéndote remover el primer elemento de un arreglo, retornándolo para su uso posterior. Cambia el arreglo original pues "extrae" el elemento.
 
-```javascript
+```js
 
 
 const elementos  = [1,2,3,'4',5]
@@ -84,7 +84,7 @@ Al eliminar un elemento del arreglo el tamaño (length) del arreglo no es afecta
 
 Puedes ver un ejemplo [en este playground](https://runjs.co/s/rJaFBHQBc) 
 
-```javascript
+```js
 
 
 const elementos = [1,2,3,'4',5]
@@ -102,7 +102,7 @@ Este método retorna una copia de una porción del arreglo determinada por los p
 
 Puedes revisar [un demo aqui](https://runjs.co/s/Gzo4fpLnG)
 
-```javascript
+```js
 
 
 const elementos = [1,2,3,'4',5]
@@ -149,7 +149,7 @@ Es un método ideal para remover elementos de un arreglo de objetos.
 
 Puedes ver un [demo en este enlace](https://runjs.co/s/Wjqlbwrs8)
 
-```javascript
+```js
 
 
 const elementos = [

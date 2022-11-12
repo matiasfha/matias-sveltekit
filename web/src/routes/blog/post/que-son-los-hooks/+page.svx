@@ -91,7 +91,7 @@ Los "effects" están relacionados con el modelo mental que tenemos sobre el rend
 
 Como ejemplo
 
-```javascript
+```js
 
     const HideText = ({ text }) => {
        const [isHide, setIsHide] = useState(false);
@@ -123,7 +123,7 @@ Por extensión llegamos a los side effects.
 
 Para esto podemos usar un sencillo ejemplo
 
-```javascript
+```js
 
     const TitleUpdater = () => {
     	const [value, setValue] = useState('')

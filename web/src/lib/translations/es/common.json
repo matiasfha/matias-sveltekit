@@ -23,5 +23,6 @@
     "404": {
         "title": "Lo siento, esta pagina no existe",
         "read_more":"No te preocupes, aquí hay algo para leer"
-    }
+    },
+    "writtenBy": "escrito por"
 }

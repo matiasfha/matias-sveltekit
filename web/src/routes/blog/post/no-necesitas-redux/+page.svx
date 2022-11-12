@@ -42,7 +42,7 @@ Por ejemplo, tienes un formulario, una vez que el usuario lo completó lo envía
 
 Podemos considerar aquí un objeto estado que contiene los posibles errores del formulario, en el momento inicial este objeto se vería como esto
 
-```javascript
+```js
 
     const state = {
         errors = []
@@ -51,7 +51,7 @@ Podemos considerar aquí un objeto estado que contiene los posibles errores del 
 
 y el recibir el mensaje de error, el objeto contendía algo así:
 
-```javascript
+```js
 
     const state = {
         errors = ['El email ingresado ya existe.']

@@ -5,10 +5,15 @@
 
 .code-block {
 	.fullbleed-wrapper {
-		width: 100vw;
+		width: 85vw;
 		position: relative;
-		left: 50%;
+		left: 60%;
 		margin-left: -50vw;
+		@media (max-width: 768px) {
+			width: 100vw;
+			left: 50%;
+			margin-left: -50vw;
+		}
 	}
 
 	.snippet-lang {

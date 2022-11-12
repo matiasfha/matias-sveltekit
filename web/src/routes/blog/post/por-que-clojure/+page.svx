@@ -106,7 +106,7 @@ En clojure, todo está definido como una lista, definida por `()` parentesis, es
 
   ¿Cómo sería esto mismo en Javascript?
 
-```javascript
+```js
 
       const range = Array.from({length: 10}, (_, i) => i + 1)
       console.log(range.map(item => item*item))
@@ -118,7 +118,7 @@ En clojure, todo está definido como una lista, definida por `()` parentesis, es
 
   Quizá una forma mas sencilla sería utilizar una librería como lodash o [underscore](http://underscorejs.org/#range) o escribir código imperativo cmo
 
-```javascript
+```js
 
        // Otras opciones declarativas
       // Array(10).fill().map((_, i) => i+1);

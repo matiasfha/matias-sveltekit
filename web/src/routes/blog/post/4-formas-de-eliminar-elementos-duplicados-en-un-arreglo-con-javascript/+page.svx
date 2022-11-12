@@ -38,7 +38,7 @@ De forma interna, `filter` itera sobre los elementos del arreglo y aplica la fun
 
 Para este caso de remover elementos duplicados utilizamos como método auxiliar la función `Array.indexOf`. Este método retorna Array.indexOf retorna el primer indice del arreglo en donde se encuentre un elemento dado.
 
-```javascript
+```js
 
 
   let data = [1,2,6,1,2,5,9,'33','33'];
@@ -59,7 +59,7 @@ El objeto global **Set** es una estructura de datos, una colección de valores q
 
 Es posible iterar sobre los elementos en el orden de inserción.
 
-```javascript
+```js
 
 
   let data = [1,2,6,1,2,5,9,'33','33'];
@@ -85,7 +85,7 @@ El método `Array.reduce` también puede ser utilizado con el mismo propósito.
 
 `Array.reduce` recibe dos parámetros, una función , llamada reductora, que tiene a lo menos dos argumentos: el acumulador y el item actual de la iteración y como segundo parámetro que indica el valor inicial en este caso un arreglo vacío
 
-```javascript
+```js
 
 
   let data = [1,2,6,1,2,5,9,'33','33'];
@@ -110,7 +110,7 @@ Aquí es necesario utilizar un arreglo auxiliar para almacenar el resultado del 
 
 Al iterar sobre el arreglo se utiliza un bloque condicional que verifica que el item no exista ya dentro del arreglo de valores únicos utilizando `Array.includes`, que permite determinar si un elemento existe o no dentro del arreglo.
 
-```javascript
+```js
 
 
     let data = [1,2,6,1,2,5,9,'33','33'];

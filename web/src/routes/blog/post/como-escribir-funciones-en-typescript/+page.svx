@@ -32,14 +32,14 @@ En este breve tutorial encontrarás una lista de las formas más comunes que enc
 Primero, para crear una función en Javascript existen 4 formas base:
 
 ### Declaración de función
-```javascript
+```js
 
 function multiplicar(a,b) {
     return a * b
 }
 ```
 ### Expresión anonima
-```javascript
+```js
 
 const multiplicar = function(a,b) {
     return a * b;
@@ -47,7 +47,7 @@ const multiplicar = function(a,b) {
 ```
 
 ### Expresion de función con nombre
-```javascript
+```js
 
 const multiplicar = function multiplicar(a,b) {
     return a * b;
@@ -55,7 +55,7 @@ const multiplicar = function multiplicar(a,b) {
 ```
 
 ### Función flecha / Arrow function
-```javascript
+```js
 
 const multiplicar = (a, b) => {
     return a * b;
@@ -63,7 +63,7 @@ const multiplicar = (a, b) => {
 ```
 
 ### Retorno implícito
-```javascript
+```js
 
 const multiplicar = (a, b) => a * b;
 ```

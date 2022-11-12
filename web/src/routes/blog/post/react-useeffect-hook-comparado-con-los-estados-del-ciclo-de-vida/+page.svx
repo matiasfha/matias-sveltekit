@@ -27,7 +27,7 @@ Los estados del ciclo de vida son una definición y concepto utilizados en los c
 
 Para esto se utiliza la sintaxis de [clase de ES6](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Classes) como en el siguiente ejemplo.
 
-```javascript
+```js
 
 class Componente extends React.Component {
     constructor(props) {
