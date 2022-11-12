@@ -27,12 +27,16 @@ useLayoutEffect es similar en casi TODO a useEffect, solo tiene pequeñas difere
 Ambos reciben dos argumentos, un callback que define el efecto y una lista de dependencias.
 
 ```javascript
+
+
 React.useEffect(() => {
   // do something
 }, [array, dependency])
 ```
 
 ```javascript
+
+
 React.useLayoutEffect(() => {
   // do something
 }, [array, dependency])
@@ -53,6 +57,8 @@ Tu efecto se ejecutará así:
 Considera este pequeño y restringido ejemplo
 
 ```javascript
+
+
 const Counter = () => {
     const [count, setCount] = React.useState(0)
     React.useEffect(() => {
@@ -97,6 +103,8 @@ El orden de ejecución para useLayoutEffect es:
 4. La pantalla se actualiza "visualmente"
 
 ```javascript
+
+
 React.useEffect(() => {
     console.log("Efecto desde useEffect");
 });

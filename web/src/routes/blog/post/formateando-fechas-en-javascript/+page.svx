@@ -40,9 +40,9 @@ El constructor `DateTimeFormat` recibe como parámetros un string que identifica
 
 
 ```javascript
+
+
 const date = new Date(); //la fecha de hoy
-
-
 
 // Fecha en formato USA
 const usaDate = new Intl.DateTimeFormat('en-US').format(date) // 9/8/2022
@@ -64,6 +64,8 @@ Pero hay más. Puedes utilizar el segundo argumento de `DateTImeFormat` para def
 
 
 ```javascript
+
+
 // Utilizando las opciones
 
 const options = {
@@ -100,6 +102,8 @@ El constructor `DateTimeFormat` acepta una larga lista de opciones
 
 
 ```javascript
+
+
 type Options = {
   dateStyle: 'full' | 'long' | 'medium' | 'short',
   timeStyle: 'full' | 'long' | 'medium' | 'short',

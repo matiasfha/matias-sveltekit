@@ -127,6 +127,7 @@ Batching (o procesado por lotes) es cuando React agrupa múltiples actualizacion
 Previo a este cambio, la única parte en donde esta agrupación de cambios de estado es ejecutada es dentro de los manejadores de eventos como `onClick`, es decir, cambios de estado dentro de promesas y manejadores de eventos nativos, no son ejecutados en grupo, pero ahora si lo serán.
 
 ```javascript
+
 // Antes: El componente se renderizará dos veces, una vez por cada llamada a `setState`
 setTimeout(() => {
   setCount(c => c + 1);
@@ -179,6 +180,7 @@ Hasta ahora, para lograr este efecto se utilizan técnicas como "debouncing", ah
 
 
 ```javascript
+
 import {startTransition} from 'react';
 
 // Urgente: Mostrar inmediatamente lo que se esta escribiendo

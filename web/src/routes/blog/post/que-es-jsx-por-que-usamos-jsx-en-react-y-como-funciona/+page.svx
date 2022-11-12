@@ -44,12 +44,14 @@ React API.
 La gran (e importante) diferencia es que la API de React acepta props. Un objeto que describe los atributos que este componente u elemento tendrá. En el caso de la API del DOM, si quieres modificar, por ejemplo, el contenido de texto de un elemento harías:
 
 ```javascript
+
 const h1 = document.createElement('h1') h1.textNode = "Este es el título"
 ```
 
 Con la API de React tienes una forma más declarativa:
 
 ```javascript
+
 const h1 = React.createElement('h1', { children: 'Este es el titulo' })
 ```
 
@@ -60,6 +62,7 @@ Es también importante notar que para poder ejecutar React en el browser debes a
 Entonces, crear componentes React es utilizar esta API, ¿imaginas como es escribir componentes anidados de esta forma?
 
 ```javascript
+
 const h1 = React.createElement('h1', { children: 'Este es el titulo' })
 
 const el1 = React.createElement('li',null,'Elemento 1')
@@ -95,6 +98,7 @@ Pero hay una forma de estructurar elementos del DOM que todo desarrollador web c
 
 
 ```javascript
+
 const Contenedor () => (
   <div
     <h1>Este es el titulo</h1>
@@ -131,6 +135,7 @@ Al igual que las funciones aceptan argumentos, un componente React acepta “val
 Recordemos la API cruda de `React.createElement`
 
 ```javascript
+
 React.createElement(type, [props],[...children])
 ```
 
@@ -139,6 +144,7 @@ Lo que esta definición indica es que un componente creado con `React.createElem
 Para escribir lo mismo en JSX y pasar estos valores llamados props, simplemente agregamos “atributos” a la declaración
 
 ```javascript
+
 <Title color="red">Este es el Titulo</Title>
 ```
 
@@ -147,6 +153,7 @@ En este ejemplo `color=“red”` define una **prop** llamada `color` con el val
 Cuando definimos un componente, en realidad estamos creando una función que retorna JSX, para que esta función sea considerada un componente React valido debe aceptar solo un argumento, este único argumento es el que llamamos **props**.
 
 ```javascript
+
 const Title = (props) => {
 	const { color, children } = props 
 	return <h1>{children} - {color}</h1>
@@ -166,6 +173,7 @@ En el ejemplo, abrimos el uso de JSX y usamos las llaves `{}`para determinar que
 Puedes interpolar lo que sea dentro de las llaves `{}` mientras sea javascript válido, solo recuerda que lo que estás haciendo al interpolar dentro de JSX es en realidad creando un nuevo **children** que es el tercer arugmento de `React.createElement`
 
 ```javascript
+
 const Title = (props) => {
 	const { color, children } = props 
 	return <h1>{children} - {color}</h1>

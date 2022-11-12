@@ -6,7 +6,7 @@
 	import PostCard from '$components/PostCard.svelte';
 	import Seo from '$components/Seo.svelte';
 	import NewsletterForm from '$components/NewsletterForm.svelte';
-	import { t, locale } from '$lib/translations';
+	import { t } from '$lib/translations';
 
 	import { Cloudinary } from 'cloudinary-core';
 	import { browser } from '$app/environment';

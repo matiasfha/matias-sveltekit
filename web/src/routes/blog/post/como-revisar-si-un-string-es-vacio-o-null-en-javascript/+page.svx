@@ -21,6 +21,7 @@ Si declaras una variable y le asignas un valor vació `""` y luego la comparas c
 
 
 ```javascript
+
 const str1 = ""
 const str2 = null
 
@@ -43,6 +44,7 @@ Normalmente lo utilizarás en APIs dónde esperas un objeto pero que por alguna 
 Por cierto `null` y `undefined` tampoco son lo mismo!
 
 ```javascript
+
 typeof null        // object (bug en ECMAScript, debería ser null)
 typeof undefined   // undefined
 null === undefined // false
@@ -60,6 +62,7 @@ Ahora, que está claro que `null` y un string vacío no son lo mismo:
 Ya sabes que un string vació es efectivamente eso, un string que no contiene carácteres, para comprobar esto basta con utilizar el operador `===`
 
 ```javascript
+
 const str = "";
 if(str === "") {
   console.log("El string está vacío");
@@ -74,6 +77,7 @@ if(str === "") {
 En efecto, los espacios en blanco `"  "` son caracteres por lo que la comparación no resultará. Esto puede ser fácilmente resuelto al remover estos espacios primero y luego comparar.
 
 ```javascript
+
 const whiteSpaces= "  ";
 if(whiteSpaces.trim() === "") {
   console.log("El string está vacío");
@@ -87,6 +91,7 @@ Un `String` es un objeto, pero comparte algunas propiedades con los arreglos, co
 > Puedes saber más sobre esta propiedad [visitando la documentación de MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/String/length)
 
 ```javascript
+
 const whiteSpaces= "  ";
 if(whiteSpaces.trim().length === 0) {
   console.log("El string está vacío");
@@ -98,6 +103,7 @@ if(whiteSpaces.trim().length === 0) {
 Esto es sencillo, ya que `null` es un valor que una variable puede contener, entonces bastaría con comparar la variable string que tienes con el valor `null`
 
 ```javascript
+
 const nullStr = null;
 if (nullStr === null) {
   console.log("nullStr es null");

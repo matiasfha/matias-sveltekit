@@ -65,7 +65,8 @@ Most browsers currently support these methods well based on information availabl
 
 TLDR; A quick example of what this API can achieve:
 
-```js 
+```js
+ 
 const value = 1234.39;
 const today = new Date("2022-09-07");
 
@@ -103,6 +104,7 @@ It is essential to note that the `locale` argument is received by all constructo
 Browsers offer a method of getting the value of `locale` based on the user's preferences or location.
 
 ```js
+
 const locale = navigator.language
 console.log(locale); // "es-CL"
 ```
@@ -169,6 +171,7 @@ Let's start by formatting dates and times based on different values of `locale`.
 
 For this, you need access to the `DateTimeFormat` constructor.
 ```js
+
 const date = new Date(); //Today's date
 
 // Fecha en formato USA
@@ -219,6 +222,7 @@ You have many options to define the best way to display a date and time in your 
 Let's review some examples.
 
 ```js
+
 const options = {
   year: "2-digit",
   month: "long",
@@ -282,6 +286,7 @@ Using this extensive list of options, you can very likely format a number with e
 Check this quick example.
 
 ```js
+
 function currencyFormatter({ currency, value}) {
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -326,6 +331,7 @@ Even though we kept the same locale, the values returned by the formatting funct
 In case these options don't cover your use-case, you can use another method that is provided by the formatter: `formatToParts`. This method will return an array of objects representing the number as a string in parts so you can use them to customize and solve your particular situation.
 
 ```js
+
 const formatToParts = new Intl.NumberFormat('en-US', {
   currency: 'USD',
   style: 'currency',
@@ -348,6 +354,7 @@ What if you want to show a number like the social networks? Like `1.2K`?
 The `NumberFormat` can solve that.
 
 ```js
+
 // Compact format 
 
 function formatCompact(value) {
@@ -386,6 +393,7 @@ type Options = {
 For this constructor the `format` method accepts a numeric value (*NOT A DATE*) like this
 
 ```js
+
 const formatter = new Intl.RelativeTimeFormat('en-US');
 const monthAgo = formatter.format(-1, 'month') // 1 month ago
 const futureMonth = formatter.format(1, 'month') // in 1 month
@@ -398,6 +406,7 @@ Imagine a list of articles, each article have a publication date, but you don't 
 To accomplish this you'll need to do a little math to get the difference between the two dates and use that result as a relative time value.
 
 ```js
+
 const publicationDate = new Date('2022/01/05')
 
 const currentDate = new Date()
@@ -437,6 +446,7 @@ You can always get around this requirement by writing your copy avoiding the nee
 Let's check an example
 
 ```js
+
 function pluralize(locale, count, singular, plural) {
     const pluralRules = new Intl.PluralRules(locale);
     const numbering = pluralRules.select(count);
@@ -476,6 +486,7 @@ Maybe this example is too naive, since English and Spanish have just two plurali
 > This example has been borrowed from [v8 blog](https://v8.dev/features/intl-pluralrules)
 
 ```js
+
 const suffixes = new Map([
   ['zero',  'cathod'],
   ['one',   'gath'],
@@ -506,6 +517,7 @@ formatWelshCats(42);  // '42 cath'
 This constructor just like the others exposed by *Intl* accepts a second argument to define options. One option is the `type` that allows you to define the selection rule. By default it uses the `cardinal` option. If you want to get the `ordinal` indicator for a number (for example to create a list ) you can accomplish that as follows:
 
 ```js
+
 const pr = new Intl.PluralRules('en-US',{
     type: 'ordinal'
 })
@@ -533,6 +545,7 @@ Displaying a list is one of the most used ways to showcase information in a web 
 To avoid the hassle of implementing this formatting rules by hand - that could be really hard - *Intl* offers the *ListFormat* API.
 
 ```js
+
 function getFormatter(locale = 'en-US') {
   const  lf  = new Intl.ListFormat(locale);
   return lf
@@ -558,6 +571,7 @@ What this formatter does is basically joining an array of string with the correc
 The default way to format is by using a conjunction unless you pass the `type` options as `disjuntion`
 
 ```js
+
 const dlf = new Intl.ListFormat('en-US', { type: 'disjunction'})
 dlf.format(['One'])                         // One
 dlf.format(['One', 'two'])                  // One or two
@@ -575,6 +589,7 @@ The *Intl.Segmenter* constructor offers a locale-sensitive solution to split the
 The most naive and most often used solution to split a string is just using `String.prototype.split`, for example splitting a text by whitespaces `.split(' ')`. But, what happen if the language does not use whitespace between words? The result of the split action will be wrong, to avoid this let's use the *Segmenter* constructor.
 
 ```js
+
 const str = "吾輩は猫である。名前はたぬき。";
 const segmenterJa = new Intl.Segmenter('ja-JP', { granularity: 'word' });
 
@@ -594,6 +609,7 @@ The last constructor to review is the *Intl.Collator*, this constructor enables 
 This constructor is very useful to sort strings that contain extra letters like German or Swedish. Different languages have different sorting rules, let's check a quick example of this
 
 ```js
+
 const letters = ['ä', 'z']
 const listDE = new Intl.Collator('de')
 const listSV = new Intl.Collator('sv')
