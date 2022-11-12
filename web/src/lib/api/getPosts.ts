@@ -31,7 +31,6 @@ export default async function getPosts(lang: string) {
 	for (const [path, resolver] of Object.entries(modules)) {
 		const promise = resolver().then((post) => {
 			const slug = path.slice(12, -10);
-
 			return {
 				slug: slug
 					.normalize('NFD')

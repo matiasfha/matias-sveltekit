@@ -24,5 +24,6 @@
         "title": "Sorry, but this page do not exists",
         "read_more":"Don't worry, here are something to read"
     },
-    "writtenBy": "written by"
+    "writtenBy": "written by",
+    "tableOfContent":"Table of Contents"
 }

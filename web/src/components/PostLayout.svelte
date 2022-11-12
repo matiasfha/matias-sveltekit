@@ -1,6 +1,6 @@
 <script context="module">
 	import { blockquote, h1 } from '$components/typography/index';
-
+	import jsyaml from 'js-yaml';
 	export { blockquote, h1 };
 </script>
 
@@ -13,6 +13,7 @@
 	import Seo from './Seo.svelte';
 	import { Cloudinary } from 'cloudinary-core';
 	import RelativeDateFormat from './RelativeDateFormat.svelte';
+	import { log } from 'console';
 	// Props
 
 	export let banner = '';
@@ -30,6 +31,9 @@
 	export let likes = data?.likes || [];
 	export let retweet = data?.retweet || [];
 	export let lang;
+
+	export let toc;
+	const tocData = JSON.parse(jsyaml.load(toc));
 
 	let currentUrl = '';
 	afterUpdate(() => {
@@ -149,6 +153,17 @@
 					>Yeah! why not</a
 				>
 			{/if}
+
+			<div class="w-full mt-10 text-sm">
+				<h4 class="py-2">{$t('common.tableOfContent')}</h4>
+				<ul class="w-full opacity-75">
+					{#each tocData as item}
+						<li>
+							<a href={`#${item.slug}`}>{item.value}</a>
+						</li>
+					{/each}
+				</ul>
+			</div>
 
 			<ins
 				class="adsbygoogle"
