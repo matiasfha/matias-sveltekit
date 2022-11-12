@@ -599,7 +599,7 @@ console.table(Array.from(segments));
 // etc.
 // ]
 ```
-<small>Example extracted directly from [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter#basic_usage_and_difference_from_string.prototype.split)</small>
+<small>Example extracted directly from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter#basic_usage_and_difference_from_string.prototype.split">MDN documentation</a></small>
 
 
 ### String comparison
