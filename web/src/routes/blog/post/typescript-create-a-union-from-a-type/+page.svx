@@ -36,6 +36,7 @@ So, the use case:
 The goal was to do something like the following snippet.
 
 ```typescript
+
 type State = {
   searchKeyWords: string;
   isSlidingPanelOpen: boolean;
@@ -108,6 +109,7 @@ Let's create a new `Unionize` utility type that will take a generic named `T` th
 This type will iterate over the keys of `T` and map those to a new shape where each key of `T` will hold a new object shape.
 
 ```typescript
+
 /**
  * Create an Union type from an Object type
  * that will use the Object key as `type` entry and the
@@ -121,6 +123,7 @@ type Unionize<T extends object> = {
 Let's use it!!
 
 ```typescript
+
 type State = {
   searchKeyWords: string;
   isSlidingPanelOpen: boolean;

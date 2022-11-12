@@ -45,12 +45,14 @@ La idea del tipado es evitar que utilices un tipo de información o variable par
 El ejemplo muestra como se define una constante llamada \`length\` que está asociada a un número (type Number) pero que después es utilizada como una función. Esto creará un error al momento de ejecutar
 
 ```typescript
+
     TypeError: length is not a function. (In 'length("algun texto")', 'length' is 14)
 ```
 
 Este error es capturado al momento de ejecutar el código javascript. Javascript es un lenguaje de tipado dinámico, es decir, ejecuta la corroboración de tipos en tiempo de ejecución, al igual que Python o Ruby. En cambio, Typescript, es un lenguaje de tipado estático, la comprobación de tipos se hace en tiempo de compilación.
 
 ```typescript
+
     const length = 14 // un número
     console.log(length("algun texto")) // length es usado cómo una función
 ```
@@ -125,6 +127,7 @@ Typescript define varios tipos básicos como: Boolean, Number, String, Array, Ty
   * Union: Equivalente a un “or” Permite a la variable tomar uno de varios tipos
 
 ```typescript
+
           const result: string | undefined = undefined
 ```
 
@@ -165,6 +168,7 @@ Lo único necesario para comenzar es el compilador y un archivo typescript.
 Crea un archivo \`test.ts\`
 
 ```typescript
+
     function delay(milliseconds: number, count: number): Promise<number> {
         return new Promise<number>(resolve => {
                 setTimeout(() => {

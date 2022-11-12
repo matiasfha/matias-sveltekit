@@ -60,6 +60,7 @@ Esta función recibe la llamada POST, obtiene los datos para generar un document
 ```typescript
 
 
+
 export async function POST({ request }: RequestEvent) {
 	const body = await request.json();
 	if (!validateWebhook(request, body)) {

@@ -32,6 +32,7 @@ An array allows you to work with collections of data simply and efficiently.
 In both Javascript and Typescript an array can be initialized just by using `[]` and you can **define its type** in a similar way or by using the generic form `Array<T>`
 
 ```typescript
+
 // An array that can contain any tipe and will be declared empty
 const arr: unknown[] = []
 
@@ -59,6 +60,7 @@ What you will do is create a new type similar to `Array` that allows you to defi
 Let's call this type `NonEmptyArray`.
 
 ```typescript
+
 type NonEmptyArray<T> = [T, ...T[]]
 
 const emptyArr: NonEmptyArray<Item> = [] // error ❌
@@ -79,6 +81,7 @@ So whenever you require, for example, a function parameter to be an array that c
 The only drawback is that you will now require a "type guard" function since simply checking if the `length` property of an array is not 0 will not transform it to type `NonEmptyArray`
 
 ```typescript
+
 function getArr(arr: NonEmptyArray<string>) {
   return arr;
 }
@@ -100,6 +103,7 @@ A "type-guard" function allows you to "help" Typescript correctly infer the type
 It is a simple function that returns a boolean value. If this value is `true` then Typescript will consider the variable evaluated to be one type or another.
 
 ```typescript
+
 // Type Guard
 function isNonEmpty<A>(arr: Array<A>): arr is NonEmptyArray<A>{
     return arr.length > 0
@@ -111,6 +115,7 @@ This function receives a generic array (hence the use of `A`), and checks to see
 This function is marked to return `arr is NonEmptyArray<A>` i.e. that the value of the condition evaluated is `true` Typescript will understand that the parameter to use `arr` is of type `NonEmptyArray`
 
 ```typescript
+
 // Type Guard
 function isNonEmpty<A>(arr: Array<A>): arr is NonEmptyArray<A>{
     return arr.length > 0

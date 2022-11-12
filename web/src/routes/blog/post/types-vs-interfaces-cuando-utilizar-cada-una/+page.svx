@@ -24,6 +24,7 @@ En Typescript puedes definir el tipo de un dato o una función escribiendo su de
 
 
 ```typescript
+
 function get3DCoord(point: { x: number, y:number}):
   {x: number, y: number, z:number} 
 {
@@ -41,6 +42,7 @@ Esta es una forma conveniente de hacer referencia a un tipo más de una vez, com
 
 
 ```typescript
+
 type Point = {
   x: number;
   y: number;
@@ -68,6 +70,7 @@ Otra forma de declarar o definir un nombre para un tipo objeto es utilizar la pa
 
 
 ```typescript
+
 interface Point {
   x: number;
   y: number;
@@ -99,6 +102,7 @@ Lo primero que revisaremos son sus similitudes. Son tan parecidos entre sí que 
 
 
 ```typescript
+
 /* Type Alias */
 
 type SomeData = {
@@ -134,6 +138,7 @@ Extender un tipo es básicamente agregar más características o atributos, en e
 
 
 ```typescript
+
 /* Type Alias */
 
 type SomeData = {
@@ -163,6 +168,7 @@ interface GlobaData extends SomeData {
 Además es posible "mezclar" ambas formas. Una `interface` puede extender un `type` y viceversa, un `type` puede extender una `interface` utilizando el operador intersección `&`
 
 ```typescript
+
 
 type SomeData = {
   id: number | string;
@@ -202,6 +208,7 @@ Y aquí acaban lñas similitudes y comienzan las diferencias, diferencias que se
 ##### Sólo `type` puede crear alias para tipos primitivos, uniones o tuplas:
 
 ```typescript
+
 type MiNumero = number;
 
 type StringOrArray = string | any[]
@@ -218,6 +225,7 @@ Esta característica es cuando el compilador de Typescript mezcla dos o más tip
 
 
 ```typescript
+
 interface Dog {
   name: string;
 }
@@ -251,6 +259,7 @@ Ahora bien, si alguna de las propiedades de las interfaces que se uniran compart
 
 
 ```typescript
+
 interface Dog {
   bark(volume: number);
 }
@@ -278,6 +287,7 @@ Esta funcionalidad es muy utilizada por autores de librerías para proveer a sus
 
 
 ```typescript
+
 /* Esta es MyAwesomeLibrary */
 export interface WithReturn<Data> {
   data: Promise<Data>

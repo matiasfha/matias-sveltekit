@@ -29,7 +29,7 @@ Tienes un componente que representa un gato, y este gato puede estar vivo o muer
 
 
 ```js
-x
+
 function Cat({ isAlive, isDead}) {
   if(isAlive != null && isDead != null) {
     throw 'Ambas props no pueden estar definidas'
@@ -62,6 +62,7 @@ La idea de representar este comportamiento con Typescript es que el equívoco us
 Para lograrlo harás uso de una combinación de propiedades opcionales, el tipo `never` y uniones.
 
 ```typescript
+
 /*
 * Props de un gato vivo
 * Si isAlive está presente entonces isDead no debe estarlo 
@@ -111,6 +112,7 @@ Este component `RealCat` podrá ser instanciado sólo con una de las props, pero
 
 
 ```typescript
+
 const RealApp = () => {
     return <RealCat isAlive />
 }

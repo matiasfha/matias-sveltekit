@@ -36,6 +36,7 @@ Hace un tiempo hice un hilo sobre esto mismo
 La solución es una combinación de distintos tipos de datos y el uso de atributos opcionales y `never` tal como en el siguiente ejemplo ([Link al playground de typescript](https://www.typescriptlang.org/play?#code/C4TwDgpgBA6glsAFgVQM4QE4DsCGBbaAXigG8AoKSqAV3W3wgC4pVgM4sBzAbgqojw44AGwD8zLBABumMgF8yZUJFgJEAUUEioxclRp1cBcVEkyMvfQKHDmrdl14Kl4aPCQBBKTmA4MO0j5KAQB7ACs4EzNMSyocb18MOzYOTnlFZTc1TXC4AL1+PFzkhx4gqHifPyjpWWcM1yg0THyoOAATCWo8ACMWuSgAMigACncUQwYoAB9VJE0bAEoh0fGvKv9Z8ZyIxcUAYxCsVgNMcYA5Bg8sdvXE5mb-XTbOqABGABpT+gJmAHJaJgjBA-l9KvcoH9wX4-lBnIdjsBvtstMJrrcEn4HnRWh1mAAmL7WET-YnCUEVTFJSHQjB-eFHE6AjAXK43HZwbEtZ54qAAZi+zOB-yFDApoQipKKEVhDMRyOyqPRHK5T1IL2YABYiaipTZxdLOZCJXB6QdGUiAO4YI6cR6q3GdACsgsmv0hooIBpsepEBuKxsNZrICJO1ttj3xDp5ztdQIYIrdIJ1Ab+JoptP+tL+AAK5EA))
 
 ```typescript
+
  
 type WithUsername = {
     username: string;
@@ -87,6 +88,7 @@ Esta utilidad te permite construir un tipo de datos donde todas sus propiedades 
 > React.Context es un caso de uso comun en donde el valor inicial del objeto context es desconocido, ergo, opcional.
 
 ```typescript
+
  
 type Data = {
     title: string;
@@ -112,6 +114,7 @@ updateContext(c1, { amount: 10 }) // { amount: 10}
 Al contrario de Partial, Required indica que todas las propiedades del tipo pasado como "argumento" son requeridas.
 
 ```typescript
+
  
 type Data = {
     title?: string;
@@ -132,6 +135,7 @@ const obj2: AlLRequired = { title: 'Title'} // Error!
 Te permite crear un tipo en donde todas las propiedades serán de solo lectura, es decir no se pueden modificar generando el mismo efecto que [congelar un objeto con `Object.freeze`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) pero en tiempo de "compilación" permitiendote encontrar erores antes de llegar al navegador
 
 ```typescript
+
  
 type Data = {
     title: string;
@@ -151,6 +155,7 @@ const obj.title = 'Otro titulo'; // Error, title es de solo lectura
 ## Pick 
 
 ```typescript
+
  
 type Data = {
     title: string;
@@ -168,6 +173,7 @@ const info: OnlyStringData = { title: "Title", description: "description" }
 ## Omit 
 
 ```typescript
+
  
 type Data = {
     title: string;
@@ -185,6 +191,7 @@ const info: OnlyStringData = { title: "Title", description: "description" }
 ## Record 
 
 ```typescript
+
  
 type Data = {
     title: string;
@@ -206,6 +213,7 @@ const sets: Record<DataTypes, Data> = {
 ## Exclude
 
 ```typescript
+
 interface Data1 {
     title: string;
     description: string;
@@ -241,6 +249,7 @@ const obj: Excluded = {
 
 ```typescript
 
+
 interface BaseUser {
   email: string
   image: string | null
@@ -268,6 +277,7 @@ type Shared = Extract<keyof BaseUser, keyof Profile> // 'email' | 'image' | 'use
 ## Parameters 
 
 ```typescript
+
 function someFunction(arg1: string, arg2: number) {
 
 }
@@ -295,6 +305,7 @@ type RestParametersType = Parameters<typeof otherFunction>
 En este caso esta utilidad te permite construir una tupla (o arreglo de tipos) en base a los tipos del constructor de una función.
 
 ```typescript
+
 class someClass {
     constructor({ arg1, arg2}: { arg1: string, arg2?: number[]}) {
 
@@ -315,6 +326,7 @@ Tal como su nombre lo indica, esta utilidad te permite obtener/extraer el tipo d
 
 
 ```typescript
+
 const someFunction = () => {
 
     return {
@@ -337,6 +349,7 @@ type TheReturn = ReturnType<typeof someFunction>
 Te permite crear un tipo consistente en el tipo de la instancia de un constructor
 
 ```typescript
+
 class SomeClass {
     prop = 10
     prop2 = ['strings','string2']
