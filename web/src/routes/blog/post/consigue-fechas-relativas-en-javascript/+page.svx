@@ -35,6 +35,7 @@ Al igual que los otros constructores expuesto por el objeto *Intl*, este constru
 
 
 ```typescript
+
 type Options = {
     localeMatches: 'best fit' | 'lookup',
     numeric: 'always' |'auto'  // The format of the output

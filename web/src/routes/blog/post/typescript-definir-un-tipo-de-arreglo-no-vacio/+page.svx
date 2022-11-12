@@ -43,6 +43,7 @@ Un arreglo permite trabajar con colecciones de datos de forma simple y eficiente
 Tanto en Javascript como en Typescript un arreglo puede ser inicializado tan sólo usando `[]` y puedes **definir su tipo **de similar forma o usando la forma genérica `Array<T>`
 
 ```typescript
+
 // Un arreglo que puede contener cualquier tipo y se inicializa vació
 const arr: unknown[] = []
 
@@ -74,6 +75,7 @@ Lo que harás será crear un nuevo tipo similar a `Array` que te permite definir
 Llamemos a este tipo `NonEmptyArray`.
 
 ```typescript
+
 type NonEmptyArray<T> = [T, ...T[]]
 
 const emptyArr: NonEmptyArray<Item> = [] // error ❌
@@ -100,6 +102,7 @@ El único inconveniente es que ahora requerirás una función "type guard" ya qu
 
 
 ```typescript
+
 function getArr(arr: NonEmptyArray<string>) {
   return arr;
 }
@@ -125,6 +128,7 @@ Se trata de una sencilla función que retorna un valor boolean. Si este valor es
 
 
 ```typescript
+
 // Type Guard
 function isNonEmpty<A>(arr: Array<A>): arr is NonEmptyArray<A>{
     return arr.length > 0
@@ -138,6 +142,7 @@ Esta función esta marcada para retornar `arr is NonEmptyArray<A>`  es decir, qu
 
 
 ```typescript
+
 // Type Guard
 function isNonEmpty<A>(arr: Array<A>): arr is NonEmptyArray<A>{
     return arr.length > 0

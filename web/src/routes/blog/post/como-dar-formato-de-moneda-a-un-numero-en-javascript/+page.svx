@@ -98,6 +98,7 @@ Pero, esto puede ir más allá, el número de opciones es bastante largo permiti
 
 ```typescript
 
+
 type Options = {
     compactDisplay?: "short" | "long"; // Only used when notation is "compact"
     currencyDisplay?: "symbol" | "narrowSymbol" | "code" | "name";
