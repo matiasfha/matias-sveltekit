@@ -37,7 +37,7 @@ El equipo de React provee un[ plugin de eslint ](https://www.npmjs.com/package/e
 
 En general un efecto es una función que ejecuta cierta lógica para sincronizar el estado interno del componente con un estado externo (si, no me canso de repetirlo 🤷‍♂️).
 
-```javascript
+```js
 
 useEffect(() => {
 	fetch("/api/data").then(
@@ -62,7 +62,7 @@ Tu efecto funciona incluso sin declarar la dependencia por que la función/callb
 
 Si miramos el mismo ejemplo anterior, podemos escribirlo sin dependencias o con una lista vacía (lo que indica que se ejecutará sólo una vez)
 
-```javascript
+```js
 
 useEffect(() => {
     	fetch("/api/data").then(

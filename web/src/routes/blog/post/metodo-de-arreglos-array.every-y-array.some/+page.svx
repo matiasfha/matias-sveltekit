@@ -20,7 +20,7 @@ Los arreglos, son una sencilla estructura de datos basada en indices, que podemo
 
 En general un arreglo (`Array`) es representado por una sola variable en donde puedes almacenar múltiples y diferentes elementos.
 
-```javascript
+```js
 
 const array = [1,2,3,'cuatro', { number: 5} ]
 
@@ -42,7 +42,7 @@ Estos métodos son parecidos pero opuestos, ambos retornan un valor booleano `tr
 
 Definamos un arreglo con que trabajar:
 
-```javascript
+```js
 
 const users = [
   {
@@ -79,7 +79,7 @@ Este es un sencillo arreglo de objetos en donde cada objeto contiene 4 propiedad
 
 ### Array.some
 
-```javascript
+```js
 
 
 /***
@@ -124,7 +124,7 @@ En el segundo ejemplo podemos ver dos usos de `Array.every` a modo de verificaci
 
 
 
-```javascript
+```js
 
 /**
  * Array.every

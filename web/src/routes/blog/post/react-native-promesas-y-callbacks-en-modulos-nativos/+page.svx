@@ -39,7 +39,7 @@ Estas son parte esencial de Javascript y han estado presentes desde el inicio de
 Un ejemplo es el uso de `setTimeout`
 
 
-```javascript
+```js
 
 const customSetTimeout = (callback) => {
         setTimeout(() => { //Esta tambien es un callback
@@ -53,7 +53,7 @@ const customSetTimeout = (callback) => {
 ## Promises
 
 Una Promesa es una implementación un poco más robusta para resolver el problema de asincronicidad. En palabras generales, una promesa es “algo que pasará en el futuro”, basicamente es una función que recibe una instrucción de hacer alguna tarea y te responde “Aún no tengo los dato, pero dame tu contacto y cuano tenga los dato de aviso”. ¿Cómo se ve en código?
-```javascript
+```js
 
     fetch('https://someapi.com').then(data => {
         doSomethingWithData(data)
@@ -65,7 +65,7 @@ Una Promesa es una implementación un poco más robusta para resolver el problem
 Para “capturar” esta promesa se utiliza `then` para definir que hacer cuando la promesa retorna “se resuelve” y `catch` para definir que hacer cuando la promesa falla.
 
 Actualmente Javascript ofrece algo de `syntaxis sugar` utilizando `async/await`
-```javascript
+```js
 
     const getData = async () => {
         try {
@@ -100,7 +100,7 @@ O en su version Java
     }
 ```
 Y después simplemente se utiliza en nuestro código Javacript
-```javascript
+```js
 
     const fetchCallback = (data) => {
         doSomethingCool(data)
@@ -159,7 +159,7 @@ O en su version Java
     }
 ```
 Y despues simplemente se utiliza en nuestro código Javacript
-```javascript
+```js
 
     const fetchNativeData = async () => {
         try {

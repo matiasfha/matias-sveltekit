@@ -58,7 +58,7 @@ Ahora bien, estos estados no son expuestos como tal, una promesa es más bien �
 
 Suficiente texto, algo de código
 
-```javascript
+```js
 
 const sleep = time => new Promise((resolve, reject) => setTimeout(resolve, time));
 
@@ -83,7 +83,7 @@ Estas funciones `resolve` y `reject` son funciones pre-definidas por el motor de
 
 Entonces, en el código, nuestra función callback es:
 
-```javascript
+```js
 
 (resolve, reject) => setTimeout(resolve, time)
 ```
@@ -100,7 +100,7 @@ Esta promesa en particular no falla jamas, por lo que podemos reescribirla así
 
 
 
-```javascript
+```js
 
 const sleep = time => new Promise((resolve) => setTimeout(resolve, time));
 ```
@@ -125,7 +125,7 @@ Podemos pensar en la promesa como un enlace entre a función asíncrona encerrad
 
 El método `.then` es el más importante y fundamental, es el que nos permite "leer” el contenido de la caja negra, su sintaxis es
 
-```javascript
+```js
 
 promise.then(
 	function(result) {},
@@ -141,7 +141,7 @@ El segundo argumento, es otra función pero que esta vez se ejecuta cuando la pr
 
 Entonces, ahora podemos modificar nuestro ejemplo utilizando `.then`
 
-```javascript
+```js
 
 const sleep = time => new Promise((resolve, reject) => setTimeout(resolve, time));
 
@@ -169,7 +169,7 @@ Muy similar a como funciona `.finally` en un bloque `try/catch` este ejecutará 
 
 
 
-```javascript
+```js
 
 const sleep = time => new Promise((resolve, reject) => setTimeout(resolve, time));
 
@@ -198,7 +198,7 @@ La [api](https://developer.mozilla.org/es/docs/Web/API/Fetch_API) [`fetch`](htt
 
 
 
-```javascript
+```js
 
 const obtenerDatos = () => {
 	return fetch('/algunaUrl/)

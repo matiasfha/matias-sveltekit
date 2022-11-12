@@ -53,14 +53,14 @@ En este ejemplo podemos ver dos elementos y dos animaciones, una con `timing` y 
 Revisemos el código.
 Lo primero que podemos ver dentro de la definicion de `App` es el uso de `React.useRef()`
 
-```javascript
+```js
 
 const translateAnimationTiming = React.useRef(new Animated.Value(0)).current
 ```
 
 Aquí utilizamos `useRef` para mantener una referencia a un valor sin necesidad de emitir un cambio de estado provocando un re-renderizado del componente, dentro del `ref` creamos un valor para animar utilizando `new Animated.Value(0)` iniciando que el valor inicial será 0, luego definimos la función que iniciará la animación, en este caso es un manejador para el evento click de los botones
 
-```javascript
+```js
 
     const timingAnimation = () => {
         Animated.timing(translateAnimationTiming, {
@@ -77,7 +77,7 @@ Sólo algunos valores pueden ser animados utilizando el driver nativo, tal como 
 
 En este ejemplo también hay otra función que ejecuta la animación utilizando `spring`
 
-```javascript
+```js
 
     const timingAnimation = () => {
         Animated.spring(translateAnimationTiming, {
@@ -96,7 +96,7 @@ Por cierto, en ambos casos se hizo una llamada al método `start()` para iniciar
 
 Otro punto importante del ejemplo es el uso de componentes animados, en este caso `Animated.View` este es un componente ofrecido por la API Animated que tiene el mismo comportamiento y props que el `View` normal, pero contiene la lógica necesaria para efectuar los cambios en los estilos determinados por la función de animación.
 
-```javascript
+```js
 
     <Animated.View
         style={[
@@ -108,7 +108,7 @@ Otro punto importante del ejemplo es el uso de componentes animados, en este cas
 
 La animación es en el fondo, una modificación a alguna propiedad del estilo del componente, en este caso `animatedStyleTiming` que para este ejemplo está definido como
 
-```javascript
+```js
 
     const animatedStyleTiming = {
         transform: [{ translateX: translateAnimationTiming}]
@@ -127,7 +127,7 @@ React Native ofrece varias funciones de aceleración para aplicar en nuestras an
 
 En este pequeño proyecto puedes ver la aplicación de las diferentes funciones de aceleración disponibles
 
-```javascript
+```js
 
     import { Easing } from 'react-native';
     ...
@@ -152,7 +152,7 @@ Vamos un ejemplo y animemos dos propiedades diferentes de dos componentes.
 
 En este ejemplo tenemos dos componentes animados. Un circulo rojo que se mueve hacia la derecha y un circulo azul que “desaparece” cambiando su opacidad, pero solo tenemos la definición de un valor de animación
 
-```javascript
+```js
 
     const animatedValue = react.useRef(new Animated.Value(0)).current
 ```
@@ -160,7 +160,7 @@ En este ejemplo tenemos dos componentes animados. Un circulo rojo que se mueve h
 Valor de animación que comienza en 0 y que manipularemos para que cambie siempre entre valores 0 y 1.
 También se definen dos interpolaciones `translateInterpolation` que genera un mapa de 0 a 0 y 1 a 250. Y `opacityInterpolation` que crea el mapa reverso 0 -> 1, y 1 -> 0. Indicando que cuando el valor de animación sea 0, el valor utilizado por la interpolación será `1`.
 
-```javascript
+```js
 
     const translateInterpolation = animatedValue.interpolate({
       inputRange: [0,1],
@@ -174,7 +174,7 @@ También se definen dos interpolaciones `translateInterpolation` que genera un m
 
 También se modifica la función de animación para indicar que el valor de cambio será `toValue: 1`
 
-```javascript
+```js
 
     const animation = () => {
         animatedValue.setValue(0)

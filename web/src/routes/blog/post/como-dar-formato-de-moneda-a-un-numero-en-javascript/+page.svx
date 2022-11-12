@@ -40,7 +40,7 @@ Cada constructor expone a lo menos un método llamado `format` que recibe el val
 
 Un ejemplo de que puedes lograr con esta API, es convertir un valor a diferentes monedas.
 
-```javascript
+```js
 
 
 function currencyFormatter({ currency, value}) {
@@ -126,7 +126,7 @@ Además, si por alguna razón este set de opciones no cumple con  lo que necesit
 
 Este método retorna un arreglo de objetos que representan el valor numérico como string dividido en partes, así tu puedes manipular como desees el formato.
 
-```javascript
+```js
 
 
 const formatToParts = new Intl.NumberFormat('en-US', {
@@ -147,7 +147,7 @@ const formatToParts = new Intl.NumberFormat('en-US', {
 
 Pero no solo puedes dar formato de moneda a tus números, también puedes modificar la forma en que el número se muestra.
 
-```javascript
+```js
 
 
 function formatCompact(value) {

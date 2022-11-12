@@ -39,7 +39,7 @@ El constructor `DateTimeFormat` recibe como parámetros un string que identifica
 
 
 
-```javascript
+```js
 
 
 const date = new Date(); //la fecha de hoy
@@ -63,7 +63,7 @@ Pero hay más. Puedes utilizar el segundo argumento de `DateTImeFormat` para def
 
 
 
-```javascript
+```js
 
 
 // Utilizando las opciones
@@ -101,7 +101,7 @@ El constructor `DateTimeFormat` acepta una larga lista de opciones
 
 
 
-```javascript
+```js
 
 
 type Options = {

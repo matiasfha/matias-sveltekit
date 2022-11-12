@@ -54,7 +54,7 @@ A la hora de trabajar con **streams** también hay opciones, revisemos algunas
 
 Leer y escribir el contenido del archivo
 
-```javascript
+```js
 
 const fs = require('fs')
 const original = './directorioOriginal/ArchivoOriginal.txt'
@@ -98,7 +98,7 @@ Una vez que se terminó de leer `.on('close')` se eliminar el archivo original u
 
 Una opción más concisa es usar el método `pipe`
 
-```javascript
+```js
 
 const fs = require('fs')
 const original = './directorioOriginal/ArchivoOriginal.txt'
@@ -129,7 +129,7 @@ writeStream.on('finish', () => {
 
 Siguiendo el patrón de "Leer, Copiar, Eliminar", también puedes usar otro métodos de Node.js.
 
-```javascript
+```js
 
 const fs = require('fs')
 const original = './directorioOriginal/ArchivoOriginal.txt'
@@ -180,7 +180,7 @@ Nodejs también ofrece un método para copiar archivos `fs.copyFile` y su contra
 
 
 
-```javascript
+```js
 
 const fs = require('fs')
 const original = './directorioOriginal/ArchivoOriginal.txt'
@@ -217,7 +217,7 @@ Una forma más directa de renombrar archivos es utilizar `fs.renameFile` o su co
 
 Estos método realizan la misma operación: "Leer, escribir, eliminar" pero esconden esta implementación ofreciendo una abstracción más clara de la intención del método: Renombrar.
 
-```javascript
+```js
 
 const fs = require('fs')
 const original = './directorioOriginal/ArchivoOriginal.txt'
@@ -234,7 +234,7 @@ También se puede hacer de forma sincrona o utilizando promesas
 
 
 
-```javascript
+```js
 
 // Sincrona
 const fs = require('fs')
