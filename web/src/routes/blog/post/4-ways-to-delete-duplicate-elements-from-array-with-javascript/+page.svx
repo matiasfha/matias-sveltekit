@@ -1,0 +1,137 @@
+---
+date: 2020-08-10T23:13:59.000-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1597115954/andreas-gucklhorn-Ilpf2eUPpUE-unsplash_n8npgz.jpg
+keywords:
+- Arreglos
+- Array
+- Array.reduce
+- Array.filter
+- Remove duplicates
+- Remover duplicados
+- eliminar duplicados
+- Delete duplicates
+- eliminar duplicados array de objetos
+- Delete duplicate object array
+- Delete duplicate array of objects
+- eliminar repetidos array js
+- Delete repetitive array js
+- Delete repeated array js
+- eliminar duplicados de array javascript
+- Remove duplicate array
+- quitar duplicados
+- Remove duplicate
+- eliminar repetidos js
+- quitar duplicados javascript
+- Remove duplicate javascript
+tag: Javascript
+title: 4 ways to remove duplicate elements in an array with Javascript
+description: Removing duplicate elements from an array is a common task during software development. Javascript offers several ways to do this and your choice depends on the use case.
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@draufsicht?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Andreas Gücklhorn</a> on <a href="https://unsplash.com/collections/9718937/solar?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+favorite: true
+lang: en
+---
+
+Array manipulation is one of the most common and constant tasks when developing an application. Arrays are basic data structures in any program. One of these manipulation tasks is to remove duplicate elements from an array.
+Javascript, by its flexible nature, offers several ways to perform this task and the choice of which one to use depends on both the developer's experience and the use case.
+
+ 
+## **Array.filter**
+
+One of the most direct ways to remove elements from an array is to use `Array.filter`.
+
+Array.filter is an immutable method that returns a new array with the elements that meet the condition implemented by the function used as argument.
+
+Internally, `filter` iterates over the array elements and applies the function argument on each item returning a _boolean value, if the element passes the condition it returns true indicating that it will be added to the new array.
+
+For this case of removing duplicate elements we use as auxiliary method the `Array.indexOf` function. This method returns Array.indexOf returns the first index of the array where a given element is located.
+
+```js
+
+
+  let data = [1,2,6,1,2,5,9,'33','33'];
+
+  let result = data.filter((item,index)=>{
+    return data.indexOf(item) === index;
+  })
+  console.log(result); //[1,2,6,5,9,'33']
+```
+In this case, we can identify a duplicate when the index is not equal to the result of `indexOf`.
+`data.indexOf(item) === index` ,will always return the first occurrence of the `item`.
+
+
+## **Set**
+
+The global object **Set** is a data structure, a collection of values that allows only single values of any type to be stored, including primitive values or references to objects.
+
+It is possible to iterate over the elements in the order of insertion.
+
+```js
+
+
+  let data = [1,2,6,1,2,5,9,'33','33'];
+
+  const dataArr = new Set(data);
+
+  let result = [...dataArr];
+
+  console.log(result); //[1,2,6,5,9,'33']
+```
+
+The case of using **Set** to remove duplicates is quite simple, we create a new **Set** based on the original array using _new Set_.
+
+And finally you can convert the new Set to an array again using spread syntax.
+
+If you are a _"Computer Science Junkie"_ or you are working with large amounts of data it is important to think about the performance of this method. Using **Set** is an `_O(nlogn)_` order method.
+
+## **Reduce**
+
+The `Array.reduce` method can also be used for the same purpose.
+
+`Array.reduce` executes a function on each element of the array and returns a value as a single result. Basically it allows to transform an array to another type of value.
+
+`Array.reduce receives two parameters, a function, called reducer, which has at least two arguments: the accumulator and the current item of the iteration and as a second parameter indicating the initial value in this case an empty array.
+
+```js
+
+
+  let data = [1,2,6,1,2,5,9,'33','33'];
+
+  const result = data.reduce((acc,item)=>{
+    if(!acc.includes(item)){
+      acc.push(item);
+    }
+    return acc;
+  },[])
+
+  console.log(result); //[1,2,6,5,9,'33']
+```
+
+In this case the function used simply checks if the current item is within the result identified by the variable `acc`, if not, it simply adds the value to the accumulator.
+
+## ForEach and other loops.
+
+`Array.forEach` is another way to iterate over the array and as such also allows to remove duplicates but in a more imperative way.
+
+Here it is necessary to use an auxiliary array to store the result of the filtering process.
+
+When iterating over the array a conditional block is used to verify that the item does not already exist within the array of unique values using `Array.includes`, which allows to determine if an element exists or not within the array.
+
+
+```js
+
+
+    let data = [1,2,6,1,2,5,9,'33','33'];
+
+    const result = [];
+    data.forEach((item)=>{
+    	//pushes only unique element
+        if(!uniqueArr.includes(item)){
+    		uniqueArr.push(item);
+    	}
+    })
+    console.log(result); //[1,2,6,5,9,'33']
+```
+
+`Array.forEach` like any other direct iteration method is an imperative form and is of low performance since it requires iterating several times over the same element - `Array.includes` also iterates over the elements - so it is of order `O(n²)`.
+
+In summary, the options for duplicate removal are varied but are based on the same premise. The use of iterations to check whether an element already exists or not, and the use of more complex data structures such as Set.
