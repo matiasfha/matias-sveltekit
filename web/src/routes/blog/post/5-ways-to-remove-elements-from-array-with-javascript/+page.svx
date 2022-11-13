@@ -1,0 +1,165 @@
+---
+date: 2022-02-16T09:13:59.000-03:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1645021246/devin-avery--Ds7O9Y1_80-unsplash_om4abm.jpg
+keywords:
+- Arreglos
+- Array
+- ES6
+- Array.filter
+- Delete 
+- remove 
+- Array.pop 
+- Array.shift 
+- Array.slice
+- egghead
+- lesson
+- tutorial
+- remove elements
+- delete elements
+tag: Javascript
+title: 5 ways to remove eleents from a Javascript array.
+description: Manipulating arrays is an essential and daily task in software development, one such manipulation is removing elements from an array. Javascript offers several ways to do this and your choice depends on the use case.
+bannerCredit: Photo by <a href="https://unsplash.com/@devintavery?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Devin Avery</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+favorite: true
+lang: en
+---
+
+ 
+Javascript is a very flexible language that offers multiple ways to solve a problem.
+
+For example: Remove elements from an array.
+
+You have methods that mutate the array and immutable methods, let's review some
+
+Within the mutable methods you can choose:
+
+`Array.pop`, `Array.shift` and the `delete` operator.
+
+In the case of immutable methods you have:
+
+`Array.slice` and `Array.filter`
+
+## Array.pop
+
+It allows you to remove the last element of an array by changing the size of the original array.
+
+The element being removed is returned unless there are no elements left in the array, in which case you get `undefined`.
+
+```js
+
+const elements  = [1,2,3,'4',5]
+
+const last = elements.pop()
+
+console.log(last) // 5
+
+console.log(elements) // [1,2,3,'4']
+```
+
+## Array.shift 
+
+This is the opposite method of Array.pop, allowing you to remove the first element of an array, returning it for later use. It changes the original array as it "pulls" the element.
+
+```js
+
+const elements  = [1,2,3,'4',5]
+
+const first = elements.shift()
+
+console.log(first) // 1
+
+console.log(elements) // [2,3,'4',5]
+```
+
+
+## The delete operator
+
+This is actually an operator that allows you to remove a property from an object.
+
+Removing an element from the array does not affect the size (length) of the array.
+
+You can see an example [in this playground](https://runjs.co/s/rJaFBHQBc)
+
+```js
+
+const elements = [1,2,3,'4',5]
+
+console.log(elements, elements.length)
+
+delete elements[1]
+
+console.log(elements, elements.length)
+
+```
+## Array.slice 
+
+This method returns a copy of a slice of the array determined by the parameters used in `slice(start, end)` without modifying the original array.
+
+You can check [a demo here](https://runjs.co/s/Gzo4fpLnG)
+
+```js
+
+const elements = [1,2,3,'4',5]
+
+// Get a part of the array from index 0 to 2
+// leaving out index 2
+const piece1 = elements.slice(0, 2)
+
+console.log(piece1)
+// [1,2,]
+
+// Get another part of the array from index 3 to 5
+const piece2 = elements.slice(3,5)
+console.log(piece2)
+// ['4',5]
+
+// join the pieces into a new array
+// using the spread operator
+const newelements = [...piece1, ...piece2]
+console.log(newelements) //[1,2,'4',5]
+
+
+const elements2 = [...elements.slice(0,2), ...elements.slice(3,5)]
+
+let indiceAEliminar = 2
+
+const elements3 = [...elements.slice(0,indiceAEliminar), ...elements.slice(indiceAEliminar+=1, elements.lenght)]
+
+console.log(elements3)
+
+```
+
+## Array.filter
+
+One of the most direct ways to remove elements from an array is to use `Array.filter`
+
+`Array.filter` is an immutable method that returns a new array with the elements that match the condition implemented by the function used as argument.
+
+Internally, `filter` iterates over the elements of the array and applies the argument function to each item, returning a _boolean value. If the element passes the condition, true is returned, indicating that it will be added to the new array.
+
+It is an ideal method to remove elements from an array of objects.
+
+You can see a [demo at this link](https://runjs.co/s/Wjqlbwrs8)
+
+```js
+
+const elements = [
+  {
+    id : 1,
+    name: 'Matias'
+  },
+  {
+    id: 2,
+    name: 'Juan'
+  }
+ ]
+
+const filtered = elements.filter(item => item.name === 'Matias')
+
+console.log(filtered)
+```
+In this case, you use the `item.name === 'Matias'` condition to define what stays in the new array and what doesn't.
+
+## Conclusion
+
+In short, the options to remove elements from an array are varied and always depend on the use case, you have options that modify the original array like `pop` and `shift` and options that create a new array like `slice` and `filter` .

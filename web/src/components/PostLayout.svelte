@@ -154,8 +154,8 @@
 				>
 			{/if}
 
-			<div class="w-full mt-10 text-sm">
-				<h4 class="py-2">{$t('common.tableOfContent')}</h4>
+			<details class="w-full mt-10 text-sm" open>
+				<summary class="text-bold py-2">{$t('common.tableOfContent')}</summary>
 				<ul class="w-full opacity-75">
 					{#each tocData as item}
 						<li>
@@ -163,7 +163,7 @@
 						</li>
 					{/each}
 				</ul>
-			</div>
+			</details>
 
 			<ins
 				class="adsbygoogle"
