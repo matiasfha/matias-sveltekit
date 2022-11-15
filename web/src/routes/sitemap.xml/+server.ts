@@ -9,19 +9,18 @@ const pages = [
 	'articles',
 	'blog',
 	'uses',
-	'es/about',
 	'sponsorships',
-	'es/sponsorships',
 	'topic/react',
 	'topic/typescript',
 	'topic/javascript',
-	'node',
-	'css',
-	'graphql'
+	'topic/node',
+	'topic/css',
+	'topic/graphql'
 ];
 
-export const GET: RequestHandler = async ({ cookies }) => {
-	const posts = await getPosts(cookies.get('lang') ?? 'en');
+export const GET: RequestHandler = async ({ url }) => {
+	const lang = url.searchParams.get('lang') ?? 'en';
+	const posts = await getPosts(lang);
 	const headers = {
 		'Cache-Control': 'max-age=604800 must-revalidate',
 		'Content-Type': 'application/xml'

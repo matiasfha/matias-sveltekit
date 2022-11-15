@@ -2,8 +2,9 @@ import type { RequestHandler } from './$types';
 import getPosts from '$lib/api/getPosts';
 import { Feed } from 'feed';
 
-export const GET: RequestHandler = async ({ cookies }) => {
-	const posts = await getPosts(cookies.get('lang') ?? 'es');
+export const GET: RequestHandler = async ({ url }) => {
+	const lang = url.searchParams.get('lang') ?? 'es';
+	const posts = await getPosts(lang);
 	const baseUrl = 'https://matiashernandez.dev';
 	const feed = new Feed({
 		title: 'Matias Hernández',

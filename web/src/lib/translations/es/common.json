@@ -25,5 +25,18 @@
         "read_more":"No te preocupes, aquí hay algo para leer"
     },
     "writtenBy": "escrito por",
-    "tableOfContent": "Table de contenidos"
+    "tableOfContent": "Table de contenidos",
+    "join_now":"Únete hoy",
+    "post":{
+        "footer_title": "😃 Gracias por leer!",
+        "footer_body":"Te pareció interesante? Encuentra más contenido similar uniendote al <a class=\"underlined\" href=\"https://matiashernandez.dev/newsletter\">Newsletter</a> o siguiendome en <a class=\"underlined\" href=\"https://twitter.com/matiasfha\" target=\"_blank\" rel=\"noreferrer\">Twitter</a>.",
+        "footer_edit":"Edita esto en github",
+        "webmentions":{
+            "title":"Sigue la conversación en Twitter",
+            "share": "Comparte en Twitter",
+            "likes": "han dado Like",
+            "retweet":"han hecho RT"
+        },
+        "keep_reading": "Continúa leyendo"
+    }
 }
