@@ -25,5 +25,18 @@
         "read_more":"Don't worry, here are something to read"
     },
     "writtenBy": "written by",
-    "tableOfContent":"Table of Contents"
+    "tableOfContent":"Table of Contents",
+    "join_now":"Join today!",
+    "post":{
+        "footer_title": "😃  Thanks for reading! ",
+        "footer_body":"Did you like the content? Found more content like this by joining to the <a class=\"underlined\" href=\"https://matiashernandez.dev/newsletter\">Newsletter</a> or following me on <a class=\"underlined\" href=\"https://twitter.com/matiasfha\" rel=\"noreferrer\">Twitter</a>",
+        "footer_edit":"Edit this on github",
+        "webmentions":{
+            "title":"Follow the conversation on Twitter",
+            "share": "Share on Twitter",
+            "likes": "have liked",
+            "retweet":"they have RT"
+        },
+        "keep_reading": "Keep reading"
+    }
 }

@@ -13,7 +13,8 @@
 	import Seo from './Seo.svelte';
 	import { Cloudinary } from 'cloudinary-core';
 	import RelativeDateFormat from './RelativeDateFormat.svelte';
-	import { log } from 'console';
+	import About from './ContactTabs/About.svelte';
+
 	// Props
 
 	export let banner = '';
@@ -48,6 +49,7 @@
 			adsbygoogle = (window.adsbygoogle || []).push({});
 		}
 	});
+	const newsletterId = lang === 'es' ? 'c4r8t8' : 'h7k7g0';
 </script>
 
 <svelte:head>
@@ -110,49 +112,45 @@
 				</figcaption>
 			</figure>
 			<div class="w-full border-t dark:border-ebony-clay-400 border-gray-500 inset-1" />
-			{#if lang === 'es'}
-				<p class="text-xs lg:text-md">
+			<p class="text-xs lg:text-md">
+				{#if lang === 'es'}
 					Hola!. Comparto este tipo de posts de forma regular y puedes manterte al día si te unes a
 					mi newsletter. <strong class="text-xs lg:text-md"
 						>Únete para recibir lo mejor de mi contenido directamente en tu inbox.</strong
 					>
-				</p>
-
-				<form
-					class="flex flex-col justify-between mx-auto mt-4 items-center w-full"
-					action="https://static.mailerlite.com/webforms/submit/c4r8t8"
-					data-code="c4r8t8"
-					method="post"
-					target="_blank"
-				>
-					<input type="hidden" name="ml-submit" value="1" />
-					<input type="hidden" name="anticsrf" value="true" />
-					<input
-						type="text"
-						name="fields[email]"
-						placeholder="Tu email"
-						class="px-4 font-medium text-sm rounded-md w-full "
-						autocomplete="email"
-					/>
-					<button
-						type="submit"
-						class="rounded-md text-sm font-bold text-[#6366F1] dark:text-yellow-300 py-1 border boder-[#6366F1] dark:border-yellow-300 text-center mt-4 w-full "
-						>Me encantaría</button
+				{:else}
+					Hello!. I share these types of posts on a regular basis and you can stay up to date if you
+					join my newsletter <strong class="text-xs lg:text-md"
+						>Join to receive the best of my content directly in your inbox.</strong
 					>
-				</form>
-			{/if}
-
-			{#if lang === 'en'}
-				<p class="text-xs lg:text-md">
-					Hi!, I share this type of content in a regluar basis. You can keep up to date with the
-					content <strong class="text-xs lg:text-md">by following me on Twitter</strong>
-				</p>
-				<a
-					href="https://twitter.com/matiasfha"
+				{/if}
+			</p>
+			<form
+				class="flex flex-col justify-between mx-auto mt-4 items-center w-full"
+				action={`https://static.mailerlite.com/webforms/submit/${newsletterId}`}
+				data-code={newsletterId}
+				method="post"
+				target="_blank"
+			>
+				<input type="hidden" name="ml-submit" value="1" />
+				<input type="hidden" name="anticsrf" value="true" />
+				<input
+					type="text"
+					name="fields[email]"
+					placeholder="Email"
+					class="px-4 font-medium text-sm rounded-md w-full "
+					autocomplete="email"
+				/>
+				<button
+					type="submit"
 					class="rounded-md text-sm font-bold text-[#6366F1] dark:text-yellow-300 py-1 border boder-[#6366F1] dark:border-yellow-300 text-center mt-4 w-full "
-					>Yeah! why not</a
-				>
-			{/if}
+					>{#if lang == 'es'}
+						Me encantaría
+					{:else}
+						I would love to!
+					{/if}
+				</button>
+			</form>
 
 			<details class="w-full mt-10 text-sm" open>
 				<summary class="text-bold py-2">{$t('common.tableOfContent')}</summary>
@@ -181,25 +179,15 @@
 
 			<div class="flex flex-col mt-20 pb-10 border-b border-t border-gray-500 border-collapse">
 				<div>
-					<h3>😃 Gracias por leer!</h3>
+					<h3>{$t('common.post.footer_title')}</h3>
 					<p>
-						Te pareció interesante? Encuentra más contenido similar uniendote al <a
-							class="underlined"
-							href="https://matiashernandez.dev/newsletter">Newsletter</a
-						>
-						o siguiendome en
-						<a
-							class="underlined"
-							href="https://twitter.com/matiasfha"
-							target="_blank"
-							rel="noreferrer">Twitter</a
-						>.
+						{@html $t('common.post.footer_body')}
 					</p>
 				</div>
 				<a
 					class="underlined self-end"
 					href={`https://github.com/matiasfha/matias-sveltekit/edit/main/web/${filepath}`}
-					>⚙️ Edita en github</a
+					>⚙️ {$t('common.post.footer_edit')}</a
 				>
 			</div>
 
@@ -207,7 +195,7 @@
 				<section
 					class="md:mt-10 py-6 px-4 mx-auto mb-20 rounded-xl w-full border border-gray-400 flex flex-col gap-4"
 				>
-					<span class="text-lg dark:text-gray-100">Sigue la conversación en Twitter</span>
+					<span class="text-lg dark:text-gray-100">{$t('common.post.webmentions.title')}</span>
 
 					<a
 						href={`https://twitter.com/intent/tweet/?text=Te%20invito%20a%20leer%20este%20buen%20artículo&url=${currentUrl}/&via=matiafsha`}
@@ -229,14 +217,15 @@
 							><path
 								d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
 							/>
-						</svg> Comparte en Twitter
+						</svg>
+						{$t('common.post.webmentions.share')}
 					</a>
 
 					{#if likes.length > 0}
 						<div class="flex -space-x-4">
 							<span
 								class="px-2 rounded-full text-gray-700 flex items-center h-8 text-xs mr-6 bg-gray-300"
-								>han dado Like ❤️
+								>{$t('common.post.webmentions.likes')} ❤️
 							</span>
 							{#each likes as entry}
 								<a href={entry.author.url}>
@@ -260,7 +249,7 @@
 						<div class="flex -space-x-4">
 							<span
 								class="px-2 rounded-full text-gray-700 flex items-center h-8 text-xs mr-6 bg-gray-300"
-								>han hecho RT</span
+								>{$t('common.post.webmentions.retweet')}</span
 							>
 							{#each retweet as entry}
 								<a href={entry.author.url}>
@@ -295,7 +284,7 @@
 			</div>
 			{#if similarPosts.length > 0}
 				<section class="prose prose-lg dark:prose-dark mx-auto mt-20">
-					<h3>📖 Continúa leyendo</h3>
+					<h3>📖 {$t('common.post.keep_reading')}</h3>
 					<div class={`grid gap-2 grid-cols-1 md:grid-cols-${similarPosts.length}`}>
 						{#each similarPosts as post}
 							<div class="flex flex-col">
