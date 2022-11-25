@@ -1,0 +1,73 @@
+---
+date: 2022-11-24T12:30:48Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/8e16d097ccead459adae5545681fe7d8859b49a5-1280x710.png
+keywords: 
+- Typescript
+- keyof
+- keyof operator
+- Typescript keyof
+- Typescript mapped types
+- mapped types
+- keyof constraint
+title: "Typescript: The keyof operator"
+description: "A few primary concepts around Typescript help you build complex data shapes. One of that building blocks is the keyof operator."
+bannerCredit: undefined
+lang: en
+---
+A few primary concepts around Typescript help you build complex data shapes. One of that building blocks is the keyof operator.
+
+  
+This operator or keyword is the Typescript's anwser to the javascript `Object.keys` operator.
+
+  
+`Object.keys` returns a list of the properties (the keys) of an object. `keyof` do something similar but in the typed world only. It will return a literal union type listing the "properties" of an object-like type.
+
+  
+This operator is the base building block for advanced typing like mapped and conditional types.
+
+
+
+> The keyof operator takes an object type and produces a string or numeric literal union of its keys. - [Typescript Handbook](https://www.typescriptlang.org/docs/handbook/2/keyof-types.html)
+
+```typescript
+
+type Colors = {
+    primary: '#eee',
+    primaryBorder: '#444',
+    secondary: '#007bff'
+    black: '#000',
+    white: '#fff',
+    whiteBorder: '#f2f2f7',
+    green: '#53C497',
+    darkGreen: '#43A17C',
+    infoGreen: '#23AEB7',
+    pastelLightGreen: '#F3FEFF',
+}
+
+type ColorKeys = keyof Colors; // "primary" | "primaryBorder" | "secondary" ....
+
+function SomeComponent({ color }: { color: ColorKeys }) {
+  return "Something"
+}
+
+SomeComponent({ color: "WhateverColor"})
+
+SomeComponent({ color: "primary"})
+```
+
+The previous code sample is an snippet from a real web app. The `Colors` type describes a set of colors that can be used across the application.
+
+  
+The `keyof` operator is applied to the `Colors` type to retrieve a literal union of all the possible colors.  
+
+
+> Literal union means that is a Union type made up of literal values like "primary" | "primaryBorder"
+
+  
+The union is then used to type the props of `SomeComponent`, allowing the `color` argument to be one of the colors defined in the type.
+
+  
+You can also use the `keyof` operator to build up more complex types or constraints alongside Generics and template literals, but that will be for another post.
+
+  
+There you go; the `keyof` operator can be small but is an essential piece in the big scheme that unlocks powerful operations when used in the right place.

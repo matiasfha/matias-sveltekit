@@ -110,7 +110,7 @@ export async function GET() {
 
 			//if (deploy.isReady) {
 			await repost();
-			return new Response('Post and repost created', {
+			return new Response(markdown, {
 				status: 200
 			});
 		} catch (e) {
