@@ -24,7 +24,7 @@ const Post = z.lazy(() =>
 
 export const Posts = z.array(Post);
 
-export default async function getPosts(lang: string) {
+export default async function getPosts(lang?: string) {
 	let modules = import.meta.glob(`../../routes/blog/post/**/+page.svx`);
 
 	const postPromises = [];
@@ -46,17 +46,18 @@ export default async function getPosts(lang: string) {
 
 	const res = await Promise.all(postPromises).then((p) => Posts.parse(p));
 
-	const posts = res
-		.filter((item) => item.lang === lang)
-		.sort((a, b) => {
-			const aDate = new Date(a.date).getTime();
-			const bDate = new Date(b.date).getTime();
-			return aDate < bDate ? 1 : -1;
-		});
+	const posts = res.sort((a, b) => {
+		const aDate = new Date(a.date).getTime();
+		const bDate = new Date(b.date).getTime();
+		return aDate < bDate ? 1 : -1;
+	});
+	if (lang) {
+		return posts.filter((item) => item.lang === lang);
+	}
 	return posts;
 }
 
-export async function getLatestPost(lang: string) {
+export async function getLatestPost(lang?: string) {
 	const posts = await getPosts(lang);
 
 	return posts[0];

@@ -7,25 +7,26 @@
 	import ContentCard from '$components/ContentCard.svelte';
 	import NewsletterForm from '$components/NewsletterForm.svelte';
 	import { t } from '$lib/translations';
-    import { page } from '$app/stores';
-	
+	import { page } from '$app/stores';
+
 	import type { Course, Post } from '$lib/types';
 
-	import { Cloudinary } from 'cloudinary-core'
+	import { Cloudinary } from 'cloudinary-core';
 	import { browser } from '$app/environment';
 	import { afterUpdate } from 'svelte';
-	
+
 	afterUpdate(() => {
-		if(browser) {
+		if (browser) {
 			const cl = Cloudinary.new({ cloud_name: 'matiasfha' });
-			cl.responsive()
+			cl.responsive();
 		}
-	})
-		
-	
+	});
+
 	let searchItem: string;
-    let currentTag = $page.params.tag.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
-	
+	let currentTag = $page.params.tag.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+		letter.toUpperCase()
+	);
+
 	$: filteredPosts = searchItem
 		? data.posts.filter((item: Post) => {
 				const title = item.title?.toLowerCase() ?? '';
@@ -35,14 +36,14 @@
 				);
 		  })
 		: data.posts;
-	
+
 	$: filteredCourses = searchItem
 		? data.courses.filter((item: Course) => {
 				const title = item.title?.toLowerCase() ?? '';
 				return title.includes(searchItem.toLowerCase());
 		  })
 		: data.courses;
-	
+
 	$: filteredArticles = searchItem
 		? data.articles.filter((item) => {
 				const title = item.title?.toLowerCase() ?? '';
@@ -52,11 +53,13 @@
 				);
 		  })
 		: data.articles;
-	
 </script>
 
-<Seo title={`All about ${currentTag}`} description={`All about ${currentTag}`} canonical="https://matiashernandez.dev/blog" 
-keywords={[`Aprende ${currentTag}`, currentTag, `Learn ${currentTag}`]}
+<Seo
+	title={`All about ${currentTag}`}
+	description={`All about ${currentTag}`}
+	canonical="https://matiashernandez.dev/blog"
+	keywords={[`Aprende ${currentTag}`, currentTag, `Learn ${currentTag}`]}
 />
 
 <header
@@ -70,7 +73,8 @@ keywords={[`Aprende ${currentTag}`, currentTag, `Learn ${currentTag}`]}
 		<p
 			class="text-left text-gray-100 font-body leading-tight text-lg max-w-4xl z-10 hidden md:block flex-grow m-0"
 		>
-			{$t('common.all_about')} {currentTag}
+			{$t('common.all_about')}
+			{currentTag}
 		</p>
 		<h4
 			class="text-left text-gray-100 font-body leading-tight text-sm self-end absolute bottom-2 left-2 md:left-auto"
@@ -90,8 +94,6 @@ keywords={[`Aprende ${currentTag}`, currentTag, `Learn ${currentTag}`]}
 
 <NewsletterForm />
 
-
-
 <div class="flex flex-row mt-12">
 	<input
 		type="text"
@@ -102,41 +104,41 @@ keywords={[`Aprende ${currentTag}`, currentTag, `Learn ${currentTag}`]}
 	/>
 </div>
 {#if filteredCourses.length > 0}
-<section class="mt-24 pb-12 border-b border-ebony-clay-500 border-solid dark:border-gray-200">
-	<h2 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">
-		{$t('common.courses')}
-	</h2>
-	<div class="grid md:grid-cols-3 grid-cols-1 md:gap-16 gap-20">
-		{#each filteredCourses as item}
-			<div class="group peer flex flex-col ">
-				<div class="md:mb-4 mb-2 ">
-					<a class="relative block w-full focus:outline-none " href={`${item.url}?af=4cexzz`}
-						><div
-							class="aspect-w-2 aspect-h-1 w-full rounded-lg focus:ring transition group-hover:ring-2 ring-yellow-50 ring-offset-2"
-						>
-							<img
-								alt={item.title}
-								class="rounded-lg object-cover"
-								src={`${item.image}`}
-								loading="lazy"
-								width="220"
-							/>
-						</div>
+	<section class="mt-24 pb-12 border-b border-ebony-clay-500 border-solid dark:border-gray-200">
+		<h2 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">
+			{$t('common.courses')}
+		</h2>
+		<div class="grid md:grid-cols-3 grid-cols-1 md:gap-16 gap-20">
+			{#each filteredCourses as item}
+				<div class="group peer flex flex-col ">
+					<div class="md:mb-4 mb-2 ">
+						<a class="relative block w-full focus:outline-none " href={`${item.url}?af=4cexzz`}
+							><div
+								class="aspect-w-2 aspect-h-1 w-full rounded-lg focus:ring transition group-hover:ring-2 ring-yellow-50 ring-offset-2"
+							>
+								<img
+									alt={item.title}
+									class="rounded-lg object-cover"
+									src={`${item.image}`}
+									loading="lazy"
+									width="220"
+								/>
+							</div>
 
-						<div
-							class="mt-8 text-ebony-clay-800 text-md font-medium capitalize text-body py-1 px-2 rounded bg-green-400 inline-block w-[max-content]"
+							<div
+								class="mt-8 text-ebony-clay-800 text-md font-medium capitalize text-body py-1 px-2 rounded bg-green-400 inline-block w-[max-content]"
+							>
+								{item.type}
+							</div>
+							<div class="text-2xl font-medium md:text-3xl text-black dark:text-white mt-4">
+								{item.title}
+							</div></a
 						>
-							{item.access_state}
-						</div>
-						<div class="text-2xl font-medium md:text-3xl text-black dark:text-white mt-4">
-							{item.title}
-						</div></a
-					>
+					</div>
 				</div>
-			</div>
-		{/each}
-	</div>
-</section>
+			{/each}
+		</div>
+	</section>
 {/if}
 
 <section class="mt-12 pb-12 border-b border-ebony-clay-500 border-solid dark:border-gray-200">

@@ -31,9 +31,7 @@ export async function validateWebhook(request: Request, body: Request['body']) {
 }
 
 export async function getLastPostMarkdown() {
-	console.log('*[_type == "posts"] | order(_createdAt desc)[0]');
 	const post = await client.fetch('*[_type == "posts"] | order(_createdAt desc)[0]');
-	console.log(post);
 	const markdown = generateMarkdown({
 		date: post._createdAt,
 		banner: builder.image(post.banner.asset._ref).url(),

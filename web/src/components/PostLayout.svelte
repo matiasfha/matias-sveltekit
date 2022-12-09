@@ -101,6 +101,9 @@
 		<aside
 			class="relative lg:sticky flex flex-col w-full md:w-64 grow-0 shrink top-8 lg:top-12 mb-8 mx-auto items-center prose dark:prose-dark dark:text-gray-300 text-ebony-clay-800 "
 		>
+			<!-- Ezoic - sidebar - sidebar -->
+			<div id="ezoic-pub-ad-placeholder-102" />
+			<!-- End Ezoic - sidebar - sidebar -->
 			<figure class="flex flex-col items-center mb-2">
 				<img
 					class="object-contain rounded-full w-[130px]"
@@ -162,19 +165,26 @@
 					{/each}
 				</ul>
 			</details>
-
-			<ins
-				class="adsbygoogle"
-				style="display:block; text-align:center; margin-top: 120px"
-				data-ad-layout="in-article"
-				data-ad-format="fluid"
-				data-ad-client="ca-pub-8352667732450998"
-				data-ad-slot="2293002483"
-			/>
+			<!-- Ezoic - sidebar_bottom - sidebar_bottom -->
+			<div id="ezoic-pub-ad-placeholder-103" />
+			<!-- End Ezoic - sidebar_bottom - sidebar_bottom -->
+			<div id="ezoic-pub-ad-placeholder-101">
+				<ins
+					class="adsbygoogle"
+					style="display:block; text-align:center; margin-top: 120px"
+					data-ad-layout="in-article"
+					data-ad-format="fluid"
+					data-ad-client="ca-pub-8352667732450998"
+					data-ad-slot="2293002483"
+				/>
+			</div>
 		</aside>
 		<article
 			class="dark:text-gray-300 text-ebony-clay-800 pb-4 pt-12 mx-auto prose prose-lg dark:prose-dark prose-a:whitespace-pre-line e-content px-4 grow shrink basis-[686px]"
 		>
+			<!-- Ezoic - incontent_5 - incontent_5 -->
+			<div id="ezoic-pub-ad-placeholder-106" />
+			<!-- End Ezoic - incontent_5 - incontent_5 -->
 			<slot />
 
 			<div class="flex flex-col mt-20 pb-10 border-b border-t border-gray-500 border-collapse">
@@ -190,7 +200,9 @@
 					>⚙️ {$t('common.post.footer_edit')}</a
 				>
 			</div>
-
+			<!-- Ezoic - mid_content - mid_content -->
+			<div id="ezoic-pub-ad-placeholder-105" />
+			<!-- End Ezoic - mid_content - mid_content -->
 			{#if likes.length || retweet.length}
 				<section
 					class="md:mt-10 py-6 px-4 mx-auto mb-20 rounded-xl w-full border border-gray-400 flex flex-col gap-4"
@@ -273,14 +285,16 @@
 			{/if}
 
 			<div class="mx-auto prose prose-lg mt-20">
-				<ins
-					class="adsbygoogle"
-					style="display:block; text-align:center;"
-					data-ad-layout="in-article"
-					data-ad-format="fluid"
-					data-ad-client="ca-pub-8352667732450998"
-					data-ad-slot="1950272341"
-				/>
+				<div id="ezoic-pub-ad-placeholder-101">
+					<ins
+						class="adsbygoogle"
+						style="display:block; text-align:center;"
+						data-ad-layout="in-article"
+						data-ad-format="fluid"
+						data-ad-client="ca-pub-8352667732450998"
+						data-ad-slot="1950272341"
+					/>
+				</div>
 			</div>
 			{#if similarPosts.length > 0}
 				<section class="prose prose-lg dark:prose-dark mx-auto mt-20">
@@ -315,6 +329,9 @@
 					</div>
 				</section>
 			{/if}
+			<!-- Ezoic - bottom_of_page - bottom_of_page -->
+			<div id="ezoic-pub-ad-placeholder-104" />
+			<!-- End Ezoic - bottom_of_page - bottom_of_page -->
 		</article>
 	</main>
 	<!-- </article> -->

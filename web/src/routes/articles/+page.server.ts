@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types';
 import getArticles from '$lib/api/getAllExternalArticles';
 export const load: PageServerLoad = async ({ cookies }) => {
-	const lang = cookies.get('lang') ?? 'en';
+	const lang = cookies.get('lang');
 	try {
 		const articles = await getArticles(lang);
 		return {

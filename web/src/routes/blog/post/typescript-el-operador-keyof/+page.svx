@@ -1,0 +1,67 @@
+---
+date: 2022-11-25T12:36:43Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/ae5fd1ba135ac11917afd2a43c86e7389ad137c8-1280x710.png
+keywords: 
+- Typescript
+- keyof
+- keyof operator
+- Typescript keyof
+- Typescript mapped types
+- mapped types
+- keyof constraint
+title: "Typescript: El operador keyof"
+description: "Algunos conceptos básicos de TypeScript lo ayudan a crear formularios de datos complejos. Uno de esos bloques de construcción es el operador keyof."
+bannerCredit: undefined
+lang: es
+
+---
+Algunos conceptos básicos sobre TypeScript te ayudarán a crear y manipular formas de datos más complejas. Uno de esos bloques de construcción es el operador `keyof`.
+
+Este operador o palabra clave es la respuesta de Typescript al operador javascript `Object.keys`.
+
+
+
+`Object.keys` devuelve una lista de las propiedades (las claves) de un objeto. `keyof` hace algo similar pero solo en el mundo de los tipos. Devolverá un tipo de unión literal que enumera las "propiedades" de un tipo similar a un objeto.
+
+Este operador es el componente básico para la escritura avanzada, como los tipos asignados/mapeados y condicionales.
+
+> El operador keyof toma un tipo de objeto y produce una cadena o unión literal numérica de sus claves. - [Manual de Typescript](https://www.typescriptlang.org/docs/handbook/2/keyof-types.html)
+
+
+
+```typescript
+type Colors = {
+    primary: '#eee',
+    primaryBorder: '#444',
+    secondary: '#007bff'
+    black: '#000',
+    white: '#fff',
+    whiteBorder: '#f2f2f7',
+    green: '#53C497',
+    darkGreen: '#43A17C',
+    infoGreen: '#23AEB7',
+    pastelLightGreen: '#F3FEFF',
+}
+
+type ColorKeys = keyof Colors; // "primary" | "primaryBorder" | "secondary" ....
+
+function SomeComponent({ color }: { color: ColorKeys }) {
+  return "Something"
+}
+
+SomeComponent({ color: "WhateverColor"})
+
+SomeComponent({ color: "primary"})
+```
+
+El ejemplo de código anterior es un fragmento de una aplicación web real. El tipo `Colors` describe un conjunto de colores que se pueden usar en toda la aplicación.
+
+El operador `keyof` se aplica al tipo `Colors` para recuperar una unión literal de todos los colores posibles.
+
+> Unión literal significa que es un tipo de unión formado por valores literales como "primario" | "secundario"
+
+Luego, la unión se usa para describir las props de `SomeComponent`, lo que permite que el argumento `color` sea uno de los colores definidos en el tipo.
+
+También puede usar el operador `keyof` para crear tipos o restricciones más complejos junto con genéricos y literales de plantilla, pero eso será para otra publicación.
+
+Ahí tienes; el operador `keyof` puede ser pequeño, pero es una pieza esencial en el gran esquema que desbloquea operaciones poderosas cuando se usa en el lugar correcto.

@@ -17,11 +17,18 @@ const Article = z.object({
 
 export const Articles = z.array(Article);
 
-const getQuery = (lang: string) =>
-	`*[_type == "external-articles" && language match "${lang}"] | order(_createdAt desc){
-		url, title, image, published_at, tag, featured, description
-	}`;
-export default async function getArticles(lang: string) {
+const getQuery = (lang?: string) => {
+	if (lang) {
+		return `*[_type == "external-articles" && language match "${lang}"] | order(_createdAt desc){
+			url, title, image, published_at, tag, featured, description
+		}`;
+	} else {
+		return `*[_type == "external-articles"] | order(_createdAt desc){
+			url, title, image, published_at, tag, featured, description
+		}`;
+	}
+};
+export default async function getArticles(lang?: string) {
 	try {
 		const articles = await client.fetch(getQuery(lang)).then((result) => {
 			return Articles.parse(result);
@@ -39,7 +46,7 @@ export default async function getArticles(lang: string) {
 	}
 }
 
-export async function getLatestArticle(lang: string) {
+export async function getLatestArticle(lang?: string) {
 	const query = getQuery(lang);
 	const article = await client.fetch(`${query}[0]`).then((result) => Article.parse(result));
 	return { ...article, image: builder.image(article.image).url() };

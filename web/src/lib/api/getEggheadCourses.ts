@@ -21,15 +21,18 @@ const Course = z.object({
 
 export const Courses = z.array(Course);
 
-function getQuery(lang: string) {
-	return `*[_type == "egghead-courses" && language match "${lang}"] | order(updated_at desc)`;
+function getQuery(lang?: string) {
+	if (lang) {
+		return `*[_type == "egghead-courses" && language match "${lang}"] | order(updated_at desc)`;
+	}
+	return `*[_type == "egghead-courses"] | order(updated_at desc)`;
 }
 
 const projection = `{
 	image, title, category, language, updated_at, type, featured, url, description
   }`;
 
-export default async function getCourses(lang: string) {
+export default async function getCourses(lang?: string) {
 	const courses = await client.fetch(`${getQuery(lang)}${projection}`).then((result) => {
 		return Courses.parse(result);
 	});
@@ -41,7 +44,7 @@ export default async function getCourses(lang: string) {
 	});
 }
 
-export async function getLatestCourse(lang: string) {
+export async function getLatestCourse(lang?: string) {
 	const course = await client.fetch(`${getQuery(lang)}[0]${projection}`).then((result) => {
 		return Course.parse(result);
 	});

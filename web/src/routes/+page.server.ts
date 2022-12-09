@@ -7,7 +7,7 @@ import getFavorites from '$lib/api/getFavorites';
 import { locale } from '$lib/translations';
 import { redirect } from '@sveltejs/kit';
 
-async function getLatestContent(lang: string) {
+async function getLatestContent(lang?: string) {
 	try {
 		const post = await getLatestPost(lang);
 
@@ -77,7 +77,7 @@ async function getLatestContent(lang: string) {
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	try {
-		const lang = cookies.get('lang') ?? 'en';
+		const lang = cookies.get('lang');
 		const latest = await getLatestContent(lang);
 		const favorites = await getFavorites(lang);
 		const featured = (await getCourses(lang)).find((item) => item.featured);

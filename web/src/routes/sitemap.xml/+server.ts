@@ -19,7 +19,7 @@ const pages = [
 ];
 
 export const GET: RequestHandler = async ({ url }) => {
-	const lang = url.searchParams.get('lang') ?? 'en';
+	const lang = undefined;
 	const posts = await getPosts(lang);
 	const headers = {
 		'Cache-Control': 'max-age=604800 must-revalidate',
