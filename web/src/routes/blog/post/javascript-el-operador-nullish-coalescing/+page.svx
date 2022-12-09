@@ -1,0 +1,79 @@
+
+---
+date: 2022-12-09T09:57:03Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/2b2112f53a26578255723e15a6eaf361a04c3d82-1280x710.png
+keywords: 
+- Javascript
+- Typescript
+- Nullish-Coalescing
+- Nullish coalescing
+- fusion nula
+- operador
+title: "Javascript: El operador nullish-coalescing"
+description: "Javascript evoluciona año a año y nuevas características son añadidas y adoptados rápidamente. Una de estas características es el operador fusión nula o nullish coalescing, que permite crear nuevas operaciones al escribir tu código."
+bannerCredit: undefined
+
+---
+## Nullish Coalescing (operador fusión nula)
+
+
+
+El operador **nullish coalescing** fue agregado recientemente a Javascript (ES2020) pero ya tiene un gran soporte en los diferentes navegadores, pero en caso de que necesites soportar un navegador más antiguo, **nullish coalescing** está soportado por [Babel](https://babeljs.io) desde hace mucho -
+
+
+
+![undefined](https://cdn.sanity.io/images/cyypawp1/production/545d5e100276a9b763f92e09106d4d0319279748-1382x370.png)
+
+> Por cierto, puedes aprender más sobre ¿Qué es Babel y cómo funciona? en [este artículo en FreeCodeCamp en español](https://www.freecodecamp.org/espanol/news/que-es-babel/)
+
+> En otra nota más, [en este episodio de Café con Tech](https://anchor.fm/cafecontech/episodes/Que-es-ES6-e1k9uni) te cuento que es la especificación Ecma y el TC39
+
+Puedes encontrar la documentación y propuesta de este operador en los siguientes enlaces
+
+* [Documentación](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
+* [Propuesta](https://github.com/tc39/proposal-nullish-coalescing)  
+
+
+El operador **fusión nula (nullish coalescing)** es un operador lógico que retorna el valor utilizado en el lado derecho de la expresión cuando el lado izquierdo es `null` o `undefined`, en caso contrario, retorna el lado izquierdo.
+
+** ¿Qué?**. Básicamente, es un operador que evalua si el valor existe o no y define un valor de retorno.
+
+```javascript
+const foo = null ?? 'mensaje por defecto'
+console.log(foo) // 'mensaje por defecto'
+```
+
+Quizá esta sintaxis te recuerde un patrón bastante usado en javascript, el uso del operador lógico OR `||`. 
+
+La gran diferencia está en que este operador retorna el lado derecho de la operación cuando el lado izquierdo es un valor `falsy`.
+
+> **falsy** es un valor que se considera false (false). En Javascript existen sólo 6 valores `falsy`: `undefined`, `null`, `NaN`, `0`, "" (string vacio) y `false`
+
+
+
+Este operador es usualmente utilizado para definir valores por defecto durante la asignación de una variables.
+
+Veamos un ejemplo:
+
+```javascript
+onst data = {
+  configuration: {
+    nullValue: null,
+    width: 400,
+    time: 0,
+    text: "",
+    isOpen: false,
+  },
+};
+
+const undefinedValue =
+  data.configuration.undefinedValue ?? "un valor por defecto"; // un valor por defecto
+const nullValue = data.configuration.nullValue ?? "un valor por defecto"; // un valor por defecto
+const text = data.configuration.text ?? "un valor por defecto"; // ''
+const time = data.configuration.time ?? 10; // 10
+const isOpen = data.configuration.isOpen ?? true; // false
+```
+
+Como siempre, puedes [ver el demo en este enlace](https://jsitor.com/od_YGsHEj-). y comparar el funcionamiento del operador `??` versus el operador `||` (operador OR)
+
+También te invito a ver un video sobre esta característica en grabada para [egghead.io](https://egghead.io/lessons/javascript-operador-fusion-nula-nullish-coalescing-en-javascript)
