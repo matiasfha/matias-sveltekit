@@ -1,0 +1,76 @@
+
+---
+date: 2022-12-11T23:38:47Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/0a5d64c016271cc77ac35b3b8f902ee49752e5b0-1280x710.png
+keywords: 
+- Typescript
+- inheritance
+- extends
+- keywords
+title: "Typescript: The extends keyword"
+description: "Typescript is a complete language (a Turing complete language ); thus, it has a few keywords to work with. 
+One of that keywords is `extends`. It can be very confusing since it encompasses a couple of concepts or meanings that depend on the context where it is used.
+"
+bannerCredit: undefined
+
+---
+## The `extends` keyword
+
+Typescript is a complete language (a Turing complete language ); thus, it has a few keywords to work with. One of that keywords is `extends`. This keyword can be very confusing since it encompasses a couple of concepts or meanings that depend on the context where it is used.  
+
+
+### Inheritance with `extends`
+
+The inheritance in Typescript refers to allowing you to create new interfaces that inherit or **extend** the behavior of a previous one.  
+
+
+```typescript
+interface User {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+interface StaffUser extends User {
+  roles: Array<Role>
+}
+
+```
+
+What you can see in the above snippet is:
+
+* The interface `User` describes a type with some properties that represent a user.
+* `StaffUser` interface represents a user with the same properties as `User` but also one more: roles.
+
+This usage of extends can be used to inherit from multiple interfaces simultaneously by just using comma-separated names of the base interfaces.
+
+
+
+```typescript
+interface StaffUser extends User, RoleUser {
+
+}
+```
+
+> This behavior can also be used to extends a `Class`
+
+### extends as constrain.
+
+`extends` can also be used to constrain the type or to narrow the scope of a type.
+
+```typescript
+export type QueryFunction<
+  T = unknown,
+  TQueryKey extends QueryKey = QueryKey,
+> = (context: QueryFunctionContext<TQueryKey>) => T | Promise<T>
+```
+
+The example above (from a real-world implementation of tanstack-query) shows a type named as `QueryFunction`. This is a generic type that accepts two values: `T` and `TQueryKey`.
+
+> The generic usage here is very similar to a function in javascript, which accepts two arguments.
+
+What matter here is to note the usage of the `extends` keyword: `TQueryKey extends QueryKey = QueryKey`. This can be read as `TQueryKey` and should be of type `Query` with a default value of `QueryKey`. 
+
+
+
+The previous usage of extends narrowing down or constraining the generic is the cornerstone to be able to implement conditional types since the extends will be used as a condition to check if a generic is off a particular type.
