@@ -51,6 +51,13 @@
 
 <div class="grid grid-cols-1 gap-2">
 	<CourseCard
+		logo={courses[2].image}
+		title={courses[2].course}
+		description={courses[2].description}
+		formId={'5834748'}
+		codeId={'i8b7z9'}
+	/>
+	<CourseCard
 		logo={courses[1].image}
 		title={courses[1].course}
 		description={courses[1].description}

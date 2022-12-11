@@ -9,17 +9,16 @@ const Source = z.object({
 			_ref: z.string()
 		})
 	}),
-	tagId: z.string(),
+	tagId: z.string().nullable(),
 	description: z.any()
 });
 
-export const Newsletters = z.array(Source);
+export const _Newsletters = z.array(Source);
 
 export const load: PageServerLoad = async () => {
 	const courses = await client
 		.fetch('*[_type == "microbytes"]{ course, image, tagId, description}')
-		.then((result) => Newsletters.parse(result));
-	console.log(courses);
+		.then((result) => _Newsletters.parse(result));
 	return {
 		courses: courses.map((item) => ({ ...item, image: builder.image(item.image).url() }))
 	};
