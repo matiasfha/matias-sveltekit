@@ -39,7 +39,8 @@ export async function getLastPostMarkdown() {
 		title: post.title,
 		description: post.description,
 		bannerCredit: post.banner.bannerCredit,
-		content: post.content
+		content: post.content,
+    lang: post.language.includes('es') ? 'es':'en'
 	});
 	return {
 		markdown,

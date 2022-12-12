@@ -12,6 +12,7 @@ description: "Typescript is a complete language (a Turing complete language ); t
 One of that keywords is `extends`. It can be very confusing since it encompasses a couple of concepts or meanings that depend on the context where it is used.
 "
 bannerCredit: undefined
+lang:en
 
 ---
 ## The `extends` keyword
