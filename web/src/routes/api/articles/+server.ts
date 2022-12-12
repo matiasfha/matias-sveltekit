@@ -38,7 +38,7 @@ export async function GET() {
 
       await createFileInRepo(markdown, title);
       await repost();
-      return new Response('Reposted successfull', {
+      return new Response(markdown, {
         status: 200
       });
     } catch (e) {
