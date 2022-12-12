@@ -1,0 +1,75 @@
+
+---
+date: 2022-12-11T23:41:22Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/4f322e531b60c6d4b234729750e97e8f4ada86e9-1280x710.png
+keywords: 
+- Typescript
+- inheritance
+- extends
+- keywords
+- herencia
+title: "Typescript: La palabra clave extends"
+description: "Typescript es un lenguaje completo (un lenguaje completo de Turing); por lo tanto, tiene algunas palabras clave con las que trabajar. 
+Una de esas palabras clave es `extends`. Puede resultar muy confusa, ya que engloba un par de conceptos o significados que dependen del contexto en el que se utilice.
+"
+bannerCredit: undefined
+
+---
+## La palabra clave extends
+
+Typescript es un lenguaje completo (un lenguaje completo de Turing); por lo tanto, tiene algunas palabras clave con las que trabajar. Una de ellas es `extends`. 
+
+Esta palabra clave puede ser muy confusa ya que engloba un par de conceptos o significados que dependen del contexto en el que se utilice.
+
+### Herencia con `extends`
+
+La herencia en Typescript se refiere a permitir crear nuevas interfaces que heredan o extienden el comportamiento de una anterior.
+
+  
+
+
+```typescript
+interface User {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+interface StaffUser extends User {
+  roles: Array<Role>
+}
+
+```
+
+Lo que se puede ver en el fragmento anterior es:
+
+* La interfaz `User` describe un tipo con algunas propiedades que representan a un usuario.
+* La interfaz `StaffUser` representa a un usuario con las mismas propiedades que `User` pero además una más: roles.
+* Este uso de extends se puede utilizar para heredar de múltiples interfaces simultáneamente con sólo utilizar nombres separados por comas de las interfaces base.
+
+```typescript
+interface StaffUser extends User, RoleUser {
+
+}
+```
+
+> Este comportamiento también se puede utilizar para extender una Clase
+
+### extends como restricción.
+
+También se puede utilizar `extends` para restringir el tipo o limitar el ámbito de un tipo.
+
+```typescript
+export type QueryFunction<
+  T = unknown,
+  TQueryKey extends QueryKey = QueryKey,
+> = (context: QueryFunctionContext<TQueryKey>) => T | Promise<T>
+```
+
+El ejemplo anterior (de una implementación real de tanstack-query) muestra un tipo llamado `QueryFunction`. Este es un tipo genérico que acepta dos valores: `T` y `TQueryKey`.
+
+> El uso genérico aquí es muy similar a una función en javascript, que acepta dos argumentos.
+
+Lo que importa aquí es observar el uso de la palabra clave `extends`: `TQueryKey extends QueryKey = QueryKey`. Esto se puede leer como `TQueryKey` y debe ser de tipo `Query` con un valor por defecto de `QueryKey`.
+
+El uso anterior de extends acotando o restringiendo el genérico es la piedra angular para poder implementar tipos condicionales ya que los extends se utilizarán como condición para comprobar si un genérico está fuera de un tipo determinado.
