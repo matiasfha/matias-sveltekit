@@ -27,7 +27,7 @@ One data type we use constantly is `Array`.
 
 An array allows you to work with collections of data simply and efficiently.
 
-
+<YouTube id="1FTbE9R-pKA" />
 
 In both Javascript and Typescript an array can be initialized just by using `[]` and you can **define its type** in a similar way or by using the generic form `Array<T>`
 

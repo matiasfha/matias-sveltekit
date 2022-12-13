@@ -26,6 +26,7 @@ This operator or keyword is the Typescript's anwser to the javascript `Object.ke
 This operator is the base building block for advanced typing like mapped and conditional types.
 
 
+<YouTube id="J-CV0wj9wg4" />
 
 > The keyof operator takes an object type and produces a string or numeric literal union of its keys. - [Typescript Handbook](https://www.typescriptlang.org/docs/handbook/2/keyof-types.html)
 

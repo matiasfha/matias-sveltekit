@@ -78,7 +78,7 @@ Suspense, es una característica largamente esperada, una de las primeras muestr
 
 
 
-<YouTube youTubeId="nLF0n9SACd4" />
+<YouTube id="nLF0n9SACd4" />
 
 
 

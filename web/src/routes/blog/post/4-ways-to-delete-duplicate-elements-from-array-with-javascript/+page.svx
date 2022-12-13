@@ -33,7 +33,10 @@ lang: en
 
 Array manipulation is one of the most common and constant tasks when developing an application. Arrays are basic data structures in any program. One of these manipulation tasks is to remove duplicate elements from an array.
 Javascript, by its flexible nature, offers several ways to perform this task and the choice of which one to use depends on both the developer's experience and the use case.
+ 
+> You can also watch this as a lesson on [Egghead](https://egghead.io/lessons/javascript-4-ways-to-populate-an-array-in-javacript?af=4cexzz) as part of a quick course on Efficient Array Manipulation on Javascript
 
+<YouTube id="yCf4-OK8CiE" />
  
 ## **Array.filter**
 

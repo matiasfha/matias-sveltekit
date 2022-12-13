@@ -2,7 +2,6 @@
 	import type { Post } from '$lib/types';
 	import RelativeDateFormat from './RelativeDateFormat.svelte';
 	export let post: Post;
-	
 
 </script>
 

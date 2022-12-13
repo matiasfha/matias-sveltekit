@@ -44,7 +44,7 @@ export default async function getPosts(lang?: string) {
 		postPromises.push(promise);
 	}
 
-	const res = await Promise.all(postPromises).then((p) => Posts.parse(p));
+	const res = await Promise.all(postPromises) //.then((p) => {console.log(p); return Posts.parse(p)});
 
 	const posts = res.sort((a, b) => {
 		const aDate = new Date(a.date).getTime();
