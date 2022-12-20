@@ -33,7 +33,7 @@ const Video = z.object({
 
 export const Videos = z.array(Video)
 
-const API_KEY = 'AIzaSyBzsRlBCk9AEpGmCwRdartxVck21NTyLf0' 
+const API_KEY = import.meta.env.YOUTUBE_API_KEY
 export async function getVideos() {
   try {
   const res = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=UChYjCtGvtgzh7HvJuanV1-g&part=snippet,id&order=date&maxResults=100`)
