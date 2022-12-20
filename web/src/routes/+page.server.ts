@@ -6,6 +6,7 @@ import { getLatestPost } from '$lib/api/getPosts';
 import getFavorites from '$lib/api/getFavorites';
 import { locale } from '$lib/translations';
 import { redirect } from '@sveltejs/kit';
+import { getVideos } from '$lib/api/getYoutubeChannel';
 
 async function getLatestContent(lang?: string) {
 	try {
@@ -13,14 +14,8 @@ async function getLatestContent(lang?: string) {
 
 		const course = await getLatestCourse(lang);
 		const article = await getLatestArticle(lang);
-
+    const youtube = (await getVideos())[0]
 		let latest = [
-			{
-				/* egghead */ href: course.url + '?af=4cexzz',
-				image: course.image,
-				title: course.title,
-				tag: 'Egghead Course'
-			},
 			{
 				/* post */ href: post.slug,
 				image: post.banner,
@@ -33,7 +28,18 @@ async function getLatestContent(lang?: string) {
 				image: article.image,
 				title: article.title,
 				tag: `published at: ${article.tag}`
-			}
+			}, {
+        href: 'https://youtube.com/watch?v='+youtube.id,
+        image: youtube.thumb.url,
+        title: youtube.title,
+        tag: `Youtube`
+      },
+			{
+				/* egghead */ href: course.url + '?af=4cexzz',
+				image: course.image,
+				title: course.title,
+				tag: 'Egghead Course'
+			},
 		];
 		if (lang === 'es') {
 			const cafeConTech = await getLatest('https://anchor.fm/s/a1ac9eb8/podcast/rss');
