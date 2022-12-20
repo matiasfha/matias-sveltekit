@@ -14,7 +14,7 @@ description: "There are times when you need to create a union type based on a pr
 How can you achieve this? By creating a utility type that takes advantage of generics and mapped types"
 bannerCredit: undefined
 lang: en
-
+tag: Typescript
 ---
 How can you transform a Typescript Type into a Union Type? And most important, Why would you want to do that?
 

@@ -13,7 +13,7 @@ title: "Typescript: El operador keyof"
 description: "Algunos conceptos básicos de TypeScript lo ayudan a crear formularios de datos complejos. Uno de esos bloques de construcción es el operador keyof."
 bannerCredit: undefined
 lang: es
-
+tag: Typescript
 ---
 Algunos conceptos básicos sobre TypeScript te ayudarán a crear y manipular formas de datos más complejas. Uno de esos bloques de construcción es el operador `keyof`.
 

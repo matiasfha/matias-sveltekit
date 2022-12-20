@@ -13,6 +13,7 @@ title: "Typescript: The keyof operator"
 description: "A few primary concepts around Typescript help you build complex data shapes. One of that building blocks is the keyof operator."
 bannerCredit: undefined
 lang: en
+tag: Typescript
 ---
 A few primary concepts around Typescript help you build complex data shapes. One of that building blocks is the keyof operator.
 

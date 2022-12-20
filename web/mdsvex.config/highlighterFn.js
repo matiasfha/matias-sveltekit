@@ -17,7 +17,6 @@ const escape_svelty = (str) => str
  * @returns {Promise<string>} - highlighted html
  */
 export function highlighterFn(code, lang = 'js', meta) {
-
 	let _lang = lang.toLowerCase();
 
 	// const highlighted = escape_svelty(
