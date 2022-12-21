@@ -44,7 +44,7 @@ const config = {
     // }),
     adapter: adapter({
       edge: false,
-      split: true
+      split: false
     })
   },
 
