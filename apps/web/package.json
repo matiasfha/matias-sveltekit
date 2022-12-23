@@ -1,6 +1,6 @@
 {
-  "name": "matias-site",
-  "version": "1.0.3",
+  "name": "web",
+ "version": "1.0.3",
   "platform": "node",
   "private": true,
   "scripts": {

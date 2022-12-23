@@ -1,11 +1,22 @@
 {
-  "devDependencies": {
-    "sanity-codegen": "0.9.8",
-    "svelte-image-preprocessor-cloudinary": "0.0.3"
+  "name": "matias-sveltekit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "turbo run lint",
+    "dev:web":"turbo run dev --filters web"
   },
+  "keywords": [],
+  "author": "Matias Hernandez <matiasfh@gmail.com> (https://matiashernandez.dev/)",
+  "license": "ISC",
   "dependencies": {
-    "@algolia/recommend": "4.13.1",
-    "@algolia/recommend-js": "1.5.0",
-    "zod": "3.19.1"
-  }
+    "eslint": "latest",
+    "prettier": "latest",
+    "turbo": "latest"
+  },
+  "packageManager": "pnpm"
 }

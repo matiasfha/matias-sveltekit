@@ -1,5 +1,5 @@
 {
-  "name": "matiashernandez",
+  "name": "studio",
   "private": true,
   "version": "1.0.0",
   "description": "",
@@ -7,7 +7,7 @@
   "author": "Matías Hernández Arellano <matiasfh@gmail.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "sanity start",
+    "dev": "sanity start",
     "build": "sanity build"
   },
   "keywords": [
