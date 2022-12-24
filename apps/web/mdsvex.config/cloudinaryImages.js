@@ -15,22 +15,25 @@ async function uploadImage(imagePath, withLogo = false) {
 		use_filename: true,
 		unique_filename: false,
 		overwrite: true,
-		resource_type: 'image',
+		resource_type: 'image'
 	};
 	if (withLogo) {
-
 		cloudinaryOptions['transformation'] = [
-			{ effect: "auto_contrast", gravity: "south_west", overlay: { font_family: "montserrat", font_size: 30, text: "%40matiasfha" }, x: 20, y: 10 },
+			{
+				effect: 'auto_contrast',
+				gravity: 'south_west',
+				overlay: { font_family: 'montserrat', font_size: 30, text: '%40matiasfha' },
+				x: 20,
+				y: 10
+			},
 			{ overlay: 'logo', width: 400, x: '300', y: '100', gravity: 'north_east' },
-			{ flag: 'layer_apply', },
+			{ flag: 'layer_apply' }
 		];
-
 	}
 
 	try {
 		// Upload the image
 		return await cloudinary.uploader.upload(imagePath, cloudinaryOptions);
-
 	} catch (error) {
 		console.error(error);
 	}
@@ -39,7 +42,7 @@ export function cloudinaryImages() {
 	/**
 	 * @param {Node} node
 	 */
-	return async function transformer(tree, vFile) {
+	return async function transformer(_, vFile) {
 		try {
 			if (vFile.data.fm.banner) {
 				const image = vFile.data.fm.banner;
@@ -48,15 +51,10 @@ export function cloudinaryImages() {
 					if (res?.secure_url) {
 						vFile.data.fm['banner'] = res.secure_url;
 					}
-
 				}
 			}
 		} catch (e) {
 			console.error(e);
-			vFile.data.fm['banner'] = vFile.data.fm.banner;
 		}
-
-
-
 	};
 }

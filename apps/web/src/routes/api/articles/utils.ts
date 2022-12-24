@@ -4,18 +4,42 @@ import writeToDevTo from '$lib/utils/writeToDevTo';
 import writeToHashnode from '$lib/utils/writeToHashnode';
 import { generateMarkdown } from '$lib/utils/generateMarkdown';
 import { client, builder } from '$lib/utils/sanityClient';
+import z from 'zod';
 
-export async function repost() {
-	const { markdown, ...post } = await getLastPostMarkdown();
-	await writeToDevTo({ ...post, image: builder.image(post.banner.asset._ref).url() }),
-		await writeToHashnode({
-			...post,
-			image: builder.image(post.banner.asset._ref).url()
+const Post = z
+	.object({
+		_createdAt: z.string(),
+		banner: z.object({
+			asset: z
+				.object({
+					_ref: z.string()
+				})
+				.nullable()
 		}),
-		await writeToMedium(post);
+		keywords: z.array(z.string()),
+		title: z.string(),
+		description: z.string(),
+		content: z.array(z.record(z.any())),
+		language: z.union([z.literal('es'), z.literal('en')])
+	})
+	.transform((val) => ({
+		...val,
+		banner: builder.image(val.banner.asset._ref).url(),
+		lang: val.language
+	}));
+
+export async function repost(): Promise<void> {
+	//eslint-disable-next-line
+	const { markdown, ...post } = await getLastPostMarkdown();
+	await writeToDevTo({ ...post, image: post.banner });
+	await writeToHashnode({
+		...post,
+		image: post.banner
+	});
+	await writeToMedium(post);
 }
 
-export async function validateWebhook(request: Request, body: Request['body']) {
+export async function validateWebhook(request: Request): Promise<boolean> {
 	const headers = {};
 
 	request.headers.forEach((value, key) => {
@@ -30,17 +54,18 @@ export async function validateWebhook(request: Request, body: Request['body']) {
 	return headers['sanity-webhook-signature'] === import.meta.env.VITE_SANITY_SECRET;
 }
 
-export async function getLastPostMarkdown() {
-	const post = await client.fetch('*[_type == "posts"] | order(_createdAt desc)[0]');
+export async function getLastPostMarkdown(): Promise<{ markdown: string } & z.infer<typeof Post>> {
+	const post = await client
+		.fetch('*[_type == "posts"] | order(_createdAt desc)[0]')
+		.then((p) => Post.parse(p));
 	const markdown = generateMarkdown({
 		date: post._createdAt,
-		banner: builder.image(post.banner.asset._ref).url(),
+		banner: post.banner,
 		keywords: post.keywords,
 		title: post.title,
 		description: post.description,
-		bannerCredit: post.banner.bannerCredit,
 		content: post.content,
-    lang: post.language.includes('es') ? 'es':'en'
+		lang: post.lang
 	});
 	return {
 		markdown,

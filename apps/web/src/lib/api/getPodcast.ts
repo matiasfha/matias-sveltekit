@@ -1,5 +1,5 @@
 import Parser from 'rss-parser';
-import z, { string } from 'zod';
+import z from 'zod';
 
 const Item = z.object({
 	link: z.string(),

@@ -1,10 +1,10 @@
-import getReadingTime from "reading-time";
-import { visit } from "unist-util-visit";
+import getReadingTime from 'reading-time';
+import { visit } from 'unist-util-visit';
 
 export function remarkReadingTime() {
 	return async function (info, file) {
-		let text = "";
-		visit(info, ["text", "code"], (node) => {
+		let text = '';
+		visit(info, ['text', 'code'], (node) => {
 			text += node.value;
 		});
 		if (file.data.fm !== undefined) {
@@ -12,6 +12,5 @@ export function remarkReadingTime() {
 		} else {
 			console.error(file);
 		}
-
 	};
 }

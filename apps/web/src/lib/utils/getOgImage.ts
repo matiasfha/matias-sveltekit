@@ -1,4 +1,4 @@
-function getOgImage({ text, tags }: { text: string; tags: string[] }) {
+function getOgImage({ text }: { text: string }) {
 	const imageConfig = [
 		'w_1280',
 		'h_669',

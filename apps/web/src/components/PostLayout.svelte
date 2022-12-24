@@ -13,7 +13,6 @@
 	import Seo from './Seo.svelte';
 	import { Cloudinary } from 'cloudinary-core';
 	import RelativeDateFormat from './RelativeDateFormat.svelte';
-	import About from './ContactTabs/About.svelte';
 
 	// Props
 

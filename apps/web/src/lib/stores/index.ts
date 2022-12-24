@@ -1,4 +1,4 @@
-import { get, writable } from 'svelte/store';
+import { writable } from 'svelte/store';
 const createWritableStore = (key: string, startValue: string | Record<string, unknown>) => {
 	const { subscribe, set } = writable(startValue);
 

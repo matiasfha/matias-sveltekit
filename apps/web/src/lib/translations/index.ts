@@ -7,11 +7,11 @@ const lang = {
 };
 
 const config: Config = {
-	// translations: {
-	// 	en: { lang },
-	// 	es: { lang }
-	// },
-	// initLocale: 'en',
+	translations: {
+		en: { lang },
+		es: { lang }
+	},
+	initLocale: 'en',
 	fallbackLocale: 'en',
 	log: {
 		level: 'debug'

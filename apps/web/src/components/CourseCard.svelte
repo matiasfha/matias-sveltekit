@@ -9,6 +9,7 @@
 	export let codeId: string;
 
 	const onClick = () => {
+		// eslint-disable-next-line
 		ml_account('webforms', formId, codeId, 'show');
 	};
 </script>

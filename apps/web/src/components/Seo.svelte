@@ -4,27 +4,30 @@
 	export let description: string = undefined;
 	export let keywords: string[] = undefined;
 	export let canonical: string = undefined;
-	export let isBlogPost: boolean = false;
+	export let isBlogPost = false;
 	export let banner: string = undefined;
 	let slug = '/';
 	let siteUrl = 'https://matiashernandez.dev';
-	let image  = getOgImage({ text: title, tags: keywords ?? [] });
-	if(banner) {
-		image = banner.split('upload/').join('upload/e_auto_contrast,g_south_west,l_text:montserrat_30:@matiasfha,x_20,y_10/c_scale,w_1024/l_logo,y_10,x_15,g_north_east,w_60/');	
+	let image = getOgImage({ text: title });
+	if (banner) {
+		image = banner
+			.split('upload/')
+			.join(
+				'upload/e_auto_contrast,g_south_west,l_text:montserrat_30:@matiasfha,x_20,y_10/c_scale,w_1024/l_logo,y_10,x_15,g_north_east,w_60/'
+			);
 	}
-	
+
 	if (isBlogPost) {
 		slug = title
 			.normalize('NFD')
 			.replace(/[\u0300-\u036f]/g, '')
+			//eslint-disable-next-line
 			.replace(/\?|\¿|\:/g, '')
 			.toLowerCase()
 			.split(' ')
 			.join('-');
 		siteUrl = `https://matiashernandez.dev/blog/post/${slug || ''}`;
 	}
-	
-
 </script>
 
 <svelte:head>
@@ -56,5 +59,5 @@
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:image" content={image} />
-	<link href="https://twitter.com/matiasfha" rel="me">
+	<link href="https://twitter.com/matiasfha" rel="me" />
 </svelte:head>

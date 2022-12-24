@@ -5,7 +5,7 @@ export function remarkSponsor() {
 				...node.children.slice(0, 6),
 				{
 					type: 'html',
-					value: '<Sponsor /> ',
+					value: '<Sponsor /> '
 				},
 				...node.children.slice(6)
 			];
@@ -15,7 +15,7 @@ export function remarkSponsor() {
 					...node.children.slice(0, 30),
 					{
 						type: 'html',
-						value: '<Sponsor /> ',
+						value: '<Sponsor /> '
 					},
 					...node.children.slice(30)
 				];
@@ -25,12 +25,10 @@ export function remarkSponsor() {
 					...node.children.slice(0, node.children.length),
 					{
 						type: 'html',
-						value: '<Sponsor /> ',
-					},
+						value: '<Sponsor /> '
+					}
 				];
 			}
 		}
-
-
 	};
 }

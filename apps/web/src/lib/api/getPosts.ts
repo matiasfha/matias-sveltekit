@@ -1,6 +1,6 @@
 //import type { Post } from '$lib/types';
 import z from 'zod';
-const Post = z.lazy(() =>
+export const Post = z.lazy(() =>
 	z.object({
 		date: z.string(),
 		banner: z.string(),
@@ -25,7 +25,7 @@ const Post = z.lazy(() =>
 export const Posts = z.array(Post);
 
 export default async function getPosts(lang?: string) {
-	let modules = import.meta.glob(`../../routes/blog/post/**/+page.svx`);
+	const modules = import.meta.glob(`../../routes/blog/post/**/+page.svx`);
 
 	const postPromises = [];
 	for (const [path, resolver] of Object.entries(modules)) {
@@ -35,8 +35,11 @@ export default async function getPosts(lang?: string) {
 				slug: slug
 					.normalize('NFD')
 					.replace(/[\u0300-\u036f]/g, '')
+					//eslint-disable-next-line
 					.replace(/\?|\¿/g, ''),
+				//@ts-expect-error Metada cannot be infered
 				...post.metadata,
+				//@ts-expect-error TS doesn't know about the content of default
 				html: post.default.render?.().html,
 				path: path.slice(0, -4).slice(9)
 			};
@@ -44,7 +47,9 @@ export default async function getPosts(lang?: string) {
 		postPromises.push(promise);
 	}
 
-	const res = await Promise.all(postPromises) //.then((p) => {console.log(p); return Posts.parse(p)});
+	const res = await Promise.all(postPromises).then((p) => {
+		return Posts.parse(p);
+	});
 
 	const posts = res.sort((a, b) => {
 		const aDate = new Date(a.date).getTime();

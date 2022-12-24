@@ -1,4 +1,11 @@
-export async function validateCaptcha(captchaResponse: string) {
+import z from 'zod';
+
+const R = z.object({
+	success: z.boolean(),
+	'error-codes': z.array(z.string())
+});
+
+export async function validateCaptcha(captchaResponse: string): Promise<boolean> {
 	const secret = process.env['HCAPTCHA_SECRETKEY'];
 	const sitekey = process.env['VITE_HCAPTCHA_SITEKEY'];
 	const body = new URLSearchParams({
@@ -15,7 +22,7 @@ export async function validateCaptcha(captchaResponse: string) {
 			},
 			body: body.toString()
 		});
-		const data = await response.json();
+		const data = await response.json().then(R.parse);
 		const { success } = data;
 		return success;
 	} catch (e) {

@@ -1,4 +1,4 @@
-import { client, builder, getRawMarkdown } from '$lib/utils/sanityClient';
+import { getRawMarkdown } from '$lib/utils/sanityClient';
 
 export function generateMarkdown({
 	date,
@@ -6,16 +6,16 @@ export function generateMarkdown({
 	keywords,
 	title,
 	description,
-	bannerCredit,
-	content
+	content,
+	lang
 }: {
 	date: string;
 	banner: string;
 	keywords: string[];
 	title: string;
 	description: string;
-	bannerCredit: string;
 	content: unknown;
+	lang: string;
 }) {
 	const keys = keywords
 		.map((keyword: string) => `- ${keyword}\n`)
@@ -29,8 +29,7 @@ banner: ${banner}
 keywords: \n${keys}
 title: "${title}"
 description: "${description}"
-bannerCredit: ${bannerCredit}
-
+lang: ${lang}
 ---
 ${getRawMarkdown(content)}`;
 }

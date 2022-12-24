@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { t, locale } from '$lib/translations';
+	import { t } from '$lib/translations';
 	import About from './About.svelte';
 
 	// import AMA from './AMA.svelte';

@@ -23,10 +23,10 @@
 			title: 'Blog',
 			href: '/blog'
 		},
-    {
-      title: 'Video',
-      href: '/youtube'
-    },
+		{
+			title: 'Video',
+			href: '/youtube'
+		},
 		{
 			title: isEn() ? 'Guest Articles' : 'Artículos Externos',
 			href: '/articles'

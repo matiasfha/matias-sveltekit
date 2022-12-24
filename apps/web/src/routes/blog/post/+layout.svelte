@@ -1,4 +1,4 @@
 <script>
-    
 </script>
-<slot></slot>
+
+<slot />

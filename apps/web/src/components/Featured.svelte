@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { t } from '$lib/translations';
-	
+
 	export let image: string;
 	export let title: string;
 	export let meta: string;
 	export let description: string;
 	export let url: string;
-	export let type: string = "post";
+	export let type = 'post';
 </script>
 
 <section class="mt-12 ">
@@ -31,12 +31,10 @@
 								data-sveltekit-prefetch
 								class="group peer relative block w-full focus:outline-none"
 								href={url}
-								><div
-									class="aspect-w-2 aspect-h-1 h-1/4 rounded-lg transition "
-								>
+								><div class="aspect-w-2 aspect-h-1 h-1/4 rounded-lg transition ">
 									<img alt={title} class="rounded-lg object-cover" src={image} height="173" />
 								</div>
-								</a>
+							</a>
 						</div>
 					{/if}
 					<div class="flex flex-col col-span-2 lg:items-start items-center w-full px-6 md:px-0">
@@ -67,7 +65,6 @@
 									frameBorder="0"
 									scrolling="no"
 								/>
-								
 							</div>
 						{:else if description}
 							<div

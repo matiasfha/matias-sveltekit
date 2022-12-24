@@ -1,5 +1,5 @@
 <script lang="ts">
-	import microbytes from "$images/microbytes.png";
+	import microbytes from '$images/microbytes.png';
 </script>
 
 <section class="mt-24">
@@ -20,13 +20,10 @@
 
 		<div class="font-body text-left pt-8">
 			<p>
-				Gracias por ser partte de mi newsletter. 
-                Recibirás un email para confirmar tu suscripción, luego de eso comenzarás a recibir periodicamente (NO SPAM lo prometo) correos con comentarios sobre desarrollo web, noticias e información sobre contenido creado por mi.
-
-            
+				Gracias por ser partte de mi newsletter. Recibirás un email para confirmar tu suscripción,
+				luego de eso comenzarás a recibir periodicamente (NO SPAM lo prometo) correos con
+				comentarios sobre desarrollo web, noticias e información sobre contenido creado por mi.
 			</p>
 		</div>
-
-		
 	</div>
 </section>

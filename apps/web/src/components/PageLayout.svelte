@@ -1,8 +1,7 @@
 <script context="module">
 	import { blockquote } from '$components/typography/index';
-	
+
 	export { blockquote };
-	
 </script>
 
 <script>

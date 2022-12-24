@@ -5,12 +5,12 @@
 		<link rel="icon" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="alternate" type="application/rss+xml" href="/rss.xml" />
-		
+
 		<link rel="webmention" href="https://webmention.io/matiashernandez.dev/webmention" />
 		<link rel="pingback" href="https://webmention.io/matiashernandez.dev/xmlrpc" />
-		
+
 		%sveltekit.head%
-		
+
 		<script>
 			let theme = 'dark';
 			if (!('theme' in localStorage)) {
@@ -24,31 +24,43 @@
 				let data = localStorage.getItem('theme');
 				if (data) {
 					theme = JSON.parse(data).theme;
-					if(theme === 'light'){
+					if (theme === 'light') {
 						document.documentElement.classList.remove('dark');
 					}
-					
 				}
 			}
-			localStorage.setItem('theme',JSON.stringify({ theme}));
-			
+			localStorage.setItem('theme', JSON.stringify({ theme }));
 		</script>
-		
 	</head>
 	<body class="dark:bg-ebony-clay-600 bg-gray-100 transition-all duration-700">
 		<div id="svelte">%sveltekit.body%</div>
 	</body>
-	<script defer data-domain="matiashernandez.dev" src="https://matiashernandez.dev/svelte-stats/js/script.js" data-api="/svelte-stats/api/event"></script>		
+	<script
+		defer
+		data-domain="matiashernandez.dev"
+		src="https://matiashernandez.dev/svelte-stats/js/script.js"
+		data-api="/svelte-stats/api/event"
+	></script>
 	<!-- MailerLite Universal -->
 	<script defer>
-		(function(m,a,i,l,e,r){ m['MailerLiteObject']=e;function f(){
-		var c={ a:arguments,q:[]};var r=this.push(c);return "number"!=typeof r?r:f.bind(c.q);}
-		f.q=f.q||[];m[e]=m[e]||f.bind(f.q);m[e].q=m[e].q||f.q;r=a.createElement(i);
-		var _=a.getElementsByTagName(i)[0];r.async=1;r.src=l+'?v'+(~~(new Date().getTime()/1000000));
-		_.parentNode.insertBefore(r,_);})(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
-		
+		(function (m, a, i, l, e, r) {
+			m['MailerLiteObject'] = e;
+			function f() {
+				var c = { a: arguments, q: [] };
+				var r = this.push(c);
+				return 'number' != typeof r ? r : f.bind(c.q);
+			}
+			f.q = f.q || [];
+			m[e] = m[e] || f.bind(f.q);
+			m[e].q = m[e].q || f.q;
+			r = a.createElement(i);
+			var _ = a.getElementsByTagName(i)[0];
+			r.async = 1;
+			r.src = l + '?v' + ~~(new Date().getTime() / 1000000);
+			_.parentNode.insertBefore(r, _);
+		})(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
+
 		var ml_account = ml('accounts', '3081949', 'x4j7h5e8a3', 'load');
 	</script>
 	<!-- End MailerLite Universal -->
-	
 </html>

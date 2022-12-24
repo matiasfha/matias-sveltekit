@@ -29,3 +29,7 @@ artifacts
 /playwright-report/
 /playwright/.cache/
 .vercel
+.vercel/
+.vercel/*
+.vscode/
+/.vercel

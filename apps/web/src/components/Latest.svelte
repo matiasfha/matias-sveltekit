@@ -2,7 +2,6 @@
 	import type { Latest } from '$lib/types';
 	import { t } from '$lib/translations';
 	export let latest: Latest[] = [];
-
 </script>
 
 <section class="mt-24">
@@ -24,10 +23,11 @@
 								height="181"
 								alt={item.title}
 								class="rounded-lg object-cover"
-								src={item.image.includes('cloudinary') ? item.image : `https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,c_scale,w_363/${item.image}`}
+								src={item.image.includes('cloudinary')
+									? item.image
+									: `https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,c_scale,w_363/${item.image}`}
 								loading="lazy"
 								decoding="async"
-								
 							/>
 						</div>
 

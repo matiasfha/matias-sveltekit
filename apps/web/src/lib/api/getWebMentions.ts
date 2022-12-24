@@ -22,7 +22,7 @@ const sanitize = (entry) => {
 export async function getWebMetions(url: string) {
 	const target = 'https://matiashernandez.dev' + url;
 
-	let webmentions = `${API}/mentions.jf2?domain=${domain}&token=${TOKEN}&target=${target}`;
+	const webmentions = `${API}/mentions.jf2?domain=${domain}&token=${TOKEN}&target=${target}`;
 	const response = await fetch(webmentions);
 	if (response.ok) {
 		const feed = await response.json();

@@ -18,7 +18,7 @@ const pages = [
 	'topic/graphql'
 ];
 
-export const GET: RequestHandler = async ({ url }) => {
+export const GET: RequestHandler = async () => {
 	const lang = undefined;
 	const posts = await getPosts(lang);
 	const headers = {

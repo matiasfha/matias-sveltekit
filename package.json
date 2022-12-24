@@ -1,10 +1,10 @@
 {
-  "name": "matias-sveltekit",
+  "name": "matiastack",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "build": "turbo run build",
+    "build:web": "turbo run build --filters web",
     "dev": "turbo run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",

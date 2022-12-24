@@ -1,42 +1,42 @@
 {
-    "featured": "Featured",
-    "search": "Search",
-    "contact": "Contact",
-    "consultancy": "Consultancy & Mentoring",
-    "ama": "AMA",
-    "about": "About",
-    "courses": "Courses",
-    "articles":"Articles",
-    "sponsor": "Sponsorships",
-    "hire": "Hire me",
-    "uses": "Uses",
-    "navbar": {
-        "articles": "Guest Writing"
-    },
-    "pricing": {
-        "title": "Weekly Pricing",
-        "exclusivity": "Weekly adds exclusivity",
-        "includes":"Copy and design included"
-    },
-    "all_about": "All about ",
-    "newsletter_text": "Don't forget to join to the newsltter so you will not miss any of the content I share. (Spanish)",
-    "404": {
-        "title": "Sorry, but this page do not exists",
-        "read_more":"Don't worry, here are something to read"
-    },
-    "writtenBy": "written by",
-    "tableOfContent":"Table of Contents",
-    "join_now":"Join today!",
-    "post":{
-        "footer_title": "😃  Thanks for reading! ",
-        "footer_body":"Did you like the content? Found more content like this by joining to the <a class=\"underlined\" href=\"https://matiashernandez.dev/newsletter\">Newsletter</a> or following me on <a class=\"underlined\" href=\"https://twitter.com/matiasfha\" rel=\"noreferrer\">Twitter</a>",
-        "footer_edit":"Edit this on github",
-        "webmentions":{
-            "title":"Follow the conversation on Twitter",
-            "share": "Share on Twitter",
-            "likes": "have liked",
-            "retweet":"they have RT"
-        },
-        "keep_reading": "Keep reading"
-    }
+	"featured": "Featured",
+	"search": "Search",
+	"contact": "Contact",
+	"consultancy": "Consultancy & Mentoring",
+	"ama": "AMA",
+	"about": "About",
+	"courses": "Courses",
+	"articles": "Articles",
+	"sponsor": "Sponsorships",
+	"hire": "Hire me",
+	"uses": "Uses",
+	"navbar": {
+		"articles": "Guest Writing"
+	},
+	"pricing": {
+		"title": "Weekly Pricing",
+		"exclusivity": "Weekly adds exclusivity",
+		"includes": "Copy and design included"
+	},
+	"all_about": "All about ",
+	"newsletter_text": "Don't forget to join to the newsltter so you will not miss any of the content I share. (Spanish)",
+	"404": {
+		"title": "Sorry, but this page do not exists",
+		"read_more": "Don't worry, here are something to read"
+	},
+	"writtenBy": "written by",
+	"tableOfContent": "Table of Contents",
+	"join_now": "Join today!",
+	"post": {
+		"footer_title": "😃  Thanks for reading! ",
+		"footer_body": "Did you like the content? Found more content like this by joining to the <a class=\"underlined\" href=\"https://matiashernandez.dev/newsletter\">Newsletter</a> or following me on <a class=\"underlined\" href=\"https://twitter.com/matiasfha\" rel=\"noreferrer\">Twitter</a>",
+		"footer_edit": "Edit this on github",
+		"webmentions": {
+			"title": "Follow the conversation on Twitter",
+			"share": "Share on Twitter",
+			"likes": "have liked",
+			"retweet": "they have RT"
+		},
+		"keep_reading": "Keep reading"
+	}
 }

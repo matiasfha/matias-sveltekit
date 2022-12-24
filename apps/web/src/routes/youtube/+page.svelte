@@ -1,5 +1,4 @@
 <script>
-	import Featured from '$components/Featured.svelte';
 	import NewsletterForm from '$components/NewsletterForm.svelte';
 	import RelativeDateFormat from '$components/RelativeDateFormat.svelte';
 

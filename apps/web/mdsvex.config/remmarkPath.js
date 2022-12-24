@@ -12,6 +12,5 @@ export function remmarkPath() {
 			const slug = filepath.slice(11, -10);
 			vFile.data.fm.canonical = `https://matiashernandez.dev${slug}`;
 		}
-
 	};
 }

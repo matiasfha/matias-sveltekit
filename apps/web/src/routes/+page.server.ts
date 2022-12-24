@@ -14,7 +14,7 @@ async function getLatestContent(lang?: string) {
 
 		const course = await getLatestCourse(lang);
 		const article = await getLatestArticle(lang);
-    const youtube = (await getVideos())[0]
+		const youtube = (await getVideos())[0];
 		let latest = [
 			{
 				/* post */ href: post.slug,
@@ -28,18 +28,19 @@ async function getLatestContent(lang?: string) {
 				image: article.image,
 				title: article.title,
 				tag: `published at: ${article.tag}`
-			}, {
-        href: 'https://youtube.com/watch?v='+youtube.id,
-        image: youtube.thumb.url,
-        title: youtube.title,
-        tag: `Youtube`
-      },
+			},
+			{
+				href: 'https://youtube.com/watch?v=' + youtube.id,
+				image: youtube.thumb.url,
+				title: youtube.title,
+				tag: `Youtube`
+			},
 			{
 				/* egghead */ href: course.url + '?af=4cexzz',
 				image: course.image,
 				title: course.title,
 				tag: 'Egghead Course'
-			},
+			}
 		];
 		if (lang === 'es') {
 			const cafeConTech = await getLatest('https://anchor.fm/s/a1ac9eb8/podcast/rss');

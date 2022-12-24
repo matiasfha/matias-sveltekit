@@ -5,6 +5,7 @@ export const load: LayoutServerLoad = async ({ cookies, url, request }) => {
 		request.headers.has('accept-language') &&
 		!request.headers.get('user-agent').includes('Googlebot')
 	) {
+		//eslint-disable-next-line
 		const accepted = request.headers.get('accept-language')?.match(/[a-zA-Z\-]{2,10}/gm) || ['en'];
 		let defaultLocale = 'en'; // get from cookie, user session, ...
 		if (accepted.includes('es')) {

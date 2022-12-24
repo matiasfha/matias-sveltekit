@@ -1,12 +1,12 @@
 {
-    "ask":"Ask Me Anything",
-    "call":"Schedulle a Call",
-    "coffee":"Invite me a coffee",
-    "uses":"What things I use",
-    "title":"Hi there I'm Matías 👋",
-    "issue":"Create a github issue",
-    "publishing":"Publishing your question...",
-    "send": "Send your question",
-    "support":"Support my work by subscribing or sending a tip!",
-    "uses_text":"Are you interested in what things I use to get my job done? <a href='/uses'>Check this page</a> where you can find everything I use."
+	"ask": "Ask Me Anything",
+	"call": "Schedulle a Call",
+	"coffee": "Invite me a coffee",
+	"uses": "What things I use",
+	"title": "Hi there I'm Matías 👋",
+	"issue": "Create a github issue",
+	"publishing": "Publishing your question...",
+	"send": "Send your question",
+	"support": "Support my work by subscribing or sending a tip!",
+	"uses_text": "Are you interested in what things I use to get my job done? <a href='/uses'>Check this page</a> where you can find everything I use."
 }

@@ -1,42 +1,42 @@
 {
-    "featured":"Destacados",
-    "search": "Buscar",
-    "contact": "Contacto",
-    "consultancy": "Consultoría y Mentoría",
-    "ama": "Pregunta lo que quieras",
-    "about": "Sobre Mí",
-    "courses": "Cursos",
-    "articles":"Artículos",
-    "sponsor": "Auspicios",
-    "hire": "Contratame",
-    "uses": "Usos",
-    "navbar": {
-        "articles": "Artículos Externos"
-    },
-    "pricing": {
-        "title": "Precion Semanal",
-        "exclusivity": "Una semana de publicidad exclusiva",
-        "includes":"Incluye diseño y redacción"
-    },
-    "all_about": "Todo sobre ",
-    "newsletter_text": "No olvides unirte a mi newsletter y así no perderte ningún contenido. Artículos, cursos y más.",
-    "404": {
-        "title": "Lo siento, esta pagina no existe",
-        "read_more":"No te preocupes, aquí hay algo para leer"
-    },
-    "writtenBy": "escrito por",
-    "tableOfContent": "Table de contenidos",
-    "join_now":"Únete hoy",
-    "post":{
-        "footer_title": "😃 Gracias por leer!",
-        "footer_body":"Te pareció interesante? Encuentra más contenido similar uniendote al <a class=\"underlined\" href=\"https://matiashernandez.dev/newsletter\">Newsletter</a> o siguiendome en <a class=\"underlined\" href=\"https://twitter.com/matiasfha\" target=\"_blank\" rel=\"noreferrer\">Twitter</a>.",
-        "footer_edit":"Edita esto en github",
-        "webmentions":{
-            "title":"Sigue la conversación en Twitter",
-            "share": "Comparte en Twitter",
-            "likes": "han dado Like",
-            "retweet":"han hecho RT"
-        },
-        "keep_reading": "Continúa leyendo"
-    }
+	"featured": "Destacados",
+	"search": "Buscar",
+	"contact": "Contacto",
+	"consultancy": "Consultoría y Mentoría",
+	"ama": "Pregunta lo que quieras",
+	"about": "Sobre Mí",
+	"courses": "Cursos",
+	"articles": "Artículos",
+	"sponsor": "Auspicios",
+	"hire": "Contratame",
+	"uses": "Usos",
+	"navbar": {
+		"articles": "Artículos Externos"
+	},
+	"pricing": {
+		"title": "Precion Semanal",
+		"exclusivity": "Una semana de publicidad exclusiva",
+		"includes": "Incluye diseño y redacción"
+	},
+	"all_about": "Todo sobre ",
+	"newsletter_text": "No olvides unirte a mi newsletter y así no perderte ningún contenido. Artículos, cursos y más.",
+	"404": {
+		"title": "Lo siento, esta pagina no existe",
+		"read_more": "No te preocupes, aquí hay algo para leer"
+	},
+	"writtenBy": "escrito por",
+	"tableOfContent": "Table de contenidos",
+	"join_now": "Únete hoy",
+	"post": {
+		"footer_title": "😃 Gracias por leer!",
+		"footer_body": "Te pareció interesante? Encuentra más contenido similar uniendote al <a class=\"underlined\" href=\"https://matiashernandez.dev/newsletter\">Newsletter</a> o siguiendome en <a class=\"underlined\" href=\"https://twitter.com/matiasfha\" target=\"_blank\" rel=\"noreferrer\">Twitter</a>.",
+		"footer_edit": "Edita esto en github",
+		"webmentions": {
+			"title": "Sigue la conversación en Twitter",
+			"share": "Comparte en Twitter",
+			"likes": "han dado Like",
+			"retweet": "han hecho RT"
+		},
+		"keep_reading": "Continúa leyendo"
+	}
 }
