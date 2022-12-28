@@ -13,8 +13,9 @@ keywords:
 tag: Typescript
 title: Basic Type Transformations with Typescript
 description: This article focuses on **type level programming**, so we will review how to use the type system language to transform the data.
-favorite: true
+favorite: false
 lang: en
+bannerCredit:
 canonical: https://dev.to/documatic/basic-type-transformations-with-typescript-2nbl
 ---
 
