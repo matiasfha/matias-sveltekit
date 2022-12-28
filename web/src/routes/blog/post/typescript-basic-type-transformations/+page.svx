@@ -73,6 +73,7 @@ How can you "read" the properties' names from the object?
 This is where the keyof operator comes into play.
 
 ```ts 
+
 type State = {
   openModal: boolean;
   entity: {
@@ -98,6 +99,7 @@ Sometimes you use a library that provides the types for all functions but only t
 You want to know the arguments of that function to, for example, re-use them or re-create them in another place of your code. How can you extract the function arguments?
 
 ```ts 
+
 function someFunction(arg1, boolean, arg2: Record<string, unknown>) {
 
 }
@@ -106,6 +108,7 @@ function someFunction(arg1, boolean, arg2: Record<string, unknown>) {
 type SomeFunctionArgs = Parameters<typeof someFunction> // [arg1: boolean, arg2: Record<string, unknown>]
 
 ```
+
 To accomplish your goal, you will use the `Parameters` type utility provided by Typescript itself. This utility type accepts a function type and returns a tuple with all of the arguments of that function, in this case, `[arg1: boolean, arg2: Record<string, unknown>]`.
 
 With that in hand, you can re-use the `SomeFunctionArgs` type to perform your operations, like accessing only the second argument. 
@@ -121,6 +124,7 @@ This utility type is beneficial to work with code you don't own, like a 3rd part
 In a similar place but working in the other part of the spectrum, you have `ReturnType` that, as the name implies, will retrieve the type of the return value of a function. 
 
 ```ts 
+
 function someFn() {
     return [1,2,3]
 }
@@ -138,6 +142,7 @@ function someFn2() {
 }
 
 type ReturnSomeFn2 = ReturnType<typeof someFn2> // { a:boolean, b: number, c: { s: string }}
+
 ```
 
 
@@ -150,7 +155,8 @@ type ReturnSomeFn2 = ReturnType<typeof someFn2> // { a:boolean, b: number, c: { 
 `Exclude` will allow you to remove an element from a union.
 
 
-```
+```ts
+
 type State = {
   openModal: boolean;
   entity: {
@@ -181,6 +187,7 @@ On the other hand, you can find these two utility types.
 
 
 ```ts 
+
 type State = {
   openModal: boolean;
   entity: {
