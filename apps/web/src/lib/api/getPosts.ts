@@ -39,7 +39,6 @@ export default async function getPosts(lang?: string) {
 					.replace(/\?|\¿/g, ''),
 				//@ts-expect-error Metada cannot be infered
 				...post.metadata,
-				//@ts-expect-error TS doesn't know about the content of default
 				html: post.default.render?.().html,
 				path: path.slice(0, -4).slice(9)
 			};

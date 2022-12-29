@@ -8,7 +8,8 @@
     "dev": "turbo run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
-    "dev:web":"turbo run dev --filters web"
+    "dev:web":"turbo run dev --filters web",
+    "test": "turbo run test"
   },
   "keywords": [],
   "author": "Matias Hernandez <matiasfh@gmail.com> (https://matiashernandez.dev/)",
