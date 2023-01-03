@@ -1,0 +1,99 @@
+
+---
+date: 2023-01-03T13:11:51Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/7ee2a838dd8e7093db97b6b79e9201fce9ff7427-1280x710.png
+keywords: 
+- Typescript
+- Types
+- Primitives types
+title: "¿Cuáles son los tipos básicos en Typescript?"
+description: "En el lenguaje de tipos los datos con los que trabajaras son los tipos en si mismo.
+Typescript ofrece varios tipos básicos que te permitirán dar forma a tus requerimientos.
+¿Que tipos básicos hay disponibles?"
+bannerCredit: undefined
+
+---
+El verdadero poder de Typescript están en la programación en el nivel de los tipos, es decir, en la manipulación de tipos mediante el uso de algoritmos usando el lenguaje de tipos.
+
+Este lenguaje de tipos es diferente al de los valores (aquellos que son ejecutados en producción - Javascript - ), ya que sólo existe en tiempo de desarrollo y tiene una sintaxis diferente.
+
+Pero a pesar de ello, el lenguaje de los tipos es un lenguaje de programación y como tal provee tipos de datos que en este caso, son los datos que manipularás.
+
+
+
+### ¿Cuáles son los tipos básicos disponibles? 
+
+Es posible diferenciar 5 categorías de tipos de datos en Typescript "type-level".
+
+* Primitivas.
+* Literales.
+* Estructuras de Datos.
+* Uniones.
+* Intersecciones.  
+
+
+Revisemos, en resumen, cada uno de estos tipos.
+
+### Tipos primitivos
+
+Estos tipos han estado presentes en tu día a día desde siempre, y no son nada nuevo ni inventado por Typescript: `number`,`string`,`boolean`,`symbol`, `bigint`, `undefined`,`null`.
+
+Como vez, los tipos primitivos de Typescript son a la vez "casi" todos los tipos primitivos existentes en Javascript, casi, por que objetos y funciones no están en esta lista ya que pertenecen a otra categoría.
+
+Si bien estos tipos pueden expresar gran parte del código de una aplicación, no son suficientes ya que normalmente necesitaras tipos más complejos para representar tus soluciones.
+
+### Tipos literales
+
+Aquí **literal** significa exactamente eso, el **tipo** es es exactamente el valor que ves.
+
+```typescript
+const diez: 10 = 10;
+const hola: "hola" = "hola";
+```
+
+Es decir, la variable `diez` tiene como tipo al número `10`, entonces sólo podrá contener como valor el número `10`. Lo mismo con la variable `hola`, el único valor que puede tener es el string `hola` dado que la anotación de tipo indica que es el string literal `hola`.
+
+### Estructuras de datos
+
+Aquí es donde comenzamos a encontrar mayor utilidad en los tipos ofrecidos nativamente por Typescript, ya que permiten modelar de mejor manera tus requerimientos. En esta categoría encontrarás objectos, registros, arreglos y tuplas.
+
+* **Objetos:** Es un tipo que describe la "forma" de un objeto como un conjunto finito de pares clave:valor.
+* **Registros:** Muy similar a un objeto, pero describe la forma de un objeto con un número desconocido de propiedes en donde todas ellas son del mismo tipo.
+* **Tuplas:** Permiten describir un arreglo de un tamaño definido.
+* **Arreglos**: Tal como su nombre lo indica, describe un arreglo de tamaño desconocido pero cuyos valores son del mismo tipo.
+
+```typescript
+type Objeto = {
+  name: string;
+  age: number;
+}
+
+type Registro = { [key: string]: unknown} // Un objeto cuyos nombres de propiedades son strings pero su valor es desconocido
+type Registro2 = Record<string, unknown> // Resultado identico a la linea anterior
+
+type Tupla = [string, number, boolean] // Un conjunto finitio de 3 elementos 
+
+type Arr = Array<string> // Un arreglo infinito de sólo strings, también puede escribirse como string[]
+
+```
+
+### Uniones e Intersecciones
+
+Estos dos tipos ofrecidos por Typescript son similares y opuestos. Ambos conceptos provienen de la teoría de conjuntos y sólo existen en el nivel de tipos. Son importantes ya que permiten expresar diferentes patrones y modelos.
+
+Por ahora sólo revisaremos su sintaxis y brevemente su significado, pero ahondaremos más en la siguiente entrega.
+
+```typescript
+type Union = X | Y 
+
+type Intersection = X & Y 
+
+```
+
+tendrá el tipo de X o el de Y"_. La segunda linea es lo opuesto, _"El tipo de Intersection será simultáneamente X e Y"_.
+
+### Conclusión
+
+Typescript ofrece algunos tipos básicos que te permitirán realizar anotaciones en tus funciones, variables y procedimientos.
+
+Estos tipos pueden ser compuestos entre sí para crear tipos más complejos, Typescript ya ofrece algunos tipos que te permiten crear estructuras más interesantes como lo son las **uniones** y **intersecciones**.
