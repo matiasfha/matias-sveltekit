@@ -29,6 +29,7 @@ La herencia en Typescript se refiere a permitir crear nuevas interfaces que here
 
 
 ```typescript
+
 interface User {
   firstName: string;
   lastName: string;
@@ -48,6 +49,7 @@ Lo que se puede ver en el fragmento anterior es:
 * Este uso de extends se puede utilizar para heredar de múltiples interfaces simultáneamente con sólo utilizar nombres separados por comas de las interfaces base.
 
 ```typescript
+
 interface StaffUser extends User, RoleUser {
 
 }
@@ -60,6 +62,7 @@ interface StaffUser extends User, RoleUser {
 También se puede utilizar `extends` para restringir el tipo o limitar el ámbito de un tipo.
 
 ```typescript
+
 export type QueryFunction<
   T = unknown,
   TQueryKey extends QueryKey = QueryKey,

@@ -28,6 +28,7 @@ The inheritance in Typescript refers to allowing you to create new interfaces th
 
 
 ```typescript
+
 interface User {
   firstName: string;
   lastName: string;
@@ -50,6 +51,7 @@ This usage of extends can be used to inherit from multiple interfaces simultaneo
 
 
 ```typescript
+
 interface StaffUser extends User, RoleUser {
 
 }
@@ -62,6 +64,7 @@ interface StaffUser extends User, RoleUser {
 `extends` can also be used to constrain the type or to narrow the scope of a type.
 
 ```typescript
+
 export type QueryFunction<
   T = unknown,
   TQueryKey extends QueryKey = QueryKey,
