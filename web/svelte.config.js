@@ -2,7 +2,7 @@ import { mdsvex } from "mdsvex";
 import mdsvexConfig from "./mdsvex.config/index.js";
 import preprocess from 'svelte-preprocess';
 import adapter from '@sveltejs/adapter-vercel'
-
+import { imagePreprocessor } from 'svelte-image-preprocessor-cloudinary';
 import { mdsvexGlobalComponents } from './preprocessors/mdsvexGlobalComponents.js'
 
 export const globalComponents = mdsvexGlobalComponents({
@@ -26,22 +26,6 @@ const config = {
   }), globalComponents, mdsvex(mdsvexConfig)],
 
   kit: {
-    // prerender: {
-    //     enabled: true,
-    //     crawl: true,
-    //     entries: ["*"],
-    //     handleHttpError: ({ status, path, referrer, referenceType, ...rest }) => {
-    //         const error = Object.keys(rest).map(key => `${key}: ${rest[key]}`).join(', ')
-    //         console.table(rest)
-    //         console.error(
-    //             `${status} ${path}${referrer ? ` (${referenceType} from ${referrer}) ${error}` : ''}`
-    //         );
-    //     }
-    // },
-    // adapter: netlify({
-    //     edge: false,
-    //     split: true,
-    // }),
     adapter: adapter({
       edge: false,
       split: false

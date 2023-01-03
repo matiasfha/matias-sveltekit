@@ -8,5 +8,6 @@
     "publishing":"Publicando tu pregunta...",
     "send": "Envía tu pregunta",
     "support":"¿Te gusta mi contenido? Invitame un café",
-    "uses_text":"¿Te interesa conocer que utilizo para realizar mi trabajo? <a href='/uses'>Revisa esta página</a> donde encontrarás un listado."
+    "uses_text":"¿Te interesa conocer que utilizo para realizar mi trabajo? <a href='/uses'>Revisa esta página</a> donde encontrarás un listado.",
+    "call_text":"Únete en una llamada conmigo para hablar de tu carrera como dev, revisar algún codigo o en realidad para hablar de lo que quieras relacionado con tech."
 }

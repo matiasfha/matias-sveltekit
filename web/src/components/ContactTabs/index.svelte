@@ -14,7 +14,7 @@
 		// },
 		{
 			id: 2,
-			text: $t('about.call')
+		text: $t('about.call')
 		},
 		{
 			id: 3,
@@ -70,6 +70,8 @@
 
 		{#if currentTab === 2}
 			<Calendly />
+
+
 		{/if}
 
 		{#if currentTab === 3}

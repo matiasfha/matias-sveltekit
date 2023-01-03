@@ -207,7 +207,7 @@
 						>
 					</li>
 				{/each}
-				<li class="text-left px-5 py-6">
+				<li class="text-left px-5 py-6 border-b-2 dark:border-ebony-clay-100 border-ebony-clay-600">
 					<button
 						id="dark-mode-toggler"
 						aria-label="Switch to dark mode"
@@ -241,6 +241,22 @@
 						></button
 					>
 				</li>
+          <li class="text-left px-5 py-6">
+
+				<form method="POST" action="/?/setLang" use:enhance class="self-start">
+					<select
+						class="px-2 bg-ebony-clay-600 dark:bg-gray-100 rounded-full h-8 text-gray-100 dark:text-ebony-clay-800 mt-1 pl-[0.4rem]  ml-2"
+						id="menu-button"
+						name="lang"
+						bind:value={selectedLang}
+						on:change={handleLangChange}
+					>
+						<option value="es">ES</option>
+						<option value="en">EN</option>
+					</select>
+					<input type="hidden" name="location" bind:value={currentRoute} />
+				</form>
+        </li>
 			</ul>
 		{/if}
 	</nav>

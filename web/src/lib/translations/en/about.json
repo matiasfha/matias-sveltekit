@@ -8,5 +8,6 @@
     "publishing":"Publishing your question...",
     "send": "Send your question",
     "support":"Support my work by subscribing or sending a tip!",
-    "uses_text":"Are you interested in what things I use to get my job done? <a href='/uses'>Check this page</a> where you can find everything I use."
+    "uses_text":"Are you interested in what things I use to get my job done? <a href='/uses'>Check this page</a> where you can find everything I use.",
+    "call_text":"Join me in a call to talk about your dev career, review some code, or to ask me anything tech related!"
 }

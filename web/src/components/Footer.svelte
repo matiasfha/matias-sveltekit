@@ -94,7 +94,7 @@
 						<li class="py-1">
 							<a
 								class="text-secondary hover:text-primary focus:text-primary underlined inline-block whitespace-nowrap text-lg focus:outline-none"
-								href="https://cal.com/matiasfh/30min">{$t('common.consultancy')}</a
+								href="https://www.buymeacoffee.com/matiasfha/e/11003">{$t('common.consultancy')}</a
 							>
 						</li>
 						<li class="py-1">
@@ -123,7 +123,7 @@
 
 			<div class="col-span-full mt-24 dark:text-blueGray-500 text-gray-200 text-lg md:mt-44">
 				<span>All rights reserved</span>
-				<span class="block md:inline">© Matías Hernández 2021</span>
+				<span class="block md:inline">© Matías Hernández 2022</span>
 			</div>
 		</div>
 	</div>
