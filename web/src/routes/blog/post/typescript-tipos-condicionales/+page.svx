@@ -108,4 +108,4 @@ crear utilidades más complejas que te permitirán crear mejor seguridad de tipo
 Te comparto un video ([disponible en mi canal en Youtube](http://youtube.com/@matiasfha)) en donde te muestro como, utilizando tipos condicionales junto a patter matching puedes crear  
 un (simple) extractor del query string de una URL.
 
-<Youtube youtubeId="yQyQa0gbqU0" />
+<YouTube id="yQyQa0gbqU0" />
