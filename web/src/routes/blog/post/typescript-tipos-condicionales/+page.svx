@@ -1,0 +1,111 @@
+
+---
+date: 2023-01-06T14:41:18Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/18b83a3a72db49eede9f530bc32304f613456b7c-1280x710.png
+keywords: 
+- Typescript
+- Tipos Condicionales
+- Conditional Types
+title: "Typescript: Tipos Condicionales"
+description: "En este artículo revisaremos como comenzar a crear algoritmos utilizando el lenguaje funcional de los tipos en Typescript, siendo la puerta de entrada los **tipos condicionales**
+
+"
+bannerCredit: undefined
+
+---
+Typescript es un "superset" de Javascript, es decir, todo el código Javascript es también válido como código Typescript,  
+finalmente, este es el código que termina ejecutándose en el navegador. Pero Typescript también se compone de otra capa o nivel, el lenguaje de los tipos.  
+Es este nivel el que provee el verdadero poder del lenguaje ya que te permite describir tus datos de forma completa.
+
+El lenguaje de los tipos ya lo conoces, corresponde a aquellas anotaciones que haces a tus variables, argumentos etc. También incluye la definición de tipos usando `type` (o interface)  
+y todo el conjunto de tipos utilitarios nativos como `Pick`,`Omit`,`Record`,etc.
+
+> Relacionado: [Types vs Interface ¿Cuándo utilizar cada una?](https://www.matiashernandez.dev/blog/post/types-vs-interfaces-cuando-utilizar-cada-una)
+
+Pero, es posible ir más allá y crear algoritmos en este nivel: Type-level programming.
+
+En este artículo revisaremos como comenzar a crear algoritmos utilizando el lenguaje funcional de los tipos en Typescript, siendo la puerta de entrada los **tipos condicionales**
+
+## Tipos Condicionales en Typescript
+
+El algoritmo más simple que puedes escribir en cualquier lenguaje es la bifurcación de código, es decir, utilizar un bloque condicional para permitir que el flujo de datos ejecute un u otro camino,  
+ya sabes, el viejo y querido bloque `if`.
+
+Pero el lenguaje de los tipos en Typescript es puramente funcional, y una de las restricciones de este tipo de lenguajes es que sólo puedes escribir declaraciones y un bloque `if` no lo es.  
+Por lo que Typescript tiene que hacer uso de otra forma de evaluar condiciones, y es una sintaxis algo extraña pero a la vez conocida: El operador ternario.
+
+```ts
+
+  
+type ConditionalType = Condition ? true : false
+
+```  
+> El ejemplo arriba muestra como se crea un tipo cuyo "valor" se basa en una condición.
+
+Si, los bloques condicionales en Typescript se escriben igual que el [operador ternario de Javascript.](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)
+
+Es la parte de la condición la que usualmente genera confusiones, ya que sólo se puede definir utilizando la palabra clave `extends`.
+
+> En [este artículo ](https://www.matiashernandez.dev/blog/post/typescript-la-palabra-clave-extends) reviso más a fondo la palabra clave `extends`
+
+`extends` aquí funciona para confirmar si cierto tipo pertenece a algún super tipo.
+
+```ts
+
+  
+type ConditionalType = SomeType extends BaseType ? true : false
+
+```
+
+Es decir, si el tipo usado al lado izquierdo de `extends` pertenece a `BaseType` (lado derecho) entonces la condición es evaluada como verdadera.
+
+Por lo general el uso de tipos condicionales se combina con otras características de Typescript como el uso de **generics**.
+
+A modo muy resumido, **generics** es la forma en que Typescript te permite crea código reutilizable, puedes imaginarlo como algo muy similar a una función, siendo el (o los) parámetro genérico el argumento de dicha función.
+
+Si combinas esa idea con tipos condicionales, puedes crear "funciones" que generan diferentes tipos basado en sus argumentos.
+
+Revisemos un ejemplo.
+
+```ts
+
+  
+type IsThisADog<A> = A extends { sound: "bark" } ? A : "This is not a dog"
+
+type Dog = { sound: "bark", legs: 4, name: "Rocky"}
+
+type Cat = { sound :"meow", legs: 4, name: "Furr"}
+
+function onlyDogs<T>(d: IsThisADog<T>) {  
+return 'Esto es un perro'  
+}
+
+const perro = {} as Dog
+
+const gato = {} as Cat
+
+onlyDogs(gato) // Error Argument of type 'Cat' is not assignable to parameter of type '"This is not a dog"'.
+
+onlyDogs(perro) // OK
+
+```
+
+La idea del ejemplo es crear una función que sólo acepta como argumento una variable que debe ser un perro. Para ello creamos un tipo condicional llamado `IsThisADog` (una "función de tipo").
+
+Este tipo condicional recibe un parámetro genérico `A` que puede ser cualquier tipo. Luego se define una condición: `A extends { sound: "bark"}`.
+
+La condición descrita revisa si el tipo genérico `A` "tiene" la propiedad `sound` que es igual al string literal `"bark"`, de ser verdadero se "retorna" el mismo tipo. Y en caso contrario,  
+se asignará como valor de "retorno" un mensaje de error (también podrías retornar `false` o `never`).
+
+Ahora, este nuevo tipo utilitario creado es utilizado para anotar la función `onlyDogs` así, si pasas como argumento una variable que no sea tipo `Dog` se mostrará un error.
+
+## Conclusión
+
+El uso de tipos condicionales abre un nuevo mundo de posibilidades de lo que puedes hacer con Typescript ya que no solo se puede  
+usar en combinación con **generics** si no también con otras poderosas características como **pattern matching** e **inferencia de tipos** permitiéndote  
+crear utilidades más complejas que te permitirán crear mejor seguridad de tipos en tus librerías y aplicaciones.
+
+Te comparto un video ([disponible en mi canal en Youtube](http://youtube.com/@matiasfha)) en donde te muestro como, utilizando tipos condicionales junto a patter matching puedes crear  
+un (simple) extractor del query string de una URL.
+
+<Youtube youtubeId="yQyQa0gbqU0" />
