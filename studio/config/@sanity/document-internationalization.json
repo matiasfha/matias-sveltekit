@@ -1,8 +1,0 @@
-{
-    "idStructure": "delimiter",
-    "referenceBehavior": "strong",
-    "languages": [
-        {"id":"en","title":"English"},
-        {"id":"es","title":"Español"}
-    ]
-}

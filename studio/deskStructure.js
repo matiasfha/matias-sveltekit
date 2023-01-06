@@ -1,19 +1,18 @@
 // deskStructure.js
-import S from '@sanity/desk-tool/structure-builder'
-import SocialPreview from 'part:social-preview/component'
+// import SocialPreview from 'part:social-preview/component'
 
-export const getDefaultDocumentNode = ({ schemaType }) => {
-  // Add the social preview view only to those schema types that support it
-  if (['posts'].includes(schemaType)) {
-    return S.document().views([
-      S.view.form(),
-      S.view.component(SocialPreview()).title('Social & SEO'),
-    ])
-  }
-  return S.document().views([S.view.form()])
-}
+// export const getDefaultDocumentNode = ({ schemaType }) => {
+//   // Add the social preview view only to those schema types that support it
+//   if (['posts'].includes(schemaType)) {
+//     return S.document().views([
+//       S.view.form(),
+//       S.view.component(SocialPreview()).title('Social & SEO'),
+//     ])
+//   }
+//   return S.document().views([S.view.form()])
+// }
 
-const i18nItem = S.listItem()
+const i18nItem = (S) => S.listItem()
   .title(`i18n Settings`)
   .child(
     S.documentList()
@@ -23,11 +22,11 @@ const i18nItem = S.listItem()
       .canHandleIntent(S.documentTypeList('i18n').getCanHandleIntent())
   )
 
-export default () =>
+export default (S) =>
   S.list()
     .title('Base')
     .items([
-      i18nItem,
+      i18nItem(S),
       ...S.documentTypeListItems().filter(listItem => !['i18n'].includes(listItem.getId())),
       
     ])
