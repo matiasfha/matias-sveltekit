@@ -1,40 +1,26 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import { PortableText, DefaultListItem } from '@portabletext/svelte';
 	import type { PortableTextBlock } from '@portabletext/types';
+	import { redirect } from '@sveltejs/kit';
+	import type { ActionData } from './$types';
 
 	export let logo: string;
 	export let title: string;
 	export let description: PortableTextBlock;
 	export let formId: string;
-	export let codeId: string;
+	export let tags: string[];
 
-	const onClick = () => {
-		ml_account('webforms', formId, codeId, 'show');
-	};
-</script>
+	$: success = false
 
-<svelte:head>
-	<script>
-		(function (m, a, i, l, e, r) {
-			m['MailerLiteObject'] = e;
-			function f() {
-				var c = { a: arguments, q: [] };
-				var r = this.push(c);
-				return 'number' != typeof r ? r : f.bind(c.q);
+	function useEnhance({ form, data }) {
+		return async ({ result, update }) => {
+			if(result.type === 'success') {
+				success = true
 			}
-			f.q = f.q || [];
-			m[e] = m[e] || f.bind(f.q);
-			m[e].q = m[e].q || f.q;
-			r = a.createElement(i);
-			var _ = a.getElementsByTagName(i)[0];
-			r.async = 1;
-			r.src = l + '?v' + ~~(new Date().getTime() / 1000000);
-			_.parentNode.insertBefore(r, _);
-		})(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
-
-		var ml_account = ml('accounts', '3081949', 'x4j7h5e8a3', 'load');
-	</script>
-</svelte:head>
+		};
+	}
+</script>
 
 <div class="relative pt-12 w-full h-full">
 	<img
@@ -65,26 +51,41 @@
 					}}
 				/>
 			</div>
+			{#if success}
+			<p>Gracias por unirte. Revisa tu correo para confirmar</p>
+			{:else}
+			<form
+				class="w-full flex flex-col md:flex-row mt-12 gap-4 md:gap-16"
+				method="POST"
+				action="/newsletter"
+				use:enhance={useEnhance}
+			>
+				<input
+					name="email"
+					type="text"
+					placeholder="Tu email"
+					class="shadow-md border-secondary hover:border-primary focus:border-primary focus:bg-secondary px-8 py-2 h-14 w-full dark:text-gray-300 bg-gray-50 border rounded-lg focus:outline-none"
+				/>
+				<input type="hidden" name="sequenceId" value={formId} />
+				<input type="hidden" name="tags" value={tags} />
 
-			<div class="w-full flex flex-col md:flex-row mt-12 gap-4 md:gap-16">
 				<button
-					on:click={onClick}
 					class={`w-full h-14 
-        bg-ebony-clay-600 
-        dark:bg-gray-200 
-        border-ebony-clay-600 
-        dark:border-gray-200 
-        text-gray-300 dark:text-ebony-clay-600
-        relative inline-flex items-center justify-center p-4 px-8s py-3 overflow-hidden font-medium
-        transition duration-300 ease-out border-2 
-        rounded-full shadow-md group`}
+						bg-ebony-clay-600 
+						dark:bg-gray-200 
+						border-ebony-clay-600 
+						dark:border-gray-200 
+						text-gray-300 dark:text-ebony-clay-600
+						relative inline-flex items-center justify-center p-4 px-8 py-3 overflow-hidden font-medium
+						transition duration-300 ease-out border-2 
+						rounded-full shadow-md group`}
 				>
 					<span
 						class={`absolute inset-0 flex items-center justify-center w-full h-full
-          duration-300 -translate-x-full
-           group-hover:translate-x-0 ease
-           dark:text-white text-ebony-clay-600
-          dark:bg-ebony-clay-600 bg-gray-200`}
+							  duration-300 -translate-x-full
+							   group-hover:translate-x-0 ease
+							   dark:text-white text-ebony-clay-600
+							  dark:bg-ebony-clay-600 bg-gray-200`}
 					>
 						<svg
 							class="w-8 h-6"
@@ -107,7 +108,8 @@
 					>
 					<span class="relative invisible">Únete hoy</span>
 				</button>
-			</div>
+			</form>
+			{/if}
 		</div>
 	</div>
 </div>
