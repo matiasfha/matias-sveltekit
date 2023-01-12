@@ -30,6 +30,7 @@ JSDoc is a standardization of that practice of adding comments to describe and d
 but specialized for Javascript code.
 
 ```js  
+
 /**  
 * Renders a new component with props  
 *  
@@ -41,7 +42,7 @@ but specialized for Javascript code.
 * @return {Promise<string>} a string with the content  
 */  
 static async renderComponent({ action, errorMessage }) {  
-return template({ action, errorMessage })  
+    return template({ action, errorMessage })  
 }  
 ```
 
@@ -52,7 +53,9 @@ Most of current code editor supports this syntax to read and display documentati
 The Typescript team took JSDoc and added supports for the type information. Is it possible [to use a variation of the JSDoc annotation syntax](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) to provide  
 information about the types you will use.  
 Let's take the previous example but this time with type annotations  
+
 ```js  
+
 /**  
 * Renders a new component with props  
 *  
@@ -63,13 +66,14 @@ Let's take the previous example but this time with type annotations
 * @return {Promise<string>} a string with the content  
 */  
 static async renderComponent({ action, errorMessage }) {  
-return template({ action, errorMessage })  
+    return template({ action, errorMessage })  
 }  
 ```
 
 Looks similar right? That's why TS "hijacked" some of the JSDoc syntax and added new meaning, but the real power comes when you define new types.
 
 ```js  
+
 /**  
 * Renders a new component with props  
 *  
@@ -83,7 +87,7 @@ Looks similar right? That's why TS "hijacked" some of the JSDoc syntax and added
 * @return {Promise<string>} a string with the content  
 */  
 static async renderComponent(props) {  
-return template(props)  
+    return template(props)  
 }
 
 ```
@@ -94,12 +98,13 @@ After that, you can use the new type inside the **same file** were it was define
 The result of the previous snippet is the same as
 
 ```ts  
+
 type Props = {  
-action: string;  
-errorMessage?: string  
+    action: string;  
+    errorMessage?: string  
 }  
 static async renderComponents(props: Props): Promise<string> {  
-return template(props)  
+    return template(props)  
 }  
 ```
 
