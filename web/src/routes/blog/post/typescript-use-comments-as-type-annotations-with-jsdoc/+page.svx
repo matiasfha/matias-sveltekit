@@ -15,7 +15,7 @@ description: "Did you know that you can use comments instead of code to write th
 
 You can use JSDoc to describe the methods and variables and your editor of choice will pick up the type information from there."
 bannerCredit: undefined
-
+lang: en
 ---
 Did you know that you can use comments instead of code to write the Typescript types for your app?
 
