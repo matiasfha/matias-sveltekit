@@ -55,13 +55,13 @@ export default async function getPosts(lang?: string, limitDate?: Date | null) {
 	for (const [path, resolver] of Object.entries(modules)) {
 		const promise = resolver().then((post) => {
 			const slug = path.slice(12, -10);
-			const metadata = MetaData.parse(post.metadata)
+			// const metadata = MetaData.parse(post.metadata)
 			return {
 				slug: slug
 				.normalize('NFD')
 				.replace(/[\u0300-\u036f]/g, '')
 				.replace(/\?|\¿/g, ''),
-				...metadata,
+				...post.metadata,
 				html: post.default.render?.().html,
 				path: path.slice(0, -4).slice(9)
 			};
