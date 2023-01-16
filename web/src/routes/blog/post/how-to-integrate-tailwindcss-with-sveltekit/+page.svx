@@ -10,7 +10,7 @@ keywords:
 title: "How to integrate TailwindCSS with SvelteKit"
 description: "I’m using Tailwind on my site and, on most of my side projects and demos. But, sometimes, adding TailwindCSS to your projects can be annoying or confusing. In this article, you’ll find how to integrate TailwindCSS with SvelteKit."
 bannerCredit: undefined
-
+lang: en
 ---
 There are two types of people in the dev world. The ones that love tailwind and the ones that hate it.
 
