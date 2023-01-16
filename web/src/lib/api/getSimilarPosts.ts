@@ -14,9 +14,13 @@ export default async function getSimilarPosts(filepath: string, lang = 'en') {
 				postKeywords.join(','),
 				pKeywords.join('')
 			);
+			const similarityTags = StringUtils.compareSimilarityPercent(
+				post.tag?.toString() ?? '',
+			    p.tag?.toString() ?? ''
+			)
 			return {
 				...p,
-				similarity
+				similarity: similarity + similarityTags 
 			};
 		})
 		.sort((a, b) => b.similarity - a.similarity);

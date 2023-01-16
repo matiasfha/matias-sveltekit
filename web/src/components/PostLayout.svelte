@@ -313,10 +313,10 @@
 										/>
 									</div>
 									<span class="text-sm"
-										><time datetime="YYYY-MM-DD HH:MM:SS">
+										>around <time datetime="YYYY-MM-DD HH:MM:SS">
 											<RelativeDateFormat date={post.date} />
 										</time>
-										- {post.readingTime.text}
+										Reading time: {post.readingTime.text}
 									</span>
 									<h4
 										class="md:text-xl text-lg font-bold leading-tighter text-black dark:text-white"
