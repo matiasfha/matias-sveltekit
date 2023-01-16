@@ -11,6 +11,7 @@ description: "En este artículo revisaremos como comenzar a crear algoritmos uti
 
 "
 bannerCredit: undefined
+tag: Typescript
 
 ---
 Typescript es un "superset" de Javascript, es decir, todo el código Javascript es también válido como código Typescript,  

@@ -12,7 +12,7 @@ keywords:
 title: "Javascript: El operador nullish-coalescing"
 description: "Javascript evoluciona año a año y nuevas características son añadidas y adoptados rápidamente. Una de estas características es el operador fusión nula o nullish coalescing, que permite crear nuevas operaciones al escribir tu código."
 bannerCredit: undefined
-
+tag: Javascript
 ---
 ## Nullish Coalescing (operador fusión nula)
 

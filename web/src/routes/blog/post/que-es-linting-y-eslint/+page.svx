@@ -10,7 +10,7 @@ keywords:
 title: ¿Qué es Linting y ESLint? 
 description: ESLint es una herramienta de análisis estático de tu código que te ayuda a evitar errores comunes.
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@casparrubin?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Caspar Camille Rubin</a> on <a href="https://unsplash.com/s/photos/code-formatting?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> 
-favorite: true
+tag: Javascript
 ---
 
 En el mundo del desarrollo de aplicaciones web hay una miríada de herramientas que buscan, no sólo mejorar la experiencia de usuario y la performance de tu aplicación en general, si no también, mejorar la experiencia de desarrollo (DX). Si bien tener tantas herramientas y opciones a disposición puede ser algo bueno para la mejora intrínsica de estas herramientas, es también un problema para muchos que están comenzando en este proceso ya que puede ser muy confuso seguir indicaciones que presumen de cierto grado de conocimiento previo.

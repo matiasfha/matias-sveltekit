@@ -11,6 +11,7 @@ description: "En el lenguaje de tipos los datos con los que trabajaras son los t
 Typescript ofrece varios tipos básicos que te permitirán dar forma a tus requerimientos.
 ¿Que tipos básicos hay disponibles?"
 bannerCredit: undefined
+tag: Typescript
 
 ---
 El verdadero poder de Typescript están en la programación en el nivel de los tipos, es decir, en la manipulación de tipos mediante el uso de algoritmos usando el lenguaje de tipos.

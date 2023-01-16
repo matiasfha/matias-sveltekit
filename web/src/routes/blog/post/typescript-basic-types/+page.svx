@@ -18,6 +18,7 @@ Typescript offers several basic types that will allow you to shape your requirem
 What basic types are available?"
 bannerCredit: undefined
 lang: en
+tag: Typescript
 ---
 
 The real power of Typescript lies in programming at the type level, that is, in the manipulation of types through the use of algorithms using the types language.

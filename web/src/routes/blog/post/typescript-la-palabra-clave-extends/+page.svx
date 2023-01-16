@@ -13,6 +13,7 @@ description: "Typescript es un lenguaje completo (un lenguaje completo de Turing
 Una de esas palabras clave es `extends`. Puede resultar muy confusa, ya que engloba un par de conceptos o significados que dependen del contexto en el que se utilice.
 "
 bannerCredit: undefined
+tag: Typescript
 
 ---
 ## La palabra clave extends

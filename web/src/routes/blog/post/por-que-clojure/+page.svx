@@ -9,6 +9,7 @@ title: "¿Por qué Clojure?"
 description: Clojure es un lenguaje variante de Lips, flexible, funcional, dinámico
   y entretenido.
 bannerCredit: ''
+tag: Clojure
 
 ---
 Desde hace ya un tiempo que comence mi viaje de aprendizaje con Clojure, incialmente más por curiosidad que nada, me gusta aprender nuevos lenguajes y obtener de cada uno de ellos algo que mejore mi trabajo diario.
