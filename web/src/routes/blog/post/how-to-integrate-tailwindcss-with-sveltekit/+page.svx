@@ -1,0 +1,65 @@
+
+---
+date: 2023-01-16T18:41:36Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/b2587e540e806769c259f3c9fe1420fbfb1e29ba-1280x710.png
+keywords: 
+- SvelteKit
+- TailwindCSS
+- svelte-add
+- Svelte
+title: "How to integrate TailwindCSS with SvelteKit"
+description: "I’m using Tailwind on my site and, on most of my side projects and demos. But, sometimes, adding TailwindCSS to your projects can be annoying or confusing. In this article, you’ll find how to integrate TailwindCSS with SvelteKit."
+bannerCredit: undefined
+
+---
+There are two types of people in the dev world. The ones that love tailwind and the ones that hate it.
+
+If you are in the first group, then you probably want to use Tailwind in most of your projects because of the benefits you find in it.
+
+I’m using Tailwind on my site and for most of my side projects and demos. But, sometimes, adding TailwindCSS to your projects can be annoying or confusing. In this article, you’ll find how to integrate TailwindCSS with SvelteKit.
+
+> This article focus on one approach, if you want to check a different path to accomplish the same I recommend you to check [this article by Ender Bonnet](https://enbonnet.hashnode.dev/how-to-configure-tailwindcss-on-sveltekit-10)
+
+First, a bit of background.
+
+SvelteKit, is the meta-framework that uses Svelte to handle the UI rendering processes (kind of Nextjs for React). It provides different features and functionalities that help you to develop full-stack applications, like router, SSR, build optimizations, CSR, and more. Check [the official documentation](https://kit.svelte.dev/docs/introduction) to read more about it.
+
+On the other hand for this integration, there is [TailwindCSS](https://tailwindcss.com/), and unless you’re living under a rock, you should at least listen about it. TailwindCSS and is an utilitiy-first CSS framework that offers a pack full of classes that can be composed to create any design. It is like writing CSS without writing CSS.
+
+Now, to the core of this content.
+
+For this tutorial, I’ll show you how to use a [utility package named svelte-add](https://github.com/svelte-add/svelte-add) to handle the integrations.
+
+### Integrate TailwindCSS into a pre-existing SvelteKit project
+
+One way to add TailwindCSS is to integrate it into a project you already have. Let’s assume that you already have a SvelteKit project and know how to use the terminal.
+
+The only thing you need is to run these two commands
+
+`npx svelte-add@latest tailwindcss pnpm install`
+
+And you’re done.
+
+The first command (the one that calls `npm` or `pnpmx` ) is the one in charge of setting things, creating configuration files, and updating your configurations to use Tailwind (which is a postcss plugin).
+
+The last one, is to update your dependencies (use the package manager of your choice here).
+
+After that, you’re ready to go and use TailwindCSS in your `.svelte` files.
+
+### Integrate TailwindCSS into a new SvelteKit project
+
+The other way of getting this integration done is by creating a project from scratch - In fact, this is the preferred method - What you need here is to execute a different command than the one that the official documentation mention.
+
+`npm create @svelte-add/kit@latest my-awesome-app`
+
+That will show you a prompt to select any integration you have
+
+> `svelte-add` support several integrations like: Bulma, Coffeescript, TailwindCSS, MDsveX, SCSS, etc
+
+For this tutorial, pick TailwindCSS or directly define that in the command line like
+
+`npm create @svelte-add/kit@latest my-awesome-app -- --with tailwindcss`
+
+That will generate the skeleton SvelteKit application with Tailwind ready to be used. You now need to install dependencies and move on to building your incredible application.
+
+And that’s a wrap, using `svelte-add` is an easy way to integrate 3rd party libraries/configurations into your SvelteKit project.
