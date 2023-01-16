@@ -10,7 +10,7 @@ title: ¿Qué hay de nuevo en Javascript 2022?
 description: Javascript es un lenguaje que no para de crecer y evolucionar, y este 2022 viene cargado de nuevas características.
 bannerCredit: 
 tag: Javascript
-canonical: https://www.matiashernandez.dev/blog/post/que-hay-de-nuevo-en-javascript-2022
+canonical: https://matiashernandez.dev/blog/post/que-hay-de-nuevo-en-javascript-2022
 ---
 
 JS está lejos de dejar la innovación y el crecimiento y cada año el estándar ECMAScript se fortalece con nuevas adiciones que esperamos pronto ver en todos los navegadores.

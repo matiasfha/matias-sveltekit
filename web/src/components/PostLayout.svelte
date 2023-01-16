@@ -13,7 +13,6 @@
 	import Seo from './Seo.svelte';
 	import { Cloudinary } from 'cloudinary-core';
 	import RelativeDateFormat from './RelativeDateFormat.svelte';
-	import About from './ContactTabs/About.svelte';
 
 	// Props
 
@@ -43,23 +42,11 @@
 		cl.responsive();
 	});
 
-	let adsbygoogle = [{}];
-	onMount(() => {
-		if (window.adsbygoogle) {
-			adsbygoogle = (window.adsbygoogle || []).push({});
-		}
-	});
 	const newsletterId = lang === 'es' ? 'c4r8t8' : 'h7k7g0';
 </script>
 
 <svelte:head>
-	<script
-		type="text/javascript"
-		defer
-		async
-		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8352667732450998"
-		crossorigin="anonymous"
-	></script>
+	<script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 </svelte:head>
 
 <Seo {title} {description} {keywords} isBlogPost={true} {canonical} {banner} />
@@ -101,9 +88,6 @@
 		<aside
 			class="relative lg:sticky flex flex-col w-full md:w-64 grow-0 shrink top-8 lg:top-12 mb-8 mx-auto items-center prose dark:prose-dark dark:text-gray-300 text-ebony-clay-800 "
 		>
-			<!-- Ezoic - sidebar - sidebar -->
-			<div id="ezoic-pub-ad-placeholder-102" />
-			<!-- End Ezoic - sidebar - sidebar -->
 			<figure class="flex flex-col items-center mb-2">
 				<img
 					class="object-contain rounded-full w-[130px]"
@@ -121,39 +105,38 @@
 					mi newsletter. <strong class="text-xs lg:text-md"
 						>Únete para recibir lo mejor de mi contenido directamente en tu inbox.</strong
 					>
-				{:else}
-					Hello!. I share these types of posts on a regular basis and you can stay up to date if you
-					join my newsletter <strong class="text-xs lg:text-md"
-						>Join to receive the best of my content directly in your inbox.</strong
-					>
 				{/if}
 			</p>
-			<form
-				class="flex flex-col justify-between mx-auto mt-4 items-center w-full"
-				action={`https://static.mailerlite.com/webforms/submit/${newsletterId}`}
-				data-code={newsletterId}
-				method="post"
-				target="_blank"
-			>
-				<input type="hidden" name="ml-submit" value="1" />
-				<input type="hidden" name="anticsrf" value="true" />
-				<input
-					type="text"
-					name="fields[email]"
-					placeholder="Email"
-					class="px-4 font-medium text-sm rounded-md w-full "
-					autocomplete="email"
-				/>
-				<button
-					type="submit"
-					class="rounded-md text-sm font-bold text-[#6366F1] dark:text-yellow-300 py-1 border boder-[#6366F1] dark:border-yellow-300 text-center mt-4 w-full "
-					>{#if lang == 'es'}
-						Me encantaría
-					{:else}
-						I would love to!
-					{/if}
-				</button>
-			</form>
+			{#if lang === 'es'}
+				<form
+					class="flex flex-col justify-between mx-auto mt-4 items-center w-full"
+					action="https://app.convertkit.com/forms/4010991/subscriptions"
+					data-code={newsletterId}
+					method="post"
+					data-sv-form="4010991"
+					data-uid="83d83664cf"
+					data-format="inline"
+					data-version="5"
+					target="_blank"
+				>
+					<input type="hidden" name="anticsrf" value="true" />
+					<input
+						type="email"
+						name="email_address"
+						required
+						placeholder="Email"
+						class="px-4 font-medium text-sm rounded-md w-full "
+						autocomplete="email"
+					/>
+					<button
+						type="submit"
+						class="rounded-md text-sm font-bold text-[#6366F1] dark:text-yellow-300 py-1 border boder-[#6366F1] dark:border-yellow-300 text-center mt-4 w-full "
+						>{#if lang == 'es'}
+							Me encantaría
+						{/if}
+					</button>
+				</form>
+			{/if}
 
 			<details class="w-full mt-10 text-sm" open>
 				<summary class="text-bold py-2">{$t('common.tableOfContent')}</summary>
@@ -165,26 +148,10 @@
 					{/each}
 				</ul>
 			</details>
-			<!-- Ezoic - sidebar_bottom - sidebar_bottom -->
-			<div id="ezoic-pub-ad-placeholder-103" />
-			<!-- End Ezoic - sidebar_bottom - sidebar_bottom -->
-			<div id="ezoic-pub-ad-placeholder-101">
-				<ins
-					class="adsbygoogle"
-					style="display:block; text-align:center; margin-top: 120px"
-					data-ad-layout="in-article"
-					data-ad-format="fluid"
-					data-ad-client="ca-pub-8352667732450998"
-					data-ad-slot="2293002483"
-				/>
-			</div>
 		</aside>
 		<article
 			class="dark:text-gray-300 text-ebony-clay-800 pb-4 pt-12 mx-auto prose prose-lg dark:prose-dark prose-a:whitespace-pre-line e-content px-4 grow shrink basis-[686px]"
 		>
-			<!-- Ezoic - incontent_5 - incontent_5 -->
-			<div id="ezoic-pub-ad-placeholder-106" />
-			<!-- End Ezoic - incontent_5 - incontent_5 -->
 			<slot />
 
 			<div class="flex flex-col mt-20 pb-10 border-b border-t border-gray-500 border-collapse">
@@ -200,9 +167,6 @@
 					>⚙️ {$t('common.post.footer_edit')}</a
 				>
 			</div>
-			<!-- Ezoic - mid_content - mid_content -->
-			<div id="ezoic-pub-ad-placeholder-105" />
-			<!-- End Ezoic - mid_content - mid_content -->
 			{#if likes.length || retweet.length}
 				<section
 					class="md:mt-10 py-6 px-4 mx-auto mb-20 rounded-xl w-full border border-gray-400 flex flex-col gap-4"
@@ -284,18 +248,6 @@
 				</section>
 			{/if}
 
-			<div class="mx-auto prose prose-lg mt-20">
-				<div id="ezoic-pub-ad-placeholder-101">
-					<ins
-						class="adsbygoogle"
-						style="display:block; text-align:center;"
-						data-ad-layout="in-article"
-						data-ad-format="fluid"
-						data-ad-client="ca-pub-8352667732450998"
-						data-ad-slot="1950272341"
-					/>
-				</div>
-			</div>
 			{#if similarPosts.length > 0}
 				<section class="prose prose-lg dark:prose-dark mx-auto mt-20">
 					<h3>📖 {$t('common.post.keep_reading')}</h3>
@@ -329,9 +281,6 @@
 					</div>
 				</section>
 			{/if}
-			<!-- Ezoic - bottom_of_page - bottom_of_page -->
-			<div id="ezoic-pub-ad-placeholder-104" />
-			<!-- End Ezoic - bottom_of_page - bottom_of_page -->
 		</article>
 	</main>
 	<!-- </article> -->
