@@ -7,7 +7,7 @@
 	import Seo from '$components/Seo.svelte';
 	import CourseCard from '$components/CourseCard.svelte';
 	import microbytes from '$images/microbytes.png';
-	console.log(courses);
+
 </script>
 
 <Seo
@@ -50,25 +50,12 @@
 </h2>
 
 <div class="grid grid-cols-1 gap-2">
-	<CourseCard
-		logo={courses[2].image}
-		title={courses[2].course}
-		description={courses[2].description}
-		formId={'5834748'}
-		codeId={'i8b7z9'}
-	/>
-	<CourseCard
-		logo={courses[1].image}
-		title={courses[1].course}
-		description={courses[1].description}
-		formId={'4616584'}
-		codeId={'g5i0m4'}
-	/>
-	<CourseCard
-		logo={courses[0].image}
-		title={courses[0].course}
-		description={courses[0].description}
-		formId={'5395967'}
-		codeId={'u2d6y6'}
-	/>
+	{#each courses as course}
+		<CourseCard
+			logo={course.image}
+			title={course.course}
+			description={course.description}
+			formId={course.tagId}
+		/>
+	{/each}
 </div>

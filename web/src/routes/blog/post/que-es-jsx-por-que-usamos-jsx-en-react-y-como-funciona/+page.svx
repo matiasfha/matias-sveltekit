@@ -15,6 +15,7 @@ description: "¿Qué es lo primero que te sorprende al ver un componente React c
 
 Sip, eso es JSX, pero, ¿por que existe?,¿Para qué es? ¿Y cómo funciona?"
 bannerCredit: undefined
+tag: React
 
 ---
 Una de las primeras cosas que saltan a la vista la primera vez que comienzas a trabajar o aprender React es esa extraña sintaxis, muy similar a HTML pero dentro de Javascript.

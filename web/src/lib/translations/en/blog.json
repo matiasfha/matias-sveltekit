@@ -1,4 +1,6 @@
 {
     "presentation":"My writings and thoughts about Javascript, React, Typescript, Svelte, Web3, Solidity, and more",
-    "title": "Blog Posts"
+    "title": "Blog Posts",
+    "around":"around",
+    "reading":"reading time"
 }

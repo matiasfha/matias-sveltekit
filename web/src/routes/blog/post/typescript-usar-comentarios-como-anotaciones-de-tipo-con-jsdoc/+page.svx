@@ -1,0 +1,130 @@
+---
+date: 2023-01-15T11:44:44Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/6de6e90fb46f5e66d48a97a064b6440894a7fd61-1280x710.png
+keywords:
+- Typescript
+- JSDoc
+- Escriba anotaciones
+- Comentarios
+- Comentarios  Typescript
+- Definición de tipo
+- Seguridad de tipos
+title: "Typescript: usar comentarios como anotaciones de tipo con JSDoc"
+description: "¿Sabías que puedes usar comentarios en lugar de código para escribir los tipos de Typescript para tu aplicación?
+
+Puedes usar JSDoc para describir los métodos y las variables y tu editor recogerá la información de tipo desde allí."
+bannerCredit: undefined
+lang: es
+tag: Typescript
+---
+¿Sabía que puede usar comentarios en lugar de código para escribir los tipos de Typescript para tu aplicación?
+
+Puedes usar JSDoc para describir los métodos y las variables y tu editor recogerá la información de tipo desde allí.
+
+## Pero, ¿qué es JSDoc?
+
+JSDoc es un lenguaje de marcado utilizado para describir código Javascript. Hace algunos años, antes de Typescript, los comentarios eran la única forma
+de definir la información de tipos.
+
+JSDoc es una estandarización de esa práctica de agregar comentarios para describir y documentar tu código, es un giro del esquema [Javadoc] (https://en.wikipedia.org/wiki/Javadoc),
+pero especializado para código Javascript.
+
+```js
+
+/**
+* Renderiza un nuevo componente con props
+*
+* Utilizado por complementos externos
+* @param {Object} options  
+* @param {String} options.action an action to execute  
+* @param {String} [options.errorMessage] an optional error message to show  
+* @return {Promise<string>} a string with the content  
+*/  
+static async renderComponent({ action, errorMessage }) {  
+    return template({ action, errorMessage })  
+}
+```
+
+La mayoría de los editores de código actuales admiten esta sintaxis para leer y mostrar documentación sobre el código.
+
+## ¿Cómo usarlo con Typescript? 
+
+El equipo de Typescript tomó JSDoc y agregó soporte para la información de tipo. ¿Es posible [usar una variación de la sintaxis de anotación JSDoc](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html) para proporcionar
+información sobre los tipos que utilizarás.
+
+Tomemos el ejemplo anterior pero esta vez con anotaciones de tipo
+
+```js
+
+/**
+* Renderiza un nuevo componente con props
+*
+* Utilizado por complementos externos
+*
+* @param {String} action an action to execute  
+* @param {String} [errorMessage="default message"] an optional error message to show (with default value)  
+* @return {Promise<string>} a string with the content  
+*/  
+static async renderComponent({ action, errorMessage }) {  
+    return template({ action, errorMessage })  
+}
+```
+
+Se ve similar verdad? Es por eso que TS "secuestró" parte de la sintaxis de JSDoc y agregó un nuevo significado, pero el verdadero poder viene cuando defines nuevos tipos.
+
+```js
+
+/**
+* Renderiza un nuevo componente con props
+*
+* Utilizado por complementos externos
+*
+* @typedef {Object} Props  
+* @property {String} action an action to execute  
+* @property {String} [errorMessage="default message"] an optional error message to show (with default value)  
+*  
+* @param {Props} prop  
+* @return {Promise<string>} a string with the content  
+*/  
+static async renderComponent(props) {  
+    return template(props)  
+}
+```
+
+En este caso, la anotación `@typedef` se usó para crear un tipo llamado `Props` y luego la anotación `@property` está ahí para declarar cada una de las propiedades que 
+pertenecen a ese tipo de objeto.
+Después de eso, puedes usar el nuevo tipo dentro del **mismo archivo** donde se definió (a menos que exportes la declaración).
+
+El resultado del fragmento anterior es el mismo que
+
+```ts
+
+type Props = {  
+    action: string;  
+    errorMessage?: string  
+}  
+static async renderComponents(props: Props): Promise<string> {  
+    return template(props)  
+}  
+```
+
+## ¿Por qué usar JSDoc en lugar de Typescript?
+
+Como todo en tecnología (y en la vida) **depende**. Hay una variedad de posibles casos de uso.
+
+Un posible caso de uso (y el que más considero) es: estás escribiendo simples scripts en Node y deseas cierta seguridad de tipo mientras desarrollaas.
+Dado que Node no es compatible con Typescript de forma nativa (todavía),
+necesitas realizar alguna configuración para soportarlo, y tal vez, el script es lo suficientemente pequeño y no vale la pena el esfuerzo (y el tiempo de compilación).
+
+Otra opción es que desees comenzar a ensuciarte las manos con Typescript, pero sin comprometerte por completo o sin migrar por completo tu proyecto, puedes agregar estos comentarios JSDoc
+y empezar a disfrutar de una vida mejor.
+
+O tal vez tengas un pensamiento similar al del equipo de webpack (una gran base de código Javascript), decidieron tener seguridad de tipo pero sin un paso de compilación.
+
+Por último, una buena razón para usar JSDoc es para la generación de documentación, hay paquetes que usan comentarios de JSDoc para generar sitios de documentación que pueden implementarse fácilmente.
+
+## ¿Desventajas?
+
+Bien, te convencí de usar anotaciones de tipo a través de JSDoc, ¿hay alguna desventaja en este enfoque? Y la respuesta es sí, la hay. Si eres autor de una biblioteca, entonces este enfoque no es para it.
+
+JSDoc tiene un buen soporte de las anotaciones de tipo de Typescript pero no está aún al nivel del mismo, no toda las sintaxis es compatible y hay varias operaciones que no podrás hacer, por ejemplo pattern matcing o tipos mapeados.

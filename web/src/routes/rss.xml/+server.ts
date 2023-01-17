@@ -1,10 +1,31 @@
 import type { RequestHandler } from './$types';
 import getPosts from '$lib/api/getPosts';
 import { Feed } from 'feed';
+import { sub } from 'date-fns'
+import z from 'zod'
+
+const LimitOptions = z.union([z.literal("none"), z.literal("day"), z.literal("week"), z.literal("month")])
+function getLimitDate(limit: z.infer<typeof LimitOptions>) {
+	const currentDate = new Date()
+	switch(limit) {
+		case "week":
+			return sub(currentDate, { weeks: 1})
+		case "day":
+			return sub(currentDate, { days: 1})
+		case 'month':
+			return sub(currentDate, { months: 1})
+		default:
+			return null;
+	}
+}
+
 
 export const GET: RequestHandler = async ({ url }) => {
 	const lang = url.searchParams.get('lang') ?? 'es';
-	const posts = await getPosts(lang);
+	const limit = LimitOptions.parse(url.searchParams.get('limit') ?? 'none'); 
+	const limitDate = getLimitDate(limit)
+
+	const posts = await getPosts(lang, limitDate);
 	const baseUrl = 'https://matiashernandez.dev';
 	const feed = new Feed({
 		title: 'Matias Hernández',
@@ -23,7 +44,8 @@ export const GET: RequestHandler = async ({ url }) => {
 			email: 'hola@matiashernandez.dev'
 		},
 		favicon: `${baseUrl}/favicon.png`
-	});
+	})
+
 	posts.forEach((post) => {
 		feed.addItem({
 			id: `${baseUrl}${post.slug}`,

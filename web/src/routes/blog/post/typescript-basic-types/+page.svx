@@ -1,0 +1,111 @@
+---
+date: 2023-01-03T13:11:51Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/7ee2a838dd8e7093db97b6b79e9201fce9ff7427-1280x710.png
+keywords: 
+- Typescript
+- Types
+- Primitives types
+- Typescript Literals
+- Typescript Unions
+- Typescript Intersection
+- Union
+- Intersection
+- Literal
+- Typescript Data Structures
+title: "What are the basic types in Typescript?"
+description: "In the types language the data you will work with are the types themselves.
+Typescript offers several basic types that will allow you to shape your requirements.
+What basic types are available?"
+bannerCredit: undefined
+lang: en
+tag: Typescript
+---
+
+The real power of Typescript lies in programming at the type level, that is, in the manipulation of types through the use of algorithms using the types language.
+
+This types language is different from that of values (those that are executed in production - Javascript - ), since it exists only at development time and has a different syntax.
+
+But despite this, the type language is a programming language and as such provides data types that in this case, are the data that you will manipulate.
+
+
+
+### What are the basic types available? 
+
+It is possible to differentiate 5 categories of data types in Typescript "type-level".
+
+* Primitives.
+* Literals.
+* Data Structures.
+* Unions.
+* Intersections.  
+
+
+Let's review, in summary, each of these types.
+
+### Primitive types
+
+These types have been around forever, and are nothing new or invented by Typescript: `number`,`string`,`boolean`,`symbol`, `bigint`, `undefined`,`null`.
+
+As you can see, Typescript primitive types are at the same time "almost" all the existing primitive types in Javascript, almost, because objects and functions are not in this list since they belong to another category.
+
+While these types can express much of the code of an application, they are not enough since you will usually need more complex types to represent your solutions.
+
+### Literal types
+
+Here **literal** means exactly that, the **type** is is exactly the value you see.
+
+```typescript
+
+const ten: 10 = 10;
+const hello: ``hello`` = ``hello``;
+```
+
+That is, the variable `ten` has as type the number `10`, so it can only contain as value the number `10`. The same with the variable `hello`, the only value it can have is the string `hello` since the type annotation indicates that it is the literal string `hello`.
+
+### Data Structures
+
+This is where we begin to find more utility in the types offered natively by Typescript, as they allow you to better model your requirements. In this category you will find objects, records, arrays and tuples.
+
+* **Objects:** A type that describes the "shape" of an object as a finite set of key:value pairs.
+* Records:** Very similar to an object, but describes the shape of an object with an unknown number of properties where all of them are of the same type.
+**Tuples:** Allows to describe an array of a defined size.
+* Arrays**: As its name indicates, it describes an array of unknown size but whose values are of the same type.
+
+```typescript
+
+type Object = {
+  name: string;
+  age: number;
+}
+
+type Record = { [key: string]: unknown} // An object whose property names are strings but whose value is unknown.
+type Record2 = Record<string, unknown> // Identical result to previous line
+
+type Tuple = [string, number, boolean] // A finite set of 3 elements 
+
+type Arr = Array<string> // An infinite array of just strings, can also be written as string[].
+
+```
+
+### Unions and Intersections
+
+These two types offered by Typescript are similar and opposite. Both concepts come from set theory and exist only at the type level. They are important as they allow us to express different patterns and models.
+
+For now we will only review their syntax and briefly their meaning, but we will go deeper in the next installment.
+
+```typescript
+
+type Union = X & Y 
+
+type Intersection = X & Y 
+
+```
+
+will have the type of X or the type of Y"_. The second line is the opposite, _"The type of Intersection will be simultaneously X and Y"_.
+
+### Conclusion
+
+Typescript provides some basic types that will allow you to annotate your functions, variables, and procedures.
+
+These types can be composed together to create more complex types, Typescript already offers some types that allow you to create more interesting structures such as **joins** and **intersections**.
+

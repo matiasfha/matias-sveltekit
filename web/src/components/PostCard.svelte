@@ -3,12 +3,13 @@
 	import RelativeDateFormat from './RelativeDateFormat.svelte';
 	export let post: Post;
 
+	import { t } from '$lib/translations';
+
 </script>
 
 <div class="flex flex-col">
 	<div class="md:mb-4 mb-2">
 		<a
-			data-sveltekit-prefetch
 			class="group peer relative block w-full focus:outline-none"
 			href={post.slug}
 			><div
@@ -18,10 +19,10 @@
 			</div>
 
 			<div class="mt-8 dark:text-gray-300 text-gray-500 text-md font-medium lowercase text-body">
-				<RelativeDateFormat date={post.date} />
+				{$t('blog.around')} <RelativeDateFormat date={post.date} />
 			</div>
 			<span class="mt-8 dark:text-gray-300 text-gray-500 text-sm italic lowercase text-body">
-				{post.readingTime.text}
+				{$t('blog.reading')} {post.readingTime.text}
 			</span>
 			<h2 class="md:text-2xl text-xl font-bold leading-tighter text-black dark:text-white ">
 				{post.title}

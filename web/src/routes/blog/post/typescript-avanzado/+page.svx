@@ -6,11 +6,12 @@ keywords:
 - TS
 - Tips
 - Tricks 
-tag: Typescript
 title: Typescript Avanzado. Trucos y Tips
 description: Trucos y tips sobre typescript para avanzar en su uso.
-bannerCredit:
+bannerCredit: undefined
 canonical: https://matiashernandez.dev/blog/post/typescript-avanzado
+tag: Typescript
+lang: es
 ---
 
 
