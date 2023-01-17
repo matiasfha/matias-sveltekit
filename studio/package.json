@@ -9,17 +9,18 @@
   "scripts": {
     "start": "sanity start",
     "build": "sanity build",
-    "dev":"sanity dev"
+    "dev": "sanity dev"
   },
   "keywords": [
     "sanity"
   ],
   "dependencies": {
-    "@sanity/code-input": "latest",
+    "@sanity/code-input": "4.0.0",
     "@sanity/components": "latest",
     "@sanity/dashboard": "latest",
-    "@sanity/document-internationalization": "latest",
+    "@sanity/document-internationalization": "1.0.3",
     "@sanity/scheduled-publishing": "latest",
+    "@sanity/table": "1.0.1",
     "@sanity/vision": "latest",
     "prettier": "2.7.1",
     "prop-types": "15.8.1",
@@ -28,10 +29,10 @@
     "sanity": "3.1.4",
     "sanity-plugin-asset-source-remove-bg": "latest",
     "sanity-plugin-asset-source-unsplash": "latest",
-    "sanity-plugin-markdown": "latest",
+    "sanity-plugin-markdown": "4.0.0",
     "sanity-plugin-mdide": "latest",
     "sanity-plugin-social-preview": "latest",
-    "sanity-plugin-table": ".",
+    "sanity-plugin-table": "2.3.0",
     "styled-components": "5.3.5"
   },
   "devDependencies": {
