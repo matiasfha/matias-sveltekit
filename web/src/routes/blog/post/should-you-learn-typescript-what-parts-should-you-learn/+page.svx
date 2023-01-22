@@ -17,7 +17,7 @@ Learning Typescript can be daunting at first. So why should you know it? Or even
 
 As a web developer, you know that Typescript is growing in popularity and usage, but the web development landscape is already complex. You may be wondering why to add more complexity to the mix.
 
-<Youtube id="ocXWLQbr-mE" />
+<YouTube id="ocXWLQbr-mE" />
 
 You may find Typescript content with incredible feats, bending the type system to build complex solutions to some problems, and you may wonder: do I need to learn all of this? Nowadays, types have become a two-headed monsters. You have the type-level programming algorithms with all of that complexities, but also you have the everyday Javascript with superpowers, annotations, and some utilities from the language.
 

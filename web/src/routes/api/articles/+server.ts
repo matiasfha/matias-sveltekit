@@ -19,8 +19,9 @@ export const POST = async ({ request }: RequestEvent) => {
   }
   try {
     const { markdown, title } = await getLastPostMarkdown();
-    await createFileInRepo(markdown, title);
-    await repost();
+    console.log({ markdown })
+    // await createFileInRepo(markdown, title);
+    // await repost();
     return new Response('Post and repost created', {
       status: 200
     });
