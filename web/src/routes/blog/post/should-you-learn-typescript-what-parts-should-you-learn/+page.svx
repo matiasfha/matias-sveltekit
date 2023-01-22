@@ -9,8 +9,47 @@ keywords:
 - Beginner Typescript
 - Typescript from scratch
 title: "Should You Learn Typescript? What Parts Should You Learn?"
-description: "Learning Typescript can be daunting at first. So why should you know it? Or even better, how should you learn it?. 
-"
+description: "Learning Typescript can be daunting at first. So why should you know it? Or even better, how should you learn it?. "
 bannerCredit: undefined
-
+lang: en
 ---
+Learning Typescript can be daunting at first. So why should you know it? Or even better, how should you learn it?. 
+
+As a web developer, you know that Typescript is growing in popularity and usage, but the web development landscape is already complex. You may be wondering why to add more complexity to the mix.
+
+<Youtube id="ocXWLQbr-mE" />
+
+You may find Typescript content with incredible feats, bending the type system to build complex solutions to some problems, and you may wonder: do I need to learn all of this? Nowadays, types have become a two-headed monsters. You have the type-level programming algorithms with all of that complexities, but also you have the everyday Javascript with superpowers, annotations, and some utilities from the language.
+
+## Back to fundamentals
+
+Let's remember why Typescript was invented. It was created 10 or 11 years ago. Some, something like that. But with the only purpose of improving the developer experience. At that time, the DX was awful and Typescript, adding static analysis and type safety to the mix, was able to improve that process.
+
+Offering good developer experience, like a suitable auto-complete good documentation, go to definition, rename and refactoring, and catching bugs earlier, creating a more streamlined. Because that bugs will never reach the user. 
+So we have this two-layer language, the "every day" or not type-level programming and the type-level algorithms.
+
+You'll find pattern-matching type conditionals, recursion map types, and more at the type level. 
+And in the everyday task script, you'll find type rotations and maybe some type utilities like `Pick`, `Omit`, `Exclude`, `keyof`, `extends`, etcetera. 
+
+It's at this level where the real power of Typescript resides because that is the thing you might need.
+
+Typescript should be out of your way to help and allow you to create your incredible application. The library authors, on the other hand, are the ones that need to worry about the obscure features of Typescript because they need to build a flexible and robust product that can support all of the use cases.
+
+Offering the tools required to allow Typescript to give you reasonable type inference. So you write functions with a few types of annotations and are done. You have all of the benefits you want.
+
+So, let me be honest: I enjoy challenging myself and writing type-level algorithms or solutions. But in my regular job or even some of my side projects, I have yet to encounter the need to note complex solutions. 
+
+
+An example of [that complexity is the query string parser](https://youtu.be/yQyQa0gbqU0)  that I have in a few videos that you can find [in my Youtube Channel](https://youtu.be/QryUZJ0Tx90). That allows you to parse the query string and generate the object type you need to ensure that the thing in the query string is something you need.
+
+But most of the time, you'll not write that because you'll use some router library like [React Router](https://reactrouter.com/) or [Tanstack Router](https://tanstack.com/router) and are those libraries, the ones that implement something like that example in a better way. To offer you the solutions, you need to pass the query string.
+
+So you should not be worried about all of that.
+
+## Conclusion
+
+In conclusion, TypeScript can be complex at first, but you should focus on the parts that really matter, the parts that will most impact your web development process, starting with type script in your everyday projects.
+
+Start by annotating, adding some good type utilities, and choosing good libraries with reasonable type inference and type safety if you think it's fun to challenge yourself with type level. Go all in. It will be fun, and you will learn a lot. 
+
+> This is a blog post based on a video on [my youtube channel](https://youtube.com/@matiasfha?sub_confirmation=1). If you like the content [please subscribe](https://youtube.com/@matiasfha?sub_confirmation=1) to find out more.
