@@ -1,0 +1,16 @@
+
+---
+date: 2023-01-22T01:48:44Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/5f050c1a0b5b52639f297a23f5e174a6073b49ce-1280x710.png
+keywords: 
+- Typescript
+- Learn Typescript
+- Type-Level
+- Beginner Typescript
+- Typescript from scratch
+title: "Should You Learn Typescript? What Parts Should You Learn?"
+description: "Learning Typescript can be daunting at first. So why should you know it? Or even better, how should you learn it?. 
+"
+bannerCredit: undefined
+
+---
