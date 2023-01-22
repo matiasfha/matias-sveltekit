@@ -1,22 +1,24 @@
-import { client, builder, getRawMarkdown } from '$lib/utils/sanityClient';
-
+import z from 'zod';
+export const Post = z.lazy(() =>
+	z.object({
+		date: z.string(),
+		banner: z.string(),
+		keywords: z.array(z.string()),
+		title: z.string(),
+		description: z.string(),
+		content: z.string(),
+		lang: z.union([z.literal('es'), z.literal('en')]) 
+	})
+);
 export function generateMarkdown({
 	date,
 	banner,
 	keywords,
 	title,
 	description,
-	bannerCredit,
-	content
-}: {
-	date: string;
-	banner: string;
-	keywords: string[];
-	title: string;
-	description: string;
-	bannerCredit: string;
-	content: unknown;
-}) {
+	content,
+	lang
+}: z.infer<typeof Post>): string {
 	const keys = keywords
 		.map((keyword: string) => `- ${keyword}\n`)
 		.join()
@@ -29,8 +31,7 @@ banner: ${banner}
 keywords: \n${keys}
 title: "${title}"
 description: "${description}"
-bannerCredit: ${bannerCredit}
-
+lang: ${lang}
 ---
-${getRawMarkdown(content)}`;
+${content}`;
 }
