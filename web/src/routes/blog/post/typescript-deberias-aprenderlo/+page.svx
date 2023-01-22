@@ -1,0 +1,61 @@
+
+---
+date: 2023-01-22T01:48:44Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/5f050c1a0b5b52639f297a23f5e174a6073b49ce-1280x710.png
+keywords: 
+- Typescript
+- Learn Typescript
+- Type-Level
+- Beginner Typescript
+- Typescript from scratch
+- Aprender Typescript
+- Typescript desde cero
+title: "Deberias aprender Typescript? Por donde comenzar?"
+description: "Learning Typescript can be daunting at first. So why should you know it? Or even better, how should you learn it?. "
+bannerCredit: undefined
+lang:es 
+---
+Aprender Typescript puede resultar desalentador al principio. ¿Por qué deberías conocerlo? O mejor aún, ¿cómo aprenderlo? 
+
+Como desarrollador web, sabes que Typescript está creciendo en popularidad y uso, pero el panorama del desarrollo web ya es complejo. 
+Puede que te preguntes por qué añadir más complejidad a la mezcla.
+
+<YouTube id="ocXWLQbr-mE" />
+
+Puede que encuentres contenido Typescript con hazañas increíbles, manipulando el sistema de tipos para construir soluciones complejas a algunos problemas, y te preguntes: ¿necesito aprender todo esto? Hoy en día, los tipos se han convertido en monstruos de dos cabezas. Tienes los algoritmos de programación a nivel de tipos con todas esas complejidades, pero también tienes el Javascript cotidiano con superpoderes, anotaciones, y algunas utilidades del lenguaje.
+
+## Volver a los fundamentos
+
+Recordemos por qué se inventó Typescript. Fue creado hace 10 u 11 años. Algo así. Pero con el único propósito de mejorar la experiencia del desarrollador. Por aquel entonces, el DX era horrible y Typescript, añadiendo análisis estático y seguridad de tipos a la mezcla, fue capaz de mejorar ese proceso.
+
+Ofreciendo una buena experiencia al desarrollador, como un autocompletado adecuado, buena documentación, ir a la definición, renombrar y refactorizar, y detectando los bugs antes, creando un proceso más ágil. Porque esos bugs nunca llegarán al usuario. 
+Así que tenemos este lenguaje de dos capas, el "todos los días" o no de programación de nivel de tipo y los algoritmos de nivel de tipo.
+
+Encontrarás condicionales de tipo pattern-matching, tipos de mapa de recursión, y más en el nivel de tipo. 
+Y en el script de tareas cotidianas, encontrarás rotaciones de tipos y quizás algunas utilidades de tipos como `Pick`, `Omit`, `Exclude`, `keyof`, `extends`, etcétera. 
+
+Es en este nivel donde reside el verdadero poder de Typescript porque es lo que podrías necesitar.
+
+Typescript debería salir de tu camino para ayudarte y permitirte crear tu increíble aplicación. Los autores de bibliotecas, por otro lado, son los que tienen que preocuparse por las características oscuras de Typescript porque necesitan construir un producto flexible y robusto que pueda soportar todos los casos de uso.
+
+Ofrecer las herramientas necesarias para que Typescript te ofrezca una inferencia de tipos razonable. Así que escribes funciones con unos pocos tipos de anotaciones y listo. Tienes todas las ventajas que quieres.
+
+Así que, permíteme ser honesto: disfruto desafiándome a mí mismo y escribiendo algoritmos o soluciones a nivel de tipos. Pero en mi trabajo habitual o incluso en algunos de mis proyectos paralelos, todavía no me he encontrado con la necesidad de anotar soluciones complejas. 
+
+
+Un ejemplo de [esa complejidad es el analizador de cadenas de consulta](https://youtu.be/yQyQa0gbqU0) que tengo en unos cuantos vídeos que puedes encontrar [en mi canal de Youtube](https://youtu.be/QryUZJ0Tx90). Eso te permite analizar la cadena de consulta y generar el tipo de objeto que necesitas para asegurarte de que lo que hay en la cadena de consulta es algo que necesitas.
+
+Pero la mayoría de las veces, no escribirás eso porque usarás alguna librería router como [React Router](https://reactrouter.com/) o [Tanstack Router](https://tanstack.com/router) y son esas librerías, las que implementan algo como ese ejemplo de una mejor manera. Para ofrecerte las soluciones, necesitas pasar la cadena de consulta.
+
+Así que no debes preocuparte por todo eso.
+
+## Conclusión
+
+En conclusión, TypeScript puede ser complejo al principio, pero deberías centrarte en las partes que realmente importan, las que más impactarán en tu proceso de desarrollo web, empezando con TypeScript en tus proyectos diarios.
+
+Empieza anotando, añadiendo algunas buenas utilidades de tipos, y eligiendo buenas librerías con inferencia de tipos razonable y seguridad de tipos si crees que es divertido desafiarte a ti mismo con el nivel de tipos. Ve a por todas. Será divertido, y aprenderás mucho. 
+
+> Esta es una entrada de blog basada en un vídeo en [mi canal de youtube](https://youtube.com/@matiasfha?sub_confirmation=1). Si te gusta el contenido [suscríbete](https://youtube.com/@matiasfha?sub_confirmation=1) para saber más.
+
+
+Traducción realizada con la versión gratuita del traductor www.DeepL.com/Translator
