@@ -51,11 +51,53 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      title: "Content",
-      name: "content",
+      title: "Article",
+      name: "article",
       type: "markdown",
 
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.custom((field, context) =>
+          context.document.article === undefined && field === undefined
+            ? "Either markdown or Portable Text should be filled"
+            : true
+        ),
+    },
+    {
+      title: "Content",
+      name: "content",
+      type: "array",
+      validation: (Rule) =>
+        Rule.custom((field, context) =>
+          context.document.article === undefined && field === undefined
+            ? "Either Portable Text or Markdown should be filled"
+            : true
+        ),
+      of: [
+        { type: "block" },
+        {
+          type: "image",
+          fields: [
+            {
+              title: "Alt Text",
+              name: "alt",
+              type: "string",
+            },
+            {
+              title: "Caption",
+              name: "caption",
+              type: "array",
+              of: [{ type: "block" }],
+            },
+            {
+              title: "Title",
+              name: "title",
+              type: "string",
+            },
+          ],
+        },
+        { type: "code" },
+        { type: "table" },
+      ],
     },
     {
       title: "Language",
