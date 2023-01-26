@@ -227,7 +227,7 @@ If you import the function, it will cost you `5.3K` gzipped, or if you add the e
 
 The best part of using `structuredClone` is not only that it has good performance and achieves the task in a good way, but is supported in all major browsers and engines.
 
-![Check the canIUse site](https://res.cloudinary.com/matiasfha/image/upload/v1674740194/Screenshot_2023-01-26_at_08.07.57_fmky0t.png align="left")
+![Check the canIUse site](https://res.cloudinary.com/matiasfha/image/upload/v1674740194/Screenshot_2023-01-26_at_08.07.57_fmky0t.png)
 
 Check [the canIUse site](https://caniuse.com/?search=structuredClone)
 
