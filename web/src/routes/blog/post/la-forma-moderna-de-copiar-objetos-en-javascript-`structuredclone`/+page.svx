@@ -1,0 +1,241 @@
+
+---
+date: 2023-01-29T14:22:35Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/3f0fbeab2094df6e5fa50c9298dc57e12426fd11-1280x710.png
+keywords: 
+- Javascript
+- Javascript clone
+- Javascrip copy
+- copiar objetos en Javascript
+- structuredClone
+- usa la plataforma
+title: "La forma moderna de copiar objetos en Javascript: `structuredClone`"
+description: "En este artículo, exploraremos el método nativo para la clonación profunda de un objeto en JavaScript. También discutiremos la diferencia entre copia superficial y profunda en JavaScript.
+"
+lang: es
+---
+Hace unos días aprendí que Javascript tiene una forma nativa de crear copias profundas de un objeto.
+
+En este artículo, exploraremos el método nativo para la clonación profunda de un objeto en JavaScript. También discutiremos la diferencia entre copia superficial y profunda en JavaScript.
+
+## ¿Qué es una copia profunda o un clon?
+
+Los objetos de Javascript generalmente se almacenan en la memoria y solo se pueden copiar por referencia, lo que significa que una variable no almacena un objeto en sí misma, sino un identificador que representa la ubicación de memoria del objeto. Por lo tanto, los objetos **no se pueden copiar de la misma forma que las primitivas**.
+
+Hay dos tipos de copia dentro del mundo de Javascript: superficial  (shallow) y profunda (deep).
+
+### Copias poco profundas
+
+Una copia superficial es una copia de un objeto que solo copia la referencia al objeto, no los datos reales. Esto significa que si se modifica el objeto original, también se modificará la copia.
+
+Por ejemplo, digamos que tenemos un objeto llamado `originalObject`que se ve así:
+
+```js
+
+let originalObject = {
+   nombre: "Juan",
+   edad: 30,
+   address: {
+     street: "Calle Principal 123",
+     city: "cualquier ciudad",
+     state: "Cualquier estado"
+   }
+}
+
+```
+
+Puedes crear una copia superficial de este objeto usando el método **`Object.assign()`**
+
+```js
+
+let shallowCopy = Object.assign({}, originalObject);
+
+```
+
+El objeto **`shallowCopy`** se verá exactamente igual que el **`originalObject`**. Sin embargo, si modificamos la propiedad **`address`** del **`originalObject`**, la propiedad **`address`** del **`shallowCopy`** también se modificará, ya que ambos objetos están apuntando al mismo objeto de dirección:
+
+```js
+
+originalObject.address.city = "NuevaCiudad";
+console.log(shallowCopy.address.city); //Salida: "NuevaCiudad"
+
+```
+
+### Copias profundas
+
+Por otro lado, una copia profunda crea un nuevo objeto con su propio conjunto de datos, separado del objeto original. Esto significa que si se modifica el objeto original, la copia no se verá afectada.
+
+Por ejemplo, digamos que tenemos un objeto llamado "originalObject" que se ve así:
+
+```js
+
+let originalObject = {
+   nombre: "Juan",
+   edad: 30,
+   address: {
+     street: "Calle Principal 123",
+     city: "cualquier ciudad",
+     state: "Cualquier estado"
+   }
+}
+
+```
+
+Para crear una copia profunda de este objeto, podemos usar el método `JSON.parse(JSON.stringify(obj))`.
+
+```js
+
+let deepCopy = JSON.parse(JSON.stringify(originalObject));
+
+```
+
+Si ahora modificamos la propiedad **`address`** del **`originalObject`**, la propiedad **`address`** del **`deepCopy`** no se modificará, porque son completamente diferentes objetos:
+
+```js
+
+originalObject.address.city = "NuevaCiudad";
+console.log(deepCopy.address.city); //Salida: "Cualquier ciudad"
+
+```
+
+> Ten en cuenta que el método JSON.parse(JSON.stringify(obj)) no es adecuado para objetos complejos con referencias circulares. En este caso, puede usar una biblioteca como lodash, guión bajo o una función de copia profunda específica.
+>
+
+## Clonación profunda nativa: `structuredClone`
+
+Como se muestra en el ejemplo anterior, Javascript tiene formas de solucionar el problema de la copia profunda, en el ejemplo utiliza la estrategia de serialización, básicamente transforma un objeto en una representación JSON y luego lo analiza nuevamente.
+
+Pero, ahora, la API web tiene una nueva forma de resolver el problema de la clonación profunda mediante el uso del método global `structuredClone`.
+
+Este método se agregó recientemente para exponer el [algoritmo de clonación estructurada] (https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm), una forma de crear copias profundas de los valores de Javascript que pueden ser utilizado, por ejemplo, para transferir valores JS desde o hacia un WebWorker.
+
+Este algoritmo ha sido parte de la especificación HTML durante mucho tiempo, pero solo como una herramienta utilizada por otras API. Antes de agregar `structuredClone`, debe hacer algunas soluciones para usarlo, como usar `postMessage` para enviar un mensaje a "nosotros mismos".
+
+> [Clonación estructurada]([https://html.spec.whatwg.org/multipage/structured-data.html#structuredserializeinternal](https://html.spec.whatwg.org/multipage/structured-data.html# "structuredserializeinternal)) es un algoritmo creado y utilizado para transferir valores de un real a otro, como la llamada `postMessage` que envía un mensaje a otra ventana o Webworker.
+>
+
+Este es un método global que maneja la creación de copias profundas de cualquier valor dado.
+
+```js
+
+const deepCopy = structuredClone(originalObject)
+```
+
+Repasemos un ejemplo rápido
+
+```js
+
+const original = {
+	site: "https://matiashernandez.dev",
+	published: new Date(),
+	sociales: [{
+		name: "twitter",
+		url: "https://twitter.com/matiasfha"
+	},{
+		name: "youtube",
+		url: "https://dub.sh/channel" // Suscribite
+	}]
+}
+
+const copy = structuredClone(original)
+
+```
+
+Eso es todo lo que se necesita para crear una copia completa/profunda del objeto original.
+
+## Limitaciones
+
+Aunque el algoritmo de clonación estructurada puede abordar los problemas con `JSON.stringify`, todavía tiene algunas limitaciones que debe tener en cuenta.
+
+- No se pueden clonar objetos de función: si el objeto que desea clonar contiene funciones, se descartarán y se generará un `DataCloneError`.
+- No se pueden clonar nodos DOM
+- No se pueden clonar algunos
+propiedades como:
+     - `lastIndex` de un objeto `Regexp`
+     - setters, getters y metadatos similares
+     - la cadena del prototipo no se duplicará
+    
+
+## Alternativas
+
+`structuredClone` es relativamente nuevo, pero la necesidad de valores de clonación profundos ha existido desde siempre. Entonces, veamos algunas alternativas al método `structuredClone` que la comunidad de desarrollo web ha estado usando.
+
+### Object.assign y sintaxis extendida.
+
+`Object.assign` ha sido la forma de crear copias durante mucho tiempo, pero aquí estamos hablando de una copia profunda, pero `Object.assign` solo puede proporcionar una copia superficial, **no puede copiar objetos ni arreglos anidados** .
+
+> La sintaxis extendida  (spread `...`) se agregó en ES2018 a las propiedades de los objetos para proporcionar una forma conveniente de realizar copias superficiales, es el equivalente de `Object.assign` para que pueda tratarlos como iguales.
+>
+
+```js
+
+const original = {
+	site: "https://matiashernandez.dev",
+	published: new Date(),
+	socials: [{
+		name: "twitter",
+		url: "https://twitter.com/matiasfha"
+	},{
+		name: "youtube",
+		url: "https://dub.sh/channel" //Subscribe!
+	}]
+}
+
+const copy1 = Object.assign({}, original)
+const copy2 = { ...original }
+
+// Error, esto actualizará la propiedad PublishedDate del objeto original
+copy1.published.setTime(10) 
+
+// Error, esto agregará un objeto vacío al objeto original
+copy2.socials.push({})
+```
+
+### JSON.parse y JSON.stringify
+
+Este ha sido el truco para obtener una copia que incluye objetos anidados y matrices, tiene un rendimiento realmente bueno, pero aún no resuelve completamente el problema de la copia profunda.
+
+```js
+
+const original = {
+	site: "https://matiashernandez.dev",
+	published: new Date(),
+	socials: [{
+		name: "twitter",
+		url: "https://twitter.com/matiasfha"
+	},{
+		name: "youtube",
+		url: "https://dub.sh/channel" //Subscribe!
+	}]
+}
+
+// La propiedad PublishedDate ahora es una cadena
+const copy = JSON.parse(JSON.stringify(original))
+```
+
+La estrategia aquí es primero, transformar el objeto en una cadena usando `JSON.stringify`. Este método serializará cada propiedad del objeto de forma recursiva, por lo que todas las propiedades anidadas también se serializarán.
+
+Luego usa `JSON.parse` para "deserializar" el objeto serializado y generar un nuevo objeto desde la fuente.
+
+El problema con esta estrategia es el proceso de serialización. Cada objeto en Javascript tiene un método de propiedad llamado `toString` que implementa una forma de transformar el objeto en una representación de cadena de sí mismo. ¿Es esta implementación la que usa `JSON.stringify` para serializar cada propiedad? El problema viene con propiedades como el objeto `Date` usado en el objeto `original`, se serializa en una cadena y una cadena no se puede volver a transformar en ` Fecha` por `JSON.parse`.
+
+> `JSON.stringify` solo puede manejar objetos básicos, arreglos y primitivos. Otros tipos pueden manejarse de manera impredecible. Por ejemplo, las fechas se convierten en cadenas, mientras que los conjuntos simplemente se convierten en `{}`.
+>
+
+### lodash.clonDeep
+
+Esta ha sido la forma "de facto" de obtener una copia profunda, pero significa que debe agregar una dependencia solo para poder realizar una copia profunda.
+
+Si solo importa la función, le costará `5.3K` gzip, o si agrega la biblioteca completa, le costará `25k` gzip. Eso es mucho si solo quieres poder crear clones profundos.
+
+## Compatibilidad con navegador
+
+La mejor parte de usar `structuredClone` no es solo que tiene un buen rendimiento y logra la tarea de una buena manera, sino que es compatible con todos los principales navegadores y motores.
+
+![Consulta [el sitio canIUse](https://caniuse.com/?search=structuredClone)](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/24093b97- d5d0-46cf-9c89-d75bb1a4b20e/Captura de pantalla_2023-01-26_en_08.07.57.png)
+
+Consulta [el sitio canIUse] (https://caniuse.com/?search=structuredClone)
+
+## Conclusión
+
+Si necesitas crear clones o copias profundos de cualquier valor en Javascript, definitivamente debes utilizar el método `structuredClone` y simplemente "Usar la plataforma". Es hora de deshacerse de los viejos hábitos de usar soluciones alternativas y adoptar un mejor ecosistema JS.
