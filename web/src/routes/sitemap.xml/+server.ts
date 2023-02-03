@@ -20,7 +20,8 @@ const pages = [
 
 export const GET: RequestHandler = async ({ url }) => {
 	const lang = undefined;
-	const posts = await getPosts(lang);
+	const res  = await getPosts(lang)
+	const posts = res.filter(p => p.canonical.includes('matiashernandez.dev'));
 	const headers = {
 		'Cache-Control': 'max-age=604800 must-revalidate',
 		'Content-Type': 'application/xml'

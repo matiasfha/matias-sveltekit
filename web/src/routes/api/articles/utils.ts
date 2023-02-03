@@ -61,7 +61,7 @@ export async function getLastPostMarkdown() {
 	const post = await client
 		.fetch('*[_type == "posts"] | order(_createdAt desc)[0]')
 		.then((p) => Post.parse(p));
-	const markdown = generateMarkdown(post);
+	const markdown = post.content
 	return {
 		markdown,
 		...post
