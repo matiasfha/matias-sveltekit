@@ -33,6 +33,7 @@
 	export let lang;
 
 	export let toc;
+
 	const tocData = JSON.parse(jsyaml.load(toc));
 
 	let currentUrl = '';
@@ -42,11 +43,23 @@
 		cl.responsive();
 	});
 
+	let adsbygoogle = [{}];
+	onMount(() => {
+		if (window.adsbygoogle) {
+			adsbygoogle = (window.adsbygoogle || []).push({});
+		}
+	});
 	const newsletterId = lang === 'es' ? 'c4r8t8' : 'h7k7g0';
 </script>
 
 <svelte:head>
 	<script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+	<script
+		async
+		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8352667732450998"
+		crossorigin="anonymous"
+		defer
+	></script>
 </svelte:head>
 
 <Seo {title} {description} {keywords} isBlogPost={true} {canonical} {banner} />
@@ -148,6 +161,15 @@
 					{/each}
 				</ul>
 			</details>
+			<!-- Sidebar -->
+			<ins
+				class="adsbygoogle"
+				style="display:block"
+				data-ad-client="ca-pub-8352667732450998"
+				data-ad-slot="6240388954"
+				data-ad-format="auto"
+				data-full-width-responsive="true"
+			/>
 		</aside>
 		<article
 			class="dark:text-gray-300 text-ebony-clay-800 pb-4 pt-12 mx-auto prose prose-lg dark:prose-dark prose-a:whitespace-pre-line e-content px-4 grow shrink basis-[686px]"
@@ -278,6 +300,14 @@
 								</a>
 							</div>
 						{/each}
+						<ins
+							class="adsbygoogle"
+							style="display:block"
+							data-ad-format="fluid"
+							data-ad-layout-key="-63+dj-1k-3w+o7"
+							data-ad-client="ca-pub-8352667732450998"
+							data-ad-slot="3558385291"
+						/>
 					</div>
 				</section>
 			{/if}

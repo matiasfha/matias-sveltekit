@@ -31,7 +31,21 @@
 				);
 		  })
 		: data.posts;
+	let adsbygoogle = [{}];
+	onMount(() => {
+		if (window.adsbygoogle) {
+			adsbygoogle = (window.adsbygoogle || []).push({});
+		}
+	});
 </script>
+
+<svelte:head>
+	<script
+		async
+		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8352667732450998"
+		crossorigin="anonymous"
+	></script>
+</svelte:head>
 
 <!--INFOLINKS_OFF-->
 <Seo title="Blog" description="Mi blog personal" canonical="https://matiashernandez.dev/blog" />
@@ -97,9 +111,28 @@
 <section class="mt-12">
 	<h2 class="leading-tight text-2xl md:text-3xl my-12 dark:text-white">{$t('blog.title')}</h2>
 	<div class="grid md:grid-cols-3 grid-cols-1 md:gap-16 gap-8 transition duration-150 ease-in-out">
-		{#each filteredPosts as post}
+		{#each filteredPosts.slice(0, 2) as post}
 			<PostCard {post} />
 		{/each}
+		<ins
+			class="adsbygoogle"
+			style="display:block"
+			data-ad-format="fluid"
+			data-ad-layout-key="-6m+d9-39-4m+ov"
+			data-ad-client="ca-pub-8352667732450998"
+			data-ad-slot="4105180207"
+		/>
+		{#each filteredPosts.slice(2, filteredPosts.length) as post}
+			<PostCard {post} />
+		{/each}
+		<ins
+			class="adsbygoogle"
+			style="display:block"
+			data-ad-format="fluid"
+			data-ad-layout-key="-60+df-3w-7a+132"
+			data-ad-client="ca-pub-8352667732450998"
+			data-ad-slot="9569259876"
+		/>
 	</div>
 </section>
 

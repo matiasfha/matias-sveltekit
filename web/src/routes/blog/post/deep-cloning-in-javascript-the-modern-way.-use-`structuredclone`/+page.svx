@@ -13,7 +13,7 @@ keywords:
 title: "Deep Cloning in JavaScript: The Modern Way. Use `structuredClone`"
 description: "In this article, we will explore the native method for deep cloning an object in JavaScript. We will also discuss the difference between shallow and deep copying in JavaScript."
 lang: en
----
+tag: Javascript
 ---
 
 A few days ago, I learned that Javascript has a native way of creating deep copies of an object.
