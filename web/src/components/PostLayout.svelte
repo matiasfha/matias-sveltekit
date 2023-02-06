@@ -351,20 +351,7 @@
 		}
 	}
 
-	.adblock {
-		width: 320px;
-		height: 100px;
-	}
-	@media (min-width: 500px) {
-		.adblock {
-			width: 468px;
-			height: 60px;
-		}
-	}
-	@media (min-width: 800px) {
-		.adblock {
-			width: 728px;
-			height: 90px;
-		}
+	.adsbygoogle {
+		min-width: 250px;
 	}
 </style>

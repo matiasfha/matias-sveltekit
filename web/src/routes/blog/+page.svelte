@@ -32,7 +32,9 @@
 		  })
 		: data.posts;
 	let adsbygoogle = [{}];
+
 	onMount(() => {
+		
 		if (window.adsbygoogle) {
 			adsbygoogle = (window.adsbygoogle || []).push({});
 		}
@@ -41,6 +43,7 @@
 
 <svelte:head>
 	<script
+		defer
 		async
 		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8352667732450998"
 		crossorigin="anonymous"
@@ -139,5 +142,8 @@
 <style>
 	header {
 		background-image: url('/typewriter.jpeg');
+	}
+	.adsbygoogle {
+		min-width: 250px;
 	}
 </style>
