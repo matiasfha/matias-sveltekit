@@ -1,4 +1,32 @@
-## **Introduction to Rendering Patterns and Metaframeworks in Web Development**
+---
+date: 2023-02-12T01:48:44Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/aeb343d239378b2715367ec58c066628328c2986-2560x1440.png
+keywords: 
+- Rendering Patterns 
+- Meta Frameworks
+- Web Development
+- Javascript tools
+- SSR 
+- Server Side Rendering
+- SSG
+- Static Site Generation
+- ISR
+- Incremental Site Regeneration
+- CSR
+- Client Side Rendering
+- SPA
+- Single Page Application
+- Next.js
+- Nextjs
+- Gatsby
+- Nuxt
+- Qwik
+- SvelteKit
+title: "Javascript Rendering patterns"
+description: "The article is about the different types of rendering patterns and metaframeworks in web development, and why there are so many of them. It provides an overview of the topic for developers to better understand the landscape of rendering tools and technologies in the JavaScript ecosystem."
+bannerCredit: undefined
+lang: en
+---
 
 Web development is a constantly evolving field that is full of new and innovative solutions to tackle the ever-growing needs of modern websites. With the growth of the web, there have been numerous advances in how websites are built and rendered, giving rise to several rendering patterns and metaframeworks.
 

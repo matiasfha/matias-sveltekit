@@ -151,7 +151,7 @@
 				</form>
 			{/if}
 
-			<details class="w-full mt-10 text-sm" open>
+			<details class="w-full sm:mt-2 mt-10 text-sm" open={false}>
 				<summary class="text-bold py-2">{$t('common.tableOfContent')}</summary>
 				<ul class="w-full opacity-75">
 					{#each tocData as item}
@@ -163,7 +163,7 @@
 			</details>
 			<!-- Sidebar -->
 			<ins
-				class="adsbygoogle"
+				class="adsbygoogle sm:hidden"
 				style="display:block"
 				data-ad-client="ca-pub-8352667732450998"
 				data-ad-slot="6240388954"
@@ -172,7 +172,7 @@
 			/>
 		</aside>
 		<article
-			class="dark:text-gray-300 text-ebony-clay-800 pb-4 pt-12 mx-auto prose prose-lg dark:prose-dark prose-a:whitespace-pre-line e-content px-4 grow shrink basis-[686px]"
+			class="dark:text-gray-300 text-ebony-clay-800 pb-4 sm:pt-2 pt-12 mx-auto prose prose-lg dark:prose-dark prose-a:whitespace-pre-line e-content px-4 grow shrink basis-[686px]"
 		>
 			<slot />
 
