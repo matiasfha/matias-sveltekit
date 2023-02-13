@@ -1,11 +1,10 @@
 import type { Posts } from '$lib/api/getPosts';
 import slugify from '$lib/utils/slugify';
-import { getRawMarkdown } from './sanityClient';
 
 export default async function writeToHashnode(post: typeof Posts.element) {
 	const article = {
 		title: post.title,
-		contentMarkdown: `${getRawMarkdown(post.content)}
+		contentMarkdown: `${post.content}
 \n\n
 %%[buymeacoffee]
         `,

@@ -2,7 +2,6 @@
 import { writeToMedium } from '$lib/utils/writeToMedium';
 import writeToDevTo from '$lib/utils/writeToDevTo';
 import writeToHashnode from '$lib/utils/writeToHashnode';
-import { generateMarkdown } from '$lib/utils/generateMarkdown';
 import { client, builder } from '$lib/utils/sanityClient';
 
 import z from 'zod';
@@ -40,21 +39,6 @@ export async function repost() {
 		image: post.banner
 	});
 	await writeToMedium(post);
-}
-
-export async function validateWebhook(request: Request, body: Request['body']) {
-	const headers = {};
-
-	request.headers.forEach((value, key) => {
-		headers[key] = value;
-	});
-
-	// return isValidSignature(
-	// 	JSON.stringify(body),
-	// 	headers['sanity-webhook-signature'],
-	// 	import.meta.env.VITE_SANITY_SECRET
-	// );
-	return headers['sanity-webhook-signature'] === import.meta.env.VITE_SANITY_SECRET;
 }
 
 export async function getLastPostMarkdown() {

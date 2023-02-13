@@ -1,6 +1,5 @@
 import type { Posts } from '$lib/api/getPosts';
 import slugify from '$lib/utils/slugify';
-import { getRawMarkdown } from './sanityClient';
 const USER_ID = '141f5601d7971ac8cfaaa88d4c909a1134f148586299e7b6b591e09679b63085c';
 const TOKEN = import.meta.env.VITE_MEDIUM_TOKEN;
 export async function writeToMedium(post: typeof Posts.element) {
@@ -8,7 +7,7 @@ export async function writeToMedium(post: typeof Posts.element) {
 		const data = {
 			title: post.title,
 			contentFormat: 'markdown',
-			content: getRawMarkdown(post.content),
+			content: post.content,
 			canonicalUrl: 'https://matiashernandez.dev/blog/post/' + slugify(post.title),
 			tags: ['javascript', 'web development', 'javascript tips', 'spanish'],
 			publishStatus: 'public'

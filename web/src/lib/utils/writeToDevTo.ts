@@ -1,6 +1,5 @@
 import type { Posts } from '$lib/api/getPosts';
 import slugify from '$lib/utils/slugify';
-import { getRawMarkdown } from './sanityClient';
 
 export default async function writeToDevTo(post: typeof Posts.element) {
 	const canonical = 'https://matiashernandez.dev/blog/post/' + slugify(post.title);
@@ -9,7 +8,7 @@ export default async function writeToDevTo(post: typeof Posts.element) {
 		body_markdown: `
 > Este artículo fue originalmente escrito en [https://matiashernandez.dev](${canonical})
 \n\n
-${getRawMarkdown(post.content)}
+${post.content}
 \n\n
 ![Footer Social Card.jpg](https://cdn.hashnode.com/res/hashnode/image/upload/v1615457338201/5yOtr5SdF.jpeg)
 ✉️ [Únete a Micro-bytes](https://microbytes.matiashernandez.dev)         🐦 Sígueme en [Twitter](https://twitter.com/matiasfha)           ❤️ [Apoya mi trabajo](https://buymeacoffee.com/matiasfha) 
