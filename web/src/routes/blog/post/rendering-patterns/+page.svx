@@ -2,6 +2,8 @@
 date: 2023-02-12T01:48:44Z
 banner: https://cdn.sanity.io/images/cyypawp1/production/aeb343d239378b2715367ec58c066628328c2986-2560x1440.png
 keywords: 
+- Javascript
+- Javascript for beginners
 - Rendering Patterns 
 - Meta Frameworks
 - Web Development

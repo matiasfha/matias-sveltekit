@@ -23,10 +23,10 @@
 			title: 'Blog',
 			href: '/blog'
 		},
-    {
-      title: 'Video',
-      href: '/youtube'
-    },
+    // {
+    //   title: 'Video',
+    //   href: '/youtube'
+    // },
 		{
 			title: isEn() ? 'Guest Articles' : 'Artículos Externos',
 			href: '/articles'
@@ -78,7 +78,7 @@
 <div class={`px-6 md:px-12 pt-9 pb-4 lg:px-10 lg:pt-12   dark:text-gray-200 text-gray-700`}>
 	<nav class="flex items-center justify-between mx-auto">
 		<div class="flex flex-row items-center gap-4 md:gap-8 justify-between h-card">
-			<a href="https://matiashernandez.dev" rel="me" data-sveltekit-prefetch class="u-url u-uid">
+			<a href="https://matiashernandez.dev" rel="me" data-sveltekit-prefetch={true} class="u-url u-uid">
 				<figure class="w-10 ">
 					<picture
 						><source
