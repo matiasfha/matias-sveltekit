@@ -8,9 +8,11 @@
 	import Quote from '$components/typography/Quote.svelte';
 	import Seo from '$components/Seo.svelte';
 	import ContactTabs from '$components/ContactTabs/index.svelte';
+
+	let canonical = `https://matiashernandez.dev/${data.slug}`;
 </script>
 
-<Seo title={data.title} keywords={data.keywords} description={data.description} />
+<Seo title={data.title} keywords={data.keywords} description={data.description} {canonical} />
 {#if data.header}
 	<header
 		class="w-full h-60 md:h-56 bg-no-repeat absolute left-0 bg-cover flex flex-col md:flex-row justify-center items-center px-2 gap-8"

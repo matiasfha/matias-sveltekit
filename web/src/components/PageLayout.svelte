@@ -9,9 +9,10 @@
 	import Seo from './Seo.svelte';
 	export let title;
 	export let description;
+	export let canonical
 </script>
 
-<Seo {title} {description} />
+<Seo {title} {description} {canonical}/>
 <!--INFOLINKS_OFF-->
 <main class="w-full pb-4 px-8">
 	<article

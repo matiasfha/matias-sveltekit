@@ -106,7 +106,7 @@ This method was recently added to expose the [structured clone algorithm](https:
 
 This algorithm has been part of the HTML spec for a long time but only as a tool used by other APIs. Before `structuredClone` was added, you have to do some workarounds to use it, like using `postMessage` to send messages to “ourselves”.
 
-> [Structured Cloning](%5Bhttps://html.spec.whatwg.org/multipage/structured-data.html#structuredserializeinternal%5D(https://html.spec.whatwg.org/multipage/structured-data.html#structuredserializeinternal)) is an algorithm created and used to transfer values from one real into another, like the `postMessage` call that send a message to another window or Webworker.
+> [Structured Cloning](https://html.spec.whatwg.org/multipage/structured-data.html#structuredserializeinternal) is an algorithm created and used to transfer values from one real into another, like the `postMessage` call that send a message to another window or Webworker.
 
 This is a global method that handles the creation of deep copies of any given value.
 

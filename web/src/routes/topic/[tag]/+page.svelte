@@ -58,7 +58,7 @@
 <Seo
 	title={`All about ${currentTag}`}
 	description={`All about ${currentTag.toLowerCase()}`}
-	canonical={`https://matiashernandez.dev/topic/${currentTag}`}
+	canonical={`https://matiashernandez.dev/topic/${currentTag.toLowerCase()}`}
 	keywords={[`Aprende ${currentTag}`, currentTag, `Learn ${currentTag}`]}
 />
 

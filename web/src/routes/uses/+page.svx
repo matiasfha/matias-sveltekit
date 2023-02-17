@@ -2,6 +2,7 @@
 layout: pages
 title: Que estoy usando
 description: Una breve lista de que uso a diario para mi trabajo y projectos personales
+canonical: https://matiashernandez.dev/uses
 ---
 
 # Que estoy usando
