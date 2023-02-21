@@ -9,12 +9,13 @@ keywords:
 - Typescript Uniones Discriminadas
 - React props opciones
 - React props
-title: "Typescript: Uniones discriminadas o como crear argumentos opcionales y dependientes"
-description: "Es común tener componentes o funciones que aceptan argumentos que dependen entre sí, dónde una puede estar presente y la otra no.
+title: "Typescript: ¿Que son las Uniones discriminadas?"
+description: "¿Qué son las Uniones Discriminadas o como crear argumentos opcionales y dependientes?. Es común tener componentes o funciones que aceptan argumentos que dependen entre sí, dónde una puede estar presente y la otra no.
 
 ¿Sabías que con Typescript puedes asegurarte de que este comportamiento se cumpla correctamente?"
 bannerCredit: undefined
 tag: Typescript
+lang: es
 ---
 Es común tener componentes o funciones que aceptan argumentos que dependen entre sí, dónde una puede estar presente y la otra no.
 

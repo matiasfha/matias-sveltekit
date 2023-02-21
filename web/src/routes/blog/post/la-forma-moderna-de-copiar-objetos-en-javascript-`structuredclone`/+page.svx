@@ -9,7 +9,7 @@ keywords:
 - copiar objetos en Javascript
 - structuredClone
 - usa la plataforma
-title: "La forma moderna de copiar objetos en Javascript: `structuredClone`"
+title: "Javascript `structuredClone` para clonar objetos"
 description: "En este artículo, exploraremos el método nativo para la clonación profunda de un objeto en JavaScript. También discutiremos la diferencia entre copia superficial y profunda en JavaScript.
 "
 lang: es

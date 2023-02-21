@@ -11,7 +11,7 @@ keywords:
 - react state reducer
 - react custom hooks
 tag: React
-title: Construye Componentes Avanzados con React Hooks y Patrones de Diseño
+title: Crea Componentes Avanzados con React Hooks
 description: Como utilizar useState React hook para crear un sencillo componente Wizard
   o multi-step
 bannerCredit: <span>Photo by <a href="https://unsplash.com/@draufsicht?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Andreas

@@ -12,7 +12,7 @@ keywords:
 - dynamic fonts
 - fuentes dinámicas
 - vanilla Javascript
-title: "Añade fuentes de forma dinámica a tu web usando Javascript y FontFace"
+title: "Javascript y FontFace: Añade fuentes de forma dinámica"
 description: "Sabías que puedes renderizar texto con fuentes personalizadas subidas por tus usuarios?.
 Utilizando la API FontFace puedes agregar nuevas fuentes de forma dinámica a tu web.
 "
