@@ -1,3 +1,18 @@
+---
+date: 2023-02-21T14:22:35Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/9590986164039cb59dfbd03b616568dc2d63759e-1280x710.png 
+keywords: 
+- Typescript
+- Typescript Predicates
+- Type Narrowing
+- Javascript
+- Typescript Beginners
+- Typescript Advanced
+- Typescript Course
+title: "What are Type Predicates in Typescript?"
+description: "Learn about type predicates in TypeScript, a powerful tool for narrowing types. Discover the benefits, risks, and how to use them in your code."
+lang: en
+---
 TypeScript is a popular programming language that offers static type checking and advanced features for working with complex data structures. One important concept in TypeScript is type narrowing, which allows developers to make precise assertions about the types of variables in their code. In this article, we will explore how to use Type Predicate Functions to narrow types in TypeScript.
 
 If you've been working with TypeScript for a while, you know that type safety is one of the language's core features. However, even with the best type system in place, there are scenarios where we need to make more precise assertions about the types of variables in our code. That's where type narrowing comes in.

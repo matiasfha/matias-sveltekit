@@ -1,4 +1,3 @@
-
 ---
 date: 2023-01-29T14:22:35Z
 banner: https://cdn.sanity.io/images/cyypawp1/production/3f0fbeab2094df6e5fa50c9298dc57e12426fd11-1280x710.png
