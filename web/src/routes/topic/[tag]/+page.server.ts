@@ -15,7 +15,6 @@ async function getCourses(lang: string, tag: string) {
 		.then((result) => {
 			return Courses.parse(result);
 		});
-	console.log(courses);
 	return courses.map((item) => ({ ...item, image: builder.image(item.image).url() }));
 }
 
@@ -46,3 +45,11 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
 		articles
 	};
 };
+
+export const config = {
+	runtime: 'edge',
+	isr: {
+		expiration: 60,
+
+	}
+}

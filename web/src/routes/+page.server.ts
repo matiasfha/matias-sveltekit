@@ -6,6 +6,7 @@ import { getLatestPost } from '$lib/api/getPosts';
 import getFavorites from '$lib/api/getFavorites';
 import { locale } from '$lib/translations';
 import { redirect } from '@sveltejs/kit';
+import type { Config } from '@sveltejs/adapter-vercel';
 // import { getVideos } from '$lib/api/getYoutubeChannel';
 
 async function getLatestContent(lang?: string) {
@@ -117,6 +118,12 @@ export const actions = {
 		}
 		return {
 			success: true
-		};
-	}
+		}; }
 };
+
+export const config = {
+	isr: {
+		expiration: 60,
+
+	}
+}

@@ -1,5 +1,4 @@
-import type { PageServerLoad } from './$types';
-import getPosts from '$lib/api/getPosts';
+import type { PageServerLoad } from './$types'; import getPosts from '$lib/api/getPosts';
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	const lang = cookies.get('lang');
@@ -17,3 +16,11 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		tags: [...tags]
 	};
 };
+
+export const config = {
+	runtime: 'edge',
+	isr: {
+		expiration: 60,
+
+	}
+}

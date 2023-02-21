@@ -2,7 +2,6 @@ import { mdsvex } from "mdsvex";
 import mdsvexConfig from "./mdsvex.config/index.js";
 import preprocess from 'svelte-preprocess';
 import adapter from '@sveltejs/adapter-vercel'
-import { imagePreprocessor } from 'svelte-image-preprocessor-cloudinary';
 import { mdsvexGlobalComponents } from './preprocessors/mdsvexGlobalComponents.js'
 
 export const globalComponents = mdsvexGlobalComponents({
@@ -27,8 +26,7 @@ const config = {
 
   kit: {
     adapter: adapter({
-      edge: false,
-      split: false
+      split: true
     })
   },
 
