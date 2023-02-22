@@ -33,6 +33,7 @@ specifiers:
   cssnano: ^5.0.6
   date-fns: 2.29.3
   dotenv: 10.0.0
+  encoding: 0.1.13
   escape-html: 1.0.3
   eslint: ^7.22.0
   eslint-config-prettier: ^8.1.0
@@ -77,7 +78,7 @@ specifiers:
 dependencies:
   '@bytemd/plugin-gfm': 1.17.2_bytemd@1.17.2
   '@bytemd/plugin-highlight': 1.17.2_bytemd@1.17.2
-  '@octokit/rest': 18.12.0
+  '@octokit/rest': 18.12.0_encoding@0.1.13
   '@portabletext/svelte': 1.0.1_svelte@3.54.0
   '@sanity/block-content-to-html': 2.0.0
   '@sanity/block-content-to-markdown': 0.0.5
@@ -88,7 +89,7 @@ dependencies:
   '@sentry/tracing': 7.18.0
   '@sveltejs/adapter-auto': 2.0.0_@sveltejs+kit@1.8.3
   '@sveltejs/adapter-netlify': 1.0.0-next.88_@sveltejs+kit@1.8.3
-  '@sveltejs/adapter-vercel': 2.1.0_@sveltejs+kit@1.8.3
+  '@sveltejs/adapter-vercel': 2.1.0_rrt4bdqpgqhkewiglmusdps2ai
   '@sveltejs/vite-plugin-svelte': 2.0.2_svelte@3.54.0+vite@4.0.1
   '@tailwindcss/aspect-ratio': 0.4.0_tailwindcss@3.1.5
   '@tailwindcss/typography': 0.5.3_tailwindcss@3.1.5
@@ -119,6 +120,7 @@ devDependencies:
   '@typescript-eslint/parser': 4.33.0_hxadhbs2xogijvk7vq4t2azzbu
   autoprefixer: 10.4.7_postcss@8.4.14
   cssnano: 5.1.14_postcss@8.4.14
+  encoding: 0.1.13
   escape-html: 1.0.3
   eslint: 7.32.0
   eslint-config-prettier: 8.5.0_eslint@7.32.0
@@ -1759,14 +1761,14 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
 
-  /@mapbox/node-pre-gyp/1.0.10:
+  /@mapbox/node-pre-gyp/1.0.10_encoding@0.1.13:
     resolution: {integrity: sha512-4ySo4CjzStuprMwk35H5pPbkymjv1SF3jGLj6rAHp/xT/RF7TL7bd9CTm1xDY49K2qF7jmR/g7k+SkLETP6opA==}
     hasBin: true
     dependencies:
       detect-libc: 2.0.1
       https-proxy-agent: 5.0.1
       make-dir: 3.1.0
-      node-fetch: 2.6.7
+      node-fetch: 2.6.7_encoding@0.1.13
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
@@ -1814,12 +1816,12 @@ packages:
       '@octokit/types': 6.41.0
     dev: false
 
-  /@octokit/core/3.6.0:
+  /@octokit/core/3.6.0_encoding@0.1.13:
     resolution: {integrity: sha512-7RKRKuA4xTjMhY+eG3jthb3hlZCsOwg3rztWh75Xc+ShDWOfDDATWbeZpAHBNRpm4Tv9WgBMOy1zEJYXG6NJ7Q==}
     dependencies:
       '@octokit/auth-token': 2.5.0
-      '@octokit/graphql': 4.8.0
-      '@octokit/request': 5.6.3
+      '@octokit/graphql': 4.8.0_encoding@0.1.13
+      '@octokit/request': 5.6.3_encoding@0.1.13
       '@octokit/request-error': 2.1.0
       '@octokit/types': 6.41.0
       before-after-hook: 2.2.3
@@ -1836,10 +1838,10 @@ packages:
       universal-user-agent: 6.0.0
     dev: false
 
-  /@octokit/graphql/4.8.0:
+  /@octokit/graphql/4.8.0_encoding@0.1.13:
     resolution: {integrity: sha512-0gv+qLSBLKF0z8TKaSKTsS39scVKF9dbMxJpj3U0vC7wjNWFuIpL/z76Qe2fiuCbDRcJSavkXsVtMS6/dtQQsg==}
     dependencies:
-      '@octokit/request': 5.6.3
+      '@octokit/request': 5.6.3_encoding@0.1.13
       '@octokit/types': 6.41.0
       universal-user-agent: 6.0.0
     transitivePeerDependencies:
@@ -1855,7 +1857,7 @@ packages:
     peerDependencies:
       '@octokit/core': '>=2'
     dependencies:
-      '@octokit/core': 3.6.0
+      '@octokit/core': 3.6.0_encoding@0.1.13
       '@octokit/types': 6.41.0
     dev: false
 
@@ -1864,7 +1866,7 @@ packages:
     peerDependencies:
       '@octokit/core': '>=3'
     dependencies:
-      '@octokit/core': 3.6.0
+      '@octokit/core': 3.6.0_encoding@0.1.13
     dev: false
 
   /@octokit/plugin-rest-endpoint-methods/5.16.2_@octokit+core@3.6.0:
@@ -1872,7 +1874,7 @@ packages:
     peerDependencies:
       '@octokit/core': '>=3'
     dependencies:
-      '@octokit/core': 3.6.0
+      '@octokit/core': 3.6.0_encoding@0.1.13
       '@octokit/types': 6.41.0
       deprecation: 2.3.1
     dev: false
@@ -1885,23 +1887,23 @@ packages:
       once: 1.4.0
     dev: false
 
-  /@octokit/request/5.6.3:
+  /@octokit/request/5.6.3_encoding@0.1.13:
     resolution: {integrity: sha512-bFJl0I1KVc9jYTe9tdGGpAMPy32dLBXXo1dS/YwSCTL/2nd9XeHsY616RE3HPXDVk+a+dBuzyz5YdlXwcDTr2A==}
     dependencies:
       '@octokit/endpoint': 6.0.12
       '@octokit/request-error': 2.1.0
       '@octokit/types': 6.41.0
       is-plain-object: 5.0.0
-      node-fetch: 2.6.7
+      node-fetch: 2.6.7_encoding@0.1.13
       universal-user-agent: 6.0.0
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@octokit/rest/18.12.0:
+  /@octokit/rest/18.12.0_encoding@0.1.13:
     resolution: {integrity: sha512-gDPiOHlyGavxr72y0guQEhLsemgVjwRePayJ+FcKc2SJqKUbxbkvf5kAZEWA/MKvsfYlQAMVzNJE3ezQcxMJ2Q==}
     dependencies:
-      '@octokit/core': 3.6.0
+      '@octokit/core': 3.6.0_encoding@0.1.13
       '@octokit/plugin-paginate-rest': 2.21.3_@octokit+core@3.6.0
       '@octokit/plugin-request-log': 1.0.4_@octokit+core@3.6.0
       '@octokit/plugin-rest-endpoint-methods': 5.16.2_@octokit+core@3.6.0
@@ -2122,13 +2124,13 @@ packages:
       set-cookie-parser: 2.5.1
     dev: false
 
-  /@sveltejs/adapter-vercel/2.1.0_@sveltejs+kit@1.8.3:
+  /@sveltejs/adapter-vercel/2.1.0_rrt4bdqpgqhkewiglmusdps2ai:
     resolution: {integrity: sha512-cK0R40ALUNDQG9OhaDBYtU55eob6CD1BXCcVSoC1N+GOq/N6FQaMkWXFVGLl98Ja0EZwoZeFAwf2m0Pnc3uq2Q==}
     peerDependencies:
       '@sveltejs/kit': ^1.5.0
     dependencies:
       '@sveltejs/kit': 1.8.3_svelte@3.54.0+vite@4.0.1
-      '@vercel/nft': 0.22.6
+      '@vercel/nft': 0.22.6_encoding@0.1.13
       esbuild: 0.16.4
     transitivePeerDependencies:
       - encoding
@@ -2419,12 +2421,12 @@ packages:
       eslint-visitor-keys: 2.1.0
     dev: true
 
-  /@vercel/nft/0.22.6:
+  /@vercel/nft/0.22.6_encoding@0.1.13:
     resolution: {integrity: sha512-gTsFnnT4mGxodr4AUlW3/urY+8JKKB452LwF3m477RFUJTAaDmcz2JqFuInzvdybYIeyIv1sSONEJxsxnbQ5JQ==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
-      '@mapbox/node-pre-gyp': 1.0.10
+      '@mapbox/node-pre-gyp': 1.0.10_encoding@0.1.13
       '@rollup/pluginutils': 4.2.1
       acorn: 8.8.1
       async-sema: 3.1.1
@@ -3389,6 +3391,11 @@ packages:
     engines: {node: '>= 0.10'}
     dev: false
 
+  /encoding/0.1.13:
+    resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
+    dependencies:
+      iconv-lite: 0.6.3
+
   /enquirer/2.3.6:
     resolution: {integrity: sha512-yjNnPr315/FjS4zIsUxYguYUPP2e1NK4d7E7ZOLiyYCcbFBiTMyID+2wvm2w6+pZ/odMA7cRkjhsPbltwBOrLg==}
     engines: {node: '>=8.6'}
@@ -4222,7 +4229,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       safer-buffer: 2.1.2
-    dev: false
 
   /icss-replace-symbols/1.1.0:
     resolution: {integrity: sha512-chIaY3Vh2mh2Q3RGXttaDIzeiPvaVXJ+C4DAh/w3c37SKZ/U6PGMmuicR2EQQp9bKG8zLMCl7I+PtIoOOPp8Gg==}
@@ -5168,7 +5174,7 @@ packages:
     engines: {node: '>=10.5.0'}
     dev: true
 
-  /node-fetch/2.6.7:
+  /node-fetch/2.6.7_encoding@0.1.13:
     resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
     engines: {node: 4.x || >=6.0.0}
     peerDependencies:
@@ -5177,6 +5183,7 @@ packages:
       encoding:
         optional: true
     dependencies:
+      encoding: 0.1.13
       whatwg-url: 5.0.0
     dev: false
 
