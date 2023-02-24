@@ -17,7 +17,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 };
 
 export const config = {
-	runtime: 'edge',
+	// runtime: 'edge',
 	isr: {
 		expiration: 60,
 

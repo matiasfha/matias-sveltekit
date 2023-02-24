@@ -1,6 +1,14 @@
 import fetchSimilarPosts from '$lib/api/getSimilarPosts';
 import { getWebMetions } from '$lib/api/getWebMentions';
 import type { LayoutServerLoad } from './$types';
+export const prerender = true
+export const config = {
+	// runtime: 'edge',
+	isr: {
+		expiration: 60,
+
+	}
+}
 
 export const load: LayoutServerLoad = async ({ url, cookies }) => {
 	const lang = cookies.get('lang') || 'en';
