@@ -55,12 +55,15 @@ export default async function getPosts(lang?: string, limitDate?: Date | null) {
 	for (const [path, resolver] of Object.entries(modules)) {
 		const promise = resolver().then((post) => {
 			const slug = path.slice(12, -10);
-			// const metadata = MetaData.parse(post.metadata)
+			const metadata = MetaData.safeParse(post.metadata);
+			if (!metadata.success) {
+				console.log({ metadata });
+			}
 			return {
 				slug: slug
-				.normalize('NFD')
-				.replace(/[\u0300-\u036f]/g, '')
-				.replace(/\?|\¿/g, ''),
+					.normalize('NFD')
+					.replace(/[\u0300-\u036f]/g, '')
+					.replace(/\?|\¿/g, ''),
 				...post.metadata,
 				html: post.default.render?.().html,
 				path: path.slice(0, -4).slice(9)
@@ -72,23 +75,25 @@ export default async function getPosts(lang?: string, limitDate?: Date | null) {
 
 	const res = await Promise.all(postPromises); //.then((p) => {console.log(p); return Posts.parse(p)});
 
-	const posts = res.filter(post => {
-		if(limitDate) {
-			return isAfter(parseISO(post.date), limitDate)
-		}
-		return post
-	}).sort((a, b) => {
-		const aDate = new Date(a.date).getTime();
-		const bDate = new Date(b.date).getTime();
-		return aDate < bDate ? 1 : -1;
-	});
+	const posts = res
+		.filter((post) => {
+			if (limitDate) {
+				return isAfter(parseISO(post.date), limitDate);
+			}
+			return post;
+		})
+		.sort((a, b) => {
+			const aDate = new Date(a.date).getTime();
+			const bDate = new Date(b.date).getTime();
+			return aDate < bDate ? 1 : -1;
+		});
 	if (lang) {
 		return posts.filter((item) => item.lang === lang);
 	}
 	return posts;
 }
 
-export async function getLatestPost(lang?: string): Promise<z.infer<typeof Post>>{
+export async function getLatestPost(lang?: string): Promise<z.infer<typeof Post>> {
 	const posts = await getPosts(lang);
 
 	return posts[0];

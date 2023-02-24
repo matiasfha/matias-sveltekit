@@ -1,7 +1,7 @@
 import fetchSimilarPosts from '$lib/api/getSimilarPosts';
 import { getWebMetions } from '$lib/api/getWebMentions';
 import type { LayoutServerLoad } from './$types';
-export const prerender = true
+// export const prerender = true
 export const config = {
 	// runtime: 'edge',
 	isr: {
