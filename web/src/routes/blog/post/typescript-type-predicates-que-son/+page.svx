@@ -1,0 +1,93 @@
+
+---
+date: 2023-02-21T14:22:35Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/9590986164039cb59dfbd03b616568dc2d63759e-1280x710.png 
+keywords: 
+- Typescript
+- Typescript Predicates
+- Type Narrowing
+- Javascript
+- Typescript Beginners
+- Typescript Advanced
+- Typescript Course
+- Funciones Predicado
+title: "¿Que són los Type Predicates en Typescript?"
+description: ""Aprende sobre los predicados de tipo en TypeScript, una herramienta poderosa para reducir tipos. Descubre los beneficios, riesgos y cómo usarlos en tu código.
+lang: es
+---
+
+Una pieza importante de trabajar con tipos en Typescript es el proceso conocido como el estrechamiento de tipos (type narrowing). ¿Qué es? Es el proceso de afirmar qué tipo de variable está en una parte particular del flujo de datos.
+
+En este artículo revisaremos una forma de estrechar tipos: las funciones de predicado de tipo (Type Predicates Functions).
+
+El estrechamiento de tipos nos permite tomar un tipo que es demasiado amplio y refinarlo a un tipo más específico.
+
+Este es un concepto crítico porque puede prevenir errores y hacer que nuestro código sea más expresivo y legible.
+
+## Comprendiendo las funciones de predicado de tipo
+
+Las funciones de predicado de tipo son funciones que devuelven un valor booleano y tienen una sintaxis de retorno de tipo particular. Un predicado de tipo es una aserción de tipo que verifica si un objeto tiene una propiedad específica o un conjunto de propiedades. Esto permite a TypeScript estrechar (o refinar) el tipo de un objeto basado en el resultado de la función.
+
+Aquí hay un ejemplo de una función de predicado de tipo:
+
+```ts
+function isString(x: unknown): x is string {
+  return typeof x === 'string';
+}
+```
+
+En este ejemplo, la función `isString` toma un argumento `x` de tipo `unknown`. La función luego verifica si el typeof de `x` es `string`, y devuelve `true` o `false` en consecuencia.
+
+El tipo de retorno de la función está anotado como `x is string`, lo que asegura que `x` es de tipo `string` si la función devuelve `true`.
+
+Luego puedes usar la función dentro de tus bloques condicionales o en cualquier otro lugar del código que necesites. El resultado de usarlo será que TypeScript reconocerá el argumento utilizado como el tipo afirmado.
+
+```ts
+function reverseString(x: unknown){
+  // Aquí x se infiere como unknown
+  if (isString(x)) {
+    // Aquí x se infiere como un string 
+    return x.split('').reverse().join('');
+  }
+	return null
+}
+```
+En este ejemplo, la función `reverseString` toma un argumento `x` de tipo `unknown`, que podría ser cualquier valor. La función luego llama a la función de predicado de tipo `isString` para comprobar si `x` es una `string`.
+Si `isString(x)` devuelve `true`, entonces `x` se trata como una `string` y se puede invertir usando los métodos de string `split, reverse y join`.
+
+## Ventajas y desventajas 
+¿Las funciones de predicado de tipo se ven bien, verdad? Pero, como todo en la vida, hay pros y contras en cada decisión que tomes.
+
+Una de las principales ventajas de las funciones de predicado de tipo es que proporcionan una forma de expresar relaciones de tipo complejas de manera legible y comprensible.
+Te permiten definir funciones personalizadas que no solo realizan una tarea específica, sino que también devuelven un valor booleano que indica a TypeScript si una variable es de un tipo particular. Esto puede hacer que tu código sea más expresivo y auto documentado.
+
+También pueden ser útiles cuando necesita realizar comprobaciones de tipo dinámicas en un objeto. Por ejemplo, imagine que tiene una función que toma un objeto como argumento, pero no está seguro de si el objeto tiene una propiedad específica. Con una función de predicado de tipo, puede verificar la presencia de esa propiedad y reducir el tipo del objeto para incluir esa propiedad.
+
+Por el lado negativo, las funciones de predicado de tipo pueden ser más difíciles de configurar y usar que los bloques condicionales. Le requieren definir funciones personalizadas y puede requerir más código para poner en marcha.
+
+Pero el problema más importante de estas funciones es un riesgo, hay una forma fácil de introducir errores en el proceso. Puede escribir predicados incorrectos que lleven a una reducción de tipo inesperada o no deseada.
+Esto puede resultar en errores en tiempo de ejecución o comportamientos inesperados, que pueden ser difíciles de diagnosticar y solucionar.
+
+Los predicados de tipo se asemejan al uso (y peligros) de usar as para las afirmaciones de tipo, puede mentir al sistema de tipos, es decir, “sé más sobre este tipo que el compilador” y forzar que el tipo sea el deseado, como ejemplo:
+
+```ts 
+function isString(x: unknown): x is string {
+  return typeof x === 'number';
+}
+```
+
+El ejemplo anterior verifica si x es un número, y si eso es true, entonces el predicado dice que la variable es una string. Si más tarde usa ese predicado de tipo, TypeScript asume que la variable es una string y se pierde la seguridad de tipo.
+
+Mejores prácticas para usar funciones de predicado de tipo para la reducción de tipo
+Esta no es de ninguna manera una lista exhaustiva de "buenas ideas" para aplicar al trabajar con predicados de tipo, pero son una buena regla general.
+
+- Defínelos cuidadosamente y asegúrese de que estén correctamente tipados.
+- Usa nombres claros y descriptivos para las funciones de predicado de tipo.
+- Úsalos solo cuando sean apropiados y necesarios.
+- Considera enfoques alternativos para la reducción de tipo, como bloques condicionales o uniones discriminadas.
+- Usa herramientas de análisis de código y pruebas automatizadas para detectar posibles errores o inconsistencias en el programa.
+
+## Conclusión
+
+En resumen, las Funciones de Predicado de Tipo son utiles para reducir tipos en TypeScript, lo que puede mejorar la legibilidad del código, la mantenibilidad y reducir errores. Sin embargo, debes tener precaución y comprender los posibles inconvenientes de su uso. Al adherirse a las prácticas y pautas recomendadas, se puede evitar comprometer la integridad del sistema de tipos y crear aplicaciones más confiables y resistentes con TypeScript. En general, las Funciones de Predicado de Tipo pueden ser una excelente adición a su caja de herramientas de TypeScript si se utilizan de manera juiciosa y responsable.
+
