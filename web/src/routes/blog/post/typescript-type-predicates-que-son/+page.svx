@@ -30,6 +30,7 @@ Las funciones de predicado de tipo son funciones que devuelven un valor booleano
 Aquí hay un ejemplo de una función de predicado de tipo:
 
 ```ts
+
 function isString(x: unknown): x is string {
   return typeof x === 'string';
 }
@@ -42,6 +43,7 @@ El tipo de retorno de la función está anotado como `x is string`, lo que asegu
 Luego puedes usar la función dentro de tus bloques condicionales o en cualquier otro lugar del código que necesites. El resultado de usarlo será que TypeScript reconocerá el argumento utilizado como el tipo afirmado.
 
 ```ts
+
 function reverseString(x: unknown){
   // Aquí x se infiere como unknown
   if (isString(x)) {
@@ -70,6 +72,7 @@ Esto puede resultar en errores en tiempo de ejecución o comportamientos inesper
 Los predicados de tipo se asemejan al uso (y peligros) de usar as para las afirmaciones de tipo, puede mentir al sistema de tipos, es decir, “sé más sobre este tipo que el compilador” y forzar que el tipo sea el deseado, como ejemplo:
 
 ```ts 
+
 function isString(x: unknown): x is string {
   return typeof x === 'number';
 }

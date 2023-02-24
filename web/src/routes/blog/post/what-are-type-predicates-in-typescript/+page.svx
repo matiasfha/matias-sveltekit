@@ -28,6 +28,7 @@ This allows TypeScript to narrow (or refine) the type of an object based on the 
 Here is an example of a Type Predicate Function:
 
 ```ts
+
 function isString(x: unknown): x is string {
   return typeof x === 'string';
 }
@@ -41,6 +42,7 @@ The return type of the function is annotated as **`x is string`**, which **asser
 Then you can use the function inside your conditional blocks or in any other place of the code you need. The result of using will be that TS will recognize the argument used as the type asserted.
 
 ```ts
+
 function reverseString(x: unknown){
   // Here x is infered as unknown
   if (isString(x)) {
@@ -72,6 +74,7 @@ This can result in runtime errors or unexpected behavior, which can be difficult
 Type predicates ressembles the use (and pitfalls) of using `as` for type assertions, you can **lie** to the type system, it equals to say “I know more about this type than the compiler” and force the type to be the desired one, as an example:
 
 ```ts
+
 function isString(x: unknown): x is string {
   return typeof x === 'number';
 }
