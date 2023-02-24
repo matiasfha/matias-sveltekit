@@ -1,6 +1,5 @@
-
 ---
-date: 2023-02-21T14:22:35Z
+date: 2023-02-24
 banner: https://cdn.sanity.io/images/cyypawp1/production/9590986164039cb59dfbd03b616568dc2d63759e-1280x710.png 
 keywords: 
 - Typescript
@@ -12,7 +11,7 @@ keywords:
 - Typescript Course
 - Funciones Predicado
 title: "¿Que són los Type Predicates en Typescript?"
-description: ""Aprende sobre los predicados de tipo en TypeScript, una herramienta poderosa para reducir tipos. Descubre los beneficios, riesgos y cómo usarlos en tu código.
+description: "Aprende sobre los predicados de tipo en TypeScript, una herramienta poderosa para reducir tipos. Descubre los beneficios, riesgos y cómo usarlos en tu código."
 lang: es
 ---
 
