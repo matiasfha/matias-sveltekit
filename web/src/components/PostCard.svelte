@@ -19,7 +19,7 @@
 			</div>
 
 			<div class="mt-8 dark:text-gray-300 text-gray-500 text-md font-medium lowercase text-body">
-				{$t('blog.around')} <RelativeDateFormat date={post.date} />
+				{$t('blog.around')} <time datetime={post.date}><RelativeDateFormat date={post.date} /></time>
 			</div>
 			<span class="mt-8 dark:text-gray-300 text-gray-500 text-sm italic lowercase text-body">
 				{$t('blog.reading')} {post.readingTime.text}

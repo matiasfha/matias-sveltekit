@@ -36,9 +36,11 @@ async function getArticles(lang: string, tag: string) {
 export const load: PageServerLoad = async ({ params, cookies }) => {
 	const lang = cookies.get('lang') ?? 'en';
 	const { tag } = params;
-	const posts = await getPosts(lang);
-	const courses = await getCourses(lang, tag);
-	const articles = await getArticles(lang, tag);
+	const postsP = getPosts(lang);
+	const coursesP = getCourses(lang, tag);
+	const articlesP = getArticles(lang, tag);
+	const [posts, courses, articles] = await Promise.all([postsP, coursesP, articlesP])
+
 	return {
 		posts: posts.filter((item) => item.tag?.toLowerCase() === tag),
 		courses,

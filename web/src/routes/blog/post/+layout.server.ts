@@ -5,10 +5,9 @@ import type { LayoutServerLoad } from './$types';
 export const config = {
 	// runtime: 'edge',
 	isr: {
-		expiration: 60,
-
+		expiration: 60
 	}
-}
+};
 
 export const load: LayoutServerLoad = async ({ url, cookies }) => {
 	const lang = cookies.get('lang') || 'en';
@@ -16,13 +15,12 @@ export const load: LayoutServerLoad = async ({ url, cookies }) => {
 	let likes = [];
 	let retweet = [];
 	const { pathname } = url;
+	const similarPostsP = fetchSimilarPosts(pathname, lang);
+	const mentionsP = getWebMetions(pathname);
+
 	try {
-		similarPosts = await fetchSimilarPosts(pathname, lang);
-	} catch (e) {
-		console.error(e);
-	}
-	try {
-		const mentions = await getWebMetions(pathname);
+		const [posts, mentions] = await Promise.all([similarPostsP, mentionsP]);
+		similarPosts = posts;
 		likes = mentions.likes;
 		retweet = mentions.retweet;
 	} catch (e) {

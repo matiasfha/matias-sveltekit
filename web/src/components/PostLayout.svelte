@@ -80,7 +80,7 @@
 			{title}
 		</h1>
 		<div class="text-sm self-end flex-grow m-0 pt-2 pb-8 mr-8">
-			<time class="dt-published" datetime="YYYY-MM-DD HH:MM:SS">
+			<time class="dt-published" datetime={date}>
 				<RelativeDateFormat {date} />
 			</time>
 			- {#if readingTime} {readingTime.text} {/if}
@@ -151,10 +151,7 @@
 				</form>
 			{/if}
 
-			<details class="w-full sm:mt-2 mt-10 text-sm" open={false}>
-				<summary class="text-bold py-2">{$t('common.tableOfContent')}</summary>
-				<ul class="w-full opacity-75">
-					{#each tocData as item}
+			<details class="w-full sm:mt-2 mt-10 text-sm" open={false}> <summary class="text-bold py-2">{$t('common.tableOfContent')}</summary> <ul class="w-full opacity-75"> {#each tocData as item}
 						<li>
 							<a href={`#${item.slug}`}>{item.value}</a>
 						</li>
@@ -287,7 +284,7 @@
 										/>
 									</div>
 									<span class="text-sm"
-										>around <time datetime="YYYY-MM-DD HH:MM:SS">
+										>around <time datetime={post.date}>
 											<RelativeDateFormat date={post.date} />
 										</time>
 										Reading time: {post.readingTime.text}

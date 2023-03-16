@@ -6,16 +6,21 @@ import { getLatestPost } from '$lib/api/getPosts';
 import getFavorites from '$lib/api/getFavorites';
 import { locale } from '$lib/translations';
 import { redirect } from '@sveltejs/kit';
-import type { Config } from '@sveltejs/adapter-vercel';
-// import { getVideos } from '$lib/api/getYoutubeChannel';
+import { getVideos } from '$lib/api/getYoutubeChannel';
 
 async function getLatestContent(lang?: string) {
 	try {
-		const post = await getLatestPost(lang);
+		const postP = getLatestPost(lang);
 
-		const course = await getLatestCourse(lang);
-		const article = await getLatestArticle(lang);
-		// const youtube = (await getVideos())[0];
+		const courseP = getLatestCourse(lang);
+		const articleP = getLatestArticle(lang);
+		const cafeConTechP = getLatest('https://anchor.fm/s/a1ac9eb8/podcast/rss');
+		const youtubeP = getVideos();
+		let promises = [postP, courseP, articleP, cafeConTechP, youtubeP];
+		// if (lang === 'es') {
+		// 	const controlRemotoP = getLatest('https://anchor.fm/s/5cfb84c8/podcast/rss');
+		// }
+		const [post, course, article, cafeConTech, youtube] = await Promise.all(promises);
 		let latest = [
 			{
 				/* post */ href: post.slug,
@@ -30,12 +35,19 @@ async function getLatestContent(lang?: string) {
 				title: article.title,
 				tag: `published at: ${article.tag}`
 			},
-			// {
-			// 	href: 'https://youtube.com/watch?v=' + youtube.id,
-			// 	image: youtube.thumb.url,
-			// 	title: youtube.title,
-			// 	tag: `Youtube`
-			// },
+			{
+				/* Cafe con Tech*/
+				href: cafeConTech.url,
+				image: cafeConTech.image,
+				title: cafeConTech.title,
+				tag: 'Podcast: Café con Tech'
+			},
+			{
+				href: 'https://youtube.com/watch?v=' + youtube[0].id,
+				image: youtube[0].thumb.url,
+				title: youtube[0].title,
+				tag: `Youtube`
+			},
 			{
 				/* egghead */ href: course.url + '?af=4cexzz',
 				image: course.image,
@@ -44,33 +56,15 @@ async function getLatestContent(lang?: string) {
 			}
 		];
 		if (lang === 'es') {
-			const cafeConTech = await getLatest('https://anchor.fm/s/a1ac9eb8/podcast/rss');
-
-			/* Control remoto have a different url structure */
 			const controlRemoto = await getLatest('https://anchor.fm/s/5cfb84c8/podcast/rss');
 			latest = [
 				...latest,
-				{
-					/* Cafe con Tech*/
-					href: cafeConTech.url,
-					image: cafeConTech.image,
-					title: cafeConTech.title,
-					tag: 'Podcast: Café con Tech'
-				},
 				{
 					/* Control Remoto*/
 					href: controlRemoto.url,
 					image: controlRemoto.image,
 					title: controlRemoto.title,
 					tag: 'Podcast: Control Remoto'
-				},
-				/* youtube */
-				{
-					href: 'https://youtu.be/v3WUL7gK9Kw',
-					image:
-						'https://res.cloudinary.com/matiasfha/image/upload/v1662082980/web3-youtube_xqpfxj.png',
-					title: 'Web3: Fullstack Development con Ethereum y SvelteKit',
-					tag: `Youtube Video`
 				}
 			];
 		}
@@ -86,10 +80,13 @@ async function getLatestContent(lang?: string) {
 export const load: PageServerLoad = async ({ cookies }) => {
 	try {
 		const lang = cookies.get('lang');
-		const latest = await getLatestContent(lang);
-		const favorites = await getFavorites(lang);
-		const featured = (await getCourses(lang)).find((item) => item.featured);
 
+		const latestP = getLatestContent(lang);
+		const favoritesP = getFavorites(lang);
+		const featuredP = getCourses(lang);
+		// const featuredP = (await getCourses(lang)).find((item) => item.featured);
+		const [latest, favorites, courses] = await Promise.all([latestP, favoritesP, featuredP]);
+		const featured = courses.find((item) => item.featured);
 		return {
 			latest,
 			favorites,
@@ -118,12 +115,12 @@ export const actions = {
 		}
 		return {
 			success: true
-		}; }
+		};
+	}
 };
 
 export const config = {
 	isr: {
-		expiration: 60,
-
+		expiration: 60
 	}
-}
+};
