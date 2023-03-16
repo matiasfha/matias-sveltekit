@@ -25,9 +25,7 @@ const config = {
   }), globalComponents, mdsvex(mdsvexConfig)],
 
   kit: {
-    adapter: adapter({
-      split: true
-    })
+    adapter: adapter()
   },
 
 };

@@ -4,6 +4,7 @@ import type { ServerlessConfig } from '@sveltejs/adapter-vercel';
 import type { LayoutServerLoad } from './$types';
 export const config: ServerlessConfig  = {
 	runtime: 'nodejs18.x',
+	split: true,
 	isr: {
 		expiration: 60
 	}
