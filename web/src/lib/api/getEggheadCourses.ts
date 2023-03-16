@@ -39,7 +39,7 @@ export default async function getCourses(lang?: string) {
 	return courses.map((item) => {
 		return {
 			...item,
-			image: builder.image(item.image).url()
+			image: builder.image(item.image).auto('format').quality(90).width(365).height(181).url()
 		};
 	});
 }
@@ -50,6 +50,6 @@ export async function getLatestCourse(lang?: string) {
 	});
 	return {
 		...course,
-		image: builder.image(course.image).url()
+		image: builder.image(course.image).auto('format').quality(90).width(280).height(140).url()
 	};
 }

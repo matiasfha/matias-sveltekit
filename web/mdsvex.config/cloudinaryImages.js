@@ -46,7 +46,8 @@ export function cloudinaryImages() {
 				if (!image.includes('https://res.cloudinary.com')) {
 					const res = await uploadImage(image);
 					if (res?.secure_url) {
-						vFile.data.fm['banner'] = res.secure_url;
+						vFile.data.fm['banner'] = cloudinary.url(res.public_id, {quality: 'auto', fetch_format: 'auto', format: 'jpg'})
+						// vFile.data.fm['banner'] = res.secure_url;
 					}
 
 				}

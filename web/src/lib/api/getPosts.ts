@@ -56,9 +56,6 @@ export default async function getPosts(lang?: string, limitDate?: Date | null) {
 		const promise = resolver().then((post) => {
 			const slug = path.slice(12, -10);
 			const metadata = MetaData.safeParse(post.metadata);
-			if (!metadata.success) {
-				console.log({ metadata });
-			}
 			return {
 				slug: slug
 					.normalize('NFD')

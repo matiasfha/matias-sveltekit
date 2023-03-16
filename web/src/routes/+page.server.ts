@@ -16,7 +16,7 @@ async function getLatestContent(lang?: string) {
 		const articleP = getLatestArticle(lang);
 		const cafeConTechP = getLatest('https://anchor.fm/s/a1ac9eb8/podcast/rss');
 		const youtubeP = getVideos();
-		let promises = [postP, courseP, articleP, cafeConTechP, youtubeP];
+		const promises = [postP, courseP, articleP, cafeConTechP, youtubeP];
 		// if (lang === 'es') {
 		// 	const controlRemotoP = getLatest('https://anchor.fm/s/5cfb84c8/podcast/rss');
 		// }
@@ -84,7 +84,6 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		const latestP = getLatestContent(lang);
 		const favoritesP = getFavorites(lang);
 		const featuredP = getCourses(lang);
-		// const featuredP = (await getCourses(lang)).find((item) => item.featured);
 		const [latest, favorites, courses] = await Promise.all([latestP, favoritesP, featuredP]);
 		const featured = courses.find((item) => item.featured);
 		return {
