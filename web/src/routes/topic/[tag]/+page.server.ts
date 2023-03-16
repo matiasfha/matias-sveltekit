@@ -49,7 +49,7 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
 };
 
 export const config = {
-	// runtime: 'edge',
+	runtime: 'nodejs18.x',
 	isr: {
 		expiration: 60,
 

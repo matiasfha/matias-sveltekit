@@ -1,9 +1,9 @@
 import fetchSimilarPosts from '$lib/api/getSimilarPosts';
 import { getWebMetions } from '$lib/api/getWebMentions';
+import type { ServerlessConfig } from '@sveltejs/adapter-vercel';
 import type { LayoutServerLoad } from './$types';
-// export const prerender = true
-export const config = {
-	// runtime: 'edge',
+export const config: ServerlessConfig  = {
+	runtime: 'nodejs18.x',
 	isr: {
 		expiration: 60
 	}

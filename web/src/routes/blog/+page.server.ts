@@ -1,4 +1,5 @@
 import type { PageServerLoad } from './$types'; import getPosts from '$lib/api/getPosts';
+import type { ServerlessConfig } from '@sveltejs/adapter-vercel'
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	const lang = cookies.get('lang');
@@ -17,8 +18,8 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	};
 };
 
-export const config = {
-	// runtime: 'edge',
+export const config: ServerlessConfig = {
+	runtime: 'nodejs18.x',
 	isr: {
 		expiration: 60,
 
