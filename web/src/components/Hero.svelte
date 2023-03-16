@@ -127,6 +127,8 @@
 			class="absolute bg-gradient-to-b dark:from-ebony-clay-300 dark:via-ebony-clay-500 dark:to-ebony-clay-500  from-gray-400 via-gray-200 to-gray-100 rounded-full blur-3xl top-1/4 w-[150%] h-[110%]"
 		/>
 		<img
+			width="544"
+			height="544"
 			sizes="(min-width: 30em) 34em, 100vw"
 			class="object-contain backdrop-filter backdrop-blur-xl filter drop-shadow-2xl u-photo"
 			srcset="https://res.cloudinary.com/matiasfha/image/fetch/f_auto,q_auto,w_288/https://matiashernandez.dev/me-optimized.png 288w,
