@@ -11,7 +11,6 @@
 
 	import { afterUpdate, onMount } from 'svelte';
 	import Seo from './Seo.svelte';
-	import { Cloudinary } from 'cloudinary-core';
 	import RelativeDateFormat from './RelativeDateFormat.svelte';
 
 	// Props
@@ -39,8 +38,6 @@
 	let currentUrl = '';
 	afterUpdate(() => {
 		currentUrl = window.location.href;
-		const cl = Cloudinary.new({ cloud_name: 'matiasfha' });
-		cl.responsive();
 	});
 
 	let adsbygoogle = [{}];
@@ -53,11 +50,26 @@
 </script>
 
 <svelte:head>
-	<script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+	<script src="https://f.convertkit.com/ckjs/ck.5.js" type="text/partytown"></script>
 	<script
 		async
 		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8352667732450998"
 		crossorigin="anonymous"
+		defer
+	></script>
+	<script
+		type="text/partytown"
+		data-name="BMC-Widget"
+		data-cfasync="false"
+		src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+		data-id="matiasfha"
+		data-description="Support me on Buy me a coffee!"
+		data-message="If you find the content useful, would you like to invite me for coffee?Thanks for reading!"
+		data-color="#5F7FFF"
+		data-position="Right"
+		data-x_margin="18"
+		data-y_margin="18"
+		async
 		defer
 	></script>
 </svelte:head>
@@ -151,7 +163,10 @@
 				</form>
 			{/if}
 
-			<details class="w-full sm:mt-2 mt-10 text-sm" open={false}> <summary class="text-bold py-2">{$t('common.tableOfContent')}</summary> <ul class="w-full opacity-75"> {#each tocData as item}
+			<details class="w-full sm:mt-2 mt-10 text-sm" open={false}>
+				<summary class="text-bold py-2">{$t('common.tableOfContent')}</summary>
+				<ul class="w-full opacity-75">
+					{#each tocData as item}
 						<li>
 							<a href={`#${item.slug}`}>{item.value}</a>
 						</li>

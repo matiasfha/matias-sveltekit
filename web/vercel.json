@@ -1,0 +1,12 @@
+{
+	"rewrites": [
+		{
+			"source": "/buymeacoffee",
+			"destination": "https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+		},
+		{
+			"source": "convertkit",
+			"destination": "https://f.convertkit.com/ckjs/ck.5.js"
+		}
+	]
+}

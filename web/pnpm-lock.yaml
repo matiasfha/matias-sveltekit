@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@builder.io/partytown': 0.7.5
   '@bytemd/plugin-gfm': 1.17.2
   '@bytemd/plugin-highlight': 1.17.2
   '@hcaptcha/types': 1.0.2
@@ -76,6 +77,7 @@ specifiers:
   zod: 3.19.1
 
 dependencies:
+  '@builder.io/partytown': 0.7.5
   '@bytemd/plugin-gfm': 1.17.2_bytemd@1.17.2
   '@bytemd/plugin-highlight': 1.17.2_bytemd@1.17.2
   '@octokit/rest': 18.12.0_encoding@0.1.13
@@ -1496,6 +1498,11 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
+
+  /@builder.io/partytown/0.7.5:
+    resolution: {integrity: sha512-Zbr2Eo0AQ4yzmQr/36/h+6LKjmdVBB3Q5cGzO6rtlIKB/IOpbQVUZW+XAnhpJmJr9sIF97OZjgbhG9k7Sjn4yw==}
+    hasBin: true
+    dev: false
 
   /@bytemd/plugin-gfm/1.17.2_bytemd@1.17.2:
     resolution: {integrity: sha512-u3DBMdPTcRMIRvzc582ylZhvrFumnoGjWNnUO3aXQH0mJ98XyGXxdWYAh7jow+XevhApp966ks5bvDAbYjzRTQ==}
