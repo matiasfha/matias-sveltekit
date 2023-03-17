@@ -4,14 +4,13 @@
 	export { blockquote, h1 };
 </script>
 
-<script lang="ts">
+<script>
 	import { t } from '$lib/translations';
-	export let data: PageData;
 
 	import { onMount } from 'svelte';
 	import Seo from './Seo.svelte';
 	import RelativeDateFormat from './RelativeDateFormat.svelte';
-	import type { PageData } from '../routes/$types';
+	export let data;
 
 	// Props
 
@@ -29,9 +28,9 @@
 
 	export let likes = data?.likes || [];
 	export let retweet = data?.retweet || [];
-	export let lang= 'es';
+	export let lang = 'es';
 
-	export let toc: string;
+	export let toc;
 
 	const tocData = JSON.parse(jsyaml.load(toc));
 
