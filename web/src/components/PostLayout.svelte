@@ -4,14 +4,14 @@
 	export { blockquote, h1 };
 </script>
 
-<script>
+<script lang="ts">
 	import { t } from '$lib/translations';
-	/** @type {import('./$types').PageData} */
-	export let data;
+	export let data: PageData;
 
-	import { afterUpdate } from 'svelte';
+	import { onMount } from 'svelte';
 	import Seo from './Seo.svelte';
 	import RelativeDateFormat from './RelativeDateFormat.svelte';
+	import type { PageData } from '../routes/$types';
 
 	// Props
 
@@ -29,20 +29,19 @@
 
 	export let likes = data?.likes || [];
 	export let retweet = data?.retweet || [];
-	export let lang;
+	export let lang= 'es';
 
-	export let toc;
+	export let toc: string;
 
 	const tocData = JSON.parse(jsyaml.load(toc));
 
-	let currentUrl = '';
-	afterUpdate(() => {
+	$: currentUrl = '';
+	onMount(() => {
 		currentUrl = window.location.href;
 	});
 
 	const newsletterId = lang === 'es' ? 'c4r8t8' : 'h7k7g0';
 </script>
-
 
 <Seo {title} {description} {keywords} isBlogPost={true} {canonical} {banner} />
 <header
@@ -165,11 +164,21 @@
 						{@html $t('common.post.footer_body')}
 					</p>
 				</div>
-				<a
-					class="underlined self-end"
-					href={`https://github.com/matiasfha/matias-sveltekit/edit/main/web/${filepath}`}
-					>⚙️ {$t('common.post.footer_edit')}</a
-				>
+				<div class="flex flex-row justify-between items-center">
+					<a href="https://www.buymeacoffee.com/matiasfha"
+						><img
+							loading="lazy"
+							decoding="async"
+							alt="invite me a coffee"
+							src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=matiasfha&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff"
+						/></a
+					>
+					<a
+						class="underlined "
+						href={`https://github.com/matiasfha/matias-sveltekit/edit/main/web/${filepath}`}
+						>⚙️ {$t('common.post.footer_edit')}</a
+					>
+				</div>
 			</div>
 			{#if likes.length || retweet.length}
 				<section
@@ -220,7 +229,7 @@
 							{#if likes.length > 10}
 								<span
 									class="flex justify-center items-center w-8 h-8 text-xs font-medium text-white bg-gray-700 rounded-full border-2 border-white hover:bg-gray-600 dark:border-gray-800"
-									href="#">+{retweet.length - 10}</span
+									>+{retweet.length - 10}</span
 								>
 							{/if}
 						</div>
@@ -244,7 +253,7 @@
 							{#if retweet.length > 10}
 								<span
 									class="flex justify-center items-center w-8 h-8 text-xs font-medium text-white bg-gray-700 rounded-full border-2 border-white hover:bg-gray-600 dark:border-gray-800"
-									href="#">+{retweet.length - 10}</span
+									>+{retweet.length - 10}</span
 								>
 							{/if}
 						</div>

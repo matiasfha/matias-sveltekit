@@ -60,13 +60,13 @@
 	canonical="https://matiashernandez.dev/youtube"
 />
 
-<!-- <Featured -->
-<!-- 	image={data.featured.image} -->
-<!-- 	title={data.featured.title} -->
-<!-- 	meta={data.featured.tag} -->
-<!-- 	description={data.featured.description} -->
-<!-- 	url={data.featured.url} -->
-<!-- /> -->
+<Featured
+	image={data.featured.image}
+	title={data.featured.title}
+	meta={data.featured.tag}
+	description={data.featured.description}
+	url={data.featured.url}
+/>
 
 <NewsletterForm />
 
@@ -84,7 +84,6 @@
 	<div class="grid md:grid-cols-3 grid-cols-1 md:gap-16 gap-8">
 		{#each filteredVideos as content}
 			<a
-				data-sveltekit-prefetch
 				class="group peer relative block w-full focus:outline-none"
 				href={`https://youtube.com/watch?v=${content.id}`}
 			>

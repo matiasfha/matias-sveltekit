@@ -18,7 +18,6 @@
 		crossorigin="anonymous"
 		defer
 	></script>
-	<script src="https://f.convertkit.com/ckjs/ck.5.js" type="text/partytown"></script>
 	<script
 		type="text/partytown"
 		data-name="BMC-Widget"
@@ -31,8 +30,6 @@
 		data-position="Right"
 		data-x_margin="18"
 		data-y_margin="18"
-		async
-		defer
 	></script>
 </svelte:head>
 <slot></slot>
