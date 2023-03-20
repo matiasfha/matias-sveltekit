@@ -34,6 +34,7 @@ Aquí es donde muchos echan mando de `async/await`ç
 A modo resumen, la sintáxis `async/await` te permite pausar la ejecución de una promesa hasta que esta sea resuelta, creando un flujo de datos sencillo de entender.
 
 ```js
+
 const result1 = await getData("userId")
 
 const result2 = await getData("anotherUser")
@@ -58,6 +59,7 @@ Como resultado, tendrás que lidear solo con una promesa y además, mantendrás 
 
 
 ```js
+
 const promise1 = getData("userId")
 
 const promise2 = getData("anotherUser")
@@ -83,6 +85,7 @@ SI no te gusta utilizar `Promise.all` por algún motivo en particular, puedes co
 Recuerda, el objetivo es ejecutar las promesas de forma concurrente.
 
 ```js
+
 const promise1 = getData("userId")
 
 const promise2 = getData("anotherUser")
