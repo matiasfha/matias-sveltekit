@@ -1,0 +1,88 @@
+	Las Promesas en Javascript son la forma standard de ejecutar código asíncrono, y son por naturaleza concurrentes.
+	
+	> Quieres saber más sobre como trabajar con promesas? Te invito a leer esté artículo: [¿WTF es una promesa en JS?](https://matiashernandez.dev/blog/post/wtf-que-es-una-promesa-en-javascript)
+	
+	Dado que una Promesa no pausa o detiene la ejecución de tu código, es sencillo llamar múltiples promesas al mismo tiempo. 
+
+```js
+
+getData("userId").then(result => {})
+
+getData("anotherUser").then(result =>{})
+```
+
+Estas dos promesas se ejecutarán "al mismo" tiempo, pero, no tienes forma de controlar cuando serán resueltas, además de que, si son varias promesas ejecutadoas, el código se verá algo complejo de leer entre tanto use the `then` y `catch`.
+
+Aquí es donde muchos echan mando de `async/await`ç
+
+A modo resumen, la sintáxis `async/await` te permite pausar la ejecución de una promesa hasta que esta sea resuelta, creando un flujo de datos sencillo de entender.
+
+```js
+const result1 = await getData("userId")
+
+const result2 = await getData("anotherUser")
+```
+
+Ahora, tienes control sobre cuando cada promesa termina y es resuelta, y puedes utilizar las variables `result1` y `result2` directamente sin tener que usar un callback como en el caso anterior (dentro de `then`).
+
+Pero ahora, las promesas ya no se ejecutan en paralelo.
+
+> Para saber más sobre  async/await te invito a leer este otro artículo
+> [Entendiendo async/await](https://matiashernandez.dev/blog/post/entendiendo-async-y-await-en-javascript)
+
+Entonces, como ejecutar promesas de forma concurrente pero mantener un flujo "sincrono"?
+
+## Promise.all 
+
+El objecto Promise tiene varios métodos estáticos asociados, uno de ellos es `Promise.all`.
+
+Este método recibe como argumento un arreglo de promesas y retorna una sola que será resuelta cuando todas las otras lo hayan hecho.
+
+Como resultado, tendrás que lidear solo con una promesa y además, mantendrás la capacidad de ejecutar las promesas de forma concurrente.
+
+
+```js
+const promise1 = getData("userId")
+
+const promise2 = getData("anotherUser")
+
+try {
+    const [ result1, result2 ] = await Promise.all([ promise1, promise2])
+}catch(error) {
+	 console.error(error)
+		// Este error será el de alguna de las promesas que falló
+}
+```
+
+> Revisa la documentación [de Promise.all en MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+
+El único problema que encontrarás al utilizar `Promise.all` es que si una de las promesas que pasaste como argumento falla, también lo hará `Promise.all`.
+
+
+Además, ten encuenta que `Promise.all` tiene un comportamiento de **fallo rápido**, es decir, en el momento en que una de las promesas falle, `Promise.all` fallará y cancelara las promesas restantes.
+
+
+SI no te gusta utilizar `Promise.all` por algún motivo en particular, puedes conseguir un resultado muy similar utilizando `async/await` pero con una pequeña variación a la hora de escribir.
+
+Recuerda, el objetivo es ejecutar las promesas de forma concurrente.
+
+```js
+const promise1 = getData("userId")
+
+const promise2 = getData("anotherUser")
+
+try {
+    
+		const result1 = await promise1
+    const result2 = await promise2
+
+}catch(error) {
+   	 console.error(error)
+		// Este error será el de alguna de las promesas que falló
+}
+```
+
+Ese código ejecutará ambas promesas antes de pausar por el resultado de cada una. El único problema es que ahora eres tu quien decide que promesa esperar primero.
+
+La ventaja de `Promise.all` es que el tiempo de ejecución será igual al de la promesa mas lenta (en vez de sumarse como en el caso secuencial), y también que será el navegador quien se encarge de "esperar" cada promesa.
+
