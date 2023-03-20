@@ -1,8 +1,24 @@
-	Las Promesas en Javascript son la forma standard de ejecutar código asíncrono, y son por naturaleza concurrentes.
-	
-	> Quieres saber más sobre como trabajar con promesas? Te invito a leer esté artículo: [¿WTF es una promesa en JS?](https://matiashernandez.dev/blog/post/wtf-que-es-una-promesa-en-javascript)
-	
-	Dado que una Promesa no pausa o detiene la ejecución de tu código, es sencillo llamar múltiples promesas al mismo tiempo. 
+---
+date: 2023-03-20T08:00:00.000-03:00
+banner: https://cdn.sanity.io/images/cyypawp1/production/36e5c1fdd21fe7e7dbb87f3a2c73f3706d1d9019-1280x710.png 
+keywords:
+- Javascript
+- Promesas
+- Promises.all
+- Concurrente
+- async/await
+- Tutoria Javascript
+tag: Javascript
+title: Ejecuta código asíncrono de forma concurrente en Javascript
+description: En javascript es posible ejecutar código asíncrono de forma secuencial o de forma concurrente. ¿Cómo puedes ejecutar Promesas de forma concurrente? Utilizando Promise.all
+lang: es
+---
+
+Las Promesas en Javascript son la forma standard de ejecutar código asíncrono, y son por naturaleza concurrentes.
+        
+> Quieres saber más sobre como trabajar con promesas? Te invito a leer esté artículo: [¿WTF es una promesa en JS?](https://matiashernandez.dev/blog/post/wtf-que-es-una-promesa-en-javascript)
+        
+Dado que una Promesa no pausa o detiene la ejecución de tu código, es sencillo llamar múltiples promesas al mismo tiempo. 
 
 ```js
 
