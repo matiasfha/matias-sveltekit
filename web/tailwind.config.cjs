@@ -12,7 +12,12 @@ module.exports = {
 		extend: {
 			colors: {
 				'ebony-clay': { DEFAULT: '#242F42', '50': '#8BA0C1', '100': '#7A92B8', '200': '#5977A6', '300': '#475F85', '400': '#364763', '500': '#242F42', '600': '#121821', '700': '#000000', '800': '#000000', '900': '#000000' },
-				'purple': { DEFAULT: '#6366F1' }
+				'purple': { DEFAULT: '#6366F1' },
+				'blueGray': '#9591D6',
+				'blueGray-600':'#9B90D4',
+				'blueGray-400':'#AC90D1',
+				
+				
 			},
 			typography: theme => {
 				const fontSize = size => {

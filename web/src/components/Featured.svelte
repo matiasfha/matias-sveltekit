@@ -16,7 +16,7 @@
 		{$t('common.featured')}
 	</h2>
 	<div
-		class="relative flex items-center justify-center bg-white text-white overflow-hidden rounded-lg shadow-md dark:bg-gray-800 focus:outline-none transition hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2 backdrop-filter"
+		class="relative flex items-center justify-center bg-white text-white overflow-hidden rounded-lg shadow-md dark:bg-[#12182A] focus:outline-none transition hover:ring-2 dark:ring-yellow-50 ring-green-400 ring-offset-2 backdrop-filter"
 	>
 		<div class="relative z-10 px-5 sm:text-left text-center py-10">
 			<div
@@ -28,7 +28,6 @@
 					{#if type !== 'podcast'}
 						<div class="col-span-1 max-w-sm w-[24rem]">
 							<a
-								data-sveltekit-prefetch
 								class="group peer relative block w-full focus:outline-none"
 								href={url}
 								><div
