@@ -1,15 +1,5 @@
-import z from 'zod';
-export const Post = z.lazy(() =>
-	z.object({
-		date: z.string(),
-		banner: z.string(),
-		keywords: z.array(z.string()),
-		title: z.string(),
-		description: z.string(),
-		content: z.string(),
-		lang: z.union([z.literal('es'), z.literal('en')]) 
-	})
-);
+import type { Post } from 'src/routes/api/articles/utils';
+import type { z } from 'zod';
 export function generateMarkdown({
 	date,
 	banner,

@@ -1,4 +1,3 @@
-// import { isValidSignature } from '@sanity/webhook';
 import { writeToMedium } from '$lib/utils/writeToMedium';
 import writeToDevTo from '$lib/utils/writeToDevTo';
 import writeToHashnode from '$lib/utils/writeToHashnode';
@@ -18,7 +17,8 @@ export const Post = z.lazy(() =>
 			title: z.string(),
 			description: z.string(),
 			article: z.string(),
-			language: z.array(z.string())
+			language: z.array(z.string()),
+			_type: z.literal('posts')
 		})
 		.transform((post) => ({
 			date: post._createdAt,
@@ -31,21 +31,22 @@ export const Post = z.lazy(() =>
 		}))
 );
 
-export async function repost() {
-	const post = await getLastPostMarkdown();
-	await writeToDevTo({ ...post, image: post.banner });
-	await writeToHashnode({
-		...post,
-		image: post.banner
-	});
-	await writeToMedium(post);
+export async function repost(post: z.infer<typeof Post>) {
+	return Promise.allSettled([
+		writeToDevTo({ ...post, image: post.banner }),
+		writeToHashnode({
+			...post,
+			image: post.banner
+		}),
+		writeToMedium(post)
+	]);
 }
 
 export async function getLastPostMarkdown() {
 	const post = await client
 		.fetch('*[_type == "posts"] | order(_createdAt desc)[0]')
 		.then((p) => Post.parse(p));
-	const markdown = post.content
+	const markdown = post.content;
 	return {
 		markdown,
 		...post
