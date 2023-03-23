@@ -20,7 +20,7 @@ lang: es
 En la versión ECMAScript 2021, el estándar agregó un nuevo método estático al objeto `Promise`. Este método te permite manejar múltiples promesas de forma concurrente, pero a diferencia de `Promise.all` este método 
 espera a que todas las promesas hayan sido establecidas sin importar si estas fueron resueltas o rechazadas.
 
-> En el articulo anterior revisamos como ejeuctar Promesas de forma concurrente utilizando Promise.all, [Revisalo aqui][https://matiashernandez.dev/blog/post/ejecuta-codigo-asincrono-de-forma-concurrente-en-javascript]
+> En el articulo anterior revisamos como ejeuctar Promesas de forma concurrente utilizando Promise.all, [Revisalo aqui](https://matiashernandez.dev/blog/post/ejecuta-codigo-asincrono-de-forma-concurrente-en-javascript)
 
 > Y si quieres saber mas sobre Promesas, puedes revisar este articulo introductorio: [¿WTF es una promesa en JS?](https://matiashernandez.dev/blog/post/wtf-que-es-una-promesa-en-javascript)
 
@@ -28,6 +28,7 @@ espera a que todas las promesas hayan sido establecidas sin importar si estas fu
 Este método es muy similar a `Promise.all`, en efecto comparten la misma sintaxis y forma de uso, lo que cambia es el resultado que retorna.
 
 ```js 
+
 const promise1 = getData("userId")
 
 const promise2 = getData("anotherUser")
@@ -35,7 +36,7 @@ const promise2 = getData("anotherUser")
 const result = await Promise.allSettled([ promise1, promise2])
 ```
 <Disclaimer>
-**Cabe destacar** que el orden del arreglo retornado corresponde con el orden de las promesas utilizadas como argumento
+<strong>Cabe destacar</strong> que el orden del arreglo retornado corresponde con el orden de las promesas utilizadas como argumento
 </Disclaimer>
 
 
@@ -46,6 +47,7 @@ Lo importante de entender es que `Promise.allSettled`:
 Esto te permite filtrar los resultados basándose en el estado de cada promesa resuelta.
 
 ```js 
+
 const promise1 = getData("userId")
 
 const promise2 = getData("anotherUser")
