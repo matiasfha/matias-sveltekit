@@ -14,9 +14,6 @@ export const POST: RequestHandler = async ({ request }) => {
 	if (request.headers.get(SANITY_AUTHORIZED_HEADER) !== SANITY_AUTHORIZED_HEADER_VALUE) {
 		throw error(401, { message: 'What are you doing here?' });
 	}
-	if (!dev) {
-		throw error(401, { message: 'Only for dev purposes' });
-	}
 	try {
 		const { markdown, ...post } = await getLastPostMarkdown();
 		const fileContent = generateMarkdown(post);
