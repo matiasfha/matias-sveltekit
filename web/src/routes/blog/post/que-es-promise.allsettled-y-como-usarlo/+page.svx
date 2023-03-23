@@ -1,0 +1,73 @@
+
+---
+date: 2023-03-23T13:51:15Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/a95581c3631012517930e5bf3de3d86282964551-1280x710.png
+keywords: 
+- Promise.allSettled
+- allSettled
+- Javascript
+- Typescript
+- Beginner Javascript
+- Comenzando con Javascript
+- Javascript asincrono
+- asincronismo
+- concurrente
+- async/await
+title: "¿Qué es Promise.allSettled y como usarlo?"
+description: "Promise.allSettled es un método agregado el 2021 que permite ejecutar promesas de forma concurrente pero a diferencia de Promise.all,. espera por todas las promesas sin importar si estas fallan o se resuelven."
+lang: es
+---
+En la versión ECMAScript 2021, el estándar agregó un nuevo método estático al objeto `Promise`. Este método te permite manejar múltiples promesas de forma concurrente, pero a diferencia de `Promise.all` este método 
+espera a que todas las promesas hayan sido establecidas sin importar si estas fueron resueltas o rechazadas.
+
+> En el articulo anterior revisamos como ejeuctar Promesas de forma concurrente utilizando Promise.all, [Revisalo aqui][https://matiashernandez.dev/blog/post/ejecuta-codigo-asincrono-de-forma-concurrente-en-javascript]
+
+> Y si quieres saber mas sobre Promesas, puedes revisar este articulo introductorio: [¿WTF es una promesa en JS?](https://matiashernandez.dev/blog/post/wtf-que-es-una-promesa-en-javascript)
+
+
+Este método es muy similar a `Promise.all`, en efecto comparten la misma sintaxis y forma de uso, lo que cambia es el resultado que retorna.
+
+```js 
+const promise1 = getData("userId")
+
+const promise2 = getData("anotherUser")
+
+const result = await Promise.allSettled([ promise1, promise2])
+```
+<Disclaimer>
+**Cabe destacar** que el orden del arreglo retornado corresponde con el orden de las promesas utilizadas como argumento
+</Disclaimer>
+
+
+Lo importante de entender es que `Promise.allSettled`:
+- Esperará por todas las promesas sin importar su resultado 
+- El resultado de cada promesa será de la forma `{status: "fulfilled", value: <result>} ` o `{status: "rejected", reason: <el error>}`
+
+Esto te permite filtrar los resultados basándose en el estado de cada promesa resuelta.
+
+```js 
+const promise1 = getData("userId")
+
+const promise2 = getData("anotherUser")
+
+const promise3 = performLongOp()
+
+const promise4 = anotherOp()
+
+const result = await Promise.allSettled([ promise1, promise2, promise3, promise4 ])
+
+const fulfilled = results.filter(
+  (p) =>p.status === 'fulfilled'
+)
+
+```
+
+> Si estás usando **Typescript** entonces tendrás que [aplicar una función de predicado](https://matiashernandez.dev/blog/post/typescript-type-predicates-que-son) para que el filtro define el tipo correcto 
+> `(p): p is Extract<typeof p, { status: 'fulfilled' }> `
+
+
+## ¿Cuál es la diferencia entre Promise.allSettled y Promise.all? 
+
+- `Promise.allSettled` es tu opción si lo que buscas es ejecutar múltiples operaciones asíncronas de forma concurrente cuando estas no dependen entre sí y **tampoco** dependen de si una u otra fue exitosa en su operación. 
+- También te será útil si lo que buscas es conocer el resultado de cada operación asíncrona.
+- `Promise.all` es completamente rechazado si una o más promesas utilizadas como argumentos también lo fueron. 
