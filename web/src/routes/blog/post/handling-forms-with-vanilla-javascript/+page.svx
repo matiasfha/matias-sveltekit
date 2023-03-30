@@ -1,0 +1,135 @@
+---
+date: 2023-03-29T18:41:36Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/dce0dba613bd9b026419c2a418559e223aa15224-1280x720.jpg 
+keywords: 
+- JavaScript
+- FormData 
+- Form
+- Javascript Beginner 
+- How to use formData 
+- Handle Form 
+- Form Handling
+title: "Handling Forms with Vanilla Javascript"
+description: "Ever wondered how to handle a form using vanilla JavaScript? You're in the right place! In this blog post, we'll walk you through the process of handling a simple form with two input fields and a submit button using vanilla JavaScript. We'll show you how to select a form element, add an event listener, create a callback function, and access form data."
+bannerCredit: undefined
+lang: en
+---
+
+Ever wondered how to handle a form using vanilla JavaScript? You're in the right place! In this blog post, we'll walk you through the process of handling a simple form with two input fields and a submit button using vanilla JavaScript. We'll show you how to select a form element, add an event listener, create a callback function, and access form data.
+
+<YouTube id="olPXKnoAZuM" />
+
+## The HTML Form
+
+First, let's look at a simple HTML form with two inputs and a submit button. Each input field should have a name attribute.
+
+```html
+
+<form id="my-form">
+	<input type="text" name="name" placeholder="Name" />
+	<input type="email" name="email" placeholder="Email" />
+	<button type="submit">Submit</button>
+</form>
+```
+
+## Selecting the Form Element
+
+To manipulate the form with JavaScript, we need to grab the form element from the DOM using `document.getElementById()`.
+
+```js
+
+const form = document.getElementById("my-form");
+```    
+
+## Adding an Event Listener
+
+Now we need to add an event listener to the form element. We'll use the `addEventListener()` function, which takes two arguments: the event name and a callback function. In this case, the event name will be "submit".
+
+```js 
+
+form.addEventListener("submit", onFormSubmit);
+```    
+
+## Creating the Callback Function
+
+Next, let's create the `onFormSubmit` callback function that will be executed when the form is submitted. This function will receive an event object as an argument.
+
+```js
+
+function onFormSubmit(event) {
+	// Your form handling code here
+}
+```    
+
+> **Note:** It's important to prevent the default action of the submit event to avoid triggering a page reload. To do this, simply call `event.preventDefault()` inside the `onFormSubmit` function.
+
+```js
+
+function onFormSubmit(event) {
+	event.preventDefault();
+	// Your form handling code here
+}
+    
+```
+
+## Accessing Form Data
+
+With the callback function in place, we can now access the submitted form data. To do this, create a new `FormData` object and pass the form element (available in the event object as `event.target`) as an argument.
+
+```js
+
+function onFormSubmit(event) {
+	event.preventDefault();
+	const data = new FormData(event.target);
+}
+```    
+
+Now, we have access to the form data, but it's not quite ready to be displayed or used in our code. We need to retrieve the individual form values to access this data.
+
+### Using Object.fromEntries()
+
+One way to do this is to use the `Object.fromEntries()` method to transform the entries of the `FormData` object into a plain JavaScript object.
+
+```js 
+
+function onFormSubmit(event) {
+	event.preventDefault();
+	const data = new FormData(event.target);
+	const dataObject = Object.fromEntries(data.entries());
+	console.log(dataObject);
+}
+```    
+
+Here, `dataObject` will be an object containing the form values, where the keys are the input field names, and the values are the submitted user data.
+
+### Traversing FormData with forEach()
+
+Alternatively, we can traverse the `FormData` object using a `forEach` loop. This allows us to retrieve the values and perform actions such as console logging them.
+
+```js 
+
+function onFormSubmit(event) {
+	event.preventDefault();
+	const data = new FormData(event.target);
+	data.forEach((value, key) => {
+		console.log(`${key}: ${value}`);
+	});
+}
+```    
+
+### Accessing Form Data by Name
+
+If you know the names of the input fields in the form, you can simply use the `get()` method on the `FormData` object to access the values directly.
+
+```js
+
+function onFormSubmit(event) {
+	event.preventDefault();
+	const data = new FormData(event.target);
+	const name = data.get("name");
+	const email = data.get("email");
+	console.log(`Name: ${name}, Email: ${email}`);
+}
+```    
+
+And there you have it! This is how you can handle a form with vanilla JavaScript. By following these steps, you can easily manipulate form data in your projects without relying on additional libraries. Happy coding!

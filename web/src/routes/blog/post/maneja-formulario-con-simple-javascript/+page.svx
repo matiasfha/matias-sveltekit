@@ -1,0 +1,130 @@
+---
+date: 2023-03-29T18:41:36Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/dce0dba613bd9b026419c2a418559e223aa15224-1280x720.jpg 
+keywords: 
+- JavaScript
+- FormData 
+- Form
+- Javascript Curso 
+- como usar formData 
+- Manejar Form 
+- Manejar formularios
+title: "Maneja formulario con simple Javascript"
+description: "¿Te has preguntado alguna vez cómo manejar un formulario utilizando JavaScript puro?"
+bannerCredit: undefined
+lang: es
+---
+
+¿Te has preguntado alguna vez cómo manejar un formulario utilizando JavaScript puro? 
+¡Estás en el lugar correcto! En este post, te mostraré como manejar un formulario simple con dos campos de entrada y un botón de envío utilizando simple JavaScript, sin librerías.
+
+<YouTube id="olPXKnoAZuM" />
+
+## El Formulario HTML
+Primero, veamos un formulario HTML simple con dos campos de entrada y un botón de envío. Cada campo de entrada debe tener un atributo de nombre.
+
+```html
+
+<form id="my-form">
+	<input type="text" name="name" placeholder="Nombre" />
+	<input type="email" name="email" placeholder="Correo Electrónico" />
+	<button type="submit">Enviar</button>
+</form>
+````
+
+## Seleccionar el Elemento del Formulario
+
+Para manipular el formulario con JavaScript, necesitamos tomar el elemento del formulario del DOM utilizando document.getElementById().
+
+```js
+
+const form = document.getElementById("my-form");
+```
+## Escuchar los Eventos del Formulario 
+
+Ahora necesitamos agregar un escucha de eventos al elemento del formulario. Utilizaremos la función addEventListener(), la cual toma dos argumentos: el nombre del evento y una función de devolución de llamada. En este caso, el nombre del evento será "submit".
+
+```js
+
+form.addEventListener("submit", onFormSubmit);
+````
+
+## Creando la Función de Devolución de Llamada
+
+Luego, creemos la función de devolución de llamada onFormSubmit que se ejecutará cuando el formulario sea enviado. Esta función recibirá un objeto de evento como argumento.
+
+```js
+
+function onFormSubmit(event) {
+	// Tu código para manejar el formulario aquí
+}
+```
+
+> **Nota**: Es importante prevenir la acción predeterminada del evento de envío para evitar una recarga de página. Para hacer esto, simplemente llama a event.preventDefault() dentro de la función onFormSubmit.
+
+```js
+
+function onFormSubmit(event) {
+	event.preventDefault();
+	// Tu código para manejar el formulario aquí
+}
+```
+    
+## Accediendo a los Datos del Formulario
+
+Con la función de devolución de llamada en su lugar, ahora podemos acceder a los datos del formulario enviado. Para hacer esto, crea un nuevo objeto FormData y pasa el elemento del formulario (disponible en el objeto de evento como event.target) como argumento.
+
+```js
+
+function onFormSubmit(event) {
+	event.preventDefault();
+	const data = new FormData(event.target);
+}
+```
+Ahora, tenemos acceso a los datos del formulario, pero aún no están listos para ser mostrados o utilizados en nuestro código. Necesitamos recuperar los valores individuales del formulario para acceder a estos datos.
+
+### Utilizando Object.fromEntries()
+
+Una forma de hacer esto es utilizar el método Object.fromEntries() para transformar las entradas del objeto FormData en un objeto JavaScript simple.
+
+```js
+
+function onFormSubmit(event) {
+	event.preventDefault();
+	const data = new FormData(event.target);
+	const dataObject = Object.fromEntries(data.entries());
+	console.log(dataObject);
+}
+```
+Aquí, `dataObject` será un objeto que contiene los valores del formulario, donde las claves son los nombres de los campos de entrada, y los valores son los datos enviados por el usuario.
+
+### Recorriendo FormData con forEach()
+Alternativamente, podemos recorrer el objeto FormData utilizando un bucle forEach. Esto nos permite recuperar los valores y realizar acciones como imprimirlos en la consola.
+
+```js
+
+function onFormSubmit(event) {
+	event.preventDefault();
+	const data = new FormData(event.target);
+	data.forEach((value, key) => {
+		console.log(`${key}: ${value}`);
+	});
+}
+```
+
+### Accediendo a los Datos del Formulario por Nombre
+
+Si conoces los nombres de los campos de entrada en el formulario, simplemente puedes usar el método get() en el objeto FormData para acceder directamente a los valores.
+
+```js
+
+function onFormSubmit(event) {
+	event.preventDefault();
+	const data = new FormData(event.target);
+	const name = data.get("name");
+	const email = data.get("email");
+	console.log(`Nombre: ${name}, Correo Electrónico: ${email}`);
+}
+```
+
+¡Y ahí lo tienes! Así es como puedes manejar un formulario con JavaScript puro. Siguiendo estos pasos, puedes manipular fácilmente los datos del formulario en tus proyectos sin depender de bibliotecas adicionales.
