@@ -15,12 +15,12 @@ async function getLatestContent(lang?: string) {
 		const courseP = getLatestCourse(lang);
 		const articleP = getLatestArticle(lang);
 		const cafeConTechP = getLatest('https://anchor.fm/s/a1ac9eb8/podcast/rss');
-		const youtubeP = getVideos();
-		const promises = [postP, courseP, articleP, cafeConTechP, youtubeP];
+		// const youtubeP = getVideos();
+		const promises = [postP, courseP, articleP, cafeConTechP];
 		// if (lang === 'es') {
 		// 	const controlRemotoP = getLatest('https://anchor.fm/s/5cfb84c8/podcast/rss');
 		// }
-		const [post, course, article, cafeConTech, youtube] = await Promise.all(promises);
+		const [post, course, article, cafeConTech] = await Promise.all(promises);
 		let latest = [
 			{
 				/* post */ href: post.slug,
@@ -42,12 +42,12 @@ async function getLatestContent(lang?: string) {
 				title: cafeConTech.title,
 				tag: 'Podcast: Café con Tech'
 			},
-			{
-				href: 'https://youtube.com/watch?v=' + youtube[0].id,
-				image: youtube[0].thumb.url,
-				title: youtube[0].title,
-				tag: `Youtube`
-			},
+			// {
+			// 	href: 'https://youtube.com/watch?v=' + youtube[0].id,
+			// 	image: youtube[0].thumb.url,
+			// 	title: youtube[0].title,
+			// 	tag: `Youtube`
+			// },
 			{
 				/* egghead */ href: course.url + '?af=4cexzz',
 				image: course.image,

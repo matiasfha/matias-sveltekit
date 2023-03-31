@@ -1,0 +1,79 @@
+---
+date: 2023-03-30T18:41:36Z
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1680287900/3847-1680287165482-thumbnail_iapihy.jpg 
+keywords: 
+- Typescript
+- Typescript Course 
+- Query Parser
+- Typescript Conditional Types 
+- Pattern Matching 
+- Type Inference 
+- Typescript Template Literals 
+- Form Handling
+title: "Unleash the Power of TypeScript with Conditional Type"
+description: "TypeScript has some powerful features, and one of those is conditional types. With conditional types, you can create type-level algorithms to perform more complex tasks, like pattern matching and type inference. By combining this with your existing knowledge of TypeScript, you can create some impressive types and tools."
+bannerCredit: undefined
+lang: en
+---
+
+TypeScript has some powerful features, and one of those is _conditional types_. With conditional types, you can create type-level algorithms to perform more complex tasks, like pattern matching and type inference. By combining this with your existing knowledge of TypeScript, you can create some impressive types and tools.
+
+In this blog post, we'll learn how to create a simple query string parser at the type level using conditional types.
+
+
+<YouTube id="yQyQa0gbqU0" />
+
+## Creating a Simple URL String
+
+First, we need an example URL string that contains a set of query string variables. Let's create one:
+
+```ts
+
+const URL = "https://example.com?foo=bar&baz=qux";
+```
+    
+
+## Defining a Type to Extract the Query String
+
+Now, let's define a new type `ExtractQueryStringFromUrl` that will use `typeof` to get the type literal value of the `URL` variable. We'll then use the `extends` keyword to create a condition for our conditional type. We'll use a [template literal](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html) to describe the shape we're looking for: a string that starts with `https`, followed by any string, then a question mark and any subsequent string. If that condition matches, our conditional type will return `true` or `false`.
+
+```ts
+
+type ExtractQueryStringFromUrl = typeof URL extends `https${infer QS}` ? true : false;
+```    
+    
+
+Let's hover over the `ExtractQueryStringFromUrl` type to see the type returned, and it should be `true`.
+
+## Using Type Inference to Extract the Query String Part
+
+We want to extract the query string part here. To do that, we'll make use of _type inference_ with the `infer` keyword. This keyword can only be used as part of a conditional type and will create a type variable, in this case named `QS`. We'll return `QS` as part of the true side of the conditional and check the type value returned.
+
+```ts
+
+type ExtractQueryStringFromUrl = typeof URL extends `https${infer QS}` ? QS : "error";
+```    
+
+Now, when we hover over the `ExtractQueryStringFromUrl` type, we should see the extracted query string part: `"?foo=bar&baz=qux"`.
+
+## Making Our Type Reusable with Generics
+
+Our current implementation is tied to the `URL` variable. Let's make it reusable! We can achieve this using _generics_. You can think of generics like a function type that accepts an argument, in this case named `S`.
+
+```ts
+
+type ExtractQueryString<S> = S extends `https${infer QS}` ? QS : "error";
+```    
+Now we have a reusable type that can extract the query string part of any URL string. Let's test it by creating two test types:
+
+```ts
+
+type Test1 = ExtractQueryString<"https://example.com?param=value">; // "?param=value"
+type Test2 = ExtractQueryString<"http://example.com?param=value">; // "error"
+```    
+
+And there you have it! We've created a type utility that can extract the query string part of an URL string by using conditional types, pattern matching against a string literal, and type inference.
+
+## Conclusion
+
+Conditional types are a powerful feature in TypeScript that enable more advanced type manipulation and type-level algorithms. In this post, we demonstrated how to create a simple query string parser using conditional types, type inference, and generics. With these techniques in your toolkit, you can unlock a whole new level of TypeScript possibilities.
