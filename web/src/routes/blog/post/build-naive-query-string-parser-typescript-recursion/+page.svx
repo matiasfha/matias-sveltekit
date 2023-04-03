@@ -1,0 +1,90 @@
+---
+date: 2023-04-03T18:41:36Z
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1680531182/3844-1680531148556-thumbnail_oxknfq.jpg 
+keywords: 
+- Typescript
+- Typescript Course 
+- Query Parser
+- Typescript Conditional Types 
+- Pattern Matching 
+- Type Inference 
+- Typescript Template Literals 
+- Form Handling
+- Recursion 
+- Type Level Recursion 
+- Type Level Programming
+title: "Use Typescript Type-Level Recursion to Build a query string parser"
+description: "Recursion is the way to create iterative algorithms in the type level."
+bannerCredit: undefined
+lang: en
+---
+<br />
+In this blog post, we'll continue our journey through building a naive query string parser using type-level programming in TypeScript. 
+
+If you haven't checked out [Part 1](https://youtu.be/yQyQa0gbqU0) of this video series or readed the [article](https://matiashernandez.dev/blog/post/typescript-conditional-types-type-inference-and-pattern-matching), make sure to watch it before continuing,
+as we'll build on the concepts introduced there.
+
+So, without further ado, let's dive in.
+
+<YouTube id="QryUZJ0Tx90" />
+
+## Extracting Key-Value Pairs
+
+Our next step, after extracting the query string from a URL, is to transform the literal string into an object, like this:
+
+```ts
+
+{
+  query: "123",
+  user: "21",
+  test: "some-string"
+}
+```
+
+To do this, we first need to extract the key-value pairs from the query string. As we learned in the previous video, when working with type-level programming in TypeScript, we can use pattern matching along with the `infer` keyword inside a conditional type to extract information from data.
+
+Let's create a new type to extract key-value pairs:
+
+```ts
+
+type ExtractKeyValue<S> = S extends `${K}=${V}&${Rest}` ? K | ExtractKeyValue<Rest> : S extends `${K}=${V}` ? K : false;
+```
+
+In this type, `S` is the generic parameter that holds the query string. The conditional type checks whether `S` matches the pattern of `${K}=${V}&${Rest}` and extracts the key `K` if it does. Otherwise, it returns `false`.
+
+Now, let's create a type to test our `ExtractKeyValue` utility:
+
+```ts
+
+type TestExtractKeyValue = ExtractKeyValue<"query=123&user=21&test=someString">;
+```
+
+This type should now hold the first key-value pair, which is `query=123`.
+
+## Looping Over the Data with Recursion
+
+To extract the rest of the key-value pairs, we need to loop over the data. As TypeScript doesn't support loops in its type-level programming, we have to rely on recursion. Let's update our `ExtractKeyValue` type to extract all key-value pairs:
+
+```ts
+
+type ExtractKeyValue<S> = S extends `${K}=${V}&${Rest}` ? K | ExtractKeyValue<Rest> : S extends `${K}=${V}` ? K : S;
+```
+
+Now, our `TestExtractKeyValue` type should return a union type of all the key-value pairs:
+
+```ts
+
+type TestExtractKeyValue = ExtractKeyValue<"query=123&user=21&test=someString">;
+```
+
+With this setup, our type will continue to recurse until it encounters an `S` that doesn't match the pattern, at which point it will return the original `S`. This is how we've successfully implemented loop functionality using recursion in TypeScript's type-level programming.
+
+## What's Next?
+
+We've come quite far in our journey to build a naive query string parser. In this part, we've added the ability to extract key-value pairs from a query string and explored recursion as a way to loop over the data.
+
+In the upcoming video, we'll check how to transform the union type we've obtained into an object type and complete our query string parser at the type level.
+
+Let us know in the comments if you're using these TypeScript features in your day-to-day work, and don't forget to like this post and subscribe to stay updated on future content.
+
+Stay tuned for the next part, and happy coding!

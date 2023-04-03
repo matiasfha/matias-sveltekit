@@ -20,7 +20,6 @@ TypeScript has some powerful features, and one of those is _conditional types_. 
 
 In this blog post, we'll learn how to create a simple query string parser at the type level using conditional types.
 
-
 <YouTube id="yQyQa0gbqU0" />
 
 ## Creating a Simple URL String

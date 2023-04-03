@@ -1,0 +1,76 @@
+---
+date: 2023-03-30T18:41:36Z
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1680287900/3847-1680287165482-thumbnail_iapihy.jpg 
+keywords: 
+- Typescript
+- Typescript Course 
+- Query Parser
+- Typescript Conditional Types 
+- Pattern Matching 
+- Type Inference 
+- Typescript Template Literals 
+- Form Handling
+title: "Utiliza Tipos Condicionales Para Crear Algoritmos en Nivel de Tipo"
+description: "TypeScript tiene algunas características poderosas, y una de ellas son los _tipos condicionales_. Con los tipos condicionales, puedes crear algoritmos a nivel de tipos para realizar tareas más complejas, como la coincidencia de patrones y la inferencia de tipos. Si combinas esto con tus conocimientos previos de TypeScript, puedes crear algunos tipos y herramientas impresionantes."
+bannerCredit: undefined
+lang: es
+---
+
+TypeScript tiene algunas características poderosas, y una de ellas son los _tipos condicionales_. Con los tipos condicionales, puedes crear algoritmos a nivel de tipos para realizar tareas más complejas, como la coincidencia de patrones y la inferencia de tipos. Si combinas esto con tus conocimientos previos de TypeScript, puedes crear algunos tipos y herramientas impresionantes.
+
+En esta publicación, aprenderemos cómo crear un parser de cadenas de consulta simple en el nivel de tipos utilizando tipos condicionales.
+
+<YouTube id="yQyQa0gbqU0" />
+
+## Creando una URL Sencilla
+
+Primero, necesitamos un ejemplo de cadena de URL que contenga un conjunto de variables de cadena de consulta. Creemos uno:
+
+```ts
+
+const URL = "https://example.com?foo=bar&baz=qux";
+```
+
+## Definiendo un Tipo para Extraer la Cadena de Consulta
+
+Ahora, definamos un nuevo tipo `ExtraerCadenaConsultaDesdeUrl` que utilizará `typeof` para obtener el valor literal del tipo de la variable `URL`. Luego, usaremos la palabra clave `extends` para crear una condición para nuestro tipo condicional. Usaremos una [plantilla literal](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html) para describir la forma que buscamos: una cadena que comienza con `https`, seguida por cualquier cadena, luego un signo de interrogación y cualquier cadena posterior. Si esa condición coincide, nuestro tipo condicional devolverá `true`o`false`.
+
+```ts
+
+type ExtraerCadenaConsultaDesdeUrl = typeof URL extends `https${infer QS}` ? true : false;
+```    
+
+Ahora, pasemos el cursor sobre el tipo `ExtraerCadenaConsultaDesdeUrl` para ver el tipo devuelto, y debería ser `true`.
+
+## Usando la Inferencia de Tipos para Extraer la Parte de Cadena de Consulta
+
+Queremos extraer la parte de cadena de consulta aquí. Para hacerlo, haremos uso de la _inferencia de tipos_ con la palabra clave `infer`. Esta palabra clave solo se puede usar como parte de un tipo condicional y creará una variable de tipo, en este caso llamada `QS`. Devolveremos `QS` como parte del lado verdadero de la condición y comprobaremos el valor de tipo devuelto.
+
+```ts
+
+type ExtraerCadenaConsultaDesdeUrl = typeof URL extends `https${infer QS}` ? QS : "error";
+```    
+
+Ahora, cuando pasamos el cursor sobre el tipo `ExtraerCadenaConsultaDesdeUrl`, deberíamos ver la parte de cadena de consulta extraída: `"?foo=bar&baz=qux"`.
+
+## Haciendo que Nuestro Tipo sea Reutilizable con Genéricos
+
+Nuestra implementación actual está vinculada a la variable `URL`. ¡Hagámoslo reutilizable! Podemos lograr esto utilizando los _genéricos_. Puedes pensar en los genéricos como un tipo de función que acepta un argumento, en este caso llamado `S`. 
+
+```ts
+
+type ExtraerCadenaConsulta<S> = S extends `https${infer QS}` ? QS : "error";
+```    
+Ahora tenemos un tipo reutilizable que puede extraer la parte de consulta de cualquier cadena de URL. Probémoslo creando dos tipos de prueba:
+
+```ts
+
+type Prueba1 = ExtraerCadenaConsulta<"https://example.com?param=value">; // "?param=value"
+type Prueba2 = ExtraerCadenaConsulta<"http://example.com?param=value">; // "error"
+```    
+
+¡Y ahí lo tienen! Hemos creado una utilidad de tipos que puede extraer la parte de cadena de consulta de una cadena de URL, utilizando tipos condicionales, coincidencia de patrones contra una plantilla literal e inferencia de tipos.
+
+## Conclusión
+
+Los tipos condicionales son una característica poderosa de TypeScript que permite una manipulación más avanzada de los tipos y algoritmos a nivel de tipos. En esta publicación, demostramos cómo crear un parser de cadenas de consulta simple utilizando tipos condicionales, inferencia de tipos y genéricos. Con estas técnicas en tu caja de herramientas, tienes un mundo de posibilidades con TypeScript.

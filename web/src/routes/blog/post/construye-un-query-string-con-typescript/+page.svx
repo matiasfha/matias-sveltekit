@@ -1,0 +1,83 @@
+---
+date: 2023-04-03T18:41:36Z
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1680531182/3844-1680531148556-thumbnail_oxknfq.jpg 
+keywords: 
+- Typescript
+- Typescript Course 
+- Query Parser
+- Typescript Conditional Types 
+- Pattern Matching 
+- Type Inference 
+- Typescript Template Literals 
+- Form Handling
+- Recursion 
+- Type Level Recursion 
+- Type Level Programming
+title: "Usa Recursion en nivel de Tipos Para Construir Un Query String Parser"
+description: "La recursion es la forma en que Typescript te permite crear algoritmos iterativos en el nivel de tipos"
+bannerCredit: undefined
+lang: es
+---
+<br />
+<br />
+
+
+En este artículo, revisaremos cómo construir un parser de cadenas (url)  utilizando programación a nivel de tipos en TypeScript. 
+
+Si aún no han visto el [primer capítulo](https://youtu.be/yQyQa0gbqU0) o [leído el primer artículo](https://matiashernandez.dev/blog/post/tipos-condicionales-pattern-matching-typescript), les recomiendo que lo revisen antes de continuar, ya que aquí seguiremos construyendo sobre los conceptos presentados previamente. 
+
+<YouTube id="QryUZJ0Tx90" />
+
+Nuestro siguiente paso después de obtener la cadena de consulta de una URL es transformar este string en un objeto. Algo así como:
+
+```ts
+
+{
+  query: "123",
+  user: "21",
+  test: "un texto cualquiera"
+}
+```
+
+Para hacer esto, primero necesitamos extraer los pares de clave-valor desde la cadena de consulta. Como aprendimos en nuestra última entrega, al trabajar con programación a nivel de tipos en TypeScript, podemos usar patrones junto con la palabra clave "infer" dentro de un tipo condicional para extraer información de los datos.
+
+Creamos un tipo para extraer los pares de clave-valor:
+
+```ts
+
+type ExtraerParClaveValor<S> = S extends `${K}=${V}&${Rest}` ? K | ExtraerParClaveValor<Rest> : S extends `${K}=${V}` ? K : false;
+```
+
+En este tipo, `S` es el parámetro genérico que tiene la cadena de consulta. El tipo condicional comprueba si `S` coincide con el patrón `${K}=${V}&${Rest}` y extrae la clave `K` si lo hace. De lo contrario, devuelve `false`. 
+
+Ahora, creamos otro tipo para probar nuestro programa de utilidad `ExtraerParClaveValor`:
+
+```ts
+
+type TestExtraerParClaveValor = ExtraerParClaveValor<"query=123&user=21&test=unTextoCualquiera">;
+```
+
+¡Este tipo ahora debería contener nuestro primer par de clave-valor, que es `query=123`!
+
+Para extraer el resto de los pares de clave-valor, necesitamos realizar una iteración sobre los datos. Como TypeScript no admite iteraciones en su programación a nivel de tipos, tenemos que confiar en la recursión. Actualicemos nuestro tipo `ExtraerParClaveValor` para extraer todos los pares de clave-valor:
+
+```ts
+
+type ExtraerParClaveValor<S> = S extends `${K}=${V}&${Rest}` ? K | ExtraerParClaveValor<Rest> : S extends `${K}=${V}` ? K : S;
+```
+
+Ahora, nuestro tipo `TestExtraerParClaveValor` debe devolvernos un tipo de unión de todos los pares de clave-valor:
+
+```ts
+
+type TestExtraerParClaveValor = ExtraerParClaveValor<"query=123&user=21&test=unTextoCualquiera">;
+```
+
+Con esta configuración, nuestro tipo continuará iterando hasta que encuentre un `S` que no coincida con el patrón, momento en el que devolverá `S`.
+
+¡Hemos realizado un gran avance en nuestro camino para construir un parser de cadenas de consulta básico! En esta parte, hemos agregado la capacidad de extraer pares de clave-valor desde la cadena de consulta y explorado la recursión como una forma de iterar sobre los datos.
+
+En el próximo video, veremos cómo transformar el tipo de unión que hemos obtenido en un tipo de objeto y completar nuestro parser de cadenas de consulta a nivel de tipos.
+
+Cuéntanos en los comentarios si estás utilizando estas funcionalidades de TypeScript en tu trabajo diario. ¡No olvides darle me gusta y suscribirte para mantenerte actualizado sobre nuestro contenido futuro!
+

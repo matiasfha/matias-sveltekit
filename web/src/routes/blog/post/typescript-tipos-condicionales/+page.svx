@@ -14,6 +14,10 @@ bannerCredit: undefined
 tag: Typescript
 
 ---
+<br />
+<br />
+<br />
+<br />
 Typescript es un "superset" de Javascript, es decir, todo el código Javascript es también válido como código Typescript,  
 finalmente, este es el código que termina ejecutándose en el navegador. Pero Typescript también se compone de otra capa o nivel, el lenguaje de los tipos.  
 Es este nivel el que provee el verdadero poder del lenguaje ya que te permite describir tus datos de forma completa.
