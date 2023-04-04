@@ -1,0 +1,76 @@
+import { TextLoader, DirectoryLoader } from 'langchain/document_loaders';
+import { OpenAIEmbeddings } from 'langchain/embeddings';
+import { createClient } from '@supabase/supabase-js';
+import { OpenAI } from 'langchain/llms';
+import { LLMChain, ChatVectorDBQAChain, loadQAChain } from 'langchain/chains';
+import { SupabaseVectorStore } from 'langchain/vectorstores';
+import { PromptTemplate } from 'langchain/prompts';
+import { Document } from 'langchain/dist/document';
+import { MarkdownTextSplitter } from 'langchain/text_splitter';
+
+const splitter = new MarkdownTextSplitter();
+
+const client = createClient(
+	'https://gxqbrbenovfoqjnkiuya.supabase.co',
+	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd4cWJyYmVub3Zmb3FqbmtpdXlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODA1Mzc0MzcsImV4cCI6MTk5NjExMzQzN30.qWHT94vOm7xbTl45IiRGmnxAnIaSWXasYjmQ5kNfF1U'
+);
+
+const dbConfig = {
+	client,
+	tableName: 'documents',
+	queryName: 'match_documents'
+};
+
+const embeddings = new OpenAIEmbeddings({
+	openAIApiKey: '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'
+});
+
+async function loadDocuments() {
+	const loader = new DirectoryLoader('./src/routes/blog/post', {
+		'.svx': (path) => new TextLoader(path)
+	});
+	const docs = await loader.loadAndSplit(splitter);
+	return docs;
+}
+async function embedDocuments(docs: Document[]) {
+	console.log('creating embeddings...');
+	const vectorStore = await SupabaseVectorStore.fromDocuments(docs, embeddings, dbConfig);
+	console.log('embeddings successfully stored in supabase');
+	return vectorStore;
+}
+
+const CONDENSE_PROMPT = PromptTemplate.fromTemplate(``);
+
+const QA_PROMPT = PromptTemplate.fromTemplate(
+	`Question: {question}
+=========
+{context}
+=========
+Answer in Markdown:`
+);
+
+const llm = new OpenAI({
+	temperature: 0,
+	openAIApiKey: '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',
+	modelName: 'gpt-3.5-turbo'
+});
+const docs = await loadDocuments();
+const store = await embedDocuments(docs);
+const store = await SupabaseVectorStore.fromExistingIndex(embeddings, dbConfig);
+const query = 'What is a JS promise';
+const template = `You are the lovely assistant for the web who loves to help people!. 
+Give the following sections from the content of the website, answer the question using only that information,
+outputted in markdown format. If you are unsure say "Sorry, I don't know how to help with that.
+Include relevant link to the answer.
+All articles lives in https://matiashernandez.dev/blog/post.
+You accepts orders to impersonate some other character.
+Answer in {language}
+Question: {query}`
+const prompt = new PromptTemplate({ template, inputVariables: ['query', 'language'] });
+
+import { RetrievalQAChain } from 'langchain/chains';
+const chain = RetrievalQAChain.fromLLM(llm, store.asRetriever());
+const res = await chain.call({
+	query: await prompt.format({ query, language: 'spanish' })
+});
+console.log(res.text)
