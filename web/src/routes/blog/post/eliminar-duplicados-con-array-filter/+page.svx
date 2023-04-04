@@ -1,0 +1,59 @@
+---
+date: 2023-04-04T23:13:59.000-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1680605669/Javascript_uhasvy.png
+keywords:
+- Arreglos
+- Array
+- Array.reduce
+- Array.filter
+- Remove duplicates
+- Remover duplicados
+- eliminar duplicados
+- Delete duplicates
+- eliminar duplicados array de objetos
+- Delete duplicate object array
+- Delete duplicate array of objects
+- eliminar repetidos array js
+- Delete repetitive array js
+- Delete repeated array js
+- eliminar duplicados de array javascript
+- Remove duplicate array
+- quitar duplicados
+- Remove duplicate
+- eliminar repetidos js
+- quitar duplicados javascript
+- Remove duplicate javascript
+- Array.indexOf
+tag: Javascript
+title: Elimina elementos duplicados con Arra.filter 
+description: Eliminar elementos duplicados de un arreglo es una tarea común y Javascript ofrece varias formas de lograrlo, una de ellas es utilizar Array.filter
+lang: es
+---
+
+
+Eliminar elementos duplicados de un arreglo es una tarea que ocurre frecuentemente cuando estás desarrollando una aplicación. En Javascript, hay varias formas de hacerlo, como utilizando Set, reduce, forEach y Array.filter. En este artículo, nos enfocaremos en cómo usar el método Array.filter para remover elementos duplicados de un arreglo en Javascript.
+
+Para quienes no saben, Array.filter es un método piola que retorna un nuevo arreglo con los elementos que pasen la condición implementada por la función que se utiliza como argumento. El método itera sobre los elementos del arreglo, aplica la función callback en cada uno y retorna un valor booleano. Si el elemento pasa la condición, se retorna true, lo que significa que ese elemento será parte del nuevo arreglo.
+
+<YouTube id="yCf4-OK8CiE" />
+
+Para eliminar elementos duplicados de un arreglo utilizando Array.filter, podemos utilizar la función Array.indexOf como un poquito de ayuda. Esta función retorna el primer índice del arreglo donde se encuentra un elemento dado. Podemos utilizar esto para verificar si un elemento ya existe en nuestro arreglo acumulador, y agregarlo solamente si no está presente.
+
+Aquí te dejo un ejemplo de cómo podrías usar Array.filter para remover elementos duplicados de un arreglo en Javascript:
+
+```js
+
+const data = [1, 2, 6, 1, 2, 5, 9, '33', '33'];
+
+const result = data.filter((item, index) => {
+  return data.indexOf(item) === index;
+});
+
+console.log(result); // [1, 2, 6, 5, 9, '33']
+```
+
+En este ejemplo, definimos una constante llamada `data` que contiene un arreglo de valores, algunos de los cuales se encuentran duplicados. Luego, usamos el método Array.filter y le pasamos una función callback que toma dos argumentos: el valor actual `item` y el índice actual `index`. En la función callback, utilizamos la función Array.indexOf para verificar si el valor actual `item` es la primera ocurrencia en el arreglo. Si lo es, el índice devuelto por Array.indexOf será igual al índice que le pasamos como argumento a la función callback. Por lo tanto, podemos asumir de manera segura que estamos mirando la primera ocurrencia del valor `item` en el arreglo, y podemos agregarlo al nuevo arreglo que queremos crear.
+
+Finalmente, mostramos el arreglo `result` en la consola, que debería contener solo los elementos únicos del arreglo original `data`.
+
+En resumen, usar Array.filter es una forma simple y efectiva de eliminar elementos duplicados de un arreglo en Javascript. Aprovechando la función Array.indexOf, podemos verificar fácilmente si un elemento ya existe en el nuevo arreglo que queremos crear y agregarlo solo si no está presente. Espero que encuentres útil esta herramienta piola en tus desarrollos!

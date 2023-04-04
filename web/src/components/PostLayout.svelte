@@ -39,7 +39,7 @@
 		currentUrl = window.location.href;
 	});
 
-	const newsletterId = lang === 'es' ? 'c4r8t8' : 'h7k7g0';
+	// const newsletterId = lang === 'es' ? 'c4r8t8' : 'h7k7g0';
 </script>
 
 <Seo {title} {description} {keywords} isBlogPost={true} {canonical} {banner} />
@@ -92,45 +92,45 @@
 				</figcaption>
 			</figure>
 			<div class="w-full border-t dark:border-ebony-clay-400 border-gray-500 inset-1" />
-			<p class="text-xs lg:text-md">
-				{#if lang === 'es'}
-					Hola!. Comparto este tipo de posts de forma regular y puedes manterte al día si te unes a
-					mi newsletter. <strong class="text-xs lg:text-md"
-						>Únete para recibir lo mejor de mi contenido directamente en tu inbox.</strong
-					>
-				{/if}
-			</p>
-			{#if lang === 'es'}
-				<form
-					class="flex flex-col justify-between mx-auto mt-4 items-center w-full"
-					action="https://app.convertkit.com/forms/4010991/subscriptions"
-					data-code={newsletterId}
-					method="post"
-					data-sv-form="4010991"
-					data-uid="83d83664cf"
-					data-format="inline"
-					data-version="5"
-					target="_blank"
-				>
-					<input type="hidden" name="anticsrf" value="true" />
-					<input
-						type="email"
-						name="email_address"
-						required
-						placeholder="Email"
-						class="px-4 font-medium text-sm rounded-md w-full "
-						autocomplete="email"
-					/>
-					<button
-						type="submit"
-						class="rounded-md text-sm font-bold text-[#6366F1] dark:text-yellow-300 py-1 border boder-[#6366F1] dark:border-yellow-300 text-center mt-4 w-full "
-						>{#if lang == 'es'}
-							Me encantaría
-						{/if}
-					</button>
-				</form>
-			{/if}
-
+			<!-- <p class="text-xs lg:text-md"> -->
+			<!-- 	{#if lang === 'es'} -->
+			<!-- 		Hola!. Comparto este tipo de posts de forma regular y puedes manterte al día si te unes a -->
+			<!-- 		mi newsletter. <strong class="text-xs lg:text-md" -->
+			<!-- 			>Únete para recibir lo mejor de mi contenido directamente en tu inbox.</strong -->
+			<!-- 		> -->
+			<!-- 	{/if} -->
+			<!-- </p> -->
+			<!-- {#if lang === 'es'} -->
+			<!-- 	<form -->
+			<!-- 		class="flex flex-col justify-between mx-auto mt-4 items-center w-full" -->
+			<!-- 		action="https://app.convertkit.com/forms/4010991/subscriptions" -->
+			<!-- 		data-code={newsletterId} -->
+			<!-- 		method="post" -->
+			<!-- 		data-sv-form="4010991" -->
+			<!-- 		data-uid="83d83664cf" -->
+			<!-- 		data-format="inline" -->
+			<!-- 		data-version="5" -->
+			<!-- 		target="_blank" -->
+			<!-- 	> -->
+			<!-- 		<input type="hidden" name="anticsrf" value="true" /> -->
+			<!-- 		<input -->
+			<!-- 			type="email" -->
+			<!-- 			name="email_address" -->
+			<!-- 			required -->
+			<!-- 			placeholder="Email" -->
+			<!-- 			class="px-4 font-medium text-sm rounded-md w-full " -->
+			<!-- 			autocomplete="email" -->
+			<!-- 		/> -->
+			<!-- 		<button -->
+			<!-- 			type="submit" -->
+			<!-- 			class="rounded-md text-sm font-bold text-[#6366F1] dark:text-yellow-300 py-1 border boder-[#6366F1] dark:border-yellow-300 text-center mt-4 w-full " -->
+			<!-- 			>{#if lang == 'es'} -->
+			<!-- 				Me encantaría -->
+			<!-- 			{/if} -->
+			<!-- 		</button> -->
+			<!-- 	</form> -->
+			<!-- {/if} -->
+			<!---->
 			<details class="w-full sm:mt-2 mt-10 text-sm" open={false}>
 				<summary class="text-bold py-2">{$t('common.tableOfContent')}</summary>
 				<ul class="w-full opacity-75">

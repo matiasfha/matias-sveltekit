@@ -18,12 +18,6 @@
 />
 <!--INFOLINKS_OFF-->
 <section class="mt-24">
-	<img
-		alt="illustration for React Desde Cero"
-		src={microbytes}
-		decoding="async"
-		class="object-contain mx-auto"
-	/>
 	<div
 		class="p-2 md:p-12 relative flex flex-col items-center justify-center dark:text-white  text-ebony-clay-800 overflow-hidden rounded-lg shadow-sm focus:outline-none transition hover:ring-2 ring-yellow-50 ring-offset-2"
 	>
@@ -35,9 +29,12 @@
 
 		<div class="font-body text-left pt-8">
 			<p>
-				Únete a Micro Bytes un newsletter semanal de micro cursos. Recibirás una colección de
-				contenidos para mejorar tu conocimiento en desarrollo web y darle un giro a tu carrera,
-				directamente en tu correo.
+				Únete a la comunidad de mas de **500 desarrolladores** como tu que son parte del newsletter.
+				
+			<br />
+				El newsletter consiste principalmente en micro-cursosi periodicos, gratuitos y directo en tu bandeja de entrada. 
+				Además de recibir algunos comentarios o articulos escritos por mi sobre temas desarrollo web y más.
+
 			</p>
 		</div>
 	</div>
@@ -46,7 +43,7 @@
 <h2
 	class="lg:text-3xl md:text-2xl sm:text-xl text-lg font-extrabold dark:text-white text-gray-800 leading-tight text-left py-12"
 >
-	Listado de Cursos
+	Curso actual
 </h2>
 
 <div class="grid grid-cols-1 gap-2">

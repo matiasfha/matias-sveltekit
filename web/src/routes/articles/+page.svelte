@@ -5,7 +5,6 @@
 	import ContentCard from '$components/ContentCard.svelte';
 	import Seo from '$components/Seo.svelte';
 	import { t } from '$lib/translations';
-	import NewsletterForm from '$components/NewsletterForm.svelte';
 	/** @type { string }*/
 	let searchItem;
 
@@ -74,8 +73,6 @@
 	description={data.featured.description}
 	url={data.featured.url}
 />
-
-<NewsletterForm />
 
 <div class="flex flex-row mt-12">
 	<input

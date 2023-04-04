@@ -1,0 +1,63 @@
+---
+date: 2023-04-04T23:13:59.000-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1680605669/Javascript_uhasvy.png
+keywords:
+- Arreglos
+- Array
+- Array.reduce
+- Array.filter
+- Remove duplicates
+- Remover duplicados
+- eliminar duplicados
+- Delete duplicates
+- eliminar duplicados array de objetos
+- Delete duplicate object array
+- Delete duplicate array of objects
+- eliminar repetidos array js
+- Delete repetitive array js
+- Delete repeated array js
+- eliminar duplicados de array javascript
+- Remove duplicate array
+- quitar duplicados
+- Remove duplicate
+- eliminar repetidos js
+- quitar duplicados javascript
+- Remove duplicate javascript
+- Array.indexOf
+tag: Javascript
+title: Delete duplicate elements with Array.filter 
+description: Removing duplicate elements from an array is a common task during software development. Javascript offers several ways to do this and your choice depends on the use case, one way is to use Array.filter.
+lang: en
+---
+Manipulating arrays is one of the most common tasks when developing an application. Arrays are basic data structures in any program, and removing duplicate elements from an array is a common scenario that you may encounter.
+
+In Javascript, removing duplicate elements from an array can be done in various ways, such as using `Set`, `Array.reduce`, `Array.forEach`, and `Array.filter` methods. In this article, we'll focus on using the `Array.filter` method to remove duplicate elements from a Javascript array.
+
+<YouTube id="yCf4-OK8CiE" />
+
+The `Array.filter` is an immutable method that returns a new array with the elements that pass the condition implemented by the callback function used as an argument. It iterates over the elements of the array and applies the callback function to each item, returning a boolean value. If the element passes the condition, true is returned, indicating that this element will be added to the new array.
+
+To remove duplicate elements from an array using `Array.filter`, we can use the `Array.indexOf` method as a helper function. The `Array.indexOf` method returns the first index of the array where a given element is found. We can utilize this fact to check whether the element already exists in the new array that we want to create. If the element does not exist in the new array, we add it to the accumulator array.
+
+Here's an example of how to use `Array.filter` to remove duplicate elements from a Javascript array:
+
+```js 
+
+const data = [1, 2, 6, 1, 2, 5, 9, '33', '33'];
+
+const result = data.filter((item, index) => {
+  return data.indexOf(item) === index;
+});
+
+console.log(result); // [1, 2, 6, 5, 9, '33']
+
+```
+> Check the MDN documentation about [Array.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [Array.indexOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf) for more information.
+
+
+In this example, we define a new constant called `data` that contains an array of values, some of which are duplicated. We then use the ` Array.filter` method and pass a callback function that takes two arguments: the current value `item` and the current index `index`. In the callback function, we use the Array.indexOf method to check whether the current value `item` is the first occurrence in the array. If it is, the `index` returned by the Array.indexOf method will be equal to the `index` argument passed to the callback function. Therefore, we can safely assume that we are looking at the first occurrence of the `item` value in the array, and we can add it to the new array that we want to create.
+
+Finally, we log the `result` array to the console, which should contain only the unique elements from the original `data` array.
+
+In conclusion, using `Array.filter` is a simple and effective way of removing duplicate elements from a Javascript array. By taking advantage of the Array.indexOf method, we can easily check whether an element already exists in the new array that we want to create and add it only if it's not already present.
+

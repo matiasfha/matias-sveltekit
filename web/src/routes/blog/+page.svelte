@@ -5,20 +5,10 @@
 	import Featured from '$components/Featured.svelte';
 	import PostCard from '$components/PostCard.svelte';
 	import Seo from '$components/Seo.svelte';
-	import NewsletterForm from '$components/NewsletterForm.svelte';
 	import { t } from '$lib/translations';
 
-	import { Cloudinary } from 'cloudinary-core';
-	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import type { Posts } from '$lib/api/getPosts';
-
-	onMount(() => {
-		if (browser) {
-			const cl = Cloudinary.new({ cloud_name: 'matiasfha' });
-			cl.responsive();
-		}
-	});
 
 	let searchItem: string;
 
@@ -34,7 +24,6 @@
 	let adsbygoogle = [{}];
 
 	onMount(() => {
-		
 		if (window.adsbygoogle) {
 			adsbygoogle = (window.adsbygoogle || []).push({});
 		}
@@ -90,7 +79,6 @@
 	description={data.featured.description}
 />
 
-<NewsletterForm />
 <div class="flex flex-row mt-12">
 	<input
 		type="text"

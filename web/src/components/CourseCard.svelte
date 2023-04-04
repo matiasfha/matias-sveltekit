@@ -1,13 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { PortableText, DefaultListItem } from '@portabletext/svelte';
-	import type { PortableTextBlock } from '@portabletext/types';
-	import { redirect } from '@sveltejs/kit';
-	import type { ActionData } from './$types';
 
 	export let logo: string;
 	export let title: string;
-	export let description: PortableTextBlock;
+	export let description: string;
 	export let formId: string;
 	export let tags: string[];
 
@@ -42,14 +38,7 @@
 			<div
 				class="max-w-screen-md font-body text-left pt-8 prose dark:text-gray-300 text-ebony-clay-800"
 			>
-				<PortableText
-					value={description}
-					components={{
-						listItem: {
-							normal: DefaultListItem
-						}
-					}}
-				/>
+				{@html description}
 			</div>
 			{#if success}
 			<p>Gracias por unirte. Revisa tu correo para confirmar</p>

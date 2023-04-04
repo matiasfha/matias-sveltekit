@@ -4,7 +4,6 @@
 
 	import Featured from '$components/Featured.svelte';
 	import Seo from '$components/Seo.svelte';
-	import NewsletterForm from '$components/NewsletterForm.svelte';
 	import { t } from '$lib/translations';
 
 	const featured = data.courses.find((item) => item.featured);
@@ -63,7 +62,6 @@
 	url={featured.url}
 	description={featured.description}
 />
-<NewsletterForm />
 <div class="flex flex-row mt-12">
 	<input
 		type="text"
