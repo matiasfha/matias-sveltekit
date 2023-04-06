@@ -28,3 +28,8 @@ export const load: LayoutServerLoad = async ({ cookies, url, request }) => {
 		pathname: url.pathname
 	};
 };
+
+
+
+
+

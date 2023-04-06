@@ -6,7 +6,13 @@ import { getLatestPost } from '$lib/api/getPosts';
 import getFavorites from '$lib/api/getFavorites';
 import { locale } from '$lib/translations';
 import { redirect } from '@sveltejs/kit';
-import { getVideos } from '$lib/api/getYoutubeChannel';
+// import { getVideos } from '$lib/api/getYoutubeChannel';
+import { OpenAI } from 'langchain/llms';
+import { RetrievalQAChain } from 'langchain/chains';
+import { SupabaseVectorStore } from 'langchain/vectorstores';
+import { PromptTemplate } from 'langchain/prompts';
+import { OpenAIEmbeddings } from 'langchain/embeddings';
+import { createClient } from '@supabase/supabase-js';
 
 async function getLatestContent(lang?: string) {
 	try {
@@ -101,7 +107,23 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		};
 	}
 };
+import { CHATBOT_URL, CHATBOT_SECRET, OPENAI_API_KEY } from '$env/static/private';
 
+const client = createClient(CHATBOT_URL, CHATBOT_SECRET!);
+const dbConfig = {
+	client,
+	tableName: 'documents',
+	queryName: 'match_documents'
+};
+
+const embeddings = new OpenAIEmbeddings({
+	openAIApiKey: OPENAI_API_KEY
+});
+const llm = new OpenAI({
+	temperature: 0,
+	openAIApiKey: OPENAI_API_KEY,
+	modelName: 'gpt-3.5-turbo'
+});
 export const actions = {
 	setLang: async ({ cookies, request }) => {
 		const data = await request.formData();
@@ -115,6 +137,28 @@ export const actions = {
 		return {
 			success: true
 		};
+	},
+
+	search: async ({ request, cookies }) => {
+		const lang = cookies.get('lang') === 'en' ? 'English' : 'Spanish'
+		const formData = await request.formData();
+		const question = formData.get('question');
+
+		const store = await SupabaseVectorStore.fromExistingIndex(embeddings, dbConfig);
+		const template = `You are the lovely assistant for the web who loves to help people!. 
+Give the following sections from the content of the website, answer the question using only that information,
+outputted in markdown format. 
+All answers should link to the associated article.
+All articles lives in https://matiashernandez.dev/blog/post.
+Answer should be in {language}
+Question: {query}`;
+		const prompt = new PromptTemplate({ template, inputVariables: ['query', 'language'] });
+
+		const chain = RetrievalQAChain.fromLLM(llm, store.asRetriever());
+		const res = await chain.call({
+			query: await prompt.format({ query: question, language: lang })
+		});
+		return { success: true, response: res.text };
 	}
 };
 
