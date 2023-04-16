@@ -7,7 +7,6 @@
 	import Seo from '$components/Seo.svelte';
 	import CourseCard from '$components/CourseCard.svelte';
 	import microbytes from '$images/microbytes.png';
-
 </script>
 
 <Seo
