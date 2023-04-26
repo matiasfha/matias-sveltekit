@@ -1,0 +1,247 @@
+
+---
+date: 2023-04-26T22:42:06Z
+banner: https://cdn.sanity.io/images/cyypawp1/production/124138cd725f3f40f4f366d44a26def1a4ae7d1f-2560x1440.png
+keywords: 
+- TypeScript
+- Javascript
+- ts-pattern
+- pattern matching
+- type safe
+- type safety
+- type checking
+- reducer function
+- React
+- useReducer
+- clean code
+- code maintainability
+- typescript libraries
+- function programming
+- pure functions
+- web development
+title: "Simplifying JavaScript Development with TS-Pattern and Pattern Matching"
+description: "Discover TS-Pattern, an innovative TypeScript library that brings pattern matching and full-type safety to your Typescript code. Follow along as we create a reducer function for the useReducer hook in React, and explore how pattern matching with TS-Pattern can improve your JavaScript development workflow."
+lang: en
+---
+
+
+Have you ever wished for better pattern matching in JavaScript? Look no further! We have a game changer for TypeScript developers - TS-Pattern. This powerful library simplifies pattern matching and type checking in TypeScript, allowing you to create cleaner, more readable and maintainable code. In today's post, we will explore TS-Pattern by creating a reducer function to be used with the `useReducer` hook. But, before diving into the code, make sure to [check out the TS-Pattern library on GitHub](https://github.com/gvergnaud/ts-pattern) and give the repository a star!
+
+
+**Pattern matching** is a powerful feature commonly found in functional programming languages. It allows you to test a value against a set of patterns (usually defined through algebraic data types) and execute different code blocks based on the matched pattern. With this feature you can simplify the code and makes it more declarative and intuitive to read, write and maintain.
+
+Sadly JavaScript don't have this feature as part of the languge, but you can still use it through the addition of libraries such as TS-Pattern.
+
+Currently [there is a proposal to add pattern matching,](https://github.com/tc39/proposal-pattern-matching) but is still in stage 1 at TC39
+
+
+<Youtube id="uk58VXmwDu4" />
+
+
+## Overview of TS-Pattern
+
+TS-Pattern is a library that brings pattern matching and full type safety support to your TypeScript code. The primary goal is to transform your code into a pattern-matching type of code that is fully type-safe and with type inference. Check out the [TS-Pattern GitHub repository](https://github.com/gvergnaud/ts-pattern) to learn more, and make sure to give GitHub user Gabriel Vernal a follow on Twitter.
+
+## Getting Started with TS-Pattern
+
+To demonstrate how TS-Pattern works, let's create a reducer function that can be used with the `useReducer` hook within a React component. First, let's import the necessary libraries:
+
+> You can install ts-pattern directly from npm
+
+```ts
+import React from 'react';
+import { match } from 'ts-pattern';
+
+```
+
+Next, create a state type to hold the following (example) information:
+
+- `editing`: a boolean
+- `modals`: an object with two boolean properties, `a` and `b`
+- `data`: a `Record<string, unknown>` type
+
+For example:
+
+```ts
+type State = {
+  editing: boolean;
+  modals: {
+    a: boolean;
+    b: boolean;
+  };
+  data: Record<string, unknown>;
+};
+
+```
+
+Now, define a union type for the possible action types:
+
+```ts
+type ActionTypes =
+  | 'toggleEditing'
+  | 'enableEditing'
+  | 'disableEditing'
+  | 'toggleModelA'
+  | 'toggleModelB'
+  | 'updateData';
+
+```
+
+### Building Actions
+
+Usually, when creating the list of possible actions that can be used with the `useReducer` hook you write a thing like this
+
+
+```ts
+type Actions = 
+    | { type: "toggleEditing" }
+    | { type: "toggleModalA", payload: { id: number {
+```
+
+And you repeat that as many times as actions types you have, but it can be tedious and prone to error, so since we already have the actions as a separate union, let's use that to create an utility type to generate the actions
+
+
+```ts
+type CreateAction<T extends ActionTypes, P = undefined> = P extends undefined
+  ? { type: T }
+  : { type: T; payload: P };
+
+```
+
+This utility type accepts a generic `T` which extends `ActionTypes`. If the payload (`P`) is `undefined` (value by default), it will return an object with only a `type` property; otherwise, it will return an object with `type` and `payload` properties.
+
+Now you can use this utility type to define the different actions:
+
+```ts
+type Actions =
+  | CreateAction<'toggleEditing'>
+  | CreateAction<'enableEditing'>
+  | CreateAction<'disableEditing', string>
+  | CreateAction<'toggleModelA', { id: string }>
+  | CreateAction<'toggleModelB'>
+  | CreateAction<'updateData', Record<string, unknown>>;
+
+```
+
+### Creating Reducer Function
+
+Time to really use ts-pattern by creating a reducer function
+
+
+```ts
+function reducer(state: State, action: Action): State {
+  return match(action)
+    .with({ type: 'toggleEditing' }, (event) => {
+      // ...
+    })
+    .exhaustive();
+}
+
+```
+
+Here, we're using the `match` function from TS-Pattern to match the incoming action and handle each case. The `.exhaustive()` method ensures that every possible case is handled.
+
+The usual way to do this is by using a `switch` statement like the following 
+
+```ts 
+function reducer(state: State, action: Action): State {
+    switch(action.type) {
+		    case 'toggleEditing':
+				    return state 
+		}
+		return state
+}
+```
+Can you spot the bug there? 
+It's easy to omit cases and Typescript doesn't give you any hint about it.
+
+Also, there is another complexity. What if you need to "switch" on two different properties?
+
+Let's say that form some actions you need perform different logic based on the payload, you may end with something like this 
+
+```ts 
+function reducer(state: State, action: Action): State {
+    switch(action.type) {
+		    case 'toggleEditing':
+				    return state 
+        case 'toggleModalA':
+            if(action.payload) {
+						    // perform logic A 
+								return state 
+						}
+						if(action.payload === undefined) {
+							// perform logic B
+							return state 
+						}
+		}
+		return state
+}
+
+And that can become really complex to read and maintain.
+
+Let's go back to using pattern matching:
+
+
+```ts
+function reducer(state: State, action: Actions): State {
+  return match({state,...action})
+    .with({ type: "toggleEditing"}, toggleEditing)
+    .with({ type: "enableEditing"}, (arg) => state)
+    .with({ type: "disableEditing"}, () => state)
+    .with({ type: "toggleModalA"}, toggleModalA)
+    .with({ type: "toggleModalB"}, () => state)
+    .with({ type: "updateData"}, () => state)
+    .exhaustive()  
+}
+
+
+```
+
+Notice that each "code branch" execute a function, this function receives as arguments all the data that was used in the `match` method, in this case, each "callback" will receive an object like `{state: State, type: ActionTypes, payload?: SOMETHING}`
+
+That means, that we can extract the logic into a separate function, pass the corresponding arguments. As result, the logic for each code branch will be a pure function that depends only on the arguments.
+
+But, writing the types for each function arguments can be tedious, and we can do better by extracting the process into another utility type.
+
+This utility type will generate teh correct arguments based on the action type.
+
+```ts
+type MatchEvent<T extends ActionTypes> = {
+  state: State;
+} & Extract<Action, { type: T }>;
+
+```
+
+Now, you can define the action handling functions with the correct types:
+
+```
+const toggleEditing = (event: MatchEvent<'toggleEditing'>): State => {
+  // ...
+};
+
+const toggleModelA = (event: MatchEvent<'toggleModelA'>): State => {
+  // ...
+};
+
+```
+
+
+### Using Reducer in a React Component
+
+Finally, use the `useReducer` hook in a React component:
+
+```
+const App = () => {
+  const [state, dispatch] = React.useReducer(reducer, initialState);
+
+  // Use `dispatch` to update the state based on the action types
+  dispatch({ type: 'toggleEditing' });
+
+  // ...
+};
+
+```
+
+And that's it! You have now successfully implemented pattern matching with TS-Pattern in a React application. This technique allows for cleaner, more elegant code that is easier to read, maintain, and test. Enjoy exploring more possibilities with TS-Pattern and let us know what you think in the comments!
+
+If you have any questions or need help, you can find me on [Twitter](https://twitter.com/matiasfha) or [GitHub](https://github.com/matiasfha/ama). 
