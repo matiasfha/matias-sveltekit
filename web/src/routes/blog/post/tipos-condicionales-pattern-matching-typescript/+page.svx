@@ -14,6 +14,7 @@ title: "Utiliza Tipos Condicionales Para Crear Algoritmos en Nivel de Tipo"
 description: "TypeScript tiene algunas características poderosas, y una de ellas son los _tipos condicionales_. Con los tipos condicionales, puedes crear algoritmos a nivel de tipos para realizar tareas más complejas, como la coincidencia de patrones y la inferencia de tipos. Si combinas esto con tus conocimientos previos de TypeScript, puedes crear algunos tipos y herramientas impresionantes."
 bannerCredit: undefined
 lang: es
+tag: Typescript
 ---
 
 TypeScript tiene algunas características poderosas, y una de ellas son los _tipos condicionales_. Con los tipos condicionales, puedes crear algoritmos a nivel de tipos para realizar tareas más complejas, como la coincidencia de patrones y la inferencia de tipos. Si combinas esto con tus conocimientos previos de TypeScript, puedes crear algunos tipos y herramientas impresionantes.

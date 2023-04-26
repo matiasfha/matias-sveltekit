@@ -14,6 +14,7 @@ title: "Unleash the Power of TypeScript with Conditional Type"
 description: "TypeScript has some powerful features, and one of those is conditional types. With conditional types, you can create type-level algorithms to perform more complex tasks, like pattern matching and type inference. By combining this with your existing knowledge of TypeScript, you can create some impressive types and tools."
 bannerCredit: undefined
 lang: en
+tag: Typescript
 ---
 
 TypeScript has some powerful features, and one of those is _conditional types_. With conditional types, you can create type-level algorithms to perform more complex tasks, like pattern matching and type inference. By combining this with your existing knowledge of TypeScript, you can create some impressive types and tools.

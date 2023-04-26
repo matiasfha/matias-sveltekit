@@ -17,6 +17,7 @@ title: "Use Typescript Type-Level Recursion to Build a query string parser"
 description: "Recursion is the way to create iterative algorithms in the type level."
 bannerCredit: undefined
 lang: en
+tag: Typescript
 ---
 <br />
 In this blog post, we'll continue our journey through building a naive query string parser using type-level programming in TypeScript. 

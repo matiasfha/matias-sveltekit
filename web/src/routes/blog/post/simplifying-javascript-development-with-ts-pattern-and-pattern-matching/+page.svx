@@ -21,6 +21,7 @@ keywords:
 title: "Simplifying JavaScript Development with TS-Pattern and Pattern Matching"
 description: "Discover TS-Pattern, an innovative TypeScript library that brings pattern matching and full-type safety to your Typescript code. Follow along as we create a reducer function for the useReducer hook in React, and explore how pattern matching with TS-Pattern can improve your JavaScript development workflow."
 lang: en
+tag: Typescript
 ---
 
 Have you ever wished for better pattern matching in JavaScript? Look no further! We have a game changer for TypeScript developers - TS-Pattern. This powerful library simplifies pattern matching and type checking in TypeScript, allowing you to create cleaner, more readable and maintainable code. In today's post, we will explore TS-Pattern by creating a reducer function to be used with the `useReducer` hook. But, before diving into the code, make sure to [check out the TS-Pattern library on GitHub](https://github.com/gvergnaud/ts-pattern) and give the repository a star!
