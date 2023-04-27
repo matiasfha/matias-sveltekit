@@ -16,7 +16,8 @@ export const globalComponents = mdsvexGlobalComponents({
 		'Podcast.svelte',
 		'YouTube.svelte',
 		'Disclaimer.svelte',
-		'StackBlitz.svelte'
+		'StackBlitz.svelte',
+		'Warning.svelte'
 	],
 	extensions: mdsvexConfig.extensions
 });

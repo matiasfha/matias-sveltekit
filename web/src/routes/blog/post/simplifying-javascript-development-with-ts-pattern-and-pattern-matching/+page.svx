@@ -259,5 +259,5 @@ And that's it! You have now successfully implemented pattern matching with TS-Pa
 If you have any questions or need help, you can find me on [Twitter](https://twitter.com/matiasfha) or [GitHub](https://github.com/matiasfha/ama). 
 
 <Warning>
-Found the code sample/demo in this [TS playground link](https://tsplay.dev/wQRznN)
+Found the code sample/demo in this <a href="https://tsplay.dev/wQRznN">TS playground link</a>
 </Warning>
