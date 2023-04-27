@@ -34,7 +34,7 @@ Pero, antes de sumergete en este código, asegúrate de [revisar la biblioteca T
 
 > Actualmente [hay una propuesta para agregar la correspondencia de patrones](https://github.com/tc39/proposal-pattern-matching) directamente en Javascript, pero todavía está en la etapa 1 en TC39.
 
-<YouTube id="uk58VXmwDu4" />
+<YouTube id="vjSM7SxN9-k" />
 
 ## Resumen de TS-Pattern
 
