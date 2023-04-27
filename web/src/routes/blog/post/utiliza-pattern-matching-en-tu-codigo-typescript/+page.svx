@@ -19,7 +19,7 @@ keywords:
 - pure functions
 - web development
 title: "Utiliza Pattern Matching En Tu Código Typescript: ts-pattern"
-description: "Discover TS-Pattern, an innovative TypeScript library that brings pattern matching and full-type safety to your Typescript code. Follow along as we create a reducer function for the useReducer hook in React, and explore how pattern matching with TS-Pattern can improve your JavaScript development workflow."
+description: "Descubre TS-Pattern, una innovadora biblioteca de TypeScript que aporta concordancia de patrones y seguridad de tipo completa a tu código Typescript. Síguenos mientras creamos una función reductora para el hook useReducer en React, y explora cómo la concordancia de patrones con TS-Pattern puede mejorar tu flujo de trabajo de desarrollo de JavaScript."
 lang: es
 tag: Typescript
 ---
