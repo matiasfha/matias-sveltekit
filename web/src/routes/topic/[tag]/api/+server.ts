@@ -1,9 +1,10 @@
-import type { PageServerLoad } from './$types';
-import getPosts from '$lib/api/getPosts';
+import getPosts from "$lib/api/getPosts";
+import type { RequestHandler } from "./$types"
 import { Courses } from '$lib/api/getEggheadCourses';
 
 import { client, builder } from '$lib/utils/sanityClient';
 import { Articles } from '$lib/api/getAllExternalArticles';
+import { json } from "@sveltejs/kit";
 
 async function getCourses(lang: string, tag: string) {
 	const courses = await client
@@ -33,24 +34,28 @@ async function getArticles(lang: string, tag: string) {
 	});
 }
 
-export const load: PageServerLoad = async ({ params, cookies }) => {
-	const lang = cookies.get('lang') ?? 'en';
-	const { tag } = params;
-	const postsP = getPosts(lang);
-	const coursesP = getCourses(lang, tag);
-	const articlesP = getArticles(lang, tag);
-	const [posts, courses, articles] = await Promise.all([postsP, coursesP, articlesP]);
+async function getData(lang: string, tag: string) {
+    const postsP = getPosts(lang);
+    const coursesP = getCourses(lang, tag);
+    const articlesP = getArticles(lang, tag);
+    const [posts, courses, articles] = await Promise.all([postsP, coursesP, articlesP]);
 
-	return {
-		posts: posts.filter((item) => item.tag?.toLowerCase() === tag),
-		courses,
-		articles
-	};
-};
+    return {
+        posts: posts.filter((item) => item.tag?.toLowerCase() === tag),
+        courses,
+        articles
+    };
+}
+import { SecretToCheckForSanity } from '$env/static/private'
+export const GET = (async ({ url, request }) => {
+    if(request.headers.get('HandShake') === SecretToCheckForSanity){
 
-export const config = {
-	runtime: 'nodejs18.x',
-	isr: {
-		expiration: 60
-	}
-};
+        const enData = await getData('en', 'typescript')
+        const esData = await getData('es', 'typescript')
+        return json({
+            enData,
+            esData
+        })
+    }
+    return json({ notAllowed:"You can't be here"})
+}) satisfies RequestHandler
