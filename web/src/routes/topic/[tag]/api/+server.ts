@@ -48,7 +48,7 @@ async function getData(lang: string, tag: string) {
 }
 import { env } from '$env/dynamic/private';
 export const GET = (async ({ request }) => {
-    if (request.headers.get('HandShake') === env.SecretToCheckForSanity) {
+    if (request.headers.get('HandShake') === env.SANITY_SECRET) {
 
         const enData = await getData('en', 'typescript')
         const esData = await getData('es', 'typescript')
