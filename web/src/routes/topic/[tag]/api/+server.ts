@@ -7,31 +7,31 @@ import { Articles } from '$lib/api/getAllExternalArticles';
 import { json } from "@sveltejs/kit";
 
 async function getCourses(lang: string, tag: string) {
-	const courses = await client
-		.fetch(
-			`*[_type == "egghead-courses" && language match "${lang}" && category match "${tag}"] | order(updated_at desc)
+    const courses = await client
+        .fetch(
+            `*[_type == "egghead-courses" && language match "${lang}" && category match "${tag}"] | order(updated_at desc)
 		{image, title, category, language, updated_at, type, featured, url, description}
 		`
-		)
-		.then((result) => {
-			return Courses.parse(result);
-		});
-	return courses.map((item) => ({ ...item, image: builder.image(item.image).url() }));
+        )
+        .then((result) => {
+            return Courses.parse(result);
+        });
+    return courses.map((item) => ({ ...item, image: builder.image(item.image).url() }));
 }
 
 async function getArticles(lang: string, tag: string) {
-	const query = `*[_type == "external-articles" && category match '${tag}' && language match "${lang}"] | order(_createdAt desc){
+    const query = `*[_type == "external-articles" && category match '${tag}' && language match "${lang}"] | order(_createdAt desc){
 		url, title, image, published_at, tag, featured, description
 	}`;
-	const articles = await client.fetch(query).then((result) => {
-		return Articles.parse(result);
-	});
-	return articles.map((item) => {
-		return {
-			...item,
-			image: builder.image(item.image).url()
-		};
-	});
+    const articles = await client.fetch(query).then((result) => {
+        return Articles.parse(result);
+    });
+    return articles.map((item) => {
+        return {
+            ...item,
+            image: builder.image(item.image).url()
+        };
+    });
 }
 
 async function getData(lang: string, tag: string) {
@@ -48,7 +48,7 @@ async function getData(lang: string, tag: string) {
 }
 import { SecretToCheckForSanity } from '$env/static/private'
 export const GET = (async ({ url, request }) => {
-    if(request.headers.get('HandShake') === SecretToCheckForSanity){
+    if (request.headers.get('HandShake') === SecretToCheckForSanity) {
 
         const enData = await getData('en', 'typescript')
         const esData = await getData('es', 'typescript')
@@ -57,5 +57,5 @@ export const GET = (async ({ url, request }) => {
             esData
         })
     }
-    return json({ notAllowed:"You can't be here"})
+    return json({ notAllowed: "You can't be here" })
 }) satisfies RequestHandler
