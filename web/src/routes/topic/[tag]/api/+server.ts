@@ -46,9 +46,9 @@ async function getData(lang: string, tag: string) {
         articles
     };
 }
-import { SecretToCheckForSanity } from '$env/static/private'
-export const GET = (async ({ url, request }) => {
-    if (request.headers.get('HandShake') === SecretToCheckForSanity) {
+import { env } from '$env/dynamic/private';
+export const GET = (async ({ request }) => {
+    if (request.headers.get('HandShake') === env.SecretToCheckForSanity) {
 
         const enData = await getData('en', 'typescript')
         const esData = await getData('es', 'typescript')
