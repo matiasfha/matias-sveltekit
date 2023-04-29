@@ -4,7 +4,7 @@ import { Courses } from '$lib/api/getEggheadCourses';
 
 import { client, builder } from '$lib/utils/sanityClient';
 import { Articles } from '$lib/api/getAllExternalArticles';
-import { json } from "@sveltejs/kit";
+import { fail, json } from "@sveltejs/kit";
 
 async function getCourses(lang: string, tag: string) {
     const courses = await client
@@ -48,6 +48,8 @@ async function getData(lang: string, tag: string) {
 }
 import { env } from '$env/dynamic/private';
 export const GET = (async ({ request }) => {
+    console.log(request.headers.get('HandShake'))
+    console.log(env.SANITY_SECRET)
     if (request.headers.get('HandShake') === env.SANITY_SECRET) {
 
         const enData = await getData('en', 'typescript')
@@ -57,5 +59,5 @@ export const GET = (async ({ request }) => {
             esData
         })
     }
-    return json({ notAllowed: "You can't be here" })
+    return fail(401, { notAllowed: "You can't be here" })
 }) satisfies RequestHandler
