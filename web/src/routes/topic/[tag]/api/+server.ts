@@ -48,12 +48,10 @@ async function getData(lang: string, tag: string) {
 }
 import { env } from '$env/dynamic/private';
 export const GET = (async ({ request }) => {
-    console.log(request.headers.get('HandShake'))
-    console.log(env.SANITY_SECRET)
     if (request.headers.get('HandShake') === env.SANITY_SECRET) {
-
-        const enData = await getData('en', 'typescript')
-        const esData = await getData('es', 'typescript')
+        const tag = request.headers.get('tag') || "typescript"
+        const enData = await getData('en', tag)
+        const esData = await getData('es', tag)
         return json({
             enData,
             esData
