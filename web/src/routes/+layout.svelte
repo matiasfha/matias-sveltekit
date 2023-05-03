@@ -20,9 +20,6 @@
 		partytown = {
 			forward: ['dataLayer.push'],
 			resolveUrl: function (url, location, type) {
-				if (url.hostname.includes('buymeacoffee.com')) {
-					return new URL('https://matiashernandez.dev/buymeacoffee');
-				}
 				if (url.hostname.includes('convertkit.com')) {
 					return new URL('https://matiashernandez.dev/convertkit');
 				}

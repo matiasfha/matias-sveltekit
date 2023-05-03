@@ -41,7 +41,6 @@
 
 	// const newsletterId = lang === 'es' ? 'c4r8t8' : 'h7k7g0';
 </script>
-
 <Seo {title} {description} {keywords} isBlogPost={true} {canonical} {banner} />
 <header
 	class="post-header w-full bg-gray-900 flex item-end flex-col justify-center relative md:h-[32rem] h-[23rem] overflow-hidden"
