@@ -89,7 +89,8 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		return {
 			latest,
 			favorites,
-			featured
+			featured,
+			lang
 		};
 	} catch (e) {
 		console.error(e);
