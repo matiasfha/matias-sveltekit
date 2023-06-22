@@ -87,6 +87,7 @@
     "remark-reading-time": "2.0.1",
     "sanitize-html": "2.7.1",
     "sanity-codegen": "0.9.8",
+    "svelte-cloudinary": "v1.0.0-beta.10",
     "sveltekit-i18n": "2.2.2",
     "turbocommons-ts": "3.8.0",
     "vite": "^4.1.4",
