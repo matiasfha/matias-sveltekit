@@ -57,7 +57,7 @@ Here **literal** means exactly that, the **type** is is exactly the value you se
 ```typescript
 
 const ten: 10 = 10;
-const hello: ``hello`` = ``hello``;
+const hello: `hello` = `hello`;
 ```
 
 That is, the variable `ten` has as type the number `10`, so it can only contain as value the number `10`. The same with the variable `hello`, the only value it can have is the string `hello` since the type annotation indicates that it is the literal string `hello`.
@@ -67,9 +67,9 @@ That is, the variable `ten` has as type the number `10`, so it can only contain 
 This is where we begin to find more utility in the types offered natively by Typescript, as they allow you to better model your requirements. In this category you will find objects, records, arrays and tuples.
 
 * **Objects:** A type that describes the "shape" of an object as a finite set of key:value pairs.
-* Records:** Very similar to an object, but describes the shape of an object with an unknown number of properties where all of them are of the same type.
-**Tuples:** Allows to describe an array of a defined size.
-* Arrays**: As its name indicates, it describes an array of unknown size but whose values are of the same type.
+* **Records:** Very similar to an object, but describes the shape of an object with an unknown number of properties where all of them are of the same type.
+* **Tuples:** Allows to describe an array of a defined size.
+* **Arrays:** As its name indicates, it describes an array of unknown size but whose values are of the same type.
 
 ```typescript
 
@@ -95,13 +95,13 @@ For now we will only review their syntax and briefly their meaning, but we will 
 
 ```typescript
 
-type Union = X & Y 
+type Union = X | Y 
 
 type Intersection = X & Y 
 
 ```
 
-will have the type of X or the type of Y"_. The second line is the opposite, _"The type of Intersection will be simultaneously X and Y"_.
+The first line, of type Union, accepts values of type X or type Y. But you can only access properties and methods that exist on **both** X and Y. _The second line is the opposite._ The intersection type contains all members from both X and Y, and will allow access to all properties whether they come from X, Y, or both. For a more detailed walkthrough of union and intersection types with examples, [see the typescript docs](https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types).
 
 ### Conclusion
 
