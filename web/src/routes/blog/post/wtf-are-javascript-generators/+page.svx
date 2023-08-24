@@ -16,6 +16,7 @@ keywords:
   - Typescript
 tag: Javascript
 description: "Explore the power of JavaScript Generators in this comprehensive guide. Learn how generators can simplify asynchronous operations and state management in your JavaScript code. Discover their real-world application in the Effect-TS library."
+lang: en
 ---
 
 Hello, JavaScript adventurers! Today, we're going to explore an often-underutilized feature of JavaScript that can bring a whole new level of flexibility to your code - JavaScript Generators. If you're already comfortable with JavaScript's quirks and features but haven't delved into generators yet, this is your perfect starting point. Let's unravel this mystery together!
