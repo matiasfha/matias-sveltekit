@@ -1,0 +1,129 @@
+---
+title: WTF are Javascript Generators?
+date: 2023-08-24T09:39:00.000Z
+banner: https://res.cloudinary.com/matiasfha/image/upload/f_auto,q_auto/v1692885340/Javascript_duwcyu.png
+keywords:
+  - JavaScript
+  - Generators
+  - Asynchronous Operations
+  - State Management
+  - Effect-TS Library
+  - Callbacks
+  - Promises
+  - Generator Functions
+  - Effect
+  - EffectTS
+  - Typescript
+tag: Javascript
+description: "Explore the power of JavaScript Generators in this comprehensive guide. Learn how generators can simplify asynchronous operations and state management in your JavaScript code. Discover their real-world application in the Effect-TS library."
+---
+
+Hello, JavaScript adventurers! Today, we're going to explore an often-underutilized feature of JavaScript that can bring a whole new level of flexibility to your code - JavaScript Generators. If you're already comfortable with JavaScript's quirks and features but haven't delved into generators yet, this is your perfect starting point. Let's unravel this mystery together!
+
+**JavaScript Generators: What Are They?**
+
+To put it simply, generators are special functions that can pause and resume their execution. Imagine being able to put a bookmark inside your function, and you'll get the idea!
+
+```javascript
+function* generatorFunction() {
+    console.log('This will run first.');
+    yield 'Hello, ';
+
+    console.log('I will print after pause');
+    yield 'World!';
+}
+```
+In this snippet, `generatorFunction` is a generator, as indicated by the `function*` syntax and the `yield` keyword.
+
+**Seeing Generators in Action**
+
+Now, let's witness this pause-and-resume feature in action.
+
+```javascript
+const generator = generatorFunction();
+
+console.log(generator.next()); // { value: 'Hello, ', done: false }
+console.log(generator.next()); // { value: 'World!', done: false }
+console.log(generator.next()); // { value: undefined, done: true }
+```
+Each `next()` call makes the generator function run until it hits the next `yield`. Then it pauses and returns the yielded value. When there are no more `yield` statements, `next()` returns `{ value: undefined, done: true }`, indicating the end of the generator's task.
+
+**Unleashing the Full Potential of Generators**
+
+You might be wondering, "Interesting, but what's the practical use?" Let's delve into how generators can simplify your life as a developer.
+
+* **Asynchronous Operations**
+
+Tired of dealing with callback hell or a maze of Promises? Generators are your savior! They can manage asynchronous operations, making your code appear as if it's running synchronously, thus enhancing readability.
+
+```javascript
+function* fetchUser(userId) {
+  const response = yield fetch(`https://api.example.com/users/${userId}`);
+  const user = yield response.json();
+
+  return user;
+}
+```
+Here, `fetchUser` is a generator that fetches a user from an API. It pauses at each `yield` until the asynchronous operation completes, then resumes with the result.
+
+* **State Management**
+
+Generators are excellent for managing state. If you've ever juggled multiple variables to track state in your functions, you'll appreciate the simplicity generators bring.
+
+```javascript
+function* idGenerator() {
+  let id = 0;
+
+  while (true) {
+    yield ++id;
+  }
+}
+```
+In this example, `idGenerator` is a generator that generates a new ID each time it's called. The ID is stored in the generator's state, so it's automatically saved and updated each time the generator yields.
+
+**Generators in Real-World: Effect-TS Library**
+
+For a real-world application of generators, consider the [Effect-TS library](https://www.effect.website/).
+In a nutshell, Effect is a Typescript library designed to help you to easily create complex, synchronous and asynchronous programs. It leverages the concept of Effect pattern to create
+a powerful ecosystem of composable tool that allow you to write your logic in an effectfull way.
+
+
+This library uses generators to create and manage effects, as a convenient syntax, similar to `async/await`, using this approach you can write Effectfull logic
+in a way you are already use to:
+
+```typescript
+import { Effect } from "effect"
+
+const increment = (x: number) => x + 1
+
+const divide = (a: number, b: number): Effect.Effect<never, Error, number> =>
+  b === 0
+    ? Effect.fail(new Error("Cannot divide by zero"))
+    : Effect.succeed(a / b)
+
+// $ExpectType Effect<never, never, number>
+const task1 = Effect.promise(() => Promise.resolve(10))
+// $ExpectType Effect<never, never, number>
+const task2 = Effect.promise(() => Promise.resolve(2))
+
+// $ExpectType Effect<never, Error, string>
+export const program = Effect.gen(function* (_) {
+  const a = yield* _(task1)
+  const b = yield* _(task2)
+  const n1 = yield* _(divide(a, b))
+  const n2 = increment(n1)
+  return `Result is: ${n2}`
+})
+
+Effect.runPromise(program).then(console.log) // Output: "Result is: 6"
+```
+In this example, `program` is a generator function that describes an effect.
+The `yield*` syntax delegates to another generator/effect
+
+Then after all the logic was described, the program is run using `Effect.runPromise`
+
+**Wrapping Up**
+
+JavaScript generators offer a powerful way to simplify your code, making it more readable and manageable. They're especially handy for handling asynchronous operations and managing state. And with libraries like Effect-TS leveraging generators, the possibilities are endless.
+
+So, next time you're grappling with callbacks or state variables, consider using a generator. You might find it's the tool you've been seeking. Happy coding!
