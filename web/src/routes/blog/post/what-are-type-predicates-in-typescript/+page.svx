@@ -1,7 +1,7 @@
 ---
 date: 2023-02-21T14:22:35Z
-banner: https://cdn.sanity.io/images/cyypawp1/production/9590986164039cb59dfbd03b616568dc2d63759e-1280x710.png 
-keywords: 
+banner: https://cdn.sanity.io/images/cyypawp1/production/9590986164039cb59dfbd03b616568dc2d63759e-1280x710.png
+keywords:
 - Typescript
 - Typescript Predicates
 - Type Narrowing
@@ -12,17 +12,18 @@ keywords:
 title: "What are Type Predicates in Typescript?"
 description: "Learn about type predicates in TypeScript, a powerful tool for narrowing types. Discover the benefits, risks, and how to use them in your code."
 lang: en
+canonical: https://builtin.com/articles/typescript-type-predicates
 ---
-An important piece of working with types in Typescript is the process known as type narrowing. What it is? Is the process of assert what type a variable is in a particular part of the data flow. 
+An important piece of working with types in Typescript is the process known as type narrowing. What it is? Is the process of assert what type a variable is in a particular part of the data flow.
 In this article we will review one way to narrow types: Type Predicates Functions.
 
-Type narrowing allows us to take a type that is too broad and refine it to a more specific type. 
+Type narrowing allows us to take a type that is too broad and refine it to a more specific type.
 
 This is a critical concept because it can prevent errors and make our code more expressive and readable.
 
 ## **Understanding Type Predicate Functions**
 
-Type Predicate Functions are functions that return a boolean value and have a **particular return type syntax**. A type predicate is a __type assertion__ that checks if an object has a specific property or set of properties. 
+Type Predicate Functions are functions that return a boolean value and have a **particular return type syntax**. A type predicate is a __type assertion__ that checks if an object has a specific property or set of properties.
 This allows TypeScript to narrow (or refine) the type of an object based on the result of the function.
 
 Here is an example of a Type Predicate Function:
@@ -35,7 +36,7 @@ function isString(x: unknown): x is string {
 
 ```
 
-In this example, the function **`isString`** takes an argument **`x`** of type **`unknown`**. The function then checks if the **`typeof`** **`x`** is **`'string'`**, and returns **`true`** or **`false`** accordingly. 
+In this example, the function **`isString`** takes an argument **`x`** of type **`unknown`**. The function then checks if the **`typeof`** **`x`** is **`'string'`**, and returns **`true`** or **`false`** accordingly.
 
 The return type of the function is annotated as **`x is string`**, which **asserts** that **`x`** is of type **`string`** if the function returns **`true`**.
 
@@ -54,19 +55,19 @@ function reverseString(x: unknown){
 
 ```
 
-In this example, the function **`reverseString`** takes an argument **`x`** of type **`unknown`**, which could be any value. The function then calls the Type Predicate Function **`isString`** to check if **`x`** is a string. 
+In this example, the function **`reverseString`** takes an argument **`x`** of type **`unknown`**, which could be any value. The function then calls the Type Predicate Function **`isString`** to check if **`x`** is a string.
 If **`isString(x)`** returns **`true`**, then **`x`** is treated as a **`string`** and can be reversed using the **`split`**, **`reverse`**, and **`join`** string methods.
 
 ## **Pros and Cons of Using Type Predicate Functions for Type Narrowing**
 
 Ok, type predicates looks nice right? But as everything in life, there are pros and cons to every decision you take.
 
-One of the major advantages of type predicate functions is that they provide a way to express complex type relationships in a readable and understandable way. 
+One of the major advantages of type predicate functions is that they provide a way to express complex type relationships in a readable and understandable way.
 They allow you to define custom functions that not only perform a specific task but also return a boolean value that tells TypeScript whether a variable is of a particular type. This can make your code more expressive and self-documenting.
 
 They can also be useful when you need to perform dynamic type checks on an object. For example, imagine you have a function that takes an object as an argument, but you're not sure whether the object has a specific property. With a type predicate function, you can check for the presence of that property and narrow the type of the object to include that property.
 
-On **the downside**, type predicate functions **can be more difficult to set up** and use than conditional blocks. They require you to define custom functions and may require more code to get up and running. 
+On **the downside**, type predicate functions **can be more difficult to set up** and use than conditional blocks. They require you to define custom functions and may require more code to get up and running.
 
 But the most important problem of this functions is a **risk**, there is an easy way to introduce bugs to the process. You can wirte incorrect predicates leading to unexpected or undesired type narrowing.
 This can result in runtime errors or unexpected behavior, which can be difficult to diagnose and fix.
